@@ -12,9 +12,9 @@ import java.util.Iterator;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * @author denglerm serves as a superclass for the specific class of each diagram

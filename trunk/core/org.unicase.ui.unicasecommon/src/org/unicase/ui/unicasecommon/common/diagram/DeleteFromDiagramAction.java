@@ -17,7 +17,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.EdgeImpl;
 import org.eclipse.jface.action.Action;
-import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.diagram.commands.CommandFactory;
 import org.unicase.ui.unicasecommon.diagram.edit.parts.MEDiagramEditPart;
 import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
@@ -37,7 +37,7 @@ public class DeleteFromDiagramAction extends Action {
 	 */
 	@Override
 	public void run() {
-		EditPart selectedElement = (EditPart) ActionHelper.getSelection();
+		EditPart selectedElement = (EditPart) UnicaseActionHelper.getSelection();
 		CompoundCommand ccommand = new CompoundCommand("delete from diagram");
 		View view = EditPartUtility.getView(selectedElement);
 		DiagramEditPart rootEditPart = EditPartUtility.getDiagramEditPart(selectedElement);

@@ -68,7 +68,7 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.commands.subscribeToModelElement">
+            locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=org.unicase.ui.common.commands.subscribeToModelElement">
          <command
                commandId="org.unicase.docExport.exportDocument"
                icon="icons/export.gif"
@@ -80,7 +80,7 @@
                   <iterate
                         ifEmpty="false">
                      <reference
-                           definitionId="org.unicase.ui.common.commands.modelElement">
+                           definitionId="org.eclipse.emf.ecp.common.commands.modelElement">
                      </reference>
                   </iterate>
                   <count

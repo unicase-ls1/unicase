@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.profile.provider;
 
@@ -34,8 +34,8 @@ public class StereotypeAttributeItemProvider extends UnicaseModelElementItemProv
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StereotypeAttributeItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +43,8 @@ public class StereotypeAttributeItemProvider extends UnicaseModelElementItemProv
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -58,8 +58,8 @@ public class StereotypeAttributeItemProvider extends UnicaseModelElementItemProv
 	}
 
 	/**
-	 * This adds a property descriptor for the Stereotype feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Stereotype feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addStereotypePropertyDescriptor(Object object) {
@@ -73,8 +73,8 @@ public class StereotypeAttributeItemProvider extends UnicaseModelElementItemProv
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,9 +98,9 @@ public class StereotypeAttributeItemProvider extends UnicaseModelElementItemProv
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -109,8 +109,8 @@ public class StereotypeAttributeItemProvider extends UnicaseModelElementItemProv
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

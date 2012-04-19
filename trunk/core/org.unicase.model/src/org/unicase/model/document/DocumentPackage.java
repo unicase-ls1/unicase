@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.document;
 
@@ -20,35 +20,36 @@ import org.unicase.model.ModelPackage;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * 
  * @see org.unicase.model.document.DocumentFactory
  * @model kind="package"
  * @generated
  */
 public interface DocumentPackage extends EPackage {
 	/**
-	 * The package name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNAME = "document";
 
 	/**
-	 * The package namespace URI.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/model/document";
 
 	/**
-	 * The package namespace name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.model.document";
 
 	/**
-	 * The singleton instance of the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	DocumentPackage eINSTANCE = org.unicase.model.document.impl.DocumentPackageImpl.init();
@@ -64,16 +65,16 @@ public interface DocumentPackage extends EPackage {
 	int SECTION = 2;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SECTION__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -98,26 +99,17 @@ public interface DocumentPackage extends EPackage {
 	int SECTION__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
-	 * <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SECTION__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
-
-	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -133,25 +125,25 @@ public interface DocumentPackage extends EPackage {
 	int SECTION__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SECTION__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int SECTION__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -167,8 +159,8 @@ public interface DocumentPackage extends EPackage {
 	int SECTION__PARENT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Section</em>' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The number of structural features of the '<em>Section</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -177,6 +169,7 @@ public interface DocumentPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.unicase.model.document.impl.LeafSectionImpl <em>Leaf Section</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.unicase.model.document.impl.LeafSectionImpl
 	 * @see org.unicase.model.document.impl.DocumentPackageImpl#getLeafSection()
 	 * @generated
@@ -184,16 +177,16 @@ public interface DocumentPackage extends EPackage {
 	int LEAF_SECTION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int LEAF_SECTION__NAME = SECTION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -218,26 +211,17 @@ public interface DocumentPackage extends EPackage {
 	int LEAF_SECTION__ATTACHMENTS = SECTION__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
-	 * <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int LEAF_SECTION__INCOMING_DOCUMENT_REFERENCES = SECTION__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LEAF_SECTION__LEAF_SECTION = SECTION__LEAF_SECTION;
-
-	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -253,25 +237,25 @@ public interface DocumentPackage extends EPackage {
 	int LEAF_SECTION__APPLIED_STEREOTYPE_INSTANCES = SECTION__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int LEAF_SECTION__COMMENTS = SECTION__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int LEAF_SECTION__CREATION_DATE = SECTION__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -287,18 +271,18 @@ public interface DocumentPackage extends EPackage {
 	int LEAF_SECTION__PARENT = SECTION__PARENT;
 
 	/**
-	 * The feature id for the '<em><b>Model Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Model Elements</b></em>' containment reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int LEAF_SECTION__MODEL_ELEMENTS = SECTION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Referenced Model Elements</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Referenced Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -314,8 +298,9 @@ public interface DocumentPackage extends EPackage {
 	int LEAF_SECTION_FEATURE_COUNT = SECTION_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.document.impl.CompositeSectionImpl <em>Composite Section</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.unicase.model.document.impl.CompositeSectionImpl
+	 * <em>Composite Section</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.unicase.model.document.impl.CompositeSectionImpl
 	 * @see org.unicase.model.document.impl.DocumentPackageImpl#getCompositeSection()
 	 * @generated
@@ -323,16 +308,16 @@ public interface DocumentPackage extends EPackage {
 	int COMPOSITE_SECTION = 1;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMPOSITE_SECTION__NAME = SECTION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -357,26 +342,17 @@ public interface DocumentPackage extends EPackage {
 	int COMPOSITE_SECTION__ATTACHMENTS = SECTION__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
-	 * <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMPOSITE_SECTION__INCOMING_DOCUMENT_REFERENCES = SECTION__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_SECTION__LEAF_SECTION = SECTION__LEAF_SECTION;
-
-	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -392,25 +368,25 @@ public interface DocumentPackage extends EPackage {
 	int COMPOSITE_SECTION__APPLIED_STEREOTYPE_INSTANCES = SECTION__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMPOSITE_SECTION__COMMENTS = SECTION__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMPOSITE_SECTION__CREATION_DATE = SECTION__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -426,18 +402,18 @@ public interface DocumentPackage extends EPackage {
 	int COMPOSITE_SECTION__PARENT = SECTION__PARENT;
 
 	/**
-	 * The feature id for the '<em><b>Subsections</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Subsections</b></em>' containment reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMPOSITE_SECTION__SUBSECTIONS = SECTION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Composite Section</em>' class.
-	 * <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Composite Section</em>' class. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -454,9 +430,10 @@ public interface DocumentPackage extends EPackage {
 	EClass getLeafSection();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.model.document.LeafSection#getModelElements <em>Model Elements</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.unicase.model.document.LeafSection#getModelElements <em>Model Elements</em>}'. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the containment reference list '<em>Model Elements</em>'.
 	 * @see org.unicase.model.document.LeafSection#getModelElements()
 	 * @see #getLeafSection()
@@ -465,8 +442,10 @@ public interface DocumentPackage extends EPackage {
 	EReference getLeafSection_ModelElements();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.document.LeafSection#getReferencedModelElements <em>Referenced Model Elements</em>}'.
+	 * Returns the meta object for the reference list '
+	 * {@link org.unicase.model.document.LeafSection#getReferencedModelElements <em>Referenced Model Elements</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Referenced Model Elements</em>'.
 	 * @see org.unicase.model.document.LeafSection#getReferencedModelElements()
 	 * @see #getLeafSection()
@@ -475,8 +454,9 @@ public interface DocumentPackage extends EPackage {
 	EReference getLeafSection_ReferencedModelElements();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.document.CompositeSection <em>Composite Section</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.unicase.model.document.CompositeSection <em>Composite Section</em>}
+	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Composite Section</em>'.
 	 * @see org.unicase.model.document.CompositeSection
 	 * @generated
@@ -484,9 +464,10 @@ public interface DocumentPackage extends EPackage {
 	EClass getCompositeSection();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.model.document.CompositeSection#getSubsections <em>Subsections</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.unicase.model.document.CompositeSection#getSubsections <em>Subsections</em>}'. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the containment reference list '<em>Subsections</em>'.
 	 * @see org.unicase.model.document.CompositeSection#getSubsections()
 	 * @see #getCompositeSection()
@@ -505,8 +486,9 @@ public interface DocumentPackage extends EPackage {
 	EClass getSection();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.unicase.model.document.Section#getParent <em>Parent</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the container reference '{@link org.unicase.model.document.Section#getParent
+	 * <em>Parent</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the container reference '<em>Parent</em>'.
 	 * @see org.unicase.model.document.Section#getParent()
 	 * @see #getSection()
@@ -515,8 +497,8 @@ public interface DocumentPackage extends EPackage {
 	EReference getSection_Parent();
 
 	/**
-	 * Returns the factory that creates the instances of the model.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -531,12 +513,14 @@ public interface DocumentPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.document.impl.LeafSectionImpl <em>Leaf Section</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '{@link org.unicase.model.document.impl.LeafSectionImpl
+		 * <em>Leaf Section</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @see org.unicase.model.document.impl.LeafSectionImpl
 		 * @see org.unicase.model.document.impl.DocumentPackageImpl#getLeafSection()
 		 * @generated
@@ -557,8 +541,9 @@ public interface DocumentPackage extends EPackage {
 		 */
 		EReference LEAF_SECTION__REFERENCED_MODEL_ELEMENTS = eINSTANCE.getLeafSection_ReferencedModelElements();
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.document.impl.CompositeSectionImpl <em>Composite Section</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '{@link org.unicase.model.document.impl.CompositeSectionImpl
+		 * <em>Composite Section</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @see org.unicase.model.document.impl.CompositeSectionImpl
 		 * @see org.unicase.model.document.impl.DocumentPackageImpl#getCompositeSection()
 		 * @generated
@@ -581,9 +566,9 @@ public interface DocumentPackage extends EPackage {
 		 */
 		EClass SECTION = eINSTANCE.getSection();
 		/**
-		 * The meta object literal for the '<em><b>Parent</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>Parent</b></em>' container reference feature. <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference SECTION__PARENT = eINSTANCE.getSection_Parent();

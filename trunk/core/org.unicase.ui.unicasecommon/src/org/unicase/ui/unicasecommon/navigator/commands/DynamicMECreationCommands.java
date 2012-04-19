@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.action.IContributionItem;
@@ -23,11 +25,9 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
-import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.LeafSection;
-import org.unicase.ui.common.util.ActionHelper;
 
 /**
  * @author Hodaie This class creates a group of commands to create different model element types, which are shown in the
@@ -51,7 +51,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 		// get the leaf section right clicked on in navigator.
 		// For each ME type contained in this leaf section is a
 		// creation command added to context menu.
-		LeafSection leafSection = (LeafSection) ActionHelper.getSelectedModelElement();
+		LeafSection leafSection = (LeafSection) UiUtil.getSelectedModelelement();
 		if (leafSection == null) {
 			return new IContributionItem[0];
 		}
@@ -72,8 +72,8 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 		// every command takes its corresponding EClass type as parameter
 		// create command for contents of this leaf section
 		for (int i = 0; i < contentTypes.length; i++) {
-			CommandContributionItemParameter commandParam = new CommandContributionItemParameter(PlatformUI
-				.getWorkbench(), null, COMMAND_ID, CommandContributionItem.STYLE_PUSH);
+			CommandContributionItemParameter commandParam = new CommandContributionItemParameter(
+				PlatformUI.getWorkbench(), null, COMMAND_ID, CommandContributionItem.STYLE_PUSH);
 
 			Map<Object, Object> map = new HashMap<Object, Object>();
 
@@ -101,7 +101,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 	}
 
 	private ImageDescriptor getImage(EClass eClass) {
-		UnicaseModelElement instance = (UnicaseModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		EObject instance = eClass.getEPackage().getEFactoryInstance().create(eClass);
 		Image image = labelProvider.getImage(instance);
 		ImageDescriptor imageDescriptor = ImageDescriptor.createFromImage(image);
 		return imageDescriptor;
@@ -117,7 +117,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 		// create a map of (EClass, EClassCount)
 		Map<Object, Countable> meCounts = new HashMap<Object, Countable>();
 
-		for (UnicaseModelElement me : leafSection.getModelElements()) {
+		for (EObject me : leafSection.getModelElements()) {
 			Object key = null;
 
 			// Same for diagrams and other model elements.

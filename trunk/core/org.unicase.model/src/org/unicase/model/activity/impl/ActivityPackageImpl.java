@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.activity.impl;
 
@@ -11,8 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.unicase.emfstore.esmodel.EsmodelPackage;
-import org.unicase.model.ModelPackage;
+import org.eclipse.emf.emfstore.server.model.ModelPackage;
 import org.unicase.model.activity.Activity;
 import org.unicase.model.activity.ActivityEnd;
 import org.unicase.model.activity.ActivityFactory;
@@ -56,47 +55,55 @@ import org.unicase.model.util.impl.UtilPackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass activityObjectEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass transitionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass activityEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass forkEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass branchEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass activityInitialEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass activityEndEClass = null;
@@ -120,17 +127,18 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
-	 * <p>This method is used to initialize {@link ActivityPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc
+	 * <p>
+	 * This method is used to initialize {@link ActivityPackage#eINSTANCE} when that field is accessed. Clients should
+	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -147,12 +155,12 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 		isInited = true;
 
 		// Initialize simple dependencies
-		EsmodelPackage.eINSTANCE.eClass();
+		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ModelPackage.eNS_URI) : ModelPackage.eINSTANCE);
+		ModelPackageImpl theModelPackage_1 = (ModelPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) : org.unicase.model.ModelPackage.eINSTANCE);
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
@@ -198,7 +206,7 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 
 		// Create package meta-data objects
 		theActivityPackage.createPackageContents();
-		theModelPackage.createPackageContents();
+		theModelPackage_1.createPackageContents();
 		theOrganizationPackage.createPackageContents();
 		theTaskPackage.createPackageContents();
 		theClassesPackage.createPackageContents();
@@ -217,7 +225,7 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 
 		// Initialize created meta-data
 		theActivityPackage.initializePackageContents();
-		theModelPackage.initializePackageContents();
+		theModelPackage_1.initializePackageContents();
 		theOrganizationPackage.initializePackageContents();
 		theTaskPackage.initializePackageContents();
 		theClassesPackage.initializePackageContents();
@@ -244,6 +252,7 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getActivityObject() {
@@ -252,6 +261,7 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getActivityObject_IncomingTransitions() {
@@ -260,6 +270,7 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getActivityObject_OutgoingTransitions() {
@@ -268,6 +279,7 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getTransition() {
@@ -276,6 +288,7 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getTransition_Source() {
@@ -284,6 +297,7 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getTransition_Target() {
@@ -292,6 +306,7 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getTransition_Condition() {
@@ -300,6 +315,7 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getActivity() {
@@ -308,6 +324,7 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFork() {
@@ -316,6 +333,7 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getBranch() {
@@ -324,6 +342,7 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getActivityInitial() {
@@ -332,6 +351,7 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getActivityEnd() {
@@ -340,6 +360,7 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ActivityFactory getActivityFactory() {
@@ -348,14 +369,15 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
+	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -386,14 +408,15 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
+	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -407,15 +430,16 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		org.unicase.model.ModelPackage theModelPackage_1 = (org.unicase.model.ModelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		activityObjectEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
-		transitionEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		activityObjectEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		transitionEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
 		activityEClass.getESuperTypes().add(this.getActivityObject());
 		forkEClass.getESuperTypes().add(this.getActivityObject());
 		branchEClass.getESuperTypes().add(this.getActivityObject());

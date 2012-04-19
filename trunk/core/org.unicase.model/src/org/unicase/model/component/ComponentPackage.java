@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.component;
 
@@ -20,35 +20,36 @@ import org.unicase.model.ModelPackage;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * 
  * @see org.unicase.model.component.ComponentFactory
  * @model kind="package"
  * @generated
  */
 public interface ComponentPackage extends EPackage {
 	/**
-	 * The package name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNAME = "component";
 
 	/**
-	 * The package namespace URI.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/model/component";
 
 	/**
-	 * The package namespace name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.model.component";
 
 	/**
-	 * The singleton instance of the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	ComponentPackage eINSTANCE = org.unicase.model.component.impl.ComponentPackageImpl.init();
@@ -56,6 +57,7 @@ public interface ComponentPackage extends EPackage {
 	/**
 	 * The meta object id for the '{@link org.unicase.model.component.impl.ComponentImpl <em>Component</em>}' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.unicase.model.component.impl.ComponentImpl
 	 * @see org.unicase.model.component.impl.ComponentPackageImpl#getComponent()
 	 * @generated
@@ -63,16 +65,16 @@ public interface ComponentPackage extends EPackage {
 	int COMPONENT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMPONENT__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -97,26 +99,17 @@ public interface ComponentPackage extends EPackage {
 	int COMPONENT__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
-	 * <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMPONENT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
-
-	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -132,59 +125,59 @@ public interface ComponentPackage extends EPackage {
 	int COMPONENT__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMPONENT__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMPONENT__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMPONENT__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Packages</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Packages</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMPONENT__PACKAGES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Offered Services</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Offered Services</b></em>' containment reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMPONENT__OFFERED_SERVICES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Consumed Services</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Consumed Services</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMPONENT__CONSUMED_SERVICES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Subsystems</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Subsystems</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -200,8 +193,9 @@ public interface ComponentPackage extends EPackage {
 	int COMPONENT_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.component.impl.ComponentServiceImpl <em>Service</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.unicase.model.component.impl.ComponentServiceImpl <em>Service</em>}'
+	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.unicase.model.component.impl.ComponentServiceImpl
 	 * @see org.unicase.model.component.impl.ComponentPackageImpl#getComponentService()
 	 * @generated
@@ -209,16 +203,16 @@ public interface ComponentPackage extends EPackage {
 	int COMPONENT_SERVICE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMPONENT_SERVICE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -243,26 +237,17 @@ public interface ComponentPackage extends EPackage {
 	int COMPONENT_SERVICE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
-	 * <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMPONENT_SERVICE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_SERVICE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
-
-	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -278,59 +263,60 @@ public interface ComponentPackage extends EPackage {
 	int COMPONENT_SERVICE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMPONENT_SERVICE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMPONENT_SERVICE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMPONENT_SERVICE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Offering Component</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Offering Component</b></em>' container reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMPONENT_SERVICE__OFFERING_COMPONENT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Consuming Components</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Consuming Components</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMPONENT_SERVICE__CONSUMING_COMPONENTS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Service</em>' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The number of structural features of the '<em>Service</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int COMPONENT_SERVICE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.component.impl.DeploymentNodeImpl <em>Deployment Node</em>}' class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.unicase.model.component.impl.DeploymentNodeImpl <em>Deployment Node</em>}'
+	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.unicase.model.component.impl.DeploymentNodeImpl
 	 * @see org.unicase.model.component.impl.ComponentPackageImpl#getDeploymentNode()
 	 * @generated
@@ -338,16 +324,16 @@ public interface ComponentPackage extends EPackage {
 	int DEPLOYMENT_NODE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int DEPLOYMENT_NODE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -372,26 +358,17 @@ public interface ComponentPackage extends EPackage {
 	int DEPLOYMENT_NODE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
-	 * <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int DEPLOYMENT_NODE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DEPLOYMENT_NODE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
-
-	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -407,42 +384,42 @@ public interface ComponentPackage extends EPackage {
 	int DEPLOYMENT_NODE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int DEPLOYMENT_NODE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int DEPLOYMENT_NODE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
 
 	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int DEPLOYMENT_NODE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Components</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Components</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int DEPLOYMENT_NODE__COMPONENTS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Deployment Node</em>' class.
-	 * <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Deployment Node</em>' class. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -459,8 +436,9 @@ public interface ComponentPackage extends EPackage {
 	EClass getComponent();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.component.Component#getPackages <em>Packages</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference list '{@link org.unicase.model.component.Component#getPackages
+	 * <em>Packages</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Packages</em>'.
 	 * @see org.unicase.model.component.Component#getPackages()
 	 * @see #getComponent()
@@ -469,9 +447,10 @@ public interface ComponentPackage extends EPackage {
 	EReference getComponent_Packages();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.model.component.Component#getOfferedServices <em>Offered Services</em>}'.
-	 * <!-- begin-user-doc
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.unicase.model.component.Component#getOfferedServices <em>Offered Services</em>}'. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the containment reference list '<em>Offered Services</em>'.
 	 * @see org.unicase.model.component.Component#getOfferedServices()
 	 * @see #getComponent()
@@ -492,8 +471,9 @@ public interface ComponentPackage extends EPackage {
 	EReference getComponent_ConsumedServices();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.component.Component#getSubsystems <em>Subsystems</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference list '{@link org.unicase.model.component.Component#getSubsystems
+	 * <em>Subsystems</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Subsystems</em>'.
 	 * @see org.unicase.model.component.Component#getSubsystems()
 	 * @see #getComponent()
@@ -538,6 +518,7 @@ public interface ComponentPackage extends EPackage {
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.component.DeploymentNode <em>Deployment Node</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for class '<em>Deployment Node</em>'.
 	 * @see org.unicase.model.component.DeploymentNode
 	 * @generated
@@ -545,8 +526,9 @@ public interface ComponentPackage extends EPackage {
 	EClass getDeploymentNode();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.component.DeploymentNode#getComponents <em>Components</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference list '{@link org.unicase.model.component.DeploymentNode#getComponents
+	 * <em>Components</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference list '<em>Components</em>'.
 	 * @see org.unicase.model.component.DeploymentNode#getComponents()
 	 * @see #getDeploymentNode()
@@ -555,8 +537,8 @@ public interface ComponentPackage extends EPackage {
 	EReference getDeploymentNode_Components();
 
 	/**
-	 * Returns the factory that creates the instances of the model.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -571,12 +553,14 @@ public interface ComponentPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.component.impl.ComponentImpl <em>Component</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '{@link org.unicase.model.component.impl.ComponentImpl <em>Component</em>}'
+		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @see org.unicase.model.component.impl.ComponentImpl
 		 * @see org.unicase.model.component.impl.ComponentPackageImpl#getComponent()
 		 * @generated
@@ -584,9 +568,9 @@ public interface ComponentPackage extends EPackage {
 		EClass COMPONENT = eINSTANCE.getComponent();
 
 		/**
-		 * The meta object literal for the '<em><b>Packages</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>Packages</b></em>' reference list feature. <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference COMPONENT__PACKAGES = eINSTANCE.getComponent_Packages();
@@ -608,16 +592,17 @@ public interface ComponentPackage extends EPackage {
 		EReference COMPONENT__CONSUMED_SERVICES = eINSTANCE.getComponent_ConsumedServices();
 
 		/**
-		 * The meta object literal for the '<em><b>Subsystems</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>Subsystems</b></em>' reference list feature. <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference COMPONENT__SUBSYSTEMS = eINSTANCE.getComponent_Subsystems();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.component.impl.ComponentServiceImpl <em>Service</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '{@link org.unicase.model.component.impl.ComponentServiceImpl
+		 * <em>Service</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @see org.unicase.model.component.impl.ComponentServiceImpl
 		 * @see org.unicase.model.component.impl.ComponentPackageImpl#getComponentService()
 		 * @generated
@@ -641,8 +626,9 @@ public interface ComponentPackage extends EPackage {
 		EReference COMPONENT_SERVICE__CONSUMING_COMPONENTS = eINSTANCE.getComponentService_ConsumingComponents();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.component.impl.DeploymentNodeImpl <em>Deployment Node</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '{@link org.unicase.model.component.impl.DeploymentNodeImpl
+		 * <em>Deployment Node</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @see org.unicase.model.component.impl.DeploymentNodeImpl
 		 * @see org.unicase.model.component.impl.ComponentPackageImpl#getDeploymentNode()
 		 * @generated
@@ -650,9 +636,9 @@ public interface ComponentPackage extends EPackage {
 		EClass DEPLOYMENT_NODE = eINSTANCE.getDeploymentNode();
 
 		/**
-		 * The meta object literal for the '<em><b>Components</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>Components</b></em>' reference list feature. <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference DEPLOYMENT_NODE__COMPONENTS = eINSTANCE.getDeploymentNode_Components();

@@ -1,12 +1,13 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.docExport.editors.options;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -30,7 +31,6 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.TextAlign;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.docExport.exportModel.renderers.options.UColor;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author Sebastian Hoecht

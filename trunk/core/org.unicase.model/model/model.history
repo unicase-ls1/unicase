@@ -4,64 +4,64 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:history="http://www.cs.tum.edu/cope/history/0.1.42">
   <releases date="2009-06-13T17:13:48.937+0200" label="0">
     <changes xsi:type="history:CompositeChange">
-      <changes xsi:type="history:Create" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/">
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
+      <changes xsi:type="history:Create" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#/">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#/"
             featureName="name" dataValue="metamodel"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#/"
             featureName="nsURI" dataValue="http://unicase.org/metamodel"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#/"
             featureName="nsPrefix" dataValue="org.unicase.metamodel"/>
       </changes>
-      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
-          referenceName="eAnnotations" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%">
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%"
+      <changes xsi:type="history:Create" target="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#/"
+          referenceName="eAnnotations" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%"
             featureName="source" dataValue="http://www.cs.tum.edu/cope"/>
       </changes>
-      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%"
-          referenceName="details" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%/@details.0">
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%/@details.0"
+      <changes xsi:type="history:Create" target="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%"
+          referenceName="details" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%/@details.0">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%/@details.0"
             featureName="key" dataValue="historyURI"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%/@details.0"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//%http:%2F%2Fwww.cs.tum.edu%2Fcope%/@details.0"
             featureName="value" dataValue="../../../resource/org.unicase.model/model/model.history"/>
       </changes>
-      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
-          referenceName="eClassifiers" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project">
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project"
+      <changes xsi:type="history:Create" target="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#/"
+          referenceName="eClassifiers" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project"
             featureName="name" dataValue="Project"/>
       </changes>
-      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
-          referenceName="eClassifiers" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier">
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier"
+      <changes xsi:type="history:Create" target="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#/"
+          referenceName="eClassifiers" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//UniqueIdentifier">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//UniqueIdentifier"
             featureName="name" dataValue="UniqueIdentifier"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//UniqueIdentifier"
             featureName="abstract" dataValue="true" oldDataValue="false"/>
       </changes>
-      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier"
-          referenceName="eStructuralFeatures" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier/id">
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier/id"
+      <changes xsi:type="history:Create" target="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//UniqueIdentifier"
+          referenceName="eStructuralFeatures" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//UniqueIdentifier/id">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//UniqueIdentifier/id"
             featureName="name" dataValue="id"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier/id"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//UniqueIdentifier/id"
             featureName="lowerBound" dataValue="1" oldDataValue="0"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier/id"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//UniqueIdentifier/id"
             featureName="defaultValueLiteral" dataValue="Default Value Literal&#x9;"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier/id"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//UniqueIdentifier/id"
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </changes>
-      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
-          referenceName="eClassifiers" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement">
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement"
+      <changes xsi:type="history:Create" target="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#/"
+          referenceName="eClassifiers" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement"
             featureName="name" dataValue="IdentifiableElement"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement"
             featureName="abstract" dataValue="true" oldDataValue="false"/>
       </changes>
-      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
+      <changes xsi:type="history:Create" target="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#/"
           referenceName="eClassifiers" element="#//@releases.7/@changes.8/@changes.3/@element">
         <changes xsi:type="history:Set" element="#//@releases.7/@changes.8/@changes.3/@element"
             featureName="name" dataValue="ModelElement"/>
         <changes xsi:type="history:Set" element="#//@releases.7/@changes.8/@changes.3/@element"
             featureName="abstract" dataValue="true" oldDataValue="false"/>
         <changes xsi:type="history:Add" element="#//@releases.7/@changes.8/@changes.3/@element"
-            featureName="eSuperTypes" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement"/>
+            featureName="eSuperTypes" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement"/>
       </changes>
       <changes xsi:type="history:Create" target="#//@releases.7/@changes.8/@changes.3/@element"
           referenceName="eStructuralFeatures" element="model.ecore#//UnicaseModelElement/creator">
@@ -77,80 +77,80 @@
         <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/creationDate"
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       </changes>
-      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement"
-          referenceName="eStructuralFeatures" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier">
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"
+      <changes xsi:type="history:Create" target="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement"
+          referenceName="eStructuralFeatures" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"
             featureName="name" dataValue="identifier"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"
             featureName="lowerBound" dataValue="1" oldDataValue="0"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"
             featureName="iD" dataValue="true" oldDataValue="false"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </changes>
-      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project"
-          referenceName="eStructuralFeatures" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements">
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements"
+      <changes xsi:type="history:Create" target="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project"
+          referenceName="eStructuralFeatures" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project/modelElements">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project/modelElements"
             featureName="name" dataValue="modelElements"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project/modelElements"
             featureName="ordered" dataValue="false" oldDataValue="true"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project/modelElements"
             featureName="upperBound" dataValue="-1" oldDataValue="1"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project/modelElements"
             featureName="containment" dataValue="true" oldDataValue="false"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project/modelElements"
             featureName="eType" referenceValue="#//@releases.7/@changes.8/@changes.3/@element"/>
-        <changes xsi:type="history:Add" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements"
-            featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+        <changes xsi:type="history:Add" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project/modelElements"
+            featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       </changes>
-      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project"
-          referenceName="eStructuralFeatures" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/cutElements">
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/cutElements"
+      <changes xsi:type="history:Create" target="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project"
+          referenceName="eStructuralFeatures" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project/cutElements">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project/cutElements"
             featureName="name" dataValue="cutElements"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/cutElements"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project/cutElements"
             featureName="upperBound" dataValue="-1" oldDataValue="1"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/cutElements"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project/cutElements"
             featureName="containment" dataValue="true" oldDataValue="false"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/cutElements"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project/cutElements"
             featureName="eType" referenceValue="#//@releases.7/@changes.8/@changes.3/@element"/>
-        <changes xsi:type="history:Add" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/cutElements"
-            featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+        <changes xsi:type="history:Add" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project/cutElements"
+            featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       </changes>
-      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
-          referenceName="eClassifiers" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId">
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+      <changes xsi:type="history:Create" target="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#/"
+          referenceName="eClassifiers" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//ModelElementId">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//ModelElementId"
             featureName="name" dataValue="ModelElementId"/>
-        <changes xsi:type="history:Add" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
-            featureName="eSuperTypes" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//UniqueIdentifier"/>
+        <changes xsi:type="history:Add" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//ModelElementId"
+            featureName="eSuperTypes" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//UniqueIdentifier"/>
       </changes>
-      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
-          referenceName="eClassifiers" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelVersion">
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelVersion"
+      <changes xsi:type="history:Create" target="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#/"
+          referenceName="eClassifiers" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//ModelVersion">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//ModelVersion"
             featureName="name" dataValue="ModelVersion"/>
       </changes>
-      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelVersion"
-          referenceName="eStructuralFeatures" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelVersion/releaseNumber">
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelVersion/releaseNumber"
+      <changes xsi:type="history:Create" target="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//ModelVersion"
+          referenceName="eStructuralFeatures" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//ModelVersion/releaseNumber">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//ModelVersion/releaseNumber"
             featureName="name" dataValue="releaseNumber"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelVersion/releaseNumber"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//ModelVersion/releaseNumber"
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </changes>
-      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
-          referenceName="eClassifiers" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement">
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement"
+      <changes xsi:type="history:Create" target="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#/"
+          referenceName="eClassifiers" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//NonDomainElement">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//NonDomainElement"
             featureName="name" dataValue="NonDomainElement"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//NonDomainElement"
             featureName="abstract" dataValue="true" oldDataValue="false"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//NonDomainElement"
             featureName="interface" dataValue="true" oldDataValue="false"/>
       </changes>
-      <changes xsi:type="history:Create" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
-          referenceName="eClassifiers" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//AssociationClassElement">
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//AssociationClassElement"
+      <changes xsi:type="history:Create" target="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#/"
+          referenceName="eClassifiers" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//AssociationClassElement">
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//AssociationClassElement"
             featureName="name" dataValue="AssociationClassElement"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//AssociationClassElement"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//AssociationClassElement"
             featureName="abstract" dataValue="true" oldDataValue="false"/>
-        <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//AssociationClassElement"
+        <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//AssociationClassElement"
             featureName="interface" dataValue="true" oldDataValue="false"/>
       </changes>
     </changes>
@@ -1403,13 +1403,6 @@
             featureName="eType" referenceValue="model.ecore#//UnicaseModelElement"/>
         <changes xsi:type="history:Add" element="#//@releases.7/@changes.9/@element/MEDiagram/newElements"
             featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
-      </changes>
-      <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@element/MEDiagram"
-          referenceName="eStructuralFeatures" element="#//@releases.7/@changes.9/@element/MEDiagram/diagramLayout">
-        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/MEDiagram/diagramLayout"
-            featureName="name" dataValue="diagramLayout"/>
-        <changes xsi:type="history:Set" element="#//@releases.7/@changes.9/@element/MEDiagram/diagramLayout"
-            featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </changes>
       <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@element"
           referenceName="eClassifiers" element="#//@releases.6/@changes.0/@changes.7/@element">
@@ -2881,12 +2874,12 @@
             featureName="eSuperTypes" referenceValue="model.ecore#//document/Section"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement"
-          referenceName="eStructuralFeatures" element="model.ecore#//UnicaseModelElement/leafSection">
-        <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/leafSection"
+          referenceName="eStructuralFeatures" element="#//@releases.9/@changes.0/@element">
+        <changes xsi:type="history:Set" element="#//@releases.9/@changes.0/@element"
             featureName="name" dataValue="leafSection"/>
-        <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/leafSection"
+        <changes xsi:type="history:Set" element="#//@releases.9/@changes.0/@element"
             featureName="eType" referenceValue="model.ecore#//document/LeafSection"/>
-        <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement/leafSection"
+        <changes xsi:type="history:Add" element="#//@releases.9/@changes.0/@element"
             featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//document/LeafSection"
@@ -2900,8 +2893,8 @@
         <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/modelElements"
             featureName="eType" referenceValue="model.ecore#//UnicaseModelElement"/>
         <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/modelElements"
-            featureName="eOpposite" referenceValue="model.ecore#//UnicaseModelElement/leafSection"/>
-        <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/leafSection"
+            featureName="eOpposite" referenceValue="#//@releases.9/@changes.0/@element"/>
+        <changes xsi:type="history:Set" element="#//@releases.9/@changes.0/@element"
             featureName="eOpposite" referenceValue="model.ecore#//document/LeafSection/modelElements"/>
         <changes xsi:type="history:Add" element="model.ecore#//document/LeafSection/modelElements"
             featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
@@ -6422,7 +6415,7 @@
           featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/PackageElement/incomingDependencies"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
-      <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/leafSection"
+      <changes xsi:type="history:Remove" element="#//@releases.9/@changes.0/@element"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//document/LeafSection/modelElements"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
@@ -6659,15 +6652,15 @@
     <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/path"
         featureName="eType" referenceValue="#//@releases.0/@changes.5/@element"/>
     <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/source"
-        featureName="eType" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+        featureName="eType" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//ModelElementId"
         oldReferenceValue="#//@releases.0/@changes.5/@element"/>
     <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/target"
         featureName="eType" referenceValue="model.ecore#//task/ActionItem" oldReferenceValue="#//@releases.0/@changes.5/@element"/>
     <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/target"
-        featureName="eType" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+        featureName="eType" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//ModelElementId"
         oldReferenceValue="model.ecore#//task/ActionItem"/>
     <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/path"
-        featureName="eType" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+        featureName="eType" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//ModelElementId"
         oldReferenceValue="#//@releases.0/@changes.5/@element"/>
     <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement" featureName="eSuperTypes"
         referenceValue="#//@releases.7/@changes.8/@changes.3/@element"/>
@@ -6684,7 +6677,7 @@
       <changes xsi:type="history:Set" element="model.ecore#//Project" featureName="name"
           dataValue="Project"/>
       <changes xsi:type="history:Add" element="model.ecore#//Project" featureName="eSuperTypes"
-          referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+          referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project"/>
     </changes>
     <changes xsi:type="history:Delete" target="model.ecore#//UnicaseModelElement/description"
         referenceName="eAnnotations">
@@ -6694,291 +6687,291 @@
     </changes>
     <changes xsi:type="history:CompositeChange">
       <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement/annotations"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement/attachments"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement/incomingDocumentReferences"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement/leafSection"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Add" element="#//@releases.9/@changes.0/@element"
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement/appliedStereotypeInstances"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement/comments"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//Annotation/annotatedModelElements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//Attachment/referringModelElements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//organization/User/workItemsToReview"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//organization/OrgUnit/groupMemberships"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//organization/OrgUnit/assignments"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//organization/OrgUnit/participations"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//organization/Group/orgUnits"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//task/WorkPackage/containedWorkItems"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//task/WorkItem/containingWorkpackage"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="#//@releases.5/@changes.2/@changes.4/@changes.0/@element"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//task/WorkItem/predecessors"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//task/WorkItem/successors"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//task/WorkItem/assignee"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//task/WorkItem/reviewer"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//task/WorkItem/participants"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//task/Milestone/containedModelElements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="#//@releases.7/@changes.9/@element/MEDiagram/elements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="#//@releases.7/@changes.9/@element/MEDiagram/newElements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Class/participatedUseCases"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Class/superClasses"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Class/subClasses"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Class/incomingAssociations"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Class/outgoingAssociations"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Class/attributes"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Class/methods"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Class/demoParticipations"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Package/containedPackageElements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Package/facadeClass"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/PackageElement/parentPackage"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/PackageElement/outgoingDependencies"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/PackageElement/incomingDependencies"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Association/source"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Association/target"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Attribute/definingClass"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Method/arguments"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Method/definingClass"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Method/calledMethods"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Method/callingMethods"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Method/demoParticipations"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Dependency/source"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Dependency/target"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//document/LeafSection/modelElements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//document/LeafSection/referencedModelElements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//document/CompositeSection/subsections"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//document/Section/parent"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/FunctionalRequirement/refinedRequirement"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/FunctionalRequirement/refiningRequirements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/FunctionalRequirement/useCases"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/FunctionalRequirement/scenarios"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/FunctionalRequirement/stakeholder"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/initiatingActor"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/participatingActors"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/realizedUserTask"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/useCaseSteps"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/scenarios"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/functionalRequirements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/nonFunctionalRequirements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/identifiedClasses"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/includedUseCases"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/extendedUseCases"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/Scenario/steps"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/Scenario/initiatingActorInstance"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/Scenario/participatingActorInstances"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/Scenario/instantiatedUseCases"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/Scenario/functionalRequirements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/Scenario/nonFunctionalRequirements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/Scenario/participatingMethods"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/Scenario/participatingClasses"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/Actor/initiatedUserTask"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/Actor/participatedUserTasks"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/Actor/initiatedUseCases"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/Actor/participatedUseCases"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/Actor/instances"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/ActorInstance/initiatedScenarios"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/ActorInstance/participatedScenarios"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/ActorInstance/instantiatedActor"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/Step/includedUseCase"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/Step/includedSystemFunction"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/Step/useCase"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/UserTask/initiatingActor"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/UserTask/participatingActors"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//requirement/UserTask/realizingUseCases"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//rationale/Issue/proposals"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//rationale/Issue/solution"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//rationale/Issue/criteria"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//rationale/Proposal/assessments"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//rationale/Proposal/issue"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//rationale/Solution/underlyingProposals"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//rationale/Solution/issue"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//rationale/Criterion/assessments"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//rationale/Assessment/proposal"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//rationale/Assessment/criterion"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//rationale/Comment/sender"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//rationale/Comment/recipients"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//rationale/Comment/commentedElement"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="#//@releases.5/@changes.2/@changes.1/@changes.0/@element"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="#//@releases.5/@changes.2/@changes.2/@changes.0/@element"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="#//@releases.5/@changes.2/@changes.3/@changes.0/@element"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//component/Component/packages"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//component/Component/offeredServices"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//component/Component/consumedServices"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//component/Component/subsystems"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//component/ComponentService/offeringComponent"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//component/ComponentService/consumingComponents"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//component/DeploymentNode/components"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//meeting/Meeting/facilitator"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//meeting/Meeting/minutetaker"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//meeting/Meeting/timekeeper"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//meeting/Meeting/participants"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//meeting/Meeting/sections"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//meeting/Meeting/identifiedIssuesSection"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//meeting/Meeting/identifiedWorkItemsSection"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//meeting/CompositeMeetingSection/subsections"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//meeting/IssueMeetingSection/includedIssues"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//meeting/WorkItemMeetingSection/includedWorkItems"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//state/Transition/source"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//state/Transition/target"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//state/StateNode/outgoingTransitions"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//state/StateNode/incomingTransitions"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//profile/Profile/affectedContainers"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//profile/Profile/stereotypes"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//profile/Stereotype/profile"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//profile/Stereotype/stereotypeInstances"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//profile/Stereotype/stereotypeAttributes"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//profile/StereotypeInstance/stereotype"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//profile/StereotypeInstance/modelElement"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//profile/StereotypeInstance/stereotypeAttributeInstances"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//profile/StereotypeAttribute/stereotype"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//profile/StereotypeAttribute/stereotypeAttributeInstances"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//profile/StereotypeAttributeInstance/stereotypeInstance"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//profile/StereotypeAttributeInstance/stereotypeAttribute"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//activity/ActivityObject/incomingTransitions"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//activity/ActivityObject/outgoingTransitions"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//activity/Transition/source"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//activity/Transition/target"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
     </changes>
   </releases>
   <releases date="2009-06-15T16:43:42.953+0200" label="1 (0.3.25.internal)">
@@ -7098,7 +7091,7 @@
       <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment/audioFile"
           featureName="name" dataValue="audioFile"/>
       <changes xsi:type="history:Add" element="model.ecore#//rationale/AudioComment/audioFile"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
     </changes>
     <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachment"
         referenceName="eStructuralFeatures" element="#//@releases.8/@changes.1/@changes.0/@element">
@@ -7169,7 +7162,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/SystemFunction/nonFunctionalRequirement"
             featureName="eType" referenceValue="model.ecore#//requirement/NonFunctionalRequirement"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/SystemFunction/nonFunctionalRequirement"
-            featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/NonFunctionalRequirement"
           referenceName="eStructuralFeatures" element="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions">
@@ -7184,7 +7177,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/SystemFunction/nonFunctionalRequirement"
             featureName="eOpposite" referenceValue="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions"
-            featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions"
           referenceName="eAnnotations" element="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions/%org.unicase.ui.meeditor%">
@@ -7216,7 +7209,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/nonFunctionalRequirements"
             featureName="eType" referenceValue="model.ecore#//requirement/NonFunctionalRequirement"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/UserTask/nonFunctionalRequirements"
-            featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/UserTask/nonFunctionalRequirements"
           referenceName="eAnnotations" element="model.ecore#//requirement/UserTask/nonFunctionalRequirements/%org.unicase.ui.meeditor%">
@@ -7250,7 +7243,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/userTasks"
             featureName="eType" referenceValue="model.ecore#//requirement/UserTask"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/NonFunctionalRequirement/userTasks"
-            featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/NonFunctionalRequirement/userTasks"
           referenceName="eAnnotations" element="model.ecore#//requirement/NonFunctionalRequirement/userTasks/%org.unicase.ui.meeditor%">
@@ -7282,7 +7275,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/systemFunctions"
             featureName="eType" referenceValue="model.ecore#//requirement/SystemFunction"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/systemFunctions"
-            featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase/systemFunctions"
           referenceName="eAnnotations" element="model.ecore#//requirement/UseCase/systemFunctions/%org.unicase.ui.meeditor%">
@@ -7316,7 +7309,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/SystemFunction/usecases"
             featureName="eType" referenceValue="model.ecore#//requirement/UseCase"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/SystemFunction/usecases"
-            featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/SystemFunction/usecases"
           referenceName="eAnnotations" element="model.ecore#//requirement/SystemFunction/usecases/%org.unicase.ui.meeditor%">
@@ -7353,7 +7346,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/SystemFunction/workspace"
             featureName="eType" referenceValue="model.ecore#//requirement/Workspace"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/SystemFunction/workspace"
-            featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/Workspace"
           referenceName="eStructuralFeatures" element="model.ecore#//requirement/Workspace/systemFunctions">
@@ -7368,7 +7361,7 @@
         <changes xsi:type="history:Set" element="model.ecore#//requirement/Workspace/systemFunctions"
             featureName="eType" referenceValue="model.ecore#//requirement/SystemFunction"/>
         <changes xsi:type="history:Add" element="model.ecore#//requirement/Workspace/systemFunctions"
-            featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+            featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/Workspace/systemFunctions"
           referenceName="eAnnotations" element="model.ecore#//requirement/Workspace/systemFunctions/%org.unicase.ui.meeditor%">
@@ -7482,7 +7475,7 @@
         <changes xsi:type="history:Delete" target="model.ecore#//change/MergingProposal"
             referenceName="eStructuralFeatures">
           <element xsi:type="ecore:EReference" name="conflictingProposals" upperBound="-1"
-              eType="ecore:EClass model.ecore#//change/MergingProposal" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+              eType="ecore:EClass model.ecore#//change/MergingProposal" eKeys="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
         </changes>
         <operation name="deleteFeature">
           <parameters name="feature">
@@ -7494,7 +7487,7 @@
         <changes xsi:type="history:Delete" target="model.ecore#//change/MergingProposal"
             referenceName="eStructuralFeatures">
           <element xsi:type="ecore:EReference" name="pendingChanges" eType="#//@releases.5/@changes.3/@changes.0/@element"
-              eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+              eKeys="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
         </changes>
         <operation name="deleteFeature">
           <parameters name="feature">
@@ -7506,7 +7499,7 @@
         <changes xsi:type="history:Delete" target="model.ecore#//change/MergingSolution"
             referenceName="eStructuralFeatures">
           <element xsi:type="ecore:EReference" name="appliedChanges" upperBound="-1"
-              eType="#//@releases.5/@changes.3/@changes.0/@element" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+              eType="#//@releases.5/@changes.3/@changes.0/@element" eKeys="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
         </changes>
         <operation name="deleteFeature">
           <parameters name="feature">
@@ -7517,7 +7510,7 @@
       <changes xsi:type="history:OperationChange">
         <changes xsi:type="history:Delete" target="model.ecore#//task/WorkItem" referenceName="eStructuralFeatures">
           <element xsi:type="ecore:EReference" name="associatedChangePackages" upperBound="-1"
-              eType="#//@releases.5/@changes.3/@changes.0/@element" eKeys="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+              eType="#//@releases.5/@changes.3/@changes.0/@element" eKeys="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
         </changes>
         <operation name="deleteFeature">
           <parameters name="feature">
@@ -7537,7 +7530,7 @@
     <changes xsi:type="history:Create" target="model.ecore#//change/MergingProposal"
         referenceName="eStructuralFeatures" element="model.ecore#//change/MergingProposal/pendingOperations">
       <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/pendingOperations"
-          featureName="eType" referenceValue="platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"/>
+          featureName="eType" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.server.model/model/server.ecore#//versioning/operations/AbstractOperation"/>
       <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/pendingOperations"
           featureName="upperBound" dataValue="-1" oldDataValue="1"/>
       <changes xsi:type="history:Set" element="model.ecore#//change/MergingProposal/pendingOperations"
@@ -7552,14 +7545,14 @@
       <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
           featureName="name" dataValue="baseVersion"/>
       <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/baseVersion"
-          featureName="eType" referenceValue="platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"/>
+          featureName="eType" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.server.model/model/server.ecore#//versioning/PrimaryVersionSpec"/>
     </changes>
     <changes xsi:type="history:Create" target="model.ecore#//change/MergingIssue"
         referenceName="eStructuralFeatures" element="model.ecore#//change/MergingIssue/targetVersion">
       <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/targetVersion"
           featureName="containment" dataValue="true" oldDataValue="false"/>
       <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/targetVersion"
-          featureName="eType" referenceValue="platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"/>
+          featureName="eType" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.server.model/model/server.ecore#//versioning/PrimaryVersionSpec"/>
       <changes xsi:type="history:Set" element="model.ecore#//change/MergingIssue/targetVersion"
           featureName="name" dataValue="targetVersion"/>
     </changes>
@@ -7570,7 +7563,7 @@
       <changes xsi:type="history:Set" element="model.ecore#//change/MergingSolution/appliedOperations"
           featureName="containment" dataValue="true" oldDataValue="false"/>
       <changes xsi:type="history:Set" element="model.ecore#//change/MergingSolution/appliedOperations"
-          featureName="eType" referenceValue="platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"/>
+          featureName="eType" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.server.model/model/server.ecore#//versioning/operations/AbstractOperation"/>
       <changes xsi:type="history:Set" element="model.ecore#//change/MergingSolution/appliedOperations"
           featureName="name" dataValue="appliedOperations"/>
     </changes>
@@ -7690,7 +7683,7 @@
       <changes xsi:type="history:Set" element="model.ecore#//classes/Attribute/implementationEnumeration"
           featureName="name" dataValue="implementationEnumeration"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Attribute/implementationEnumeration"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
     </changes>
     <changes xsi:type="history:OperationChange">
       <changes xsi:type="history:Create" target="model.ecore#//classes/Enumeration"
@@ -7725,7 +7718,7 @@
       </operation>
     </changes>
     <changes xsi:type="history:Add" element="model.ecore#//classes/Enumeration/attributes"
-        featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+        featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
     <changes xsi:type="history:Create" target="model.ecore#//classes/Attribute" referenceName="eStructuralFeatures"
         element="model.ecore#//classes/Attribute/transient">
       <changes xsi:type="history:Set" element="model.ecore#//classes/Attribute/transient"
@@ -7758,7 +7751,7 @@
       <changes xsi:type="history:Set" element="model.ecore#//classes/Enumeration/literals"
           featureName="upperBound" dataValue="-1" oldDataValue="1"/>
       <changes xsi:type="history:Add" element="model.ecore#//classes/Enumeration/literals"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
     </changes>
     <changes xsi:type="history:OperationChange">
       <changes xsi:type="history:Create" target="model.ecore#//classes/Literal" referenceName="eStructuralFeatures"
@@ -7877,15 +7870,15 @@
     <changes xsi:type="history:Set" element="model.ecore#//classes/Association/targetRole"
         featureName="defaultValueLiteral" oldDataValue="1"/>
     <changes xsi:type="history:Add" element="model.ecore#//requirement/Step" featureName="eSuperTypes"
-        referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement"/>
+        referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//NonDomainElement"/>
     <changes xsi:type="history:Add" element="model.ecore#//rationale/Proposal" featureName="eSuperTypes"
-        referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement"/>
+        referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//NonDomainElement"/>
     <changes xsi:type="history:Add" element="model.ecore#//rationale/Solution" featureName="eSuperTypes"
-        referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement"/>
+        referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//NonDomainElement"/>
     <changes xsi:type="history:Add" element="model.ecore#//rationale/Assessment" featureName="eSuperTypes"
-        referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement"/>
+        referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//NonDomainElement"/>
     <changes xsi:type="history:Add" element="model.ecore#//rationale/Comment" featureName="eSuperTypes"
-        referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement"/>
+        referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//NonDomainElement"/>
   </releases>
   <releases date="2010-03-28T11:49:07.828+0200" label="">
     <changes xsi:type="history:OperationChange">
@@ -8052,323 +8045,323 @@
     </changes>
     <changes xsi:type="history:MigrationChange" migration="import org.eclipse.emf.ecore.*&#xD;&#xA;&#xD;&#xA;for(def i = model.eAllContents(); i.hasNext(); ) {&#xD;&#xA;&#x9;def element = i.next();&#xD;&#xA;&#x9;if(element instanceof EReference) {&#xD;&#xA;&#x9;&#x9;element.eKeys.clear()&#xD;&#xA;&#x9;}&#xD;&#xA;}">
       <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/annotations"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/attachments"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/incomingDocumentReferences"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/leafSection"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
+      <changes xsi:type="history:Remove" element="#//@releases.9/@changes.0/@element"
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/appliedStereotypeInstances"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/comments"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//Annotation/annotatedModelElements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//Attachment/referringModelElements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//organization/User/workItemsToReview"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//organization/OrgUnit/groupMemberships"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//organization/OrgUnit/assignments"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//organization/OrgUnit/participations"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//organization/Group/orgUnits"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//task/WorkPackage/containedWorkItems"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//task/WorkItem/containingWorkpackage"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//task/WorkItem/predecessors"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//task/WorkItem/successors"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//task/WorkItem/assignee"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//task/WorkItem/reviewer"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//task/WorkItem/participants"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//task/Milestone/containedModelElements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="#//@releases.7/@changes.9/@element/MEDiagram/elements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="#//@releases.7/@changes.9/@element/MEDiagram/newElements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/participatedUseCases"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/superClasses"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/subClasses"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/incomingAssociations"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/outgoingAssociations"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/attributes"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/methods"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Class/demoParticipations"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Package/containedPackageElements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Package/facadeClass"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/PackageElement/parentPackage"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/PackageElement/outgoingDependencies"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/PackageElement/incomingDependencies"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Association/source"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Association/target"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Attribute/definingClass"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Attribute/implementationEnumeration"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Method/arguments"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Method/definingClass"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Method/calledMethods"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Method/callingMethods"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Method/demoParticipations"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Dependency/source"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Dependency/target"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Enumeration/literals"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//classes/Enumeration/attributes"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//document/LeafSection/modelElements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//document/LeafSection/referencedModelElements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//document/CompositeSection/subsections"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//document/Section/parent"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/NonFunctionalRequirement/userTasks"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/FunctionalRequirement/refinedRequirement"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/FunctionalRequirement/refiningRequirements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/FunctionalRequirement/useCases"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/FunctionalRequirement/scenarios"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/FunctionalRequirement/stakeholder"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/initiatingActor"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/participatingActors"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/realizedUserTask"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/useCaseSteps"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/scenarios"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/functionalRequirements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/nonFunctionalRequirements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/identifiedClasses"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/includedUseCases"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/extendedUseCases"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UseCase/systemFunctions"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/steps"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/initiatingActorInstance"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/participatingActorInstances"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/instantiatedUseCases"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/functionalRequirements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/nonFunctionalRequirements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/participatingMethods"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Scenario/participatingClasses"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Actor/initiatedUserTask"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Actor/participatedUserTasks"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Actor/initiatedUseCases"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Actor/participatedUseCases"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Actor/instances"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/ActorInstance/initiatedScenarios"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/ActorInstance/participatedScenarios"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/ActorInstance/instantiatedActor"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Step/includedUseCase"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Step/includedSystemFunction"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Step/useCase"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/SystemFunction/nonFunctionalRequirement"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/SystemFunction/usecases"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/SystemFunction/workspace"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UserTask/initiatingActor"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UserTask/participatingActors"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UserTask/realizingUseCases"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/UserTask/nonFunctionalRequirements"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//requirement/Workspace/systemFunctions"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Issue/proposals"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Issue/solution"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Issue/criteria"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Proposal/assessments"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Proposal/issue"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Solution/underlyingProposals"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Solution/issue"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Criterion/assessments"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Assessment/proposal"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Assessment/criterion"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Comment/sender"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Comment/recipients"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/Comment/commentedElement"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//rationale/AudioComment/audioFile"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//component/Component/packages"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//component/Component/offeredServices"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//component/Component/consumedServices"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//component/Component/subsystems"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//component/ComponentService/offeringComponent"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//component/ComponentService/consumingComponents"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//component/DeploymentNode/components"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//meeting/Meeting/facilitator"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//meeting/Meeting/minutetaker"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//meeting/Meeting/timekeeper"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//meeting/Meeting/participants"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//meeting/Meeting/sections"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//meeting/Meeting/identifiedIssuesSection"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//meeting/Meeting/identifiedWorkItemsSection"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//meeting/CompositeMeetingSection/subsections"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//meeting/IssueMeetingSection/includedIssues"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//meeting/WorkItemMeetingSection/includedWorkItems"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//state/Transition/source"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//state/Transition/target"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//state/StateNode/outgoingTransitions"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//state/StateNode/incomingTransitions"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/Profile/affectedContainers"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/Profile/stereotypes"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/Stereotype/profile"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/Stereotype/stereotypeInstances"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/Stereotype/stereotypeAttributes"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/StereotypeInstance/stereotype"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/StereotypeInstance/modelElement"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/StereotypeInstance/stereotypeAttributeInstances"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/StereotypeAttribute/stereotype"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/StereotypeAttribute/stereotypeAttributeInstances"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/StereotypeAttributeInstance/stereotypeInstance"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//profile/StereotypeAttributeInstance/stereotypeAttribute"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//activity/ActivityObject/incomingTransitions"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//activity/ActivityObject/outgoingTransitions"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//activity/Transition/source"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//activity/Transition/target"
-          featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+          featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
     </changes>
-    <changes xsi:type="history:Remove" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements"
-        featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-    <changes xsi:type="history:Remove" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/cutElements"
-        featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Remove" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project/modelElements"
+        featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Remove" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project/cutElements"
+        featureName="eKeys" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement/identifier"/>
     <changes xsi:type="history:MigrationChange" migration="modelElementsReference = metamodel.Project.modelElements&#xA;eObjectClass = emf.EObject&#xA;modelElementsReference.eType = eObjectClass&#xA;cutElementsReference = metamodel.Project.cutElements&#xA;cutElementsReference.eType = eObjectClass&#xA;">
-      <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/modelElements"
+      <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project/modelElements"
           featureName="eType" referenceValue="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"
           oldReferenceValue="#//@releases.7/@changes.8/@changes.3/@element"/>
-      <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//Project/cutElements"
+      <changes xsi:type="history:Set" element="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//Project/cutElements"
           featureName="eType" referenceValue="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"
           oldReferenceValue="#//@releases.7/@changes.8/@changes.3/@element"/>
     </changes>
     <changes xsi:type="history:MigrationChange" migration="modelElementClass = metamodel.ModelElement&#xA;identifiableElementClass = metamodel.IdentifiableElement&#xA;modelElementClass.eSuperTypes.remove(identifiableElementClass)&#xA;&#xA;for(element in model.UnicaseModelElement.allInstances) {&#xA;&#x9;def id = element.unset(identifiableElementClass.identifier)&#xA;&#x9;element.setUuid(id)&#xA;}">
       <changes xsi:type="history:Remove" element="#//@releases.7/@changes.8/@changes.3/@element"
-          featureName="eSuperTypes" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement"/>
+          featureName="eSuperTypes" referenceValue="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//IdentifiableElement"/>
     </changes>
     <changes xsi:type="history:OperationChange">
       <changes xsi:type="history:Move" target="model.ecore#//UnicaseModelElement"
@@ -8379,7 +8372,7 @@
           source="#//@releases.7/@changes.8/@changes.3/@element"/>
       <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement"
           featureName="eSuperTypes" referenceValue="#//@releases.7/@changes.8/@changes.3/@element"/>
-      <changes xsi:type="history:Delete" target="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
+      <changes xsi:type="history:Delete" target="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#/"
           referenceName="eClassifiers">
         <element xsi:type="ecore:EClass" name="ModelElement" abstract="true"/>
       </changes>
@@ -8698,5 +8691,10 @@
           featureName="eType" referenceValue="model.ecore#//release/SourceCodeRepositoryStream"/>
     </changes>
   </releases>
-  <releases/>
+  <releases>
+    <changes xsi:type="history:Delete" target="model.ecore#//UnicaseModelElement"
+        referenceName="eStructuralFeatures">
+      <element xsi:type="ecore:EReference" name="leafSection" eType="ecore:EClass model.ecore#//document/LeafSection"/>
+    </changes>
+  </releases>
 </history:History>

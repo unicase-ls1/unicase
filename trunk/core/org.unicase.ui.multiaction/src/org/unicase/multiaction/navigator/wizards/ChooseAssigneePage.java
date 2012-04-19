@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.multiaction.navigator.wizards;
 
@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -25,10 +26,8 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Widget;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
-import org.unicase.ui.common.util.ShortLabelProvider;
 import org.unicase.ui.multiaction.MultiActionGenerator;
 
 /**
@@ -133,7 +132,7 @@ public class ChooseAssigneePage extends WizardPage {
 	 * Shows the user-add-dialog.
 	 */
 	private void showUserDialog() {
-		ShortLabelProvider shortLabelProvider = new ShortLabelProvider();
+		org.eclipse.emf.ecp.common.utilities.ShortLabelProvider shortLabelProvider = new org.eclipse.emf.ecp.common.utilities.ShortLabelProvider();
 		String name = shortLabelProvider.getText(parentWizard.getSelectedActionItem());
 		AddUserDialog au = new AddUserDialog(ModelUtil.getProject(parentWizard.getSelectedActionItem()),
 			"Choose users and/or groups as assignees for action item \"" + name + "\"");

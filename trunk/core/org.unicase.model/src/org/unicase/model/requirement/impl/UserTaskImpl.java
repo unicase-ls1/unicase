@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.requirement.impl;
 
@@ -28,20 +28,21 @@ import org.unicase.model.requirement.UserTask;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.requirement.impl.UserTaskImpl#getInitiatingActor <em>Initiating Actor</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.UserTaskImpl#getParticipatingActors <em>Participating Actors</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.UserTaskImpl#getRealizingUseCases <em>Realizing Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.UserTaskImpl#getNonFunctionalRequirements <em>Non Functional Requirements</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UserTaskImpl#getInitiatingActor <em>Initiating Actor</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UserTaskImpl#getParticipatingActors <em>Participating Actors</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UserTaskImpl#getRealizingUseCases <em>Realizing Use Cases</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UserTaskImpl#getNonFunctionalRequirements <em>Non Functional
+ * Requirements</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class UserTaskImpl extends UnicaseModelElementImpl implements UserTask {
 	/**
-	 * The cached value of the '{@link #getInitiatingActor() <em>Initiating Actor</em>}' reference.
-	 * <!-- begin-user-doc
+	 * The cached value of the '{@link #getInitiatingActor() <em>Initiating Actor</em>}' reference. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getInitiatingActor()
 	 * @generated
 	 * @ordered
@@ -69,8 +70,9 @@ public class UserTaskImpl extends UnicaseModelElementImpl implements UserTask {
 	protected EList<UseCase> realizingUseCases;
 
 	/**
-	 * The cached value of the '{@link #getNonFunctionalRequirements() <em>Non Functional Requirements</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getNonFunctionalRequirements() <em>Non Functional Requirements</em>}' reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getNonFunctionalRequirements()
 	 * @generated
 	 * @ordered
@@ -79,6 +81,7 @@ public class UserTaskImpl extends UnicaseModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected UserTaskImpl() {
@@ -87,6 +90,7 @@ public class UserTaskImpl extends UnicaseModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,6 +100,7 @@ public class UserTaskImpl extends UnicaseModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Actor getInitiatingActor() {
@@ -113,6 +118,7 @@ public class UserTaskImpl extends UnicaseModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Actor basicGetInitiatingActor() {
@@ -121,6 +127,7 @@ public class UserTaskImpl extends UnicaseModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetInitiatingActor(Actor newInitiatingActor, NotificationChain msgs) {
@@ -139,6 +146,7 @@ public class UserTaskImpl extends UnicaseModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setInitiatingActor(Actor newInitiatingActor) {
@@ -160,6 +168,7 @@ public class UserTaskImpl extends UnicaseModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Actor> getParticipatingActors() {
@@ -172,6 +181,7 @@ public class UserTaskImpl extends UnicaseModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getRealizingUseCases() {
@@ -184,6 +194,7 @@ public class UserTaskImpl extends UnicaseModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<NonFunctionalRequirement> getNonFunctionalRequirements() {
@@ -197,6 +208,7 @@ public class UserTaskImpl extends UnicaseModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -223,6 +235,7 @@ public class UserTaskImpl extends UnicaseModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -242,6 +255,7 @@ public class UserTaskImpl extends UnicaseModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -263,6 +277,7 @@ public class UserTaskImpl extends UnicaseModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -290,6 +305,7 @@ public class UserTaskImpl extends UnicaseModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -313,6 +329,7 @@ public class UserTaskImpl extends UnicaseModelElementImpl implements UserTask {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

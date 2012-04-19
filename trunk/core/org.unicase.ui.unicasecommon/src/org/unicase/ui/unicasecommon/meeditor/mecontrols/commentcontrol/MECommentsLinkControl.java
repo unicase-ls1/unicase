@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.unicasecommon.meeditor.mecontrols.commentcontrol;
 
@@ -12,9 +12,16 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecp.editor.mecontrols.AbstractMEControl;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -25,18 +32,12 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.rationale.RationalePackage;
-import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Standard widget to show the number of comments.
@@ -50,7 +51,13 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 	 * @author helming
 	 */
 	private final class ProjectChangeObserverImplementation implements ProjectChangeObserver {
-		public void modelElementAdded(Project project, EObject modelElement) {
+
+		public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
+			// TODO Auto-generated method stub
+
+		}
+
+		public void modelElementAdded(IdEObjectCollection project, EObject modelElement) {
 			if (modelElement instanceof Comment) {
 				Comment newComment = (Comment) modelElement;
 				UnicaseModelElement currentModelElement = (UnicaseModelElement) getModelElement();
@@ -58,18 +65,17 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 					update();
 				}
 			}
+
 		}
 
-		public void notify(Notification notification, Project project, EObject modelElement) {
-			// nothing to do
+		public void modelElementRemoved(IdEObjectCollection project, EObject modelElement) {
+			// TODO Auto-generated method stub
+
 		}
 
-		public void projectDeleted(Project project) {
-			// nothing to do
-		}
+		public void projectDeleted(IdEObjectCollection project) {
+			// TODO Auto-generated method stub
 
-		public void modelElementRemoved(Project project, EObject modelElement) {
-			// nothing to do
 		}
 	}
 
@@ -138,7 +144,7 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 	}
 
 	private void update() {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@SuppressWarnings("unchecked")
 			@Override
 			protected void doRun() {

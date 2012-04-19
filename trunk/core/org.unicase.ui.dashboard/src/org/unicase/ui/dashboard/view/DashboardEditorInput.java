@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.dashboard.view;
 
@@ -11,12 +11,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
-import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.ui.dashboard.Activator;
-import org.unicase.workspace.ProjectSpace;
 
 /**
  * The editor input for the dashboard.
@@ -30,8 +30,7 @@ public class DashboardEditorInput implements IEditorInput {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param ps
-	 *            the projectSpace
+	 * @param ps the projectSpace
 	 */
 	public DashboardEditorInput(ProjectSpace ps) {
 		super();
@@ -41,8 +40,7 @@ public class DashboardEditorInput implements IEditorInput {
 	/**
 	 * Custom equals() for this class.
 	 * 
-	 * @param obj
-	 *            the compared object.
+	 * @param obj the compared object.
 	 * @return the boolean state. {@inheritDoc}
 	 */
 	@Override
@@ -106,7 +104,7 @@ public class DashboardEditorInput implements IEditorInput {
 	/**
 	 * {@inheritDoc}
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public Object getAdapter(Class adapter) {
 		return null;
 	}
@@ -115,10 +113,9 @@ public class DashboardEditorInput implements IEditorInput {
 	 * @return the list of all notifications in the current project space.
 	 */
 	public List<ESNotification> getNotifications() {
-		List<ESNotification> originalNotifications = getProjectSpace()
-				.getNotificationsFromComposite();
-		ArrayList<ESNotification> notifications = new ArrayList<ESNotification>();
-		notifications.addAll(originalNotifications);
+
+		List<ESNotification> originalNotifications = projectSpace.getNotificationsFromComposite();
+		ArrayList<ESNotification> notifications = new ArrayList<ESNotification>(originalNotifications);
 		Collections.sort(notifications, new Comparator<ESNotification>() {
 			public int compare(ESNotification arg0, ESNotification arg1) {
 				if (arg0 == null) {
@@ -127,8 +124,7 @@ public class DashboardEditorInput implements IEditorInput {
 				if (arg1 == null) {
 					return -1;
 				}
-				return (arg0.getCreationDate().after(arg1.getCreationDate()) ? -1
-						: 1);
+				return (arg0.getCreationDate().after(arg1.getCreationDate()) ? -1 : 1);
 			}
 		});
 		return notifications;

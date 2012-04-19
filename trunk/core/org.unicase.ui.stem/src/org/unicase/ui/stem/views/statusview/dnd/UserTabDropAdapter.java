@@ -1,19 +1,20 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
 package org.unicase.ui.stem.views.statusview.dnd;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
-import org.unicase.ecp.model.ECPWorkspaceManager;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
-import org.unicase.ui.common.observer.StatusViewDropEventObserver;
-import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.ui.unicasecommon.observer.StatusViewDropEventObserver;
 
 /**
  * This is the drop adapter for User tab in Status view.
@@ -60,11 +61,11 @@ public class UserTabDropAdapter extends AbstractDropAdapter {
 	@Override
 	public void drop(DropTargetEvent event) {
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
-				ECPWorkspaceManager.getObserverBus().notify(StatusViewDropEventObserver.class).onStatusViewDropEvent(
-					getCurrentOpenME(), getDragSource(), "Unknown", "UserTab");
+				ECPWorkspaceManager.getObserverBus().notify(StatusViewDropEventObserver.class)
+					.onStatusViewDropEvent(getCurrentOpenME(), getDragSource(), "Unknown", "UserTab");
 				if (!(getDropTarget() instanceof OrgUnit)) {
 					// target is NotAssigned
 					unassignWorkItem((WorkItem) getDragSource());

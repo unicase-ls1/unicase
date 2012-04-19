@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.tableview.viewer;
 
@@ -17,6 +17,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecp.common.TableViewerColumnSorter;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -34,11 +36,9 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.dialogs.ListSelectionDialog;
-import org.unicase.metamodel.Project;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrganizationPackage;
-import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.tableview.labelproviders.AbstractCheckboxColumnLabelProvider;
 import org.unicase.ui.tableview.labelproviders.DateColumnLabelProvider;
 import org.unicase.ui.tableview.labelproviders.GenericColumnLabelProvider;
@@ -471,7 +471,7 @@ public class METableViewer {
 	 * @param project project
 	 * @param meType model element type to be shown in METableViwer
 	 */
-	public void setInput(Project project, EClass meType) {
+	public void setInput(org.eclipse.emf.emfstore.common.model.Project project, EClass meType) {
 		if (!contentType.getName().equals(meType.getName())) {
 			tableViewer.setInput(Collections.emptyList());
 			tableViewer.refresh();

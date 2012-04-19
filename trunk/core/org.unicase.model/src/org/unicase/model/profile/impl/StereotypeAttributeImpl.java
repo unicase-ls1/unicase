@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.profile.impl;
 
@@ -29,17 +29,19 @@ import org.unicase.model.profile.StereotypeAttributeInstance;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.profile.impl.StereotypeAttributeImpl#getStereotype <em>Stereotype</em>}</li>
- *   <li>{@link org.unicase.model.profile.impl.StereotypeAttributeImpl#getStereotypeAttributeInstances <em>Stereotype Attribute Instances</em>}</li>
+ * <li>{@link org.unicase.model.profile.impl.StereotypeAttributeImpl#getStereotype <em>Stereotype</em>}</li>
+ * <li>{@link org.unicase.model.profile.impl.StereotypeAttributeImpl#getStereotypeAttributeInstances <em>Stereotype
+ * Attribute Instances</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class StereotypeAttributeImpl extends UnicaseModelElementImpl implements StereotypeAttribute {
 	/**
-	 * The cached value of the '{@link #getStereotypeAttributeInstances() <em>Stereotype Attribute Instances</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getStereotypeAttributeInstances() <em>Stereotype Attribute Instances</em>}'
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getStereotypeAttributeInstances()
 	 * @generated
 	 * @ordered
@@ -48,6 +50,7 @@ public abstract class StereotypeAttributeImpl extends UnicaseModelElementImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected StereotypeAttributeImpl() {
@@ -56,6 +59,7 @@ public abstract class StereotypeAttributeImpl extends UnicaseModelElementImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,6 +69,7 @@ public abstract class StereotypeAttributeImpl extends UnicaseModelElementImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Stereotype getStereotype() {
@@ -75,6 +80,7 @@ public abstract class StereotypeAttributeImpl extends UnicaseModelElementImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Stereotype basicGetStereotype() {
@@ -85,6 +91,7 @@ public abstract class StereotypeAttributeImpl extends UnicaseModelElementImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetStereotype(Stereotype newStereotype, NotificationChain msgs) {
@@ -95,6 +102,7 @@ public abstract class StereotypeAttributeImpl extends UnicaseModelElementImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setStereotype(Stereotype newStereotype) {
@@ -118,6 +126,7 @@ public abstract class StereotypeAttributeImpl extends UnicaseModelElementImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<StereotypeAttributeInstance> getStereotypeAttributeInstances() {
@@ -132,6 +141,7 @@ public abstract class StereotypeAttributeImpl extends UnicaseModelElementImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -151,6 +161,7 @@ public abstract class StereotypeAttributeImpl extends UnicaseModelElementImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -166,6 +177,7 @@ public abstract class StereotypeAttributeImpl extends UnicaseModelElementImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -180,6 +192,7 @@ public abstract class StereotypeAttributeImpl extends UnicaseModelElementImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -197,6 +210,7 @@ public abstract class StereotypeAttributeImpl extends UnicaseModelElementImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -216,6 +230,7 @@ public abstract class StereotypeAttributeImpl extends UnicaseModelElementImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -233,6 +248,7 @@ public abstract class StereotypeAttributeImpl extends UnicaseModelElementImpl im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

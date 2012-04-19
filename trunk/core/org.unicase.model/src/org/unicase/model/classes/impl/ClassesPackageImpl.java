@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.classes.impl;
 
@@ -14,8 +14,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.unicase.emfstore.esmodel.EsmodelPackage;
-import org.unicase.model.ModelPackage;
+import org.eclipse.emf.emfstore.server.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
 import org.unicase.model.attachment.AttachmentPackage;
@@ -66,99 +65,116 @@ import org.unicase.model.util.impl.UtilPackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 @SuppressWarnings("unused")
 public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass classEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass packageEClass = null;
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass packageElementEClass = null;
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass associationEClass = null;
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass attributeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass methodEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass methodArgumentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass dependencyEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass enumerationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass literalEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum associationTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum visibilityTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum scopeTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum argumentDirectionTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum instantiationTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum primitiveTypeEEnum = null;
@@ -182,17 +198,18 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
-	 * <p>This method is used to initialize {@link ClassesPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc
+	 * <p>
+	 * This method is used to initialize {@link ClassesPackage#eINSTANCE} when that field is accessed. Clients should
+	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -209,12 +226,12 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		EsmodelPackage.eINSTANCE.eClass();
+		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ModelPackage.eNS_URI) : ModelPackage.eINSTANCE);
+		ModelPackageImpl theModelPackage_1 = (ModelPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) : org.unicase.model.ModelPackage.eINSTANCE);
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
@@ -260,7 +277,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 		// Create package meta-data objects
 		theClassesPackage.createPackageContents();
-		theModelPackage.createPackageContents();
+		theModelPackage_1.createPackageContents();
 		theOrganizationPackage.createPackageContents();
 		theTaskPackage.createPackageContents();
 		theDocumentPackage.createPackageContents();
@@ -279,7 +296,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 		// Initialize created meta-data
 		theClassesPackage.initializePackageContents();
-		theModelPackage.initializePackageContents();
+		theModelPackage_1.initializePackageContents();
 		theOrganizationPackage.initializePackageContents();
 		theTaskPackage.initializePackageContents();
 		theDocumentPackage.initializePackageContents();
@@ -306,6 +323,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getClass_() {
@@ -314,6 +332,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getClass_InstantiationType() {
@@ -322,6 +341,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getClass_ParticipatedUseCases() {
@@ -330,6 +350,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getClass_SuperClasses() {
@@ -338,6 +359,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getClass_SubClasses() {
@@ -346,6 +368,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getClass_IncomingAssociations() {
@@ -354,6 +377,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getClass_OutgoingAssociations() {
@@ -362,6 +386,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getClass_Attributes() {
@@ -370,6 +395,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getClass_Methods() {
@@ -378,6 +404,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getClass_DemoParticipations() {
@@ -386,6 +413,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getPackage() {
@@ -394,6 +422,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getPackage_ContainedPackageElements() {
@@ -402,6 +431,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getPackage_FacadeClass() {
@@ -410,6 +440,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getPackageElement() {
@@ -418,6 +449,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getPackageElement_ParentPackage() {
@@ -426,6 +458,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getPackageElement_OutgoingDependencies() {
@@ -434,6 +467,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getPackageElement_IncomingDependencies() {
@@ -442,6 +476,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAssociation() {
@@ -450,6 +485,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAssociation_Source() {
@@ -458,6 +494,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAssociation_Target() {
@@ -466,6 +503,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAssociation_Type() {
@@ -474,6 +512,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAssociation_SourceMultiplicity() {
@@ -482,6 +521,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAssociation_TargetMultiplicity() {
@@ -490,6 +530,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAssociation_SourceRole() {
@@ -498,6 +539,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAssociation_TargetRole() {
@@ -506,6 +548,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAssociation_Transient() {
@@ -514,6 +557,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getAttribute() {
@@ -522,6 +566,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAttribute_DefiningClass() {
@@ -530,6 +575,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAttribute_Visibility() {
@@ -538,6 +584,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAttribute_Scope() {
@@ -546,6 +593,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAttribute_Signature() {
@@ -554,6 +602,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAttribute_Type() {
@@ -562,6 +611,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAttribute_DefaultValue() {
@@ -570,6 +620,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAttribute_Properties() {
@@ -578,6 +629,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAttribute_Label() {
@@ -586,6 +638,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAttribute_Id() {
@@ -594,6 +647,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAttribute_ImplementationType() {
@@ -602,6 +656,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getAttribute_ImplementationEnumeration() {
@@ -610,6 +665,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getAttribute_Transient() {
@@ -618,6 +674,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getMethod() {
@@ -626,6 +683,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMethod_Visibility() {
@@ -634,6 +692,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMethod_Scope() {
@@ -642,6 +701,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMethod_DefiningClass() {
@@ -650,6 +710,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMethod_ReturnType() {
@@ -658,6 +719,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMethod_Signature() {
@@ -666,6 +728,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMethod_Arguments() {
@@ -674,6 +737,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMethod_Properties() {
@@ -682,6 +746,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMethod_Label() {
@@ -690,6 +755,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMethod_Stubbed() {
@@ -698,6 +764,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMethod_CalledMethods() {
@@ -706,6 +773,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMethod_CallingMethods() {
@@ -714,6 +782,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMethod_DemoParticipations() {
@@ -722,6 +791,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getMethodArgument() {
@@ -730,6 +800,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMethodArgument_Type() {
@@ -738,6 +809,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMethodArgument_Direction() {
@@ -746,6 +818,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMethodArgument_DefaultValue() {
@@ -754,6 +827,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMethodArgument_Signature() {
@@ -762,6 +836,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMethodArgument_Label() {
@@ -770,6 +845,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getDependency() {
@@ -778,6 +854,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDependency_Source() {
@@ -786,6 +863,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDependency_Target() {
@@ -794,6 +872,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getEnumeration() {
@@ -802,6 +881,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getEnumeration_Literals() {
@@ -810,6 +890,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getEnumeration_Attributes() {
@@ -818,6 +899,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getLiteral() {
@@ -826,6 +908,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getLiteral_Enumeration() {
@@ -834,6 +917,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getLiteral_Literal() {
@@ -842,6 +926,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getAssociationType() {
@@ -850,6 +935,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getVisibilityType() {
@@ -858,6 +944,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getScopeType() {
@@ -866,6 +953,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getArgumentDirectionType() {
@@ -874,6 +962,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getInstantiationType() {
@@ -882,6 +971,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getPrimitiveType() {
@@ -890,6 +980,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ClassesFactory getClassesFactory() {
@@ -898,14 +989,15 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
+	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -1002,14 +1094,15 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
+	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -1025,7 +1118,8 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		// Obtain other dependent packages
 		RequirementPackage theRequirementPackage = (RequirementPackage) EPackage.Registry.INSTANCE
 			.getEPackage(RequirementPackage.eNS_URI);
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		org.unicase.model.ModelPackage theModelPackage_1 = (org.unicase.model.ModelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1034,14 +1128,14 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		// Add supertypes to classes
 		classEClass.getESuperTypes().add(this.getPackageElement());
 		packageEClass.getESuperTypes().add(this.getPackageElement());
-		packageElementEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
-		associationEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
-		attributeEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
-		methodEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
-		methodArgumentEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
-		dependencyEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		packageElementEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		associationEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		attributeEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		methodEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		methodArgumentEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		dependencyEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
 		enumerationEClass.getESuperTypes().add(this.getPackageElement());
-		literalEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		literalEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(classEClass, org.unicase.model.classes.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE,
@@ -1268,17 +1362,17 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		addEEnumLiteral(primitiveTypeEEnum, PrimitiveType.ENUMERATION);
 
 		// Create annotations
-		// org.unicase.ui.meeditor
+		// org.eclipse.emf.ecp.editor
 		createOrgAnnotations();
 	}
 
 	/**
-	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Initializes the annotations for <b>org.eclipse.emf.ecp.editor</b>. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {
-		String source = "org.unicase.ui.meeditor";
+		String source = "org.eclipse.emf.ecp.editor";
 		addAnnotation(getClass_ParticipatedUseCases(), source, new String[] { "priority", "20.0", "position", "left" });
 		addAnnotation(getClass_SuperClasses(), source, new String[] { "priority", "21.0", "position", "left" });
 		addAnnotation(getClass_SubClasses(), source, new String[] { "priority", "22.0", "position", "left" });

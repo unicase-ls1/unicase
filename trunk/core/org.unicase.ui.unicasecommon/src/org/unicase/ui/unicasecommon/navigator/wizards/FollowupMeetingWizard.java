@@ -1,18 +1,24 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.unicasecommon.navigator.wizards;
 
 import java.util.List;
 
+import org.eclipse.emf.emfstore.client.model.CompositeOperationHandle;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.exceptions.InvalidHandleException;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.meeting.CompositeMeetingSection;
 import org.unicase.model.meeting.IssueMeetingSection;
@@ -21,12 +27,6 @@ import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.model.task.WorkItem;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.workspace.CompositeOperationHandle;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.exceptions.InvalidHandleException;
-import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author naughton Wizard for creating a follow-up meeting.
@@ -123,7 +123,7 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 		final LeafSection leafSection = (LeafSection) selectedMeeting.eContainer();
 		final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(ModelUtil.getProject(leafSection));
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				CompositeOperationHandle operationHandle = projectSpace.beginCompositeOperation();
@@ -139,9 +139,9 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 				final List<WorkItem> statusItems = itemCarryPage.getStatusWorkItems();
 				addMeetingStatusItems(followupMeeting, statusItems);
 				try {
-					operationHandle.end("Create follow-up meeting", "Created follow-up meeting "
-						+ followupMeeting.getName() + " from " + selectedMeeting.getName() + ".", ModelUtil.getProject(
-						followupMeeting).getModelElementId(followupMeeting));
+					operationHandle.end("Create follow-up meeting",
+						"Created follow-up meeting " + followupMeeting.getName() + " from " + selectedMeeting.getName()
+							+ ".", ModelUtil.getProject(followupMeeting).getModelElementId(followupMeeting));
 				} catch (InvalidHandleException e) {
 					WorkspaceUtil.logException("Composite Operation failed!", e);
 				}

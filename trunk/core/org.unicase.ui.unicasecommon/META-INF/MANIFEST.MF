@@ -6,17 +6,21 @@ Bundle-Version: 0.4.8.qualifier
 Bundle-Activator: org.unicase.ui.unicasecommon.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.unicase.ui.navigator;visibility:=reexport,
- org.unicase.ui.meeditor;visibility:=reexport,
  org.unicase.model.edit;visibility:=reexport,
- org.unicase.workspace.ui;visibility:=reexport,
  org.eclipse.gmf.runtime.diagram.core;visibility:=reexport,
  org.eclipse.gmf.runtime.diagram.ui;visibility:=reexport,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor;visibility:=reexport,
  org.eclipse.gmf.runtime.diagram.ui.providers;visibility:=reexport,
- org.unicase.ecpemfstorebridge;visibility:=reexport,
- org.unicase.ui.navigatormeeditorbridge,
- org.unicase.emfstore.transaction
+ org.eclipse.emf.emfstore.common.model,
+ org.eclipse.emf.emfstore.client,
+ org.eclipse.emf.emfstore.client.ui,
+ org.eclipse.emf.edit.ui,
+ org.eclipse.emf.ecp.common.util,
+ org.eclipse.emf.ecp.common,
+ org.eclipse.emf.ecp.editor,
+ org.eclipse.emf.ecp.navigatoreditorbridge,
+ org.eclipse.emf.ecp.navigator,
+ org.eclipse.emf.compare
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.unicase.ui.unicasecommon,
@@ -36,8 +40,12 @@ Export-Package: org.unicase.ui.unicasecommon,
  org.unicase.ui.unicasecommon.diagram.util,
  org.unicase.ui.unicasecommon.dnd.dropadapters,
  org.unicase.ui.unicasecommon.meeditor,
- org.unicase.ui.unicasecommon.navigator.wizards
-Import-Package: org.unicase.model.diagram,
+ org.unicase.ui.unicasecommon.navigator.wizards,
+ org.unicase.ui.unicasecommon.observer
+Import-Package: org.eclipse.core.expressions,
+ org.eclipse.emf.common.ui,
+ org.eclipse.emf.ecp.emfstorebridge,
+ org.unicase.model.diagram,
  org.unicase.model.diagram.impl,
  org.unicase.ui.unicasecommon.common
 Bundle-Vendor: unicase.org

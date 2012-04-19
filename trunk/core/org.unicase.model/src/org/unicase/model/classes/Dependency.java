@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.classes;
 
@@ -10,15 +10,14 @@ import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Dependency</b></em>'. <!-- end-user-doc -->
- *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.classes.Dependency#getSource <em>Source</em>}</li>
- *   <li>{@link org.unicase.model.classes.Dependency#getTarget <em>Target</em>}</li>
+ * <li>{@link org.unicase.model.classes.Dependency#getSource <em>Source</em>}</li>
+ * <li>{@link org.unicase.model.classes.Dependency#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.model.classes.ClassesPackage#getDependency()
  * @model
  * @generated
@@ -38,7 +37,7 @@ public interface Dependency extends UnicaseModelElement {
 	 * @see #setSource(PackageElement)
 	 * @see org.unicase.model.classes.ClassesPackage#getDependency_Source()
 	 * @see org.unicase.model.classes.PackageElement#getOutgoingDependencies
-	 * @model opposite="outgoingDependencies" annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
+	 * @model opposite="outgoingDependencies"
 	 * @generated
 	 */
 	PackageElement getSource();
@@ -67,7 +66,7 @@ public interface Dependency extends UnicaseModelElement {
 	 * @see #setTarget(PackageElement)
 	 * @see org.unicase.model.classes.ClassesPackage#getDependency_Target()
 	 * @see org.unicase.model.classes.PackageElement#getIncomingDependencies
-	 * @model opposite="incomingDependencies" annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
+	 * @model opposite="incomingDependencies"
 	 * @generated
 	 */
 	PackageElement getTarget();

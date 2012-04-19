@@ -1,13 +1,12 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.diagram.impl;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Collection;
@@ -29,15 +28,17 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.gmf.runtime.notation.Bendpoints;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.diagram.MERelativeBendpoints;
 import org.unicase.model.diagram.UseCaseDiagram;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.impl.AttachmentImpl;
@@ -238,38 +239,35 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 			return null;
 		}
 
-		// MD: Should we cache this instance?
 		LeafSection leafSection = getLeafSection();
-		if (leafSection == null) {
+
+		if (leafSection != null) {
+			return new DiagramNewElementsList(getElements(), leafSection);
+		} else {
 			Project project = getProject();
 			if (project == null) {
 				return null;
 			}
 			return new DiagramNewElementsList(getElements(), project);
-		} else {
-			return new DiagramNewElementsList(getElements(), leafSection);
 		}
 	}
 
-	/**
-	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 * @return the type
-	 */
-	public String getType() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException(
-			"getType is not implemented. Must be implmented in any subtype of MEDiagram");
+	private LeafSection getLeafSection() {
+		EObject container = eContainer();
+		while (container != null) {
+			if (container instanceof LeafSection) {
+				return (LeafSection) container;
+			}
+			container = container.eContainer();
+		}
+		return null;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-
 	public String getDiagramLayout() {
 		return diagramLayout;
 	}
@@ -285,6 +283,17 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DiagramPackage.ME_DIAGRAM__DIAGRAM_LAYOUT,
 				oldDiagramLayout, diagramLayout));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 * @return the type
+	 */
+	public String getType() {
+		throw new UnsupportedOperationException(
+			"getType is not implemented. Must be implmented in any subtype of MEDiagram");
 	}
 
 	/**
@@ -452,6 +461,11 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 	 */
 	public void loadDiagramLayout() throws DiagramLoadException {
 
+		String diagramLayout = getDiagramLayout();
+		if (diagramLayout == DIAGRAM_LAYOUT_EDEFAULT) {
+			return;
+		}
+
 		// preserve original resource for all involved model elements
 		EList<UnicaseModelElement> elements = this.getElements();
 		Map<UnicaseModelElement, Resource> resourceMap = preserveOldResources(elements);
@@ -461,11 +475,6 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 		Resource diagramResource = resourceSet.createResource(VIRTUAL_DIAGRAM_URI);
 		Resource elementsResource = resourceSet.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
 		elementsResource.getContents().addAll(elements);
-
-		String diagramLayout = getDiagramLayout();
-		if (diagramLayout == DIAGRAM_LAYOUT_EDEFAULT) {
-			return;
-		}
 
 		/*
 		 * Visual ID's of UseCase diagram were different in the past, e.g. UseCase had ID 1001, now it's 2001. For this
@@ -494,14 +503,33 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 		}
 
 		Diagram gmfDiagram = (Diagram) diagramResource.getContents().get(0);
-		this.syncDiagramLayout(gmfDiagram);
+		syncDiagramLayout(gmfDiagram);
 		EcoreUtil.resolveAll(gmfDiagram);
+
+		exchangeBendpoints(gmfDiagram);
 
 		setGmfdiagram(gmfDiagram);
 
 		// restore old resource for all model elements
 		restoreOldResources(elements, resourceMap, diagramResource, elementsResource);
 		gmfDiagram.setElement(this);
+
+		setDiagramLayout(DIAGRAM_LAYOUT_EDEFAULT);
+	}
+
+	private void exchangeBendpoints(Diagram gmfDiagram) {
+		for (Object child : gmfDiagram.getEdges()) {
+			if (child instanceof Edge) {
+				Edge edge = (Edge) child;
+				Bendpoints oldBendpoints = edge.getBendpoints();
+				if (oldBendpoints instanceof RelativeBendpoints) {
+					RelativeBendpoints relBendpoints = (RelativeBendpoints) oldBendpoints;
+					MERelativeBendpoints meBendpoints = DiagramFactory.eINSTANCE.createMERelativeBendpoints();
+					meBendpoints.setPoints(relBendpoints.getPoints());
+					edge.setBendpoints(meBendpoints);
+				}
+			}
+		}
 	}
 
 	/*
@@ -534,7 +562,8 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 			resource.getContents().add(modelElement);
 			if (resource instanceof XMIResource) {
 				XMIResource xmiResource = (XMIResource) resource;
-				ModelElementId modelElementId = ModelUtil.getProject(modelElement).getModelElementId(modelElement);
+				org.eclipse.emf.emfstore.common.model.ModelElementId modelElementId = org.eclipse.emf.emfstore.common.model.util.ModelUtil
+					.getProject(modelElement).getModelElementId(modelElement);
 				xmiResource.setID(modelElement, modelElementId.getId());
 			}
 		}
@@ -548,43 +577,48 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 		return resourceMap;
 	}
 
-	/**
-	 * Save gmf diagram to a String.
-	 * 
-	 * @throws DiagramStoreException if saving to a string fails
-	 * @generated NOT
-	 */
-	public void saveDiagramLayout() throws DiagramStoreException {
-		getGmfdiagram().setElement(null);
-		// preserve original resource for all involved model elements
-		EList<UnicaseModelElement> elements = this.getElements();
-		Map<UnicaseModelElement, Resource> resourceMap = preserveOldResources(elements);
-
-		// put all involved elements into a virtual resource set
-		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource diagramResource = resourceSet.createResource(VIRTUAL_DIAGRAM_URI);
-		Resource elementsResource = resourceSet.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
-		elementsResource.getContents().addAll(elements);
-		diagramResource.getContents().add(getGmfdiagram());
-
-		// serialize diagram
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		try {
-			diagramResource.save(out, null);
-		} catch (IOException e) {
-			throw new DiagramStoreException("Diagram resource save failed.", e);
-		}
-
-		restoreOldResources(elements, resourceMap, diagramResource, elementsResource);
-
-		getGmfdiagram().setElement(this);
-
-		String layoutString = out.toString();
-		// only set diagram layout if it actually changed
-		String oldLayout = getDiagramLayout();
-		if (oldLayout == null || !oldLayout.equals(layoutString)) {
-			setDiagramLayout(layoutString);
-		}
-	}
+	// /**
+	// * Save gmf diagram to a String.
+	// *
+	// * @throws DiagramStoreException
+	// * if saving to a string fails
+	// * @generated NOT
+	// */
+	// public void saveDiagramLayout() throws DiagramStoreException {
+	// getGmfdiagram().setElement(null);
+	// // preserve original resource for all involved model elements
+	// EList<UnicaseModelElement> elements = this.getElements();
+	// Map<UnicaseModelElement, Resource> resourceMap =
+	// preserveOldResources(elements);
+	//
+	// // put all involved elements into a virtual resource set
+	// ResourceSet resourceSet = new ResourceSetImpl();
+	// Resource diagramResource = resourceSet
+	// .createResource(VIRTUAL_DIAGRAM_URI);
+	// Resource elementsResource = resourceSet
+	// .createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
+	// elementsResource.getContents().addAll(elements);
+	// diagramResource.getContents().add(getGmfdiagram());
+	//
+	// // serialize diagram
+	// ByteArrayOutputStream out = new ByteArrayOutputStream();
+	// try {
+	// diagramResource.save(out, null);
+	// } catch (IOException e) {
+	// throw new DiagramStoreException("Diagram resource save failed.", e);
+	// }
+	//
+	// restoreOldResources(elements, resourceMap, diagramResource,
+	// elementsResource);
+	//
+	// getGmfdiagram().setElement(this);
+	//
+	// String layoutString = out.toString();
+	// // only set diagram layout if it actually changed
+	// String oldLayout = getDiagramLayout();
+	// if (oldLayout == null || !oldLayout.equals(layoutString)) {
+	// setDiagramLayout(layoutString);
+	// }
+	// }
 
 } // MEDiagramImpl

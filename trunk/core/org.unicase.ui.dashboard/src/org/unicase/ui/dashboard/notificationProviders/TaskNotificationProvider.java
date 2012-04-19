@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.dashboard.notificationProviders;
 
@@ -17,16 +17,18 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.emfstore.esmodel.notification.ESNotification;
-import org.unicase.emfstore.esmodel.notification.NotificationFactory;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
-import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.emf.emfstore.client.model.preferences.DashboardKey;
+import org.eclipse.emf.emfstore.client.model.preferences.PreferenceManager;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
+import org.eclipse.emf.emfstore.server.model.notification.NotificationFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationId;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrganizationPackage;
@@ -35,8 +37,6 @@ import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
-import org.unicase.workspace.preferences.DashboardKey;
-import org.unicase.workspace.preferences.PreferenceManager;
 
 /**
  * Provides notifications for new tasks.

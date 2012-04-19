@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.docExport.exportModel.renderers.specialRenderers.impl;
 
@@ -12,7 +12,11 @@ import java.util.ArrayList;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
 import org.unicase.docExport.exportModel.renderers.elements.ULink;
@@ -23,13 +27,9 @@ import org.unicase.docExport.exportModel.renderers.impl.AttributeRendererImpl;
 import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.StepsAttributeRenderer;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.UseCase;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Steps Attribute Renderer</b></em>'. <!--
@@ -61,20 +61,19 @@ public class StepsAttributeRendererImpl extends AttributeRendererImpl implements
 
 	// begin custom code
 	@SuppressWarnings("unchecked")
-	public void render(EStructuralFeature feature, UnicaseModelElement modelElement, UCompositeSection section,
-		Template template) {
+	public void render(EStructuralFeature feature, EObject eObject, UCompositeSection section, Template template) {
 
-		Object object = modelElement.eGet(feature);
+		Object object = eObject.eGet(feature);
 
-		if (!feature.getEGenericType().getEClassifier().getName().equals(
-			RequirementPackage.eINSTANCE.getStep().getName())
+		if (!feature.getEGenericType().getEClassifier().getName()
+			.equals(RequirementPackage.eINSTANCE.getStep().getName())
 			|| !(object instanceof EList)) {
 			WorkspaceUtil
 				.log("This Attribute renderer can only render a set of Steps.", new Exception(), IStatus.ERROR);
 			return;
 		}
 
-		EList<Step> steps = (EList<Step>) modelElement.eGet(feature);
+		EList<Step> steps = (EList<Step>) eObject.eGet(feature);
 
 		UTable table = new UTable(2);
 		table.getBoxModel().setMarginTop(10);

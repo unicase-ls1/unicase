@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.unicasecommon.common.util;
 
@@ -10,15 +10,15 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.unicase.ecp.model.ECPModelelementContext;
-import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.diagram.MEDiagram;
 
 /**

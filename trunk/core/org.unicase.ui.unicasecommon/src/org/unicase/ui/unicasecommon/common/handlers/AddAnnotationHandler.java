@@ -16,8 +16,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.LeafSection;
@@ -26,7 +27,6 @@ import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseEventUtil;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * . This is a generic handler to add different types of Annotations to a ModelElement
@@ -39,7 +39,7 @@ public class AddAnnotationHandler extends AbstractHandler {
 	 * 
 	 * @author helming
 	 */
-	private final class AddAnnotationCommand extends UnicaseCommand {
+	private final class AddAnnotationCommand extends EMFStoreCommand {
 		private final int i;
 		private final Object object;
 		private final Annotation result;
@@ -92,8 +92,9 @@ public class AddAnnotationHandler extends AbstractHandler {
 		UnicaseModelElement me = UnicaseActionHelper.getModelElement(event);
 		// 2. extract command and create the appropriate annotation object
 		Project project = ModelUtil.getProject(me);
-		if (!(me.getLeafSection() == null)) {
-			annotation = createAnnotation(me.getLeafSection(), 1);
+		LeafSection leafSection = getLeafSection(me);
+		if (leafSection != null) {
+			annotation = createAnnotation(leafSection, 1);
 		} else if (me.eContainer() instanceof WorkPackage) {
 			annotation = createAnnotation(me, 2);
 		} else if (!(project == null)) {
@@ -108,6 +109,22 @@ public class AddAnnotationHandler extends AbstractHandler {
 		// 3. open annotation object for further editing
 		openAnnotation(annotation);
 
+		return null;
+	}
+
+	private LeafSection getLeafSection(UnicaseModelElement me) {
+		EObject container = me.eContainer();
+		// try to find a parent LeafSection
+		while (container != null) {
+			if (container instanceof LeafSection) {
+				return (LeafSection) container;
+			}
+			container = container.eContainer();
+		}
+		// check if element is itself a LeafSection
+		if (me instanceof LeafSection) {
+			return (LeafSection) me;
+		}
 		return null;
 	}
 
@@ -144,7 +161,7 @@ public class AddAnnotationHandler extends AbstractHandler {
 	 * @param annotation
 	 */
 	private void attachAnnotation(final UnicaseModelElement me, final Annotation annotation) {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				me.getAnnotations().add(annotation);

@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.activity.impl;
 
@@ -21,19 +21,19 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.activity.impl.TransitionImpl#getSource <em>Source</em>}</li>
- *   <li>{@link org.unicase.model.activity.impl.TransitionImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link org.unicase.model.activity.impl.TransitionImpl#getCondition <em>Condition</em>}</li>
+ * <li>{@link org.unicase.model.activity.impl.TransitionImpl#getSource <em>Source</em>}</li>
+ * <li>{@link org.unicase.model.activity.impl.TransitionImpl#getTarget <em>Target</em>}</li>
+ * <li>{@link org.unicase.model.activity.impl.TransitionImpl#getCondition <em>Condition</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class TransitionImpl extends UnicaseModelElementImpl implements Transition {
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
@@ -41,9 +41,9 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 	protected ActivityObject source;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -51,9 +51,9 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 	protected ActivityObject target;
 
 	/**
-	 * The default value of the '{@link #getCondition() <em>Condition</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getCondition() <em>Condition</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getCondition()
 	 * @generated
 	 * @ordered
@@ -61,9 +61,9 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 	protected static final String CONDITION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getCondition()
 	 * @generated
 	 * @ordered
@@ -72,6 +72,7 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TransitionImpl() {
@@ -80,6 +81,7 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -89,6 +91,7 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ActivityObject getSource() {
@@ -106,6 +109,7 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ActivityObject basicGetSource() {
@@ -114,6 +118,7 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSource(ActivityObject newSource, NotificationChain msgs) {
@@ -132,6 +137,7 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSource(ActivityObject newSource) {
@@ -153,6 +159,7 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ActivityObject getTarget() {
@@ -170,6 +177,7 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ActivityObject basicGetTarget() {
@@ -178,6 +186,7 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetTarget(ActivityObject newTarget, NotificationChain msgs) {
@@ -196,6 +205,7 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTarget(ActivityObject newTarget) {
@@ -217,6 +227,7 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getCondition() {
@@ -225,6 +236,7 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCondition(String newCondition) {
@@ -237,6 +249,7 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -258,6 +271,7 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -273,6 +287,7 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -294,6 +309,7 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -314,6 +330,7 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -334,6 +351,7 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -351,6 +369,7 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.rationale.impl;
 
@@ -30,19 +30,19 @@ import org.unicase.model.rationale.RationalePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.rationale.impl.CommentImpl#getSender <em>Sender</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.CommentImpl#getRecipients <em>Recipients</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.CommentImpl#getCommentedElement <em>Commented Element</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.CommentImpl#getSender <em>Sender</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.CommentImpl#getRecipients <em>Recipients</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.CommentImpl#getCommentedElement <em>Commented Element</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 	/**
-	 * The cached value of the '{@link #getSender() <em>Sender</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getSender() <em>Sender</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getSender()
 	 * @generated
 	 * @ordered
@@ -50,9 +50,9 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 	protected OrgUnit sender;
 
 	/**
-	 * The cached value of the '{@link #getRecipients() <em>Recipients</em>}' reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getRecipients() <em>Recipients</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getRecipients()
 	 * @generated
 	 * @ordered
@@ -61,6 +61,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CommentImpl() {
@@ -69,6 +70,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -78,6 +80,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OrgUnit getSender() {
@@ -95,6 +98,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OrgUnit basicGetSender() {
@@ -103,6 +107,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSender(OrgUnit newSender) {
@@ -114,6 +119,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<OrgUnit> getRecipients() {
@@ -125,6 +131,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UnicaseModelElement getCommentedElement() {
@@ -135,6 +142,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UnicaseModelElement basicGetCommentedElement() {
@@ -145,6 +153,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetCommentedElement(UnicaseModelElement newCommentedElement, NotificationChain msgs) {
@@ -155,6 +164,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCommentedElement(UnicaseModelElement newCommentedElement) {
@@ -178,6 +188,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -193,6 +204,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -206,6 +218,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -220,6 +233,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -241,6 +255,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -263,6 +278,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -283,6 +299,7 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

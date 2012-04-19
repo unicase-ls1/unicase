@@ -15,7 +15,24 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.util.DialogHandler;
+import org.eclipse.emf.ecp.common.util.PreferenceHelper;
+import org.eclipse.emf.ecp.editor.ModelElementChangeListener;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.filetransfer.FileDownloadStatus;
+import org.eclipse.emf.emfstore.client.model.filetransfer.FileInformation;
+import org.eclipse.emf.emfstore.client.model.filetransfer.FileTransferUtil;
+import org.eclipse.emf.emfstore.client.model.observers.CommitObserver;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.common.model.util.FileUtil;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.exceptions.FileTransferException;
+import org.eclipse.emf.emfstore.server.model.FileIdentifier;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -31,25 +48,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
-import org.unicase.emfstore.esmodel.FileIdentifier;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.exceptions.FileTransferException;
-import org.unicase.metamodel.util.FileUtil;
-import org.unicase.metamodel.util.ModelElementChangeListener;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.ui.unicasecommon.Activator;
-import org.unicase.ui.util.DialogHandler;
-import org.unicase.ui.util.PreferenceHelper;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.filetransfer.FileDownloadStatus;
-import org.unicase.workspace.filetransfer.FileInformation;
-import org.unicase.workspace.filetransfer.FileTransferUtil;
-import org.unicase.workspace.observers.CommitObserver;
-import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * This class handles file attachments. If the file attachment has no file attached yet, this control allows to attach a
@@ -101,6 +101,7 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 			// may no longer be pending
 			updateStatus(getProjectSpace().getFileInfo(fileAttachment.getFileIdentifier()).isPendingUpload());
 		}
+
 	};
 
 	private Button open;
@@ -187,17 +188,19 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 		// Add the commit observer which handles pending files being commited
 		getProjectSpace().addCommitObserver(commitObserver);
 
-		modelElementChangeListener = new ModelElementChangeListener() {
+		modelElementChangeListener = new ModelElementChangeListener(fileAttachment) {
 
 			public void onRuntimeExceptionInListener(RuntimeException exception) {
 			}
 
+			@Override
 			public void onChange(Notification notification) {
 				updateStatusAsync();
 			}
 		};
 
-		fileAttachment.addModelElementChangeListener(modelElementChangeListener);
+		fileAttachment
+			.addModelElementChangeListener((org.eclipse.emf.emfstore.common.model.util.ModelElementChangeListener) modelElementChangeListener);
 		return parent;
 	}
 
@@ -426,7 +429,7 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 
 			// Add the file to the pending uploads and set the data in the attachment
 			// Since this modifies the project space, it has to be done in a unicase command
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 				@Override
 				protected void doRun() {
 					try {
@@ -471,7 +474,7 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 			}
 
 			// Remove the pending upload and clear the file attachment
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 				@Override
 				protected void doRun() {
 					fileInfo.cancelPendingUpload();
@@ -497,7 +500,8 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 			upload.dispose();
 		}
 		if (modelElementChangeListener != null) {
-			fileAttachment.removeModelElementChangeListener(modelElementChangeListener);
+			fileAttachment
+				.removeModelElementChangeListener((org.eclipse.emf.emfstore.common.model.util.ModelElementChangeListener) modelElementChangeListener);
 		}
 		if (dbc != null) {
 			dbc.dispose();

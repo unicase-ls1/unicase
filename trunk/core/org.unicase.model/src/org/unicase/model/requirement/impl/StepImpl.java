@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.requirement.impl;
 
@@ -23,20 +23,20 @@ import org.unicase.model.requirement.UseCase;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.requirement.impl.StepImpl#isUserStep <em>User Step</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.StepImpl#getIncludedUseCase <em>Included Use Case</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.StepImpl#getIncludedSystemFunction <em>Included System Function</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.StepImpl#getUseCase <em>Use Case</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.StepImpl#isUserStep <em>User Step</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.StepImpl#getIncludedUseCase <em>Included Use Case</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.StepImpl#getIncludedSystemFunction <em>Included System Function</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.StepImpl#getUseCase <em>Use Case</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class StepImpl extends UnicaseModelElementImpl implements Step {
 	/**
-	 * The default value of the '{@link #isUserStep() <em>User Step</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isUserStep() <em>User Step</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isUserStep()
 	 * @generated
 	 * @ordered
@@ -44,9 +44,9 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 	protected static final boolean USER_STEP_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isUserStep() <em>User Step</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isUserStep() <em>User Step</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #isUserStep()
 	 * @generated
 	 * @ordered
@@ -54,9 +54,9 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 	protected boolean userStep = USER_STEP_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getIncludedUseCase() <em>Included Use Case</em>}' reference.
-	 * <!-- begin-user-doc
+	 * The cached value of the '{@link #getIncludedUseCase() <em>Included Use Case</em>}' reference. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIncludedUseCase()
 	 * @generated
 	 * @ordered
@@ -75,6 +75,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected StepImpl() {
@@ -83,6 +84,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -92,6 +94,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isUserStep() {
@@ -100,6 +103,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setUserStep(boolean newUserStep) {
@@ -112,6 +116,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UseCase getIncludedUseCase() {
@@ -129,6 +134,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UseCase basicGetIncludedUseCase() {
@@ -137,6 +143,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIncludedUseCase(UseCase newIncludedUseCase) {
@@ -149,6 +156,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SystemFunction getIncludedSystemFunction() {
@@ -167,6 +175,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SystemFunction basicGetIncludedSystemFunction() {
@@ -175,6 +184,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIncludedSystemFunction(SystemFunction newIncludedSystemFunction) {
@@ -187,6 +197,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UseCase getUseCase() {
@@ -197,6 +208,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UseCase basicGetUseCase() {
@@ -207,6 +219,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetUseCase(UseCase newUseCase, NotificationChain msgs) {
@@ -216,6 +229,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setUseCase(UseCase newUseCase) {
@@ -239,6 +253,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -254,6 +269,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -267,6 +283,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -281,6 +298,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -306,6 +324,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -329,6 +348,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -352,6 +372,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -371,6 +392,7 @@ public class StepImpl extends UnicaseModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

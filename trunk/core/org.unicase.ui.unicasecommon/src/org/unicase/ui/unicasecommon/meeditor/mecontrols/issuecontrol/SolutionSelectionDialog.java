@@ -6,15 +6,13 @@
  */
 package org.unicase.ui.unicasecommon.meeditor.mecontrols.issuecontrol;
 
-import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.cutString;
-import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.getAdapterFactory;
-import static org.unicase.workspace.ui.dialogs.merge.util.DecisionUtil.stripNewLine;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.emfstore.client.ui.dialogs.merge.util.DecisionConfig;
+import org.eclipse.emf.emfstore.client.ui.dialogs.merge.util.DecisionUtil;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
@@ -35,7 +33,6 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.workspace.ui.dialogs.merge.util.DecisionConfig;
 
 /**
  * Selection dialog for a list of model elements. Multiselection not possible at the moment. This dialog was created for
@@ -207,7 +204,7 @@ public class SolutionSelectionDialog extends Dialog {
 			super(parent, SWT.BORDER);
 			setLayout(new GridLayout());
 			GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).applyTo(this);
-			AdapterFactoryLabelProvider labelProvider = getAdapterFactory();
+			AdapterFactoryLabelProvider labelProvider = DecisionUtil.getAdapterFactory();
 
 			OptionMouseListener listener = new OptionMouseListener(this);
 			this.addListener(SWT.MouseEnter, listener);
@@ -222,7 +219,8 @@ public class SolutionSelectionDialog extends Dialog {
 			title.addListener(SWT.MouseExit, listener);
 			title.addListener(SWT.MouseUp, listener);
 
-			String description = cutString(stripNewLine(element.getDescription()), 250, true).trim();
+			String description = DecisionUtil.cutString(DecisionUtil.stripNewLine(element.getDescription()), 250, true)
+				.trim();
 			if (!(description != null && !description.equals(""))) {
 				return;
 			}

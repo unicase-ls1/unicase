@@ -12,22 +12,22 @@ import java.util.List;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.compare.util.AdapterUtils;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
+import org.eclipse.emf.emfstore.client.model.preferences.DashboardKey;
+import org.eclipse.emf.emfstore.client.model.preferences.PreferenceManager;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.OrgUnitProperty;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.model.UnicaseModelElement;
-import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.preferences.DashboardKey;
-import org.unicase.workspace.preferences.PreferenceManager;
-import org.unicase.workspace.util.NoCurrentUserException;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * This is handler to subscribe the current user to a ModelElement.
@@ -41,15 +41,15 @@ public class SubscriptionHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		UnicaseModelElement modelElement = UnicaseActionHelper.getModelElement(event);
+		EObject eObject = UnicaseActionHelper.getEObject(event);
 
-		if (modelElement == null) {
+		if (eObject == null) {
 			MessageDialog.openError(Display.getCurrent().getActiveShell(), "Invalid model element",
 				"Could not determine the active model element!");
 			return null;
 		}
 
-		final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(modelElement);
+		final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(eObject);
 		if (projectSpace == null) {
 			MessageDialog.openError(Display.getCurrent().getActiveShell(), "Invalid active project",
 				"Could not determine the active project!");
@@ -73,7 +73,7 @@ public class SubscriptionHandler extends AbstractHandler {
 		final List<EObject> properties = property.getEObjectListProperty(new ArrayList<EObject>());
 
 		String feedback;
-		ModelElementId modelElementId = ModelUtil.getProject(modelElement).getModelElementId(modelElement);
+		ModelElementId modelElementId = ModelUtil.getProject(eObject).getModelElementId(eObject);
 		if (properties.contains(modelElementId)) {
 			properties.remove(modelElementId);
 			feedback = " removed from ";
@@ -82,17 +82,17 @@ public class SubscriptionHandler extends AbstractHandler {
 			feedback = " added to ";
 		}
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
-				PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.SUBSCRIPTIONS, properties
-					.toArray(new EObject[0]));
+				PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.SUBSCRIPTIONS,
+					properties.toArray(new EObject[0]));
 			}
 		}.run();
 
 		// TODO fix label provider
-		MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "Subscription", modelElement.getName()
-			+ " was successfully" + feedback + "your subscriptions");
+		MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "Subscription",
+			AdapterUtils.getItemProviderText(eObject) + " was successfully" + feedback + "your subscriptions");
 		return null;
 	}
 }

@@ -1,15 +1,17 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.diagram;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.ModelPackage;
 
 /**
@@ -24,6 +26,7 @@ import org.unicase.model.ModelPackage;
  * 
  * @see org.unicase.model.diagram.DiagramFactory
  * @model kind="package"
+ *        annotation="http://www.cs.tum.edu/cope historyURI='../../org.unicase.model/model/model.history'"
  * @generated
  */
 public interface DiagramPackage extends EPackage {
@@ -107,15 +110,6 @@ public interface DiagramPackage extends EPackage {
 	 * @ordered
 	 */
 	int ME_DIAGRAM__INCOMING_DOCUMENT_REFERENCES = ModelPackage.ATTACHMENT__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ME_DIAGRAM__LEAF_SECTION = ModelPackage.ATTACHMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -265,15 +259,6 @@ public interface DiagramPackage extends EPackage {
 	int CLASS_DIAGRAM__INCOMING_DOCUMENT_REFERENCES = ME_DIAGRAM__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_DIAGRAM__LEAF_SECTION = ME_DIAGRAM__LEAF_SECTION;
-
-	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -419,15 +404,6 @@ public interface DiagramPackage extends EPackage {
 	 * @ordered
 	 */
 	int USE_CASE_DIAGRAM__INCOMING_DOCUMENT_REFERENCES = ME_DIAGRAM__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int USE_CASE_DIAGRAM__LEAF_SECTION = ME_DIAGRAM__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -577,15 +553,6 @@ public interface DiagramPackage extends EPackage {
 	int COMPONENT_DIAGRAM__INCOMING_DOCUMENT_REFERENCES = ME_DIAGRAM__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_DIAGRAM__LEAF_SECTION = ME_DIAGRAM__LEAF_SECTION;
-
-	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -731,15 +698,6 @@ public interface DiagramPackage extends EPackage {
 	 * @ordered
 	 */
 	int STATE_DIAGRAM__INCOMING_DOCUMENT_REFERENCES = ME_DIAGRAM__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_DIAGRAM__LEAF_SECTION = ME_DIAGRAM__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -889,15 +847,6 @@ public interface DiagramPackage extends EPackage {
 	int ACTIVITY_DIAGRAM__INCOMING_DOCUMENT_REFERENCES = ME_DIAGRAM__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVITY_DIAGRAM__LEAF_SECTION = ME_DIAGRAM__LEAF_SECTION;
-
-	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -1045,15 +994,6 @@ public interface DiagramPackage extends EPackage {
 	int WORK_ITEM_DIAGRAM__INCOMING_DOCUMENT_REFERENCES = ME_DIAGRAM__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_DIAGRAM__LEAF_SECTION = ME_DIAGRAM__LEAF_SECTION;
-
-	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -1146,6 +1086,43 @@ public interface DiagramPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORK_ITEM_DIAGRAM_FEATURE_COUNT = ME_DIAGRAM_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.diagram.impl.MERelativeBendpointsImpl
+	 * <em>ME Relative Bendpoints</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.model.diagram.impl.MERelativeBendpointsImpl
+	 * @see org.unicase.model.diagram.impl.DiagramPackageImpl#getMERelativeBendpoints()
+	 * @generated
+	 */
+	int ME_RELATIVE_BENDPOINTS = 7;
+
+	/**
+	 * The feature id for the '<em><b>Points</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ME_RELATIVE_BENDPOINTS__POINTS = NotationPackage.RELATIVE_BENDPOINTS__POINTS;
+
+	/**
+	 * The number of structural features of the '<em>ME Relative Bendpoints</em>' class. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ME_RELATIVE_BENDPOINTS_FEATURE_COUNT = NotationPackage.RELATIVE_BENDPOINTS_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '<em>ME Relative Bendpoint</em>' data type. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @see org.unicase.model.diagram.impl.MERelativeBendpoint
+	 * @see org.unicase.model.diagram.impl.DiagramPackageImpl#getMERelativeBendpoint()
+	 * @generated
+	 */
+	int ME_RELATIVE_BENDPOINT = 8;
 
 	/**
 	 * Returns the meta object for class ' {@link org.unicase.model.diagram.MEDiagram <em>ME Diagram</em>}'. <!--
@@ -1261,6 +1238,27 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getWorkItemDiagram();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.diagram.MERelativeBendpoints
+	 * <em>ME Relative Bendpoints</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>ME Relative Bendpoints</em>'.
+	 * @see org.unicase.model.diagram.MERelativeBendpoints
+	 * @generated
+	 */
+	EClass getMERelativeBendpoints();
+
+	/**
+	 * Returns the meta object for data type '{@link org.unicase.model.diagram.impl.MERelativeBendpoint
+	 * <em>ME Relative Bendpoint</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for data type '<em>ME Relative Bendpoint</em>'.
+	 * @see org.unicase.model.diagram.impl.MERelativeBendpoint
+	 * @model instanceClass="org.unicase.model.diagram.impl.MERelativeBendpoint"
+	 * @generated
+	 */
+	EDataType getMERelativeBendpoint();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1384,6 +1382,26 @@ public interface DiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EClass WORK_ITEM_DIAGRAM = eINSTANCE.getWorkItemDiagram();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.diagram.impl.MERelativeBendpointsImpl
+		 * <em>ME Relative Bendpoints</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.model.diagram.impl.MERelativeBendpointsImpl
+		 * @see org.unicase.model.diagram.impl.DiagramPackageImpl#getMERelativeBendpoints()
+		 * @generated
+		 */
+		EClass ME_RELATIVE_BENDPOINTS = eINSTANCE.getMERelativeBendpoints();
+
+		/**
+		 * The meta object literal for the '<em>ME Relative Bendpoint</em>' data type. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @see org.unicase.model.diagram.impl.MERelativeBendpoint
+		 * @see org.unicase.model.diagram.impl.DiagramPackageImpl#getMERelativeBendpoint()
+		 * @generated
+		 */
+		EDataType ME_RELATIVE_BENDPOINT = eINSTANCE.getMERelativeBendpoint();
 
 	}
 

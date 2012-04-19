@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.diagram.util;
 
@@ -10,6 +10,8 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.notation.Bendpoints;
+import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.ActivityDiagram;
@@ -17,6 +19,7 @@ import org.unicase.model.diagram.ClassDiagram;
 import org.unicase.model.diagram.ComponentDiagram;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.diagram.MERelativeBendpoints;
 import org.unicase.model.diagram.StateDiagram;
 import org.unicase.model.diagram.UseCaseDiagram;
 import org.unicase.model.diagram.WorkItemDiagram;
@@ -108,6 +111,11 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseMERelativeBendpoints(MERelativeBendpoints object) {
+			return createMERelativeBendpointsAdapter();
+		}
+
+		@Override
 		public Adapter caseUnicaseModelElement(UnicaseModelElement object) {
 			return createUnicaseModelElementAdapter();
 		}
@@ -115,6 +123,16 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseAttachment(Attachment object) {
 			return createAttachmentAdapter();
+		}
+
+		@Override
+		public Adapter caseBendpoints(Bendpoints object) {
+			return createBendpointsAdapter();
+		}
+
+		@Override
+		public Adapter caseRelativeBendpoints(RelativeBendpoints object) {
+			return createRelativeBendpointsAdapter();
 		}
 
 		@Override
@@ -233,6 +251,20 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.diagram.MERelativeBendpoints
+	 * <em>ME Relative Bendpoints</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we
+	 * can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.model.diagram.MERelativeBendpoints
+	 * @generated
+	 */
+	public Adapter createMERelativeBendpointsAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.model.UnicaseModelElement
 	 * <em>Unicase Model Element</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
 	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
@@ -256,6 +288,34 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAttachmentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.gmf.runtime.notation.Bendpoints
+	 * <em>Bendpoints</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
+	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
+	 * -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.gmf.runtime.notation.Bendpoints
+	 * @generated
+	 */
+	public Adapter createBendpointsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.gmf.runtime.notation.RelativeBendpoints
+	 * <em>Relative Bendpoints</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.gmf.runtime.notation.RelativeBendpoints
+	 * @generated
+	 */
+	public Adapter createRelativeBendpointsAdapter() {
 		return null;
 	}
 

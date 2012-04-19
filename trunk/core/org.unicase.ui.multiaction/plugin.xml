@@ -22,7 +22,7 @@
     <extension
 	point="org.eclipse.ui.menus">
     <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">	
+           locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=additions">	
         <separator
               name="org.unicase.ui.common.commands.annotateActionItemSeperator"
               visible="true">

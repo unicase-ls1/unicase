@@ -12,6 +12,7 @@ import java.util.List;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
@@ -20,7 +21,6 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.stem.views.statusview.StatusView;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.ui.util.DialogHandler;
 
 /**
  * This is the handler for ShowInStatusView command.

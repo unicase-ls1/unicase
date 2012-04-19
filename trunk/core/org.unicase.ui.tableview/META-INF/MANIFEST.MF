@@ -4,7 +4,11 @@ Bundle-Name: unicase Tableview Plug-in
 Bundle-SymbolicName: org.unicase.ui.tableview;singleton:=true
 Bundle-Version: 0.4.8.qualifier
 Bundle-Activator: org.unicase.ui.tableview.Activator
-Require-Bundle: org.unicase.ui.unicasecommon
+Require-Bundle: org.unicase.ui.unicasecommon,
+ org.eclipse.emf.emfstore.common.model,
+ org.eclipse.emf.emfstore.client,
+ org.eclipse.emf.ecp.common.util,
+ org.eclipse.emf.ecp.common
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: unicase.org
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
@@ -12,3 +16,4 @@ Export-Package: org.unicase.ui.tableview,
  org.unicase.ui.tableview.labelproviders,
  org.unicase.ui.tableview.viewer,
  org.unicase.ui.taskview
+Import-Package: org.eclipse.emf.ecp.common.utilities

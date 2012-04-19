@@ -1,12 +1,15 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.unicasecommon.meeditor;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.editor.AbstractMEEditorPage;
+import org.eclipse.emf.ecp.editor.MEEditor;
+import org.eclipse.emf.ecp.editor.mecontrols.MERichTextControl;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -21,10 +24,6 @@ import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
-import org.unicase.model.UnicaseModelElement;
-import org.unicase.ui.meeditor.AbstractMEEditorPage;
-import org.unicase.ui.meeditor.MEEditor;
-import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
 /**
@@ -84,7 +83,7 @@ public class MEDescriptionPage extends AbstractMEEditorPage {
 	private static final String ID = "org.unicase.ui.unicasecommon.meeditor.descriptionpage";
 	private static final String NAME = "Description";
 
-	private UnicaseModelElement modelElement;
+	private EObject modelElement;
 	private FormToolkit toolkit;
 
 	private ScrolledForm form;
@@ -97,12 +96,7 @@ public class MEDescriptionPage extends AbstractMEEditorPage {
 	 */
 	@Override
 	public FormPage createPage(MEEditor editor, EditingDomain editingDomain, EObject modelElement) {
-		if (modelElement instanceof UnicaseModelElement) {
-			this.modelElement = (UnicaseModelElement) modelElement;
-		} else {
-			throw new IllegalArgumentException("This page is valid only for UnicaseModelElements");
-		}
-
+		this.modelElement = modelElement;
 		FormPage page = new FormPageExtension(editor, ID, NAME);
 		return page;
 
@@ -140,8 +134,8 @@ public class MEDescriptionPage extends AbstractMEEditorPage {
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IItemPropertyDescriptor propertyDescriptor = adapterFactoryItemDelegator.getPropertyDescriptor(modelElement,
 			"description");
-		textWidget = textControl.createControl(body, SWT.NONE, propertyDescriptor, modelElement, UnicaseActionHelper
-			.getContext(modelElement), toolkit);
+		textWidget = textControl.createControl(body, SWT.NONE, propertyDescriptor, modelElement,
+			UnicaseActionHelper.getContext(modelElement), toolkit);
 		GridDataFactory.fillDefaults().hint(200, -1).grab(true, true).applyTo(textWidget);
 	}
 }

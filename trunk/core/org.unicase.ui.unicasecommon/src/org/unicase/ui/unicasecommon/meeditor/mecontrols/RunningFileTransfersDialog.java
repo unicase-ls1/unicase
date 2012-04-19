@@ -6,6 +6,7 @@
  */
 package org.unicase.ui.unicasecommon.meeditor.mecontrols;
 
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -19,7 +20,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.unicase.workspace.ProjectSpace;
 
 /**
  * The modified ElementListSelectionDialog. Includes further functionality to import certificates from files instead of

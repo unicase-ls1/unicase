@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.dashboard.notificationProviders;
 
@@ -13,18 +13,17 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.unicase.emfstore.esmodel.notification.ESNotification;
-import org.unicase.emfstore.esmodel.notification.NotificationFactory;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
+import org.eclipse.emf.emfstore.client.model.preferences.DashboardKey;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
+import org.eclipse.emf.emfstore.server.model.notification.NotificationFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationId;
 import org.unicase.model.organization.User;
-import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.notification.NotificationProvider;
-import org.unicase.workspace.preferences.DashboardKey;
-import org.unicase.workspace.util.NoCurrentUserException;
 
 /**
  * Provides notifications on updates of a project space.

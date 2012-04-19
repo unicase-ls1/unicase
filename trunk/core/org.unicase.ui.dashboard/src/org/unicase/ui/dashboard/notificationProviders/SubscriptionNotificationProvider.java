@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.dashboard.notificationProviders;
 
@@ -10,18 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
-import org.unicase.emfstore.esmodel.notification.ESNotification;
-import org.unicase.emfstore.esmodel.notification.NotificationFactory;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.model.UnicaseModelElement;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.preferences.DashboardKey;
-import org.unicase.workspace.preferences.PreferenceManager;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.preferences.DashboardKey;
+import org.eclipse.emf.emfstore.client.model.preferences.PreferenceManager;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.OrgUnitProperty;
+import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
+import org.eclipse.emf.emfstore.server.model.notification.NotificationFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
 
 /**
  * Provides notifications for subscribed MEs.
@@ -70,7 +69,10 @@ public class SubscriptionNotificationProvider extends AbstractNotificationProvid
 		if (subscriptionIds.isEmpty()) {
 			return result;
 		}
-		return super.provideNotifications(projectSpace, changePackages, currentUsername);
+
+		super.provideNotifications(projectSpace, changePackages, currentUsername);
+
+		return result;
 	}
 
 	/**
@@ -95,10 +97,9 @@ public class SubscriptionNotificationProvider extends AbstractNotificationProvid
 
 	private void createOperation(ModelElementId mid, AbstractOperation op) {
 		EObject modelElement = getProjectSpace().getProject().getModelElement(mid);
-		if (modelElement == null || !(modelElement instanceof UnicaseModelElement)) {
+		if (modelElement == null) {
 			return;
 		}
-		UnicaseModelElement unicaseModelElement = (UnicaseModelElement) modelElement;
 		getExcludedOperations().add(op.getOperationId());
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 		notification.setName("Subscriptions");
@@ -108,7 +109,7 @@ public class SubscriptionNotificationProvider extends AbstractNotificationProvid
 		notification.setProvider(getName());
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("An element on your watch list has changed: ");
-		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(unicaseModelElement, getProjectSpace()));
+		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(mid, getProjectSpace()));
 		notification.setMessage(stringBuilder.toString());
 		notification.setCreationDate(op.getClientDate());
 		notification.getRelatedOperations().add(op.getOperationId());

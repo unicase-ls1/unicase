@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.requirement.impl;
 
@@ -35,31 +35,34 @@ import org.unicase.model.requirement.UserTask;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getInitiatingActor <em>Initiating Actor</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getParticipatingActors <em>Participating Actors</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getRealizedUserTask <em>Realized User Task</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getPrecondition <em>Precondition</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getUseCaseSteps <em>Use Case Steps</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getPostcondition <em>Postcondition</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getRules <em>Rules</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getException <em>Exception</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getScenarios <em>Scenarios</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getFunctionalRequirements <em>Functional Requirements</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getNonFunctionalRequirements <em>Non Functional Requirements</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getIdentifiedClasses <em>Identified Classes</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getIncludedUseCases <em>Included Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getExtendedUseCases <em>Extended Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getSystemFunctions <em>System Functions</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getInitiatingActor <em>Initiating Actor</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getParticipatingActors <em>Participating Actors</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getRealizedUserTask <em>Realized User Task</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getPrecondition <em>Precondition</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getUseCaseSteps <em>Use Case Steps</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getPostcondition <em>Postcondition</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getRules <em>Rules</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getException <em>Exception</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getScenarios <em>Scenarios</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getFunctionalRequirements <em>Functional Requirements</em>}
+ * </li>
+ * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getNonFunctionalRequirements <em>Non Functional
+ * Requirements</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getIdentifiedClasses <em>Identified Classes</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getIncludedUseCases <em>Included Use Cases</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getExtendedUseCases <em>Extended Use Cases</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getSystemFunctions <em>System Functions</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#isDone <em>Done</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	/**
-	 * The cached value of the '{@link #getInitiatingActor() <em>Initiating Actor</em>}' reference.
-	 * <!-- begin-user-doc
+	 * The cached value of the '{@link #getInitiatingActor() <em>Initiating Actor</em>}' reference. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getInitiatingActor()
 	 * @generated
 	 * @ordered
@@ -87,9 +90,9 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	protected UserTask realizedUserTask;
 
 	/**
-	 * The default value of the '{@link #getPrecondition() <em>Precondition</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getPrecondition() <em>Precondition</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPrecondition()
 	 * @generated
 	 * @ordered
@@ -97,9 +100,9 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	protected static final String PRECONDITION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPrecondition() <em>Precondition</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPrecondition() <em>Precondition</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPrecondition()
 	 * @generated
 	 * @ordered
@@ -117,9 +120,9 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	protected EList<Step> useCaseSteps;
 
 	/**
-	 * The default value of the '{@link #getPostcondition() <em>Postcondition</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getPostcondition() <em>Postcondition</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPostcondition()
 	 * @generated
 	 * @ordered
@@ -127,9 +130,9 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	protected static final String POSTCONDITION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPostcondition() <em>Postcondition</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPostcondition() <em>Postcondition</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getPostcondition()
 	 * @generated
 	 * @ordered
@@ -137,9 +140,9 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	protected String postcondition = POSTCONDITION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getRules() <em>Rules</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getRules() <em>Rules</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getRules()
 	 * @generated
 	 * @ordered
@@ -157,9 +160,9 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	protected String rules = RULES_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getException() <em>Exception</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getException() <em>Exception</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getException()
 	 * @generated
 	 * @ordered
@@ -167,9 +170,9 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	protected static final String EXCEPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getException() <em>Exception</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getException() <em>Exception</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getException()
 	 * @generated
 	 * @ordered
@@ -177,9 +180,9 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	protected String exception = EXCEPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getScenarios() <em>Scenarios</em>}' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getScenarios() <em>Scenarios</em>}' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getScenarios()
 	 * @generated
 	 * @ordered
@@ -189,6 +192,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	/**
 	 * The cached value of the '{@link #getFunctionalRequirements() <em>Functional Requirements</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getFunctionalRequirements()
 	 * @generated
 	 * @ordered
@@ -196,8 +200,9 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	protected EList<FunctionalRequirement> functionalRequirements;
 
 	/**
-	 * The cached value of the '{@link #getNonFunctionalRequirements() <em>Non Functional Requirements</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getNonFunctionalRequirements() <em>Non Functional Requirements</em>}' reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getNonFunctionalRequirements()
 	 * @generated
 	 * @ordered
@@ -245,7 +250,28 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	protected EList<SystemFunction> systemFunctions;
 
 	/**
+	 * The default value of the '{@link #isDone() <em>Done</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @see #isDone()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DONE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isDone() <em>Done</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @see #isDone()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean done = DONE_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected UseCaseImpl() {
@@ -254,6 +280,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -263,6 +290,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Actor getInitiatingActor() {
@@ -280,6 +308,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Actor basicGetInitiatingActor() {
@@ -288,6 +317,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetInitiatingActor(Actor newInitiatingActor, NotificationChain msgs) {
@@ -306,6 +336,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setInitiatingActor(Actor newInitiatingActor) {
@@ -327,6 +358,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Scenario> getScenarios() {
@@ -339,6 +371,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<FunctionalRequirement> getFunctionalRequirements() {
@@ -352,6 +385,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<NonFunctionalRequirement> getNonFunctionalRequirements() {
@@ -365,6 +399,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<org.unicase.model.classes.Class> getIdentifiedClasses() {
@@ -378,6 +413,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getIncludedUseCases() {
@@ -390,6 +426,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getExtendedUseCases() {
@@ -402,6 +439,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<SystemFunction> getSystemFunctions() {
@@ -414,6 +452,28 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public boolean isDone() {
+		return done;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setDone(boolean newDone) {
+		boolean oldDone = done;
+		done = newDone;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.USE_CASE__DONE, oldDone, done));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Actor> getParticipatingActors() {
@@ -426,6 +486,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UserTask getRealizedUserTask() {
@@ -443,6 +504,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UserTask basicGetRealizedUserTask() {
@@ -451,6 +513,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetRealizedUserTask(UserTask newRealizedUserTask, NotificationChain msgs) {
@@ -469,6 +532,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setRealizedUserTask(UserTask newRealizedUserTask) {
@@ -490,6 +554,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getPrecondition() {
@@ -498,6 +563,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPrecondition(String newPrecondition) {
@@ -510,6 +576,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Step> getUseCaseSteps() {
@@ -522,6 +589,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getPostcondition() {
@@ -530,6 +598,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPostcondition(String newPostcondition) {
@@ -542,6 +611,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getRules() {
@@ -550,6 +620,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setRules(String newRules) {
@@ -561,6 +632,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getException() {
@@ -569,6 +641,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setException(String newException) {
@@ -581,6 +654,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -621,6 +695,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -650,6 +725,7 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -689,12 +765,15 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 			return getExtendedUseCases();
 		case RequirementPackage.USE_CASE__SYSTEM_FUNCTIONS:
 			return getSystemFunctions();
+		case RequirementPackage.USE_CASE__DONE:
+			return isDone();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -755,12 +834,16 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 			getSystemFunctions().clear();
 			getSystemFunctions().addAll((Collection<? extends SystemFunction>) newValue);
 			return;
+		case RequirementPackage.USE_CASE__DONE:
+			setDone((Boolean) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -811,12 +894,16 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 		case RequirementPackage.USE_CASE__SYSTEM_FUNCTIONS:
 			getSystemFunctions().clear();
 			return;
+		case RequirementPackage.USE_CASE__DONE:
+			setDone(DONE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -853,12 +940,15 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 			return extendedUseCases != null && !extendedUseCases.isEmpty();
 		case RequirementPackage.USE_CASE__SYSTEM_FUNCTIONS:
 			return systemFunctions != null && !systemFunctions.isEmpty();
+		case RequirementPackage.USE_CASE__DONE:
+			return done != DONE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -875,6 +965,8 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 		result.append(rules);
 		result.append(", exception: ");
 		result.append(exception);
+		result.append(", done: ");
+		result.append(done);
 		result.append(')');
 		return result.toString();
 	}

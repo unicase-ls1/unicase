@@ -11,10 +11,17 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecp.editor.ControlFactory;
+import org.eclipse.emf.ecp.editor.mecontrols.AbstractMEControl;
+import org.eclipse.emf.ecp.editor.mecontrols.MERichTextControl;
+import org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.MEHyperLinkDeleteAdapter;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
@@ -30,20 +37,13 @@ import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.impl.RequirementFactoryImpl;
-import org.unicase.ui.meeditor.ControlFactory;
-import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
-import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
-import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEHyperLinkDeleteAdapter;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * class creates and controls a widget to display one single use case step.
@@ -328,7 +328,7 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 	}
 
 	private void createNewStep(final int position, final boolean isActorStep) {
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				RequirementFactory rFactory = RequirementFactoryImpl.init();

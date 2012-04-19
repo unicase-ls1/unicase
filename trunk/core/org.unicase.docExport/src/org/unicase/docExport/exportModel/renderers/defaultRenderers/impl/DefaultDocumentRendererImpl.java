@@ -15,6 +15,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.unicase.docExport.DocumentExport;
 import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.exportModel.Template;
@@ -43,8 +45,6 @@ import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.document.Section;
 import org.unicase.model.document.impl.LeafSectionImpl;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Default Document Renderer</b></em>'. <!--
@@ -82,7 +82,7 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 	public URootCompositeSection render(UnicaseModelElement modelElement, Template template) {
 
 		if (!(modelElement instanceof LeafSection) && !(modelElement instanceof CompositeSection)) {
-			template = (Template) EcoreUtil.copy(template);
+			template = EcoreUtil.copy(template);
 
 			// hiding the header and footer on a document without and document structure is not good.
 			template.getLayoutOptions().setHideHeaderAndFooterOnCoverPage(false);
@@ -112,9 +112,8 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		} else {
 			if (DocumentExport.isTreatModelElementAsLeafSection()) {
 				for (EObject content : modelElement.eContents()) {
-					if (content instanceof UnicaseModelElement) {
-						renderModelElement(getDoc(), (UnicaseModelElement) content);
-					}
+					renderModelElement(getDoc(), content);
+
 				}
 			} else {
 				renderModelElement(getDoc(), modelElement);
@@ -206,7 +205,7 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 	}
 
 	private void renderAppendix() {
-		ArrayList<UnicaseModelElement> linkedModelElements = new ArrayList<UnicaseModelElement>();
+		ArrayList<EObject> linkedModelElements = new ArrayList<EObject>();
 		linkedModelElements.addAll(DocumentExport.getLinkedModelElements());
 		if (linkedModelElements.size() < 1) {
 			return;
@@ -224,8 +223,8 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 			getDoc().add(appendix);
 		}
 
-		for (UnicaseModelElement me : linkedModelElements) {
-			template.getModelElementRendererNotNull(me.eClass(), template).render(me, appendix);
+		for (EObject eObject : linkedModelElements) {
+			template.getModelElementRendererNotNull(eObject.eClass(), template).render(eObject, appendix);
 		}
 	}
 
@@ -240,8 +239,8 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		section.add(new UParagraph(WorkspaceUtil.cleanFormatedText(modelElement.getDescription()) + "\n", layoutOptions
 			.getDefaultTextOption()));
 
-		EList<UnicaseModelElement> subSections = modelElement.getModelElements();
-		for (UnicaseModelElement child : subSections) {
+		EList<EObject> subSections = modelElement.getModelElements();
+		for (EObject child : subSections) {
 			renderModelElement(section, child);
 		}
 	}
@@ -262,8 +261,8 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 
 		USection section = new USection(modelElement.getName(), layoutOptions.getDocumentTitleTextOption());
 		getDoc().add(section);
-		UParagraph descr = new UParagraph(WorkspaceUtil.cleanFormatedText(modelElement.getDescription()), layoutOptions
-			.getDefaultTextOption());
+		UParagraph descr = new UParagraph(WorkspaceUtil.cleanFormatedText(modelElement.getDescription()),
+			layoutOptions.getDefaultTextOption());
 		section.add(descr);
 
 		String date = "";
@@ -336,10 +335,10 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 	/**
 	 * Renders the LeafSection with a new USection and renders the containing modelElements
 	 */
-	private void renderSection(UCompositeSection parent, UnicaseModelElement modelElementSection,
-		LayoutOptions layoutOptions, boolean firstChapterOfDocument) {
+	private void renderSection(UCompositeSection parent, Section unicaseSection, LayoutOptions layoutOptions,
+		boolean firstChapterOfDocument) {
 
-		USection section = new USection("  " + modelElementSection.getName(), layoutOptions.getSectionTextOption());
+		USection section = new USection("  " + unicaseSection.getName(), layoutOptions.getSectionTextOption());
 		parent.add(section);
 		section.getBoxModel().setBreakBefore(firstChapterOfDocument);
 
@@ -347,28 +346,32 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		section.getBoxModel().setMarginBottom(15);
 
 		if (section.getDepth() > 1 && section.getDepth() < 4) {
-			section.getTitlParagraph().getOption().setFontSize(
-				layoutOptions.getSectionTextOption().getFontSize() - layoutOptions.getSectionFontSizeDecreaseStep()
-					* section.getDepth());
+			section
+				.getTitlParagraph()
+				.getOption()
+				.setFontSize(
+					layoutOptions.getSectionTextOption().getFontSize() - layoutOptions.getSectionFontSizeDecreaseStep()
+						* section.getDepth());
 		}
 
-		UParagraph description = new UParagraph(WorkspaceUtil.cleanFormatedText(modelElementSection.getDescription())
-			+ "\n", layoutOptions.getDefaultTextOption());
+		UParagraph description = new UParagraph(
+			WorkspaceUtil.cleanFormatedText(unicaseSection.getDescription()) + "\n",
+			layoutOptions.getDefaultTextOption());
 		description.getBoxModel().setKeepWithPrevious(true);
 		section.add(description);
 
-		if (modelElementSection instanceof LeafSection) {
-			EList<UnicaseModelElement> subSections = ((LeafSection) modelElementSection).getModelElements();
-			for (UnicaseModelElement child : subSections) {
+		if (unicaseSection instanceof LeafSection) {
+			EList<EObject> subSections = ((LeafSection) unicaseSection).getModelElements();
+			for (EObject child : subSections) {
 				if (child instanceof LeafSection) {
-					renderSection(section, child, layoutOptions, false);
+					renderSection(section, (LeafSection) child, layoutOptions, false);
 				} else {
 					renderModelElement(section, child);
 				}
 			}
 		}
-		if (modelElementSection instanceof CompositeSection) {
-			EList<Section> subSections = ((CompositeSection) modelElementSection).getSubsections();
+		if (unicaseSection instanceof CompositeSection) {
+			EList<Section> subSections = ((CompositeSection) unicaseSection).getSubsections();
 			for (Section child : subSections) {
 				if (child instanceof LeafSection) {
 					renderLeafSection(section, (LeafSection) child, layoutOptions, false);
@@ -391,10 +394,10 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 	/**
 	 * Render the ModelElement using the Renderer defined in the modelElementRendererMappings.
 	 */
-	private void renderModelElement(UCompositeSection parent, UnicaseModelElement modelElement) {
-		ModelElementRenderer renderer = template.getModelElementRendererNotNull(modelElement.eClass(), template);
+	private void renderModelElement(UCompositeSection parent, EObject eObject) {
+		ModelElementRenderer renderer = template.getModelElementRendererNotNull(eObject.eClass(), template);
 		try {
-			renderer.render(modelElement, parent);
+			renderer.render(eObject, parent);
 		} catch (RuntimeException e) {
 			WorkspaceUtil.log("Error in the renderer " + renderer.getClass().getSimpleName(), e, IStatus.ERROR);
 		}

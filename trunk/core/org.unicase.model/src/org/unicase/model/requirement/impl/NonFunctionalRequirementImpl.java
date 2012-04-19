@@ -1,17 +1,19 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.requirement.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.rationale.impl.CriterionImpl;
@@ -28,13 +30,17 @@ import org.unicase.model.requirement.UserTask;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getRestrictedScenarios <em>Restricted Scenarios</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getRestrictedUseCases <em>Restricted Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getSystemFunctions <em>System Functions</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getUserTasks <em>User Tasks</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getRestrictedScenarios <em>Restricted
+ * Scenarios</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getRestrictedUseCases <em>Restricted Use
+ * Cases</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getSystemFunctions <em>System Functions
+ * </em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getUserTasks <em>User Tasks</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#isDone <em>Done</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFunctionalRequirement {
@@ -67,9 +73,9 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 	 */
 	protected EList<SystemFunction> systemFunctions;
 	/**
-	 * The cached value of the '{@link #getUserTasks() <em>User Tasks</em>}' reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getUserTasks() <em>User Tasks</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getUserTasks()
 	 * @generated
 	 * @ordered
@@ -77,7 +83,27 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 	protected EList<UserTask> userTasks;
 
 	/**
+	 * The default value of the '{@link #isDone() <em>Done</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @see #isDone()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DONE_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isDone() <em>Done</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @see #isDone()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean done = DONE_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected NonFunctionalRequirementImpl() {
@@ -86,6 +112,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -95,6 +122,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Scenario> getRestrictedScenarios() {
@@ -108,6 +136,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getRestrictedUseCases() {
@@ -121,6 +150,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<SystemFunction> getSystemFunctions() {
@@ -134,6 +164,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UserTask> getUserTasks() {
@@ -147,6 +178,29 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public boolean isDone() {
+		return done;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setDone(boolean newDone) {
+		boolean oldDone = done;
+		done = newDone;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__DONE,
+				oldDone, done));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -169,6 +223,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -188,6 +243,7 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -201,12 +257,15 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 			return getSystemFunctions();
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__USER_TASKS:
 			return getUserTasks();
+		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__DONE:
+			return isDone();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -229,12 +288,16 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 			getUserTasks().clear();
 			getUserTasks().addAll((Collection<? extends UserTask>) newValue);
 			return;
+		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__DONE:
+			setDone((Boolean) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -252,12 +315,16 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__USER_TASKS:
 			getUserTasks().clear();
 			return;
+		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__DONE:
+			setDone(DONE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -271,8 +338,27 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 			return systemFunctions != null && !systemFunctions.isEmpty();
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__USER_TASKS:
 			return userTasks != null && !userTasks.isEmpty();
+		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__DONE:
+			return done != DONE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (done: ");
+		result.append(done);
+		result.append(')');
+		return result.toString();
 	}
 
 } // NonFunctionalRequirementImpl

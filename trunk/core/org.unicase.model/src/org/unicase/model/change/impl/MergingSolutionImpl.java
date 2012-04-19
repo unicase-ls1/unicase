@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.change.impl;
 
@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingSolution;
 import org.unicase.model.rationale.impl.SolutionImpl;
@@ -35,6 +35,7 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 	/**
 	 * The cached value of the '{@link #getAppliedOperations() <em>Applied Operations</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAppliedOperations()
 	 * @generated
 	 * @ordered
@@ -43,6 +44,7 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MergingSolutionImpl() {
@@ -51,6 +53,7 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,6 +63,7 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<AbstractOperation> getAppliedOperations() {
@@ -72,6 +76,7 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -85,6 +90,7 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,6 +104,7 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -114,6 +121,7 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -128,6 +136,7 @@ public class MergingSolutionImpl extends SolutionImpl implements MergingSolution
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

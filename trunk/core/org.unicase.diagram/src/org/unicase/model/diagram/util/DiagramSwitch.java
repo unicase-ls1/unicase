@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.diagram.util;
 
@@ -10,6 +10,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.notation.Bendpoints;
+import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
 import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.ActivityDiagram;
@@ -17,6 +19,7 @@ import org.unicase.model.diagram.ClassDiagram;
 import org.unicase.model.diagram.ComponentDiagram;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.diagram.MERelativeBendpoints;
 import org.unicase.model.diagram.StateDiagram;
 import org.unicase.model.diagram.UseCaseDiagram;
 import org.unicase.model.diagram.WorkItemDiagram;
@@ -174,6 +177,17 @@ public class DiagramSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case DiagramPackage.ME_RELATIVE_BENDPOINTS: {
+			MERelativeBendpoints meRelativeBendpoints = (MERelativeBendpoints) theEObject;
+			T result = caseMERelativeBendpoints(meRelativeBendpoints);
+			if (result == null)
+				result = caseRelativeBendpoints(meRelativeBendpoints);
+			if (result == null)
+				result = caseBendpoints(meRelativeBendpoints);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -275,6 +289,20 @@ public class DiagramSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>ME Relative Bendpoints</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>ME Relative Bendpoints</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMERelativeBendpoints(MERelativeBendpoints object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'. <!--
 	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
@@ -298,6 +326,33 @@ public class DiagramSwitch<T> {
 	 * @generated
 	 */
 	public T caseAttachment(Attachment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Bendpoints</em>'. <!-- begin-user-doc -->
+	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Bendpoints</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBendpoints(Bendpoints object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Relative Bendpoints</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Relative Bendpoints</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRelativeBendpoints(RelativeBendpoints object) {
 		return null;
 	}
 

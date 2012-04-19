@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.docExport.exportModel.renderers.specialRenderers.impl;
 
@@ -16,6 +16,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.unicase.docExport.Activator;
 import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
@@ -29,7 +31,6 @@ import org.unicase.docExport.exportModel.renderers.specialRenderers.ClassRendere
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.classes.Association;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Class Renderer</b></em>'. <!-- end-user-doc -->
@@ -61,10 +62,13 @@ public class ClassRendererImpl extends ModelElementRendererImpl implements Class
 
 	@SuppressWarnings("unchecked")
 	@Override
-	protected void doRender(UnicaseModelElement modelElement, UCompositeSection parent) {
+	protected void doRender(EObject eObject, UCompositeSection section) {
+
+		UnicaseModelElement modelElement = (UnicaseModelElement) eObject;
+
 		// Render title and description
 		USection modelElementSection = new USection();
-		parent.add(modelElementSection);
+		section.add(modelElementSection);
 		renderTitleAndDescription(modelElement, modelElementSection, false);
 
 		AttributeRenderer methodsRenderer = getAttributeRendererNotNull(getFeature("methods", modelElement));

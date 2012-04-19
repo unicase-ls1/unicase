@@ -1,17 +1,17 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.docExport.exportModel.renderers.elements;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.unicase.docExport.exportModel.renderers.options.BoxModelOption;
 import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * A simple paragraph containing some text and additional children. This is the most common element.
@@ -101,7 +101,7 @@ public class UParagraph extends UCompositeSection {
 		if (option == null) {
 			WorkspaceUtil.log("Can't set null as TextOption", new Exception(), IStatus.WARNING);
 		} else {
-			this.option = (TextOption) EcoreUtil.copy(option);
+			this.option = EcoreUtil.copy(option);
 		}
 	}
 

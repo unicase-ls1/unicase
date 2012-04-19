@@ -14,13 +14,22 @@ import java.util.List;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.dnd.DragSourcePlaceHolder;
+import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.ModelElementContextListener;
+import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.util.AssociationClassHelper;
+import org.eclipse.emf.ecp.editor.ModelElementChangeListener;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.KeyHandler;
@@ -50,23 +59,12 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ecp.model.ECPModelelementContext;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.ecp.model.ModelElementContextListener;
-import org.unicase.ecp.model.NoWorkspaceException;
-import org.unicase.ecp.model.workSpaceModel.util.AssociationClassHelper;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.diagram.impl.DiagramStoreException;
-import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
-import org.unicase.ui.meeditor.ModelElementChangeListener;
 import org.unicase.ui.unicasecommon.common.diagram.DeleteFromDiagramAction;
 import org.unicase.ui.unicasecommon.common.util.DNDHelper;
 import org.unicase.ui.unicasecommon.diagram.commands.CreateViewCommand;
-import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author denglerm This class is a superclass for the generated ModelDiagramEditor in each diagram.
@@ -111,24 +109,10 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 
 		focusListener = new FocusListener() {
 			public void focusGained(FocusEvent event) {
-				try {
-					// add association if they are not on the diagram
-					syncDiagramView((MEDiagram) ModelDiagramEditor.this.getDiagram().getElement());
-					doSave(new NullProgressMonitor());
-				} catch (IllegalStateException e) {
-					// do nothing
-					// We catch this exception in case we have been in an read only transaction context
-					// and tried to save the layout which is performed with a read/write transaction
-				}
+				syncDiagramView((MEDiagram) ModelDiagramEditor.this.getDiagram().getElement());
 			}
 
 			public void focusLost(FocusEvent event) {
-				try {
-					doSave(new NullProgressMonitor());
-				} catch (IllegalStateException e) {
-					// do nothing
-					// @see focusGained
-				}
 			}
 		};
 
@@ -137,22 +121,23 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	/**
 	 * Adds missing AssciationClassElements and refresh the hole view in case a reference has changed.
 	 * 
-	 * @param diagram The diagram to update.
+	 * @param meDiagram The diagram to update.
 	 */
-	private void syncDiagramView(final MEDiagram diagram) {
+	private void syncDiagramView(final MEDiagram meDiagram) {
 		final ECPModelelementContext context = DNDHelper.getECPModelelementContext();
 		if (context == null) {
 			return;
 		}
+
 		final LinkedList<EObject> elements = new LinkedList<EObject>();
-		elements.addAll(diagram.getElements());
-		new UnicaseCommand() {
+		elements.addAll(meDiagram.getElements());
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				for (EObject association : AssociationClassHelper.getRelatedAssociationClassToDrop(elements, elements,
 					context.getMetaModelElementContext())) {
 					// add reference to the element
-					diagram.getElements().add((UnicaseModelElement) association);
+					meDiagram.getElements().add((UnicaseModelElement) association);
 					// create the View for the element
 					CreateViewCommand command = new CreateViewCommand(new EObjectAdapter(association),
 						getDiagramEditPart(), null, getPreferencesHint());
@@ -165,7 +150,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			}
 		}.run();
 		// refresh all views to reorientate associations
-		List<CanonicalEditPolicy> editPolicies = CanonicalEditPolicy.getRegisteredEditPolicies(diagram);
+		List<CanonicalEditPolicy> editPolicies = CanonicalEditPolicy.getRegisteredEditPolicies(meDiagram);
 		for (Iterator<CanonicalEditPolicy> it = editPolicies.iterator(); it.hasNext();) {
 			it.next().refresh();
 		}
@@ -178,17 +163,6 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	 */
 	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
-		new UnicaseCommand() {
-			@Override
-			protected void doRun() {
-				try {
-					((MEDiagram) ModelDiagramEditor.this.getDiagram().eContainer()).saveDiagramLayout();
-				} catch (DiagramStoreException e) {
-					// dengler: handle exception
-					WorkspaceUtil.logException("Saving diagram failed", e);
-				}
-			}
-		}.run();
 	}
 
 	// dengler: document
@@ -274,7 +248,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 				elements.addAll(diagram.getElements());
 				mesAdd.addAll(AssociationClassHelper.getRelatedAssociationClassToDrop(mesAdd, elements,
 					context.getMetaModelElementContext()));
-				new UnicaseCommand() {
+				new EMFStoreCommand() {
 
 					@Override
 					protected void doRun() {
@@ -384,7 +358,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	 */
 	private void registerModelElementListeners() {
 
-		Diagram diagram = getDiagram();
+		final Diagram diagram = getDiagram();
 
 		// register listener for changes on the name attribute
 		modelElementChangeListener = new ModelElementChangeListener(diagram) {
@@ -396,6 +370,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 					setPartName(msg.getNewStringValue());
 				}
 			}
+
 		};
 
 		// register modelElementContext listener for behavior upon deletion

@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.rationale.impl;
 
@@ -21,17 +21,17 @@ import org.unicase.model.rationale.RationalePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.rationale.impl.AudioCommentImpl#getAudioFile <em>Audio File</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.AudioCommentImpl#getAudioFile <em>Audio File</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 	/**
-	 * The cached value of the '{@link #getAudioFile() <em>Audio File</em>}' containment reference.
-	 * <!-- begin-user-doc
+	 * The cached value of the '{@link #getAudioFile() <em>Audio File</em>}' containment reference. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAudioFile()
 	 * @generated
 	 * @ordered
@@ -40,6 +40,7 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AudioCommentImpl() {
@@ -48,6 +49,7 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -57,6 +59,7 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FileAttachment getAudioFile() {
@@ -83,6 +86,7 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FileAttachment basicGetAudioFile() {
@@ -91,6 +95,7 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetAudioFile(FileAttachment newAudioFile, NotificationChain msgs) {
@@ -109,6 +114,7 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setAudioFile(FileAttachment newAudioFile) {
@@ -130,6 +136,7 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -143,6 +150,7 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -158,6 +166,7 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -172,6 +181,7 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -186,6 +196,7 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

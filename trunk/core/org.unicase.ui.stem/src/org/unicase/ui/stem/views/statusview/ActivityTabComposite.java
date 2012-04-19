@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.stem.views.statusview;
 
@@ -10,6 +10,12 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.emfstore.client.model.ModelPackage;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.Workspace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
+import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -21,17 +27,11 @@ import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.stem.views.TaskTableUtil;
 import org.unicase.ui.stem.views.statusview.dnd.ActivityTabDropAdapter;
 import org.unicase.ui.stem.views.statusview.dnd.StatusViewTabsDragAdapter;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.WorkspacePackage;
 
 /**
  * Composite to show the activity views.
@@ -64,7 +64,7 @@ public class ActivityTabComposite extends Composite implements ProjectChangeObse
 		adapterImpl = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
+				if ((msg.getFeatureID(Workspace.class)) == ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
 
 					// remove old listeners
 					Object oldValue = msg.getOldValue();
@@ -73,8 +73,8 @@ public class ActivityTabComposite extends Composite implements ProjectChangeObse
 					}
 					// add listener to get notified when work items get deleted/added/changed
 					if (workspace.getActiveProjectSpace() != null) {
-						workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(
-							ActivityTabComposite.this);
+						workspace.getActiveProjectSpace().getProject()
+							.addProjectChangeObserver(ActivityTabComposite.this);
 					}
 				}
 			}
@@ -142,7 +142,7 @@ public class ActivityTabComposite extends Composite implements ProjectChangeObse
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementAdded(Project project, EObject modelElement) {
+	public void modelElementAdded(IdEObjectCollection project, EObject modelElement) {
 		treeViewer.refresh();
 	}
 
@@ -151,7 +151,7 @@ public class ActivityTabComposite extends Composite implements ProjectChangeObse
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementRemoved(Project project, EObject modelElement) {
+	public void modelElementRemoved(IdEObjectCollection project, EObject modelElement) {
 		// nothing to do;
 
 	}
@@ -162,7 +162,7 @@ public class ActivityTabComposite extends Composite implements ProjectChangeObse
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
 	 */
-	public void notify(Notification notification, Project project, EObject modelElement) {
+	public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
 		treeViewer.refresh();
 	}
 
@@ -184,7 +184,7 @@ public class ActivityTabComposite extends Composite implements ProjectChangeObse
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
 	 */
-	public void projectDeleted(Project project) {
+	public void projectDeleted(IdEObjectCollection project) {
 		// TODO Auto-generated method stub
 
 	}

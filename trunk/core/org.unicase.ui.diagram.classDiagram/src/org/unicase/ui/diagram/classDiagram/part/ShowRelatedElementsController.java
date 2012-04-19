@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.diagram.classDiagram.part;
 
@@ -36,7 +36,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.model.classes.Class;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.ui.common.util.CollectionFilter;
 import org.unicase.ui.diagram.classDiagram.edit.commands.AddRelatedElementsCommand;
 import org.unicase.ui.diagram.classDiagram.edit.parts.ClassEditPart;
 import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
@@ -161,8 +160,8 @@ public final class ShowRelatedElementsController {
 				addCommand = new AddRelatedElementsCommand(selectedEditPart, editParts, diagramEditPart);
 			} else {
 				if (isModeEnabled() || modeKeyPressed) {
-					addCommand = new AddRelatedElementsCommand(selectedEditPart, Collections
-						.singletonList(selectedEditPart), getDiagramEditPart());
+					addCommand = new AddRelatedElementsCommand(selectedEditPart,
+						Collections.singletonList(selectedEditPart), getDiagramEditPart());
 				} else {
 					editParts.remove(selectedEditPart);
 					addCommand = new AddRelatedElementsCommand(selectedEditPart, editParts, getDiagramEditPart());
@@ -211,8 +210,8 @@ public final class ShowRelatedElementsController {
 	public Collection<? extends Edge> getRelatedEdges() {
 		Set<Edge> edges = new HashSet<Edge>();
 		Collection<ViewDescriptor> values = getObjectViewDescriptorMap().values();
-		Collection<ConnectionViewDescriptor> edgeDescriptors = CollectionFilter.filter(values,
-			ConnectionViewDescriptor.class);
+		Collection<ConnectionViewDescriptor> edgeDescriptors = org.eclipse.emf.ecp.common.utilities.CollectionFilter
+			.filter(values, ConnectionViewDescriptor.class);
 		for (ConnectionViewDescriptor connectionViewDescriptor : edgeDescriptors) {
 			Object view = connectionViewDescriptor.getAdapter(View.class);
 			if (view instanceof Edge) {
@@ -227,7 +226,7 @@ public final class ShowRelatedElementsController {
 	 */
 	public Collection<? extends EObject> getRelatedNodeElements() {
 		Set<EObject> keySet = getObjectViewDescriptorMap().keySet();
-		Collection<Class> classes = CollectionFilter.filter(keySet, Class.class);
+		Collection<Class> classes = org.eclipse.emf.ecp.common.utilities.CollectionFilter.filter(keySet, Class.class);
 		return classes;
 	}
 

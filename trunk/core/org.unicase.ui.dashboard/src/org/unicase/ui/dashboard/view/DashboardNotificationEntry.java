@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.dashboard.view;
 
@@ -13,8 +13,26 @@ import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.util.DialogHandler;
+import org.eclipse.emf.ecp.common.utilities.ModelElementClassTooltip;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.exceptions.MEUrlResolutionException;
+import org.eclipse.emf.emfstore.client.model.preferences.DashboardKey;
+import org.eclipse.emf.emfstore.client.model.preferences.PreferenceManager;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.client.ui.util.URLHelper;
+import org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
+import org.eclipse.emf.emfstore.server.model.url.ModelElementUrl;
+import org.eclipse.emf.emfstore.server.model.url.ModelElementUrlFragment;
+import org.eclipse.emf.emfstore.server.model.url.UrlFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.events.NotificationIgnoreEvent;
+import org.eclipse.emf.emfstore.server.model.versioning.events.NotificationReadEvent;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -41,32 +59,14 @@ import org.eclipse.swt.widgets.Link;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.emfstore.esmodel.notification.ESNotification;
-import org.unicase.emfstore.esmodel.url.ModelElementUrl;
-import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
-import org.unicase.emfstore.esmodel.url.UrlFactory;
-import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
-import org.unicase.emfstore.esmodel.versioning.events.NotificationIgnoreEvent;
-import org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent;
-import org.unicase.metamodel.ModelElementId;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
-import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.dashboard.Activator;
 import org.unicase.ui.dashboard.notificationProviders.CommentsNotificationProvider;
 import org.unicase.ui.dashboard.notificationProviders.PushedNotificationProvider;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.common.widgets.MECommentWidget;
 import org.unicase.ui.unicasecommon.common.widgets.MECommentWidgetListener;
-import org.unicase.ui.util.DialogHandler;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.exceptions.MEUrlResolutionException;
-import org.unicase.workspace.preferences.DashboardKey;
-import org.unicase.workspace.preferences.PreferenceManager;
-import org.unicase.workspace.ui.util.URLHelper;
-import org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView;
-import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * A dashboard entry widget.
@@ -302,8 +302,8 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 
 		drawerComposite = new Composite(notificationComposite, SWT.NONE);
 		GridDataFactory.fillDefaults().hint(380, 0).grab(true, false).span(3, 1).indent(20, 0).applyTo(drawerComposite);
-		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 8).extendedMargins(3, 3, 3, 3).applyTo(
-			drawerComposite);
+		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 8).extendedMargins(3, 3, 3, 3)
+			.applyTo(drawerComposite);
 		drawerComposite.setBackground(lightBlue);
 
 		for (ModelElementId mid : getNotification().getRelatedModelElements()) {
@@ -337,7 +337,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 				boolean hide = MessageDialog.openQuestion(getShell(), "Remove notification",
 					"Are you sure you want to delete this notification?");
 				if (hide) {
-					new UnicaseCommand() {
+					new EMFStoreCommand() {
 						@Override
 						protected void doRun() {
 							getNotification().setSeen(true);
@@ -362,8 +362,8 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		// the composite that wraps the whole notification
 		Composite notificationEntry = new Composite(notificationComposite, SWT.NONE);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(notificationEntry);
-		GridLayoutFactory.fillDefaults().numColumns(4).equalWidth(false).margins(6, 6).spacing(3, 0).applyTo(
-			notificationEntry);
+		GridLayoutFactory.fillDefaults().numColumns(4).equalWidth(false).margins(6, 6).spacing(3, 0)
+			.applyTo(notificationEntry);
 
 		// the image
 		final Image image = labelProvider.getImage(modelElement);
@@ -440,7 +440,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 				public void mouseUp(MouseEvent event) {
 					IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 					HistoryBrowserView historyBrowserView = null;
-					String viewId = "org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView";
+					String viewId = "org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView";
 					try {
 						historyBrowserView = (HistoryBrowserView) page.showView(viewId);
 					} catch (PartInitException e) {
@@ -458,14 +458,14 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 
 	private void toggleDrawer(TypedEvent e, boolean open) {
 		if (open) {
-			GridDataFactory.createFrom((GridData) drawerComposite.getLayoutData()).hint(380, SWT.DEFAULT).applyTo(
-				drawerComposite);
+			GridDataFactory.createFrom((GridData) drawerComposite.getLayoutData()).hint(380, SWT.DEFAULT)
+				.applyTo(drawerComposite);
 			final NotificationReadEvent readEvent = EventsFactory.eINSTANCE.createNotificationReadEvent();
 			readEvent.setNotificationId(getNotification().getIdentifier());
 			readEvent.setReadView(DashboardEditor.ID);
 			readEvent.setSourceView(DashboardEditor.ID);
 			readEvent.setTimestamp(new Date());
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 				@Override
 				protected void doRun() {
 					getProjectSpace().addEvent(readEvent);
@@ -485,10 +485,10 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		final NotificationReadEvent readEvent = EventsFactory.eINSTANCE.createNotificationReadEvent();
 		readEvent.setModelElement(modelElementId);
 		readEvent.setNotificationId(getNotification().getIdentifier());
-		readEvent.setReadView("org.unicase.ui.meeditor");
+		readEvent.setReadView("org.eclipse.emf.ecp.editor");
 		readEvent.setSourceView(DashboardEditor.ID + "." + source);
 		readEvent.setTimestamp(new Date());
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				getProjectSpace().addEvent(readEvent);

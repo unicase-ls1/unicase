@@ -6,7 +6,6 @@
  */
 package org.unicase.ui.stem.commands;
 
-import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.bug.BugReport;
@@ -28,7 +27,8 @@ public class AssignNewBugReportHandler extends AssignWorkItemHandler {
 	 *      org.unicase.model.organization.OrgUnit, org.unicase.metamodel.Project)
 	 */
 	@Override
-	protected WorkItem assignWorkItem(UnicaseModelElement currentOpenME, OrgUnit user, Project project) {
+	protected WorkItem assignWorkItem(UnicaseModelElement currentOpenME, OrgUnit user,
+		org.eclipse.emf.emfstore.common.model.Project project) {
 		BugReport br = BugFactory.eINSTANCE.createBugReport();
 
 		if (currentOpenME instanceof WorkPackage) {

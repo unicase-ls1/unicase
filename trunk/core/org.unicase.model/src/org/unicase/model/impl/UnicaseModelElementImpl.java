@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.impl;
 
@@ -23,19 +23,17 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelElementChangeListener;
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelElementChangeListener;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.model.Annotation;
 import org.unicase.model.Attachment;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.profile.StereotypeInstance;
@@ -50,20 +48,21 @@ import org.unicase.model.task.util.MEStateImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getAnnotations <em>Annotations</em>}</li>
- *   <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getAttachments <em>Attachments</em>}</li>
- *   <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
- *   <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getLeafSection <em>Leaf Section</em>}</li>
- *   <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getState <em>State</em>}</li>
- *   <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}</li>
- *   <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getComments <em>Comments</em>}</li>
- *   <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getCreationDate <em>Creation Date</em>}</li>
- *   <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getCreator <em>Creator</em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getName <em>Name</em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getDescription <em>Description</em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getAnnotations <em>Annotations</em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getAttachments <em>Attachments</em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getIncomingDocumentReferences <em>Incoming Document
+ * References</em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getState <em>State</em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getAppliedStereotypeInstances <em>Applied Stereotype
+ * Instances</em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getComments <em>Comments</em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getCreationDate <em>Creation Date</em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getCreator <em>Creator</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class UnicaseModelElementImpl extends EObjectImpl implements UnicaseModelElement {
@@ -97,9 +96,9 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -107,9 +106,9 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -117,9 +116,9 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAnnotations()
 	 * @generated
 	 * @ordered
@@ -127,9 +126,9 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	protected EList<Annotation> annotations;
 
 	/**
-	 * The cached value of the '{@link #getAttachments() <em>Attachments</em>}' reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAttachments() <em>Attachments</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAttachments()
 	 * @generated
 	 * @ordered
@@ -137,8 +136,9 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	protected EList<Attachment> attachments;
 
 	/**
-	 * The cached value of the '{@link #getIncomingDocumentReferences() <em>Incoming Document References</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIncomingDocumentReferences() <em>Incoming Document References</em>}'
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIncomingDocumentReferences()
 	 * @generated
 	 * @ordered
@@ -146,9 +146,9 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	protected EList<LeafSection> incomingDocumentReferences;
 
 	/**
-	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getState() <em>State</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getState()
 	 * @generated
 	 * @ordered
@@ -156,8 +156,9 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	protected static final String STATE_EDEFAULT = "";
 
 	/**
-	 * The cached value of the '{@link #getAppliedStereotypeInstances() <em>Applied Stereotype Instances</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAppliedStereotypeInstances() <em>Applied Stereotype Instances</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAppliedStereotypeInstances()
 	 * @generated
 	 * @ordered
@@ -175,9 +176,9 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	protected EList<Comment> comments;
 
 	/**
-	 * The default value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getCreationDate()
 	 * @generated
 	 * @ordered
@@ -185,9 +186,9 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	protected static final Date CREATION_DATE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getCreationDate()
 	 * @generated
 	 * @ordered
@@ -195,9 +196,9 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	protected Date creationDate = CREATION_DATE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getCreator() <em>Creator</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getCreator() <em>Creator</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getCreator()
 	 * @generated
 	 * @ordered
@@ -205,9 +206,9 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	protected static final String CREATOR_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getCreator() <em>Creator</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getCreator() <em>Creator</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getCreator()
 	 * @generated
 	 * @ordered
@@ -236,6 +237,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -245,6 +247,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -253,6 +256,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
@@ -265,6 +269,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getDescription() {
@@ -273,6 +278,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
@@ -285,6 +291,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Annotation> getAnnotations() {
@@ -297,6 +304,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Attachment> getAttachments() {
@@ -309,68 +317,15 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<LeafSection> getIncomingDocumentReferences() {
 		if (incomingDocumentReferences == null) {
-			incomingDocumentReferences = new EObjectWithInverseResolvingEList.ManyInverse<LeafSection>(
-				LeafSection.class, this, ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES,
-				DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS);
+			incomingDocumentReferences = new EObjectResolvingEList<LeafSection>(LeafSection.class, this,
+				ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
 		}
 		return incomingDocumentReferences;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LeafSection getLeafSection() {
-		if (eContainerFeatureID() != ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION)
-			return null;
-		return (LeafSection) eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public LeafSection basicGetLeafSection() {
-		if (eContainerFeatureID() != ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION)
-			return null;
-		return (LeafSection) eInternalContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetLeafSection(LeafSection newLeafSection, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newLeafSection, ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION,
-			msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLeafSection(LeafSection newLeafSection) {
-		if (newLeafSection != eInternalContainer()
-			|| (eContainerFeatureID() != ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION && newLeafSection != null)) {
-			if (EcoreUtil.isAncestor(this, newLeafSection))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newLeafSection != null)
-				msgs = ((InternalEObject) newLeafSection).eInverseAdd(this,
-					DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS, LeafSection.class, msgs);
-			msgs = basicSetLeafSection(newLeafSection, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION,
-				newLeafSection, newLeafSection));
 	}
 
 	/**
@@ -391,6 +346,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<StereotypeInstance> getAppliedStereotypeInstances() {
@@ -404,6 +360,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Comment> getComments() {
@@ -416,6 +373,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getCreator() {
@@ -424,6 +382,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCreator(String newCreator) {
@@ -436,6 +395,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Date getCreationDate() {
@@ -444,6 +404,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCreationDate(Date newCreationDate) {
@@ -485,7 +446,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 			throw new IllegalStateException("ModelElement is in a containment cycle");
 		}
 		// check if my container is a project
-		if (MetamodelPackage.eINSTANCE.getProject().isInstance(container)) {
+		if (ModelPackage.eINSTANCE.getProject().isInstance(container)) {
 			return (Project) container;
 		}
 		// check if my container is a model element
@@ -542,15 +503,16 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	 * @generated NOT
 	 * @Deprecated
 	 */
-	public String getDescriptionPlainText() {
-		String richTextDescription = getDescription();
-		return ModelUtil.getPlainTextFromRichText(richTextDescription);
-	}
+	// public String getDescriptionPlainText() {
+	// String richTextDescription = getDescription();
+	// return ModelUtil.getPlainTextFromRichText(richTextDescription);
+	// }
 
 	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -561,13 +523,6 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAnnotations()).basicAdd(otherEnd, msgs);
 		case ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAttachments()).basicAdd(otherEnd, msgs);
-		case ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncomingDocumentReferences()).basicAdd(
-				otherEnd, msgs);
-		case ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION:
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetLeafSection((LeafSection) otherEnd, msgs);
 		case ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAppliedStereotypeInstances()).basicAdd(
 				otherEnd, msgs);
@@ -579,6 +534,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -588,10 +544,6 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 			return ((InternalEList<?>) getAnnotations()).basicRemove(otherEnd, msgs);
 		case ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS:
 			return ((InternalEList<?>) getAttachments()).basicRemove(otherEnd, msgs);
-		case ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
-			return ((InternalEList<?>) getIncomingDocumentReferences()).basicRemove(otherEnd, msgs);
-		case ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION:
-			return basicSetLeafSection(null, msgs);
 		case ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
 			return ((InternalEList<?>) getAppliedStereotypeInstances()).basicRemove(otherEnd, msgs);
 		case ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS:
@@ -602,20 +554,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-		case ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION:
-			return eInternalContainer().eInverseRemove(this, DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS,
-				LeafSection.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -631,10 +570,6 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 			return getAttachments();
 		case ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
 			return getIncomingDocumentReferences();
-		case ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION:
-			if (resolve)
-				return getLeafSection();
-			return basicGetLeafSection();
 		case ModelPackage.UNICASE_MODEL_ELEMENT__STATE:
 			return getState();
 		case ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
@@ -651,6 +586,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -675,9 +611,6 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 			getIncomingDocumentReferences().clear();
 			getIncomingDocumentReferences().addAll((Collection<? extends LeafSection>) newValue);
 			return;
-		case ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION:
-			setLeafSection((LeafSection) newValue);
-			return;
 		case ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
 			getAppliedStereotypeInstances().clear();
 			getAppliedStereotypeInstances().addAll((Collection<? extends StereotypeInstance>) newValue);
@@ -698,6 +631,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -718,9 +652,6 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 		case ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
 			getIncomingDocumentReferences().clear();
 			return;
-		case ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION:
-			setLeafSection((LeafSection) null);
-			return;
 		case ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
 			getAppliedStereotypeInstances().clear();
 			return;
@@ -739,6 +670,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -754,8 +686,6 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 			return attachments != null && !attachments.isEmpty();
 		case ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES:
 			return incomingDocumentReferences != null && !incomingDocumentReferences.isEmpty();
-		case ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION:
-			return basicGetLeafSection() != null;
 		case ModelPackage.UNICASE_MODEL_ELEMENT__STATE:
 			return STATE_EDEFAULT == null ? getState() != null : !STATE_EDEFAULT.equals(getState());
 		case ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
@@ -772,6 +702,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

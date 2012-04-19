@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.rationale.impl;
 
@@ -27,11 +27,11 @@ import org.unicase.model.rationale.Solution;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.rationale.impl.SolutionImpl#getUnderlyingProposals <em>Underlying Proposals</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.SolutionImpl#getIssue <em>Issue</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.SolutionImpl#getUnderlyingProposals <em>Underlying Proposals</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.SolutionImpl#getIssue <em>Issue</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class SolutionImpl extends UnicaseModelElementImpl implements Solution {
@@ -47,6 +47,7 @@ public class SolutionImpl extends UnicaseModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SolutionImpl() {
@@ -55,6 +56,7 @@ public class SolutionImpl extends UnicaseModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,6 +66,7 @@ public class SolutionImpl extends UnicaseModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Proposal> getUnderlyingProposals() {
@@ -76,6 +79,7 @@ public class SolutionImpl extends UnicaseModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Issue getIssue() {
@@ -86,6 +90,7 @@ public class SolutionImpl extends UnicaseModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Issue basicGetIssue() {
@@ -96,6 +101,7 @@ public class SolutionImpl extends UnicaseModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetIssue(Issue newIssue, NotificationChain msgs) {
@@ -105,6 +111,7 @@ public class SolutionImpl extends UnicaseModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIssue(Issue newIssue) {
@@ -127,6 +134,7 @@ public class SolutionImpl extends UnicaseModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -142,6 +150,7 @@ public class SolutionImpl extends UnicaseModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -155,6 +164,7 @@ public class SolutionImpl extends UnicaseModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -168,6 +178,7 @@ public class SolutionImpl extends UnicaseModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -185,6 +196,7 @@ public class SolutionImpl extends UnicaseModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -204,6 +216,7 @@ public class SolutionImpl extends UnicaseModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -221,6 +234,7 @@ public class SolutionImpl extends UnicaseModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

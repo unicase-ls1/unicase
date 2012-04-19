@@ -10,8 +10,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.common.model.ModelPackage;
 import org.eclipse.swt.dnd.DropTargetEvent;
-import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.document.DocumentPackage;
 
 /**
@@ -64,7 +64,7 @@ public class ProjectDropAdapter extends UCDropAdapter {
 	 */
 	@Override
 	public EClass isDropAdapterfor() {
-		return MetamodelPackage.eINSTANCE.getProject();
+		return ModelPackage.eINSTANCE.getProject();
 	}
 
 }

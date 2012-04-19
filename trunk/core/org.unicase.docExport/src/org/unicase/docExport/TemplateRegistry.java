@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.docExport;
 
@@ -20,12 +20,16 @@ import java.util.jar.JarFile;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.emfstore.client.model.Configuration;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.osgi.framework.Bundle;
 import org.unicase.docExport.commands.ImportTemplate;
 import org.unicase.docExport.exceptions.DefaultTemplateLoadException;
 import org.unicase.docExport.exceptions.InvalidTemplateArchiveException;
@@ -34,8 +38,6 @@ import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
 import org.unicase.docExport.exportModel.ExportModelPackage;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.builders.DefaultDocumentTemplateFactory;
-import org.unicase.workspace.Configuration;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * This utility class handles the persistent templates. The default templates which are always loaded on startup are
@@ -123,7 +125,7 @@ public final class TemplateRegistry {
 				DEFAULT_TEMPLATES_FOLDER + File.separatorChar), Collections.EMPTY_MAP);
 
 			// loading the template in the developer version is easy
-			if (Configuration.isDeveloperVersion()) {
+			if (isDeveloperVersion()) {
 				File templateFolder = new File(FileLocator.resolve(templateFolderUrl).getPath());
 				File[] files = templateFolder.listFiles();
 				for (int i = 0; i < files.length; i++) {
@@ -144,7 +146,7 @@ public final class TemplateRegistry {
 				// I couldn't find a function, which generates the correct path string.
 				// so i take this one and manipulate it.
 				// cut the last file separator and the "!"
-				jarFilePath = jarFilePath.substring(0, jarFilePath.length() - 2);
+				jarFilePath = jarFilePath.substring(0, jarFilePath.length() - 1);
 				jarFilePath = jarFilePath.replace("file:", "");
 
 				JarFile jarFile = new JarFile(jarFilePath);
@@ -174,6 +176,12 @@ public final class TemplateRegistry {
 		} catch (TemplateSaveException e) {
 			throw new DefaultTemplateLoadException(e);
 		}
+	}
+
+	private static boolean isDeveloperVersion() {
+		Bundle docExportBundle = Platform.getBundle("org.unicase.docExport");
+		String version = (String) docExportBundle.getHeaders().get(org.osgi.framework.Constants.BUNDLE_VERSION);
+		return version.endsWith("qualifier");
 	}
 
 	/**
