@@ -14,8 +14,8 @@ import java.util.Set;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
+import org.eclipse.emf.emfstore.client.model.exceptions.InvalidHandleException;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
@@ -24,11 +24,6 @@ import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.workspace.CompositeOperationHandle;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.exceptions.InvalidHandleException;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author jfinis This static class contains utility methods for creating multi-asignee-actions.
@@ -124,14 +119,17 @@ public final class MultiActionGenerator {
 		// Work Package
 		final WorkPackage result = TaskFactory.eINSTANCE.createWorkPackage();
 		final EObject parentPackage = baseAction.eContainer();
-		final Project project = ModelUtil.getProject(baseAction);
-		final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(project);
+		final org.eclipse.emf.emfstore.common.model.Project project = org.eclipse.emf.emfstore.common.model.util.ModelUtil
+			.getProject(baseAction);
+		final org.eclipse.emf.emfstore.client.model.ProjectSpace projectSpace = org.eclipse.emf.emfstore.client.model.WorkspaceManager
+			.getProjectSpace(project);
 
 		// Begin composite operation
-		CompositeOperationHandle operationHandle = projectSpace.beginCompositeOperation();
+		org.eclipse.emf.emfstore.client.model.CompositeOperationHandle operationHandle = projectSpace
+			.beginCompositeOperation();
 
 		// Add resulting work package into parent
-		if (parentPackage instanceof Project) {
+		if (parentPackage instanceof org.eclipse.emf.emfstore.common.model.Project) {
 			project.addModelElement(result);
 		} else if (parentPackage instanceof LeafSection) {
 			((LeafSection) parentPackage).getModelElements().add(result);

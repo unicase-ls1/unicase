@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.dashboard.view;
 
@@ -27,10 +27,8 @@ public class DashboardToolbarAction extends ImageHyperlink {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent
-	 *            the parent
-	 * @param imagePath
-	 *            the image path
+	 * @param parent the parent
+	 * @param imagePath the image path
 	 */
 	public DashboardToolbarAction(Composite parent, String imagePath) {
 		this(parent, imagePath, DEFAULT_LIGHT_FACTOR);
@@ -39,15 +37,11 @@ public class DashboardToolbarAction extends ImageHyperlink {
 	/**
 	 * Constructor with a manual light factor.
 	 * 
-	 * @param parent
-	 *            the parent
-	 * @param imagePath
-	 *            the image path
-	 * @param lightFactor
-	 *            the light factor
+	 * @param parent the parent
+	 * @param imagePath the image path
+	 * @param lightFactor the light factor
 	 */
-	public DashboardToolbarAction(Composite parent, String imagePath,
-			int lightFactor) {
+	public DashboardToolbarAction(Composite parent, String imagePath, int lightFactor) {
 		super(parent, SWT.BOTTOM);
 		image = DashboardImageUtil.getImage(imagePath);
 		lightImage = DashboardImageUtil.getLightImage(imagePath, lightFactor);

@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.dashboard.prefs;
 
@@ -19,8 +19,21 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecp.common.MEClassLabelProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.preferences.DashboardKey;
+import org.eclipse.emf.emfstore.client.model.preferences.PreferenceManager;
+import org.eclipse.emf.emfstore.client.model.preferences.PropertyKey;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommandWithResult;
+import org.eclipse.emf.emfstore.client.ui.dialogs.login.LoginDialog;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.OrgUnitProperty;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -46,19 +59,7 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.dialogs.PropertyPage;
-import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.ui.common.MEClassLabelProvider;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.preferences.DashboardKey;
-import org.unicase.workspace.preferences.PreferenceManager;
-import org.unicase.workspace.preferences.PropertyKey;
-import org.unicase.workspace.ui.dialogs.LoginDialog;
-import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.workspace.util.UnicaseCommandWithResult;
+import org.unicase.ui.unicasecommon.common.util.UnicaseUiUtil;
 
 /**
  * A property page for the dashboard.
@@ -72,7 +73,7 @@ public class DashboardPropertyPage extends PropertyPage {
 	 * 
 	 * @author Shterev
 	 */
-	private final class SavePropertiesCommand extends UnicaseCommandWithResult<Object> {
+	private final class SavePropertiesCommand extends EMFStoreCommandWithResult<Object> {
 
 		@Override
 		protected Object doRun() {
@@ -81,22 +82,22 @@ public class DashboardPropertyPage extends PropertyPage {
 				ModelElementId meId = ModelUtil.getProject(me).getModelElementId(me);
 				subscriptionsIds.add(meId);
 			}
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.SUBSCRIPTIONS, subscriptionsIds
-				.toArray(new ModelElementId[0]));
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.DASHBOARD_SIZE, notificationSize
-				.getSelection());
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.TASK_PROVIDER, providersTable
-				.getChecked(DashboardKey.TASK_PROVIDER));
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.TASK_CHANGE_PROVIDER, providersTable
-				.getChecked(DashboardKey.TASK_CHANGE_PROVIDER));
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.TASK_REVIEW_PROVIDER, providersTable
-				.getChecked(DashboardKey.TASK_REVIEW_PROVIDER));
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.TASK_TRACE_PROVIDER, providersTable
-				.getChecked(DashboardKey.TASK_TRACE_PROVIDER));
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.SUBSCRIPTION_PROVIDER, providersTable
-				.getChecked(DashboardKey.SUBSCRIPTION_PROVIDER));
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.COMMENTS_PROVIDER, providersTable
-				.getChecked(DashboardKey.COMMENTS_PROVIDER));
+			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.SUBSCRIPTIONS,
+				subscriptionsIds.toArray(new ModelElementId[0]));
+			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.DASHBOARD_SIZE,
+				notificationSize.getSelection());
+			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.TASK_PROVIDER,
+				providersTable.getChecked(DashboardKey.TASK_PROVIDER));
+			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.TASK_CHANGE_PROVIDER,
+				providersTable.getChecked(DashboardKey.TASK_CHANGE_PROVIDER));
+			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.TASK_REVIEW_PROVIDER,
+				providersTable.getChecked(DashboardKey.TASK_REVIEW_PROVIDER));
+			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.TASK_TRACE_PROVIDER,
+				providersTable.getChecked(DashboardKey.TASK_TRACE_PROVIDER));
+			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.SUBSCRIPTION_PROVIDER,
+				providersTable.getChecked(DashboardKey.SUBSCRIPTION_PROVIDER));
+			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.COMMENTS_PROVIDER,
+				providersTable.getChecked(DashboardKey.COMMENTS_PROVIDER));
 			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.HIGHLIGHT_PUSHED_COMMENTS,
 				highlightPersonalComments.getSelection());
 			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.SHOW_CONTAINMENT_REPLIES,
@@ -105,16 +106,16 @@ public class DashboardPropertyPage extends PropertyPage {
 				.setProperty(projectSpace, DashboardKey.SHOW_AI_TASKS, showAITasks.getSelection());
 			PreferenceManager.INSTANCE
 				.setProperty(projectSpace, DashboardKey.SHOW_BR_TASKS, showBRTasks.getSelection());
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.SHOW_ISSUE_TASKS, showIssueTasks
-				.getSelection());
+			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.SHOW_ISSUE_TASKS,
+				showIssueTasks.getSelection());
 			PreferenceManager.INSTANCE
 				.setProperty(projectSpace, DashboardKey.SHOW_WP_TASKS, showWPTasks.getSelection());
 			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.SHOW_ONLY_READYFORREVIEW,
 				showOnlyReadyForReview.getSelection());
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.TASKTRACE_LENGTH, taskTraceLength
-				.getSelection());
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.TASKTRACE_CLASSES, taskTraceClasses
-				.toArray(new EObject[0]));
+			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.TASKTRACE_LENGTH,
+				taskTraceLength.getSelection());
+			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.TASKTRACE_CLASSES,
+				taskTraceClasses.toArray(new EObject[0]));
 			return null;
 		}
 	}
@@ -266,7 +267,8 @@ public class DashboardPropertyPage extends PropertyPage {
 				ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), meClassLabelProvider);
 				dialog.setBlockOnOpen(true);
 				dialog.setMultipleSelection(true);
-				Set<EClass> subclasses = ModelUtil.getSubclasses(EcoreFactory.eINSTANCE.getEcorePackage().getEObject());
+				Set<EClass> subclasses = UnicaseUiUtil.getSubclasses(EcoreFactory.eINSTANCE.getEcorePackage()
+					.getEObject());
 				subclasses.removeAll(taskTraceClasses);
 				dialog.setElements(subclasses.toArray());
 				if (dialog.open() == Window.OK) {
@@ -532,10 +534,10 @@ public class DashboardPropertyPage extends PropertyPage {
 	 */
 	@Override
 	public boolean performOk() {
-		final UnicaseCommandWithResult<Object> command = new SavePropertiesCommand();
-		command.run();
+		final EMFStoreCommandWithResult<Object> command = new SavePropertiesCommand();
+		command.run(true);
 		if (projectSpace.getUsersession().isLoggedIn()) {
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 
 				@Override
 				protected void doRun() {
@@ -543,15 +545,15 @@ public class DashboardPropertyPage extends PropertyPage {
 				}
 			}.run();
 		} else {
-			new UnicaseCommand() {
+			new EMFStoreCommand() {
 
 				@Override
 				protected void doRun() {
 					boolean yes = MessageDialog.openQuestion(getShell(), "Transmit properties",
 						"You are currently not logged in! Do you wish to log in and thereby transmit your properties?");
 					if (yes) {
-						LoginDialog loginDialog = new LoginDialog(Display.getCurrent().getActiveShell(), projectSpace
-							.getUsersession(), projectSpace.getUsersession().getServerInfo());
+						LoginDialog loginDialog = new LoginDialog(Display.getCurrent().getActiveShell(),
+							projectSpace.getUsersession());
 						loginDialog.open();
 					}
 				}

@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.provider;
 
@@ -22,7 +22,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.metamodel.AssociationClassElement;
+import org.eclipse.emf.emfstore.common.model.AssociationClassElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.profile.ProfileFactory;
@@ -217,10 +217,10 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 		case ModelPackage.UNICASE_MODEL_ELEMENT__NAME:
 		case ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION:
 		case ModelPackage.UNICASE_MODEL_ELEMENT__STATE:
-			// case ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE:
-			// case ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR:
-			// fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			// return;
+		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE:
+		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		case ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
 		case ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));

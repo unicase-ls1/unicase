@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.component.impl;
 
@@ -27,11 +27,12 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.component.impl.ComponentServiceImpl#getOfferingComponent <em>Offering Component</em>}</li>
- *   <li>{@link org.unicase.model.component.impl.ComponentServiceImpl#getConsumingComponents <em>Consuming Components</em>}</li>
+ * <li>{@link org.unicase.model.component.impl.ComponentServiceImpl#getOfferingComponent <em>Offering Component</em>}</li>
+ * <li>{@link org.unicase.model.component.impl.ComponentServiceImpl#getConsumingComponents <em>Consuming Components
+ * </em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ComponentServiceImpl extends UnicaseModelElementImpl implements ComponentService {
@@ -47,6 +48,7 @@ public class ComponentServiceImpl extends UnicaseModelElementImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ComponentServiceImpl() {
@@ -55,6 +57,7 @@ public class ComponentServiceImpl extends UnicaseModelElementImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,6 +67,7 @@ public class ComponentServiceImpl extends UnicaseModelElementImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Component getOfferingComponent() {
@@ -74,6 +78,7 @@ public class ComponentServiceImpl extends UnicaseModelElementImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Component basicGetOfferingComponent() {
@@ -84,6 +89,7 @@ public class ComponentServiceImpl extends UnicaseModelElementImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetOfferingComponent(Component newOfferingComponent, NotificationChain msgs) {
@@ -94,6 +100,7 @@ public class ComponentServiceImpl extends UnicaseModelElementImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setOfferingComponent(Component newOfferingComponent) {
@@ -117,6 +124,7 @@ public class ComponentServiceImpl extends UnicaseModelElementImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Component> getConsumingComponents() {
@@ -129,6 +137,7 @@ public class ComponentServiceImpl extends UnicaseModelElementImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -148,6 +157,7 @@ public class ComponentServiceImpl extends UnicaseModelElementImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -163,6 +173,7 @@ public class ComponentServiceImpl extends UnicaseModelElementImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -177,6 +188,7 @@ public class ComponentServiceImpl extends UnicaseModelElementImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -194,6 +206,7 @@ public class ComponentServiceImpl extends UnicaseModelElementImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -213,6 +226,7 @@ public class ComponentServiceImpl extends UnicaseModelElementImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -230,6 +244,7 @@ public class ComponentServiceImpl extends UnicaseModelElementImpl implements Com
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

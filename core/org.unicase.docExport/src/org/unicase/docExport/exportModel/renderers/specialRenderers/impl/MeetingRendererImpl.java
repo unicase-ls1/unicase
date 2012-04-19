@@ -13,7 +13,9 @@ import java.util.GregorianCalendar;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
 import org.unicase.docExport.exportModel.renderers.elements.UParagraph;
 import org.unicase.docExport.exportModel.renderers.elements.USection;
@@ -40,7 +42,6 @@ import org.unicase.model.rationale.Proposal;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Meeting Renderer</b></em>'. <!-- end-user-doc
@@ -86,11 +87,11 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 	private TextOption workItemTextOption;
 
 	/**
-	 * @param modelElement the ModelElement which shall be rendered
-	 * @param section the section where the content of the ModelElement will be added
+	 * @param EObject the EObject which shall be rendered
+	 * @param section the section where the content of the EObject will be added
 	 */
 	@Override
-	public void doRender(UnicaseModelElement modelElement, UCompositeSection section) {
+	protected void doRender(EObject eObject, UCompositeSection section) {
 
 		for (RendererOption option : getRendererOptions()) {
 			if (option.getName().equals("workItem")) {
@@ -98,7 +99,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 			}
 		}
 
-		this.setMeeting((Meeting) modelElement);
+		this.setMeeting((Meeting) eObject);
 
 		String topic = "";
 		if (getMeeting().getStarttime() == null) {
@@ -109,7 +110,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 			topic += TOPIC_AGENDA;
 		}
 
-		UParagraph topic2 = new UParagraph(topic + getMeeting().getName(), (TextOption) EcoreUtil.copy(getTemplate()
+		UParagraph topic2 = new UParagraph(topic + getMeeting().getName(), EcoreUtil.copy(getTemplate()
 			.getLayoutOptions().getSectionTextOption()));
 
 		USection title = new USection(topic2);
@@ -119,9 +120,12 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		title.getBoxModel().setMarginTop(20);
 
 		if (title.getDepth() > 1 && title.getDepth() < 4) {
-			title.getTitlParagraph().getOption().setFontSize(
-				getTemplate().getLayoutOptions().getSectionTextOption().getFontSize()
-					- getTemplate().getLayoutOptions().getSectionFontSizeDecreaseStep() * title.getDepth());
+			title
+				.getTitlParagraph()
+				.getOption()
+				.setFontSize(
+					getTemplate().getLayoutOptions().getSectionTextOption().getFontSize()
+						- getTemplate().getLayoutOptions().getSectionFontSizeDecreaseStep() * title.getDepth());
 		}
 
 		createMeetingTable(title);

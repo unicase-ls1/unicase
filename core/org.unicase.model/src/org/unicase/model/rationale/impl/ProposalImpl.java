@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.rationale.impl;
 
@@ -28,11 +28,11 @@ import org.unicase.model.rationale.RationalePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.rationale.impl.ProposalImpl#getAssessments <em>Assessments</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.ProposalImpl#getIssue <em>Issue</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.ProposalImpl#getAssessments <em>Assessments</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.ProposalImpl#getIssue <em>Issue</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ProposalImpl extends UnicaseModelElementImpl implements Proposal {
@@ -48,6 +48,7 @@ public class ProposalImpl extends UnicaseModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProposalImpl() {
@@ -56,6 +57,7 @@ public class ProposalImpl extends UnicaseModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,6 +67,7 @@ public class ProposalImpl extends UnicaseModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Assessment> getAssessments() {
@@ -77,6 +80,7 @@ public class ProposalImpl extends UnicaseModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Issue getIssue() {
@@ -87,6 +91,7 @@ public class ProposalImpl extends UnicaseModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Issue basicGetIssue() {
@@ -97,6 +102,7 @@ public class ProposalImpl extends UnicaseModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetIssue(Issue newIssue, NotificationChain msgs) {
@@ -106,6 +112,7 @@ public class ProposalImpl extends UnicaseModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIssue(Issue newIssue) {
@@ -128,6 +135,7 @@ public class ProposalImpl extends UnicaseModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -146,6 +154,7 @@ public class ProposalImpl extends UnicaseModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -161,6 +170,7 @@ public class ProposalImpl extends UnicaseModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -174,6 +184,7 @@ public class ProposalImpl extends UnicaseModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -191,6 +202,7 @@ public class ProposalImpl extends UnicaseModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -210,6 +222,7 @@ public class ProposalImpl extends UnicaseModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -227,6 +240,7 @@ public class ProposalImpl extends UnicaseModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

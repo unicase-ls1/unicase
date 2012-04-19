@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.unicasecommon.common.decorators;
 
@@ -11,6 +11,7 @@ import java.net.URL;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -18,7 +19,6 @@ import org.eclipse.jface.viewers.ILightweightLabelDecorator;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * . The decorator to show state of an element (blocked or open) shown in viewers
@@ -93,7 +93,7 @@ public class StateDecorator implements ILightweightLabelDecorator {
 			return;
 		}
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 
 			@Override
 			protected void doRun() {
@@ -107,11 +107,11 @@ public class StateDecorator implements ILightweightLabelDecorator {
 		}.run();
 
 		if (status.equals(MEState.OPEN)) {
-			url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"), new Path(openPath), null);
+			url = FileLocator.find(Platform.getBundle("org.unicase.ui.unicasecommon"), new Path(openPath), null);
 
 		}
 		if (status.equals(MEState.BLOCKED)) {
-			url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"), new Path(blockedPath), null);
+			url = FileLocator.find(Platform.getBundle("org.unicase.ui.unicasecommon"), new Path(blockedPath), null);
 		}
 
 		if (url == null) {

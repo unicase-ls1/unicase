@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.docExport.editors;
 
@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -41,7 +42,6 @@ import org.unicase.docExport.editors.tabItems.ModelElementRenderersTabItem;
 import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * A template editor for all the options of a template.
@@ -84,7 +84,7 @@ public class TemplateEditor extends EditorPart {
 			messageBox.setMessage("you can't save a default template. Use save as instead");
 			messageBox.open();
 
-			Template newTemplate = (Template) EcoreUtil.copy(template);
+			Template newTemplate = EcoreUtil.copy(template);
 
 			TemplateSaveAsDialog dialog = new TemplateSaveAsDialog(PlatformUI.getWorkbench().getDisplay()
 				.getActiveShell(), newTemplate);
@@ -93,7 +93,7 @@ public class TemplateEditor extends EditorPart {
 		} else {
 			try {
 				TemplateRegistry.saveTemplate(getTemplate());
-				oldTemplate = (Template) EcoreUtil.copy(template);
+				oldTemplate = EcoreUtil.copy(template);
 				testDirty();
 			} catch (TemplatesFileNotFoundException e) {
 				WorkspaceUtil.log("could not save the Template", e, IStatus.WARNING);
@@ -109,7 +109,7 @@ public class TemplateEditor extends EditorPart {
 	 */
 	@Override
 	public void doSaveAs() {
-		Template template2 = (Template) EcoreUtil.copy(getTemplate());
+		Template template2 = EcoreUtil.copy(getTemplate());
 		template2.setDefaultTemplate(false);
 		TemplateSaveAsDialog dialog = new TemplateSaveAsDialog(this.getSite().getShell(), template2);
 		dialog.open();
@@ -125,7 +125,7 @@ public class TemplateEditor extends EditorPart {
 		setInput(input);
 
 		this.template = ((TemplateEditorInput) input).getTemplate();
-		this.oldTemplate = (Template) EcoreUtil.copy(this.getTemplate());
+		this.oldTemplate = EcoreUtil.copy(this.getTemplate());
 		setPartName(getTemplate().getName());
 	}
 

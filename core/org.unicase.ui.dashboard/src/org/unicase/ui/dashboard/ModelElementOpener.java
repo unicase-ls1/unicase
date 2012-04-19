@@ -1,21 +1,21 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.dashboard;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.workspace.ProjectSpace;
 
 /**
  * Opener for the dashboard.
  * 
  * @author helming
  */
-public class ModelElementOpener implements org.unicase.ui.util.ModelElementOpener {
+public class ModelElementOpener implements org.eclipse.emf.ecp.common.util.ModelElementOpener {
 	/**
 	 * default constructor.
 	 */

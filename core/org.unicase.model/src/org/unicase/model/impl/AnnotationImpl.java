@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.impl;
 
@@ -23,16 +23,17 @@ import org.unicase.model.UnicaseModelElement;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.impl.AnnotationImpl#getAnnotatedModelElements <em>Annotated Model Elements</em>}</li>
+ * <li>{@link org.unicase.model.impl.AnnotationImpl#getAnnotatedModelElements <em>Annotated Model Elements</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class AnnotationImpl extends UnicaseModelElementImpl implements Annotation {
 	/**
 	 * The cached value of the '{@link #getAnnotatedModelElements() <em>Annotated Model Elements</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAnnotatedModelElements()
 	 * @generated
 	 * @ordered
@@ -41,6 +42,7 @@ public abstract class AnnotationImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AnnotationImpl() {
@@ -49,6 +51,7 @@ public abstract class AnnotationImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -58,6 +61,7 @@ public abstract class AnnotationImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UnicaseModelElement> getAnnotatedModelElements() {
@@ -71,6 +75,7 @@ public abstract class AnnotationImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -86,6 +91,7 @@ public abstract class AnnotationImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -99,6 +105,7 @@ public abstract class AnnotationImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -112,6 +119,7 @@ public abstract class AnnotationImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -128,6 +136,7 @@ public abstract class AnnotationImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -142,6 +151,7 @@ public abstract class AnnotationImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

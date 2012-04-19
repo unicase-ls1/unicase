@@ -105,7 +105,7 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 	public MeetingRenderer createMeetingRenderer(Template template) {
 		MeetingRendererImpl meetingRenderer = new MeetingRendererImpl();
 		meetingRenderer.setTemplate(template);
-		TextOption workItemTextOption = (TextOption) EcoreUtil.copy(template.getLayoutOptions().getDefaultTextOption());
+		TextOption workItemTextOption = EcoreUtil.copy(template.getLayoutOptions().getDefaultTextOption());
 		workItemTextOption.setName("workItem");
 		meetingRenderer.getRendererOptions().add(workItemTextOption);
 		return meetingRenderer;

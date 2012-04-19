@@ -18,7 +18,7 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.stem.ShowHistory">
+            locationURI="popup:org.eclipse.emf.ecp.navigator.viewer">
          <separator
                name="org.unicase.ui.workpackagetransfer"
                visible="true">

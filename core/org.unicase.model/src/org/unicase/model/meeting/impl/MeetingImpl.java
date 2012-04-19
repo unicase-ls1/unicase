@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.meeting.impl;
 
@@ -32,26 +32,27 @@ import org.unicase.model.organization.User;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getLocation <em>Location</em>}</li>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getStarttime <em>Starttime</em>}</li>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getEndtime <em>Endtime</em>}</li>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getFacilitator <em>Facilitator</em>}</li>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getMinutetaker <em>Minutetaker</em>}</li>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getTimekeeper <em>Timekeeper</em>}</li>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getParticipants <em>Participants</em>}</li>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getSections <em>Sections</em>}</li>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getIdentifiedIssuesSection <em>Identified Issues Section</em>}</li>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getIdentifiedWorkItemsSection <em>Identified Work Items Section</em>}</li>
+ * <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getLocation <em>Location</em>}</li>
+ * <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getStarttime <em>Starttime</em>}</li>
+ * <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getEndtime <em>Endtime</em>}</li>
+ * <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getFacilitator <em>Facilitator</em>}</li>
+ * <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getMinutetaker <em>Minutetaker</em>}</li>
+ * <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getTimekeeper <em>Timekeeper</em>}</li>
+ * <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getParticipants <em>Participants</em>}</li>
+ * <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getSections <em>Sections</em>}</li>
+ * <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getIdentifiedIssuesSection <em>Identified Issues Section</em>}</li>
+ * <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getIdentifiedWorkItemsSection <em>Identified Work Items Section
+ * </em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 	/**
-	 * The default value of the '{@link #getLocation() <em>Location</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getLocation() <em>Location</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getLocation()
 	 * @generated
 	 * @ordered
@@ -59,9 +60,9 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 	protected static final String LOCATION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getLocation() <em>Location</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getLocation() <em>Location</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getLocation()
 	 * @generated
 	 * @ordered
@@ -69,9 +70,9 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 	protected String location = LOCATION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getStarttime() <em>Starttime</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getStarttime() <em>Starttime</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getStarttime()
 	 * @generated
 	 * @ordered
@@ -79,9 +80,9 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 	protected static final Date STARTTIME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getStarttime() <em>Starttime</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getStarttime() <em>Starttime</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getStarttime()
 	 * @generated
 	 * @ordered
@@ -89,9 +90,9 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 	protected Date starttime = STARTTIME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getEndtime() <em>Endtime</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getEndtime() <em>Endtime</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getEndtime()
 	 * @generated
 	 * @ordered
@@ -99,9 +100,9 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 	protected static final Date ENDTIME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getEndtime() <em>Endtime</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getEndtime() <em>Endtime</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getEndtime()
 	 * @generated
 	 * @ordered
@@ -109,9 +110,9 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 	protected Date endtime = ENDTIME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getFacilitator() <em>Facilitator</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getFacilitator() <em>Facilitator</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getFacilitator()
 	 * @generated
 	 * @ordered
@@ -119,9 +120,9 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 	protected User facilitator;
 
 	/**
-	 * The cached value of the '{@link #getMinutetaker() <em>Minutetaker</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getMinutetaker() <em>Minutetaker</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getMinutetaker()
 	 * @generated
 	 * @ordered
@@ -129,9 +130,9 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 	protected User minutetaker;
 
 	/**
-	 * The cached value of the '{@link #getTimekeeper() <em>Timekeeper</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getTimekeeper() <em>Timekeeper</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getTimekeeper()
 	 * @generated
 	 * @ordered
@@ -139,9 +140,9 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 	protected User timekeeper;
 
 	/**
-	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}' reference list.
-	 * <!-- begin-user-doc
+	 * The cached value of the '{@link #getParticipants() <em>Participants</em>}' reference list. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getParticipants()
 	 * @generated
 	 * @ordered
@@ -161,6 +162,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 	/**
 	 * The cached value of the '{@link #getIdentifiedIssuesSection() <em>Identified Issues Section</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIdentifiedIssuesSection()
 	 * @generated
 	 * @ordered
@@ -168,8 +170,9 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 	protected IssueMeetingSection identifiedIssuesSection;
 
 	/**
-	 * The cached value of the '{@link #getIdentifiedWorkItemsSection() <em>Identified Work Items Section</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIdentifiedWorkItemsSection() <em>Identified Work Items Section</em>}'
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIdentifiedWorkItemsSection()
 	 * @generated
 	 * @ordered
@@ -178,6 +181,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MeetingImpl() {
@@ -186,6 +190,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -195,6 +200,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLocation() {
@@ -203,6 +209,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setLocation(String newLocation) {
@@ -215,6 +222,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Date getStarttime() {
@@ -223,6 +231,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setStarttime(Date newStarttime) {
@@ -235,6 +244,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Date getEndtime() {
@@ -243,6 +253,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setEndtime(Date newEndtime) {
@@ -254,6 +265,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public User getFacilitator() {
@@ -271,6 +283,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public User basicGetFacilitator() {
@@ -279,6 +292,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setFacilitator(User newFacilitator) {
@@ -291,6 +305,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public User getMinutetaker() {
@@ -308,6 +323,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public User basicGetMinutetaker() {
@@ -316,6 +332,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setMinutetaker(User newMinutetaker) {
@@ -328,6 +345,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public User getTimekeeper() {
@@ -345,6 +363,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public User basicGetTimekeeper() {
@@ -353,6 +372,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTimekeeper(User newTimekeeper) {
@@ -365,6 +385,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<OrgUnit> getParticipants() {
@@ -376,6 +397,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<MeetingSection> getSections() {
@@ -388,6 +410,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public IssueMeetingSection getIdentifiedIssuesSection() {
@@ -406,6 +429,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public IssueMeetingSection basicGetIdentifiedIssuesSection() {
@@ -414,6 +438,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIdentifiedIssuesSection(IssueMeetingSection newIdentifiedIssuesSection) {
@@ -426,6 +451,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkItemMeetingSection getIdentifiedWorkItemsSection() {
@@ -444,6 +470,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkItemMeetingSection basicGetIdentifiedWorkItemsSection() {
@@ -452,6 +479,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIdentifiedWorkItemsSection(WorkItemMeetingSection newIdentifiedWorkItemsSection) {
@@ -465,6 +493,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -478,6 +507,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -519,6 +549,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -563,6 +594,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -604,6 +636,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -635,6 +668,7 @@ public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -9,8 +9,9 @@ Require-Bundle: org.eclipse.ui,
  org.unicase.implementation,
  org.unicase.implementation.edit,
  org.eclipse.emf.ecore.editor,
- org.unicase.workspace,
- org.eclipse.core.expressions
+ org.eclipse.core.expressions,
+ org.eclipse.emf.emfstore.server.model,
+ org.eclipse.emf.emfstore.client
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: unicase.org

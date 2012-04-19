@@ -10,8 +10,8 @@ import java.util.EventObject;
 
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
+import org.eclipse.emf.emfstore.client.model.Configuration;
 import org.eclipse.jface.action.Action;
-import org.unicase.workspace.Configuration;
 
 /**
  * @author Hodaie This is the temporary implementation for redo action in navigator. Currently we have a problem with

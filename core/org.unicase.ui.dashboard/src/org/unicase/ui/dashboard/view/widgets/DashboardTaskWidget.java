@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.dashboard.view.widgets;
 
@@ -13,6 +13,11 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.ecp.common.util.DialogHandler;
+import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
+import org.eclipse.emf.emfstore.client.ui.util.URLHelper;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -39,15 +44,10 @@ import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.dashboard.view.DashboardPage;
 import org.unicase.ui.dashboard.view.DashboardToolbarAction;
 import org.unicase.ui.unicasecommon.common.filter.UserFilter;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
-import org.unicase.ui.util.DialogHandler;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.ui.util.URLHelper;
-import org.unicase.workspace.util.NoCurrentUserException;
 
 /**
  * A dashboard widget displaying an overview of all tasks.

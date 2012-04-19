@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.util.impl;
 
@@ -10,9 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.unicase.emfstore.esmodel.EsmodelPackage;
-import org.unicase.metamodel.MetamodelPackage;
-import org.unicase.model.ModelPackage;
+import org.eclipse.emf.emfstore.server.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
 import org.unicase.model.attachment.AttachmentPackage;
@@ -50,11 +48,13 @@ import org.unicase.model.util.UtilPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class UtilPackageImpl extends EPackageImpl implements UtilPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass modelElementPathEClass = null;
@@ -78,17 +78,18 @@ public class UtilPackageImpl extends EPackageImpl implements UtilPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
-	 * <p>This method is used to initialize {@link UtilPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
+	 * <p>
+	 * This method is used to initialize {@link UtilPackage#eINSTANCE} when that field is accessed. Clients should not
+	 * invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -105,12 +106,12 @@ public class UtilPackageImpl extends EPackageImpl implements UtilPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		EsmodelPackage.eINSTANCE.eClass();
+		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ModelPackage.eNS_URI) : ModelPackage.eINSTANCE);
+		ModelPackageImpl theModelPackage_1 = (ModelPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) : org.unicase.model.ModelPackage.eINSTANCE);
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
@@ -157,7 +158,7 @@ public class UtilPackageImpl extends EPackageImpl implements UtilPackage {
 
 		// Create package meta-data objects
 		theUtilPackage.createPackageContents();
-		theModelPackage.createPackageContents();
+		theModelPackage_1.createPackageContents();
 		theOrganizationPackage.createPackageContents();
 		theTaskPackage.createPackageContents();
 		theClassesPackage.createPackageContents();
@@ -176,7 +177,7 @@ public class UtilPackageImpl extends EPackageImpl implements UtilPackage {
 
 		// Initialize created meta-data
 		theUtilPackage.initializePackageContents();
-		theModelPackage.initializePackageContents();
+		theModelPackage_1.initializePackageContents();
 		theOrganizationPackage.initializePackageContents();
 		theTaskPackage.initializePackageContents();
 		theClassesPackage.initializePackageContents();
@@ -203,6 +204,7 @@ public class UtilPackageImpl extends EPackageImpl implements UtilPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getModelElementPath() {
@@ -211,6 +213,7 @@ public class UtilPackageImpl extends EPackageImpl implements UtilPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getModelElementPath_Source() {
@@ -219,6 +222,7 @@ public class UtilPackageImpl extends EPackageImpl implements UtilPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getModelElementPath_Target() {
@@ -227,6 +231,7 @@ public class UtilPackageImpl extends EPackageImpl implements UtilPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getModelElementPath_Path() {
@@ -235,6 +240,7 @@ public class UtilPackageImpl extends EPackageImpl implements UtilPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UtilFactory getUtilFactory() {
@@ -243,14 +249,15 @@ public class UtilPackageImpl extends EPackageImpl implements UtilPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
+	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -267,14 +274,15 @@ public class UtilPackageImpl extends EPackageImpl implements UtilPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
+	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -288,8 +296,8 @@ public class UtilPackageImpl extends EPackageImpl implements UtilPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(MetamodelPackage.eNS_URI);
+		org.eclipse.emf.emfstore.common.model.ModelPackage theModelPackage_2 = (org.eclipse.emf.emfstore.common.model.ModelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(org.eclipse.emf.emfstore.common.model.ModelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -300,13 +308,13 @@ public class UtilPackageImpl extends EPackageImpl implements UtilPackage {
 		// Initialize classes and features; add operations and parameters
 		initEClass(modelElementPathEClass, ModelElementPath.class, "ModelElementPath", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModelElementPath_Source(), theMetamodelPackage.getModelElementId(), null, "source", null, 0,
-			1, ModelElementPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getModelElementPath_Source(), theModelPackage_2.getModelElementId(), null, "source", null, 0, 1,
+			ModelElementPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElementPath_Target(), theMetamodelPackage.getModelElementId(), null, "target", null, 0,
-			1, ModelElementPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getModelElementPath_Target(), theModelPackage_2.getModelElementId(), null, "target", null, 0, 1,
+			ModelElementPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElementPath_Path(), theMetamodelPackage.getModelElementId(), null, "path", null, 0, -1,
+		initEReference(getModelElementPath_Path(), theModelPackage_2.getModelElementId(), null, "path", null, 0, -1,
 			ModelElementPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}

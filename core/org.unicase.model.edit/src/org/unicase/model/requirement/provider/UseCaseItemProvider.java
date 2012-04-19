@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.requirement.provider;
 
@@ -27,16 +27,16 @@ import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.UseCase;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.requirement.UseCase} object.
- * <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.requirement.UseCase} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class UseCaseItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UseCaseItemProvider(AdapterFactory adapterFactory) {
@@ -44,8 +44,8 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,13 +66,14 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 			addIncludedUseCasesPropertyDescriptor(object);
 			addExtendedUseCasesPropertyDescriptor(object);
 			addSystemFunctionsPropertyDescriptor(object);
+			addDonePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Initiating Actor feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Initiating Actor feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addInitiatingActorPropertyDescriptor(Object object) {
@@ -84,8 +85,8 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds a property descriptor for the Scenarios feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Scenarios feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addScenariosPropertyDescriptor(Object object) {
@@ -97,9 +98,9 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds a property descriptor for the Functional Requirements feature.
-	 * <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Functional Requirements feature. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addFunctionalRequirementsPropertyDescriptor(Object object) {
@@ -113,9 +114,9 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds a property descriptor for the Non Functional Requirements feature.
-	 * <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Non Functional Requirements feature. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addNonFunctionalRequirementsPropertyDescriptor(Object object) {
@@ -129,8 +130,8 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds a property descriptor for the Identified Classes feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Identified Classes feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addIdentifiedClassesPropertyDescriptor(Object object) {
@@ -145,8 +146,8 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds a property descriptor for the Included Use Cases feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Included Use Cases feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addIncludedUseCasesPropertyDescriptor(Object object) {
@@ -161,8 +162,8 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds a property descriptor for the Extended Use Cases feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Extended Use Cases feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addExtendedUseCasesPropertyDescriptor(Object object) {
@@ -177,8 +178,8 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds a property descriptor for the System Functions feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the System Functions feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addSystemFunctionsPropertyDescriptor(Object object) {
@@ -187,6 +188,20 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 			getString("_UI_UseCase_systemFunctions_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_UseCase_systemFunctions_feature", "_UI_UseCase_type"),
 			RequirementPackage.Literals.USE_CASE__SYSTEM_FUNCTIONS, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Done feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addDonePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_UseCase_done_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_UseCase_done_feature", "_UI_UseCase_type"),
+			RequirementPackage.Literals.USE_CASE__DONE, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+			null, null));
 	}
 
 	/**
@@ -206,8 +221,8 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds a property descriptor for the Realized User Task feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Realized User Task feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addRealizedUserTaskPropertyDescriptor(Object object) {
@@ -222,8 +237,8 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds a property descriptor for the Precondition feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Precondition feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addPreconditionPropertyDescriptor(Object object) {
@@ -236,8 +251,8 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds a property descriptor for the Use Case Steps feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Use Case Steps feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addUseCaseStepsPropertyDescriptor(Object object) {
@@ -249,8 +264,8 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds a property descriptor for the Postcondition feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Postcondition feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addPostconditionPropertyDescriptor(Object object) {
@@ -263,8 +278,8 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This returns UseCase.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns UseCase.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -298,6 +313,7 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 		case RequirementPackage.USE_CASE__POSTCONDITION:
 		case RequirementPackage.USE_CASE__RULES:
 		case RequirementPackage.USE_CASE__EXCEPTION:
+		case RequirementPackage.USE_CASE__DONE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
@@ -305,9 +321,9 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -316,8 +332,8 @@ public class UseCaseItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -141,7 +141,7 @@
      </factory>
   </extension>
   <extension
-        point="org.unicase.emfstore.esmodel.edit.customOperationLabelProvider">
+        point="org.eclipse.emf.emfstore.server.model.edit.customOperationLabelProvider">
      <provider
            class="org.unicase.model.task.provider.ActionItemResolvedOperationProvider">
      </provider>

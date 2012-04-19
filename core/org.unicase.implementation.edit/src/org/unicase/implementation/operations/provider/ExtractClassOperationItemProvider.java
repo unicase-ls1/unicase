@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.implementation.operations.provider;
 
@@ -22,24 +22,23 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.emfstore.esmodel.versioning.operations.semantic.provider.SemanticCompositeOperationItemProvider;
+import org.eclipse.emf.emfstore.common.model.ModelFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.provider.SemanticCompositeOperationItemProvider;
 import org.unicase.implementation.operations.ExtractClassOperation;
 import org.unicase.implementation.operations.OperationsFactory;
 import org.unicase.implementation.operations.OperationsPackage;
-import org.unicase.metamodel.MetamodelFactory;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.implementation.operations.ExtractClassOperation} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ExtractClassOperationItemProvider extends SemanticCompositeOperationItemProvider implements
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ExtractClassOperationItemProvider(AdapterFactory adapterFactory) {
@@ -47,8 +46,8 @@ public class ExtractClassOperationItemProvider extends SemanticCompositeOperatio
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -63,39 +62,53 @@ public class ExtractClassOperationItemProvider extends SemanticCompositeOperatio
 	}
 
 	/**
-	 * This adds a property descriptor for the Composition Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Composition Name feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addCompositionNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_ExtractClassOperation_compositionName_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_ExtractClassOperation_compositionName_feature",
-				"_UI_ExtractClassOperation_type"),
-			OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__COMPOSITION_NAME, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ExtractClassOperation_compositionName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExtractClassOperation_compositionName_feature", "_UI_ExtractClassOperation_type"),
+				 OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__COMPOSITION_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Class Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Class Name feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addClassNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ExtractClassOperation_className_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_ExtractClassOperation_className_feature",
-				"_UI_ExtractClassOperation_type"), OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__CLASS_NAME,
-			true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ExtractClassOperation_className_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ExtractClassOperation_className_feature", "_UI_ExtractClassOperation_type"),
+				 OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__CLASS_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -113,7 +126,6 @@ public class ExtractClassOperationItemProvider extends SemanticCompositeOperatio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -170,89 +182,96 @@ public class ExtractClassOperationItemProvider extends SemanticCompositeOperatio
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ExtractClassOperation.class)) {
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__COMPOSITION_NAME:
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__CLASS_NAME:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS:
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__ATTRIBUTES:
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS:
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS:
-		case OperationsPackage.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__COMPOSITION_NAME:
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__CLASS_NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS:
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__ATTRIBUTES:
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS:
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS:
+			case OperationsPackage.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-			.add(createChildParameter(
-				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				OperationsFactory.eINSTANCE.createExtractSuperClassOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createExtractSuperClassOperation()));
 
-		newChildDescriptors
-			.add(createChildParameter(
-				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				OperationsFactory.eINSTANCE.createInlineSuperClassOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createInlineSuperClassOperation()));
 
-		newChildDescriptors
-			.add(createChildParameter(
-				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				OperationsFactory.eINSTANCE.createExtractClassOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createExtractClassOperation()));
 
-		newChildDescriptors
-			.add(createChildParameter(
-				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				OperationsFactory.eINSTANCE.createInlineClassOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createInlineClassOperation()));
 
-		newChildDescriptors
-			.add(createChildParameter(
-				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				OperationsFactory.eINSTANCE.createPartitionAssociationOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createPartitionAssociationOperation()));
 
-		newChildDescriptors
-			.add(createChildParameter(
-				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				OperationsFactory.eINSTANCE.createPushDownOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createPushDownOperation()));
 
-		newChildDescriptors
-			.add(createChildParameter(
-				org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
-				OperationsFactory.eINSTANCE.createPullUpOperation()));
+		newChildDescriptors.add
+			(createChildParameter
+				(org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage.Literals.COMPOSITE_OPERATION__SUB_OPERATIONS,
+				 OperationsFactory.eINSTANCE.createPullUpOperation()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS,
-			MetamodelFactory.eINSTANCE.createModelElementId()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS,
+				 ModelFactory.eINSTANCE.createModelElementId()));
 
-		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__ATTRIBUTES,
-			MetamodelFactory.eINSTANCE.createModelElementId()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__ATTRIBUTES,
+				 ModelFactory.eINSTANCE.createModelElementId()));
 
-		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS, MetamodelFactory.eINSTANCE
-				.createModelElementId()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS,
+				 ModelFactory.eINSTANCE.createModelElementId()));
 
-		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS, MetamodelFactory.eINSTANCE
-				.createModelElementId()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS,
+				 ModelFactory.eINSTANCE.createModelElementId()));
 
-		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE, MetamodelFactory.eINSTANCE
-				.createModelElementId()));
+		newChildDescriptors.add
+			(createChildParameter
+				(OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE,
+				 ModelFactory.eINSTANCE.createModelElementId()));
 	}
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -260,22 +279,24 @@ public class ExtractClassOperationItemProvider extends SemanticCompositeOperatio
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify = childFeature == OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS
-			|| childFeature == OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__ATTRIBUTES
-			|| childFeature == OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS
-			|| childFeature == OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS
-			|| childFeature == OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE;
+		boolean qualify =
+			childFeature == OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__CONTEXT_CLASS ||
+			childFeature == OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__ATTRIBUTES ||
+			childFeature == OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__OUTGOING_ASSOCIATIONS ||
+			childFeature == OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__INCOMING_ASSOCIATIONS ||
+			childFeature == OperationsPackage.Literals.EXTRACT_CLASS_OPERATION__TARGET_PACKAGE;
 
 		if (qualify) {
-			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),
-				getFeatureText(childFeature), getTypeText(owner) });
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

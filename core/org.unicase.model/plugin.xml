@@ -815,19 +815,24 @@
      </package>
   </extension>
   <extension
-        id="org.unicase.model.unicaseModelVersion"
-        name="Unicase Model Version"
-        point="org.unicase.metamodel.modelversion">
-     <ModelVersion
-           versionIdentifier="7">
-     </ModelVersion>
-  </extension>
-  <extension
         point="org.eclipse.emf.ecore.generated_package">
      <package
            class="org.unicase.model.release.ReleasePackage"
            genModel="model/model.genmodel"
            uri="http://unicase.org/model/release">
      </package>
+  </extension>
+  <extension
+        point="org.eclipse.emf.emfstore.common.model.modelversion">
+     <ModelVersion
+           versionIdentifier="7">
+     </ModelVersion>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecp.model.ecppackage">
+     <modelPackage
+           modelPackage="http://unicase.org/model">
+     </modelPackage>
+     <modelPackage></modelPackage>
   </extension>
 </plugin>

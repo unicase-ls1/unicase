@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.classes.impl;
 
@@ -58,6 +58,7 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected PackageElementImpl() {
@@ -66,6 +67,7 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -75,6 +77,7 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Package getParentPackage() {
@@ -85,6 +88,7 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Package basicGetParentPackage() {
@@ -95,6 +99,7 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetParentPackage(org.unicase.model.classes.Package newParentPackage,
@@ -106,6 +111,7 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setParentPackage(org.unicase.model.classes.Package newParentPackage) {
@@ -129,6 +135,7 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Dependency> getOutgoingDependencies() {
@@ -141,6 +148,7 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Dependency> getIncomingDependencies() {
@@ -153,6 +161,7 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -175,6 +184,7 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -192,6 +202,7 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -206,6 +217,7 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -225,6 +237,7 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -248,6 +261,7 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -268,6 +282,7 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

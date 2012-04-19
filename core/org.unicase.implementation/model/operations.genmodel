@@ -4,7 +4,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="&lt;copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html &lt;/copyright>&#xD;"
     modelDirectory="/org.unicase.implementation/src" modelPluginID="org.unicase.implementation"
     modelName="Operations" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
-    copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.unicase.emfstore.esmodel/model/esmodel.genmodel#//esmodel ../../org.unicase.metamodel/model/metamodel.genmodel#//metamodel ../../org.unicase.model/model/model.genmodel#//model platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation">
+    copyrightFields="false" usedGenPackages="../../org.unicase.model/model/model.genmodel#//model platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.genmodel#//model platform:/plugin/org.eclipse.emf.emfstore.server.model/model/server.genmodel#//model">
   <foreignModel>operations.ecore</foreignModel>
   <genPackages prefix="Operations" basePackage="org.unicase.implementation" disposableProviderFactory="true"
       ecorePackage="operations.ecore#/">

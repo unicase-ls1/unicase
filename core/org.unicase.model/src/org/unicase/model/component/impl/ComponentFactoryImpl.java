@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.component.impl;
 
@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.model.component.*;
 import org.unicase.model.component.Component;
 import org.unicase.model.component.ComponentFactory;
 import org.unicase.model.component.ComponentPackage;
@@ -20,12 +19,13 @@ import org.unicase.model.component.DeploymentNode;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ComponentFactoryImpl extends EFactoryImpl implements ComponentFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static ComponentFactory init() {
@@ -42,8 +42,8 @@ public class ComponentFactoryImpl extends EFactoryImpl implements ComponentFacto
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ComponentFactoryImpl() {
@@ -52,6 +52,7 @@ public class ComponentFactoryImpl extends EFactoryImpl implements ComponentFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -70,6 +71,7 @@ public class ComponentFactoryImpl extends EFactoryImpl implements ComponentFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Component createComponent() {
@@ -79,6 +81,7 @@ public class ComponentFactoryImpl extends EFactoryImpl implements ComponentFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ComponentService createComponentService() {
@@ -88,6 +91,7 @@ public class ComponentFactoryImpl extends EFactoryImpl implements ComponentFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DeploymentNode createDeploymentNode() {
@@ -97,6 +101,7 @@ public class ComponentFactoryImpl extends EFactoryImpl implements ComponentFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ComponentPackage getComponentPackage() {
@@ -105,6 +110,7 @@ public class ComponentFactoryImpl extends EFactoryImpl implements ComponentFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

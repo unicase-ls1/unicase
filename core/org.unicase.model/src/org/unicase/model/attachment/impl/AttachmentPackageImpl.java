@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.attachment.impl;
 
@@ -10,17 +10,14 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.unicase.emfstore.esmodel.EsmodelPackage;
-import org.unicase.model.ModelPackage;
+import org.eclipse.emf.emfstore.server.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.attachment.FileAttachmentType;
-import org.unicase.model.attachment.PatchAttachment;
 import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.impl.BugPackageImpl;
@@ -54,29 +51,27 @@ import org.unicase.model.util.impl.UtilPackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass urlAttachmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass fileAttachmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass patchAttachmentEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EEnum fileAttachmentTypeEEnum = null;
@@ -100,17 +95,18 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
-	 * <p>This method is used to initialize {@link AttachmentPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc
+	 * <p>
+	 * This method is used to initialize {@link AttachmentPackage#eINSTANCE} when that field is accessed. Clients should
+	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -127,12 +123,12 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		isInited = true;
 
 		// Initialize simple dependencies
-		EsmodelPackage.eINSTANCE.eClass();
+		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ModelPackage.eNS_URI) : ModelPackage.eINSTANCE);
+		ModelPackageImpl theModelPackage_1 = (ModelPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) : org.unicase.model.ModelPackage.eINSTANCE);
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
@@ -178,7 +174,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 		// Create package meta-data objects
 		theAttachmentPackage.createPackageContents();
-		theModelPackage.createPackageContents();
+		theModelPackage_1.createPackageContents();
 		theOrganizationPackage.createPackageContents();
 		theTaskPackage.createPackageContents();
 		theClassesPackage.createPackageContents();
@@ -197,7 +193,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 		// Initialize created meta-data
 		theAttachmentPackage.initializePackageContents();
-		theModelPackage.initializePackageContents();
+		theModelPackage_1.initializePackageContents();
 		theOrganizationPackage.initializePackageContents();
 		theTaskPackage.initializePackageContents();
 		theClassesPackage.initializePackageContents();
@@ -224,6 +220,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getUrlAttachment() {
@@ -232,6 +229,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getUrlAttachment_Url() {
@@ -240,6 +238,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getFileAttachment() {
@@ -248,6 +247,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFileAttachment_FileName() {
@@ -256,6 +256,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFileAttachment_FileHash() {
@@ -264,6 +265,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFileAttachment_FileID() {
@@ -272,6 +274,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFileAttachment_FileSize() {
@@ -280,6 +283,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getFileAttachment_FileType() {
@@ -288,22 +292,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getPatchAttachment() {
-		return patchAttachmentEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPatchAttachment_AppliedTo() {
-		return (EReference) patchAttachmentEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EEnum getFileAttachmentType() {
@@ -312,6 +301,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AttachmentFactory getAttachmentFactory() {
@@ -320,14 +310,15 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
+	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -346,23 +337,21 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__FILE_SIZE);
 		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__FILE_TYPE);
 
-		patchAttachmentEClass = createEClass(PATCH_ATTACHMENT);
-		createEReference(patchAttachmentEClass, PATCH_ATTACHMENT__APPLIED_TO);
-
 		// Create enums
 		fileAttachmentTypeEEnum = createEEnum(FILE_ATTACHMENT_TYPE);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
+	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -376,18 +365,16 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
-		ReleasePackage theReleasePackage = (ReleasePackage) EPackage.Registry.INSTANCE
-			.getEPackage(ReleasePackage.eNS_URI);
+		org.unicase.model.ModelPackage theModelPackage_1 = (org.unicase.model.ModelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		urlAttachmentEClass.getESuperTypes().add(theModelPackage.getAttachment());
-		fileAttachmentEClass.getESuperTypes().add(theModelPackage.getAttachment());
-		patchAttachmentEClass.getESuperTypes().add(this.getFileAttachment());
+		urlAttachmentEClass.getESuperTypes().add(theModelPackage_1.getAttachment());
+		fileAttachmentEClass.getESuperTypes().add(theModelPackage_1.getAttachment());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(urlAttachmentEClass, UrlAttachment.class, "UrlAttachment", !IS_ABSTRACT, !IS_INTERFACE,
@@ -413,13 +400,6 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 			FileAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 
-		initEClass(patchAttachmentEClass, PatchAttachment.class, "PatchAttachment", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPatchAttachment_AppliedTo(), theReleasePackage.getRelease(),
-			theReleasePackage.getRelease_AppliedPatches(), "appliedTo", null, 0, -1, PatchAttachment.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-
 		// Initialize enums and add enum literals
 		initEEnum(fileAttachmentTypeEEnum, FileAttachmentType.class, "FileAttachmentType");
 		addEEnumLiteral(fileAttachmentTypeEEnum, FileAttachmentType.BINARY);
@@ -428,17 +408,17 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		addEEnumLiteral(fileAttachmentTypeEEnum, FileAttachmentType.VIDEO);
 
 		// Create annotations
-		// org.unicase.ui.meeditor
+		// org.eclipse.emf.ecp.editor
 		createOrgAnnotations();
 	}
 
 	/**
-	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Initializes the annotations for <b>org.eclipse.emf.ecp.editor</b>. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {
-		String source = "org.unicase.ui.meeditor";
+		String source = "org.eclipse.emf.ecp.editor";
 		addAnnotation(getUrlAttachment_Url(), source, new String[] { "position", "left", "priority", "2.5" });
 		addAnnotation(getFileAttachment_FileName(), source, new String[] { "priority", "2", "position", "left" });
 		addAnnotation(getFileAttachment_FileHash(), source, new String[] { "priority", "2", "position", "left" });

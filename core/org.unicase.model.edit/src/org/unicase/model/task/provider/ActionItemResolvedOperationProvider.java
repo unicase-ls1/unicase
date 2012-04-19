@@ -6,18 +6,17 @@
  */
 package org.unicase.model.task.provider;
 
-import org.unicase.emfstore.esmodel.provider.AbstractOperationCustomLabelProvider;
-import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.provider.AbstractOperationItemProvider;
+import org.eclipse.emf.emfstore.client.ui.views.changes.DefaultOperationLabelProvider;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.provider.AbstractOperationItemProvider;
 
 /**
  * Provider class for visualization of resolved/unresolved operations in the commitDialog.
  * 
  * @author Michael Kagel
  */
-public class ActionItemResolvedOperationProvider implements AbstractOperationCustomLabelProvider {
+public class ActionItemResolvedOperationProvider extends DefaultOperationLabelProvider {
 
 	/**
 	 * Checks if the attributeOperation is a resolved or unresolved operation, if this is true the method returns 1
@@ -25,6 +24,7 @@ public class ActionItemResolvedOperationProvider implements AbstractOperationCus
 	 * 
 	 * @see org.unicase.emfstore.esmodel.provider.AbstractOperationCustomLabelProvider#canRender(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
 	 */
+	@Override
 	public int canRender(AbstractOperation operation) {
 		if (operation instanceof AttributeOperation) {
 			AttributeOperation attOp = (AttributeOperation) operation;
@@ -34,7 +34,7 @@ public class ActionItemResolvedOperationProvider implements AbstractOperationCus
 			}
 
 		}
-		return CANNOT_RENDER;
+		return 0;
 	}
 
 	/**
@@ -42,6 +42,7 @@ public class ActionItemResolvedOperationProvider implements AbstractOperationCus
 	 * 
 	 * @see org.unicase.emfstore.esmodel.provider.AbstractOperationCustomLabelProvider#getDescription(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
 	 */
+	@Override
 	public String getDescription(AbstractOperation operation) {
 		AttributeOperation attOp = (AttributeOperation) operation;
 
@@ -51,15 +52,6 @@ public class ActionItemResolvedOperationProvider implements AbstractOperationCus
 			return "Unresolved "
 				+ AbstractOperationItemProvider.getModelElementClassAndName((attOp.getModelElementId()));
 		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.emfstore.esmodel.provider.AbstractOperationCustomLabelProvider#getImage(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
-	 */
-	public Object getImage(AbstractOperation operation) {
-		return EsmodelEditPlugin.INSTANCE.getImage("full/obj16/AttributeOperation.png");
 	}
 
 }

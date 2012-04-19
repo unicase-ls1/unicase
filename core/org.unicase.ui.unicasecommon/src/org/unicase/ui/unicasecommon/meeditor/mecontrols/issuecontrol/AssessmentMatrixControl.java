@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.unicasecommon.meeditor.mecontrols.issuecontrol;
 
@@ -15,9 +15,14 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecp.editor.ControlFactory;
+import org.eclipse.emf.ecp.editor.mecontrols.AbstractMEControl;
+import org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.MEHyperLinkAdapter;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.util.ModelElementChangeListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -26,7 +31,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.Section;
-import org.unicase.metamodel.util.ModelElementChangeListener;
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.Criterion;
 import org.unicase.model.rationale.Issue;
@@ -34,12 +38,8 @@ import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.impl.RationaleFactoryImpl;
-import org.unicase.ui.meeditor.ControlFactory;
-import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
-import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEHyperLinkAdapter;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Class displays assessment matrix for issues.
@@ -287,7 +287,7 @@ public class AssessmentMatrixControl extends AbstractUnicaseMEControl {
 				}
 			}
 		}
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				RationaleFactory rFactory = RationaleFactoryImpl.init();

@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.component;
 
@@ -11,31 +11,30 @@ import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Component</b></em>'. <!-- end-user-doc -->
- *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.component.Component#getPackages <em>Packages</em>}</li>
- *   <li>{@link org.unicase.model.component.Component#getOfferedServices <em>Offered Services</em>}</li>
- *   <li>{@link org.unicase.model.component.Component#getConsumedServices <em>Consumed Services</em>}</li>
- *   <li>{@link org.unicase.model.component.Component#getSubsystems <em>Subsystems</em>}</li>
+ * <li>{@link org.unicase.model.component.Component#getPackages <em>Packages</em>}</li>
+ * <li>{@link org.unicase.model.component.Component#getOfferedServices <em>Offered Services</em>}</li>
+ * <li>{@link org.unicase.model.component.Component#getConsumedServices <em>Consumed Services</em>}</li>
+ * <li>{@link org.unicase.model.component.Component#getSubsystems <em>Subsystems</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.model.component.ComponentPackage#getComponent()
  * @model
  * @generated
  */
 public interface Component extends UnicaseModelElement {
 	/**
-	 * Returns the value of the '<em><b>Packages</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.classes.Package}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Packages</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.classes.Package}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Packages</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Packages</em>' reference list.
 	 * @see org.unicase.model.component.ComponentPackage#getComponent_Packages()
 	 * @model
@@ -82,14 +81,14 @@ public interface Component extends UnicaseModelElement {
 	EList<ComponentService> getConsumedServices();
 
 	/**
-	 * Returns the value of the '<em><b>Subsystems</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.classes.Package}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Subsystems</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.classes.Package}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Subsystems</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Subsystems</em>' reference list.
 	 * @see org.unicase.model.component.ComponentPackage#getComponent_Subsystems()
 	 * @model

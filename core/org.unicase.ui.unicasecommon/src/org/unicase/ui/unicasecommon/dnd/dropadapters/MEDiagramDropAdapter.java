@@ -13,23 +13,23 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.dnd.MEDropAdapter;
+import org.eclipse.emf.ecp.common.model.ECPModelelementContext;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.util.AssociationClassHelper;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.gmf.runtime.common.ui.services.editor.EditorService;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.ui.part.EditorPart;
-import org.unicase.ecp.model.ECPModelelementContext;
-import org.unicase.ecp.model.workSpaceModel.util.AssociationClassHelper;
-import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.ui.common.dnd.MEDropAdapter;
 import org.unicase.ui.unicasecommon.common.util.DNDHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.diagram.commands.CreateViewCommand;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Drop adapter for MEDiagrams.
@@ -57,9 +57,9 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 			}
 			LinkedList<EObject> elements = new LinkedList<EObject>();
 			elements.addAll(diagram.getElements());
-			mesAdd.addAll(AssociationClassHelper.getRelatedAssociationClassToDrop(mesAdd, elements, context
-				.getMetaModelElementContext()));
-			new UnicaseCommand() {
+			mesAdd.addAll(AssociationClassHelper.getRelatedAssociationClassToDrop(mesAdd, elements,
+				context.getMetaModelElementContext()));
+			new EMFStoreCommand() {
 				@Override
 				protected void doRun() {
 					int counter = 1;
@@ -67,8 +67,9 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 						// add reference to the element
 						diagram.getElements().add((UnicaseModelElement) me);
 						// create the View for the element
-						CreateViewCommand command = new CreateViewCommand(new EObjectAdapter(me), diagramEditor
-							.getDiagramEditPart(), new Point(20 * counter, 20 * counter), PreferencesHint.USE_DEFAULTS);
+						CreateViewCommand command = new CreateViewCommand(new EObjectAdapter(me),
+							diagramEditor.getDiagramEditPart(), new Point(20 * counter, 20 * counter),
+							PreferencesHint.USE_DEFAULTS);
 						try {
 							command.execute(null, null);
 						} catch (ExecutionException e) {

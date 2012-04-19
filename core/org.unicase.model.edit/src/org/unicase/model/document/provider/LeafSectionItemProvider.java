@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.document.provider;
 
@@ -21,7 +21,17 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.model.ModelPackage;
+import org.eclipse.emf.emfstore.common.model.ModelPackage;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolFactory;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.RolesFactory;
+import org.eclipse.emf.emfstore.server.model.notification.NotificationFactory;
+import org.eclipse.emf.emfstore.server.model.url.UrlFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
+import org.unicase.model.ModelFactory;
 import org.unicase.model.activity.ActivityFactory;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.bug.BugFactory;
@@ -40,18 +50,19 @@ import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.state.StateFactory;
 import org.unicase.model.task.TaskFactory;
+import org.unicase.model.util.UtilFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.document.LeafSection} object.
- * <!-- begin-user-doc
+ * This is the item provider adapter for a {@link org.unicase.model.document.LeafSection} object. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class LeafSectionItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public LeafSectionItemProvider(AdapterFactory adapterFactory) {
@@ -59,8 +70,8 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -75,8 +86,8 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Model Elements feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Model Elements feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addModelElementsPropertyDescriptor(Object object) {
@@ -90,9 +101,9 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Referenced Model Elements feature.
-	 * <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Referenced Model Elements feature. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addReferencedModelElementsPropertyDescriptor(Object object) {
@@ -108,9 +119,9 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -124,6 +135,7 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -135,8 +147,8 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 	}
 
 	/**
-	 * This returns LeafSection.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns LeafSection.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -174,9 +186,9 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -188,6 +200,9 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			DocumentFactory.eINSTANCE.createCompositeSection()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			ModelFactory.eINSTANCE.createProject()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			OrganizationFactory.eINSTANCE.createUser()));
@@ -280,6 +295,9 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 			RationaleFactory.eINSTANCE.createComment()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			RationaleFactory.eINSTANCE.createAudioComment()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			ChangeFactory.eINSTANCE.createMergingIssue()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
@@ -331,9 +349,6 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 			AttachmentFactory.eINSTANCE.createFileAttachment()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			AttachmentFactory.eINSTANCE.createPatchAttachment()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			ProfileFactory.eINSTANCE.createProfile()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
@@ -347,6 +362,9 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			ProfileFactory.eINSTANCE.createStereotypeAttributeInstanceString()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			UtilFactory.eINSTANCE.createModelElementPath()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			ActivityFactory.eINSTANCE.createTransition()));
@@ -365,12 +383,253 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			ActivityFactory.eINSTANCE.createActivityEnd()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.createProject()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.createModelElementId()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.createModelVersion()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.createEMFStoreProperty()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE
+				.create(ModelPackage.Literals.PROPERTY_MAP_ENTRY)));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			org.eclipse.emf.emfstore.common.model.ModelFactory.eINSTANCE.createPropertyStringValue()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createProjectHistory()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createProjectInfo()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createSessionId()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createServerSpace()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createProjectId()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createVersionInfo()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createClientVersionInfo()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createFileIdentifier()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			VersioningFactory.eINSTANCE.createTagVersionSpec()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			VersioningFactory.eINSTANCE.createDateVersionSpec()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			VersioningFactory.eINSTANCE.createLogMessage()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			VersioningFactory.eINSTANCE.createChangePackage()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			VersioningFactory.eINSTANCE.createHistoryInfo()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			VersioningFactory.eINSTANCE.createHistoryQuery()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			VersioningFactory.eINSTANCE.createVersion()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			VersioningFactory.eINSTANCE.createHeadVersionSpec()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			VersioningFactory.eINSTANCE.createVersionProperty()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createCompositeOperation()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createAttributeOperation()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createMultiAttributeSetOperation()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createMultiReferenceSetOperation()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createOperationId()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createOperationGroup()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.createModelElementGroup()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			OperationsFactory.eINSTANCE.create(OperationsPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createReadEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createMergeEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createCheckoutEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createExceptionEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createPluginStartEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createUpdateEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createAnnotationEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createRevertEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createShowHistoryEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createPerspectiveEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createDNDEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createLinkEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createTraceEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createNavigatorCreateEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createPluginFocusEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createPresentationSwitchEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createUndoEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createValidate()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createShowChangesEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createNotificationReadEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createNotificationGenerationEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createNotificationIgnoreEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createURLEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createMergeChoiceEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			EventsFactory.eINSTANCE.createMergeGlobalChoiceEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			ServerFactory.eINSTANCE.createProjectUpdatedEvent()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			AccesscontrolFactory.eINSTANCE.createACOrgUnit()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			AccesscontrolFactory.eINSTANCE.createACUser()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			AccesscontrolFactory.eINSTANCE.createACGroup()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			AccesscontrolFactory.eINSTANCE.createACOrgUnitId()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			AccesscontrolFactory.eINSTANCE.createOrgUnitProperty()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			RolesFactory.eINSTANCE.createReaderRole()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			RolesFactory.eINSTANCE.createWriterRole()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			RolesFactory.eINSTANCE.createProjectAdminRole()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			RolesFactory.eINSTANCE.createServerAdmin()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			NotificationFactory.eINSTANCE.createESNotification()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			UrlFactory.eINSTANCE.createServerUrl()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			UrlFactory.eINSTANCE.createProjectUrlFragment()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			UrlFactory.eINSTANCE.createModelElementUrlFragment()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			UrlFactory.eINSTANCE.createModelElementUrl()));
 	}
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-	 * <!-- begin-user-doc -->
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -378,9 +637,9 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify = childFeature == ModelPackage.Literals.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES
+		boolean qualify = childFeature == org.unicase.model.ModelPackage.Literals.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES
 			|| childFeature == DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS
-			|| childFeature == ModelPackage.Literals.UNICASE_MODEL_ELEMENT__COMMENTS;
+			|| childFeature == org.unicase.model.ModelPackage.Literals.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),
@@ -390,8 +649,8 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

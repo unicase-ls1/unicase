@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.docExport.exportModel.renderers.specialRenderers.impl;
 
@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
 import org.unicase.docExport.exportModel.renderers.elements.UParagraph;
@@ -21,7 +22,6 @@ import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
-import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.meeting.Meeting;
 import org.unicase.model.organization.OrgUnit;
 
@@ -69,13 +69,14 @@ public class FhmMeetingRendererImpl extends MeetingRendererImpl implements FhmMe
 	}
 
 	@Override
-	public void doRender(UnicaseModelElement modelElement, UCompositeSection section) {
-		setMeeting((Meeting) modelElement);
+	protected void doRender(EObject eObject, UCompositeSection section) {
+
+		setMeeting((Meeting) eObject);
 
 		textSmall = OptionsFactory.eINSTANCE.createTextOption();
 		textSmall.setFontSize(8);
 
-		setWorkItemTextOption((TextOption) EcoreUtil.copy(getTemplate().getLayoutOptions().getDefaultTextOption()));
+		setWorkItemTextOption(EcoreUtil.copy(getTemplate().getLayoutOptions().getDefaultTextOption()));
 
 		String topic = "";
 		if (getMeeting().getStarttime() == null) {
@@ -86,8 +87,7 @@ public class FhmMeetingRendererImpl extends MeetingRendererImpl implements FhmMe
 			topic += TOPIC_AGENDA;
 		}
 
-		TextOption headerTextOption = (TextOption) EcoreUtil.copy(getTemplate().getLayoutOptions()
-			.getDefaultTextOption());
+		TextOption headerTextOption = EcoreUtil.copy(getTemplate().getLayoutOptions().getDefaultTextOption());
 		headerTextOption.setBold(true);
 
 		UParagraph topicParagraph = new UParagraph(topic + getMeeting().getName(), headerTextOption);
@@ -100,9 +100,12 @@ public class FhmMeetingRendererImpl extends MeetingRendererImpl implements FhmMe
 		title.getBoxModel().setMarginTop(20);
 
 		if (title.getDepth() > 1 && title.getDepth() < 4) {
-			title.getTitlParagraph().getOption().setFontSize(
-				getTemplate().getLayoutOptions().getSectionTextOption().getFontSize()
-					- getTemplate().getLayoutOptions().getSectionFontSizeDecreaseStep() * title.getDepth());
+			title
+				.getTitlParagraph()
+				.getOption()
+				.setFontSize(
+					getTemplate().getLayoutOptions().getSectionTextOption().getFontSize()
+						- getTemplate().getLayoutOptions().getSectionFontSizeDecreaseStep() * title.getDepth());
 		}
 
 		renderFhmHeader(section);

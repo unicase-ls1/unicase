@@ -6,22 +6,28 @@
  */
 package org.unicase.ui.dashboard;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.eclipse.emf.emfstore.client.model.ModelFactory;
+import org.eclipse.emf.emfstore.client.model.PostWorkspaceInitiator;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.Workspace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.observers.CheckoutObserver;
+import org.eclipse.emf.emfstore.client.model.observers.DeleteProjectSpaceObserver;
+import org.eclipse.emf.emfstore.client.model.observers.UpdateObserver;
+import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
+import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.ui.dashboard.notificationProviders.NotificationHelper;
 import org.unicase.ui.dashboard.view.DashboardEditorInput;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.workspace.PostWorkspaceInitiator;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.observers.CheckoutObserver;
-import org.unicase.workspace.observers.DeleteProjectSpaceObserver;
-import org.unicase.workspace.observers.UpdateObserver;
 
 /**
  * Performs a cleanup before a project is deleted.
@@ -31,6 +37,8 @@ import org.unicase.workspace.observers.UpdateObserver;
  */
 public class DashboardProjectObserver implements DeleteProjectSpaceObserver, CheckoutObserver, UpdateObserver,
 	PostWorkspaceInitiator {
+
+	private static Map<ProjectSpace, List<ChangePackage>> projectToChanges = new HashMap<ProjectSpace, List<ChangePackage>>();
 
 	/**
 	 * {@inheritDoc}
@@ -70,6 +78,8 @@ public class DashboardProjectObserver implements DeleteProjectSpaceObserver, Che
 	 * @see org.unicase.workspace.observers.CheckoutObserver#checkoutDone(org.unicase.workspace.ProjectSpace)
 	 */
 	public void checkoutDone(ProjectSpace projectSpace) {
+		generateNotifications(projectSpace);
+		WorkspaceManager.getInstance().getCurrentWorkspace().setActiveProjectSpace(projectSpace);
 		UnicaseActionHelper.openDashboard(projectSpace);
 
 	}
@@ -80,6 +90,8 @@ public class DashboardProjectObserver implements DeleteProjectSpaceObserver, Che
 	 * @see org.unicase.workspace.observers.UpdateObserver#updateCompleted(org.unicase.workspace.ProjectSpace)
 	 */
 	public void updateCompleted(ProjectSpace projectSpace) {
+		generateNotifications(projectSpace);
+		WorkspaceManager.getInstance().getCurrentWorkspace().setActiveProjectSpace(projectSpace);
 		UnicaseActionHelper.openDashboard(projectSpace);
 	}
 
@@ -90,6 +102,19 @@ public class DashboardProjectObserver implements DeleteProjectSpaceObserver, Che
 	 *      java.util.List)
 	 */
 	public boolean inspectChanges(ProjectSpace projectSpace, List<ChangePackage> changePackages) {
+		projectToChanges.put(projectSpace, changePackages);
 		return true;
+	}
+
+	@SuppressWarnings("unchecked")
+	private void generateNotifications(ProjectSpace projectSpace) {
+		List<ChangePackage> changePackages = projectToChanges.get(projectSpace);
+		List<ChangePackage> changes = changePackages == null ? Collections.EMPTY_LIST : changePackages;
+		List<ESNotification> notifications = NotificationHelper.generateNotifications(projectSpace, changes);
+
+		if (projectSpace.getNotificationComposite() == null) {
+			projectSpace.setNotificationComposite(ModelFactory.eINSTANCE.createNotificationComposite());
+		}
+		projectSpace.getNotificationComposite().getNotifications().addAll(notifications);
 	}
 }

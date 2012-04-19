@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.organization.impl;
 
@@ -23,17 +23,17 @@ import org.unicase.model.organization.OrganizationPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.organization.impl.GroupImpl#getOrgUnits <em>Org Units</em>}</li>
+ * <li>{@link org.unicase.model.organization.impl.GroupImpl#getOrgUnits <em>Org Units</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class GroupImpl extends OrgUnitImpl implements Group {
 	/**
-	 * The cached value of the '{@link #getOrgUnits() <em>Org Units</em>}' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getOrgUnits() <em>Org Units</em>}' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getOrgUnits()
 	 * @generated
 	 * @ordered
@@ -42,6 +42,7 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected GroupImpl() {
@@ -50,6 +51,7 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,6 +61,7 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<OrgUnit> getOrgUnits() {
@@ -71,6 +74,7 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -85,6 +89,7 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -98,6 +103,7 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -111,6 +117,7 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -127,6 +134,7 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,6 +149,7 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

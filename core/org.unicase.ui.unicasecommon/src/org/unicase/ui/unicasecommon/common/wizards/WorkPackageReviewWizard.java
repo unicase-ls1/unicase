@@ -1,12 +1,13 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.unicasecommon.common.wizards;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
@@ -16,7 +17,6 @@ import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.model.task.WorkItem;
 import org.unicase.ui.unicasecommon.common.wizards.wizardpages.WorkItemSectionSelectionPage;
 import org.unicase.ui.unicasecommon.common.wizards.wizardpages.WorkItemSelectionPage;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author naughton Wizard for creating a follow-up meeting.
@@ -64,7 +64,7 @@ public class WorkPackageReviewWizard extends Wizard implements IWorkbenchWizard 
 		final WorkItemMeetingSection selectedSection = workItemSectionSelectionPage.getSelectedSection();
 		final EList<WorkItem> selectedWorkItems = workItemSelectionPage.getSelectedWorkItems();
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
 				// HN: Notification.ADD_MANY does not work yet - when it works replace?

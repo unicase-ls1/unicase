@@ -1,17 +1,17 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.dashboard.view;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * The dashboard view.
@@ -75,8 +75,7 @@ public class DashboardEditor extends SharedHeaderFormEditor {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void init(IEditorSite site, final IEditorInput eInput)
-			throws PartInitException {
+	public void init(IEditorSite site, final IEditorInput eInput) throws PartInitException {
 		super.init(site, eInput);
 		if (eInput instanceof DashboardEditorInput) {
 			setInput(eInput);
@@ -84,8 +83,7 @@ public class DashboardEditor extends SharedHeaderFormEditor {
 			setPartName(input.getName());
 			setTitleImage(input.getImageDescriptor().createImage());
 		} else {
-			throw new PartInitException(
-					"The Dashboard can only function with a dashboard input.");
+			throw new PartInitException("The Dashboard can only function with a dashboard input.");
 		}
 	}
 

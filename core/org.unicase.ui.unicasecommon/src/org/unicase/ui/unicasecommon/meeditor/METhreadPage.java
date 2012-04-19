@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.unicasecommon.meeditor;
 
@@ -11,7 +11,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
+import org.eclipse.emf.ecp.editor.AbstractMEEditorPage;
+import org.eclipse.emf.ecp.editor.MEEditor;
+import org.eclipse.emf.ecp.editor.MEFormPage;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.jface.action.ContributionManager;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -31,18 +38,11 @@ import org.eclipse.ui.services.IEvaluationService;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Comment;
-import org.unicase.ui.common.util.CannotMatchUserInProjectException;
-import org.unicase.ui.meeditor.AbstractMEEditorPage;
-import org.unicase.ui.meeditor.Activator;
-import org.unicase.ui.meeditor.MEEditor;
-import org.unicase.ui.meeditor.MEFormPage;
+import org.unicase.ui.unicasecommon.Activator;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.ui.unicasecommon.common.widgets.MECommentReplyWidget;
 import org.unicase.ui.unicasecommon.common.widgets.MECommentWidget;
 import org.unicase.ui.unicasecommon.common.widgets.MECommentWidgetListener;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.NoCurrentUserException;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * The editor page for the comment thread.
@@ -52,7 +52,7 @@ import org.unicase.workspace.util.UnicaseCommand;
 public class METhreadPage extends AbstractMEEditorPage implements MECommentWidgetListener {
 	private static final String ID = "org.unicase.ui.unicasecommon.meeditor.methreadpage";
 	private static final String NAME = "Discussion";
-	private UnicaseModelElement modelElement;
+	private EObject modelElement;
 	private FormToolkit toolkit;
 
 	private static String activeModelelement = "activeModelelement";
@@ -75,10 +75,10 @@ public class METhreadPage extends AbstractMEEditorPage implements MECommentWidge
 		GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(inputComposite);
 		GridDataFactory.fillDefaults().grab(true, false).hint(-1, 0).applyTo(inputComposite);
 
-		new UnicaseCommand() {
+		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
-				List<Comment> comments = modelElement.getComments();
+				List<Comment> comments = ((UnicaseModelElement) modelElement).getComments();
 				for (Comment c : comments) {
 					MECommentWidget widget = new MECommentWidget(c, body);
 					widget.addCommentWidgetListener(METhreadPage.this);
@@ -113,7 +113,7 @@ public class METhreadPage extends AbstractMEEditorPage implements MECommentWidge
 			.getService(IEvaluationService.class);
 		service.addSourceProvider(sourceProvider);
 		menuService.populateContributionManager((ContributionManager) form.getToolBarManager(),
-			"toolbar:org.unicase.ui.meeditor.METhreadPage");
+			"toolbar:org.eclipse.emf.ecp.editor.METhreadPage");
 		form.getToolBarManager().update(true);
 	}
 
@@ -151,7 +151,7 @@ public class METhreadPage extends AbstractMEEditorPage implements MECommentWidge
 		if (!toggleReply && currentUser == null) {
 			return;
 		}
-		inputEntry = new MECommentReplyWidget(modelElement, inputComposite, currentUser);
+		inputEntry = new MECommentReplyWidget((UnicaseModelElement) modelElement, inputComposite, currentUser);
 		inputEntry.addCommentWidgetListener(this);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(inputEntry);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(inputComposite);
@@ -167,11 +167,7 @@ public class METhreadPage extends AbstractMEEditorPage implements MECommentWidge
 	 */
 	@Override
 	public FormPage createPage(MEEditor editor, EditingDomain editingDomain, EObject modelElement) {
-		if (modelElement instanceof UnicaseModelElement) {
-			this.modelElement = (UnicaseModelElement) modelElement;
-		} else {
-			throw new IllegalArgumentException("This page is valid only for UnicaseModelElements");
-		}
+		this.modelElement = modelElement;
 		try {
 			currentUser = OrgUnitHelper.getUser(WorkspaceManager.getProjectSpace(this.modelElement));
 		} catch (NoCurrentUserException e1) {
@@ -191,7 +187,7 @@ public class METhreadPage extends AbstractMEEditorPage implements MECommentWidge
 				form = managedForm.getForm();
 				toolkit.decorateFormHeading(form.getForm());
 				GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(form.getBody());
-				form.setImage(Activator.getImageDescriptor("icons/comments.png").createImage());
+				form.setImage(Activator.getImageDescriptor("icons/Comment.png").createImage());
 				form.setText(getEditor().getTitle() + ": Discussion");
 				form.getBody().setBackgroundMode(SWT.INHERIT_FORCE);
 				form.getBody().setBackground(new Color(Display.getCurrent(), 225, 225, 225));

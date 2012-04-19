@@ -9,7 +9,7 @@ package org.unicase.ui.unicasecommon.navigator.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.unicase.ui.navigator.TreeView;
+import org.eclipse.emf.ecp.navigator.TreeView;
 
 /**
  * This is the handler to collapse all items in UNICASE navigator.

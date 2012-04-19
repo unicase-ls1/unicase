@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.tableview.viewer;
 
@@ -12,9 +12,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.unicase.metamodel.Project;
 import org.unicase.model.UnicaseModelElement;
 
 /**
@@ -24,7 +24,7 @@ import org.unicase.model.UnicaseModelElement;
  */
 public class METableViewerContentProvider implements IStructuredContentProvider {
 
-	private Project project;
+	private org.eclipse.emf.emfstore.common.model.Project project;
 	private EClass meType;
 	private Collection<? extends UnicaseModelElement> directInput;
 
@@ -64,7 +64,7 @@ public class METableViewerContentProvider implements IStructuredContentProvider 
 	@SuppressWarnings("unchecked")
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		if (newInput != oldInput) {
-			if (newInput instanceof Project) {
+			if (newInput instanceof org.eclipse.emf.emfstore.common.model.Project) {
 				this.project = (Project) newInput;
 				directInput = null;
 			} else if (newInput instanceof Collection) {

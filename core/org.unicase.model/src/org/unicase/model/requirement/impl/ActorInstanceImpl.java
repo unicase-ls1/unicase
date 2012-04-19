@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.requirement.impl;
 
@@ -51,6 +51,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 	/**
 	 * The cached value of the '{@link #getParticipatedScenarios() <em>Participated Scenarios</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getParticipatedScenarios()
 	 * @generated
 	 * @ordered
@@ -69,6 +70,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ActorInstanceImpl() {
@@ -77,6 +79,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,6 +89,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Scenario> getInitiatedScenarios() {
@@ -99,6 +103,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Scenario> getParticipatedScenarios() {
@@ -112,6 +117,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Actor getInstantiatedActor() {
@@ -129,6 +135,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Actor basicGetInstantiatedActor() {
@@ -137,6 +144,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetInstantiatedActor(Actor newInstantiatedActor, NotificationChain msgs) {
@@ -155,6 +163,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setInstantiatedActor(Actor newInstantiatedActor) {
@@ -176,6 +185,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -199,6 +209,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -216,6 +227,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -235,6 +247,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -258,6 +271,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -278,6 +292,7 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

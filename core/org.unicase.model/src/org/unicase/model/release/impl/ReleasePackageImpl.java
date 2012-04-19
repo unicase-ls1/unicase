@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.release.impl;
 
@@ -10,8 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.unicase.emfstore.esmodel.EsmodelPackage;
-import org.unicase.model.ModelPackage;
+import org.eclipse.emf.emfstore.server.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
 import org.unicase.model.attachment.AttachmentPackage;
@@ -35,12 +34,9 @@ import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.profile.impl.ProfilePackageImpl;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.impl.RationalePackageImpl;
-import org.unicase.model.release.Release;
+import org.unicase.model.release.AbstractRelease;
 import org.unicase.model.release.ReleaseFactory;
 import org.unicase.model.release.ReleasePackage;
-import org.unicase.model.release.SourceCodeRepositoryRevision;
-import org.unicase.model.release.SourceCodeRepositoryStream;
-import org.unicase.model.release.Stream;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.impl.RequirementPackageImpl;
 import org.unicase.model.state.StatePackage;
@@ -52,32 +48,16 @@ import org.unicase.model.util.impl.UtilPackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ReleasePackageImpl extends EPackageImpl implements ReleasePackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	private EClass streamEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass releaseEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass sourceCodeRepositoryRevisionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass sourceCodeRepositoryStreamEClass = null;
+	private EClass abstractReleaseEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -98,17 +78,18 @@ public class ReleasePackageImpl extends EPackageImpl implements ReleasePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
-	 * <p>This method is used to initialize {@link ReleasePackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc
+	 * <p>
+	 * This method is used to initialize {@link ReleasePackage#eINSTANCE} when that field is accessed. Clients should
+	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -125,12 +106,12 @@ public class ReleasePackageImpl extends EPackageImpl implements ReleasePackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		EsmodelPackage.eINSTANCE.eClass();
+		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ModelPackage.eNS_URI) : ModelPackage.eINSTANCE);
+		ModelPackageImpl theModelPackage_1 = (ModelPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) : org.unicase.model.ModelPackage.eINSTANCE);
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
@@ -176,7 +157,7 @@ public class ReleasePackageImpl extends EPackageImpl implements ReleasePackage {
 
 		// Create package meta-data objects
 		theReleasePackage.createPackageContents();
-		theModelPackage.createPackageContents();
+		theModelPackage_1.createPackageContents();
 		theOrganizationPackage.createPackageContents();
 		theTaskPackage.createPackageContents();
 		theClassesPackage.createPackageContents();
@@ -195,7 +176,7 @@ public class ReleasePackageImpl extends EPackageImpl implements ReleasePackage {
 
 		// Initialize created meta-data
 		theReleasePackage.initializePackageContents();
-		theModelPackage.initializePackageContents();
+		theModelPackage_1.initializePackageContents();
 		theOrganizationPackage.initializePackageContents();
 		theTaskPackage.initializePackageContents();
 		theClassesPackage.initializePackageContents();
@@ -222,102 +203,25 @@ public class ReleasePackageImpl extends EPackageImpl implements ReleasePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public EClass getStream() {
-		return streamEClass;
+	public EClass getAbstractRelease() {
+		return abstractReleaseEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public EReference getStream_Releases() {
-		return (EReference) streamEClass.getEStructuralFeatures().get(0);
+	public EReference getAbstractRelease_IncludedWorkItems() {
+		return (EReference) abstractReleaseEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getStream_SourceCodeRepositoryStream() {
-		return (EReference) streamEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getRelease() {
-		return releaseEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getRelease_Stream() {
-		return (EReference) releaseEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getRelease_Predecessor() {
-		return (EReference) releaseEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getRelease_Successor() {
-		return (EReference) releaseEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getRelease_AppliedPatches() {
-		return (EReference) releaseEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getRelease_IncludedWorkItems() {
-		return (EReference) releaseEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getRelease_SourceCodeRepositoryRevision() {
-		return (EReference) releaseEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getSourceCodeRepositoryRevision() {
-		return sourceCodeRepositoryRevisionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getSourceCodeRepositoryStream() {
-		return sourceCodeRepositoryStreamEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ReleaseFactory getReleaseFactory() {
@@ -326,14 +230,15 @@ public class ReleasePackageImpl extends EPackageImpl implements ReleasePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
+	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -342,33 +247,21 @@ public class ReleasePackageImpl extends EPackageImpl implements ReleasePackage {
 		isCreated = true;
 
 		// Create classes and their features
-		streamEClass = createEClass(STREAM);
-		createEReference(streamEClass, STREAM__RELEASES);
-		createEReference(streamEClass, STREAM__SOURCE_CODE_REPOSITORY_STREAM);
-
-		releaseEClass = createEClass(RELEASE);
-		createEReference(releaseEClass, RELEASE__STREAM);
-		createEReference(releaseEClass, RELEASE__PREDECESSOR);
-		createEReference(releaseEClass, RELEASE__SUCCESSOR);
-		createEReference(releaseEClass, RELEASE__APPLIED_PATCHES);
-		createEReference(releaseEClass, RELEASE__INCLUDED_WORK_ITEMS);
-		createEReference(releaseEClass, RELEASE__SOURCE_CODE_REPOSITORY_REVISION);
-
-		sourceCodeRepositoryRevisionEClass = createEClass(SOURCE_CODE_REPOSITORY_REVISION);
-
-		sourceCodeRepositoryStreamEClass = createEClass(SOURCE_CODE_REPOSITORY_STREAM);
+		abstractReleaseEClass = createEClass(ABSTRACT_RELEASE);
+		createEReference(abstractReleaseEClass, ABSTRACT_RELEASE__INCLUDED_WORK_ITEMS);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
+	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -382,8 +275,8 @@ public class ReleasePackageImpl extends EPackageImpl implements ReleasePackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		AttachmentPackage theAttachmentPackage = (AttachmentPackage) EPackage.Registry.INSTANCE
-			.getEPackage(AttachmentPackage.eNS_URI);
+		org.unicase.model.ModelPackage theModelPackage_1 = (org.unicase.model.ModelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(org.unicase.model.ModelPackage.eNS_URI);
 		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI);
 
 		// Create type parameters
@@ -391,43 +284,30 @@ public class ReleasePackageImpl extends EPackageImpl implements ReleasePackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		abstractReleaseEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(streamEClass, Stream.class, "Stream", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStream_Releases(), this.getRelease(), this.getRelease_Stream(), "releases", null, 0, -1,
-			Stream.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStream_SourceCodeRepositoryStream(), this.getSourceCodeRepositoryStream(), null,
-			"sourceCodeRepositoryStream", null, 0, 1, Stream.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(releaseEClass, Release.class, "Release", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRelease_Stream(), this.getStream(), this.getStream_Releases(), "stream", null, 0, 1,
-			Release.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRelease_Predecessor(), this.getRelease(), this.getRelease_Successor(), "predecessor", null,
-			0, 1, Release.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRelease_Successor(), this.getRelease(), this.getRelease_Predecessor(), "successor", null, 0,
-			1, Release.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRelease_AppliedPatches(), theAttachmentPackage.getPatchAttachment(),
-			theAttachmentPackage.getPatchAttachment_AppliedTo(), "appliedPatches", null, 0, -1, Release.class,
+		initEClass(abstractReleaseEClass, AbstractRelease.class, "AbstractRelease", IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAbstractRelease_IncludedWorkItems(), theTaskPackage.getWorkItem(),
+			theTaskPackage.getWorkItem_IncludingReleases(), "includedWorkItems", null, 0, -1, AbstractRelease.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEReference(getRelease_IncludedWorkItems(), theTaskPackage.getWorkItem(),
-			theTaskPackage.getWorkItem_IncludingReleases(), "includedWorkItems", null, 0, -1, Release.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEReference(getRelease_SourceCodeRepositoryRevision(), this.getSourceCodeRepositoryRevision(), null,
-			"sourceCodeRepositoryRevision", null, 0, 1, Release.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(sourceCodeRepositoryRevisionEClass, SourceCodeRepositoryRevision.class,
-			"SourceCodeRepositoryRevision", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		// Create annotations
+		// org.unicase.ui.meeditor
+		createOrgAnnotations();
+	}
 
-		initEClass(sourceCodeRepositoryStreamEClass, SourceCodeRepositoryStream.class, "SourceCodeRepositoryStream",
-			IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+	/**
+	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void createOrgAnnotations() {
+		String source = "org.unicase.ui.meeditor";
+		addAnnotation(getAbstractRelease_IncludedWorkItems(), source, new String[] { "priority", "10", "position",
+			"right" });
 	}
 
 } // ReleasePackageImpl

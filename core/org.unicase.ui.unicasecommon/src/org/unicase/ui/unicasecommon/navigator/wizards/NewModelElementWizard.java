@@ -7,7 +7,9 @@
 package org.unicase.ui.unicasecommon.navigator.wizards;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
@@ -20,7 +22,6 @@ import org.unicase.model.meeting.Meeting;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author Hodaie This is implementation of New Model Element wizard. This wizard is show through
@@ -59,11 +60,11 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		final UnicaseModelElement newMEInstance;
+		final EObject newMEInstance;
 		if (selectedME != null && newMEType != null) {
 			// 1.create ME
 			EPackage ePackage = newMEType.getEPackage();
-			newMEInstance = (UnicaseModelElement) ePackage.getEFactoryInstance().create(newMEType);
+			newMEInstance = ePackage.getEFactoryInstance().create(newMEType);
 
 			// if (newMEInstance instanceof MEDiagram) {
 			// if (newDiagramType != null) {
@@ -76,7 +77,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 			// 2.add the newly created ME to LeafSection that was selected in
 			// navigator
 			if (selectedME instanceof LeafSection) {
-				new UnicaseCommand() {
+				new EMFStoreCommand() {
 					@Override
 					protected void doRun() {
 						((LeafSection) selectedME).getModelElements().add(newMEInstance);
@@ -86,7 +87,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 			}
 
 			if (newMEInstance instanceof Meeting) {
-				new UnicaseCommand() {
+				new EMFStoreCommand() {
 					@Override
 					protected void doRun() {
 						setupMeetingSections((Meeting) newMEInstance);
@@ -94,7 +95,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 					}
 				}.run(true);
 
-				new UnicaseCommand() {
+				new EMFStoreCommand() {
 					@Override
 					protected void doRun() {
 

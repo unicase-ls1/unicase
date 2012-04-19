@@ -1,13 +1,13 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.change;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.unicase.model.rationale.Proposal;
 
 /**
@@ -27,14 +27,15 @@ import org.unicase.model.rationale.Proposal;
  */
 public interface MergingProposal extends Proposal {
 	/**
-	 * Returns the value of the '<em><b>Pending Operations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Pending Operations</b></em>' containment reference list. The list contents are
+	 * of type {@link org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation}. <!--
+	 * begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Pending Operations</em>' containment reference list isn't clear, there really should
 	 * be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Pending Operations</em>' containment reference list.
 	 * @see org.unicase.model.change.ChangePackage#getMergingProposal_PendingOperations()
 	 * @model containment="true" resolveProxies="true"

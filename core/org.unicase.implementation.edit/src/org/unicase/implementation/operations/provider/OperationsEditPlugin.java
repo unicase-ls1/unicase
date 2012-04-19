@@ -1,17 +1,15 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.implementation.operations.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-import org.eclipse.gmf.runtime.notation.NotationEditPlugin;
-import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
-import org.unicase.metamodel.provider.MetamodelEditPlugin;
+import org.eclipse.emf.emfstore.common.model.provider.CommonEditPlugin;
+import org.eclipse.emf.emfstore.server.model.provider.ServerEditPlugin;
 import org.unicase.model.provider.ModelEditPlugin;
 
 /**
@@ -40,8 +38,7 @@ public final class OperationsEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public OperationsEditPlugin() {
-		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, EsmodelEditPlugin.INSTANCE,
-			MetamodelEditPlugin.INSTANCE, ModelEditPlugin.INSTANCE, NotationEditPlugin.INSTANCE, });
+		super(new ResourceLocator[] { ModelEditPlugin.INSTANCE, CommonEditPlugin.INSTANCE, ServerEditPlugin.INSTANCE, });
 	}
 
 	/**

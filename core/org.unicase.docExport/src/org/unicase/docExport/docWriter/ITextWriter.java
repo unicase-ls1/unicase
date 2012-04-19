@@ -16,6 +16,7 @@ import java.util.Vector;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.unicase.docExport.Activator;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
 import org.unicase.docExport.exportModel.renderers.elements.UDocument;
@@ -38,7 +39,6 @@ import org.unicase.docExport.exportModel.renderers.options.SectionNumberingStyle
 import org.unicase.docExport.exportModel.renderers.options.TextAlign;
 import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.docExport.exportModel.renderers.options.UColor;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 import com.lowagie.text.BadElementException;
 import com.lowagie.text.Cell;

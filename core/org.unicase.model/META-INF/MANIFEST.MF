@@ -67,6 +67,9 @@ Export-Package: org.unicase.model,
  org.unicase.model.util.util,
  org.unicase.model.validation
 Require-Bundle: org.eclipse.emf.transaction;visibility:=reexport,
- org.unicase.metamodel;visibility:=reexport,
- org.unicase.emfstore.esmodel
+ org.eclipse.emf.emfstore.common.model,
+ org.eclipse.emf.emfstore.server.model,
+ org.eclipse.emf.ecp.common.model
 Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.emf.emfstore.common.model,
+ org.eclipse.emf.emfstore.server.model

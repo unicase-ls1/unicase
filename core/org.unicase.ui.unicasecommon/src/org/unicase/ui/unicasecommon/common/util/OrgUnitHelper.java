@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.unicasecommon.common.util;
 
@@ -14,26 +14,26 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
-import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
-import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
-import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
-import org.unicase.emfstore.exceptions.AccessControlException;
-import org.unicase.emfstore.exceptions.ConnectionException;
-import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.metamodel.Project;
+import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.Usersession;
+import org.eclipse.emf.emfstore.client.model.Workspace;
+import org.eclipse.emf.emfstore.client.model.accesscontrol.AccessControlHelper;
+import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.server.exceptions.AccessControlException;
+import org.eclipse.emf.emfstore.server.exceptions.ConnectionException;
+import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACGroup;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnit;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACOrgUnitId;
+import org.eclipse.emf.emfstore.server.model.accesscontrol.ACUser;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
-import org.unicase.ui.common.util.CannotMatchUserInProjectException;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Usersession;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.accesscontrol.AccessControlHelper;
-import org.unicase.workspace.util.NoCurrentUserException;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Helper for OrgUnit operations.
@@ -166,8 +166,8 @@ public final class OrgUnitHelper {
 		accessControlHelper.checkProjectAdminAccess(projectSpace.getProjectId());
 		try {
 
-			List<ACOrgUnit> participants = projectSpace.getUsersession().getAdminBroker().getParticipants(
-				projectSpace.getProjectId());
+			List<ACOrgUnit> participants = projectSpace.getUsersession().getAdminBroker()
+				.getParticipants(projectSpace.getProjectId());
 			if (participants != null) {
 				addToProject(participants, projectSpace);
 			}

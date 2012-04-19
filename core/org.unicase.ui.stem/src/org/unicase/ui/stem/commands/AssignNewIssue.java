@@ -6,7 +6,7 @@
  */
 package org.unicase.ui.stem.commands;
 
-import org.unicase.metamodel.Project;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.rationale.Issue;

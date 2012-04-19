@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.stem.views.statusview;
 
@@ -20,7 +20,18 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.MEClassLabelProvider;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.observer.FocusEventObserver;
+import org.eclipse.emf.ecp.common.observer.PresentationSwitchObserver;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.emfstore.client.model.ModelPackage;
+import org.eclipse.emf.emfstore.client.model.Workspace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.Separator;
@@ -47,24 +58,14 @@ import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.ecp.model.ECPWorkspaceManager;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.util.ModelUtil;
-import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.model.task.util.EstimateHelper;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
-import org.unicase.ui.common.MEClassLabelProvider;
-import org.unicase.ui.common.observer.FocusEventObserver;
-import org.unicase.ui.common.observer.PresentationSwitchObserver;
 import org.unicase.ui.stem.Activator;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.WorkspacePackage;
 
 /**
  * This view summarizes the the progress status of a model element according to its Openers, Annotations, and
@@ -136,7 +137,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 		adapterImpl = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
+				if ((msg.getFeatureID(Workspace.class)) == ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
 					// remove old listeners
 					if (activeProject != null) {
 						activeProject.removeProjectChangeObserver(StatusView.this);
@@ -366,8 +367,8 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 		lblEstimateProgressName.pack(true);
 		sectionComposite.layout(true);
 
-		Set<UnicaseModelElement> leafOpeners = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(
-			input);
+		Set<UnicaseModelElement> leafOpeners = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
+			.getLeafOpeners(input);
 		if (input instanceof WorkPackage) {
 			removeNotContainedTasks(leafOpeners, (WorkPackage) input);
 		}
@@ -582,8 +583,8 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	 */
 	@Override
 	public void setFocus() {
-		ECPWorkspaceManager.getObserverBus().notify(FocusEventObserver.class).onFocusEvent(
-			"org.unicase.ui.treeview.views.StatusView");
+		ECPWorkspaceManager.getObserverBus().notify(FocusEventObserver.class)
+			.onFocusEvent("org.unicase.ui.treeview.views.StatusView");
 	}
 
 	/**
@@ -622,7 +623,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementAdded(Project project, EObject modelElement) {
+	public void modelElementAdded(IdEObjectCollection project, EObject modelElement) {
 		if (input == null) {
 			return;
 		}
@@ -638,7 +639,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementRemoved(Project project, EObject modelElement) {
+	public void modelElementRemoved(IdEObjectCollection project, EObject modelElement) {
 		if (modelElement.equals(input)) {
 			setInput(null);
 			return;
@@ -658,7 +659,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
 	 */
-	public void notify(Notification notification, Project project, EObject modelElement) {
+	public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
 		if (input == null) {
 			return;
 		}
@@ -681,7 +682,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
 	 */
-	public void projectDeleted(Project project) {
+	public void projectDeleted(IdEObjectCollection project) {
 		// TODO Auto-generated method stub
 
 	}

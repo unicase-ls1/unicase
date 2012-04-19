@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
- * All rights reserved. This program and the accompanying materials are made available under the terms of
- * the Eclipse Public License v1.0 which accompanies this distribution,
- * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
+* All rights reserved. This program and the accompanying materials are made available under the terms of
+* the Eclipse Public License v1.0 which accompanies this distribution,
+* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.profile.impl;
 
@@ -26,11 +26,11 @@ import org.unicase.model.profile.Stereotype;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.model.profile.impl.ProfileImpl#getAffectedContainers <em>Affected Containers</em>}</li>
- *   <li>{@link org.unicase.model.profile.impl.ProfileImpl#getStereotypes <em>Stereotypes</em>}</li>
+ * <li>{@link org.unicase.model.profile.impl.ProfileImpl#getAffectedContainers <em>Affected Containers</em>}</li>
+ * <li>{@link org.unicase.model.profile.impl.ProfileImpl#getStereotypes <em>Stereotypes</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
@@ -56,6 +56,7 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProfileImpl() {
@@ -64,6 +65,7 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,6 +75,7 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UnicaseModelElement> getAffectedContainers() {
@@ -85,6 +88,7 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Stereotype> getStereotypes() {
@@ -97,6 +101,7 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -111,6 +116,7 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -124,6 +130,7 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -139,6 +146,7 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -159,6 +167,7 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -176,6 +185,7 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
