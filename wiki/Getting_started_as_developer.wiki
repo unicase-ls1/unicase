@@ -3,7 +3,7 @@ We develop UNICASE for the Eclipse platform with the Eclipse Java IDE.
 We currently use the following development tools:
 
     * [http://java.sun.com/javase/downloads/index_jdk5.jsp Java 5 SE]
-    * [http://www.eclipse.org/downloads/packages/release/helios/sr2 Eclipse Modeling Tools Edition] (Helios)
+    * [http://www.eclipse.org/downloads/ Eclipse Modeling Tools Edition] (Indigo SR2)
           o EMF <br>
           o Ecore Tools <br>
 
