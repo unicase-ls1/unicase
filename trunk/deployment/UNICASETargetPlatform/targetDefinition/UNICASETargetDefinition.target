@@ -8,7 +8,7 @@
 <repository location="http://unicase.googlecode.com/svn/updatesite/DeltaPack"/>
 </location>
 <location includeAllPlatforms="false" includeMode="slicer" type="InstallableUnit">
-<unit id="org.unicase.targetfeature.feature.group" version="0.4.8.201203291948"/>
+<unit id="org.unicase.targetfeature.feature.group" version="1.0.0.201204201300"/>
 <repository location="http://unicase.googlecode.com/svn/trunk/deployment/UNICASETargetPlatform/targetFeature/"/>
 </location>
 </locations>
