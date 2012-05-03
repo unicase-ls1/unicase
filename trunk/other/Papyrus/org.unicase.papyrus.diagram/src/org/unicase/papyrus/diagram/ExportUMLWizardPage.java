@@ -2,14 +2,22 @@ package org.unicase.papyrus.diagram;
 
 
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.Monitor;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecp.editor.MESuggestedSelectionDialog;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.jface.dialogs.Dialog;
@@ -23,9 +31,11 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DirectoryDialog;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -37,6 +47,8 @@ public class ExportUMLWizardPage extends WizardPage {
 	private static String format;
 	private static String destDir;
 	private Text destinationDirField;
+	
+	private static List<org.eclipse.uml2.uml.Package> packages;
 
 	protected ExportUMLWizardPage(Project project, String pageName) {
 		super(pageName);
@@ -54,6 +66,8 @@ public class ExportUMLWizardPage extends WizardPage {
 			selectableElements.add(umlPackage);
 		}
 		
+		
+		
 		// prompt the user to select packages
 		MESuggestedSelectionDialog selectionDialog = new MESuggestedSelectionDialog("Package Selection",
 			"Please select the packages you would like to export.", true, UMLFactory.eINSTANCE.createPackage(),
@@ -61,7 +75,19 @@ public class ExportUMLWizardPage extends WizardPage {
 		if(selectionDialog.open() != Dialog.OK) {
 			return;
 		}
+
 		
+		Collection<EObject> modelElements = selectionDialog.getModelElements();
+        packages = new ArrayList<org.eclipse.uml2.uml.Package>(modelElements.size());
+        
+        // add the selected packages
+        for (EObject eObject : selectionDialog.getModelElements()) {
+                if (eObject instanceof org.eclipse.uml2.uml.Package) {
+                        packages.add((Package) eObject);
+                }
+        }
+
+ 
 		// set title and description for the page
 
 		this.setTitle("Format selection");
@@ -81,6 +107,14 @@ public class ExportUMLWizardPage extends WizardPage {
 		
 		destinationDirField = new Text(content, SWT.BORDER);
 		destinationDirField.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		destinationDirField.setEditable(false);
+		destinationDirField.addListener(0, new Listener(){
+
+			public void handleEvent(Event event) {
+				browseForDestinationDir();
+				
+			}
+		});
 		
 		final Button destinationDirBtn = new Button(content, SWT.NONE);
 		destinationDirBtn.addSelectionListener(new SelectionAdapter(){
@@ -119,6 +153,7 @@ public class ExportUMLWizardPage extends WizardPage {
 		setControl(content);
 	}
 	
+	
 	public void browseForDestinationDir(){
 		
 		IPath path = browse(false);
@@ -149,6 +184,10 @@ public class ExportUMLWizardPage extends WizardPage {
 	
 	public static String getDestinationDir(){
 		return destDir;
+	}
+	
+	public static List<org.eclipse.uml2.uml.Package> getPackages(){
+		return packages;
 	}
 	
 }
