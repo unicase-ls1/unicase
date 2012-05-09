@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension
+            point="org.unicase.papyrus.service">
+         <serviceFactory
+               classname="org.unicase.papyrus.diagram.services.UnicaseEditingDomainServiceFactory"
+               description="TransactionalEditingDomain"
+               id="org.eclipse.emf.transaction.TransactionalEditingDomain"
+               priority="1"
+               startKind="startup">
+         </serviceFactory>
+         <serviceFactory
+               classname="org.unicase.papyrus.diagram.services.UnicasePageManagerServiceFactory"
+               id="org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr"
+               priority="1"
+               startKind="startup">
+         </serviceFactory>
+         <serviceFactory
+            classname="org.unicase.papyrus.diagram.services.UnicasePageIconRegistryServiceFactory"
+            id="org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry"
+            priority="1"
+            startKind="startup">
+      </serviceFactory>
+      </extension>
+            <extension
+                  point="org.eclipse.ui.commands">
+               <command
+                     defaultHandler="org.unicase.papyrus.diagram.ExportUMLHandler"
+                     id="org.unicase.papyrus.diagram.ExportUML"
+                     name="Export UML">
+               </command>
+            </extension>
+            <extension
+                  point="org.eclipse.ui.menus">
+               <menuContribution
+                     locationURI="popup:org.eclipse.emf.ecp.navigator.viewer">
+                  <command
+                        commandId="org.unicase.papyrus.diagram.ExportUML"
+                        icon="icons/UMLModel.gif"
+                        label="Export UML"
+                        style="push">
+                     <visibleWhen
+                           checkEnabled="false">
+                        <iterate
+                              ifEmpty="false"
+                              operator="and">
+                           <instanceof
+                                 value="org.eclipse.uml2.uml.Package">
+                           </instanceof>
+                        </iterate>
+                     </visibleWhen>
+                  </command>
+               </menuContribution>
+            </extension>
+      
+</plugin>
