@@ -1,7 +1,8 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * All rights reserved. This program and the accompanying materials are made available under the terms of
+ * the Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.papyrus.uml.diagram.part;
 
@@ -102,8 +103,8 @@ public class UMLDiagramOpener implements ModelElementOpener {
 				"org.unicase.papyrus.uml.diagram.sequence.UMLDiagramEditorID");
 			diagramTypeToEditorID.put(UMLDiagramType.STATE_MACHINE,
 				"org.unicase.papyrus.uml.diagram.statemachine.UMLDiagramEditorID");
-			diagramTypeToEditorID
-				.put(UMLDiagramType.USE_CASE, "org.unicase.papyrus.uml.diagram.usecase.UMLDiagramEditorID");
+			diagramTypeToEditorID.put(UMLDiagramType.USE_CASE,
+				"org.unicase.papyrus.uml.diagram.usecase.UMLDiagramEditorID");
 		}
 		return diagramTypeToEditorID;
 	}

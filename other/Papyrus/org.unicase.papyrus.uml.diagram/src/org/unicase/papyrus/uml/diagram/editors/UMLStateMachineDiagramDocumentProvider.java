@@ -1,7 +1,8 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * All rights reserved. This program and the accompanying materials are made available under the terms of
+ * the Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.papyrus.uml.diagram.editors;
 
@@ -171,12 +172,8 @@ public class UMLStateMachineDiagramDocumentProvider extends UMLDocumentProvider 
 	protected ISchedulingRule getResetRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-																							 * <org.eclipse.core.runtime.
-																							 * jobs.ISchedulingRule>
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-				.hasNext();) {
+			Collection<ISchedulingRule> rules = new ArrayList<ISchedulingRule>();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
@@ -194,12 +191,8 @@ public class UMLStateMachineDiagramDocumentProvider extends UMLDocumentProvider 
 	protected ISchedulingRule getSaveRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-																							 * <org.eclipse.core.runtime.
-																							 * jobs.ISchedulingRule>
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-				.hasNext();) {
+			Collection<ISchedulingRule> rules = new ArrayList<ISchedulingRule>();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
@@ -217,12 +210,8 @@ public class UMLStateMachineDiagramDocumentProvider extends UMLDocumentProvider 
 	protected ISchedulingRule getSynchronizeRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-																							 * <org.eclipse.core.runtime.
-																							 * jobs.ISchedulingRule>
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-				.hasNext();) {
+			Collection<ISchedulingRule> rules = new ArrayList<ISchedulingRule>();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
@@ -240,12 +229,8 @@ public class UMLStateMachineDiagramDocumentProvider extends UMLDocumentProvider 
 	protected ISchedulingRule getValidateStateRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */files = new ArrayList/*
-																							 * <org.eclipse.core.runtime.
-																							 * jobs.ISchedulingRule>
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-				.hasNext();) {
+			Collection<IFile> files = new ArrayList<IFile>();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
@@ -280,8 +265,7 @@ public class UMLStateMachineDiagramDocumentProvider extends UMLDocumentProvider 
 	protected void doSynchronize(Object element, IProgressMonitor monitor) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-				.hasNext();) {
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				handleElementChanged(info, nextResource, monitor);
 			}
@@ -306,8 +290,7 @@ public class UMLStateMachineDiagramDocumentProvider extends UMLDocumentProvider 
 			try {
 				monitor.beginTask(Messages.UMLDocumentProvider_SaveDiagramTask, info.getResourceSet().getResources()
 					.size() + 1); // "Saving diagram"
-				for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-					.hasNext();) {
+				for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 					Resource nextResource = (Resource) it.next();
 					monitor.setTaskName(NLS.bind(Messages.UMLDocumentProvider_SaveNextResourceTask,
 						nextResource.getURI()));
@@ -332,7 +315,7 @@ public class UMLStateMachineDiagramDocumentProvider extends UMLDocumentProvider 
 			}
 		} else {
 			URI newResoruceURI;
-			List affectedFiles = null;
+			List<IFile> affectedFiles = null;
 			if (element instanceof FileEditorInput) {
 				IFile newFile = ((FileEditorInput) element).getFile();
 				affectedFiles = Collections.singletonList(newFile);
