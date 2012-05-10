@@ -1,7 +1,8 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * All rights reserved. This program and the accompanying materials are made available under the terms of
+ * the Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.papyrus.sysml.diagram.editors;
 
@@ -58,6 +59,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServiceMultiException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteViewer;
@@ -87,6 +89,7 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.unicase.papyrus.PapyrusPackage;
 import org.unicase.papyrus.SysMLClass;
+import org.unicase.papyrus.diagram.services.UnicaseServicesRegistry;
 
 /**
  * Diagram editor for Papyrus SysML parametric diagrams.
@@ -616,7 +619,6 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 		};
 
 		modelElementContext.addModelElementContextListener(modelElementContextListener);
-		;
 	}
 
 	/**
@@ -680,23 +682,19 @@ public class SysMLParametricDiagramEditor extends DiagramDocumentEditor implemen
 
 	public ServicesRegistry getServicesRegistry() {
 		if (servicesRegistry == null) {
-			servicesRegistry = createServicesRegistry();
+			createServicesRegistry();
 		}
 		return servicesRegistry;
 	}
 
-	private ServicesRegistry createServicesRegistry() {
-		// Create Services Registry
-		// try {
-		// ServicesRegistry servicesRegistry = new UnicaseServicesRegistry(
-		// "org.unicase.papyrus", getDiagram().getElement());
-		// servicesRegistry.startRegistry();
-		// return servicesRegistry;
-		// } catch (ServiceException e) {
-		// // Show log and error
-		// log.error(e.getMessage(), e);
-		// }
-		return null;
+	private void createServicesRegistry() {
+		try {
+			servicesRegistry = new UnicaseServicesRegistry("org.unicase.papyrus", getDiagram().getElement());
+			servicesRegistry.startRegistry();
+		} catch (ServiceException e) {
+			// Show log and error
+			log.error(e.getMessage(), e);
+		}
 	}
 
 	public void setEditorInput(IEditorInput newInput) {
