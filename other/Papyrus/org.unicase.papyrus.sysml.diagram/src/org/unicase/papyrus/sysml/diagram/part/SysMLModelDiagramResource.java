@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische UniversitŠt MŸnchen (TUM).
-* All rights reserved. This program and the accompanying materials are made available under the terms of
-* the Eclipse Public License v1.0 which accompanies this distribution,
-* and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * All rights reserved. This program and the accompanying materials are made available under the terms of
+ * the Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.papyrus.sysml.diagram.part;
 
@@ -20,13 +20,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.DOMHandler;
 import org.eclipse.emf.ecore.xmi.DOMHelper;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.uml2.uml.Type;
 import org.unicase.papyrus.PapyrusFactory;
 import org.unicase.papyrus.SysMLClass;
 import org.unicase.papyrus.SysMLModel;
@@ -37,7 +37,7 @@ import org.xml.sax.InputSource;
 
 // dengler: review
 /**
- * @author Helming, denglerm
+ * @author Helming, denglerm, mharut
  */
 public class SysMLModelDiagramResource extends ResourceImpl implements Resource, Resource.Factory, Resource.Internal,
 	XMLResource {
@@ -65,19 +65,19 @@ public class SysMLModelDiagramResource extends ResourceImpl implements Resource,
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void delete(Map<?, ?> options) throws IOException {
-		// TODO Auto-generated method stub
+		// nothing to do
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public TreeIterator<EObject> getAllContents() {
-		// TODO Auto-generated method stub
+		// nothing to do
 		return null;
 	}
 
@@ -99,7 +99,7 @@ public class SysMLModelDiagramResource extends ResourceImpl implements Resource,
 	}
 
 	private void initialize() {
-		// TODO: improve this, maybe move it
+		// TODO: improve this, maybe move it to a centralized location
 		boolean hasModelSetQuery = false;
 		for (Object adapter : model.eResource().eAdapters()) {
 			if (adapter instanceof UnicaseModelSetQueryAdapter) {
@@ -112,22 +112,27 @@ public class SysMLModelDiagramResource extends ResourceImpl implements Resource,
 			model.eResource().eAdapters().add(new UnicaseModelSetQueryAdapter());
 		}
 
+		// parametric diagrams also require a class in addition to the model
 		new ECPCommand(model) {
 
 			@Override
 			protected void doRun() {
 				switch (model.getDiagramType()) {
 				case PARAMETRIC:
-					clazz = PapyrusFactory.eINSTANCE.createSysMLClass();
-					clazz.setName("Parametric");
-					model.getOwnedTypes().add(clazz);
-					break;
-				case BLOCK_DEFINITION:
-				case INTERNAL_BLOCK:
-				case REQUIREMENT:
+					for (Type type : model.getOwnedTypes()) {
+						if (type instanceof SysMLClass) {
+							clazz = (SysMLClass) type;
+							break;
+						}
+					}
+					if (clazz == null) {
+						clazz = PapyrusFactory.eINSTANCE.createSysMLClass();
+						clazz.setName("Parametric");
+						model.getOwnedTypes().add(clazz);
+					}
 					break;
 				default:
-					throw new IllegalArgumentException("No diagram type has been selected!");
+					break;
 				}
 			}
 
@@ -139,47 +144,45 @@ public class SysMLModelDiagramResource extends ResourceImpl implements Resource,
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public EObject getEObject(String uriFragment) {
-		// TODO Auto-generated method stub
+		// nothing to do
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public EList<Diagnostic> getErrors() {
-		// TODO Auto-generated method stub
+		// nothing to do
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public ResourceSet getResourceSet() {
 		if (model.eResource() != null) {
 			return model.eResource().getResourceSet();
-		} else {
-			// evil hack
-			return new ResourceSetImpl();
 		}
+		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public long getTimeStamp() {
-		// TODO Auto-generated method stub
+		// nothing to do
 		return 0;
 	}
 
 	/**
-	 * Forwards the URI of unicase Resource.
+	 * Forwards the URI of Unicase Resource.
 	 * 
 	 * @return returns URI
 	 */
@@ -187,52 +190,38 @@ public class SysMLModelDiagramResource extends ResourceImpl implements Resource,
 	public URI getURI() {
 		if (model.eResource() != null) {
 			return model.eResource().getURI();
-		} else {
-			// evil hack
-			ResourceSetImpl resourceSetImpl = new ResourceSetImpl();
-			Resource resource = resourceSetImpl.createResource(URI.createURI("blaaaaaa"));
-			return resource.getURI();
 		}
-	}
-
-	/**
-	 * . {@inheritDoc}
-	 */
-	@Override
-	public String getURIFragment(EObject object) {
-		String uriFragment = super.getURIFragment(object);
-		return uriFragment;
-	}
-
-	/**
-	 * . {@inheritDoc}
-	 */
-	@Override
-	public EList<Diagnostic> getWarnings() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
+	 */
+	@Override
+	public EList<Diagnostic> getWarnings() {
+		// nothing to do
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isLoaded() {
-
 		return model.eResource().isLoaded();
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isModified() {
-		// TODO Auto-generated method stub
+		// nothing to do
 		return false;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isTrackingModification() {
@@ -241,44 +230,39 @@ public class SysMLModelDiagramResource extends ResourceImpl implements Resource,
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void load(Map<?, ?> options) throws IOException {
-		// TODO Auto-generated method stub
-
+		// nothing to do
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void save(Map<?, ?> options) throws IOException {
-		// TODO Auto-generated method stub
-
+		// nothing to do
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setModified(boolean isModified) {
-		// TODO Auto-generated method stub
-		System.out.print("huha");
-
+		// nothing to do
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setTimeStamp(long timeStamp) {
-		// TODO Auto-generated method stub
-
+		// nothing to do
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setTrackingModification(boolean isTrackingModification) {
@@ -286,16 +270,15 @@ public class SysMLModelDiagramResource extends ResourceImpl implements Resource,
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setURI(URI uri) {
-		// TODO Auto-generated method stub
-
+		// nothing to do
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean eDeliver() {
@@ -303,25 +286,23 @@ public class SysMLModelDiagramResource extends ResourceImpl implements Resource,
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void eNotify(Notification notification) {
-		// TODO Auto-generated method stub
-
+		// nothing to do
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void eSetDeliver(boolean deliver) {
-		// TODO Auto-generated method stub
-
+		// nothing to do
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public Resource createResource(URI uri) {
 		Resource resource = WorkspaceManager.getInstance().getCurrentWorkspace().eResource();
@@ -335,7 +316,7 @@ public class SysMLModelDiagramResource extends ResourceImpl implements Resource,
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void attached(EObject object) {
@@ -343,84 +324,81 @@ public class SysMLModelDiagramResource extends ResourceImpl implements Resource,
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public NotificationChain basicSetResourceSet(ResourceSet resourceSet, NotificationChain notifications) {
-
 		// JH Check what this is for. This is called and maybe causes trouble
 		return super.basicSetResourceSet(resourceSet, notifications);
-
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void detached(EObject object) {
-		// TODO Auto-generated method stub
-
+		// nothing to do
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean isLoading() {
-		// TODO Auto-generated method stub
+		// nothing to do
 		return false;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public DOMHelper getDOMHelper() {
-		// TODO Auto-generated method stub
+		// nothing to do
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public Map<Object, Object> getDefaultLoadOptions() {
-		// TODO Auto-generated method stub
+		// nothing to do
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public Map<Object, Object> getDefaultSaveOptions() {
-		// TODO Auto-generated method stub
+		// nothing to do
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public Map<EObject, AnyType> getEObjectToExtensionMap() {
-		// TODO Auto-generated method stub
+		// nothing to do
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public Map<EObject, String> getEObjectToIDMap() {
-		// TODO Auto-generated method stub
+		// nothing to do
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public String getEncoding() {
-		// TODO Auto-generated method stub
+		// nothing to do
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public String getID(EObject object) {
 		// JH super?
@@ -428,115 +406,115 @@ public class SysMLModelDiagramResource extends ResourceImpl implements Resource,
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public Map<String, EObject> getIDToEObjectMap() {
-		// TODO Auto-generated method stub
+		// nothing to do
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public String getPublicId() {
-		// TODO Auto-generated method stub
+		// nothing to do
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public String getSystemId() {
-		// TODO Auto-generated method stub
+		// nothing to do
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public String getXMLVersion() {
-		// TODO Auto-generated method stub
+		// nothing to do
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void load(Node node, Map<?, ?> options) throws IOException {
-		// TODO Auto-generated method stub
+		// nothing to do
 
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void load(InputSource inputSource, Map<?, ?> options) throws IOException {
-		// TODO Auto-generated method stub
+		// nothing to do
 
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void save(Writer writer, Map<?, ?> options) throws IOException {
-		// TODO Auto-generated method stub
+		// nothing to do
 
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public Document save(Document document, Map<?, ?> options, DOMHandler handler) {
-		// TODO Auto-generated method stub
+		// nothing to do
 		return null;
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void setDoctypeInfo(String publicId, String systemId) {
-		// TODO Auto-generated method stub
+		// nothing to do
 
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void setEncoding(String encoding) {
-		// TODO Auto-generated method stub
+		// nothing to do
 
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void setID(EObject object, String id) {
-		// TODO Auto-generated method stub
+		// nothing to do
 
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void setUseZip(boolean useZip) {
-		// TODO Auto-generated method stub
+		// nothing to do
 
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void setXMLVersion(String version) {
-		// TODO Auto-generated method stub
+		// nothing to do
 
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean useZip() {
-		// TODO Auto-generated method stub
+		// nothing to do
 		return super.useZip();
 	}
 }
