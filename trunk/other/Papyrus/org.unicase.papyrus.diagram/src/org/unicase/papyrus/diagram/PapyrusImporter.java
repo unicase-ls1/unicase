@@ -1,7 +1,8 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * All rights reserved. This program and the accompanying materials are made available under the terms of
+ * the Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.papyrus.diagram;
 
@@ -27,9 +28,9 @@ import org.eclipse.uml2.uml.ecore.importer.UMLImporterPlugin;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
- * This {@link UMLImporter} extension will generate {@link EPackage EPackages} for a list of {@link Package UML-Packages}. Unlike the UML
- * importer, this importer only requires the actual packages instead of URIs to the corresponding UML resource files
- * containing the packages.
+ * This {@link UMLImporter} extension will generate {@link EPackage EPackages} for a list of {@link Package
+ * UML-Packages}. Unlike the UML importer, this importer only requires the actual packages instead of URIs to the
+ * corresponding UML resource files containing the packages.
  * 
  * @author mharut
  */
@@ -39,6 +40,7 @@ public class PapyrusImporter extends UMLImporter {
 
 	/**
 	 * Creates a new importer instance with the UML packages that should be converted to {@link EPackage EPackages}.
+	 * 
 	 * @param packages the UML packages that should be converted
 	 */
 	public PapyrusImporter(Collection<org.eclipse.uml2.uml.Package> packages) {
@@ -65,7 +67,8 @@ public class PapyrusImporter extends UMLImporter {
 			UMLUtil.QualifiedTextProvider.DEFAULT);
 
 		@SuppressWarnings("unchecked")
-		Collection<EPackage> ePackages = (Collection<EPackage>) new Papyrus2EcoreConverter().convert(packages, options, diagnostics, context); 
+		Collection<EPackage> ePackages = (Collection<EPackage>) new Papyrus2EcoreConverter().convert(packages, options,
+			diagnostics, context);
 		getEPackages().addAll(ePackages);
 
 		monitor.done();
@@ -80,9 +83,9 @@ public class PapyrusImporter extends UMLImporter {
 
 		return diagnostic;
 	}
-	
+
 	/**
-	 * Converter that will convert Papyrus models to corresponding ecore packages. 
+	 * Converter that will convert Papyrus models to corresponding ecore packages.
 	 * 
 	 * @author mharut
 	 */
@@ -119,12 +122,11 @@ public class PapyrusImporter extends UMLImporter {
 
 				if (element.hasValue(ePackageStereotype, UMLUtil.TAG_DEFINITION__PREFIX)) {
 
-					ePackageInfo.setPrefix((String) element.getValue(ePackageStereotype,
-						UMLUtil.TAG_DEFINITION__PREFIX));
+					ePackageInfo.setPrefix((String) element
+						.getValue(ePackageStereotype, UMLUtil.TAG_DEFINITION__PREFIX));
 				}
 			}
 		}
 	}
-
 
 }
