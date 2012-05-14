@@ -105,6 +105,8 @@ public class UMLDiagramOpener implements ModelElementOpener {
 				"org.unicase.papyrus.uml.diagram.statemachine.UMLDiagramEditorID");
 			diagramTypeToEditorID.put(UMLDiagramType.USE_CASE,
 				"org.unicase.papyrus.uml.diagram.usecase.UMLDiagramEditorID");
+			diagramTypeToEditorID.put(UMLDiagramType.PACKAGE,
+				"org.unicase.papyrus.uml.diagram.package.UMLDiagramEditorID");
 		}
 		return diagramTypeToEditorID;
 	}

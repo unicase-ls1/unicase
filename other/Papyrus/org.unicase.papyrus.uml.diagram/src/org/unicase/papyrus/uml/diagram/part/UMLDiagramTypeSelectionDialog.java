@@ -34,7 +34,7 @@ public class UMLDiagramTypeSelectionDialog extends ElementListSelectionDialog {
 		if (diagramTypes == null) {
 			diagramTypes = new UMLDiagramType[] { UMLDiagramType.ACTIVITY, UMLDiagramType.CLASS,
 				UMLDiagramType.COMMUNICATION, UMLDiagramType.COMPOSITE, UMLDiagramType.SEQUENCE,
-				UMLDiagramType.STATE_MACHINE, UMLDiagramType.USE_CASE };
+				UMLDiagramType.STATE_MACHINE, UMLDiagramType.USE_CASE, UMLDiagramType.PACKAGE };
 		}
 		return diagramTypes;
 	}
