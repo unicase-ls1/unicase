@@ -58,11 +58,10 @@ public final class UMLInitUtil {
 			defaultInitialization(model, null, CompositeStructureDiagramEditPart.MODEL_ID,
 				org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 			break;
-		// FIXME: Wrong ID, unable to find the right one!
-		// case PACKAGE:
-		// diagram = ViewService.createDiagram(model, UseCaseDiagramEditPart.MODEL_ID,
-		// org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-		// break;
+		case PACKAGE:
+			defaultInitialization(model, null, "Package",
+				org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+			break;
 		case SEQUENCE:
 			defaultInitialization(model, UMLFactory.eINSTANCE.createInteraction(),
 				org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart.MODEL_ID,
