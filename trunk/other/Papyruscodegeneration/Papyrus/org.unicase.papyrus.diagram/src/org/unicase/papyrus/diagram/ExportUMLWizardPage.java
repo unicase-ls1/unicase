@@ -45,6 +45,7 @@ public class ExportUMLWizardPage extends WizardPage {
 		// set title and description for the page
 		this.setTitle("Format selection");
 		this.setDescription("Please select the format you would like to export to.");
+		setPageComplete(false);
 	}
 
 	public void createControl(Composite parent) {
@@ -129,6 +130,16 @@ public class ExportUMLWizardPage extends WizardPage {
 
 		setControl(content);
 	}
+	
+	/**
+	 * @generated
+	 */
+	protected boolean validatePage() {
+		if (destDir.isEmpty()) {
+			return false;
+		}
+		return true;
+	}
 
 	public void browseForDestinationDir() {
 		IPath path = browse(false);
@@ -137,6 +148,7 @@ public class ExportUMLWizardPage extends WizardPage {
 		}
 		destDir = path.toString();
 		destinationDirField.setText(destDir);
+		setPageComplete(validatePage());
 	}
 
 	public IPath browse(boolean mustExist) {
@@ -165,5 +177,4 @@ public class ExportUMLWizardPage extends WizardPage {
 	public List<org.eclipse.uml2.uml.Package> getPackages() {
 		return packages;
 	}
-
 }

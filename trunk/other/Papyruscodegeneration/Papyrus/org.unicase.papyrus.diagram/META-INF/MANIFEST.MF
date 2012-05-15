@@ -20,6 +20,11 @@ Require-Bundle: org.unicase.papyrus.edit;visibility:=reexport,
  org.eclipse.emf.emfstore.client;visibility:=reexport,
  org.eclipse.emf.codegen.ecore;visibility:=reexport,
  org.eclipse.emf.importer;visibility:=reexport,
- org.eclipse.uml2.uml.ecore.importer;visibility:=reexport
+ org.eclipse.uml2.uml.ecore.importer;visibility:=reexport,
+ org.eclipse.acceleo.model
 Export-Package: org.unicase.papyrus.diagram.services,
  org.unicase.papyrus.diagram
+Import-Package: org.eclipse.acceleo.engine.event,
+ org.eclipse.acceleo.engine.generation.strategy,
+ org.eclipse.acceleo.engine.service,
+ org.eclipse.acceleo.model.mtl
