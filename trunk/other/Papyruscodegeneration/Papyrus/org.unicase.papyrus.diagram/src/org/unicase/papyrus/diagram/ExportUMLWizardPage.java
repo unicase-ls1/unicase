@@ -72,9 +72,9 @@ public class ExportUMLWizardPage extends WizardPage {
 		Collection<EObject> modelElements = selectionDialog.getModelElements();
 		packages = new ArrayList<org.eclipse.uml2.uml.Package>(modelElements.size());
 
-		for (EObject eObject : selectionDialog.getModelElements()) {
-			if (eObject instanceof org.eclipse.uml2.uml.Package) {
-				packages.add((Package) eObject);
+		for (Object object : selectionDialog.getResult()) {
+			if (object instanceof org.eclipse.uml2.uml.Package) {
+				packages.add((Package) object);
 			}
 		}
 
@@ -130,7 +130,7 @@ public class ExportUMLWizardPage extends WizardPage {
 
 		setControl(content);
 	}
-	
+
 	/**
 	 * @generated
 	 */
