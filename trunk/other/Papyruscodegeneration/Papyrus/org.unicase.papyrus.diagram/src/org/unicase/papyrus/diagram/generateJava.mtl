@@ -8,9 +8,9 @@
   author <a href="mailto:stephane.bouchet@obeo.fr">Stephane Bouchet</a>
 [/comment]
 [module generateJava('http://www.eclipse.org/uml2/2.1.0/UML')/]
-[import common/]
-[import interfaceBody/]
-[import classBody/]
+[import org::unicase::papyrus::diagram::common::common/]
+[import org::unicase::papyrus::diagram::common::interfaceBody/]
+[import org::unicase::papyrus::diagram::common::classBody/]
 
 [template public generateClass(c : Class)]
 [comment @main /]

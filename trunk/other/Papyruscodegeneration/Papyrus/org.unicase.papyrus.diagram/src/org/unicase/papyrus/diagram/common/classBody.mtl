@@ -8,51 +8,34 @@
   author <a href="mailto:stephane.bouchet@obeo.fr">Stephane Bouchet</a>
 [/comment]
 [module classBody('http://www.eclipse.org/uml2/2.1.0/UML')/]
-[import common/]
+[import org::unicase::papyrus::diagram::common::common/]
 
 [template public generateClassBody(c : Class)]
-public[if (c.isAbstract)] abstract[/if] class [c.name.toUpperFirst()/][for (superC : Class | c.superClass) before(' extends ') separator(',')] [superC.name/][/for][for (interf : Interface | c.getImplementedInterfaces()) before(' implements ') separator(',')] [interf.name/][/for] {
+public[if (c.isAbstract)] abstract[/if] class [c.normalizeName()/][for (superC : Class | c.superClass) before(' extends ') separator(', ')][superC.normalizeName()/][/for][for (interf : Interface | c.getImplementedInterfaces()) before(' implements ') separator(',')] [interf.normalizeName()/][/for] {
+[for (p : Property | c.getAllAttributes())][p.propertyBody()/][/for]
 [for (p : Property | c.getAllAttributes())]
-[if (p.upper = -1 or p.upper > 1)]
-    /**
-     * the [p.name/] attribute.
-     */
-    private List<[p.type.name/]> [p.name/];
-[else]
-    /**
-     * the [p.name/] attribute.
-     */
-    private [p.type.name/] [p.name/];
+[if (p.visibility <> 'private')]
+
+	/**
+	 * the [p.normalizeName()/] getter.
+	 * @return the [p.normalizeName()/].
+	 */
+	[p.visibility/] [if (p.upper = -1 or p.upper > 1)]List<[p.type.normalizeName()/]>[else][p.type.normalizeName()/][/if] get[p.normalizeName().toUpperFirst()/]() {
+		return this.[p.normalizeName()/];
+	}
+
+	/**
+	 * the [p.normalizeName()/] setter.
+	 * @param p_[p.normalizeName()/] the [p.normalizeName()/] to set.
+	 */
+	[p.visibility/] void set[p.normalizeName().toUpperFirst()/]([if (p.upper = -1 or p.upper > 1)]List<[p.type.normalizeName()/]>[else][p.type.normalizeName()/][/if] p_[p.normalizeName()/]) {
+		this.[p.normalizeName()/] = p_[p.normalizeName()/];
+	}
 [/if]
 [/for]
-[for (p : Property | c.getAllAttributes())]
-    /**
-     * the [p.name/] getter.
-     * @return the [p.name/].
-     */
-    public [if (p.upper = -1 or p.upper > 1)]List<[p.type.name/]>[else][p.type.name/][/if] get[p.name.toUpperFirst()/]() {
-        return this.[p.name/];
-    }
-
-    /**
-     * the [p.name/] setter.
-     * @param p_[p.name/] the [p.name/] to set.
-     */
-    public void set[p.name.toUpperFirst()/]([if (p.upper = -1 or p.upper > 1)]List<[p.type.name/]>[else][p.type.name/][/if] p_[p.name/]) {
-        this.[p.name/] = p_[p.name/];
-    }
-[/for]
 [for (p : Property | c.getAssociations().memberEnd)]
-[if (p.upper = -1 or p.upper > 1)]
-    /**
-     * the [p.name/] attribute.
-     */
-    private List<[p.type.name/]> [p.name/];
-[else]
-    /**
-     * the [p.name/] attribute.
-     */
-    private [p.type.name/] [p.name/];
+[if (listContains(c.getAllAttributes(), p) = false)] 
+[p.propertyBody()/]
 [/if]
 [/for]
 [for (o : Operation | c.getOperations())]
@@ -67,25 +50,42 @@ public[if (c.isAbstract)] abstract[/if] class [c.name.toUpperFirst()/][for (supe
 [/template]
 
 [template private operationBody(o : Operation)]
-    /**
-     *[for (cmt : Comment | o.ownedComment)] [cmt._body/][/for]
+
+	/**
+	 *[for (cmt : Comment | o.ownedComment)] [cmt._body/][/for]
 [for (p : Parameter | o.ownedParameter) ? (p.direction <> ParameterDirectionKind::return)]
 [paramOperationComment(p)/]
 [/for]
 [if (not o.type.oclIsUndefined())]
 [returnOperationComment()/]
 [/if]
-     */
-    public [o.returnTypeOperation()/]([o.getInParameter()/]) {
+	 */
+	[o.visibility/] [o.returnTypeOperation()/]([o.getInParameter()/]) {
 [if (not o.type.oclIsUndefined())]
-        // [protected ('for operation '.concat(o.name))]
-        // TODO should be implemented
-        return null;
-        // [/protected]
+	// [protected ('for operation '.concat(o.normalizeName()))]
+	// TODO should be implemented
+	return null;
+	// [/protected]
 [else]
-        // [protected ('for operation '.concat(o.name))]
-        // TODO should be implemented
-        // [/protected]
+	// [protected ('for operation '.concat(o.normalizeName()))]
+	// TODO should be implemented
+	// [/protected]
 [/if]
-    }
+	}
+[/template]
+
+[template private propertyBody(p : Property)]
+[if (p.upper = -1 or p.upper > 1)]
+
+	/**
+	 * the [p.normalizeName()/] attribute.
+	 */
+	private List<[p.type.normalizeName()/]> [p.normalizeName()/];
+[else]
+
+	/**
+	 * the [p.normalizeName()/] attribute.
+	 */
+	private [p.type.normalizeName()/] [p.normalizeName()/];
+[/if]
 [/template]
