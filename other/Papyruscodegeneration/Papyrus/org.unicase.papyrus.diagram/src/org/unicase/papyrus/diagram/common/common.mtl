@@ -15,18 +15,18 @@
 
 [template public getFullPathFile(cl : Classifier)]
 [if (not cl.getNearestPackage().oclIsUndefined())]
-[cl.getNearestPackage().normalizeName().substituteAll('.', '/').concat('/').concat(cl.name).concat('.java')/]
+[cl.getNearestPackage().normalizeName().substituteAll('.', '/').concat('/').concat(cl.normalizeName()).concat('.java')/]
 [else]
-[cl.name.concat('.java')/]
+[cl.normalizeName().concat('.java')/]
 [/if]
 [/template]
 
 [template public getInParameter(o : Operation)]
-[for (p : Parameter | o.ownedParameter) separator(',') ? (p.direction <> ParameterDirectionKind::return)][p.type.name/] [p.name/][/for]
+[for (p : Parameter | o.ownedParameter) separator(',') ? (p.direction <> ParameterDirectionKind::return)][p.type.normalizeName()/] [p.normalizeName()/][/for]
 [/template]
 
 [template public returnTypeOperation(o : Operation)]
-[if (o.type.oclIsUndefined())]void [o.name/][else][o.type.name/] [o.name/][/if]
+[if (o.type.oclIsUndefined())]void [o.normalizeName()/][else][o.type.normalizeName()/] [o.normalizeName()/][/if]
 [/template]
 
 [template public importBlock()]
@@ -36,11 +36,11 @@ import java.util.*;
 [/template]
 
 [template public packageBlock(cl : Classifier)]
-[if (not cl.getNearestPackage().oclIsUndefined())]package [cl.packagePath()/];[/if]
+[if (not cl.getNearestPackage().oclIsUndefined())]package [cl.packagePath().replace(' ', '_')/];[/if]
 [/template]
 
-[template private normalizeName(element : NamedElement)]
-[if ((element.name = 'package') or (element.name = 'interface') or (element.name = 'class'))][element.name.concat('_')/][else][element.name/][/if]
+[template public normalizeName(element : NamedElement)]
+[if ((element.name = 'package') or (element.name = 'interface') or (element.name = 'class'))][element.name.replaceAll(' ', '').concat('_')/][else][element.name.replaceAll(' ', '')/][/if]
 [/template]
 
 [template public _commentFileBlock()]
@@ -54,5 +54,14 @@ import java.util.*;
 [/template]
 
 [template public paramOperationComment(p : Parameter)]
-     * @param [p.name/]
+     * @param [p.normalizeName()/]
+[/template]
+
+[template public listContains(s : Set(Property), p : Property)]
+[for (p2 : Property | s)]
+[if (p.normalizeName() = p2.normalizeName())]
+[true/]
+[/if]
+[/for]
+[false/]
 [/template]

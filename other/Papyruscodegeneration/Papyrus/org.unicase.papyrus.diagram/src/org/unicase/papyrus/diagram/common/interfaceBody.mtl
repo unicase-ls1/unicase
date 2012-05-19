@@ -8,10 +8,10 @@
   author <a href="mailto:stephane.bouchet@obeo.fr">Stephane Bouchet</a>
 [/comment]
 [module interfaceBody('http://www.eclipse.org/uml2/2.1.0/UML')/]
-[import common/]
+[import org::unicase::papyrus::diagram::common::common/]
 
 [template public generateInterfaceBody(i : Interface)]
-public interface [i.name.toUpperFirst()/] {
+public interface [i.normalizeName()/] {
 
 [for (o : Operation | i.ownedOperation)]
     /**
