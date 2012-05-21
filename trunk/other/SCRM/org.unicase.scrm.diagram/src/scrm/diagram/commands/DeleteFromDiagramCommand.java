@@ -5,6 +5,7 @@
  */
 package scrm.diagram.commands;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -24,6 +25,7 @@ import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.ModelUtil;
 
 import scrm.SCRMDiagram;
+import scrm.SCRMModelElement;
 import scrm.SCRMSpace;
 import scrm.diagram.util.EditPartUtility;
 
@@ -67,10 +69,11 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 		}
 		List<EObject> additionalMEs = AssociationClassHelper.getRelatedAssociationClassToDelete(destructee, context.getMetaModelElementContext());
 		EditPart diagramEditPart = EditPartUtility.getDiagramEditPart(this.editPart);
-		SCRMDiagram diag = (SCRMDiagram) EditPartUtility.getElement(diagramEditPart);
-		diag.getElements().remove(destructee);
+		SCRMDiagram scrmDiagram = (SCRMDiagram) EditPartUtility.getElement(diagramEditPart);
+		List<SCRMModelElement> elements = scrmDiagram.getElements();
+		elements.remove(destructee);
 		for (EObject additionalME : additionalMEs) {
-			diag.getElements().remove(additionalME);
+			elements.remove(additionalME);
 		}
 		
 		EObject model = ((View) editPart.getModel()).getElement();
@@ -78,6 +81,11 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 		EObject containee = model;
 		
 		while(container instanceof SCRMSpace) {
+			if(!isContained(elements, container)) {
+				if(scrmDiagram.getRepresentedSpace() != container) {
+					break;
+				}
+			}
 			containee = container;
 			container = container.eContainer();
 		}
@@ -89,6 +97,23 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 		return CommandResult.newOKCommandResult();
 	}
 
+	private boolean isContained(List<SCRMModelElement> elements,
+			EObject container) {
+		for(SCRMModelElement element : elements) {
+			if(element == container) {
+				return true;
+			}
+			for(Iterator<EObject> iter = element.eAllContents(); iter.hasNext();) {
+				EObject eObject = iter.next();
+				if(eObject == container) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void addToParent(EObject container, EObject containee, EObject model) {
 		EStructuralFeature containingFeature = containee.eContainingFeature();
 		List containedObjects = (List) container.eGet(containingFeature);
