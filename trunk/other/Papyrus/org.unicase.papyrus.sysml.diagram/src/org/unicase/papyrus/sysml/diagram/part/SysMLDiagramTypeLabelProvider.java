@@ -12,6 +12,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.papyrus.SysMLDiagramType;
 import org.unicase.papyrus.diagram.services.UnicaseImageUtil;
+import org.unicase.papyrus.diagram.services.UnicasePapyrusIconRegistry;
 
 /**
  * Label provider for {@link SysMLDiagramTypeSelectionDialog}, providing the appropriate icon and text for each diagram
@@ -36,25 +37,11 @@ public class SysMLDiagramTypeLabelProvider extends LabelProvider {
 	 * {@inheritDoc}
 	 */
 	public Image getImage(Object object) {
-		if (object instanceof SysMLDiagramType) {
-			try {
-				switch ((SysMLDiagramType) object) {
-				case BLOCK_DEFINITION:
-					return UnicaseImageUtil.getBlockDefinitionImage();
-				case INTERNAL_BLOCK:
-					return UnicaseImageUtil.getInternalBlockImage();
-				case PARAMETRIC:
-					return UnicaseImageUtil.getParametricImage();
-				case REQUIREMENT:
-					return UnicaseImageUtil.getRequirementImage();
-				default:
-					throw new IllegalArgumentException("Invalid diagram type!");
-				}
-			} catch (IOException e) {
-				return null;
-			}
+		Image result = UnicasePapyrusIconRegistry.getInstance().getEditorIcon(object);
+		if (result == null) {
+			result = super.getImage(object);
 		}
-		return null;
+		return result;
 	};
 
 }

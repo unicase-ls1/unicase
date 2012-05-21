@@ -11,7 +11,7 @@ import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 
 /**
- * Service factory for page icons in Unicase. Will return an instance of {@link UnicaseUMLIconRegistry}.
+ * Service factory for page icons in Unicase. Will return an instance of {@link UnicasePapyrusIconRegistry}.
  * 
  * @author mharut
  */
@@ -39,7 +39,7 @@ public class UnicasePageIconRegistryServiceFactory implements IServiceFactory {
 	 * {@inheritDoc}
 	 */
 	public Object createServiceInstance() throws ServiceException {
-		return UnicaseUMLIconRegistry.getInstance();
+		return UnicasePapyrusIconRegistry.getInstance();
 	}
 
 }
