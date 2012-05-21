@@ -12,6 +12,8 @@ import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.swt.graphics.Image;
+import org.unicase.papyrus.SysMLDiagramType;
+import org.unicase.papyrus.SysMLModel;
 import org.unicase.papyrus.UMLDiagramType;
 import org.unicase.papyrus.UMLModel;
 
@@ -20,11 +22,11 @@ import org.unicase.papyrus.UMLModel;
  * 
  * @author mharut
  */
-public final class UnicaseUMLIconRegistry implements IPageIconsRegistry {
+public final class UnicasePapyrusIconRegistry implements IPageIconsRegistry {
 
-	private static UnicaseUMLIconRegistry instance;
+	private static UnicasePapyrusIconRegistry instance;
 
-	private UnicaseUMLIconRegistry() {
+	private UnicasePapyrusIconRegistry() {
 		// nothing to do
 	}
 
@@ -33,19 +35,46 @@ public final class UnicaseUMLIconRegistry implements IPageIconsRegistry {
 	 */
 	public Image getEditorIcon(Object object) {
 		if (object instanceof Diagram) {
-			UMLModel model = (UMLModel) ((Diagram) object).getElement();
-			return getIcon(model.getDiagramType());
+			// use the parent of the diagram in the following steps
+			object = ((Diagram) object).getElement();
+			// no return on purpose
 		}
 		if (object instanceof UMLModel) {
-			return getIcon(((UMLModel) object).getDiagramType());
+			return getUMLIcon(((UMLModel) object).getDiagramType());
 		}
 		if (object instanceof UMLDiagramType) {
-			return getIcon((UMLDiagramType) object);
+			return getUMLIcon((UMLDiagramType) object);
+		}
+		if (object instanceof SysMLModel) {
+			return getSysMLIcon(((SysMLModel) object).getDiagramType());
+		}
+		if (object instanceof SysMLDiagramType) {
+			return getSysMLIcon((SysMLDiagramType) object);
 		}
 		return null;
 	}
 
-	private Image getIcon(UMLDiagramType diagramType) {
+	private Image getSysMLIcon(SysMLDiagramType diagramType) {
+		try {
+			switch (diagramType) {
+			case BLOCK_DEFINITION:
+				return UnicaseImageUtil.getBlockDefinitionImage();
+			case INTERNAL_BLOCK:
+				return UnicaseImageUtil.getInternalBlockImage();
+			case PARAMETRIC:
+				return UnicaseImageUtil.getParametricImage();
+			case REQUIREMENT:
+				return UnicaseImageUtil.getRequirementImage();
+			default:
+				return null;
+			}
+		} catch (IOException e) {
+			WorkspaceUtil.logException("Failed to load Papyrus icons", e);
+			return null;
+		}
+	}
+
+	private Image getUMLIcon(UMLDiagramType diagramType) {
 		try {
 			switch (diagramType) {
 			case ACTIVITY:
@@ -78,9 +107,9 @@ public final class UnicaseUMLIconRegistry implements IPageIconsRegistry {
 	 * 
 	 * @return the singleton instance
 	 */
-	public static UnicaseUMLIconRegistry getInstance() {
+	public static UnicasePapyrusIconRegistry getInstance() {
 		if (instance == null) {
-			instance = new UnicaseUMLIconRegistry();
+			instance = new UnicasePapyrusIconRegistry();
 		}
 		return instance;
 	}

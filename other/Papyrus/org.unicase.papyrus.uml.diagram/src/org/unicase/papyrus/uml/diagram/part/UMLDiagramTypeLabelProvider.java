@@ -9,7 +9,7 @@ package org.unicase.papyrus.uml.diagram.part;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.papyrus.UMLDiagramType;
-import org.unicase.papyrus.diagram.services.UnicaseUMLIconRegistry;
+import org.unicase.papyrus.diagram.services.UnicasePapyrusIconRegistry;
 
 /**
  * Label provider for {@link UMLDiagramTypeSelectionDialog}, providing the appropriate icon and text for each diagram
@@ -34,7 +34,7 @@ public class UMLDiagramTypeLabelProvider extends LabelProvider {
 	 * {@inheritDoc}
 	 */
 	public Image getImage(Object object) {
-		Image result = UnicaseUMLIconRegistry.getInstance().getEditorIcon(object);
+		Image result = UnicasePapyrusIconRegistry.getInstance().getEditorIcon(object);
 		if (result == null) {
 			result = super.getImage(object);
 		}

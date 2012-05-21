@@ -16,10 +16,11 @@ import org.eclipse.emf.ecp.common.utilities.ActionHelper;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.unicase.papyrus.SysMLModel;
 import org.unicase.papyrus.UMLModel;
 
 /**
- * Page manager for Papyrus UML diagrams in Unicase.
+ * Page manager for Papyrus diagrams in Unicase.
  * 
  * @author mharut
  */
@@ -49,7 +50,7 @@ public class UnicasePageManager implements IPageMngr {
 	public void removePage(Object pageIdentifier) {
 		EObject elementToDelete = null;
 		if (pageIdentifier instanceof Diagram) {
-			// delete the corresponding UMLModel instead of only the diagram
+			// delete the corresponding Model instead of only the diagram
 			elementToDelete = ((Diagram) pageIdentifier).getElement();
 		} else if (pageIdentifier instanceof EObject) {
 			elementToDelete = (EObject) pageIdentifier;
@@ -112,7 +113,12 @@ public class UnicasePageManager implements IPageMngr {
 				if (diagram != null) {
 					result.add(diagram);
 				}
-
+			} else if (me instanceof SysMLModel) {
+				final SysMLModel model = (SysMLModel) me;
+				Diagram diagram = model.getGmfDiagram();
+				if (diagram != null) {
+					result.add(diagram);
+				}
 			}
 
 		}
