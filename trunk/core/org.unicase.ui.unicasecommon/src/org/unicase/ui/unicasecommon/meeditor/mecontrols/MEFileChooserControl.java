@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.ecp.common.util.PreferenceHelper;
-import org.eclipse.emf.ecp.editor.ModelElementChangeListener;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
@@ -28,6 +27,7 @@ import org.eclipse.emf.emfstore.client.model.observers.CommitObserver;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.model.util.FileUtil;
+import org.eclipse.emf.emfstore.common.model.util.ModelElementChangeListener;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.exceptions.FileTransferException;
 import org.eclipse.emf.emfstore.server.model.FileIdentifier;
@@ -52,16 +52,17 @@ import org.unicase.model.attachment.FileAttachment;
 import org.unicase.ui.unicasecommon.Activator;
 
 /**
- * This class handles file attachments. If the file attachment has no file attached yet, this control allows to attach a
- * file If a file is already attached, the control allows to save that file. The file can also be replaced. If the file
- * is not yet commited, it can be removed.
+ * This class handles file attachments. If the file attachment has no file
+ * attached yet, this control allows to attach a file If a file is already
+ * attached, the control allows to save that file. The file can also be
+ * replaced. If the file is not yet commited, it can be removed.
  * 
  * @author pfeifferc, jfinis
  */
 public class MEFileChooserControl extends AbstractUnicaseMEControl {
 
 	private static final String UPLOAD_NOTPENDING_TOOL_TIP = "Click to upload a new file attachment to the server. "
-		+ "\nThe file attachment will be transferred upon commiting.\n\nIf you have already a file attached, this file will be replaced.";
+			+ "\nThe file attachment will be transferred upon commiting.\n\nIf you have already a file attached, this file will be replaced.";
 
 	private static final String CANCEL_UPLOAD_TOOLTIP = "If you wish to cancel the pending upload and upload another file, \nplease click this button.";
 
@@ -87,8 +88,9 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 	private Button saveAs;
 
 	/**
-	 * This observer listens for commits, so it can update the button status. This is necessary because a formerly
-	 * pending upload is no longer pending after a commit, because it was submitted during the commit.
+	 * This observer listens for commits, so it can update the button status.
+	 * This is necessary because a formerly pending upload is no longer pending
+	 * after a commit, because it was submitted during the commit.
 	 */
 	private CommitObserver commitObserver = new CommitObserver() {
 
@@ -97,7 +99,8 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 		}
 
 		public void commitCompleted(ProjectSpace projectSpace, PrimaryVersionSpec newRevision) {
-			// Upon commit, update the status of the button, since the file upload
+			// Upon commit, update the status of the button, since the file
+			// upload
 			// may no longer be pending
 			updateStatus(getProjectSpace().getFileInfo(fileAttachment.getFileIdentifier()).isPendingUpload());
 		}
@@ -156,7 +159,8 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 		saveAs.setImage(ICON_SAVE_FILE);
 		saveAs.setLayoutData(new GridData(SWT.RIGHT, SWT.BEGINNING, false, false));
 		saveAs.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		// GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).grab(false, false).applyTo(saveAs);
+		// GridDataFactory.fillDefaults().align(SWT.LEFT,
+		// SWT.CENTER).grab(false, false).applyTo(saveAs);
 
 		// Column 3: button to open a dialog for uploading files
 
@@ -181,33 +185,33 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 		saveAs.addSelectionListener(new SaveAsSelectionListener(true, false));
 		saveAs.setToolTipText("Saves the file to a user specified location");
 
-		// Set status of the upload button according to the file upload being pending
+		// Set status of the upload button according to the file upload being
+		// pending
 		// (if the upload of the attachment is still pending, it can be removed)
 		updateStatus(getProjectSpace().getFileInfo(fileAttachment.getFileIdentifier()).isPendingUpload());
 
 		// Add the commit observer which handles pending files being commited
 		getProjectSpace().addCommitObserver(commitObserver);
 
-		modelElementChangeListener = new ModelElementChangeListener(fileAttachment) {
+		modelElementChangeListener = new ModelElementChangeListener() {
 
 			public void onRuntimeExceptionInListener(RuntimeException exception) {
 			}
 
-			@Override
 			public void onChange(Notification notification) {
 				updateStatusAsync();
 			}
 		};
 
-		fileAttachment
-			.addModelElementChangeListener((org.eclipse.emf.emfstore.common.model.util.ModelElementChangeListener) modelElementChangeListener);
+		fileAttachment.addModelElementChangeListener(modelElementChangeListener);
 		return parent;
 	}
 
 	/**
 	 * Updates the status of the upload button and the file name.
 	 * 
-	 * @param uploadPending if the upload of the file is pending and thus can be canceled
+	 * @param uploadPending
+	 *            if the upload of the file is pending and thus can be canceled
 	 */
 	private void updateStatus(boolean uploadPending) {
 		if (fileAttachment.getFileName() == null) {
@@ -221,7 +225,10 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 			} else if (getProjectSpace().getFileInfo(fileAttachment.getFileIdentifier()).isCached()) {
 				suffix = " (cached)";
 			}
-			fileName.setText(/* "<a>" + */fileAttachment.getFileName() + suffix /* + "</a>" */);
+			fileName.setText(/* "<a>" + */fileAttachment.getFileName() + suffix /*
+																				 * +
+																				 * "</a>"
+																				 */);
 			saveAs.setVisible(true);
 			open.setVisible(true);
 		}
@@ -257,8 +264,10 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 	/**
 	 * Opens an information dialog.
 	 * 
-	 * @param title the title
-	 * @param message the message
+	 * @param title
+	 *            the title
+	 * @param message
+	 *            the message
 	 */
 	private void openInformation(final String title, final String message) {
 		upload.getDisplay().asyncExec(new Runnable() {
@@ -271,8 +280,10 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 	/**
 	 * Opens an error dialog.
 	 * 
-	 * @param title the title
-	 * @param message the message
+	 * @param title
+	 *            the title
+	 * @param message
+	 *            the message
 	 */
 	private void openError(final String title, final String message) {
 		upload.getDisplay().asyncExec(new Runnable() {
@@ -297,7 +308,8 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 		}
 
 		/**
-		 * This method is called when the user presses the "Save as..." text. {@inheritDoc}
+		 * This method is called when the user presses the "Save as..." text.
+		 * {@inheritDoc}
 		 * 
 		 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 		 */
@@ -310,7 +322,8 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 				// Get the file
 				final FileDownloadStatus status = getProjectSpace().getFile(fileAttachment.getFileIdentifier());
 
-				// Add observer that copies the file once the download is finished
+				// Add observer that copies the file once the download is
+				// finished
 				status.addTransferFinishedObserver(new Observer() {
 					public void update(Observable o, Object arg) {
 						try {
@@ -329,7 +342,8 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 					}
 				});
 
-				// Add observer that registers the exception if the download fails
+				// Add observer that registers the exception if the download
+				// fails
 				status.addDefaultFailObserver();
 			} catch (FileTransferException e1) {
 				registerSaveAsException(e1);
@@ -377,7 +391,8 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 		/**
 		 * Exception handling in the save as usecase.
 		 * 
-		 * @param e1 the exception to handle
+		 * @param e1
+		 *            the exception to handle
 		 */
 		private void registerSaveAsException(Exception e1) {
 			String fail = "Save as... failed!";
@@ -386,15 +401,16 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 	}
 
 	/**
-	 * This listener handles when the user presses the Add File/Cancel Upload button.
+	 * This listener handles when the user presses the Add File/Cancel Upload
+	 * button.
 	 * 
 	 * @author jfinis
 	 */
 	private final class AddFileOrCancelListener extends SelectionAdapter {
 
 		/**
-		 * This method is called when the "Add File" or "Cancel upload" button is pressed. (This is one button that
-		 * switches its icon and semantics)
+		 * This method is called when the "Add File" or "Cancel upload" button
+		 * is pressed. (This is one button that switches its icon and semantics)
 		 * 
 		 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 		 */
@@ -409,7 +425,8 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 		}
 
 		/**
-		 * Adds a file to upload by presenting a file chooser dialog and then adding the file to the upload queue.
+		 * Adds a file to upload by presenting a file chooser dialog and then
+		 * adding the file to the upload queue.
 		 */
 		private void doAddUpload() {
 			// open a file dialog
@@ -420,15 +437,18 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 				return;
 			}
 
-			// Check that the selected file actually exists (this should always be the case)
+			// Check that the selected file actually exists (this should always
+			// be the case)
 			final File uploadFile = new File(fileDialog.getFilterPath(), fileDialog.getFileName());
 			if (!uploadFile.exists()) {
 				openError("Error", "File to upload does not exist");
 				return;
 			}
 
-			// Add the file to the pending uploads and set the data in the attachment
-			// Since this modifies the project space, it has to be done in a unicase command
+			// Add the file to the pending uploads and set the data in the
+			// attachment
+			// Since this modifies the project space, it has to be done in a
+			// unicase command
 			new EMFStoreCommand() {
 				@Override
 				protected void doRun() {
@@ -500,8 +520,7 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 			upload.dispose();
 		}
 		if (modelElementChangeListener != null) {
-			fileAttachment
-				.removeModelElementChangeListener((org.eclipse.emf.emfstore.common.model.util.ModelElementChangeListener) modelElementChangeListener);
+			fileAttachment.removeModelElementChangeListener(modelElementChangeListener);
 		}
 		if (dbc != null) {
 			dbc.dispose();
