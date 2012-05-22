@@ -11,7 +11,7 @@
 [import org::unicase::papyrus::diagram::common::common/]
 
 [template public generateInterfaceBody(i : Interface)]
-public interface [i.normalizeName()/] {
+public interface [i.normalizeName()/][for (general : Generalization | i.generalization) before(' extends ') separator(', ')][for (superI : Interface | general.target) separator(', ')][superI.normalizeName()/][/for][/for] {
 
 [for (o : Operation | i.ownedOperation)]
     /**
