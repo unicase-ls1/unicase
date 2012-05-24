@@ -39,17 +39,32 @@ public[if (c.isAbstract)] abstract[/if] class [c.normalizeName()/][for (superC :
 [/if]
 [/for]
 [for (o : Operation | c.getOperations())]
-[operationBody(o, '')/]
+[operationBody(o, '', false)/]
 [/for]
+[if (c.isAbstract = false)]
 [for (interf : Interface | c.getImplementedInterfaces())]
 [interf.implementInterface()/]
 [/for]
+[for (superC : Class | c.superClass)]
+[superC.implementAbstractMethodsFromClass()/]
+[/for]
+[/if]
 }
+[/template]
+
+[template private implementAbstractMethodsFromClass(c : Class)]
+[if (c.isAbstract)][comment abstract methods from super super classes and interfaces of abstract classes should also be handled, but it has to be ensured somehow that those methods are already implemented by the superclass/]
+[for (o : Operation | c.ownedOperation)]
+[if (o.isAbstract)]
+[operationBody(o, '', true)/]
+[/if]
+[/for]
+[/if]
 [/template]
 
 [template private implementInterface(i : Interface)]
 [for (o : Operation | i.ownedOperation)]
-[operationBody(o, 'public')/]
+[operationBody(o, 'public', true)/]
 [/for]
 [for (general : Generalization | i.generalization)]
 [for (i : Interface | general.target)]
@@ -58,7 +73,7 @@ public[if (c.isAbstract)] abstract[/if] class [c.normalizeName()/][for (superC :
 [/for]
 [/template]
 
-[template private operationBody(o : Operation, v : String)]
+[template private operationBody(o : Operation, v : String, notAbstract : Boolean)]
 
 	/**
 	 *[for (cmt : Comment | o.ownedComment)] [cmt._body/][/for]
@@ -69,7 +84,8 @@ public[if (c.isAbstract)] abstract[/if] class [c.normalizeName()/][for (superC :
 [returnOperationComment()/]
 [/if]
 	 */
-	[if (v = '')][o.visibility/][else][v/][/if] [o.returnTypeOperation()/]([o.getInParameter()/]) {
+	[if (v = '')][o.visibility/][else][v/][/if][if (notAbstract = false and o.isAbstract and o.class.isAbstract)] abstract[/if] [o.returnTypeOperation()/]([o.getInParameter()/])[if (notAbstract = false and o.isAbstract and o.class.isAbstract)];
+[else] {
 [if (not o.type.oclIsUndefined())]
 		// [protected ('for operation '.concat(o.normalizeName()))]
 		// TODO should be implemented
@@ -80,7 +96,7 @@ public[if (c.isAbstract)] abstract[/if] class [c.normalizeName()/][for (superC :
 		// TODO should be implemented
 		// [/protected]
 [/if]
-	}
+	}[/if]
 [/template]
 
 [template private propertyBody(p : Property)]
