@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  
+     <extension-point id="org.unicase.ui.dashboard.widgets" name="Dashboard Widgets" schema="schema/dashboardWidgets.exsd"/>
+     <extension-point id="org.unicase.ui.dashboard.notification.providers" name="notificationProviders" schema="schema/org.unicase.ui.dashboard.notification.providers.exsd"/>
+  <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.unicase.ui.dashboard.view.DashboardEditor"
+            default="false"
+            id="org.unicase.ui.dashboard"
+            name="Dashboard">
+      </editor>
+   </extension>
+           <extension
+              point="org.eclipse.ui.propertyPages">
+
+           <page
+                 class="org.unicase.ui.dashboard.prefs.DashboardPropertyPage"
+                 id="org.unicase.ui.dashboard.dashboardProperties"
+                 name="Dashboard"
+                 objectClass="org.eclipse.emf.emfstore.common.model.Project">
+              <enabledWhen>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <count
+                          value="1">
+                    </count>
+                    <instanceof
+                          value="org.eclipse.emf.emfstore.common.model.Project">
+                    </instanceof>
+                 </iterate>
+              </enabledWhen>
+           </page>
+           <page
+                 category="org.unicase.ui.dashboard.dashboardProperties"
+                 class="org.unicase.ui.dashboard.prefs.DashboardWidgetsPropertyPage"
+                 id="org.unicase.ui.dashboard.dashboardWidgetProperties"
+                 name="Widgets">
+              <enabledWhen>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <count
+                          value="1">
+                    </count>
+                    <instanceof
+                          value="org.eclipse.emf.emfstore.common.model.Project">
+                    </instanceof>
+                 </iterate>
+              </enabledWhen>
+           </page>
+        </extension>
+        
+          <extension
+        point="org.eclipse.ui.commands">
+     <category
+           id="org.unicase.workspace.ui.project"
+           name="Unicase">
+     </category>
+          <command
+           defaultHandler="org.unicase.ui.dashboard.ShowDashboardHandler"
+           id="org.unicase.ui.dashboard.showDashboard"
+           name="showDashboard">
+     </command>
+             </extension>
+             
+               <extension
+        point="org.eclipse.ui.menus">
+     <menuContribution
+           locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=org.eclipse.emf.emfstore.client.ui.commands.showHistory">
+                  <command
+              commandId="org.unicase.ui.dashboard.showDashboard"
+              icon="icons/dashboard.png"
+              label="Open Dashboard"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <and>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <instanceof
+                          value="org.eclipse.emf.emfstore.client.model.ProjectSpace">
+                    </instanceof>
+                    <test
+                          forcePluginActivation="true"
+                          property="org.eclipse.emf.emfstore.client.ui.commands.projectIsShared"
+                          value="true">
+                    </test>
+                 </iterate>
+                 <count
+                       value="1">
+                 </count>
+              </and>
+           </visibleWhen>
+        </command>
+     </menuContribution>
+   </extension>
+                  
+   <extension
+         point="org.unicase.ui.dashboard.widgets">
+      <widget
+            class="org.unicase.ui.dashboard.view.widgets.DashboardTaskWidget"
+            name="Task Widget"
+            position="1">
+      </widget>
+            <widget
+            class="org.unicase.ui.dashboard.view.widgets.DashboardEventWidget"
+            name="Events Widget"
+            position="2">
+      </widget>
+      <widget
+            class="org.unicase.ui.dashboard.view.widgets.DashboardRelatedTasksWidget"
+            name="Related Tasks Widget"
+            position="3">
+      </widget>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecp.common.modelelementopener">
+      <ModelElementOpener
+            class="org.unicase.ui.dashboard.ModelElementOpener"
+            name="org.unicase.ui.dashboard.ModelElementOpener">
+      </ModelElementOpener>
+   </extension>
+   <extension
+         point="org.eclipse.emf.emfstore.client.notify.postinit">
+      <initiator
+            class="org.unicase.ui.dashboard.DashboardProjectObserver">
+      </initiator>
+   </extension>
+   <extension
+         point="org.unicase.ui.dashboard.notification.providers">
+      <provider
+            class="org.unicase.ui.dashboard.notificationProviders.CommentsNotificationProvider"
+            name="Comment Notifications"
+            priority="5">
+      </provider>
+      <provider
+            class="org.unicase.ui.dashboard.notificationProviders.UpdateNotificationProvider"
+            name="Update Notifications"
+            priority="0">
+      </provider>
+      <provider
+            class="org.unicase.ui.dashboard.notificationProviders.PushedNotificationProvider"
+            name="Pushed Notifications"
+            priority="1">
+      </provider>
+      <provider
+            class="org.unicase.ui.dashboard.notificationProviders.TaskNotificationProvider"
+            name="Task Notifications"
+            priority="2">
+      </provider>
+      <provider
+            class="org.unicase.ui.dashboard.notificationProviders.TaskChangeNotificationProvider"
+            name="Task Change Notifications"
+            priority="3">
+      </provider>
+      <provider
+            class="org.unicase.ui.dashboard.notificationProviders.SubscriptionNotificationProvider"
+            name="Subscriptions Notifications"
+            priority="4">
+      </provider>
+      <provider
+            class="org.unicase.ui.dashboard.notificationProviders.TaskObjectNotificationProvider"
+            name="Task Trace Notifications"
+            priority="6">
+      </provider>
+   </extension>
+</plugin>
