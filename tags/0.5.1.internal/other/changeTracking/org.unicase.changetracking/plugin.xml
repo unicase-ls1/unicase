@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.4"?>
-<plugin>
-   <extension-point id="org.unicase.changetracking.vcsadapters" name="Unicase Changetracking VCS Adapters" schema="schema/org.unicase.changetracking.vcsadapters.exsd"/>
-
-</plugin>

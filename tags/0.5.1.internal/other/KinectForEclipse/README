@@ -1,6 +1,0 @@
-Kinect For Eclipse is a Eclipse Plugin Project whose aim is to connect to Microsoft Kinect, and control Eclipse IDE via user gestures
-
-Notes about setup:
-1. The libraries and DLLs used to connect to Kinect are available under "lib" directory. Make sure to check "lib" in "Build Configuration"
-in the MANIFEST.MF file.
-2. In the run configuration, make sure that the Working Directory is the project directory itself.

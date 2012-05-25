@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.unicase.ui.common.rap
-Bundle-Version: 1.0.0.qualifier
-Fragment-Host: org.unicase.ui.common;bundle-version="1.0.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Name: unicase Common UI Plug-in RAP
-Bundle-Vendor: unicase.org
