@@ -23,8 +23,8 @@ import org.eclipse.emf.emfstore.client.model.util.ConfigurationProvider;
 import org.eclipse.emf.emfstore.common.model.util.FileUtil;
 
 /**
- * Default configuration provider for unicase. At the moment default {@link ServerInfo} can be set and certificates can
- * be initialized.
+ * Default configuration provider for unicase. At the moment default
+ * {@link ServerInfo} can be set and certificates can be initialized.
  * 
  * @author wesendon
  */
@@ -58,8 +58,8 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 	private static ServerInfo getInternalServerInfo() {
 		ServerInfo serverInfo = ModelFactory.eINSTANCE.createServerInfo();
 		serverInfo.setName("unicase Developer Server");
-		serverInfo.setPort(443);
-		serverInfo.setUrl("unicase-internal.informatik.tu-muenchen.de");
+		serverInfo.setPort(8080);
+		serverInfo.setUrl("unicase-internal2.informatik.tu-muenchen.de");
 		return serverInfo;
 	}
 
@@ -70,14 +70,20 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 	 */
 	public void initDefaultCertificates(KeyStoreManager keyStoreManager) {
 		try {
-			// TODO: add certificate rather then replacing the keystore and reloading:
-			// if default certificate is not contained in keystore, keystore will be deleted and recopied from the
-			// plugin. This is done, because one assumes that the default key is in the plugin's keystore. It would
+			// TODO: add certificate rather then replacing the keystore and
+			// reloading:
+			// if default certificate is not contained in keystore, keystore
+			// will be deleted and recopied from the
+			// plugin. This is done, because one assumes that the default key is
+			// in the plugin's keystore. It would
 			// be nicer to add the default certificate to the given keystore.
-			if (!keyStoreManager.certificateExists(keyStoreManager.getDefaultCertificate())) {
-				File clientKeyTarget = new File(keyStoreManager.getPathToKeyStore());
+			if (!keyStoreManager.certificateExists(keyStoreManager
+					.getDefaultCertificate())) {
+				File clientKeyTarget = new File(
+						keyStoreManager.getPathToKeyStore());
 				clientKeyTarget.delete();
-				InputStream inputStream = getClass().getResourceAsStream(KeyStoreManager.KEYSTORENAME);
+				InputStream inputStream = getClass().getResourceAsStream(
+						KeyStoreManager.KEYSTORENAME);
 				FileUtil.copyFile(inputStream, clientKeyTarget);
 				keyStoreManager.reloadKeyStore();
 			}
