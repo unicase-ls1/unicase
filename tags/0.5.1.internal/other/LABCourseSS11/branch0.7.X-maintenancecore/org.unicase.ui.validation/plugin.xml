@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension-point id="org.unicase.ui.validation.filters" name="The validation filter extension point" schema="schema/org.unicase.ui.validation.filter.exsd"/>
+ <extension-point id="org.unicase.ui.validation.refactoring.strategies" name="Refactorings for the validation constraint violations" schema="schema/org.unicase.ui.validation.refactorings.exsd"/>
+	<extension
+         point="org.eclipse.ui.views">
+		<view
+        category="org.unicase"
+        class="org.unicase.ui.validation.ValidationView"
+        icon="icons/validation.png"
+        id="org.unicase.ui.validation.validationView"
+        name="Validation View"
+        restorable="true">
+		</view>
+	</extension>
+ <extension
+       point="org.eclipse.emf.validation.validationListeners">
+    <listener
+          class="org.unicase.ui.validation.ValidationListener">
+       <clientContext
+             id="context">
+       </clientContext>
+    </listener>
+ </extension>
+ <extension
+       point="org.unicase.ui.validation.filters">
+    <filter
+          filter="org.unicase.ui.validation.filter.impl.Severity1ValidationFilter"
+          name="Severity1ValidationFilter">
+    </filter>
+    <filter
+          filter="org.unicase.ui.validation.filter.impl.Severity2ValidationFilter"
+          name="Severity2ValidationFilter">
+    </filter>
+    <filter
+          filter="org.unicase.ui.validation.filter.impl.Severity4ValidationFilter"
+          name="Severity4ValidationFilter">
+    </filter>
+ </extension>
+  <extension
+         point="org.eclipse.emf.validation.constraintBindings">
+      <clientContext
+            id="context">
+         <selector
+               class="org.unicase.ui.validation.ValidationClientSelector">
+         </selector>
+      </clientContext>
+   </extension>
+   
+ <extension
+        point="org.eclipse.ui.commands">
+     <category
+           id="org.unicase.workspace.ui.project"
+           name="Unicase">
+     </category>
+      <command
+           defaultHandler="org.unicase.ui.validation.ValidateHandler"
+           id="org.unicase.workspace.ui.validate"
+           name="Validate">
+                </command>
+           
+ </extension>
+ 
+ <extension
+        point="org.eclipse.ui.menus">
+     <menuContribution
+           locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
+            <command
+              commandId="org.unicase.workspace.ui.validate"
+              icon="icons/validation.png"
+              label="Validate"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <and>
+                 <count
+                       value="1">
+                 </count>
+                 <iterate
+                       ifEmpty="false"
+                       operator="and">
+                    <instanceof
+                          value="org.unicase.workspace.ProjectSpace">
+                    </instanceof>
+                 </iterate>
+              </and>
+           </visibleWhen>
+        </command>
+           </menuContribution>
+ </extension>
+ 
+  <extension
+           point="org.eclipse.ui.bindings">             
+         <key
+              commandId="org.unicase.workspace.ui.validate"
+              contextId="org.eclipse.ui.contexts.window"
+              schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+              sequence="Alt+V">
+        </key>
+     </extension>             
+</plugin>
+
+

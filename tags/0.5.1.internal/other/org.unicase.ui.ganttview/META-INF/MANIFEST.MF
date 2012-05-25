@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ganttview Plug-in
+Bundle-SymbolicName: org.unicase.ui.ganttview; singleton:=true
+Bundle-Version: 0.3.24.internal
+Bundle-Activator: org.unicase.ui.ganttview.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.unicase.model,
+ org.eclipse.emf.edit,
+ org.eclipse.emf.transaction,
+ org.eclipse.emf.transaction.ui,
+ org.eclipse.emf.edit.ui;bundle-version="2.4.2",
+ org.unicase.ui.stem,
+ org.unicase.ui.unicasecommon;visibility:=reexport
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ClassPath: lib/org.eclipse.nebula.widgets.ganttchart-2.0-NIGHTLY.jar,
+ .
