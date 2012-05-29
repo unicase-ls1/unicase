@@ -1,0 +1,104 @@
+[comment]
+  Copyright 2008, 2010 Obeo
+  All rights reserved.  This program and the accompanying materials
+  are made available under the terms of the Eclipse Public License 1.0
+  
+  Any license can be applied to the files generated with this template.
+  
+  author <a href="mailto:stephane.bouchet@obeo.fr">Stephane Bouchet</a>
+[/comment]
+[module classHeader('http://www.eclipse.org/uml2/2.1.0/UML')/]
+[import org::unicase::papyrus::codegeneration::common::common/]
+[import org::unicase::papyrus::codegeneration::cpp::common/]
+
+[template public generateClassHeaderBody(c : Class)]
+class [c.normalizeName()/][if (c.superClass->notEmpty() or not c.getImplementedInterfaces()->isEmpty())] : [for (superC : Class | c.superClass) separator(', ')][superC.normalizeName()/][/for][for (interf : Interface | c.getImplementedInterfaces()) separator(', ')][interf.normalizeName()/][/for][/if]
+{
+public:
+[for (p : Property | c.getAllAttributes())]
+[if (p.visibility <> 'private')]
+
+	/**
+	 * the [p.normalizeName()/] getter.
+	 * @return the [p.normalizeName()/].
+	 */
+	[getTypeString(p.type, p.upper)/] get[p.normalizeName().toUpperFirst()/]();
+
+	/**
+	 * the [p.normalizeName()/] setter.
+	 * @param p_[p.normalizeName()/] the [p.normalizeName()/] to set.
+	 */
+	void set[p.normalizeName().toUpperFirst()/]([getTypeString(p.type, p.upper)/] p_[p.normalizeName()/]);
+[/if]
+[/for]
+[for (o : Operation | c.getOperations())]
+[if (o.visibility <> 'private')]
+[operationBody(o, false)/]
+[/if]
+[/for]
+[if (c.isAbstract = false)]
+[for (interf : Interface | c.getImplementedInterfaces())]
+[interf.implementInterface()/]
+[/for]
+[for (superC : Class | c.superClass)]
+[superC.implementAbstractMethodsFromClass()/]
+[/for]
+[/if]
+
+private:
+[for (p : Property | c.getAllAttributes())][p.propertyBody()/][/for]
+[for (p : Property | c.getAssociations().memberEnd)]
+[if (not c.getAllAttributes()->includes(p))] 
+[p.propertyBody()/]
+[/if]
+[/for]
+[for (o : Operation | c.getOperations())]
+[if (o.visibility = 'private')]
+[operationBody(o, false)/]
+[/if]
+[/for]
+};
+[/template]
+
+[template private implementAbstractMethodsFromClass(c : Class)]
+[if (c.isAbstract)][comment abstract methods from super super classes and interfaces of abstract classes should also be handled, but it has to be ensured somehow that those methods are already implemented by the superclass/]
+[for (o : Operation | c.ownedOperation)]
+[if (o.isAbstract)]
+[operationBody(o, true)/]
+[/if]
+[/for]
+[/if]
+[/template]
+
+[template private implementInterface(i : Interface)]
+[for (o : Operation | i.ownedOperation)]
+[operationBody(o, true)/]
+[/for]
+[for (general : Generalization | i.generalization)]
+[for (i : Interface | general.target->filter(Interface))]
+[i.implementInterface()/]
+[/for]
+[/for]
+[/template]
+
+[template private operationBody(o : Operation, notAbstract : Boolean)]
+
+	/**
+	 *[for (cmt : Comment | o.ownedComment)] [cmt._body/][/for]
+[for (p : Parameter | o.ownedParameter) ? (p.direction <> ParameterDirectionKind::return)]
+[paramOperationComment(p)/]
+[/for]
+[if (not o.type.oclIsUndefined())]
+[returnOperationComment()/]
+[/if]
+	 */
+	[o.returnTypeOperation()/] [o.normalizeName()/]([o.getInParameter()/])[if (notAbstract = false and o.isAbstract)] = 0[/if];
+[/template]
+
+[template private propertyBody(p : Property)]
+
+	/**
+	 * the [p.normalizeName()/] attribute.
+	 */
+	[getTypeString(p.type, p.upper)/] [p.normalizeName()/];
+[/template]

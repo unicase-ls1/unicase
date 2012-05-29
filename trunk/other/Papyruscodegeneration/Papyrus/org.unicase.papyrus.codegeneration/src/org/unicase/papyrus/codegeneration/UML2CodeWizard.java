@@ -12,6 +12,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.acceleo.engine.service.AbstractAcceleoGenerator;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -28,6 +29,8 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.papyrus.codegeneration.cpp.GenerateCPP;
+import org.unicase.papyrus.codegeneration.java.GenerateJava;
 
 /**
  * This Wizard helps generating code from uml models
@@ -64,6 +67,8 @@ public class UML2CodeWizard extends Wizard {
 			return exportToEcore();
 		} else if (filePage.getFormat().equals("Java")) {
 			return exportJava();
+		} else if (filePage.getFormat().equals("C++")) {
+			return exportCpp();
 		}
 
 		return false;
@@ -134,9 +139,41 @@ public class UML2CodeWizard extends Wizard {
 				IResource dest = root.findMember(filePage.getDestinationDir());
 				File targetFolder = dest.getLocation().toFile();
 
-				GenerateJava generator;
+				AbstractAcceleoGenerator generator;
 				try {
 					generator = new GenerateJava(packages.get(0), targetFolder, new ArrayList<String>());
+					generator.doGenerate(BasicMonitor.toMonitor(monitor));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				try {
+					dest.getProject().refreshLocal(IResource.DEPTH_INFINITE, monitor);
+				} catch (CoreException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		try {
+			PlatformUI.getWorkbench().getProgressService().run(true, true, operation);
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		return true;
+	}
+
+	private boolean exportCpp() {
+		IRunnableWithProgress operation = new IRunnableWithProgress() {
+			public void run(IProgressMonitor monitor) {
+				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+				IResource dest = root.findMember(filePage.getDestinationDir());
+				File targetFolder = dest.getLocation().toFile();
+
+				AbstractAcceleoGenerator generator;
+				try {
+					generator = new GenerateCPP(packages.get(0), targetFolder, new ArrayList<String>());
 					generator.doGenerate(BasicMonitor.toMonitor(monitor));
 				} catch (IOException e) {
 					e.printStackTrace();

@@ -8,7 +8,7 @@
  * Contributors:
  *     Obeo - initial API and implementation
  *******************************************************************************/
-package org.unicase.papyrus.codegeneration;
+package org.unicase.papyrus.codegeneration.java;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,7 +37,7 @@ public class GenerateJava extends AbstractAcceleoGenerator {
 	 * 
 	 * @generated
 	 */
-	public static final String MODULE_FILE_NAME = "/org/unicase/papyrus/codegeneration/generateJava";
+	public static final String MODULE_FILE_NAME = "/org/unicase/papyrus/codegeneration/java/generateJava";
 
 	/**
 	 * The name of the templates that are to be generated.
