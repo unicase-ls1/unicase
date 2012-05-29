@@ -14,7 +14,7 @@
 
 [template public generateClass(c : Class)]
 [comment @main /]
-[file (c.getFullPathFile().trim(), false)]
+[file (c.getFullPathFile().trim().concat('.java'), false)]
 [_commentFileBlock()/]
 [c.packageBlock()/]
 
@@ -26,7 +26,7 @@
 
 [template public generateInterface(i : Interface)]
 [comment @main /]
-[file (i.getFullPathFile().trim(), false)]
+[file (i.getFullPathFile().trim().concat('.java'), false)]
 [_commentFileBlock()/]
 [i.packageBlock()/]
 

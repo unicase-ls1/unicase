@@ -15,9 +15,9 @@
 
 [template public getFullPathFile(cl : Classifier)]
 [if (not cl.getNearestPackage().oclIsUndefined())]
-[cl.getNearestPackage().normalizeName().substituteAll('.', '/').concat('/').concat(cl.normalizeName()).concat('.java')/]
+[cl.getNearestPackage().normalizeName().substituteAll('.', '/').concat('/').concat(cl.normalizeName())/]
 [else]
-[cl.normalizeName().concat('.java')/]
+[cl.normalizeName()/]
 [/if]
 [/template]
 
@@ -55,13 +55,4 @@ import java.util.*;
 
 [template public paramOperationComment(p : Parameter)]
      * @param [p.normalizeName()/]
-[/template]
-
-[template public listContains(s : Set(Property), p : Property)]
-[for (p2 : Property | s)]
-[if (p.normalizeName() = p2.normalizeName())]
-[true/]
-[/if]
-[/for]
-[false/]
 [/template]
