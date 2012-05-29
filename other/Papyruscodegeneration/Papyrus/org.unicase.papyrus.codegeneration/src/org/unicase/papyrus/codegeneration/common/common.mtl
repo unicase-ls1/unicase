@@ -13,46 +13,12 @@
 [cl.getNearestPackage().normalizeName()/]
 [/template]
 
-[template public getFullPathFile(cl : Classifier)]
-[if (not cl.getNearestPackage().oclIsUndefined())]
-[cl.getNearestPackage().normalizeName().substituteAll('.', '/').concat('/').concat(cl.normalizeName())/]
-[else]
-[cl.normalizeName()/]
-[/if]
-[/template]
-
-[template public getInParameter(o : Operation)]
-[for (p : Parameter | o.ownedParameter) separator(',') ? (p.direction <> ParameterDirectionKind::return)][p.type.normalizeName()/] [p.normalizeName()/][/for]
-[/template]
-
-[template public returnTypeOperation(o : Operation)]
-[if (o.type.oclIsUndefined())]void [o.normalizeName()/][else][o.type.normalizeName()/] [o.normalizeName()/][/if]
-[/template]
-
-[template public importBlock(traceabilityContext : OclAny)]
-// [protected ('for imports')]
-import java.util.*;
-// [/protected]
-[/template]
-
-[template public packageBlock(cl : Classifier)]
-[if (not cl.getNearestPackage().oclIsUndefined())]package [cl.packagePath()/];[/if]
-[/template]
-
 [template public normalizeName(element : NamedElement)]
 [if ((element.name = 'package') or (element.name = 'interface') or (element.name = 'class'))][element.name.replaceAll(' ', '').concat('_')/][else][element.name.replaceAll(' ', '')/][/if]
 [/template]
 
-[template public _commentFileBlock(traceabilityContext : OclAny)]
-/**
- * Generated with Unicase UML 2 Java export
- */
-[/template]
-
-[template public returnOperationComment(traceabilityContext : OclAny)]
-     * @return
-[/template]
-
-[template public paramOperationComment(p : Parameter)]
-     * @param [p.normalizeName()/]
+[template public getCompleteName(namedElement:NamedElement) post (trim())]
+[let packages : Sequence(Package) = namedElement.ancestors(Package)->select(not oclIsTypeOf(Model))]
+	[packages.name->reverse()->sep('.')->toString().concat(if(packages->notEmpty())then '.' else '' endif).concat(namedElement.name)/]
+[/let]
 [/template]

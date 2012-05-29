@@ -10,3 +10,5 @@ Require-Bundle: org.eclipse.uml2.uml.ecore.importer;bundle-version="2.4.100",
  org.eclipse.emf.ecp.editor;bundle-version="0.8.9",
  org.eclipse.acceleo.engine;bundle-version="3.2.1",
  org.eclipse.emf.emfstore.client;bundle-version="0.8.9"
+Export-Package: org.unicase.papyrus.codegeneration.cpp,
+ org.unicase.papyrus.codegeneration.java
