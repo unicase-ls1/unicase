@@ -1,7 +1,8 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * All rights reserved. This program and the accompanying materials are made available under the terms of
+ * the Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.papyrus.sysml.diagram.editors;
 
@@ -171,11 +172,18 @@ public class SysMLRequirementDiagramDocumentProvider extends SysMLDocumentProvid
 	protected ISchedulingRule getResetRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-																							 * <org.eclipse.core.runtime.
-																							 * jobs.ISchedulingRule>
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */<ISchedulingRule> rules = new ArrayList/*
+																												 * <org.
+																												 * eclipse
+																												 * .
+																												 * core.
+																												 * runtime
+																												 * .
+																												 * jobs.
+																												 * ISchedulingRule
+																												 * >
+																												 */<ISchedulingRule>();
+			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */<?> it = info.getLoadedResourcesIterator(); it
 				.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -194,11 +202,18 @@ public class SysMLRequirementDiagramDocumentProvider extends SysMLDocumentProvid
 	protected ISchedulingRule getSaveRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-																							 * <org.eclipse.core.runtime.
-																							 * jobs.ISchedulingRule>
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */<ISchedulingRule> rules = new ArrayList/*
+																												 * <org.
+																												 * eclipse
+																												 * .
+																												 * core.
+																												 * runtime
+																												 * .
+																												 * jobs.
+																												 * ISchedulingRule
+																												 * >
+																												 */<ISchedulingRule>();
+			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */<?> it = info.getLoadedResourcesIterator(); it
 				.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -217,11 +232,18 @@ public class SysMLRequirementDiagramDocumentProvider extends SysMLDocumentProvid
 	protected ISchedulingRule getSynchronizeRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-																							 * <org.eclipse.core.runtime.
-																							 * jobs.ISchedulingRule>
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */<ISchedulingRule> rules = new ArrayList/*
+																												 * <org.
+																												 * eclipse
+																												 * .
+																												 * core.
+																												 * runtime
+																												 * .
+																												 * jobs.
+																												 * ISchedulingRule
+																												 * >
+																												 */<ISchedulingRule>();
+			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */<?> it = info.getLoadedResourcesIterator(); it
 				.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -240,11 +262,13 @@ public class SysMLRequirementDiagramDocumentProvider extends SysMLDocumentProvid
 	protected ISchedulingRule getValidateStateRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */files = new ArrayList/*
-																							 * <org.eclipse.core.runtime.
-																							 * jobs.ISchedulingRule>
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */<IFile> files = new ArrayList/*
+																									 * <org.eclipse.core.
+																									 * runtime.
+																									 * jobs.ISchedulingRule
+																									 * >
+																									 */<IFile>();
+			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */<?> it = info.getLoadedResourcesIterator(); it
 				.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
@@ -284,7 +308,7 @@ public class SysMLRequirementDiagramDocumentProvider extends SysMLDocumentProvid
 	protected void doSynchronize(Object element, IProgressMonitor monitor) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */<?> it = info.getLoadedResourcesIterator(); it
 				.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				handleElementChanged(info, nextResource, monitor);
@@ -311,7 +335,7 @@ public class SysMLRequirementDiagramDocumentProvider extends SysMLDocumentProvid
 			try {
 				monitor.beginTask(Messages.SysmlDocumentProvider_SaveDiagramTask, info.getResourceSet().getResources()
 					.size() + 1); // "Saving diagram"
-				for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
+				for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */<?> it = info.getLoadedResourcesIterator(); it
 					.hasNext();) {
 					Resource nextResource = (Resource) it.next();
 					monitor.setTaskName(NLS.bind(Messages.SysmlDocumentProvider_SaveNextResourceTask,
@@ -337,7 +361,7 @@ public class SysMLRequirementDiagramDocumentProvider extends SysMLDocumentProvid
 			}
 		} else {
 			URI newResoruceURI;
-			List affectedFiles = null;
+			List<IFile> affectedFiles = null;
 			if (element instanceof FileEditorInput) {
 				IFile newFile = ((FileEditorInput) element).getFile();
 				affectedFiles = Collections.singletonList(newFile);

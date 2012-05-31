@@ -4,4 +4,12 @@ Bundle-Name: Diagram
 Bundle-SymbolicName: org.unicase.papyrus.uml.diagram;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.unicase.papyrus.diagram
+Require-Bundle: org.unicase.papyrus.diagram;visibility:=reexport,
+ org.eclipse.papyrus.diagram.activity;visibility:=reexport,
+ org.eclipse.papyrus.diagram.clazz;visibility:=reexport,
+ org.eclipse.papyrus.diagram.communication;visibility:=reexport,
+ org.eclipse.papyrus.diagram.composite;visibility:=reexport,
+ org.eclipse.papyrus.diagram.sequence;visibility:=reexport,
+ org.eclipse.papyrus.diagram.statemachine;visibility:=reexport,
+ org.eclipse.papyrus.diagram.usecase;visibility:=reexport,
+ org.eclipse.papyrus.uml.diagram.pkg;visibility:=reexport

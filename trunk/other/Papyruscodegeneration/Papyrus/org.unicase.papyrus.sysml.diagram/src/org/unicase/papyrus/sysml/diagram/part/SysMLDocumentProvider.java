@@ -1,7 +1,8 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * All rights reserved. This program and the accompanying materials are made available under the terms of
+ * the Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.papyrus.sysml.diagram.part;
 
@@ -14,7 +15,6 @@ import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
@@ -37,7 +38,6 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.DiagramDocum
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.internal.util.DiagramIOUtil;
 import org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.osgi.util.NLS;
@@ -52,7 +52,7 @@ import org.eclipse.ui.part.FileEditorInput;
  * @author mharut
  */
 public abstract class SysMLDocumentProvider extends AbstractDocumentProvider implements IDiagramDocumentProvider {
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -65,7 +65,7 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 			.getEditingDomain());
 		return document;
 	}
-	
+
 	/**
 	 * This method sets the diagram content.
 	 * 
@@ -77,29 +77,26 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 	protected void setDocumentContent(IDocument document, IEditorInput element) throws CoreException {
 		IDiagramDocument diagramDocument = (IDiagramDocument) document;
 		TransactionalEditingDomain domain = diagramDocument.getEditingDomain();
-		if (element instanceof FileEditorInput) {
-			IStorage storage = ((FileEditorInput) element).getStorage();
-			Diagram diagram = DiagramIOUtil.load(domain, storage, true, getProgressMonitor());
-			document.setContent(diagram);
-		} else if (element instanceof URIEditorInput) {
+		if (element instanceof URIEditorInput) {
 			URI uri = ((URIEditorInput) element).getURI();
 			Resource resource = null;
 			try {
 				resource = domain.getResourceSet().createResource(uri, "SysMLModel");
 				if (!resource.isLoaded()) {
 					try {
-						Map options = new HashMap(GMFResourceFactory.getDefaultLoadOptions());
+						Map<String, Boolean> options = new HashMap<String, Boolean>(
+							GMFResourceFactory.getDefaultLoadOptions());
 						// @see 171060
-						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.
-						// OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
+						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.OPTION_RECORD_UNKNOWN_FEATURE,
+						// Boolean.TRUE);
 						resource.load(options);
 					} catch (IOException e) {
 						resource.unload();
 						throw e;
 					}
 				}
-				for (Iterator it = resource.getContents().iterator(); it.hasNext();) {
-					Object rootElement = it.next();
+				for (Iterator<EObject> it = resource.getContents().iterator(); it.hasNext();) {
+					EObject rootElement = it.next();
 					if (rootElement instanceof Diagram) {
 						document.setContent(rootElement);
 						return;
@@ -124,9 +121,8 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 	}
 
 	/**
-	 * Sets up the given document as it would be provided for the given element. The
-	 * content of the document is not changed. This default implementation is empty.
-	 * Subclasses may reimplement.
+	 * Sets up the given document as it would be provided for the given element. The content of the document is not
+	 * changed. This default implementation is empty. Subclasses may reimplement.
 	 * 
 	 * @param element the blue-print element
 	 * @param document the document to set up
@@ -145,8 +141,7 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 			Resource diagramResource = document.getDiagram().eResource();
 			if (diagramResource != null) {
 				IFile file = WorkspaceSynchronizer.getFile(diagramResource);
-				return file == null || file.getLocation() == null
-						|| !file.getLocation().toFile().exists();
+				return file == null || file.getLocation() == null || !file.getLocation().toFile().exists();
 			}
 		}
 		return super.isDeleted(element);
@@ -162,13 +157,11 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 	/**
 	 * @generated
 	 */
-	protected void doValidateState(Object element, Object computationContext)
-			throws CoreException {
+	protected void doValidateState(Object element, Object computationContext) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/*<org.eclipse.core.resources.IFile>*/files2Validate = new ArrayList/*<org.eclipse.core.resources.IFile>*/();
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
+			Collection<IFile> files2Validate = new ArrayList<IFile>();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null && file.isReadOnly()) {
@@ -176,14 +169,11 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 				}
 			}
 			ResourcesPlugin.getWorkspace().validateEdit(
-					(IFile[]) files2Validate.toArray(new IFile[files2Validate
-							.size()]), computationContext);
+				(IFile[]) files2Validate.toArray(new IFile[files2Validate.size()]), computationContext);
 		}
 
 		super.doValidateState(element, computationContext);
 	}
-
-
 
 	/**
 	 * @generated
@@ -191,8 +181,7 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 	protected void updateCache(Object element) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null && file.isReadOnly()) {
@@ -206,14 +195,13 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 			return;
 		}
 	}
-	
+
 	/**
 	 * @generated
 	 */
 	protected long computeModificationStamp(ResourceSetInfo info) {
 		int result = 0;
-		for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-				.getLoadedResourcesIterator(); it.hasNext();) {
+		for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 			Resource nextResource = (Resource) it.next();
 			IFile file = WorkspaceSynchronizer.getFile(nextResource);
 			if (file != null) {
@@ -226,22 +214,19 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 		}
 		return result;
 	}
-	
+
 	/**
 	 * @generated
 	 */
-	protected void handleElementChanged(ResourceSetInfo info,
-			Resource changedResource, IProgressMonitor monitor) {
+	protected void handleElementChanged(ResourceSetInfo info, Resource changedResource, IProgressMonitor monitor) {
 		IFile file = WorkspaceSynchronizer.getFile(changedResource);
 		if (file != null) {
 			try {
 				file.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 			} catch (CoreException ex) {
-				WorkspaceUtil
-						.logException(
-								Messages.SysmlDocumentProvider_handleElementContentChanged,
-								ex);
-				// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
+				WorkspaceUtil.logException(Messages.SysmlDocumentProvider_handleElementContentChanged, ex);
+				// Error message to log was initially taken from
+				// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
 			}
 		}
 		changedResource.unload();
@@ -266,13 +251,11 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 	 */
 	protected void handleElementMoved(IEditorInput input, URI uri) {
 		if (input instanceof FileEditorInput) {
-			IFile newFile = ResourcesPlugin.getWorkspace().getRoot().getFile(
-					new Path(URI.decode(uri.path())).removeFirstSegments(1));
-			fireElementMoved(input, newFile == null ? null
-					: new FileEditorInput(newFile));
+			IFile newFile = ResourcesPlugin.getWorkspace().getRoot()
+				.getFile(new Path(URI.decode(uri.path())).removeFirstSegments(1));
+			fireElementMoved(input, newFile == null ? null : new FileEditorInput(newFile));
 			return;
 		}
-		// TODO: append suffix to the URI! (use diagram as a parameter)
 		fireElementMoved(input, new URIEditorInput(uri));
 	}
 
@@ -294,7 +277,7 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 		/**
 		 * @generated
 		 */
-		private Collection myUnSynchronizedResources = new ArrayList();
+		private Collection<Resource> myUnSynchronizedResources = new ArrayList<Resource>();
 
 		/**
 		 * @generated
@@ -329,8 +312,7 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 		/**
 		 * @generated
 		 */
-		public ResourceSetInfo(IDiagramDocument document,
-				IEditorInput editorInput) {
+		public ResourceSetInfo(IDiagramDocument document, IEditorInput editorInput) {
 			super(document);
 			myDocument = document;
 			myEditorInput = editorInput;
@@ -370,9 +352,8 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 		/**
 		 * @generated
 		 */
-		public Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/getLoadedResourcesIterator() {
-			return new ArrayList/*<org.eclipse.emf.ecore.resource.Resource>*/(
-					getResourceSet().getResources()).iterator();
+		public Iterator<Resource> getLoadedResourcesIterator() {
+			return new ArrayList<Resource>(getResourceSet().getResources()).iterator();
 		}
 
 		/**
@@ -386,8 +367,8 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 		 * @generated NOT
 		 */
 		public void dispose() {
-			 stopResourceListening();
-			 getResourceSet().eAdapters().remove(myResourceSetListener);
+			stopResourceListening();
+			getResourceSet().eAdapters().remove(myResourceSetListener);
 			// for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = getLoadedResourcesIterator(); it
 			// .hasNext();) {
 			// Resource resource = (Resource) it.next();
@@ -428,8 +409,7 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 		 * @generated
 		 */
 		public final void startResourceListening() {
-			mySynchronizer = new WorkspaceSynchronizer(getEditingDomain(),
-					new SynchronizerDelegate());
+			mySynchronizer = new WorkspaceSynchronizer(getEditingDomain(), new SynchronizerDelegate());
 		}
 
 		/**
@@ -477,8 +457,7 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 		/**
 		 * @generated
 		 */
-		private class SynchronizerDelegate implements
-				WorkspaceSynchronizer.Delegate {
+		private class SynchronizerDelegate implements WorkspaceSynchronizer.Delegate {
 
 			/**
 			 * @generated
@@ -498,8 +477,7 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 				}
 				Display.getDefault().asyncExec(new Runnable() {
 					public void run() {
-						handleElementChanged(ResourceSetInfo.this, resource,
-								null);
+						handleElementChanged(ResourceSetInfo.this, resource, null);
 					}
 				});
 				return true;
@@ -517,8 +495,7 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 				}
 				Display.getDefault().asyncExec(new Runnable() {
 					public void run() {
-						fireElementDeleted(ResourceSetInfo.this
-								.getEditorInput());
+						fireElementDeleted(ResourceSetInfo.this.getEditorInput());
 					}
 				});
 				return true;
@@ -527,8 +504,7 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 			/**
 			 * @generated
 			 */
-			public boolean handleResourceMoved(Resource resource,
-					final URI newURI) {
+			public boolean handleResourceMoved(Resource resource, final URI newURI) {
 				synchronized (ResourceSetInfo.this) {
 					if (ResourceSetInfo.this.fCanBeSaved) {
 						ResourceSetInfo.this.setUnSynchronized(resource);
@@ -538,8 +514,7 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 				if (myDocument.getDiagram().eResource() == resource) {
 					Display.getDefault().asyncExec(new Runnable() {
 						public void run() {
-							handleElementMoved(ResourceSetInfo.this
-									.getEditorInput(), newURI);
+							handleElementMoved(ResourceSetInfo.this.getEditorInput(), newURI);
 						}
 					});
 				} else {
@@ -572,12 +547,9 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 		 */
 		public ResourceSetModificationListener(ResourceSetInfo info) {
 			myInfo = info;
-			myModifiedFilter = NotificationFilter.createEventTypeFilter(
-					Notification.SET).or(
-					NotificationFilter
-							.createEventTypeFilter(Notification.UNSET)).and(
-					NotificationFilter.createFeatureFilter(Resource.class,
-							Resource.RESOURCE__IS_MODIFIED));
+			myModifiedFilter = NotificationFilter.createEventTypeFilter(Notification.SET)
+				.or(NotificationFilter.createEventTypeFilter(Notification.UNSET))
+				.and(NotificationFilter.createFeatureFilter(Resource.class, Resource.RESOURCE__IS_MODIFIED));
 		}
 
 		/**
@@ -587,15 +559,12 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 			if (notification.getNotifier() instanceof ResourceSet) {
 				super.notifyChanged(notification);
 			}
-			if (!notification.isTouch()
-					&& myModifiedFilter.matches(notification)) {
+			if (!notification.isTouch() && myModifiedFilter.matches(notification)) {
 				if (notification.getNotifier() instanceof Resource) {
 					Resource resource = (Resource) notification.getNotifier();
 					if (resource.isLoaded()) {
 						boolean modified = false;
-						for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = myInfo
-								.getLoadedResourcesIterator(); it.hasNext()
-								&& !modified;) {
+						for (Iterator<Resource> it = myInfo.getLoadedResourcesIterator(); it.hasNext() && !modified;) {
 							Resource nextResource = (Resource) it.next();
 							if (nextResource.isLoaded()) {
 								modified = nextResource.isModified();
@@ -612,12 +581,10 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 							}
 						}
 						if (dirtyStateChanged) {
-							fireElementDirtyStateChanged(myInfo
-									.getEditorInput(), modified);
+							fireElementDirtyStateChanged(myInfo.getEditorInput(), modified);
 
 							if (!modified) {
-								myInfo
-										.setModificationStamp(computeModificationStamp(myInfo));
+								myInfo.setModificationStamp(computeModificationStamp(myInfo));
 							}
 						}
 					}
