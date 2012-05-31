@@ -1,7 +1,8 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * All rights reserved. This program and the accompanying materials are made available under the terms of
+ * the Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.papyrus.diagram;
 
@@ -29,7 +30,6 @@ import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -52,13 +52,11 @@ public class ExportUMLHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		Project project = validateSelection(event);
 
-		if (project != null) {
-			WizardDialog wizard = new WizardDialog(Display.getCurrent().getActiveShell(), new ExportUMLWizard(project));
-			wizard.open();
+		if (project == null) {
 			return null;
 		}
-		
-		// compute packages that the user can select		
+
+		// compute packages that the user can select
 		EList<org.eclipse.uml2.uml.Package> allPackages = new BasicEList<org.eclipse.uml2.uml.Package>();
 		List<EObject> selectableElements = new ArrayList<EObject>(allPackages.size());
 
@@ -66,17 +64,17 @@ public class ExportUMLHandler extends AbstractHandler {
 		for (Package umlPackage : allPackages) {
 			selectableElements.add(umlPackage);
 		}
-		
+
 		// prompt the user to select packages
 		MESuggestedSelectionDialog selectionDialog = new MESuggestedSelectionDialog("Package Selection",
 			"Please select the packages you would like to export.", true, UMLFactory.eINSTANCE.createPackage(),
 			UMLPackage.eINSTANCE.getPackage_PackagedElement(), selectableElements);
-		if(selectionDialog.open() != Dialog.OK) {
+		if (selectionDialog.open() != Dialog.OK) {
 			return null;
 		}
 		Collection<EObject> modelElements = selectionDialog.getModelElements();
 		List<org.eclipse.uml2.uml.Package> packages = new ArrayList<org.eclipse.uml2.uml.Package>(modelElements.size());
-		
+
 		// add the selected packages
 		for (EObject eObject : selectionDialog.getModelElements()) {
 			if (eObject instanceof org.eclipse.uml2.uml.Package) {
@@ -110,7 +108,7 @@ public class ExportUMLHandler extends AbstractHandler {
 
 	private String computeFileURI(IPath path) {
 		String stringPath = path.toString();
-		if(stringPath.endsWith(".ecore")) {
+		if (stringPath.endsWith(".ecore")) {
 			return stringPath;
 		} else {
 			return stringPath.concat(".ecore");
