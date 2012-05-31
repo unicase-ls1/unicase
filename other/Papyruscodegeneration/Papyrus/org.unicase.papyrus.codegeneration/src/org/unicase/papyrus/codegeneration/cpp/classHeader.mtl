@@ -12,22 +12,13 @@
 [import org::unicase::papyrus::codegeneration::cpp::common/]
 
 [template public generateClassHeaderBody(c : Class)]
+class [c.normalizeName()/];
 class [c.normalizeName()/][if (c.superClass->notEmpty() or not c.getImplementedInterfaces()->isEmpty())] : [for (superC : Class | c.superClass) separator(', ')][superC.normalizeName()/][/for][for (interf : Interface | c.getImplementedInterfaces()) separator(', ')][interf.normalizeName()/][/for][/if]
 {
 public:
 [for (p : Property | c.getAllAttributes())]
 [if (p.visibility <> 'private')]
-
-	/**
-	 * the [p.normalizeName()/] getter.
-	 * @return the [p.normalizeName()/].
-	 */
 	[getTypeString(p.type, p.upper)/] get[p.normalizeName().toUpperFirst()/]();
-
-	/**
-	 * the [p.normalizeName()/] setter.
-	 * @param p_[p.normalizeName()/] the [p.normalizeName()/] to set.
-	 */
 	void set[p.normalizeName().toUpperFirst()/]([getTypeString(p.type, p.upper)/] p_[p.normalizeName()/]);
 [/if]
 [/for]
@@ -46,7 +37,9 @@ public:
 [/if]
 
 private:
-[for (p : Property | c.getAllAttributes())][p.propertyBody()/][/for]
+[for (p : Property | c.getAllAttributes())]
+[p.propertyBody()/]
+[/for]
 [for (p : Property | c.getAssociations().memberEnd)]
 [if (not c.getAllAttributes()->includes(p))] 
 [p.propertyBody()/]
@@ -82,23 +75,9 @@ private:
 [/template]
 
 [template private operationBody(o : Operation, notAbstract : Boolean)]
-
-	/**
-	 *[for (cmt : Comment | o.ownedComment)] [cmt._body/][/for]
-[for (p : Parameter | o.ownedParameter) ? (p.direction <> ParameterDirectionKind::return)]
-[paramOperationComment(p)/]
-[/for]
-[if (not o.type.oclIsUndefined())]
-[returnOperationComment()/]
-[/if]
-	 */
-	[o.returnTypeOperation()/] [o.normalizeName()/]([o.getInParameter()/])[if (notAbstract = false and o.isAbstract)] = 0[/if];
+	virtual [o.returnTypeOperation()/] [o.normalizeName()/]([o.getInParameter()/])[if (notAbstract = false and o.isAbstract)] = 0[/if];
 [/template]
 
 [template private propertyBody(p : Property)]
-
-	/**
-	 * the [p.normalizeName()/] attribute.
-	 */
 	[getTypeString(p.type, p.upper)/] [p.normalizeName()/];
 [/template]

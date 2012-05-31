@@ -27,16 +27,18 @@
 [/template]
 
 [template public importBlock(i : Interface)]
-#include <string>
 [for (p : String | i.getTypesToInclude())]
 #include "[p/].h"
 [/for]
 [/template]
 
 [template public importBlock(c : Class)]
-#include <string>
 [for (p : String | c.getTypesToInclude())]
+[if (p = 'String')]
+#include <string>
+[else]
 #include "[p/].h"
+[/if]
 [/for]
 [/template]
 
@@ -68,7 +70,7 @@ class.operationsParameters().type->filter(Classifier)->select(not name.isPrimiti
 /]
 
 [query public isPrimitiveType(name : String) : Boolean =
-(name.endsWith('String')) or (name.endsWith('Integer')) or (name.endsWith('Float')) or (name.endsWith('Long')) or (name.endsWith('Double')) or (name.endsWith('Boolean')) or (name.startsWith('byte')) or (name.endsWith('Object'))/]
+(name.endsWith('Integer')) or (name.endsWith('Float')) or (name.endsWith('Long')) or (name.endsWith('Double')) or (name.endsWith('Boolean')) or (name.startsWith('byte')) or (name.endsWith('Object'))/]
 
 [template public packageBlock(cl : Classifier)]
 [comment]
@@ -103,6 +105,6 @@ class.operationsParameters().type->filter(Classifier)->select(not name.isPrimiti
 [if (t.normalizeName() = 'Boolean')]bool[else]
 [if (t.normalizeName() = 'Byte')]char[else]
 [if (t.normalizeName() = 'Object')]void*[else]
-[t.normalizeName()/][/if]
+[t.normalizeName()/]*[/if]
 [/if][/if][/if][/if][/if][/if][/if]
 [/template]

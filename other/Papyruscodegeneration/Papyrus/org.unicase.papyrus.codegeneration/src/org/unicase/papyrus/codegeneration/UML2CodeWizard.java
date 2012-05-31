@@ -33,7 +33,7 @@ import org.unicase.papyrus.codegeneration.cpp.GenerateCPP;
 import org.unicase.papyrus.codegeneration.java.GenerateJava;
 
 /**
- * This Wizard helps generating code from uml models
+ * This Wizard helps generating code from uml models.
  */
 public class UML2CodeWizard extends Wizard {
 
@@ -41,7 +41,7 @@ public class UML2CodeWizard extends Wizard {
 	private UML2CodeWizardPage filePage;
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 * 
 	 * @param packages a list of uml packges to export, currently only the first one is used
 	 */
