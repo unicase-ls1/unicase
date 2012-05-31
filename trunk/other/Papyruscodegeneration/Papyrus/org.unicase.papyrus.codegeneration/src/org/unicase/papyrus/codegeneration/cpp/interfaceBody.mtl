@@ -25,7 +25,7 @@ public:
 [returnOperationComment()/]
 [/if]
 	*/
-	[o.returnTypeOperation()/] [o.normalizeName()/]([o.getInParameter()/]) = 0;
+	virtual [o.returnTypeOperation()/] [o.normalizeName()/]([o.getInParameter()/]) = 0;
 [/for]
 };
 [/template]

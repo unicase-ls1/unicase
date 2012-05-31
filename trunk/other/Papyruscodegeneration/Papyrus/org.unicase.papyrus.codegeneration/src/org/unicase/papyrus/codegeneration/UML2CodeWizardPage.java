@@ -32,7 +32,7 @@ public class UML2CodeWizardPage extends WizardPage {
 	private Text destinationDirField;
 
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
 	protected UML2CodeWizardPage() {
 		super("UML Code Generation");
@@ -117,7 +117,7 @@ public class UML2CodeWizardPage extends WizardPage {
 	}
 
 	/**
-	 * Let the user browse for a destination dir and save the selection in the text box
+	 * Let the user browse for a destination dir and save the selection in the text box.
 	 */
 	public void browseForDestinationDir() {
 		IPath path = browse();
@@ -151,6 +151,8 @@ public class UML2CodeWizardPage extends WizardPage {
 
 	/**
 	 * The format the user wants to generate. e.g. Java, C++
+	 * 
+	 * @return the format selected by the user
 	 */
 	public String getFormat() {
 		return format;
@@ -158,6 +160,8 @@ public class UML2CodeWizardPage extends WizardPage {
 
 	/**
 	 * The directory where the code should be generated.
+	 * 
+	 * @return the destination directory selected by the user
 	 */
 	public String getDestinationDir() {
 		return destDir;
