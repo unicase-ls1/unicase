@@ -4,7 +4,7 @@
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.papyrus.sysml.diagram.editors;
+package org.unicase.papyrus.uml.diagram.editors;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,27 +39,27 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.sysml.diagram.parametric.part.Messages;
-import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
-import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorUtil;
+import org.eclipse.papyrus.diagram.composite.part.Messages;
+import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorUtil;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
-import org.unicase.papyrus.sysml.diagram.part.SysMLDocumentProvider;
+import org.unicase.papyrus.uml.diagram.part.UMLDocumentProvider;
 
 /**
- * Document provider for Papyrus SysML internal block diagrams.
+ * Document provider for Papyrus package diagrams.
  * 
  * @author mharut
  */
-public class SysMLInternalBlockDiagramDocumentProvider extends SysMLDocumentProvider {
+public class UMLPackageDiagramDocumentProvider extends UMLDocumentProvider {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	protected ElementInfo createElementInfo(Object element) throws CoreException {
 		if (!(element instanceof FileEditorInput) && !(element instanceof URIEditorInput)) {
-			throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0, NLS.bind(
-				Messages.SysmlDocumentProvider_IncorrectInputError, new Object[] { element,
+			throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0, NLS.bind(
+				Messages.UMLDocumentProvider_IncorrectInputError, new Object[] { element,
 					"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 				null));
 		}
@@ -77,8 +77,8 @@ public class SysMLInternalBlockDiagramDocumentProvider extends SysMLDocumentProv
 	 */
 	protected IDocument createDocument(Object element) throws CoreException {
 		if (!(element instanceof FileEditorInput) && !(element instanceof URIEditorInput)) {
-			throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0, NLS.bind(
-				Messages.SysmlDocumentProvider_IncorrectInputError, new Object[] { element,
+			throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0, NLS.bind(
+				Messages.UMLDocumentProvider_IncorrectInputError, new Object[] { element,
 					"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 				null));
 		}
@@ -109,7 +109,7 @@ public class SysMLInternalBlockDiagramDocumentProvider extends SysMLDocumentProv
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
-					SysmlDiagramEditorPlugin.getInstance().logError(Messages.SysmlDocumentProvider_isModifiable, ex);
+					UMLDiagramEditorPlugin.getInstance().logError(Messages.UMLDocumentProvider_isModifiable, ex);
 					// Error message to log was initially taken from
 					// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
@@ -134,7 +134,7 @@ public class SysMLInternalBlockDiagramDocumentProvider extends SysMLDocumentProv
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
-					SysmlDiagramEditorPlugin.getInstance().logError(Messages.SysmlDocumentProvider_isModifiable, ex);
+					UMLDiagramEditorPlugin.getInstance().logError(Messages.UMLDocumentProvider_isModifiable, ex);
 					// Error message to log was initially taken from
 					// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
@@ -252,10 +252,6 @@ public class SysMLInternalBlockDiagramDocumentProvider extends SysMLDocumentProv
 
 		IResource parent = toCreateOrModify;
 		do {
-			/*
-			 * XXX This is a workaround for https://bugs.eclipse.org/bugs/show_bug.cgi?id=67601
-			 * IResourceRuleFactory.createRule should iterate the hierarchy itself.
-			 */
 			toCreateOrModify = parent;
 			parent = toCreateOrModify.getParent();
 		} while (parent != null && !parent.exists());
@@ -286,25 +282,24 @@ public class SysMLInternalBlockDiagramDocumentProvider extends SysMLDocumentProv
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
 			if (!overwrite && !info.isSynchronized()) {
-				throw new CoreException(
-					new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, IResourceStatus.OUT_OF_SYNC_LOCAL,
-						Messages.SysmlDocumentProvider_UnsynchronizedFileSaveError, null));
+				throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID,
+					IResourceStatus.OUT_OF_SYNC_LOCAL, Messages.UMLDocumentProvider_UnsynchronizedFileSaveError, null));
 			}
 			info.stopResourceListening();
 			fireElementStateChanging(element);
 			try {
-				monitor.beginTask(Messages.SysmlDocumentProvider_SaveDiagramTask, info.getResourceSet().getResources()
+				monitor.beginTask(Messages.UMLDocumentProvider_SaveDiagramTask, info.getResourceSet().getResources()
 					.size() + 1); // "Saving diagram"
 				for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 					Resource nextResource = (Resource) it.next();
-					monitor.setTaskName(NLS.bind(Messages.SysmlDocumentProvider_SaveNextResourceTask,
+					monitor.setTaskName(NLS.bind(Messages.UMLDocumentProvider_SaveNextResourceTask,
 						nextResource.getURI()));
 					if (nextResource.isLoaded() && !info.getEditingDomain().isReadOnly(nextResource)) {
 						try {
-							nextResource.save(SysmlDiagramEditorUtil.getSaveOptions());
+							nextResource.save(UMLDiagramEditorUtil.getSaveOptions());
 						} catch (IOException e) {
 							fireElementStateChangeFailed(element);
-							throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID,
+							throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID,
 								EditorStatusCodes.RESOURCE_FAILURE, e.getLocalizedMessage(), null));
 						}
 					}
@@ -329,8 +324,8 @@ public class SysMLInternalBlockDiagramDocumentProvider extends SysMLDocumentProv
 				newResoruceURI = ((URIEditorInput) element).getURI();
 			} else {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0, NLS.bind(
-					Messages.SysmlDocumentProvider_IncorrectInputError, new Object[] { element,
+				throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0, NLS.bind(
+					Messages.UMLDocumentProvider_IncorrectInputError, new Object[] { element,
 						"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 					null));
 			}
@@ -339,7 +334,7 @@ public class SysMLInternalBlockDiagramDocumentProvider extends SysMLDocumentProv
 				throw new CoreException(
 					new Status(
 						IStatus.ERROR,
-						SysmlDiagramEditorPlugin.ID,
+						UMLDiagramEditorPlugin.ID,
 						0,
 						"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
 			}
@@ -349,21 +344,21 @@ public class SysMLInternalBlockDiagramDocumentProvider extends SysMLDocumentProv
 			final Diagram diagramCopy = (Diagram) EcoreUtil.copy(diagramDocument.getDiagram());
 			try {
 				new AbstractTransactionalCommand(diagramDocument.getEditingDomain(), NLS.bind(
-					Messages.SysmlDocumentProvider_SaveAsOperation, diagramCopy.getName()), affectedFiles) {
+					Messages.UMLDocumentProvider_SaveAsOperation, diagramCopy.getName()), affectedFiles) {
 					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
 						throws ExecutionException {
 						newResource.getContents().add(diagramCopy);
 						return CommandResult.newOKCommandResult();
 					}
 				}.execute(monitor, null);
-				newResource.save(SysmlDiagramEditorUtil.getSaveOptions());
+				newResource.save(UMLDiagramEditorUtil.getSaveOptions());
 			} catch (ExecutionException e) {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0,
+				throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0,
 					e.getLocalizedMessage(), null));
 			} catch (IOException e) {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(new Status(IStatus.ERROR, SysmlDiagramEditorPlugin.ID, 0,
+				throw new CoreException(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, 0,
 					e.getLocalizedMessage(), null));
 			}
 			newResource.unload();

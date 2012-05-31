@@ -1,7 +1,8 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * All rights reserved. This program and the accompanying materials are made available under the terms of
+ * the Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.papyrus.uml.diagram.part;
 
@@ -14,7 +15,6 @@ import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
@@ -36,7 +37,6 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.DiagramDocum
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.internal.util.DiagramIOUtil;
 import org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.osgi.util.NLS;
@@ -77,26 +77,22 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 	protected void setDocumentContent(IDocument document, IEditorInput element) throws CoreException {
 		IDiagramDocument diagramDocument = (IDiagramDocument) document;
 		TransactionalEditingDomain domain = diagramDocument.getEditingDomain();
-		if (element instanceof FileEditorInput) {
-			IStorage storage = ((FileEditorInput) element).getStorage();
-			Diagram diagram = DiagramIOUtil.load(domain, storage, true, getProgressMonitor());
-			document.setContent(diagram);
-		} else if (element instanceof URIEditorInput) {
+		if (element instanceof URIEditorInput) {
 			URI uri = ((URIEditorInput) element).getURI();
 			Resource resource = null;
 			try {
 				resource = domain.getResourceSet().createResource(uri, "UMLModel");
 				if (!resource.isLoaded()) {
 					try {
-						Map options = new HashMap(GMFResourceFactory.getDefaultLoadOptions());
+						Map<?, ?> options = new HashMap<Object, Object>(GMFResourceFactory.getDefaultLoadOptions());
 						resource.load(options);
 					} catch (IOException e) {
 						resource.unload();
 						throw e;
 					}
 				}
-				for (Iterator it = resource.getContents().iterator(); it.hasNext();) {
-					Object rootElement = it.next();
+				for (Iterator<EObject> it = resource.getContents().iterator(); it.hasNext();) {
+					EObject rootElement = it.next();
 					if (rootElement instanceof Diagram) {
 						document.setContent(rootElement);
 						return;
@@ -175,12 +171,8 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 	protected void doValidateState(Object element, Object computationContext) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.resources.IFile> */files2Validate = new ArrayList/*
-																						 * <org.eclipse.core.resources.IFile
-																						 * >
-																						 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-				.hasNext();) {
+			Collection<IFile> files2Validate = new ArrayList<IFile>();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null && file.isReadOnly()) {
@@ -200,8 +192,7 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 	protected void updateCache(Object element) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-				.hasNext();) {
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null && file.isReadOnly()) {
@@ -221,7 +212,7 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 	 */
 	protected long computeModificationStamp(ResourceSetInfo info) {
 		int result = 0;
-		for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it.hasNext();) {
+		for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 			Resource nextResource = (Resource) it.next();
 			IFile file = WorkspaceSynchronizer.getFile(nextResource);
 			if (file != null) {
@@ -296,7 +287,7 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 		/**
 		 * @generated
 		 */
-		private Collection myUnSynchronizedResources = new ArrayList();
+		private Collection<Resource> myUnSynchronizedResources = new ArrayList<Resource>();
 
 		/**
 		 * @generated
@@ -371,9 +362,8 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 		/**
 		 * @generated
 		 */
-		public Iterator/* <org.eclipse.emf.ecore.resource.Resource> */getLoadedResourcesIterator() {
-			return new ArrayList/* <org.eclipse.emf.ecore.resource.Resource> */(getResourceSet().getResources())
-				.iterator();
+		public Iterator<Resource> getLoadedResourcesIterator() {
+			return new ArrayList<Resource>(getResourceSet().getResources()).iterator();
 		}
 
 		/**
@@ -584,8 +574,7 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 					Resource resource = (Resource) notification.getNotifier();
 					if (resource.isLoaded()) {
 						boolean modified = false;
-						for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = myInfo
-							.getLoadedResourcesIterator(); it.hasNext() && !modified;) {
+						for (Iterator<Resource> it = myInfo.getLoadedResourcesIterator(); it.hasNext() && !modified;) {
 							Resource nextResource = (Resource) it.next();
 							if (nextResource.isLoaded()) {
 								modified = nextResource.isModified();

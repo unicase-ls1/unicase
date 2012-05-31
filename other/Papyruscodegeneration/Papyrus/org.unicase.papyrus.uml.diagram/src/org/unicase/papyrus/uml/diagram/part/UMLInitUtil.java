@@ -1,7 +1,8 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * All rights reserved. This program and the accompanying materials are made available under the terms of
+ * the Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.papyrus.uml.diagram.part;
 
@@ -57,11 +58,10 @@ public final class UMLInitUtil {
 			defaultInitialization(model, null, CompositeStructureDiagramEditPart.MODEL_ID,
 				org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 			break;
-		// FIXME: Wrong ID, unable to find the right one!
-		// case PACKAGE:
-		// diagram = ViewService.createDiagram(model, UseCaseDiagramEditPart.MODEL_ID,
-		// org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
-		// break;
+		case PACKAGE:
+			defaultInitialization(model, null, "Package",
+				org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+			break;
 		case SEQUENCE:
 			defaultInitialization(model, UMLFactory.eINSTANCE.createInteraction(),
 				org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart.MODEL_ID,

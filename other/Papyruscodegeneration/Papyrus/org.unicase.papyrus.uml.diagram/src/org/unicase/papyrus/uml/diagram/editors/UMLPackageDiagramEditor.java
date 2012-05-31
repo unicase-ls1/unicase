@@ -9,28 +9,28 @@ package org.unicase.papyrus.uml.diagram.editors;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
-import org.eclipse.papyrus.diagram.sequence.part.DiagramEditorContextMenuProvider;
-import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.diagram.composite.part.DiagramEditorContextMenuProvider;
+import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.unicase.papyrus.uml.diagram.part.UMLDiagramEditor;
 
 /**
- * Editor for Papyrus sequence diagrams.
+ * Editor for Papyrus package diagrams.
  * 
  * @author mharut
  */
-public class UMLSequenceDiagramEditor extends UMLDiagramEditor {
+public class UMLPackageDiagramEditor extends UMLDiagramEditor {
 
 	/**
 	 * @generated
 	 */
-	public static final String ID = "org.unicase.papyrus.uml.diagram.sequence.UMLDiagramEditorID"; //$NON-NLS-1$
+	public static final String ID = "org.unicase.papyrus.uml.diagram.package.UMLDiagramEditorID"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final String CONTEXT_ID = "org.unicase.papyrus.uml.diagram.sequence.diagramContext"; //$NON-NLS-1$
+	public static final String CONTEXT_ID = "org.unicase.papyrus.uml.diagram.package.diagramContext"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -50,7 +50,7 @@ public class UMLSequenceDiagramEditor extends UMLDiagramEditor {
 	 * @generated
 	 */
 	public String getContributorId() {
-		return UMLDiagramEditorPlugin.ID;
+		return "org.eclipse.papyrus.uml.diagram.pkg";
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class UMLSequenceDiagramEditor extends UMLDiagramEditor {
 	 */
 	protected void setDocumentProvider(IEditorInput input) {
 		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
-			setDocumentProvider(new UMLSequenceDiagramDocumentProvider());
+			setDocumentProvider(new UMLCompositeDiagramDocumentProvider());
 		} else {
 			super.setDocumentProvider(input);
 		}

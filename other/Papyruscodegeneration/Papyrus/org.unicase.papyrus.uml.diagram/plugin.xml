@@ -59,6 +59,14 @@
                id="org.unicase.papyrus.uml.diagram.usecase.UMLDiagramEditorID"
                name="PapyrusUseCaseDiagramEditor">
          </editor>
+         <editor
+               class="org.unicase.papyrus.uml.diagram.editors.UMLPackageDiagramEditor"
+               default="false"
+               extensions="Package_diagram"
+               icon="icons/Package.gif"
+               id="org.unicase.papyrus.uml.diagram.package.UMLDiagramEditorID"
+               name="PackageDiagramEditor">
+         </editor>
       </extension>
       <extension
             point="org.eclipse.ui.contexts">
@@ -95,6 +103,11 @@
          <context
                id="org.unicase.papyrus.uml.diagram.usecase.diagramContext"
                name="UMLUseCaseContext"
+               parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+         </context>
+         <context
+               id="org.unicase.papyrus.uml.diagram.package.diagramContext"
+               name="UMLPackageContext"
                parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
          </context>
       </extension>
