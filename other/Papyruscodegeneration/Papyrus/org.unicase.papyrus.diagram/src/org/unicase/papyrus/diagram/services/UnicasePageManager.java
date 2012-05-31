@@ -1,7 +1,8 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * All rights reserved. This program and the accompanying materials are made available under the terms of
+ * the Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.papyrus.diagram.services;
 
@@ -15,10 +16,11 @@ import org.eclipse.emf.ecp.common.utilities.ActionHelper;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.unicase.papyrus.SysMLModel;
 import org.unicase.papyrus.UMLModel;
 
 /**
- * Page manager for Papyrus UML diagrams in Unicase.
+ * Page manager for Papyrus diagrams in Unicase.
  * 
  * @author mharut
  */
@@ -48,7 +50,7 @@ public class UnicasePageManager implements IPageMngr {
 	public void removePage(Object pageIdentifier) {
 		EObject elementToDelete = null;
 		if (pageIdentifier instanceof Diagram) {
-			// delete the corresponding UMLModel instead of only the diagram
+			// delete the corresponding Model instead of only the diagram
 			elementToDelete = ((Diagram) pageIdentifier).getElement();
 		} else if (pageIdentifier instanceof EObject) {
 			elementToDelete = (EObject) pageIdentifier;
@@ -111,7 +113,12 @@ public class UnicasePageManager implements IPageMngr {
 				if (diagram != null) {
 					result.add(diagram);
 				}
-
+			} else if (me instanceof SysMLModel) {
+				final SysMLModel model = (SysMLModel) me;
+				Diagram diagram = model.getGmfDiagram();
+				if (diagram != null) {
+					result.add(diagram);
+				}
 			}
 
 		}
