@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: unicase DocExport Plug-in
 Bundle-SymbolicName: org.unicase.docExport; singleton:=true
-Bundle-Version: 0.5.1.qualifier
+Bundle-Version: 0.5.1.internal
 Bundle-Activator: org.unicase.docExport.Activator
 Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.render,
  org.eclipse.gmf.runtime.diagram.ui,
