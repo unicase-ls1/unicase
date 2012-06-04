@@ -1,0 +1,63 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: Lars
+Build-Jdk: 1.6.0_26
+Export-Package: .,antlr; uses:="antlr.collections.impl,  antlr.debug, 
+  antlr.ASdebug,  antlr.collections",antlr.ASdebug;uses:="antlr",antlr
+ .actions.cpp;uses:="antlr.collections.impl,antlr",antlr.actions.cshar
+ p;uses:="antlr.collections.impl,antlr",antlr.actions.java;uses:="antl
+ r.collections.impl,antlr",antlr.actions.python;uses:="antlr.collectio
+ ns.impl,antlr",antlr.build,antlr.collections;uses:="antlr",antlr.coll
+ ections.impl;uses:="antlr.collections,antlr",antlr.debug;uses:="antlr
+ .collections.impl,antlr",antlr.debug.misc; uses:="javax.swing.tree,  
+ javax.swing,  antlr.collections,  javax.swing.event",antlr.preprocess
+ or;uses:="antlr.collections.impl,antlr",com.google.common.annotations
+ ,com.google.common.base,com.google.common.base.internal,com.google.co
+ mmon.collect,com.puppycrawl.tools.checkstyle; uses:="com.puppycrawl.t
+ ools.checkstyle.api,  org.apache.tools.ant.types,  org.apache.tools.a
+ nt,  org.xml.sax",com.puppycrawl.tools.checkstyle.api; uses:="org.apa
+ che.commons.beanutils.converters,  org.apache.commons.logging,  com.p
+ uppycrawl.tools.checkstyle.grammars,  antlr.collections,  antlr,  org
+ .xml.sax.helpers,  org.xml.sax",com.puppycrawl.tools.checkstyle.check
+ s;uses:="com.puppycrawl.tools.checkstyle.api",com.puppycrawl.tools.ch
+ eckstyle.checks.annotation,com.puppycrawl.tools.checkstyle.checks.blo
+ cks;uses:="com.puppycrawl.tools.checkstyle.api,com.puppycrawl.tools.c
+ heckstyle.checks",com.puppycrawl.tools.checkstyle.checks.coding;uses:
+ ="com.puppycrawl.tools.checkstyle.api,com.puppycrawl.tools.checkstyle
+ .checks",com.puppycrawl.tools.checkstyle.checks.design;uses:="com.pup
+ pycrawl.tools.checkstyle.api,com.puppycrawl.tools.checkstyle.checks",
+ com.puppycrawl.tools.checkstyle.checks.duplicates;uses:="com.puppycra
+ wl.tools.checkstyle.api",com.puppycrawl.tools.checkstyle.checks.heade
+ r;uses:="com.puppycrawl.tools.checkstyle.api",com.puppycrawl.tools.ch
+ eckstyle.checks.imports;uses:="com.puppycrawl.tools.checkstyle.api,co
+ m.puppycrawl.tools.checkstyle.checks,org.xml.sax",com.puppycrawl.tool
+ s.checkstyle.checks.indentation;uses:="com.puppycrawl.tools.checkstyl
+ e.api",com.puppycrawl.tools.checkstyle.checks.javadoc;uses:="com.pupp
+ ycrawl.tools.checkstyle.api,com.puppycrawl.tools.checkstyle.checks",c
+ om.puppycrawl.tools.checkstyle.checks.metrics;uses:="com.puppycrawl.t
+ ools.checkstyle.api",com.puppycrawl.tools.checkstyle.checks.modifier;
+ uses:="com.puppycrawl.tools.checkstyle.api",com.puppycrawl.tools.chec
+ kstyle.checks.naming;uses:="com.puppycrawl.tools.checkstyle.api,com.p
+ uppycrawl.tools.checkstyle.checks",com.puppycrawl.tools.checkstyle.ch
+ ecks.regexp,com.puppycrawl.tools.checkstyle.checks.sizes;uses:="com.p
+ uppycrawl.tools.checkstyle.api",com.puppycrawl.tools.checkstyle.check
+ s.whitespace;uses:="com.puppycrawl.tools.checkstyle.api,com.puppycraw
+ l.tools.checkstyle.checks",com.puppycrawl.tools.checkstyle.doclets;us
+ es:="com.sun.javadoc",com.puppycrawl.tools.checkstyle.filters;uses:="
+ com.puppycrawl.tools.checkstyle.api,org.xml.sax",com.puppycrawl.tools
+ .checkstyle.grammars;uses:="antlr.collections.impl,antlr.collections,
+ antlr",com.puppycrawl.tools.checkstyle.gui,org.apache.commons.beanuti
+ ls,org.apache.commons.beanutils.converters,org.apache.commons.beanuti
+ ls.expression,org.apache.commons.beanutils.locale,org.apache.commons.
+ beanutils.locale.converters,org.apache.commons.cli,org.apache.commons
+ .collections,org.apache.commons.logging,org.apache.commons.logging.impl
+Bundle-Vendor: http://eclipse-cs.sf.net/
+Eclipse-LazyStart: true
+Bundle-ClassPath: .,checkstyle-5.5-all.jar
+Bundle-Version: 5.5.0.201111092104
+Bundle-Name: Checkstyle Core Library
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: net.sf.eclipsecs.checkstyle
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+
