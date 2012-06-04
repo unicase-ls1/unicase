@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <description name="Unicase Papyrus Update Site" url="http://unicase.googlecode.com/svn/updatesite/internal/">
+   <description name="Unicase Papyrus Update Site" url="http://unicase.googlecode.com/svn/tags/0.5.1.internal/other/Papyrus/updatesite/PapyrusUpdateSite">
       This update site contains all Papyrus for UNICASE plug-ins.
    </description>
    <feature url="features/org.unicase.papyrus.feature_0.5.1.internal.jar" id="org.unicase.papyrus.feature" version="0.5.1.internal">
