@@ -217,7 +217,7 @@ litigation.
    </license>
 
    <url>
-      <update label="Unicase Papyrus Update Site" url="http://unicase.googlecode.com/svn/updatesite/internal/"/>
+      <update label="Unicase Papyrus Update Site" url="http://unicase.googlecode.com/svn/tags/0.5.1.internal/other/Papyrus/updatesite/PapyrusUpdateSite"/>
    </url>
 
    <requires>
