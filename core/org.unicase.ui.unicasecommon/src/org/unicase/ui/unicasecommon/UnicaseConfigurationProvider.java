@@ -6,21 +6,20 @@
  */
 package org.unicase.ui.unicasecommon;
 
-import static org.eclipse.emf.emfstore.client.model.Configuration.isInternalReleaseVersion;
-import static org.eclipse.emf.emfstore.client.model.Configuration.isReleaseVersion;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.emfstore.client.model.ModelFactory;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.connectionmanager.KeyStoreManager;
 import org.eclipse.emf.emfstore.client.model.exceptions.CertificateStoreException;
 import org.eclipse.emf.emfstore.client.model.util.ConfigurationProvider;
 import org.eclipse.emf.emfstore.common.model.util.FileUtil;
+import org.osgi.framework.Bundle;
 
 /**
  * Default configuration provider for unicase. At the moment default
@@ -38,10 +37,10 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 	public List<ServerInfo> getDefaultServerInfos() {
 		List<ServerInfo> serverInfos = new ArrayList<ServerInfo>();
 
-		if (isReleaseVersion()) {
+		if (isUnicaseReleaseVersion()) {
 			serverInfos.add(getReleaseServerInfo());
 		}
-		if (isInternalReleaseVersion()) {
+		if (isInternalUnicaseReleaseVersion()) {
 			serverInfos.add(getInternalServerInfo());
 		}
 		return (serverInfos.size() == 0) ? null : serverInfos;
@@ -53,6 +52,25 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 		serverInfo.setPort(443);
 		serverInfo.setUrl("unicase.in.tum.de");
 		return serverInfo;
+	}
+
+	private static boolean isUnicaseReleaseVersion() {
+		if (isInternalUnicaseReleaseVersion()) {
+			return false;
+		}
+		Bundle unicaseBundle = Platform
+				.getBundle("org.unicase.ui.unicasecommon");
+		String unicaseVersionString = (String) unicaseBundle.getHeaders().get(
+				org.osgi.framework.Constants.BUNDLE_VERSION);
+		return !unicaseVersionString.endsWith("qualifier");
+	}
+
+	private static boolean isInternalUnicaseReleaseVersion() {
+		Bundle unicaseBundle = Platform
+				.getBundle("org.unicase.ui.unicasecommon");
+		String unicaseVersionString = (String) unicaseBundle.getHeaders().get(
+				org.osgi.framework.Constants.BUNDLE_VERSION);
+		return unicaseVersionString.endsWith("internal");
 	}
 
 	private static ServerInfo getInternalServerInfo() {
