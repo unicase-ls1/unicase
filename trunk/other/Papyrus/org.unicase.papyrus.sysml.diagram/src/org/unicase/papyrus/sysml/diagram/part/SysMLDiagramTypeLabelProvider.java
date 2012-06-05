@@ -6,12 +6,9 @@
  */
 package org.unicase.papyrus.sysml.diagram.part;
 
-import java.io.IOException;
-
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.papyrus.SysMLDiagramType;
-import org.unicase.papyrus.diagram.services.UnicaseImageUtil;
 import org.unicase.papyrus.diagram.services.UnicasePapyrusIconRegistry;
 
 /**
