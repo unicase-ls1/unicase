@@ -84,7 +84,7 @@ void [c.normalizeName()/]::set[p.normalizeName().toUpperFirst()/]([getTypeString
 	// [protected ('for operation '.concat(o.normalizeName()))]
 	// TODO should be implemented
 [if (not o.type.oclIsUndefined())]
-	return NULL;
+	return 0;
 [/if]
 	// [/protected]
 }
