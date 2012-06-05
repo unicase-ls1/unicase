@@ -40,6 +40,7 @@ Export-Package: org.unicase.ui.unicasecommon,
  org.unicase.ui.unicasecommon.diagram.util,
  org.unicase.ui.unicasecommon.dnd.dropadapters,
  org.unicase.ui.unicasecommon.meeditor,
+ org.unicase.ui.unicasecommon.meeditor.mecontrols,
  org.unicase.ui.unicasecommon.navigator.wizards,
  org.unicase.ui.unicasecommon.observer
 Import-Package: org.eclipse.core.expressions,
