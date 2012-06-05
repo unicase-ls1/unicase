@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Papyrus-Diagram
 Bundle-SymbolicName: org.unicase.papyrus.diagram;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 0.5.1.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.unicase.papyrus.edit;visibility:=reexport,
  org.eclipse.papyrus.diagram.common;visibility:=reexport,
