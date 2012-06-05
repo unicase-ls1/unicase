@@ -34,7 +34,7 @@ public[if (c.isAbstract)] abstract[/if] class [c.normalizeName()/][for (superC :
 [/if]
 [/for]
 [for (p : Property | c.getAssociations().memberEnd)]
-[if (p.type <> c and c.getAllAttributes()->select(name = p.name)->isEmpty())] 
+[if (p.type <> c and not c.getAllAttributes()->includes(p))] 
 [p.propertyBody()/]
 [/if]
 [/for]
