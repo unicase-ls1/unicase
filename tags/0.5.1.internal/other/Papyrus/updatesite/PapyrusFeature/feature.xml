@@ -219,6 +219,7 @@ litigation.
 
    <url>
       <update label="UNICASE Papyrus Update Site" url="http://unicase.googlecode.com/svn/tags/0.5.1.internal/other/Papyrus/updatesite/PapyrusUpdateSite"/>
+      <discovery label="Official Papyrus Update Site" url="http://www.eclipse.org/modeling/mdt/papyrus/updates/index.php"/>
    </url>
 
    <requires>
