@@ -6,21 +6,20 @@
  */
 package org.unicase.ui.unicasecommon;
 
-import static org.eclipse.emf.emfstore.client.model.Configuration.isInternalReleaseVersion;
-import static org.eclipse.emf.emfstore.client.model.Configuration.isReleaseVersion;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.emfstore.client.model.ModelFactory;
 import org.eclipse.emf.emfstore.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.client.model.connectionmanager.KeyStoreManager;
 import org.eclipse.emf.emfstore.client.model.exceptions.CertificateStoreException;
 import org.eclipse.emf.emfstore.client.model.util.ConfigurationProvider;
 import org.eclipse.emf.emfstore.common.model.util.FileUtil;
+import org.osgi.framework.Bundle;
 
 /**
  * Default configuration provider for unicase. At the moment default {@link ServerInfo} can be set and certificates can
@@ -38,10 +37,10 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 	public List<ServerInfo> getDefaultServerInfos() {
 		List<ServerInfo> serverInfos = new ArrayList<ServerInfo>();
 
-		if (isReleaseVersion()) {
+		if (isUnicaseReleaseVersion()) {
 			serverInfos.add(getReleaseServerInfo());
 		}
-		if (isInternalReleaseVersion()) {
+		if (isInternalUnicaseReleaseVersion()) {
 			serverInfos.add(getInternalServerInfo());
 		}
 		return (serverInfos.size() == 0) ? null : serverInfos;
@@ -55,11 +54,28 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 		return serverInfo;
 	}
 
+	private static boolean isUnicaseReleaseVersion() {
+		if (isInternalUnicaseReleaseVersion()) {
+			return false;
+		}
+		Bundle unicaseBundle = Platform.getBundle("org.unicase.ui.unicasecommon");
+		String unicaseVersionString = (String) unicaseBundle.getHeaders().get(
+			org.osgi.framework.Constants.BUNDLE_VERSION);
+		return !unicaseVersionString.endsWith("qualifier");
+	}
+
+	private static boolean isInternalUnicaseReleaseVersion() {
+		Bundle unicaseBundle = Platform.getBundle("org.unicase.ui.unicasecommon");
+		String unicaseVersionString = (String) unicaseBundle.getHeaders().get(
+			org.osgi.framework.Constants.BUNDLE_VERSION);
+		return unicaseVersionString.endsWith("internal");
+	}
+
 	private static ServerInfo getInternalServerInfo() {
 		ServerInfo serverInfo = ModelFactory.eINSTANCE.createServerInfo();
 		serverInfo.setName("unicase Developer Server");
-		serverInfo.setPort(443);
-		serverInfo.setUrl("unicase-internal.informatik.tu-muenchen.de");
+		serverInfo.setPort(8080);
+		serverInfo.setUrl("unicase-internal2.informatik.tu-muenchen.de");
 		return serverInfo;
 	}
 
@@ -70,9 +86,12 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 	 */
 	public void initDefaultCertificates(KeyStoreManager keyStoreManager) {
 		try {
-			// TODO: add certificate rather then replacing the keystore and reloading:
-			// if default certificate is not contained in keystore, keystore will be deleted and recopied from the
-			// plugin. This is done, because one assumes that the default key is in the plugin's keystore. It would
+			// TODO: add certificate rather then replacing the keystore and
+			// reloading:
+			// if default certificate is not contained in keystore, keystore
+			// will be deleted and recopied from the
+			// plugin. This is done, because one assumes that the default key is
+			// in the plugin's keystore. It would
 			// be nicer to add the default certificate to the given keystore.
 			if (!keyStoreManager.certificateExists(keyStoreManager.getDefaultCertificate())) {
 				File clientKeyTarget = new File(keyStoreManager.getPathToKeyStore());

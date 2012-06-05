@@ -40,7 +40,7 @@ public class UseCaseDiagramImpl extends MEDiagramImpl implements UseCaseDiagram 
 
 	@Override
 	public String getType() {
-		return "UseCase";
+		return "UnicaseUseCase";
 	}
 
 } // UseCaseDiagramImpl
