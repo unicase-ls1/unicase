@@ -12,7 +12,6 @@
 [import org::unicase::papyrus::codegeneration::cpp::common/]
 
 [template public generateClassHeaderBody(c : Class)]
-class [c.normalizeName()/];
 class [c.normalizeName()/][if (c.superClass->notEmpty() or not c.getImplementedInterfaces()->isEmpty())] : [for (superC : Class | c.superClass) separator(', ')][superC.normalizeName()/][/for][for (interf : Interface | c.getImplementedInterfaces()) separator(', ')][interf.normalizeName()/][/for][/if]
 {
 public:
@@ -41,7 +40,7 @@ private:
 [p.propertyBody()/]
 [/for]
 [for (p : Property | c.getAssociations().memberEnd)]
-[if (not c.getAllAttributes()->includes(p))] 
+[if (p.type <> c and not c.getAllAttributes()->includes(p))] 
 [p.propertyBody()/]
 [/if]
 [/for]

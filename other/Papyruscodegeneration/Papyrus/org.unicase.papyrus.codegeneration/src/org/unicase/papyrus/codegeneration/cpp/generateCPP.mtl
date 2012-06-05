@@ -33,7 +33,7 @@
 #ifndef [c.normalizeName().toUpper()/]_HEADER
 #define [c.normalizeName().toUpper()/]_HEADER
 [c.packageBlock()/]
-[c.importBlock()/]
+[c.headerImportBlock()/]
 [c.generateClassHeaderBody()/]
 #endif
 [/file]

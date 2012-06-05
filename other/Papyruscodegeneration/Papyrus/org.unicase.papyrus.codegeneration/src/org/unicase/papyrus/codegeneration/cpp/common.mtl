@@ -26,27 +26,52 @@
 [if (o.type.oclIsUndefined())]void[else][o.type.getTypeString()/][/if]
 [/template]
 
-[template public importBlock(i : Interface)]
-[for (p : String | i.getTypesToInclude())]
+[template public importBlock(interface : Interface)]
+[for (p : String | interface.generalization.target->filter(Interface).normalizeName()->asSet())]
 #include "[p/].h"
 [/for]
-[/template]
-
-[template public importBlock(c : Class)]
-[for (p : String | c.getTypesToInclude())]
-[if (p = 'String')]
-#include <string>
-[else]
-#include "[p/].h"
+[for (p : String | interface.getTypesToInclude())]
+[if (interface.normalizeName() <> p)]
+class [p/];
 [/if]
 [/for]
 [/template]
 
+[template public importBlock(c : Class)]
+[for (p : String | c.getTypesToInclude()->union(c.getSupersAndInterfaces()))]
+[if (p = 'String')]
+#include <string>
+[else]
+[if (c.normalizeName() <> p)]
+#include "[p/].h"
+[/if]
+[/if]
+[/for]
+[/template]
+
+[template public headerImportBlock(c : Class)]
+[for (p : String | c.getSupersAndInterfaces())]
+#include "[p/].h"
+[/for]
+[for (p : String | c.getTypesToInclude())]
+[if (p = 'String')]
+#include <string>
+[else]
+[if (c.normalizeName() <> p)]
+class [p/];
+[/if]
+[/if]
+[/for]
+[/template]
+
+[query private getSupersAndInterfaces(c : Class) : Set(String) =
+c.superClass.normalizeName()->asSet()->union(c.getImplementedInterfaces().normalizeName()->asSet()) /]
+
 [query public getTypesToInclude(c : Class) : Set(String) = 
-c.getAllAttributes().type.normalizeName()->asSet()->union(c.operationsParametersTypes().normalizeName()->asSet())->union(c.superClass.normalizeName()->asSet())->union(c.getImplementedInterfaces().normalizeName()->asSet())->union(c.getAssociations().memberEnd->select(a : Property|not c.getAllAttributes()->includes(a)).type.normalizeName()->asSet())->select(not isPrimitiveType())
+c.getAllAttributes().type.normalizeName()->asSet()->union(c.operationsParametersTypes().normalizeName()->asSet())->union(c.getAssociations().memberEnd->select(a : Property|not c.getAllAttributes()->includes(a)).type.normalizeName()->asSet())->select(not isPrimitiveType())
 /]
 [query public getTypesToInclude(i : Interface) : Set(String) = 
-i.operationsParametersTypes().normalizeName()->asSet()->union(i.generalization.target->filter(Interface).normalizeName()->asSet())->union(i.getAssociations().memberEnd.type.normalizeName()->asSet())->select(not isPrimitiveType())
+i.operationsParametersTypes().normalizeName()->asSet()->union(i.getAssociations().memberEnd.type.normalizeName()->asSet())->select(not isPrimitiveType())
 /]
 
 [query public allOperations(i: Interface) : Set( Operation ) =
