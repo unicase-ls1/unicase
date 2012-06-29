@@ -15,8 +15,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecp.common.commands.ECPCommand;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
@@ -92,18 +92,18 @@ public abstract class ModelDocumentProvider extends AbstractDocumentProvider imp
 		if (object instanceof MEDiagram) {
 			final MEDiagram diagram = (MEDiagram) object;
 			// legacy support
-			new EMFStoreCommand() {
+			new ECPCommand(diagram) {
 
 				@Override
 				protected void doRun() {
 					try {
 						diagram.loadDiagramLayout();
 					} catch (DiagramLoadException e) {
-						// do nothing, could be a legacy error
+						// do nothing
 					}
 				}
 
-			}.run();
+			}.run(true);
 
 			if (diagram.getGmfdiagram() == null) {
 				String id = diagram.getType();
@@ -113,12 +113,12 @@ public abstract class ModelDocumentProvider extends AbstractDocumentProvider imp
 				// JH: Build switch for different diagram types
 				final Diagram result = ViewService.createDiagram(diagram, id, getPreferencesHint());
 				result.setElement(diagram);
-				new EMFStoreCommand() {
+				new ECPCommand(diagram) {
 					@Override
 					protected void doRun() {
 						diagram.setGmfdiagram(result);
 					}
-				}.run();
+				}.run(true);
 			}
 
 			return diagram.getGmfdiagram();
