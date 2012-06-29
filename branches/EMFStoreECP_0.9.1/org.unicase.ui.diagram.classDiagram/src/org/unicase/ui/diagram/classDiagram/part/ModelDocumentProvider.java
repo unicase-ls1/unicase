@@ -40,6 +40,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.DiagramEditingDomainFactory;
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
@@ -657,7 +658,6 @@ public class ModelDocumentProvider extends org.unicase.ui.unicasecommon.diagram.
 	/**
 	 * @generated
 	 */
-	@Override
 	public IEditorInput createInputWithEditingDomain(IEditorInput editorInput, TransactionalEditingDomain domain) {
 		return editorInput;
 	}
@@ -665,7 +665,6 @@ public class ModelDocumentProvider extends org.unicase.ui.unicasecommon.diagram.
 	/**
 	 * @generated
 	 */
-	@Override
 	public IDiagramDocument getDiagramDocument(Object element) {
 		IDocument doc = getDocument(element);
 		if (doc instanceof IDiagramDocument) {
@@ -1019,6 +1018,11 @@ public class ModelDocumentProvider extends org.unicase.ui.unicasecommon.diagram.
 			}
 		}
 
+	}
+
+	@Override
+	protected PreferencesHint getPreferencesHint() {
+		return new PreferencesHint("org.unicase.ui.classDiagram");
 	}
 
 }
