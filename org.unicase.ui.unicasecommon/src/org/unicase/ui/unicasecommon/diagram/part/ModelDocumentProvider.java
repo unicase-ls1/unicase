@@ -6,39 +6,38 @@
  */
 package org.unicase.ui.unicasecommon.diagram.part;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
 import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.AbstractDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.DiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.internal.util.DiagramIOUtil;
-import org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
+import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.diagram.impl.DiagramLoadException;
 
 /**
  * @author denglerm This class serves as a superclass for the generated ModelDocumentProvider in each diagram plugin.
  */
 @SuppressWarnings("restriction")
-public class ModelDocumentProvider extends AbstractDocumentProvider implements IDiagramDocumentProvider {
+public abstract class ModelDocumentProvider extends AbstractDocumentProvider implements IDiagramDocumentProvider {
 
 	/**
 	 * {@inheritDoc}
@@ -60,7 +59,6 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	 * @param element The new content element
 	 * @throws CoreException if an exceptional error occurs
 	 */
-	@SuppressWarnings("unchecked")
 	protected void setDocumentContent(IDocument document, IEditorInput element) throws CoreException {
 		IDiagramDocument diagramDocument = (IDiagramDocument) document;
 		TransactionalEditingDomain domain = diagramDocument.getEditingDomain();
@@ -70,47 +68,18 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 			document.setContent(diagram);
 		} else if (element instanceof URIEditorInput) {
 			URI uri = ((URIEditorInput) element).getURI();
-			Resource resource = null;
-			try {
-				// resource = domain.getResourceSet().getResource(
-				// uri.trimFragment(), false);
-				resource = domain.getResourceSet().createResource(uri, "MEDiagram");
-				if (!resource.isLoaded()) {
-					try {
-						Map options = new HashMap(GMFResourceFactory.getDefaultLoadOptions());
-						// @see 171060
-						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.
-						// OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
-						resource.load(options);
-					} catch (IOException e) {
-						resource.unload();
-						throw e;
-					}
-				}
-				// if (uri.fragment() != null) {
-				// EObject rootElement = resource.getEObject(uri.fragment());
-				// if (rootElement instanceof Diagram) {
-				// document.setContent((Diagram) rootElement);
-				// return;
-				// }
-				// } else {
-				for (Iterator it = resource.getContents().iterator(); it.hasNext();) {
-					Object rootElement = it.next();
-					if (rootElement instanceof Diagram) {
-						document.setContent(rootElement);
-						return;
-					}
-				}
-				// }
-				throw new RuntimeException("Diagram is not present in resource");
-			} catch (IOException e) {
-				String msg = e.getLocalizedMessage();
-				CoreException thrownExcp = new CoreException(new Status(IStatus.ERROR, "org.unicase.ui.common", 0,
-					msg != null ? msg : "Error loading diagram", e));
-				throw thrownExcp;
-
+			Diagram diagram = null;
+			Resource resource = WorkspaceManager.getInstance().getCurrentWorkspace().eResource();
+			ResourceSet rs = resource.getResourceSet();
+			EObject object = rs.getEObject(uri, false);
+			if (object != null) {
+				diagram = extractDiagram(object);
 			}
-
+			if (diagram != null) {
+				document.setContent(diagram);
+				return;
+			}
+			throw new RuntimeException("Diagram is not present in resource");
 		} else {
 			throw new CoreException(new Status(IStatus.ERROR, "org.unicase.ui.common", 0, NLS.bind(
 				"Incorrect editor input", new Object[] { element,
@@ -119,48 +88,46 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected IDocument createDocument(Object element) throws CoreException {
-		// TODO Auto-generated method stub
+	private Diagram extractDiagram(EObject object) {
+		if (object instanceof MEDiagram) {
+			final MEDiagram diagram = (MEDiagram) object;
+			// legacy support
+			new EMFStoreCommand() {
+
+				@Override
+				protected void doRun() {
+					try {
+						diagram.loadDiagramLayout();
+					} catch (DiagramLoadException e) {
+						// do nothing, could be a legacy error
+					}
+				}
+
+			}.run();
+
+			if (diagram.getGmfdiagram() == null) {
+				String id = diagram.getType();
+				if (id == null) {
+					throw new RuntimeException("Unsupported diagram type");
+				}
+				// JH: Build switch for different diagram types
+				final Diagram result = ViewService.createDiagram(diagram, id, getPreferencesHint());
+				result.setElement(diagram);
+				new EMFStoreCommand() {
+					@Override
+					protected void doRun() {
+						diagram.setGmfdiagram(result);
+					}
+				}.run();
+			}
+
+			return diagram.getGmfdiagram();
+		}
 		return null;
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @return the {@link PreferencesHint} for the diagram
 	 */
-	@Override
-	protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite)
-		throws CoreException {
-		// TODO Auto-generated method stub
-
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected IRunnableContext getOperationRunner(IProgressMonitor monitor) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public IEditorInput createInputWithEditingDomain(IEditorInput editorInput, TransactionalEditingDomain domain) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public IDiagramDocument getDiagramDocument(Object element) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	protected abstract PreferencesHint getPreferencesHint();
 }

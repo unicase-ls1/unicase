@@ -154,13 +154,6 @@
 
     <!--    -->
    
-   <extension
-         point="org.eclipse.emf.ecore.content_parser">
-      <parser
-            class="org.unicase.ui.unicasecommon.common.diagram.MEDiagramResource"
-            contentTypeIdentifier="MEDiagram">
-      </parser>
-   </extension>
   <extension
         point="org.eclipse.ui.menus">
      <menuContribution
