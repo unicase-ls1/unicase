@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
+   <extension-point id="org.eclipse.emf.emfstore.client.postCreationObserver" name="PostCreationObserver" schema="schema/org.eclipse.emf.emfstore.client.postCreationObserver.exsd"/>
    
     <extension
        point="org.eclipse.core.expressions.propertyTesters">
@@ -908,9 +909,16 @@
   </extension>
   <extension
         point="org.eclipse.emf.emfstore.common.observer">
-     <postcreationobserver
-           class="org.unicase.ui.unicasecommon.common.UnicasePostModelElementCreationListener">
-     </postcreationobserver>
+     <observer
+           extensionPointName="org.eclipse.emf.emfstore.client.postCreationObserver"
+           observerAttributeName="postCreationObserver">
+     </observer>
+  </extension>
+  <extension
+        point="org.eclipse.emf.emfstore.client.postCreationObserver">
+     <observer
+           postCreationObserver="org.unicase.ui.unicasecommon.common.UnicasePostModelElementCreationListener">
+     </observer>
   </extension>
   <extension
         point="org.eclipse.emf.emfstore.client.defaultConfigurationProvider">
