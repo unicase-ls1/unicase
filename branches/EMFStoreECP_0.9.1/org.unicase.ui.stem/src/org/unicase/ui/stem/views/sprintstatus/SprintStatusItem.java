@@ -50,7 +50,7 @@ public class SprintStatusItem extends Composite {
 		ProjectSpace projectSpace;
 		try {
 			projectSpace = (ProjectSpace) ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject()
-				.getRootContainer();
+				.getRootObject();
 		} catch (NoWorkspaceException e) {
 			ModelUtil.logException("Failed to create SprintStatusItem!", e);
 			return;

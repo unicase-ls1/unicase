@@ -234,7 +234,7 @@ public class CommitNotificationsTray extends CommitDialogTray {
 			setMessage("Select the users you want to notify and the operation you want to notify them about");
 			try {
 				projectSpace = (ProjectSpace) ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject()
-					.getRootContainer();
+					.getRootObject();
 			} catch (NoWorkspaceException e1) {
 				ModelUtil.logException("Creating commit dialog failed!", e1);
 				return null;

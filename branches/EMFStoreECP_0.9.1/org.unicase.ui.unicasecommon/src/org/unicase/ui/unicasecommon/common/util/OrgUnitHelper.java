@@ -61,7 +61,7 @@ public final class OrgUnitHelper {
 		CannotMatchUserInProjectException {
 		try {
 			ProjectSpace activeProjectSpace = (ProjectSpace) ECPWorkspaceManager.getInstance().getWorkSpace()
-				.getActiveProject().getRootContainer();
+				.getActiveProject().getRootObject();
 			if (activeProjectSpace == null) {
 				throw new NoCurrentUserException();
 			}
