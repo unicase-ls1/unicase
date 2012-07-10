@@ -12,7 +12,7 @@
 [import org::unicase::papyrus::codegeneration::cpp::common/]
 
 [template public generateClassHeaderBody(c : Class)]
-class [c.normalizeName()/][if (c.superClass->notEmpty() or not c.getImplementedInterfaces()->isEmpty())] : [for (superC : Class | c.superClass) separator(', ')][superC.normalizeName()/][/for][for (interf : Interface | c.getImplementedInterfaces()) separator(', ')][interf.normalizeName()/][/for][/if]
+class [c.normalizeName()/][if (c.superClass->notEmpty() or not c.getImplementedInterfaces()->isEmpty())] : [for (superName : String | c.superClass.normalizeName()->asSet()->union(c.getImplementedInterfaces().normalizeName())) separator(', ')][superName/][/for][/if]
 {
 public:
 [for (p : Property | c.getAllAttributes())]
