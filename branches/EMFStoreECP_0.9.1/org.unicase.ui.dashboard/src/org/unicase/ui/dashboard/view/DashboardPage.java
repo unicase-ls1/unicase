@@ -9,7 +9,6 @@ package org.unicase.ui.dashboard.view;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,14 +17,9 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.preferences.DashboardKey;
-import org.eclipse.emf.emfstore.client.model.preferences.PreferenceManager;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
-import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
-import org.eclipse.emf.emfstore.server.model.versioning.events.PluginFocusEvent;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -47,7 +41,9 @@ import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
+import org.unicase.dashboard.DashboardNotification;
 import org.unicase.ui.dashboard.notificationProviders.UpdateNotificationProvider;
+import org.unicase.ui.dashboard.prefs.DashboardProperties;
 import org.unicase.ui.dashboard.view.widgets.AbstractDashboardWidget;
 
 /**
@@ -66,11 +62,12 @@ public class DashboardPage extends FormPage {
 
 		@Override
 		protected void doRun() {
-			int count = PreferenceManager.INSTANCE.getProperty(getProjectSpace(), DashboardKey.DASHBOARD_SIZE)
-				.getIntegerProperty();
+			String sizeProperty = getProjectSpace().getPropertyManager().getSharedStringProperty(
+				DashboardProperties.DASHBOARD_SIZE);
+			int count = sizeProperty != null ? Integer.parseInt(sizeProperty) : 10;
 			count = Math.min(count, notifications.size());
 			for (int i = 0; i < count; i++) {
-				ESNotification n = notifications.get(i);
+				DashboardNotification n = notifications.get(i);
 				if (!sanityCheck(n)) {
 					continue;
 				}
@@ -97,7 +94,7 @@ public class DashboardPage extends FormPage {
 
 	private ProjectSpace projectSpace;
 
-	private List<ESNotification> notifications;
+	private List<DashboardNotification> notifications;
 
 	private ArrayList<AbstractDashboardWidget> widgets;
 
@@ -120,7 +117,7 @@ public class DashboardPage extends FormPage {
 	 * @param n the notification.
 	 * @return if the notification is valid.
 	 */
-	protected boolean sanityCheck(ESNotification n) {
+	protected boolean sanityCheck(DashboardNotification n) {
 		if (n == null) {
 			return false;
 		}
@@ -148,7 +145,6 @@ public class DashboardPage extends FormPage {
 
 		DashboardEditorInput editorInput = (DashboardEditorInput) getEditorInput();
 		projectSpace = editorInput.getProjectSpace();
-		logFocusEvent();
 		notifications = editorInput.getNotifications();
 
 		widgets = new ArrayList<AbstractDashboardWidget>();
@@ -268,20 +264,6 @@ public class DashboardPage extends FormPage {
 			Composite widgetComposite = widget.createWidget(widgetsComposite);
 			GridDataFactory.fillDefaults().grab(true, false).applyTo(widgetComposite);
 		}
-	}
-
-	private void logFocusEvent() {
-		final PluginFocusEvent focusEvent = EventsFactory.eINSTANCE.createPluginFocusEvent();
-		focusEvent.setPluginId(DashboardEditor.ID);
-		focusEvent.setTimestamp(new Date());
-		focusEvent.setStartDate(new Date());
-
-		new EMFStoreCommand() {
-			@Override
-			protected void doRun() {
-				projectSpace.addEvent(focusEvent);
-			}
-		}.run();
 	}
 
 	private void createNotifications() {

@@ -16,17 +16,17 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.preferences.DashboardKey;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
-import org.eclipse.emf.emfstore.server.model.notification.NotificationFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
+import org.unicase.dashboard.DashboardFactory;
+import org.unicase.dashboard.DashboardNotification;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.util.OpeningLinkHelper;
 import org.unicase.model.util.ModelElementPath;
+import org.unicase.ui.dashboard.prefs.DashboardProperties;
 
 /**
  * This provider creates notifications about task objects.
@@ -88,11 +88,11 @@ public class TaskObjectNotificationProvider extends AbstractNotificationProvider
 	 * @see org.unicase.ui.dashboard.notificationProviders.AbstractNotificationProvider#createNotifications()
 	 */
 	@Override
-	protected List<ESNotification> createNotifications() {
-		List<ESNotification> result = new ArrayList<ESNotification>();
+	protected List<DashboardNotification> createNotifications() {
+		List<DashboardNotification> result = new ArrayList<DashboardNotification>();
 		for (ModelElementId meId : changes.keySet()) {
-			ESNotification createNotification = createNotification(meId, changes.get(meId), objectsOfWork.get(meId),
-				getProjectSpace());
+			DashboardNotification createNotification = createNotification(meId, changes.get(meId),
+				objectsOfWork.get(meId), getProjectSpace());
 			result.add(createNotification);
 		}
 
@@ -125,10 +125,10 @@ public class TaskObjectNotificationProvider extends AbstractNotificationProvider
 		return false;
 	}
 
-	private ESNotification createNotification(ModelElementId meId, List<AbstractOperation> list,
+	private DashboardNotification createNotification(ModelElementId meId, List<AbstractOperation> list,
 		ModelElementPath modelElementPath, ProjectSpace projectSpace) {
 		Project project = projectSpace.getProject();
-		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
+		DashboardNotification notification = DashboardFactory.eINSTANCE.createDashboardNotification();
 		notification.setCreationDate(NotificationHelper.getLastDate(list));
 		Set<ModelElementId> relatedElementSet = new HashSet<ModelElementId>();
 		for (AbstractOperation operation : list) {
@@ -164,7 +164,7 @@ public class TaskObjectNotificationProvider extends AbstractNotificationProvider
 	/**
 	 * {@inheritDoc}
 	 */
-	public DashboardKey getKey() {
-		return DashboardKey.TASK_TRACE_PROVIDER;
+	public String getKey() {
+		return DashboardProperties.TASK_TRACE_PROVIDER;
 	}
 }

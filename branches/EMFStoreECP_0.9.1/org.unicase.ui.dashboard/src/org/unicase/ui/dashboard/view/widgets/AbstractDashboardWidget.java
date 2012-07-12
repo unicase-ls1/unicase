@@ -9,9 +9,12 @@ package org.unicase.ui.dashboard.view.widgets;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.preference.PreferenceDialog;
@@ -191,10 +194,16 @@ public abstract class AbstractDashboardWidget implements PaintListener {
 		settings.addHyperlinkListener(new HyperlinkAdapter() {
 			@Override
 			public void linkActivated(HyperlinkEvent e) {
-				PreferenceDialog propertyDialog = PreferencesUtil.createPropertyDialogOn(Display.getCurrent()
-					.getActiveShell(), WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
-					.getProject(), "org.unicase.workspace.ui.dashboardWidgetProperties", null, null);
-				propertyDialog.open();
+				try {
+					PreferenceDialog propertyDialog = PreferencesUtil.createPropertyDialogOn(Display.getCurrent()
+						.getActiveShell(), (Project) ECPWorkspaceManager.getInstance().getWorkSpace()
+						.getActiveProject().getRootContainer(), "org.unicase.workspace.ui.dashboardWidgetProperties",
+						null, null);
+					propertyDialog.open();
+				} catch (NoWorkspaceException e1) {
+					ModelUtil.logException("Failed to show property Dialog!", e1);
+				}
+
 			}
 		});
 	}

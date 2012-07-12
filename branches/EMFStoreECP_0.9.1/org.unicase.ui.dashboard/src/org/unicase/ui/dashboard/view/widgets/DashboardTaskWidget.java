@@ -17,7 +17,6 @@ import org.eclipse.emf.ecp.common.util.DialogHandler;
 import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
-import org.eclipse.emf.emfstore.client.ui.util.URLHelper;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -48,6 +47,7 @@ import org.unicase.ui.dashboard.view.DashboardPage;
 import org.unicase.ui.dashboard.view.DashboardToolbarAction;
 import org.unicase.ui.unicasecommon.common.filter.UserFilter;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
+import org.unicase.ui.unicasecommon.common.util.URLHelper;
 
 /**
  * A dashboard widget displaying an overview of all tasks.

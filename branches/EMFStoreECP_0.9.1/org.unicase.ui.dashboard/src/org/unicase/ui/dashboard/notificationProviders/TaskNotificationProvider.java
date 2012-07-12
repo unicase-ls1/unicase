@@ -17,18 +17,17 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.emfstore.client.model.preferences.DashboardKey;
-import org.eclipse.emf.emfstore.client.model.preferences.PreferenceManager;
+import org.eclipse.emf.emfstore.client.properties.PropertyManager;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
-import org.eclipse.emf.emfstore.server.model.notification.NotificationFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AttributeOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationId;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
+import org.unicase.dashboard.DashboardFactory;
+import org.unicase.dashboard.DashboardNotification;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrganizationPackage;
@@ -36,6 +35,7 @@ import org.unicase.model.organization.User;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
+import org.unicase.ui.dashboard.prefs.DashboardProperties;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 
 /**
@@ -170,24 +170,24 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected List<ESNotification> createNotifications() {
+	protected List<DashboardNotification> createNotifications() {
 
-		List<ESNotification> result = new ArrayList<ESNotification>();
+		List<DashboardNotification> result = new ArrayList<DashboardNotification>();
 
 		for (EClass clazz : clazzes) {
 
 			if (!assigneeItems.get(clazz).isEmpty()) {
-				ESNotification notification = createSingleNotification(assigneeItems.get(clazz), clazz,
+				DashboardNotification notification = createSingleNotification(assigneeItems.get(clazz), clazz,
 					"You have been assigned ", "assignment");
 				result.add(notification);
 			}
 			if (!readyForReviewItems.get(clazz).isEmpty()) {
-				ESNotification notification = createSingleNotification(readyForReviewItems.get(clazz), clazz,
+				DashboardNotification notification = createSingleNotification(readyForReviewItems.get(clazz), clazz,
 					"You can now review ", "ready-for-review");
 				result.add(notification);
 			}
 			if (!reviewerItems.get(clazz).isEmpty()) {
-				ESNotification notification = createSingleNotification(reviewerItems.get(clazz), clazz,
+				DashboardNotification notification = createSingleNotification(reviewerItems.get(clazz), clazz,
 					"You have been assigned to review ", "review");
 				result.add(notification);
 			}
@@ -201,10 +201,10 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 
 	}
 
-	private ESNotification createSingleNotification(Map<WorkItem, AbstractOperation> workItemMap, EClass clazz,
+	private DashboardNotification createSingleNotification(Map<WorkItem, AbstractOperation> workItemMap, EClass clazz,
 		String message, String taskType) {
 		Set<WorkItem> workItems = workItemMap.keySet();
-		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
+		DashboardNotification notification = DashboardFactory.eINSTANCE.createDashboardNotification();
 		notification.setName("New " + taskType + " items");
 		notification.setProject(ModelUtil.clone(getProjectSpace().getProjectId()));
 		notification.setRecipient(getUser().getName());
@@ -259,8 +259,8 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 	/**
 	 * {@inheritDoc}
 	 */
-	public DashboardKey getKey() {
-		return DashboardKey.TASK_PROVIDER;
+	public String getKey() {
+		return DashboardProperties.TASK_PROVIDER;
 	}
 
 	/**
@@ -272,29 +272,30 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 	protected void init() {
 		super.init();
 		clazzes.clear();
-		if (PreferenceManager.INSTANCE.getProperty(getProjectSpace(), DashboardKey.SHOW_BR_TASKS).getBooleanProperty()) {
+
+		PropertyManager manager = getProjectSpace().getPropertyManager();
+		if (Boolean.parseBoolean(manager.getSharedStringProperty(DashboardProperties.SHOW_BR_TASKS))) {
 			EClass bugClass = BugPackage.eINSTANCE.getBugReport();
 			clazzes.add(bugClass);
 			assigneeItems.put(bugClass, new HashMap<WorkItem, AbstractOperation>());
 			reviewerItems.put(bugClass, new HashMap<WorkItem, AbstractOperation>());
 			readyForReviewItems.put(bugClass, new HashMap<WorkItem, AbstractOperation>());
 		}
-		if (PreferenceManager.INSTANCE.getProperty(getProjectSpace(), DashboardKey.SHOW_AI_TASKS).getBooleanProperty()) {
+		if (Boolean.parseBoolean(manager.getSharedStringProperty(DashboardProperties.SHOW_AI_TASKS))) {
 			EClass aiClass = TaskPackage.eINSTANCE.getActionItem();
 			clazzes.add(aiClass);
 			assigneeItems.put(aiClass, new HashMap<WorkItem, AbstractOperation>());
 			reviewerItems.put(aiClass, new HashMap<WorkItem, AbstractOperation>());
 			readyForReviewItems.put(aiClass, new HashMap<WorkItem, AbstractOperation>());
 		}
-		if (PreferenceManager.INSTANCE.getProperty(getProjectSpace(), DashboardKey.SHOW_ISSUE_TASKS)
-			.getBooleanProperty()) {
+		if (Boolean.parseBoolean(manager.getSharedStringProperty(DashboardProperties.SHOW_ISSUE_TASKS))) {
 			EClass issueClass = RationalePackage.eINSTANCE.getIssue();
 			clazzes.add(issueClass);
 			assigneeItems.put(issueClass, new HashMap<WorkItem, AbstractOperation>());
 			reviewerItems.put(issueClass, new HashMap<WorkItem, AbstractOperation>());
 			readyForReviewItems.put(issueClass, new HashMap<WorkItem, AbstractOperation>());
 		}
-		if (PreferenceManager.INSTANCE.getProperty(getProjectSpace(), DashboardKey.SHOW_WP_TASKS).getBooleanProperty()) {
+		if (Boolean.parseBoolean(manager.getSharedStringProperty(DashboardProperties.SHOW_WP_TASKS))) {
 			EClass wpClass = TaskPackage.eINSTANCE.getWorkPackage();
 			clazzes.add(wpClass);
 			assigneeItems.put(wpClass, new HashMap<WorkItem, AbstractOperation>());

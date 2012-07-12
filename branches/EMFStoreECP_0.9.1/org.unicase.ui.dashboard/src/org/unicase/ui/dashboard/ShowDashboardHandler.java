@@ -9,10 +9,12 @@ package org.unicase.ui.dashboard;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
@@ -42,7 +44,12 @@ public class ShowDashboardHandler extends AbstractHandler {
 			Object o = HandlerUtil.getVariableChecked(event, DASHBOARD_CONTEXT_VARIABLE);
 			projectSpace = (ProjectSpace) o;
 		} catch (ExecutionException e) {
-			projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
+			try {
+				projectSpace = (ProjectSpace) ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject()
+					.getRootObject();
+			} catch (NoWorkspaceException e1) {
+				ModelUtil.logException("Failed to show dashboard: No workspace!", e1);
+			}
 		}
 
 		if (projectSpace == null) {

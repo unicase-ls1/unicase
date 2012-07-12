@@ -16,13 +16,13 @@ import java.util.Set;
 import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
-import org.eclipse.emf.emfstore.client.model.preferences.DashboardKey;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
-import org.eclipse.emf.emfstore.server.model.notification.NotificationFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationId;
+import org.unicase.dashboard.DashboardFactory;
+import org.unicase.dashboard.DashboardNotification;
 import org.unicase.model.organization.User;
+import org.unicase.ui.dashboard.prefs.DashboardProperties;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 
 /**
@@ -53,8 +53,9 @@ public class UpdateNotificationProvider implements NotificationProvider {
 	 * @see org.unicase.workspace.notification.NotificationProvider#provideNotifications(org.unicase.workspace.ProjectSpace,
 	 *      java.util.List, java.lang.String)
 	 */
-	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages) {
-		List<ESNotification> result = new ArrayList<ESNotification>();
+	public List<DashboardNotification> provideNotifications(ProjectSpace projectSpace,
+		List<ChangePackage> changePackages) {
+		List<DashboardNotification> result = new ArrayList<DashboardNotification>();
 
 		try {
 			User currentUser = OrgUnitHelper.getUser(projectSpace);
@@ -72,15 +73,15 @@ public class UpdateNotificationProvider implements NotificationProvider {
 	 * @see org.unicase.workspace.notification.NotificationProvider#provideNotifications(org.unicase.workspace.ProjectSpace,
 	 *      java.util.List, java.lang.String)
 	 */
-	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
-		String usersername) {
+	public List<DashboardNotification> provideNotifications(ProjectSpace projectSpace,
+		List<ChangePackage> changePackages, String usersername) {
 
 		// sanity checks
 		if (projectSpace == null || changePackages == null || usersername == null) {
 			return Collections.emptyList();
 		}
 
-		List<ESNotification> result = new ArrayList<ESNotification>();
+		List<DashboardNotification> result = new ArrayList<DashboardNotification>();
 
 		List<ChangePackage> newChangePackages = new ArrayList<ChangePackage>();
 		for (ChangePackage cp : changePackages) {
@@ -94,7 +95,7 @@ public class UpdateNotificationProvider implements NotificationProvider {
 			return result;
 		}
 
-		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
+		DashboardNotification notification = DashboardFactory.eINSTANCE.createDashboardNotification();
 		notification.setProject(ModelUtil.clone(projectSpace.getProjectId()));
 		notification.setRecipient(usersername);
 		notification.setProvider(getName());
@@ -134,7 +135,7 @@ public class UpdateNotificationProvider implements NotificationProvider {
 	/**
 	 * {@inheritDoc}
 	 */
-	public DashboardKey getKey() {
-		return DashboardKey.UPDATE_PROVIDER;
+	public String getKey() {
+		return DashboardProperties.UPDATE_PROVIDER;
 	}
 }

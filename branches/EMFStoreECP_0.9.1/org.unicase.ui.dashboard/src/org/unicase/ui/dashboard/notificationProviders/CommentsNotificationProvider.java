@@ -15,20 +15,19 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.emfstore.client.model.preferences.DashboardKey;
-import org.eclipse.emf.emfstore.client.model.preferences.PreferenceManager;
+import org.eclipse.emf.emfstore.client.properties.PropertyManager;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.emf.emfstore.server.model.accesscontrol.OrgUnitProperty;
-import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
-import org.eclipse.emf.emfstore.server.model.notification.NotificationFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation;
+import org.unicase.dashboard.DashboardFactory;
+import org.unicase.dashboard.DashboardNotification;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.task.WorkItem;
+import org.unicase.ui.dashboard.prefs.DashboardProperties;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 
 /**
@@ -84,14 +83,14 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected List<ESNotification> createNotifications() {
-		List<ESNotification> result = new ArrayList<ESNotification>();
-		OrgUnitProperty commentsProviderProperty = PreferenceManager.INSTANCE.getProperty(getProjectSpace(),
-			DashboardKey.COMMENTS_PROVIDER);
-		if (commentsProviderProperty.getBooleanProperty()) {
-			OrgUnitProperty threadRepliesProperty = PreferenceManager.INSTANCE.getProperty(getProjectSpace(),
-				DashboardKey.SHOW_CONTAINMENT_REPLIES);
-			if (threadRepliesProperty.getBooleanProperty()) {
+	protected List<DashboardNotification> createNotifications() {
+		List<DashboardNotification> result = new ArrayList<DashboardNotification>();
+		PropertyManager manager = getProjectSpace().getPropertyManager();
+		String commentsProviderProperty = manager.getSharedStringProperty(DashboardProperties.COMMENTS_PROVIDER);
+		if (Boolean.parseBoolean(commentsProviderProperty)) {
+			String threadRepliesProperty = manager
+				.getSharedStringProperty(DashboardProperties.SHOW_CONTAINMENT_REPLIES);
+			if (Boolean.parseBoolean(threadRepliesProperty)) {
 				for (UnicaseModelElement modelElement : me2replyMap.keySet()) {
 					result.add(createCommentNotification(me2replyMap, reply2OperationMap, modelElement,
 						" also commented in the thread for "));
@@ -168,8 +167,8 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 		}
 	}
 
-	private ESNotification createNotification(List<Comment> comments, List<AbstractOperation> abstractOperations) {
-		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
+	private DashboardNotification createNotification(List<Comment> comments, List<AbstractOperation> abstractOperations) {
+		DashboardNotification notification = DashboardFactory.eINSTANCE.createDashboardNotification();
 		notification.setName("New comment notification");
 		notification.setProject(ModelUtil.clone(getProjectSpace().getProjectId()));
 		notification.setRecipient(getUser().getName());
@@ -207,7 +206,8 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 		return notification;
 	}
 
-	private ESNotification createCommentNotification(HashMap<UnicaseModelElement, ArrayList<Comment>> me2commentMap,
+	private DashboardNotification createCommentNotification(
+		HashMap<UnicaseModelElement, ArrayList<Comment>> me2commentMap,
 		HashMap<Comment, AbstractOperation> comment2opMap, UnicaseModelElement modelElement, String message) {
 		List<Comment> comments = me2commentMap.get(modelElement);
 		ArrayList<AbstractOperation> ops = new ArrayList<AbstractOperation>();
@@ -220,7 +220,7 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 				stringBuilder.append(", ");
 			}
 		}
-		ESNotification notification = createNotification(comments, ops);
+		DashboardNotification notification = createNotification(comments, ops);
 		int length = stringBuilder.length();
 		if (length > 2) {
 			stringBuilder.delete(length - 2, length - 1);
@@ -235,8 +235,8 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 	/**
 	 * {@inheritDoc}
 	 */
-	public DashboardKey getKey() {
-		return DashboardKey.COMMENTS_PROVIDER;
+	public String getKey() {
+		return DashboardProperties.COMMENTS_PROVIDER;
 	}
 
 	/**

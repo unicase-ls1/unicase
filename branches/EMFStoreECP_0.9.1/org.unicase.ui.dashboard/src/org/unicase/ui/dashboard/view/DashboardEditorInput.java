@@ -11,11 +11,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
+import org.unicase.dashboard.DashboardNotification;
+import org.unicase.dashboard.DashboardNotificationComposite;
 import org.unicase.ui.dashboard.Activator;
 
 /**
@@ -112,12 +114,25 @@ public class DashboardEditorInput implements IEditorInput {
 	/**
 	 * @return the list of all notifications in the current project space.
 	 */
-	public List<ESNotification> getNotifications() {
+	public List<DashboardNotification> getNotifications() {
 
-		List<ESNotification> originalNotifications = projectSpace.getNotificationsFromComposite();
-		ArrayList<ESNotification> notifications = new ArrayList<ESNotification>(originalNotifications);
-		Collections.sort(notifications, new Comparator<ESNotification>() {
-			public int compare(ESNotification arg0, ESNotification arg1) {
+		DashboardNotificationComposite notificationComposite = null;
+
+		for (EObject eObject : projectSpace.getProject().getModelElements()) {
+			if (eObject instanceof DashboardNotificationComposite) {
+				notificationComposite = (DashboardNotificationComposite) eObject;
+				break;
+			}
+		}
+
+		if (notificationComposite == null) {
+			return Collections.emptyList();
+		}
+
+		List<DashboardNotification> originalNotifications = notificationComposite.getNotifications();
+		ArrayList<DashboardNotification> notifications = new ArrayList<DashboardNotification>(originalNotifications);
+		Collections.sort(notifications, new Comparator<DashboardNotification>() {
+			public int compare(DashboardNotification arg0, DashboardNotification arg1) {
 				if (arg0 == null) {
 					return 1;
 				}

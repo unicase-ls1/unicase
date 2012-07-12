@@ -19,8 +19,6 @@ import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
 import org.eclipse.emf.ecp.common.utilities.ModelElementClassTooltip;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
-import org.eclipse.emf.emfstore.client.ui.util.URLHelper;
-import org.eclipse.emf.emfstore.client.ui.util.URLSelectionListener;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -35,7 +33,9 @@ import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.ui.dashboard.view.DashboardPage;
+import org.unicase.ui.unicasecommon.common.URLSelectionListener;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
+import org.unicase.ui.unicasecommon.common.util.URLHelper;
 
 /**
  * A dashboard widget displaying an overview of related tasks.
