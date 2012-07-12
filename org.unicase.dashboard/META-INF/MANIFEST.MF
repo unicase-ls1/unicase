@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Unicase Dashboard Model Plug-in
+Bundle-SymbolicName: org.unicase.dashboard;singleton:=true
+Bundle-Version: 0.5.1.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: unicase.org
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.unicase.dashboard,
+ org.unicase.dashboard.impl,
+ org.unicase.dashboard.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.emfstore.common.model;visibility:=reexport,
+ org.eclipse.emf.emfstore.server.model;visibility:=reexport
+Bundle-ActivationPolicy: lazy
