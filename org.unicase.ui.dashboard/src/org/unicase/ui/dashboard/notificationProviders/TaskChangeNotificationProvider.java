@@ -14,16 +14,16 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.emfstore.client.model.preferences.DashboardKey;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
-import org.eclipse.emf.emfstore.server.model.notification.NotificationFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
+import org.unicase.dashboard.DashboardFactory;
+import org.unicase.dashboard.DashboardNotification;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.TaskQuery;
+import org.unicase.ui.dashboard.prefs.DashboardProperties;
 
 /**
  * Provides notifications for changes on assigned tasks.
@@ -59,13 +59,13 @@ public class TaskChangeNotificationProvider extends AbstractNotificationProvider
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected List<ESNotification> createNotifications() {
-		ArrayList<ESNotification> notifications = new ArrayList<ESNotification>();
+	protected List<DashboardNotification> createNotifications() {
+		ArrayList<DashboardNotification> notifications = new ArrayList<DashboardNotification>();
 		Set<WorkItem> workItemsSet = workItems.keySet();
 		if (workItemsSet.isEmpty()) {
 			return notifications;
 		}
-		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
+		DashboardNotification notification = DashboardFactory.eINSTANCE.createDashboardNotification();
 		notification.setName("Changed work items");
 		notification.setProject(ModelUtil.clone(getProjectSpace().getProjectId()));
 		notification.setRecipient(getUser().getName());
@@ -116,8 +116,8 @@ public class TaskChangeNotificationProvider extends AbstractNotificationProvider
 	/**
 	 * {@inheritDoc}
 	 */
-	public DashboardKey getKey() {
-		return DashboardKey.TASK_CHANGE_PROVIDER;
+	public String getKey() {
+		return DashboardProperties.TASK_CHANGE_PROVIDER;
 	}
 
 	/**

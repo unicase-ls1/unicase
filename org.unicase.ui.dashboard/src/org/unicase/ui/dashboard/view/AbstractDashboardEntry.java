@@ -9,9 +9,9 @@ package org.unicase.ui.dashboard.view;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.unicase.dashboard.DashboardNotification;
 
 /**
  * Abstract class for all dashboard entry types.
@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.Composite;
  */
 public abstract class AbstractDashboardEntry extends Composite {
 
-	private ESNotification n;
+	private DashboardNotification n;
 	private ProjectSpace projectSpace;
 	private DashboardPage page;
 	private EObject firstModelElement;
@@ -34,7 +34,7 @@ public abstract class AbstractDashboardEntry extends Composite {
 	 * @param projectSpace the project.
 	 * @param page a back link to the dashboard page (needed only for layout purposes).
 	 */
-	public AbstractDashboardEntry(DashboardPage page, Composite parent, int style, ESNotification notification,
+	public AbstractDashboardEntry(DashboardPage page, Composite parent, int style, DashboardNotification notification,
 		ProjectSpace projectSpace) {
 		super(parent, style);
 		this.page = page;
@@ -57,7 +57,7 @@ public abstract class AbstractDashboardEntry extends Composite {
 	/**
 	 * @return the n
 	 */
-	protected ESNotification getNotification() {
+	protected DashboardNotification getNotification() {
 		return n;
 	}
 

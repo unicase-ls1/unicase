@@ -17,8 +17,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.util.ModelElementTooltip;
 import org.eclipse.emf.ecp.common.utilities.ModelElementClassTooltip;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.ui.util.URLHelper;
-import org.eclipse.emf.emfstore.client.ui.util.URLSelectionListener;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -32,6 +30,8 @@ import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.dashboard.Activator;
+import org.unicase.ui.unicasecommon.common.URLSelectionListener;
+import org.unicase.ui.unicasecommon.common.util.URLHelper;
 
 /**
  * A dashboard widget displaying the upcoming events.

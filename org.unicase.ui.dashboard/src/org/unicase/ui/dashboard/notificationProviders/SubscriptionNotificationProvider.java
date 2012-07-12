@@ -11,16 +11,16 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.preferences.DashboardKey;
-import org.eclipse.emf.emfstore.client.model.preferences.PreferenceManager;
+import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.emf.emfstore.server.model.accesscontrol.OrgUnitProperty;
-import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
-import org.eclipse.emf.emfstore.server.model.notification.NotificationFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
+import org.unicase.dashboard.DashboardFactory;
+import org.unicase.dashboard.DashboardNotification;
+import org.unicase.dashboard.SubscriptionComposite;
+import org.unicase.ui.dashboard.prefs.DashboardProperties;
 
 /**
  * Provides notifications for subscribed MEs.
@@ -29,8 +29,8 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOper
  */
 public class SubscriptionNotificationProvider extends AbstractNotificationProvider {
 
-	private ArrayList<ESNotification> result;
-	private List<EObject> subscriptionIds;
+	private ArrayList<DashboardNotification> result;
+	private List<ModelElementId> subscriptionIds;
 
 	/**
 	 * The name.
@@ -59,12 +59,22 @@ public class SubscriptionNotificationProvider extends AbstractNotificationProvid
 	 *      java.util.List, java.lang.String)
 	 */
 	@Override
-	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
-		String currentUsername) {
-		result = new ArrayList<ESNotification>();
-		OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SUBSCRIPTIONS);
+	public List<DashboardNotification> provideNotifications(ProjectSpace projectSpace,
+		List<ChangePackage> changePackages, String currentUsername) {
+		result = new ArrayList<DashboardNotification>();
+		EMFStoreProperty property = projectSpace.getPropertyManager().getSharedProperty(
+			DashboardProperties.SUBSCRIPTIONS);
 
-		subscriptionIds = property.getEObjectListProperty(new ArrayList<EObject>());
+		if (property != null) {
+			EObject value = property.getValue();
+			if (value instanceof SubscriptionComposite) {
+				subscriptionIds = ((SubscriptionComposite) value).getSubscriptions();
+			} else {
+				return result;
+			}
+		} else {
+			return result;
+		}
 
 		if (subscriptionIds.isEmpty()) {
 			return result;
@@ -101,7 +111,7 @@ public class SubscriptionNotificationProvider extends AbstractNotificationProvid
 			return;
 		}
 		getExcludedOperations().add(op.getOperationId());
-		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
+		DashboardNotification notification = DashboardFactory.eINSTANCE.createDashboardNotification();
 		notification.setName("Subscriptions");
 		notification.setProject(ModelUtil.clone(getProjectSpace().getProjectId()));
 		notification.setRecipient(getUser().getName());
@@ -120,15 +130,15 @@ public class SubscriptionNotificationProvider extends AbstractNotificationProvid
 	/**
 	 * {@inheritDoc}
 	 */
-	public DashboardKey getKey() {
-		return DashboardKey.SUBSCRIPTION_PROVIDER;
+	public String getKey() {
+		return DashboardProperties.SUBSCRIPTION_PROVIDER;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected List<ESNotification> createNotifications() {
+	protected List<DashboardNotification> createNotifications() {
 		return result;
 	}
 
