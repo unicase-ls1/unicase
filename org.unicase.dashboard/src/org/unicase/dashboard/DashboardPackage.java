@@ -216,7 +216,7 @@ public interface DashboardPackage extends EPackage {
 	int SUBSCRIPTION_COMPOSITE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Subscriptions</b></em>' reference list.
+	 * The feature id for the '<em><b>Subscriptions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -424,10 +424,10 @@ public interface DashboardPackage extends EPackage {
 	EClass getSubscriptionComposite();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.dashboard.SubscriptionComposite#getSubscriptions <em>Subscriptions</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.dashboard.SubscriptionComposite#getSubscriptions <em>Subscriptions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Subscriptions</em>'.
+	 * @return the meta object for the containment reference list '<em>Subscriptions</em>'.
 	 * @see org.unicase.dashboard.SubscriptionComposite#getSubscriptions()
 	 * @see #getSubscriptionComposite()
 	 * @generated
@@ -606,7 +606,7 @@ public interface DashboardPackage extends EPackage {
 		EClass SUBSCRIPTION_COMPOSITE = eINSTANCE.getSubscriptionComposite();
 
 		/**
-		 * The meta object literal for the '<em><b>Subscriptions</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Subscriptions</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

@@ -62,7 +62,7 @@ public class DashboardPage extends FormPage {
 
 		@Override
 		protected void doRun() {
-			String sizeProperty = getProjectSpace().getPropertyManager().getSharedStringProperty(
+			String sizeProperty = getProjectSpace().getPropertyManager().getLocalStringProperty(
 				DashboardProperties.DASHBOARD_SIZE);
 			int count = sizeProperty != null ? Integer.parseInt(sizeProperty) : 10;
 			count = Math.min(count, notifications.size());

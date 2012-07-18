@@ -11,14 +11,16 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.properties.PropertyManager;
+import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 import org.unicase.dashboard.DashboardNotification;
 import org.unicase.dashboard.DashboardNotificationComposite;
 import org.unicase.ui.dashboard.Activator;
+import org.unicase.ui.dashboard.prefs.DashboardProperties;
 
 /**
  * The editor input for the dashboard.
@@ -116,18 +118,14 @@ public class DashboardEditorInput implements IEditorInput {
 	 */
 	public List<DashboardNotification> getNotifications() {
 
-		DashboardNotificationComposite notificationComposite = null;
+		PropertyManager propertyManager = projectSpace.getPropertyManager();
+		EMFStoreProperty property = propertyManager.getLocalProperty(DashboardProperties.NOTIFICATION_COMPOSITE);
 
-		for (EObject eObject : projectSpace.getProject().getModelElements()) {
-			if (eObject instanceof DashboardNotificationComposite) {
-				notificationComposite = (DashboardNotificationComposite) eObject;
-				break;
-			}
-		}
-
-		if (notificationComposite == null) {
+		if (property == null) {
 			return Collections.emptyList();
 		}
+
+		DashboardNotificationComposite notificationComposite = (DashboardNotificationComposite) property.getValue();
 
 		List<DashboardNotification> originalNotifications = notificationComposite.getNotifications();
 		ArrayList<DashboardNotification> notifications = new ArrayList<DashboardNotification>(originalNotifications);

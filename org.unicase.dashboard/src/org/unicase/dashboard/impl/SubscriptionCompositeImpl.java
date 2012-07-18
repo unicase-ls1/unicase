@@ -8,12 +8,16 @@ package org.unicase.dashboard.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
@@ -36,7 +40,7 @@ import org.unicase.dashboard.SubscriptionComposite;
  */
 public class SubscriptionCompositeImpl extends EObjectImpl implements SubscriptionComposite {
 	/**
-	 * The cached value of the '{@link #getSubscriptions() <em>Subscriptions</em>}' reference list.
+	 * The cached value of the '{@link #getSubscriptions() <em>Subscriptions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSubscriptions()
@@ -71,10 +75,24 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 	 */
 	public EList<ModelElementId> getSubscriptions() {
 		if (subscriptions == null) {
-			subscriptions = new EObjectResolvingEList<ModelElementId>(ModelElementId.class, this,
+			subscriptions = new EObjectContainmentEList.Resolving<ModelElementId>(ModelElementId.class, this,
 				DashboardPackage.SUBSCRIPTION_COMPOSITE__SUBSCRIPTIONS);
 		}
 		return subscriptions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case DashboardPackage.SUBSCRIPTION_COMPOSITE__SUBSCRIPTIONS:
+			return ((InternalEList<?>) getSubscriptions()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

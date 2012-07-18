@@ -86,11 +86,10 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 	protected List<DashboardNotification> createNotifications() {
 		List<DashboardNotification> result = new ArrayList<DashboardNotification>();
 		PropertyManager manager = getProjectSpace().getPropertyManager();
-		String commentsProviderProperty = manager.getSharedStringProperty(DashboardProperties.COMMENTS_PROVIDER);
-		if (Boolean.parseBoolean(commentsProviderProperty)) {
-			String threadRepliesProperty = manager
-				.getSharedStringProperty(DashboardProperties.SHOW_CONTAINMENT_REPLIES);
-			if (Boolean.parseBoolean(threadRepliesProperty)) {
+		String commentsProviderProperty = manager.getLocalStringProperty(DashboardProperties.COMMENTS_PROVIDER);
+		if (commentsProviderProperty != null && Boolean.parseBoolean(commentsProviderProperty)) {
+			String threadRepliesProperty = manager.getLocalStringProperty(DashboardProperties.SHOW_CONTAINMENT_REPLIES);
+			if (threadRepliesProperty != null && Boolean.parseBoolean(threadRepliesProperty)) {
 				for (UnicaseModelElement modelElement : me2replyMap.keySet()) {
 					result.add(createCommentNotification(me2replyMap, reply2OperationMap, modelElement,
 						" also commented in the thread for "));

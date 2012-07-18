@@ -274,28 +274,36 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 		clazzes.clear();
 
 		PropertyManager manager = getProjectSpace().getPropertyManager();
-		if (Boolean.parseBoolean(manager.getSharedStringProperty(DashboardProperties.SHOW_BR_TASKS))) {
+
+		String showBR = manager.getLocalStringProperty(DashboardProperties.SHOW_BR_TASKS);
+		if (showBR != null && Boolean.parseBoolean(showBR)) {
 			EClass bugClass = BugPackage.eINSTANCE.getBugReport();
 			clazzes.add(bugClass);
 			assigneeItems.put(bugClass, new HashMap<WorkItem, AbstractOperation>());
 			reviewerItems.put(bugClass, new HashMap<WorkItem, AbstractOperation>());
 			readyForReviewItems.put(bugClass, new HashMap<WorkItem, AbstractOperation>());
 		}
-		if (Boolean.parseBoolean(manager.getSharedStringProperty(DashboardProperties.SHOW_AI_TASKS))) {
+
+		String showAI = manager.getLocalStringProperty(DashboardProperties.SHOW_AI_TASKS);
+		if (showAI != null && Boolean.parseBoolean(showAI)) {
 			EClass aiClass = TaskPackage.eINSTANCE.getActionItem();
 			clazzes.add(aiClass);
 			assigneeItems.put(aiClass, new HashMap<WorkItem, AbstractOperation>());
 			reviewerItems.put(aiClass, new HashMap<WorkItem, AbstractOperation>());
 			readyForReviewItems.put(aiClass, new HashMap<WorkItem, AbstractOperation>());
 		}
-		if (Boolean.parseBoolean(manager.getSharedStringProperty(DashboardProperties.SHOW_ISSUE_TASKS))) {
+
+		String showIssue = manager.getLocalStringProperty(DashboardProperties.SHOW_ISSUE_TASKS);
+		if (showIssue != null && Boolean.parseBoolean(showIssue)) {
 			EClass issueClass = RationalePackage.eINSTANCE.getIssue();
 			clazzes.add(issueClass);
 			assigneeItems.put(issueClass, new HashMap<WorkItem, AbstractOperation>());
 			reviewerItems.put(issueClass, new HashMap<WorkItem, AbstractOperation>());
 			readyForReviewItems.put(issueClass, new HashMap<WorkItem, AbstractOperation>());
 		}
-		if (Boolean.parseBoolean(manager.getSharedStringProperty(DashboardProperties.SHOW_WP_TASKS))) {
+
+		String showWP = manager.getLocalStringProperty(DashboardProperties.SHOW_WP_TASKS);
+		if (showWP != null && Boolean.parseBoolean(showWP)) {
 			EClass wpClass = TaskPackage.eINSTANCE.getWorkPackage();
 			clazzes.add(wpClass);
 			assigneeItems.put(wpClass, new HashMap<WorkItem, AbstractOperation>());

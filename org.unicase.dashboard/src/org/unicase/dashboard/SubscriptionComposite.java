@@ -30,7 +30,7 @@ import org.eclipse.emf.emfstore.common.model.ModelElementId;
  */
 public interface SubscriptionComposite extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Subscriptions</b></em>' reference list.
+	 * Returns the value of the '<em><b>Subscriptions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.emf.emfstore.common.model.ModelElementId}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -38,9 +38,9 @@ public interface SubscriptionComposite extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Subscriptions</em>' reference list.
+	 * @return the value of the '<em>Subscriptions</em>' containment reference list.
 	 * @see org.unicase.dashboard.DashboardPackage#getSubscriptionComposite_Subscriptions()
-	 * @model
+	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<ModelElementId> getSubscriptions();

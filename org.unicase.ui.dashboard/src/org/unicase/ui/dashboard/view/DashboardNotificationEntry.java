@@ -180,10 +180,12 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		localResources.add(lightBlue);
 
 		notificationColor = getDisplay().getSystemColor(SWT.COLOR_WHITE);
-		if (getNotification().getProvider().equals(PushedNotificationProvider.NAME)
-			&& Boolean.parseBoolean(getProjectSpace().getPropertyManager().getSharedStringProperty(
-				DashboardProperties.HIGHLIGHT_PUSHED_COMMENTS))) {
-			notificationColor = getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND);
+		if (getNotification().getProvider().equals(PushedNotificationProvider.NAME)) {
+			String property = getProjectSpace().getPropertyManager().getLocalStringProperty(
+				DashboardProperties.HIGHLIGHT_PUSHED_COMMENTS);
+			if (property != null && Boolean.parseBoolean(property)) {
+				notificationColor = getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND);
+			}
 		}
 		format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(

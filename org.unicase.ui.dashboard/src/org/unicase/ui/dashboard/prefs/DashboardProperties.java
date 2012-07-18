@@ -40,4 +40,6 @@ public class DashboardProperties {
 
 	public static final String UPDATE_PROVIDER = "Update Provider";
 
+	public static final String NOTIFICATION_COMPOSITE = "Notification Composite";
+
 }
