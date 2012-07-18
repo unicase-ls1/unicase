@@ -422,7 +422,7 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSubscriptionComposite_Subscriptions(), theModelPackage_1.getModelElementId(), null,
 			"subscriptions", null, 0, -1, SubscriptionComposite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(taskTraceClassesCompositeEClass, TaskTraceClassesComposite.class, "TaskTraceClassesComposite",
 			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

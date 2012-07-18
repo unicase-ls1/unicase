@@ -62,7 +62,7 @@ public class SubscriptionNotificationProvider extends AbstractNotificationProvid
 	public List<DashboardNotification> provideNotifications(ProjectSpace projectSpace,
 		List<ChangePackage> changePackages, String currentUsername) {
 		result = new ArrayList<DashboardNotification>();
-		EMFStoreProperty property = projectSpace.getPropertyManager().getSharedProperty(
+		EMFStoreProperty property = projectSpace.getPropertyManager().getLocalProperty(
 			DashboardProperties.SUBSCRIPTIONS);
 
 		if (property != null) {

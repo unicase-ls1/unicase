@@ -27,7 +27,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SubscriptionComposite">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subscriptions" upperBound="-1"
-        eType="ecore:EClass platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//ModelElementId"/>
+        eType="ecore:EClass platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//ModelElementId"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TaskTraceClassesComposite">
     <eStructuralFeatures xsi:type="ecore:EReference" name="taskTraceClasses" upperBound="-1"

@@ -25,15 +25,11 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
-import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommandWithResult;
 import org.eclipse.emf.emfstore.client.properties.PropertyManager;
-import org.eclipse.emf.emfstore.client.ui.dialogs.login.LoginDialog;
-import org.eclipse.emf.emfstore.client.ui.dialogs.login.LoginDialogController;
 import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -51,7 +47,6 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.TabFolder;
@@ -75,49 +70,48 @@ public class DashboardPropertyPage extends PropertyPage {
 	 * 
 	 * @author Shterev
 	 */
-	private final class SavePropertiesCommand extends EMFStoreCommandWithResult<Object> {
+	private final class SavePropertiesCommand extends EMFStoreCommand {
 
 		@Override
-		protected Object doRun() {
+		protected void doRun() {
 
 			SubscriptionComposite subscriptionComposite = DashboardFactory.eINSTANCE.createSubscriptionComposite();
 			for (EObject me : subscriptions) {
 				ModelElementId meId = ModelUtil.getProject(me).getModelElementId(me);
 				subscriptionComposite.getSubscriptions().add(meId);
 			}
-			manager.setSharedProperty(DashboardProperties.SUBSCRIPTIONS, subscriptionComposite);
-			manager.setSharedStringProperty(DashboardProperties.DASHBOARD_SIZE,
+			manager.setLocalProperty(DashboardProperties.SUBSCRIPTIONS, subscriptionComposite);
+			manager.setLocalStringProperty(DashboardProperties.DASHBOARD_SIZE,
 				String.valueOf(notificationSize.getSelection()));
-			manager.setSharedStringProperty(DashboardProperties.TASK_PROVIDER,
+			manager.setLocalStringProperty(DashboardProperties.TASK_PROVIDER,
 				String.valueOf(providersTable.getChecked(DashboardProperties.TASK_PROVIDER)));
-			manager.setSharedStringProperty(DashboardProperties.TASK_CHANGE_PROVIDER,
+			manager.setLocalStringProperty(DashboardProperties.TASK_CHANGE_PROVIDER,
 				String.valueOf(providersTable.getChecked(DashboardProperties.TASK_CHANGE_PROVIDER)));
-			manager.setSharedStringProperty(DashboardProperties.TASK_REVIEW_PROVIDER,
+			manager.setLocalStringProperty(DashboardProperties.TASK_REVIEW_PROVIDER,
 				String.valueOf(providersTable.getChecked(DashboardProperties.TASK_REVIEW_PROVIDER)));
-			manager.setSharedStringProperty(DashboardProperties.TASK_TRACE_PROVIDER,
+			manager.setLocalStringProperty(DashboardProperties.TASK_TRACE_PROVIDER,
 				String.valueOf(providersTable.getChecked(DashboardProperties.TASK_TRACE_PROVIDER)));
-			manager.setSharedStringProperty(DashboardProperties.SUBSCRIPTION_PROVIDER,
+			manager.setLocalStringProperty(DashboardProperties.SUBSCRIPTION_PROVIDER,
 				String.valueOf(providersTable.getChecked(DashboardProperties.SUBSCRIPTION_PROVIDER)));
-			manager.setSharedStringProperty(DashboardProperties.COMMENTS_PROVIDER,
+			manager.setLocalStringProperty(DashboardProperties.COMMENTS_PROVIDER,
 				String.valueOf(providersTable.getChecked(DashboardProperties.COMMENTS_PROVIDER)));
-			manager.setSharedStringProperty(DashboardProperties.HIGHLIGHT_PUSHED_COMMENTS,
+			manager.setLocalStringProperty(DashboardProperties.HIGHLIGHT_PUSHED_COMMENTS,
 				String.valueOf(highlightPersonalComments.getSelection()));
-			manager.setSharedStringProperty(DashboardProperties.SHOW_CONTAINMENT_REPLIES,
+			manager.setLocalStringProperty(DashboardProperties.SHOW_CONTAINMENT_REPLIES,
 				String.valueOf(showContainmentReplies.getSelection()));
-			manager.setSharedStringProperty(DashboardProperties.SHOW_AI_TASKS,
+			manager.setLocalStringProperty(DashboardProperties.SHOW_AI_TASKS,
 				String.valueOf(showAITasks.getSelection()));
-			manager.setSharedStringProperty(DashboardProperties.SHOW_BR_TASKS,
+			manager.setLocalStringProperty(DashboardProperties.SHOW_BR_TASKS,
 				String.valueOf(showBRTasks.getSelection()));
-			manager.setSharedStringProperty(DashboardProperties.SHOW_ISSUE_TASKS,
+			manager.setLocalStringProperty(DashboardProperties.SHOW_ISSUE_TASKS,
 				String.valueOf(showIssueTasks.getSelection()));
-			manager.setSharedStringProperty(DashboardProperties.SHOW_WP_TASKS,
+			manager.setLocalStringProperty(DashboardProperties.SHOW_WP_TASKS,
 				String.valueOf(showWPTasks.getSelection()));
-			manager.setSharedStringProperty(DashboardProperties.SHOW_ONLY_READYFORREVIEW,
+			manager.setLocalStringProperty(DashboardProperties.SHOW_ONLY_READYFORREVIEW,
 				String.valueOf(showOnlyReadyForReview.getSelection()));
-			manager.setSharedStringProperty(DashboardProperties.TASKTRACE_LENGTH,
+			manager.setLocalStringProperty(DashboardProperties.TASKTRACE_LENGTH,
 				String.valueOf(taskTraceLength.getSelection()));
-			manager.setSharedProperty(DashboardProperties.TASKTRACE_CLASSES, taskTraceClassesComposite);
-			return null;
+			manager.setLocalProperty(DashboardProperties.TASKTRACE_CLASSES, taskTraceClassesComposite);
 		}
 	}
 
@@ -428,7 +422,7 @@ public class DashboardPropertyPage extends PropertyPage {
 
 		// init the model based UI
 		subscriptions = new HashSet<EObject>();
-		EMFStoreProperty subscriptionsProperty = manager.getSharedProperty(DashboardProperties.SUBSCRIPTIONS);
+		EMFStoreProperty subscriptionsProperty = manager.getLocalProperty(DashboardProperties.SUBSCRIPTIONS);
 		if (subscriptionsProperty != null) {
 			EObject value = subscriptionsProperty.getValue();
 			if (value instanceof SubscriptionComposite) {
@@ -443,7 +437,7 @@ public class DashboardPropertyPage extends PropertyPage {
 		}
 
 		taskTraceClassesComposite = DashboardFactory.eINSTANCE.createTaskTraceClassesComposite();
-		EMFStoreProperty taskTraceClassesProperty = manager.getSharedProperty(DashboardProperties.TASKTRACE_CLASSES);
+		EMFStoreProperty taskTraceClassesProperty = manager.getLocalProperty(DashboardProperties.TASKTRACE_CLASSES);
 		if (taskTraceClassesProperty != null) {
 			EObject value = taskTraceClassesProperty.getValue();
 
@@ -466,56 +460,87 @@ public class DashboardPropertyPage extends PropertyPage {
 
 		loadTaskProperties();
 
-		String size = manager.getSharedStringProperty(DashboardProperties.DASHBOARD_SIZE);
-		notificationSize.setSelection(Integer.parseInt(size));
+		String size = manager.getLocalStringProperty(DashboardProperties.DASHBOARD_SIZE);
+		if (size != null) {
+			notificationSize.setSelection(Integer.parseInt(size));
+		}
 
-		String highlightPushed = manager.getSharedStringProperty(DashboardProperties.HIGHLIGHT_PUSHED_COMMENTS);
-		highlightPersonalComments.setSelection(Boolean.parseBoolean(highlightPushed));
+		String highlightPushed = manager.getLocalStringProperty(DashboardProperties.HIGHLIGHT_PUSHED_COMMENTS);
+		if (highlightPushed != null) {
+			highlightPersonalComments.setSelection(Boolean.parseBoolean(highlightPushed));
+		}
 
-		String showContainmentComments = manager.getSharedStringProperty(DashboardProperties.SHOW_CONTAINMENT_REPLIES);
-		showContainmentReplies.setSelection(Boolean.parseBoolean(showContainmentComments));
+		String showContainmentComments = manager.getLocalStringProperty(DashboardProperties.SHOW_CONTAINMENT_REPLIES);
+		if (showContainmentComments != null) {
+			showContainmentReplies.setSelection(Boolean.parseBoolean(showContainmentComments));
+		}
 
-		String taskTraceLength = manager.getSharedStringProperty(DashboardProperties.TASKTRACE_LENGTH);
-		this.taskTraceLength.setSelection(Integer.parseInt(taskTraceLength));
-
+		String taskTraceLength = manager.getLocalStringProperty(DashboardProperties.TASKTRACE_LENGTH);
+		if (taskTraceLength != null) {
+			this.taskTraceLength.setSelection(Integer.parseInt(taskTraceLength));
+		}
 	}
 
 	private void loadTaskProperties() {
-		String showAI = manager.getSharedStringProperty(DashboardProperties.SHOW_AI_TASKS);
-		showAITasks.setSelection(Boolean.parseBoolean(showAI));
+		String showAI = manager.getLocalStringProperty(DashboardProperties.SHOW_AI_TASKS);
+		if (showAI != null) {
+			showAITasks.setSelection(Boolean.parseBoolean(showAI));
+		}
 
-		String showBR = manager.getSharedStringProperty(DashboardProperties.SHOW_BR_TASKS);
-		showBRTasks.setSelection(Boolean.parseBoolean(showBR));
+		String showBR = manager.getLocalStringProperty(DashboardProperties.SHOW_BR_TASKS);
+		if (showBR != null) {
+			showBRTasks.setSelection(Boolean.parseBoolean(showBR));
+		}
 
-		String showI = manager.getSharedStringProperty(DashboardProperties.SHOW_ISSUE_TASKS);
-		showIssueTasks.setSelection(Boolean.parseBoolean(showI));
+		String showIssue = manager.getLocalStringProperty(DashboardProperties.SHOW_ISSUE_TASKS);
+		if (showIssue != null) {
+			showIssueTasks.setSelection(Boolean.parseBoolean(showIssue));
+		}
 
-		String showWP = manager.getSharedStringProperty(DashboardProperties.SHOW_WP_TASKS);
-		showWPTasks.setSelection(Boolean.parseBoolean(showWP));
+		String showWP = manager.getLocalStringProperty(DashboardProperties.SHOW_WP_TASKS);
+		if (showWP != null) {
+			showWPTasks.setSelection(Boolean.parseBoolean(showWP));
+		}
 
-		String showOnlyReadyForReview = manager.getSharedStringProperty(DashboardProperties.SHOW_ONLY_READYFORREVIEW);
-		this.showOnlyReadyForReview.setSelection(Boolean.parseBoolean(showOnlyReadyForReview));
+		String showORFR = manager.getLocalStringProperty(DashboardProperties.SHOW_ONLY_READYFORREVIEW);
+		if (showORFR != null) {
+			showOnlyReadyForReview.setSelection(Boolean.parseBoolean(showORFR));
+		}
 	}
 
 	private void loadProviderProperties() {
-		String taskProvider = manager.getSharedStringProperty(DashboardProperties.TASK_PROVIDER);
-		providersTable.setChecked(DashboardProperties.TASK_PROVIDER, Boolean.parseBoolean(taskProvider));
+		String taskProvider = manager.getLocalStringProperty(DashboardProperties.TASK_PROVIDER);
+		if (taskProvider != null) {
+			providersTable.setChecked(DashboardProperties.TASK_PROVIDER, Boolean.parseBoolean(taskProvider));
+		}
 
-		String taskChangeProvider = manager.getSharedStringProperty(DashboardProperties.TASK_CHANGE_PROVIDER);
-		providersTable.setChecked(DashboardProperties.TASK_CHANGE_PROVIDER, Boolean.parseBoolean(taskChangeProvider));
+		String taskChangeProvider = manager.getLocalStringProperty(DashboardProperties.TASK_CHANGE_PROVIDER);
+		if (taskChangeProvider != null) {
+			providersTable.setChecked(DashboardProperties.TASK_CHANGE_PROVIDER,
+				Boolean.parseBoolean(taskChangeProvider));
+		}
 
-		String taskReviewProvider = manager.getSharedStringProperty(DashboardProperties.TASK_REVIEW_PROVIDER);
-		providersTable.setChecked(DashboardProperties.TASK_REVIEW_PROVIDER, Boolean.parseBoolean(taskReviewProvider));
+		String taskReviewProvider = manager.getLocalStringProperty(DashboardProperties.TASK_REVIEW_PROVIDER);
+		if (taskReviewProvider != null) {
+			providersTable.setChecked(DashboardProperties.TASK_REVIEW_PROVIDER,
+				Boolean.parseBoolean(taskReviewProvider));
+		}
 
-		String taskTraceProvider = manager.getSharedStringProperty(DashboardProperties.TASK_TRACE_PROVIDER);
-		providersTable.setChecked(DashboardProperties.TASK_TRACE_PROVIDER, Boolean.parseBoolean(taskTraceProvider));
+		String taskTraceProvider = manager.getLocalStringProperty(DashboardProperties.TASK_TRACE_PROVIDER);
+		if (taskTraceProvider != null) {
+			providersTable.setChecked(DashboardProperties.TASK_TRACE_PROVIDER, Boolean.parseBoolean(taskTraceProvider));
+		}
 
-		String subscriptionProvider = manager.getSharedStringProperty(DashboardProperties.SUBSCRIPTION_PROVIDER);
-		providersTable
-			.setChecked(DashboardProperties.SUBSCRIPTION_PROVIDER, Boolean.parseBoolean(subscriptionProvider));
+		String subscriptionProvider = manager.getLocalStringProperty(DashboardProperties.SUBSCRIPTION_PROVIDER);
+		if (subscriptionProvider != null) {
+			providersTable.setChecked(DashboardProperties.SUBSCRIPTION_PROVIDER,
+				Boolean.parseBoolean(subscriptionProvider));
+		}
 
-		String commentsProvider = manager.getSharedStringProperty(DashboardProperties.COMMENTS_PROVIDER);
-		providersTable.setChecked(DashboardProperties.COMMENTS_PROVIDER, Boolean.parseBoolean(commentsProvider));
+		String commentsProvider = manager.getLocalStringProperty(DashboardProperties.COMMENTS_PROVIDER);
+		if (commentsProvider != null) {
+			providersTable.setChecked(DashboardProperties.COMMENTS_PROVIDER, Boolean.parseBoolean(commentsProvider));
+		}
 	}
 
 	/**
@@ -530,32 +555,8 @@ public class DashboardPropertyPage extends PropertyPage {
 	 */
 	@Override
 	public boolean performOk() {
-		final EMFStoreCommandWithResult<Object> command = new SavePropertiesCommand();
+		final EMFStoreCommand command = new SavePropertiesCommand();
 		command.run(true);
-		if (projectSpace.getUsersession().isLoggedIn()) {
-			new EMFStoreCommand() {
-
-				@Override
-				protected void doRun() {
-					projectSpace.transmitProperties();
-				}
-			}.run();
-		} else {
-			new EMFStoreCommand() {
-
-				@Override
-				protected void doRun() {
-					boolean yes = MessageDialog.openQuestion(getShell(), "Transmit properties",
-						"You are currently not logged in! Do you wish to log in and thereby transmit your properties?");
-					if (yes) {
-						LoginDialogController controller = new LoginDialogController();
-						LoginDialog loginDialog = new LoginDialog(Display.getCurrent().getActiveShell(), controller);
-						loginDialog.open();
-					}
-				}
-			}.run();
-
-		}
 		return true;
 	}
 

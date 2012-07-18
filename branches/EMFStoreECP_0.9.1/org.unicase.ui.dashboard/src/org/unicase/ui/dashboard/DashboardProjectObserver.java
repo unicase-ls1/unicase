@@ -18,6 +18,8 @@ import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.observers.CheckoutObserver;
 import org.eclipse.emf.emfstore.client.model.observers.DeleteProjectSpaceObserver;
 import org.eclipse.emf.emfstore.client.model.observers.UpdateObserver;
+import org.eclipse.emf.emfstore.client.properties.PropertyManager;
+import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorReference;
@@ -28,6 +30,7 @@ import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.DashboardNotification;
 import org.unicase.dashboard.DashboardNotificationComposite;
 import org.unicase.ui.dashboard.notificationProviders.NotificationHelper;
+import org.unicase.ui.dashboard.prefs.DashboardProperties;
 import org.unicase.ui.dashboard.view.DashboardEditorInput;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
@@ -57,9 +60,7 @@ public class DashboardProjectObserver implements DeleteProjectSpaceObserver, Che
 	 * @see org.unicase.workspace.observers.CheckoutObserver#checkoutDone(org.unicase.workspace.ProjectSpace)
 	 */
 	public void checkoutDone(ProjectSpace projectSpace) {
-		generateNotifications(projectSpace);
-		UnicaseActionHelper.openDashboard(projectSpace);
-
+		runDashboardCommand(projectSpace);
 	}
 
 	/**
@@ -74,8 +75,7 @@ public class DashboardProjectObserver implements DeleteProjectSpaceObserver, Che
 					.update("org.eclipse.emf.emfstore.client.ui.decorators.VersionDecorator");
 			}
 		});
-		generateNotifications(projectSpace);
-		UnicaseActionHelper.openDashboard(projectSpace);
+		runDashboardCommand(projectSpace);
 	}
 
 	/**
@@ -95,12 +95,18 @@ public class DashboardProjectObserver implements DeleteProjectSpaceObserver, Che
 		List<ChangePackage> changes = changePackages == null ? Collections.EMPTY_LIST : changePackages;
 		List<DashboardNotification> notifications = NotificationHelper.generateNotifications(projectSpace, changes);
 
-		DashboardNotificationComposite notificationComposite = DashboardFactory.eINSTANCE
-			.createDashboardNotificationComposite();
+		PropertyManager propertyManager = projectSpace.getPropertyManager();
+		EMFStoreProperty property = propertyManager.getLocalProperty(DashboardProperties.NOTIFICATION_COMPOSITE);
+		if (property != null) {
+			DashboardNotificationComposite notificationComposite = (DashboardNotificationComposite) property.getValue();
+			notificationComposite.getNotifications().addAll(notifications);
+		} else {
+			DashboardNotificationComposite notificationComposite = DashboardFactory.eINSTANCE
+				.createDashboardNotificationComposite();
 
-		notificationComposite.getNotifications().addAll(notifications);
-
-		projectSpace.getProject().getModelElements().add(notificationComposite);
+			notificationComposite.getNotifications().addAll(notifications);
+			propertyManager.setLocalProperty(DashboardProperties.NOTIFICATION_COMPOSITE, notificationComposite);
+		}
 	}
 
 	/**
@@ -125,5 +131,15 @@ public class DashboardProjectObserver implements DeleteProjectSpaceObserver, Che
 				e.printStackTrace();
 			}
 		}
+	}
+
+	private void runDashboardCommand(final ProjectSpace projectSpace) {
+		generateNotifications(projectSpace);
+		Display.getDefault().asyncExec(new Runnable() {
+			public void run() {
+				UnicaseActionHelper.openDashboard(projectSpace);
+			}
+		});
+
 	}
 }
