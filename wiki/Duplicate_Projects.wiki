@@ -1,5 +1,5 @@
 ==Description==
-This plugin can duplicate/copy a UNICASE project. UNICASE Projects can automatically be shared with EMFStore Server.
+This plugin can duplicate/copy an UNICASE project. UNICASE Projects can automatically be shared with EMFStore Server.
 
 ===Contact===
 Alexander Delater (delater@informatik.uni-heidelberg.de) 
