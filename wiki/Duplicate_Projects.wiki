@@ -7,11 +7,12 @@ Alexander Delater (delater@informatik.uni-heidelberg.de)
 ===Link to update-site===
 Available soon.
 
-
 ===Tutorial for users===
 Open context-menu on UNICASE Project and select “Duplicate” or “Duplicate and Share”:
  
+
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/duplicateprojects1.png]
+
 
 Afterwards, a dialog is opened where one can specify the name and the number of duplicated projects to be created.
 
