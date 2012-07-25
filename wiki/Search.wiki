@@ -1,4 +1,4 @@
-==Short Description==
+==Description==
 This plugin provides search functionality for UNICASE projects and is based on the EMF Query project of Eclipse.
 
 ===Contact===
