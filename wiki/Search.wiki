@@ -5,7 +5,7 @@ This plugin provides search functionality for UNICASE projects and is based on t
 Alexander Delater (delater@informatik.uni-heidelberg.de)
 
 ===Pre-requisites to install and use plugin==
-EMF Query, which is pre-installed in Eclipse Modeling Tools. In case EMF Query is not available, please first install EMF Query, version 1.3.0 at least.
+EMF Query is pre-installed in Eclipse Modeling Tools. In case EMF Query is not available, please first install EMF Query, version 1.3.0 at least.
 http://www.eclipse.org/modeling/emf/downloads/?project=query
 
 ===Link to update-site===
