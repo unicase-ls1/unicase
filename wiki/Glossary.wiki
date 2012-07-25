@@ -1,5 +1,5 @@
 ==Description==
-This plugin provides a new element 'GlossaryEntry'. A 'GlossaryEntry' can be added to any other element.
+This plugin provides a new element Glossary Entry. A Glossary Entry can be added to any other element.
 
 ===Contact===
 Alexander Delater (delater@informatik.uni-heidelberg.de)
