@@ -10,7 +10,7 @@ The following plug-ins can be used individually. This means that they can be ins
 
  * [Duplicate_Projects Duplicate Projects]: Can duplicate/copy a project. Projects can automatically be shared with EMFStore Server.
 
- * [Glossary]: Provides the element <nowiki/>GlossaryEntry An 'GlossaryEntry' can be added to any other element.
+ * [Glossary]: Provides the element 'GlossaryEntry' An 'GlossaryEntry' can be added to any other element.
 
 ===Integrated plugins===
 
