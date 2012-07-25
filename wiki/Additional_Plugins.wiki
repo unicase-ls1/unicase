@@ -14,7 +14,7 @@ The following plug-ins can be used individually. This means that they can be ins
 
  * [Glossary]: Provides the element GlossaryEntry. GlossaryEntries can be added to any other element.
 
-===Integrated plug-ins (can only be used together)===
+===Integrated plug-ins===
 
 The following plug-ins can only be used together. This means that they are all integrated can cannot be installed separately. For all plug-ins, one update exists.
 
