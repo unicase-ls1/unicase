@@ -10,6 +10,7 @@ http://www.eclipse.org/modeling/emf/downloads/?project=query
 
 ===Link to update-site===
 Please use the following update-site for installing the search plugin:
+
 http://unicase.googlecode.com/svn/trunk/other/heidelberg/search/update 
 
 ==Tutorial for users==
