@@ -9,9 +9,7 @@ EMF Query is pre-installed in Eclipse Modeling Tools. In case EMF Query is not a
 http://www.eclipse.org/modeling/emf/downloads/?project=query
 
 ===Link to update-site===
-Please use the following update-site for installing the search plugin:
-
-http://unicase.googlecode.com/svn/trunk/other/heidelberg/search/update 
+Please use the following update-site for installing the search plugin: http://unicase.googlecode.com/svn/trunk/other/heidelberg/search/update 
 
 ==Tutorial for users==
 This short tutorial will explain the search panel and how one can define complex search conditions. Furthermore, it provides an overview about the search results. 
