@@ -6,6 +6,8 @@ Sub-projects:
    * [Architecture Architecture]
    * [UNICASEClientDownloads Downloads]
    * [Video_Tutorials Video Tutorials]
+   * [Additional_Plugins Additional Plugins]
+
    <wiki:comment>
    * [ECPGettingStarted Getting Started with the ECP]
    * [ECPArchitecture Architecture]
