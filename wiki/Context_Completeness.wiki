@@ -1,5 +1,5 @@
 ==Description==
-This plugin provides support for identifying incomplete elements, e.g. isolated elements or elements missing certain mandatory links to other elements. Results can be saved for later usage and exported to Excel. The context of a particular element can be shown, which means all linked elements of the originating element with ability to directly navigate the linked elements.
+This plugin provides support for identifying incomplete elements, e.g. isolated elements or elements missing certain mandatory links to other elements. Results can be saved for later usage and exported to Excel. The context of a particular element can be shown, which means all linked elements of the originating element with ability to directly navigate to linked elements.
 
 ===Contact===
 [http://se.ifi.uni-heidelberg.de/people/alexander_delater.html Alexander Delater]
