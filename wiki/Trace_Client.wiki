@@ -17,3 +17,7 @@ Open context-menu on UNICASE Project and select “Open Traceability Center”.
 The Traceability Center provides access to all features of the Trace Client. A pie chart shows an overview about the requirements, work items and code files in the project as well as all other elements. 
 
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/traceability-center.png]
+
+In the following, an overview about all features of the Trace Client is shown:
+
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/traceclient.png]
