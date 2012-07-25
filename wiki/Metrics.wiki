@@ -1,0 +1,16 @@
+==Description==
+This plugin provides various metrics for UNICASE projects. For example, user metrics (elements per user, action items per user etc.), element metrics (number of elements, elements per development phase etc.) and time frame metrics (elements created between two dates). Queries for metrics can be saved for later usage and results can be exported to Excel.
+
+===Contact===
+Alexander Delater (delater@informatik.uni-heidelberg.de)
+
+===Link to update-site===
+Please use the following update-site for installing the plugin:
+http://unicase.googlecode.com/svn/trunk/other/heidelberg/integrated/update (Available soon)
+
+The plugin is integrated with the following plugins: [Use_Cases Use Cases], [Test_Cases Test Cases] and [Context_Completeness Context Completeness]. These plugins are installed together with the metrics plugin.
+
+===Tutorial for users===
+Open the view "Metrics" in Eclipse: Eclipse Menu -> Window -> Show View -> Other -> Unicase -> Metrics
+
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/metrics.png]
