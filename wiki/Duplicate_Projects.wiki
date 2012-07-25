@@ -6,7 +6,7 @@ Alexander Delater (delater@informatik.uni-heidelberg.de)
 
 ===Link to update-site===
 
-Please use the following update-site for installing the search plugin:
+Please use the following update-site for installing the plugin:
 http://unicase.googlecode.com/svn/trunk/other/heidelberg/duplicate/update (Available soon)
 
 ===Tutorial for users===
