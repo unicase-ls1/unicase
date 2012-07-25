@@ -1,0 +1,23 @@
+==Description==
+This plugin provides support for identifying incomplete elements, e.g. isolated elements or elements missing certain mandatory links to other elements. Results can be saved for later usage and exported to Excel. The context of a particular element can be shown, which means all linked elements of the originating element with ability to directly navigate the linked elements.
+
+===Contact===
+Alexander Delater (delater@informatik.uni-heidelberg.de)
+
+===Link to update-site===
+Please use the following update-site for installing the plugin:
+http://unicase.googlecode.com/svn/trunk/other/heidelberg/integrated/update (Available soon)
+
+The plugin is integrated with the following plugins: [Use_Cases Use Cases], [Test_Cases Test Cases] and [Metrics]. These plugins are installed together with the context completeness plugin.
+
+===Tutorial for users===
+
+Open the view "Context Completeness" in Eclipse: Eclipse Menu -> Window -> Show View -> Other -> Unicase -> Context Completeness.
+
+Select a project and a filter. Filters are: Isolated, All Incomplete and different element types. 
+
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/contextcompleteness.png]
+
+A view "Context Tree" can be opened showing the context of a particular element. The context consists of all directly linked elements. One can drill down within these linked elements, as well.
+
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/contexttree.png]
