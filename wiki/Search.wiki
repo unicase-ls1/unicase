@@ -21,7 +21,7 @@ Furthermore, you have to select a project in the Navigator in order to enable th
 
 The important parts of the search view will be presented in the following.
 
-[https://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/76a97/images/acd8f.png]
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/search1.png]
 
   # In the search view you can define a keyword for the search. This keyword will be evaluated for the title and the description of the model elements. You can also enter a regular expression here, e.g. "test[1-5]" to search for model elements having a title or description like "test1", "test2", ..., "test5". Full specification available at http://download.oracle.com/javase/1.5.0/docs/api/java/util/regex/Pattern.html 
   # The selection of the sorting method for the results and the number of results to display per page. If you change these parameters while there are already results the changes will be performed instantly.
@@ -37,7 +37,7 @@ The important parts of the search view will be presented in the following.
 
 After you performed a search the results will show up at the bottom of the parameters.
 
-[https://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/76a97/images/36d55.png]
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/search3.png]
 
   # The number of model elements found for the search.
   # The pager depends on the setting for the maximum results per page and the number of found elements. Here you can switch between the pages.
