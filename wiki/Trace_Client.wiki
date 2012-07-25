@@ -8,7 +8,7 @@ Alexander Delater (delater@informatik.uni-heidelberg.de)
 Subversive plugin in required. Please install Subversive using the following update site:
 [http://download.eclipse.org/technology/subversive/0.7/update-site/]
 
-Subversive Connectors are usually installed automatically after restarting Eclipse. In case connected are not installed, please install them manually using this update site: [http://community.polarion.com/projects/subversive/download/eclipse/2.0/update-site/]
+Subversive Connectors are usually installed automatically after restarting Eclipse. In case connectors are not installed automatically, please install them manually using this update site: [http://community.polarion.com/projects/subversive/download/eclipse/2.0/update-site/]
 
 ZEST Framework is required for visualizing graphs. Please install ZEST using this update site:
 [http://download.eclipse.org/tools/gef/updates/] 
