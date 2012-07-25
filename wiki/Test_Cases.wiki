@@ -2,7 +2,7 @@
 This plugin provides support for specifying test cases with included test steps. Results of test cases can be documents in test protocols. Test Cases can be linked to Use Cases.
 
 ===Contact===
-Alexander Delater (delater@informatik.uni-heidelberg.de)
+[http://se.ifi.uni-heidelberg.de/people/alexander_delater.html Alexander Delater]
 
 ===Link to update-site===
 Please use the following update-site for installing the plugin:
