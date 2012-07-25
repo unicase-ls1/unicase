@@ -1,6 +1,6 @@
 This section contains additional plugins for UNICASE provided by third parties.
 
-The University of Heidelberg has developed several plug-ins for UNICASE. 
+The [http://se.ifi.uni-heidelberg.de/ Software Engineering Working Group] at the Institute of Computer Science, University of Heidelberg has developed several plug-ins for UNICASE. 
 
 ===Independent plugins (can be used individually)===
 
