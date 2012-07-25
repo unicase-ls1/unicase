@@ -2,7 +2,7 @@
 This plugin provides advanced support for specifying use cases, especially new visualization of Flow of Events.
 
 ===Contact===
-Alexander Delater (delater@informatik.uni-heidelberg.de)
+[http://se.ifi.uni-heidelberg.de/people/alexander_delater.html Alexander Delater]
 
 ===Link to update-site===
 Please use the following update-site for installing the plugin:
