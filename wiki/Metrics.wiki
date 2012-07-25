@@ -13,4 +13,6 @@ The plugin is integrated with the following plugins: [Use_Cases Use Cases], [Tes
 ===Tutorial for users===
 Open the view "Metrics" in Eclipse: Eclipse Menu -> Window -> Show View -> Other -> Unicase -> Metrics
 
+Select a project from the Navigator. The active project is always shown at the top of the Metrics viw. Select the metrics you want to calculate and press "Compute Metrics".
+
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/metrics.png]
