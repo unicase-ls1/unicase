@@ -10,5 +10,7 @@
 
   * [http://code.google.com/p/unicase/wiki/Video_Tutorials Video Tutorials]
 
+  * [http://code.google.com/p/unicase/wiki/Additional_Plugins Additional Plugins provided by third parties]
+
 
 [http://www.eclipse.org/donate/images/friendslogo200.jpg]
