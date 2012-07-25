@@ -14,7 +14,7 @@ The following plug-ins can be used individually. This means that they can be ins
 
 ===Integrated plug-ins===
 
-The following plug-ins can only be used together. This means that they are all integrated and cannot be installed separately. For all plug-ins, one update exists.
+The following plug-ins can only be used together. This means that they are all integrated and cannot be installed separately. For all plug-ins, one update site exists.
 
  * [Use_Cases]: Provides advanced support for specifying use cases, especially new visualization of Flow of Events. 
 
