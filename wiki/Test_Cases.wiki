@@ -14,3 +14,7 @@ The plugin is integrated with the following plugins: [Use_Cases], [Metrics] and 
 Create a new element "TestCase" from the package "testcase" in UNICASE. The element has several attributes, e.g. pre- and post condition and infrastructure. Navigate to the new page "Test Steps". Test Steps can have Input- and Output parameter, a short description and exception. For each parameter, the name, type and rage can be specified. 
 
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/teststep.png]
+
+An element "TestProtocol" can be created and linked to a TestCase. In the TestProtocol, the concrete values of the TestCase can be specified and the results can be documented.
+
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/testprotocol.png]
