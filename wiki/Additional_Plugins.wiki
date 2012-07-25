@@ -1,8 +1,10 @@
 This section contains additional plugins for UNICASE provided by third parties.
 
-The [http://se.ifi.uni-heidelberg.de/ Software Engineering Working Group] at the Institute of Computer Science, University of Heidelberg has developed several plug-ins for UNICASE. 
+The [http://se.ifi.uni-heidelberg.de/ Software Engineering Group] at the Institute of Computer Science, [http://www.uni-heidelberg.de University of Heidelberg] has developed several plug-ins for UNICASE. 
 
-===Independent plugins (can be used individually)===
+===Independent plugins===
+
+The following plug-ins can be used individually. This means that they can be installed separately from any other plug-ins. For each plug-in, an individual update site exists.
 
  * [Trace_Client]: Provides (semi-) automatic creation and usage of traceability links between requirements, work items and source code during development. The Trace Client integrates itself seamlessly into the Eclipse IDE and Subversive (plug-in for Subversion). The main features of Trace Client are: (semi-) automatic creation of traceability links, requirements impact analysis, traceability between requirements and code, progress or requirements implementation, graph visualization.
 
@@ -13,6 +15,8 @@ The [http://se.ifi.uni-heidelberg.de/ Software Engineering Working Group] at the
  * [Glossary]: Provides the element GlossaryEntry. GlossaryEntries can be added to any other element.
 
 ===Integrated plug-ins (can only be used together)===
+
+The following plug-ins can only be installed together. This means that they are all integrated can cannot be used separately. For all plug-ins, one update exists.
 
  * [Use_ Cases]: Provides advanced support for specifying use cases, especially new visualization of Flow of Events. 
 
