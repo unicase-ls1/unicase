@@ -5,5 +5,5 @@ This plugin provides provides the element GlossaryEntry. GlossaryEntries can be 
 Alexander Delater (delater@informatik.uni-heidelberg.de)
 
 ===Link to update-site===
-Please use the following update-site for installing the search plugin:
+Please use the following update-site for installing the plugin:
 http://unicase.googlecode.com/svn/trunk/other/heidelberg/glossary/update (Available soon)
