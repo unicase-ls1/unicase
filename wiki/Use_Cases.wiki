@@ -1,5 +1,5 @@
 ==Description==
-This plugin provides provides advanced support for specifying use cases, especially new visualization of Flow of Events.
+This plugin provides advanced support for specifying use cases, especially new visualization of Flow of Events.
 
 ===Contact===
 Alexander Delater (delater@informatik.uni-heidelberg.de)
@@ -11,7 +11,7 @@ http://unicase.googlecode.com/svn/trunk/other/heidelberg/integrated/update (Avai
 The plugin is integrated with the following plugins: [Test_Cases], [Metrics] and [Context_Completeness]. These plugins are installed together with the use case plugin.
 
 ===Tutorial for users===
-Create a new element "Use Case" from the package "usecase" in UNICASE. Navigate to the new page "Flow of Events". Within the Flow of Events, add Human Steps and IT System Steps. 
+Create a new element "UseCase" from the package "usecase" in UNICASE. The element has several attributes, e.g. pre- and post condition, rules, linked actors, included use cases and system functions etc. Navigate to the new page "Flow of Events". Within the Flow of Events, add Human Steps and IT System Steps. 
 
 Each step can be linked another step. Human Steps can have several options. Each option can be linked to another IT System Step. On the right side, additional information is displayed to support the creation of the Flow of Events.
 
