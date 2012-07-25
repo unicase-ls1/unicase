@@ -1,0 +1,18 @@
+==Description==
+This plugin provides provides advanced support for specifying use cases, especially new visualization of Flow of Events.
+
+===Contact===
+Alexander Delater (delater@informatik.uni-heidelberg.de)
+
+===Link to update-site===
+Please use the following update-site for installing the plugin:
+http://unicase.googlecode.com/svn/trunk/other/heidelberg/integrated/update (Available soon)
+
+The plugin is integrated with the following plugins: [Test_Cases], [Metrics] and [Context_Completeness]. These plugins are installed together with the use case plugin.
+
+===Tutorial for users===
+Create a new element "Use Case" from the package "usecase" in UNICASE. Navigate to the new page "Flow of Events". Within the Flow of Events, add Human Steps and IT System Steps. 
+
+Each step can be linked another step. Human Steps can have several options. Each option can be linked to another IT System Step. On the right side, additional information is displayed to support the creation of the Flow of Events.
+
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/flowofevents.png] 
