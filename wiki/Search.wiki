@@ -37,7 +37,7 @@ The important parts of the search view will be presented in the following.
 
 After you performed a search the results will show up at the bottom of the parameters.
 
-[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/search3.png]
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/search2.png]
 
   # The number of model elements found for the search.
   # The pager depends on the setting for the maximum results per page and the number of found elements. Here you can switch between the pages.
