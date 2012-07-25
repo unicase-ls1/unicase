@@ -1,6 +1,6 @@
 The [http://se.ifi.uni-heidelberg.de/ Software Engineering Group] at the Institute of Computer Science, [http://www.uni-heidelberg.de University of Heidelberg] has developed several plug-ins for UNICASE. 
 
-===Independent plugins===
+===Independent plug-ins===
 
 The following plug-ins can be used individually. This means that they can be installed separately from any other plug-ins. For each plug-in, an individual update site exists.
 
