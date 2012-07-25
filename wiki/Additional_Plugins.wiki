@@ -2,7 +2,7 @@ The [http://se.ifi.uni-heidelberg.de/ Software Engineering Group] at the Institu
 
 ===Independent plugins===
 
-The following plugins can be used individually. This means that they can be installed separately from any other plugins. For each plugin, an individual update site exists.
+The following plugins can be installed individually. This means that they can be used separately from any other plugins. For each plugin, an individual update site exists.
 
  * [Trace_Client Trace Client]: Provides (semi-) automatic creation and usage of traceability links between requirements, work items and source code during development. The Trace Client integrates itself seamlessly into the Eclipse IDE and Subversive (plug-in for Subversion). The main features are: (semi-) automatic creation of traceability links, requirements impact analysis, traceability between requirements and code, progress or requirements implementation, graph visualization.
 
@@ -14,7 +14,7 @@ The following plugins can be used individually. This means that they can be inst
 
 ===Integrated plugins===
 
-The following plugins can only be used together. This means that they are all integrated and cannot be installed separately. For all plugins, one update site exists.
+The following plugins can only be installed together. This means that they are all integrated and cannot be used separately. For all plugins, one update site exists.
 
  * [Use_Cases  Use Cases]: Provides advanced support for specifying use cases, especially new visualization of Flow of Events. 
 
