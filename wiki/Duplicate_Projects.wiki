@@ -5,7 +5,9 @@ This plugin can duplicate/copy a UNICASE project. UNICASE Projects can automatic
 Alexander Delater (delater@informatik.uni-heidelberg.de) 
 
 ===Link to update-site===
-Available soon.
+
+Please use the following update-site for installing the search plugin:
+http://unicase.googlecode.com/svn/trunk/other/heidelberg/duplicate/update (Available soon)
 
 ===Tutorial for users===
 Open context-menu on UNICASE Project and select “Duplicate” or “Duplicate and Share”:
