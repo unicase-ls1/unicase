@@ -18,7 +18,7 @@ The following plug-ins can be used individually. This means that they can be ins
 
 The following plug-ins can only be installed together. This means that they are all integrated can cannot be used separately. For all plug-ins, one update exists.
 
- * [Use_ Cases]: Provides advanced support for specifying use cases, especially new visualization of Flow of Events. 
+ * [Use_Cases]: Provides advanced support for specifying use cases, especially new visualization of Flow of Events. 
 
  * [Test_Cases]: Provides support for specifying test cases with included test steps. Results of test cases can be documents in test protocols. Test Cases can be linked to Use Cases.
 
