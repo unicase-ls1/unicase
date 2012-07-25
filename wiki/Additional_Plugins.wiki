@@ -8,7 +8,7 @@ The following plug-ins can be used individually. This means that they can be ins
 
  * [Search]: Provides search functionality for UNICASE projects and is based on the EMF Query project of Eclipse. Enables searching for names and descriptions of model elements. Searches can be restricted by element type and regular expressions for search string.
 
- * [Duplicate_Projects]: Can duplicate/copy a project. Projects can automatically be shared with EMFStore Server.
+ * [Duplicate_Projects Duplicate Projects]: Can duplicate/copy a project. Projects can automatically be shared with EMFStore Server.
 
  * [Glossary]: Provides the element 'GlossaryEntry'. An 'GlossaryEntry' can be added to any other element.
 
