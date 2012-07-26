@@ -21,8 +21,8 @@ import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationId;
 import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.DashboardNotification;
+import org.unicase.dashboard.util.DashboardProperties;
 import org.unicase.model.organization.User;
-import org.unicase.ui.dashboard.prefs.DashboardProperties;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 
 /**

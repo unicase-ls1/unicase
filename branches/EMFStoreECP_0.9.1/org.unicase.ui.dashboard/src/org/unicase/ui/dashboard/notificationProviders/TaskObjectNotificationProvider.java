@@ -23,10 +23,10 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPac
 import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
 import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.DashboardNotification;
+import org.unicase.dashboard.util.DashboardProperties;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.util.OpeningLinkHelper;
 import org.unicase.model.util.ModelElementPath;
-import org.unicase.ui.dashboard.prefs.DashboardProperties;
 
 /**
  * This provider creates notifications about task objects.
