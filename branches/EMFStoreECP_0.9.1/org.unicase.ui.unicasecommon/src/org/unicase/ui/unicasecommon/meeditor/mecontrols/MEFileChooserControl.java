@@ -48,17 +48,25 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorReference;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.ui.unicasecommon.Activator;
 
 /**
  * This class handles file attachments. If the file attachment has no file attached yet, this control allows to attach a
- * file If a file is already attached, the control allows to save that file. The file can also be replaced. If the file
- * is not yet commited, it can be removed.
+ * file. If a file is already attached, the control allows to save that file. The file can also be replaced. If the file
+ * is not yet commited, it can be removed. This class is also an observer that listens for commits, so it can update the
+ * button status. This is necessary because a formerly pending upload is no longer pending after a commit, because it
+ * was submitted during the commit.
  * 
  * @author pfeifferc, jfinis
  */
-public class MEFileChooserControl extends AbstractUnicaseMEControl {
+public class MEFileChooserControl extends AbstractUnicaseMEControl implements CommitObserver {
 
 	private static final String UPLOAD_NOTPENDING_TOOL_TIP = "Click to upload a new file attachment to the server. "
 		+ "\nThe file attachment will be transferred upon commiting.\n\nIf you have already a file attached, this file will be replaced.";
@@ -87,23 +95,40 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 	private Button saveAs;
 
 	/**
-	 * This observer listens for commits, so it can update the button status. This is necessary because a formerly
-	 * pending upload is no longer pending after a commit, because it was submitted during the commit.
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.emfstore.client.model.observers.CommitObserver#inspectChanges(org.eclipse.emf.emfstore.client.model.ProjectSpace,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.ChangePackage)
 	 */
-	private CommitObserver commitObserver = new CommitObserver() {
+	public boolean inspectChanges(ProjectSpace projectSpace, ChangePackage changePackage) {
+		return true;
+	}
 
-		public boolean inspectChanges(ProjectSpace projectSpace, ChangePackage changePackage) {
-			return true;
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.emfstore.client.model.observers.CommitObserver#commitCompleted(org.eclipse.emf.emfstore.client.model.ProjectSpace,
+	 *      org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec)
+	 */
+	public void commitCompleted(ProjectSpace projectSpace, PrimaryVersionSpec newRevision) {
+		// Upon commit, update the status of the button, since the file
+		// upload
+		// may no longer be pending
+		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		for (IEditorReference reference : activePage.getEditorReferences()) {
+			try {
+				Object object = reference.getEditorInput().getAdapter(EObject.class);
+				if (object != null && object instanceof FileAttachment) {
+					IEditorPart fileAttachmentEditor = reference.getEditor(true);
+					IEditorInput fileAttachmentInput = fileAttachmentEditor.getEditorInput();
+					activePage.closeEditor(reference.getEditor(true), false);
+					activePage.openEditor(fileAttachmentInput, "org.eclipse.emf.ecp.editor");
+				}
+			} catch (PartInitException e) {
+				ModelUtil.logException("Updating file attachment failed!", e);
+			}
 		}
-
-		public void commitCompleted(ProjectSpace projectSpace, PrimaryVersionSpec newRevision) {
-			// Upon commit, update the status of the button, since the file
-			// upload
-			// may no longer be pending
-			updateStatus(getProjectSpace().getFileInfo(fileAttachment.getFileIdentifier()).isPendingUpload());
-		}
-
-	};
+	}
 
 	private Button open;
 
@@ -188,10 +213,6 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 		// (if the upload of the attachment is still pending, it can be removed)
 		updateStatus(getProjectSpace().getFileInfo(fileAttachment.getFileIdentifier()).isPendingUpload());
 
-		// Add the commit observer which handles pending files being commited
-		// FIXME: Implement CommitObserver in a separate class and add extension
-		// getProjectSpace().addCommitObserver(commitObserver);
-
 		modelElementChangeListener = new ModelElementChangeListener() {
 
 			public void onRuntimeExceptionInListener(RuntimeException exception) {
@@ -220,12 +241,11 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl {
 			String suffix = "";
 			if (uploadPending) {
 				suffix = " (not commited)";
-			} else if (getProjectSpace().getFileInfo(fileAttachment.getFileIdentifier()).isCached()) {
+			} else if (WorkspaceManager.getProjectSpace(fileAttachment).getFileInfo(fileAttachment.getFileIdentifier())
+				.isCached()) {
 				suffix = " (cached)";
 			}
-			fileName.setText(/* "<a>" + */fileAttachment.getFileName() + suffix /*
-																				 * + "</a>"
-																				 */);
+			fileName.setText(fileAttachment.getFileName() + suffix);
 			saveAs.setVisible(true);
 			open.setVisible(true);
 		}

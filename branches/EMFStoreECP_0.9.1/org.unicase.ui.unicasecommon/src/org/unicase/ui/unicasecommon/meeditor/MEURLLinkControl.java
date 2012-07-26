@@ -22,8 +22,6 @@ import org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.MELinkControl;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
@@ -137,14 +135,6 @@ public class MEURLLinkControl extends MELinkControl {
 						return;
 					}
 					ExtProgramFactoryFacade.launchURL(url);
-					EObject urlAttachement = link;
-					ModelElementId contextModelElementId = ModelUtil.getProject(contextModelElement).getModelElementId(
-						contextModelElement);
-					ModelElementId urlModelElementId = ModelUtil.getProject(urlAttachement).getModelElementId(
-						urlAttachement);
-					// FIXME: Remove this?
-					// MEURLControl.logEvent(contextModelElementId, urlModelElementId,
-					// WorkspaceManager.getProjectSpace(urlAttachement), "org.eclipse.emf.ecp.editor");
 					super.linkActivated(event);
 
 				}
@@ -201,7 +191,7 @@ public class MEURLLinkControl extends MELinkControl {
 
 		ArrayList<EObject> list = new ArrayList<EObject>();
 		list.add(link);
-		ModelElementChangeListener modelElementChangeListener = new ModelElementChangeListener(link) {
+		new ModelElementChangeListener(link) {
 
 			@Override
 			public void onChange(Notification notification) {

@@ -267,15 +267,6 @@ public final class UnicaseActionHelper {
 	private static final String DASHBOARD_COMMAND = "org.unicase.ui.dashboard.showDashboard";
 
 	/**
-	 * Opens the dashboard for the currently selected projectspace.
-	 */
-	// FIXME: Remove this?
-	// public static void openDashboard() {
-	// ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
-	// openDashboard(projectSpace);
-	// }
-
-	/**
 	 * Opens the dashboard for the given project.
 	 * 
 	 * @param projectSpace the project space.

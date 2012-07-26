@@ -967,4 +967,10 @@
            class="org.unicase.ui.unicasecommon.changetracking.TransactionalEditingDomainProvider">
      </provider>
   </extension>
+  <extension
+        point="org.eclipse.emf.emfstore.client.commitObserver">
+     <observer
+           commitObserver="org.unicase.ui.unicasecommon.meeditor.mecontrols.MEFileChooserControl">
+     </observer>
+  </extension>
 </plugin>

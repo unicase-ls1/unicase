@@ -9,13 +9,21 @@ package org.unicase.ui.unicasecommon.common.handlers;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.compare.util.AdapterUtils;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.client.properties.PropertyManager;
+import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
+import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
+import org.unicase.dashboard.DashboardFactory;
+import org.unicase.dashboard.SubscriptionComposite;
+import org.unicase.dashboard.util.DashboardProperties;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
@@ -58,32 +66,52 @@ public class SubscriptionHandler extends AbstractHandler {
 			return null;
 		}
 
-		// FIXME: PreferenceManager is missing!
-		// OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SUBSCRIPTIONS);
-		//
-		// final List<EObject> properties = property.getEObjectListProperty(new ArrayList<EObject>());
-		//
-		// String feedback;
-		// ModelElementId modelElementId = ModelUtil.getProject(eObject).getModelElementId(eObject);
-		// if (properties.contains(modelElementId)) {
-		// properties.remove(modelElementId);
-		// feedback = " removed from ";
-		// } else {
-		// properties.add(modelElementId);
-		// feedback = " added to ";
-		// }
-		//
-		// new EMFStoreCommand() {
-		// @Override
-		// protected void doRun() {
-		// PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.SUBSCRIPTIONS,
-		// properties.toArray(new EObject[0]));
-		// }
-		// }.run();
+		final PropertyManager propertyManager = projectSpace.getPropertyManager();
+		EMFStoreProperty property = propertyManager.getLocalProperty(DashboardProperties.SUBSCRIPTIONS);
+
+		boolean contains;
+		final SubscriptionComposite subscriptionComposite;
+		final ModelElementId modelElementId = projectSpace.getProject().getModelElementId(eObject);
+		if (property != null) {
+			subscriptionComposite = (SubscriptionComposite) property.getValue();
+			contains = subscriptionComposite.getSubscriptions().contains(modelElementId);
+		} else {
+			subscriptionComposite = DashboardFactory.eINSTANCE.createSubscriptionComposite();
+			contains = false;
+		}
+		String feedback;
+		EMFStoreCommand command;
+		if (contains) {
+			command = new EMFStoreCommand() {
+
+				@Override
+				protected void doRun() {
+					subscriptionComposite.getSubscriptions().remove(modelElementId);
+					propertyManager.setLocalProperty(DashboardProperties.SUBSCRIPTIONS, subscriptionComposite);
+				}
+
+			};
+
+			feedback = " removed from ";
+		} else {
+			command = new EMFStoreCommand() {
+
+				@Override
+				protected void doRun() {
+					subscriptionComposite.getSubscriptions().add(modelElementId);
+					propertyManager.setLocalProperty(DashboardProperties.SUBSCRIPTIONS, subscriptionComposite);
+				}
+
+			};
+
+			feedback = " added to ";
+		}
+
+		command.run(true);
 
 		// TODO fix label provider
-		// MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "Subscription",
-		// AdapterUtils.getItemProviderText(eObject) + " was successfully" + feedback + "your subscriptions");
+		MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "Subscription",
+			AdapterUtils.getItemProviderText(eObject) + " was successfully" + feedback + "your subscriptions");
 		return null;
 	}
 }
