@@ -22,7 +22,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOpera
 import org.eclipse.emf.emfstore.server.model.versioning.operations.CreateDeleteOperation;
 import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.DashboardNotification;
-import org.unicase.dashboard.util.DashboardProperties;
+import org.unicase.dashboard.util.DashboardPropertyKeys;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.User;
@@ -86,9 +86,9 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 	protected List<DashboardNotification> createNotifications() {
 		List<DashboardNotification> result = new ArrayList<DashboardNotification>();
 		PropertyManager manager = getProjectSpace().getPropertyManager();
-		String commentsProviderProperty = manager.getLocalStringProperty(DashboardProperties.COMMENTS_PROVIDER);
+		String commentsProviderProperty = manager.getLocalStringProperty(DashboardPropertyKeys.COMMENTS_PROVIDER);
 		if (commentsProviderProperty != null && Boolean.parseBoolean(commentsProviderProperty)) {
-			String threadRepliesProperty = manager.getLocalStringProperty(DashboardProperties.SHOW_CONTAINMENT_REPLIES);
+			String threadRepliesProperty = manager.getLocalStringProperty(DashboardPropertyKeys.SHOW_CONTAINMENT_REPLIES);
 			if (threadRepliesProperty != null && Boolean.parseBoolean(threadRepliesProperty)) {
 				for (UnicaseModelElement modelElement : me2replyMap.keySet()) {
 					result.add(createCommentNotification(me2replyMap, reply2OperationMap, modelElement,
@@ -235,7 +235,7 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 	 * {@inheritDoc}
 	 */
 	public String getKey() {
-		return DashboardProperties.COMMENTS_PROVIDER;
+		return DashboardPropertyKeys.COMMENTS_PROVIDER;
 	}
 
 	/**

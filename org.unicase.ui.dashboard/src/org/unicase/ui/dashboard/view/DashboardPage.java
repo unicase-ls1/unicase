@@ -42,7 +42,7 @@ import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.unicase.dashboard.DashboardNotification;
-import org.unicase.dashboard.util.DashboardProperties;
+import org.unicase.dashboard.util.DashboardPropertyKeys;
 import org.unicase.ui.dashboard.notificationProviders.UpdateNotificationProvider;
 import org.unicase.ui.dashboard.view.widgets.AbstractDashboardWidget;
 
@@ -63,7 +63,7 @@ public class DashboardPage extends FormPage {
 		@Override
 		protected void doRun() {
 			String sizeProperty = getProjectSpace().getPropertyManager().getLocalStringProperty(
-				DashboardProperties.DASHBOARD_SIZE);
+				DashboardPropertyKeys.DASHBOARD_SIZE);
 			int count = sizeProperty != null ? Integer.parseInt(sizeProperty) : 10;
 			count = Math.min(count, notifications.size());
 			for (int i = 0; i < count; i++) {

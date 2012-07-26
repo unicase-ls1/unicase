@@ -52,7 +52,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.dashboard.DashboardNotification;
-import org.unicase.dashboard.util.DashboardProperties;
+import org.unicase.dashboard.util.DashboardPropertyKeys;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.ui.dashboard.Activator;
@@ -182,7 +182,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		notificationColor = getDisplay().getSystemColor(SWT.COLOR_WHITE);
 		if (getNotification().getProvider().equals(PushedNotificationProvider.NAME)) {
 			String property = getProjectSpace().getPropertyManager().getLocalStringProperty(
-				DashboardProperties.HIGHLIGHT_PUSHED_COMMENTS);
+				DashboardPropertyKeys.HIGHLIGHT_PUSHED_COMMENTS);
 			if (property != null && Boolean.parseBoolean(property)) {
 				notificationColor = getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND);
 			}

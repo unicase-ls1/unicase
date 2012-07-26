@@ -64,7 +64,7 @@ import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.DashboardNotification;
 import org.unicase.dashboard.DashboardNotificationComposite;
-import org.unicase.dashboard.util.DashboardProperties;
+import org.unicase.dashboard.util.DashboardPropertyKeys;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.ui.unicasecommon.Activator;
@@ -210,7 +210,7 @@ public class CommitNotificationsTray extends CommitDialogTray {
 	public void okPressed() {
 		super.okPressed();
 		PropertyManager propertyManager = projectSpace.getPropertyManager();
-		EMFStoreProperty property = propertyManager.getLocalProperty(DashboardProperties.NOTIFICATION_COMPOSITE);
+		EMFStoreProperty property = propertyManager.getLocalProperty(DashboardPropertyKeys.NOTIFICATION_COMPOSITE);
 		if (property != null) {
 			DashboardNotificationComposite notificationComposite = (DashboardNotificationComposite) property.getValue();
 			notificationComposite.getNotifications().addAll(notifications);
@@ -218,7 +218,7 @@ public class CommitNotificationsTray extends CommitDialogTray {
 			DashboardNotificationComposite notificationComposite = DashboardFactory.eINSTANCE
 				.createDashboardNotificationComposite();
 			notificationComposite.getNotifications().addAll(notifications);
-			propertyManager.setLocalProperty(DashboardProperties.NOTIFICATION_COMPOSITE, notificationComposite);
+			propertyManager.setLocalProperty(DashboardPropertyKeys.NOTIFICATION_COMPOSITE, notificationComposite);
 		}
 	}
 

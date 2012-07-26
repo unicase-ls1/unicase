@@ -23,7 +23,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPac
 import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
 import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.DashboardNotification;
-import org.unicase.dashboard.util.DashboardProperties;
+import org.unicase.dashboard.util.DashboardPropertyKeys;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.util.OpeningLinkHelper;
 import org.unicase.model.util.ModelElementPath;
@@ -165,6 +165,6 @@ public class TaskObjectNotificationProvider extends AbstractNotificationProvider
 	 * {@inheritDoc}
 	 */
 	public String getKey() {
-		return DashboardProperties.TASK_TRACE_PROVIDER;
+		return DashboardPropertyKeys.TASK_TRACE_PROVIDER;
 	}
 }

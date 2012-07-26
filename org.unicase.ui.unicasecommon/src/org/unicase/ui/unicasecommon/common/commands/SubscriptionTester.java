@@ -13,7 +13,7 @@ import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.dashboard.SubscriptionComposite;
-import org.unicase.dashboard.util.DashboardProperties;
+import org.unicase.dashboard.util.DashboardPropertyKeys;
 
 /**
  * Tests if the element is already subscribed.
@@ -39,7 +39,7 @@ public class SubscriptionTester extends PropertyTester {
 			}
 			ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(modelElement);
 			EMFStoreProperty emfStoreProperty = projectSpace.getPropertyManager().getLocalProperty(
-				DashboardProperties.SUBSCRIPTIONS);
+				DashboardPropertyKeys.SUBSCRIPTIONS);
 			boolean contains = false;
 			if (emfStoreProperty != null) {
 				SubscriptionComposite subscriptionComposite = (SubscriptionComposite) emfStoreProperty.getValue();

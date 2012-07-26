@@ -23,7 +23,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.SubscriptionComposite;
-import org.unicase.dashboard.util.DashboardProperties;
+import org.unicase.dashboard.util.DashboardPropertyKeys;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
@@ -67,7 +67,7 @@ public class SubscriptionHandler extends AbstractHandler {
 		}
 
 		final PropertyManager propertyManager = projectSpace.getPropertyManager();
-		EMFStoreProperty property = propertyManager.getLocalProperty(DashboardProperties.SUBSCRIPTIONS);
+		EMFStoreProperty property = propertyManager.getLocalProperty(DashboardPropertyKeys.SUBSCRIPTIONS);
 
 		boolean contains;
 		final SubscriptionComposite subscriptionComposite;
@@ -87,7 +87,7 @@ public class SubscriptionHandler extends AbstractHandler {
 				@Override
 				protected void doRun() {
 					subscriptionComposite.getSubscriptions().remove(modelElementId);
-					propertyManager.setLocalProperty(DashboardProperties.SUBSCRIPTIONS, subscriptionComposite);
+					propertyManager.setLocalProperty(DashboardPropertyKeys.SUBSCRIPTIONS, subscriptionComposite);
 				}
 
 			};
@@ -99,7 +99,7 @@ public class SubscriptionHandler extends AbstractHandler {
 				@Override
 				protected void doRun() {
 					subscriptionComposite.getSubscriptions().add(modelElementId);
-					propertyManager.setLocalProperty(DashboardProperties.SUBSCRIPTIONS, subscriptionComposite);
+					propertyManager.setLocalProperty(DashboardPropertyKeys.SUBSCRIPTIONS, subscriptionComposite);
 				}
 
 			};

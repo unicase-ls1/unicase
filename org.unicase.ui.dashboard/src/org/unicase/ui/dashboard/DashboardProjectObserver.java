@@ -29,7 +29,7 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.DashboardNotification;
 import org.unicase.dashboard.DashboardNotificationComposite;
-import org.unicase.dashboard.util.DashboardProperties;
+import org.unicase.dashboard.util.DashboardPropertyKeys;
 import org.unicase.ui.dashboard.notificationProviders.NotificationHelper;
 import org.unicase.ui.dashboard.view.DashboardEditorInput;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
@@ -96,17 +96,17 @@ public class DashboardProjectObserver implements DeleteProjectSpaceObserver, Che
 		List<DashboardNotification> notifications = NotificationHelper.generateNotifications(projectSpace, changes);
 
 		PropertyManager propertyManager = projectSpace.getPropertyManager();
-		EMFStoreProperty property = propertyManager.getLocalProperty(DashboardProperties.NOTIFICATION_COMPOSITE);
+		EMFStoreProperty property = propertyManager.getLocalProperty(DashboardPropertyKeys.NOTIFICATION_COMPOSITE);
+		DashboardNotificationComposite notificationComposite;
 		if (property != null) {
-			DashboardNotificationComposite notificationComposite = (DashboardNotificationComposite) property.getValue();
+			notificationComposite = (DashboardNotificationComposite) property.getValue();
 			notificationComposite.getNotifications().addAll(notifications);
 		} else {
-			DashboardNotificationComposite notificationComposite = DashboardFactory.eINSTANCE
-				.createDashboardNotificationComposite();
-
-			notificationComposite.getNotifications().addAll(notifications);
-			propertyManager.setLocalProperty(DashboardProperties.NOTIFICATION_COMPOSITE, notificationComposite);
+			notificationComposite = DashboardFactory.eINSTANCE.createDashboardNotificationComposite();
 		}
+
+		notificationComposite.getNotifications().addAll(notifications);
+		propertyManager.setLocalProperty(DashboardPropertyKeys.NOTIFICATION_COMPOSITE, notificationComposite);
 	}
 
 	/**
@@ -134,6 +134,7 @@ public class DashboardProjectObserver implements DeleteProjectSpaceObserver, Che
 	}
 
 	private void runDashboardCommand(final ProjectSpace projectSpace) {
+		checkProperties(projectSpace);
 		generateNotifications(projectSpace);
 		Display.getDefault().asyncExec(new Runnable() {
 			public void run() {
@@ -141,5 +142,45 @@ public class DashboardProjectObserver implements DeleteProjectSpaceObserver, Che
 			}
 		});
 
+	}
+
+	private void checkProperties(ProjectSpace projectSpace) {
+		PropertyManager propertyManager = projectSpace.getPropertyManager();
+
+		checkProviderProperties(propertyManager);
+
+		if (propertyManager.getLocalStringProperty(DashboardPropertyKeys.DASHBOARD_SIZE) == null) {
+			propertyManager.setLocalStringProperty(DashboardPropertyKeys.DASHBOARD_SIZE, "10");
+		}
+		if (propertyManager.getLocalStringProperty(DashboardPropertyKeys.HIGHLIGHT_PUSHED_COMMENTS) == null) {
+			propertyManager.setLocalStringProperty(DashboardPropertyKeys.HIGHLIGHT_PUSHED_COMMENTS, "true");
+		}
+		if (propertyManager.getLocalStringProperty(DashboardPropertyKeys.SHOW_CONTAINMENT_REPLIES) == null) {
+			propertyManager.setLocalStringProperty(DashboardPropertyKeys.SHOW_CONTAINMENT_REPLIES, "true");
+		}
+		if (propertyManager.getLocalStringProperty(DashboardPropertyKeys.TASKTRACE_LENGTH) == null) {
+			propertyManager.setLocalStringProperty(DashboardPropertyKeys.TASKTRACE_LENGTH, "5");
+		}
+	}
+
+	private void checkProviderProperties(PropertyManager propertyManager) {
+		if (propertyManager.getLocalStringProperty(DashboardPropertyKeys.TASK_PROVIDER) == null) {
+			propertyManager.setLocalStringProperty(DashboardPropertyKeys.TASK_PROVIDER, "true");
+		}
+		if (propertyManager.getLocalStringProperty(DashboardPropertyKeys.TASK_CHANGE_PROVIDER) == null) {
+			propertyManager.setLocalStringProperty(DashboardPropertyKeys.TASK_CHANGE_PROVIDER, "true");
+		}
+		if (propertyManager.getLocalStringProperty(DashboardPropertyKeys.TASK_REVIEW_PROVIDER) == null) {
+			propertyManager.setLocalStringProperty(DashboardPropertyKeys.TASK_REVIEW_PROVIDER, "true");
+		}
+		if (propertyManager.getLocalStringProperty(DashboardPropertyKeys.TASK_TRACE_PROVIDER) == null) {
+			propertyManager.setLocalStringProperty(DashboardPropertyKeys.TASK_TRACE_PROVIDER, "true");
+		}
+		if (propertyManager.getLocalStringProperty(DashboardPropertyKeys.SUBSCRIPTION_PROVIDER) == null) {
+			propertyManager.setLocalStringProperty(DashboardPropertyKeys.SUBSCRIPTION_PROVIDER, "true");
+		}
+		if (propertyManager.getLocalStringProperty(DashboardPropertyKeys.COMMENTS_PROVIDER) == null) {
+			propertyManager.setLocalStringProperty(DashboardPropertyKeys.COMMENTS_PROVIDER, "true");
+		}
 	}
 }

@@ -28,7 +28,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOper
 import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
 import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.DashboardNotification;
-import org.unicase.dashboard.util.DashboardProperties;
+import org.unicase.dashboard.util.DashboardPropertyKeys;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrganizationPackage;
@@ -260,7 +260,7 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 	 * {@inheritDoc}
 	 */
 	public String getKey() {
-		return DashboardProperties.TASK_PROVIDER;
+		return DashboardPropertyKeys.TASK_PROVIDER;
 	}
 
 	/**
@@ -275,7 +275,7 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 
 		PropertyManager manager = getProjectSpace().getPropertyManager();
 
-		String showBR = manager.getLocalStringProperty(DashboardProperties.SHOW_BR_TASKS);
+		String showBR = manager.getLocalStringProperty(DashboardPropertyKeys.SHOW_BR_TASKS);
 		if (showBR != null && Boolean.parseBoolean(showBR)) {
 			EClass bugClass = BugPackage.eINSTANCE.getBugReport();
 			clazzes.add(bugClass);
@@ -284,7 +284,7 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 			readyForReviewItems.put(bugClass, new HashMap<WorkItem, AbstractOperation>());
 		}
 
-		String showAI = manager.getLocalStringProperty(DashboardProperties.SHOW_AI_TASKS);
+		String showAI = manager.getLocalStringProperty(DashboardPropertyKeys.SHOW_AI_TASKS);
 		if (showAI != null && Boolean.parseBoolean(showAI)) {
 			EClass aiClass = TaskPackage.eINSTANCE.getActionItem();
 			clazzes.add(aiClass);
@@ -293,7 +293,7 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 			readyForReviewItems.put(aiClass, new HashMap<WorkItem, AbstractOperation>());
 		}
 
-		String showIssue = manager.getLocalStringProperty(DashboardProperties.SHOW_ISSUE_TASKS);
+		String showIssue = manager.getLocalStringProperty(DashboardPropertyKeys.SHOW_ISSUE_TASKS);
 		if (showIssue != null && Boolean.parseBoolean(showIssue)) {
 			EClass issueClass = RationalePackage.eINSTANCE.getIssue();
 			clazzes.add(issueClass);
@@ -302,7 +302,7 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 			readyForReviewItems.put(issueClass, new HashMap<WorkItem, AbstractOperation>());
 		}
 
-		String showWP = manager.getLocalStringProperty(DashboardProperties.SHOW_WP_TASKS);
+		String showWP = manager.getLocalStringProperty(DashboardPropertyKeys.SHOW_WP_TASKS);
 		if (showWP != null && Boolean.parseBoolean(showWP)) {
 			EClass wpClass = TaskPackage.eINSTANCE.getWorkPackage();
 			clazzes.add(wpClass);
