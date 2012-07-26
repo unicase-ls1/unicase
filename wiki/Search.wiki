@@ -11,7 +11,7 @@ http://www.eclipse.org/modeling/emf/downloads/?project=query
 ===Link to update-site===
 Please use the following update-site for installing the search plugin: http://unicase.googlecode.com/svn/trunk/other/heidelberg/search/update 
 
-*(Available soon with the upcoming external of UNICASE)*
+*(Available soon with the upcoming external release of UNICASE)*
 
 ==Tutorial for users==
 This short tutorial will explain the search panel and how one can define complex search conditions. Furthermore, it provides an overview about the search results. 
