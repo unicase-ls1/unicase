@@ -30,7 +30,7 @@ The important parts of the search view will be presented in the following.
   # This is the pane for the advanced search options. Once you click it you will see the points 4-7.
   # The tree for the model types lets you select certain types for the search. You can also use the buttons to select all types or none.
   # Using these buttons you can create a new condition or delete an existing one.
-  # For a condition you can select a field, operator and value. The fields you can use here depend on the type selection. So, if you define a condition and de-select the dependent type, the condition will be removed because the field is not available anymore. Furthermore, the operator cal also be "value-set". This means that the conditions checks if there is any value set for the field. Once this operator is active, you cannot set a value since it is not needed.
+  # For a condition you can select a field, operator and value. The fields you can use here depend on the type selection. So, if you define a condition and de-select the dependent type, the condition will be removed because the field is not available anymore. Furthermore, the operator can also be "value-set". This means that the conditions checks if there is any value set for the field. Once this operator is active, you cannot set a value since it is not needed.
   # If this option is selected, the search will only use the defined search conditions. The search will be performed without using the keyword. The text field for the keyword will be disabled.
   # Here you can save the current search parameters. You can also load previously saved parameters or delete them.
 
