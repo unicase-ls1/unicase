@@ -1,21 +1,25 @@
 ==Description==
 This plugin provides (semi-) automatic creation and usage of traceability links between requirements, work items and source code during development. The Trace Client integrates itself seamlessly into the Eclipse IDE and Subversive (plug-in for Subversion). The main features of Trace Client are: (semi-) automatic creation of traceability links, requirements impact analysis, traceability between requirements and code, progress of requirements implementation, graph visualization.
 
+UNICASE integrates system modeling (e.g. requirements) with project management (e.g. work items). Thus, UNICASE consists of a *system model* and a *project model* unified in a single model. The Trace Client adds a third model called *code model* to UNICASE, which allows linking project management activities (work items) to the resulting implementation (code) during development. Using sophisticated algorithms, traceability links between system model elements (requirements) that are linked to project management activities (work items) can automatically be created. Thus, the Trace Client can achieve automated traceability between requirements and code during development. These traceability links are the basis for advanced features like requirements impact analysis and the identification of the progress of requirements implementation.
+
 ===Contact===
 [http://se.ifi.uni-heidelberg.de/people/alexander_delater.html Alexander Delater]
 
 ===Pre-requisites to install and use plugin===
-Subversive plugin in required. Please install Subversive using the following update site:
+Subversive in required for accessing the developed code in a Subversion repository. Please install Subversive using the following update site:
 [http://download.eclipse.org/technology/subversive/0.7/update-site/]
 
-Subversive Connectors are usually installed automatically after restarting Eclipse. In case connectors are not installed automatically, please install them manually using this update site: [http://community.polarion.com/projects/subversive/download/eclipse/2.0/update-site/]
+Subversive Connectors are usually installed automatically after installing Subversive and restarting Eclipse. In case the connectors are not installed automatically, please install them manually using this update site: [http://community.polarion.com/projects/subversive/download/eclipse/2.0/update-site/]
 
 ZEST Framework is required for visualizing graphs. Please install ZEST using this update site:
 [http://download.eclipse.org/tools/gef/updates/] Please select only the three ZEST plug-ins: Toolkit, Toolkit SDK and Toolkit Sources. All other required plug-ins are identified/installed automatically.
 
 ===Link to update-site===
 Please use the following update-site for installing the plugin:
-http://unicase.googlecode.com/svn/trunk/other/heidelberg/trace/update (Available soon)
+http://unicase.googlecode.com/svn/trunk/other/heidelberg/trace/update 
+
+*(Available as soon as the upcoming external UNICASE version 0.5.2 is released)*
 
 ===Tutorial for users===
 
