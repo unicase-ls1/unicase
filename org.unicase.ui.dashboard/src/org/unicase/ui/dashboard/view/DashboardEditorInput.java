@@ -19,8 +19,8 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 import org.unicase.dashboard.DashboardNotification;
 import org.unicase.dashboard.DashboardNotificationComposite;
+import org.unicase.dashboard.util.DashboardProperties;
 import org.unicase.ui.dashboard.Activator;
-import org.unicase.ui.dashboard.prefs.DashboardProperties;
 
 /**
  * The editor input for the dashboard.

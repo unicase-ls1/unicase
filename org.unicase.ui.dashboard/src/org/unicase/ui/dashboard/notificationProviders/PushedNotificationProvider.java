@@ -11,14 +11,20 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
+import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationId;
 import org.unicase.dashboard.DashboardNotification;
+import org.unicase.dashboard.DashboardNotificationComposite;
+import org.unicase.dashboard.util.DashboardProperties;
+import org.unicase.model.organization.Group;
+import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
-import org.unicase.ui.dashboard.prefs.DashboardProperties;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 
 /**
@@ -91,26 +97,29 @@ public class PushedNotificationProvider implements NotificationProvider {
 			return result;
 		}
 
-		// for (ChangePackage cp : changePackages) {
-		// for (DashboardNotification notification : cp.getNotifications()) {
-		// if (notification.getRecipient().equals(user.getName())) {
-		// notification.setProvider(getName());
-		// result.add(notification);
-		// getExcludedOperations().addAll(notification.getRelatedOperations());
-		// } else {
-		// EList<Group> groups = new BasicEList<Group>();
-		// projectSpace.getProject().getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getGroup(),
-		// groups);
-		// for (Group group : groups) {
-		// if (group.getName().equals(notification.getRecipient()) && group.getOrgUnits().contains(user)) {
-		// notification.setProvider(getName());
-		// result.add(notification);
-		// getExcludedOperations().addAll(notification.getRelatedOperations());
-		// }
-		// }
-		// }
-		// }
-		// }
+		EMFStoreProperty property = projectSpace.getPropertyManager().getLocalProperty(
+			DashboardProperties.NOTIFICATION_COMPOSITE);
+		if (property != null) {
+			DashboardNotificationComposite notificationComposite = (DashboardNotificationComposite) property.getValue();
+			for (DashboardNotification notification : notificationComposite.getNotifications()) {
+				if (notification.getRecipient().equals(user.getName())) {
+					notification.setProvider(getName());
+					result.add(notification);
+					getExcludedOperations().addAll(notification.getRelatedOperations());
+				} else {
+					EList<Group> groups = new BasicEList<Group>();
+					projectSpace.getProject().getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getGroup(),
+						groups);
+					for (Group group : groups) {
+						if (group.getName().equals(notification.getRecipient()) && group.getOrgUnits().contains(user)) {
+							notification.setProvider(getName());
+							result.add(notification);
+							getExcludedOperations().addAll(notification.getRelatedOperations());
+						}
+					}
+				}
+			}
+		}
 		return result;
 	}
 

@@ -10,39 +10,31 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
-
 import org.unicase.dashboard.DashboardPackage;
 import org.unicase.dashboard.SubscriptionComposite;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Subscription Composite</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Subscription Composite</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.dashboard.impl.SubscriptionCompositeImpl#getSubscriptions <em>Subscriptions</em>}</li>
+ * <li>{@link org.unicase.dashboard.impl.SubscriptionCompositeImpl#getSubscriptions <em>Subscriptions</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class SubscriptionCompositeImpl extends EObjectImpl implements SubscriptionComposite {
 	/**
-	 * The cached value of the '{@link #getSubscriptions() <em>Subscriptions</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSubscriptions() <em>Subscriptions</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSubscriptions()
 	 * @generated
 	 * @ordered
@@ -50,8 +42,8 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 	protected EList<ModelElementId> subscriptions;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SubscriptionCompositeImpl() {
@@ -59,8 +51,8 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -69,21 +61,20 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElementId> getSubscriptions() {
 		if (subscriptions == null) {
-			subscriptions = new EObjectContainmentEList.Resolving<ModelElementId>(ModelElementId.class, this,
-				DashboardPackage.SUBSCRIPTION_COMPOSITE__SUBSCRIPTIONS);
+			subscriptions = new SubscriptionIdList(this);
 		}
 		return subscriptions;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,8 +87,8 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -110,8 +101,8 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -127,8 +118,8 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -142,8 +133,8 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -155,4 +146,4 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 		return super.eIsSet(featureID);
 	}
 
-} //SubscriptionCompositeImpl
+} // SubscriptionCompositeImpl

@@ -42,8 +42,8 @@ import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.unicase.dashboard.DashboardNotification;
+import org.unicase.dashboard.util.DashboardProperties;
 import org.unicase.ui.dashboard.notificationProviders.UpdateNotificationProvider;
-import org.unicase.ui.dashboard.prefs.DashboardProperties;
 import org.unicase.ui.dashboard.view.widgets.AbstractDashboardWidget;
 
 /**

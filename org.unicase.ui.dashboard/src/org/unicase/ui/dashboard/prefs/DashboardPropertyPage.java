@@ -56,6 +56,7 @@ import org.eclipse.ui.dialogs.PropertyPage;
 import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.SubscriptionComposite;
 import org.unicase.dashboard.TaskTraceClassesComposite;
+import org.unicase.dashboard.util.DashboardProperties;
 import org.unicase.ui.unicasecommon.common.util.UnicaseUiUtil;
 
 /**
@@ -107,7 +108,7 @@ public class DashboardPropertyPage extends PropertyPage {
 				String.valueOf(showIssueTasks.getSelection()));
 			manager.setLocalStringProperty(DashboardProperties.SHOW_WP_TASKS,
 				String.valueOf(showWPTasks.getSelection()));
-			manager.setLocalStringProperty(DashboardProperties.SHOW_ONLY_READYFORREVIEW,
+			manager.setLocalStringProperty(DashboardProperties.SHOW_ONLY_READY_FOR_REVIEW,
 				String.valueOf(showOnlyReadyForReview.getSelection()));
 			manager.setLocalStringProperty(DashboardProperties.TASKTRACE_LENGTH,
 				String.valueOf(taskTraceLength.getSelection()));
@@ -502,7 +503,7 @@ public class DashboardPropertyPage extends PropertyPage {
 			showWPTasks.setSelection(Boolean.parseBoolean(showWP));
 		}
 
-		String showORFR = manager.getLocalStringProperty(DashboardProperties.SHOW_ONLY_READYFORREVIEW);
+		String showORFR = manager.getLocalStringProperty(DashboardProperties.SHOW_ONLY_READY_FOR_REVIEW);
 		if (showORFR != null) {
 			showOnlyReadyForReview.setSelection(Boolean.parseBoolean(showORFR));
 		}

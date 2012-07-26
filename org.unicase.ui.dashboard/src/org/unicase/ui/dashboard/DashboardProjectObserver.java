@@ -29,8 +29,8 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.DashboardNotification;
 import org.unicase.dashboard.DashboardNotificationComposite;
+import org.unicase.dashboard.util.DashboardProperties;
 import org.unicase.ui.dashboard.notificationProviders.NotificationHelper;
-import org.unicase.ui.dashboard.prefs.DashboardProperties;
 import org.unicase.ui.dashboard.view.DashboardEditorInput;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 

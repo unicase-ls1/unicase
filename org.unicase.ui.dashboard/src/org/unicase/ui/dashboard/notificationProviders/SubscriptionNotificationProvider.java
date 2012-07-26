@@ -20,7 +20,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOper
 import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.DashboardNotification;
 import org.unicase.dashboard.SubscriptionComposite;
-import org.unicase.ui.dashboard.prefs.DashboardProperties;
+import org.unicase.dashboard.util.DashboardProperties;
 
 /**
  * Provides notifications for subscribed MEs.
