@@ -16,7 +16,7 @@ ZEST Framework is required for visualizing graphs. Please install ZEST using thi
 [http://download.eclipse.org/tools/gef/updates/] Please select only the three ZEST plug-ins: Toolkit, Toolkit SDK and Toolkit Sources. All other required plug-ins are identified/installed automatically.
 
 ===Link to update-site===
-Please use the following update-site for installing the plugin:
+Please use the following update-site to install the plugin:
 http://unicase.googlecode.com/svn/trunk/other/heidelberg/trace/update 
 
 *(Available soon with the upcoming external release of UNICASE)*
