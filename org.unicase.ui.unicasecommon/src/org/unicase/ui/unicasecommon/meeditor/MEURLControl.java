@@ -104,19 +104,18 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 				});
 			}
 
-			public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
-			}
-
-			public void modelElementAdded(IdEObjectCollection project, EObject modelElement) {
-			}
-
-			public void modelElementRemoved(IdEObjectCollection project, EObject modelElement) {
-			}
-
 			@Override
 			protected void onElementDeleted(EObject element) {
 			}
 
+			public void notify(Notification notification, IdEObjectCollection collection, EObject modelElement) {
+			}
+
+			public void modelElementAdded(IdEObjectCollection collection, EObject modelElement) {
+			}
+
+			public void modelElementRemoved(IdEObjectCollection collection, EObject modelElement) {
+			}
 		};
 
 		ModelUtil.getProject(getModelElement()).addIdEObjectCollectionChangeObserver(observer);
@@ -141,11 +140,6 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 					box.setMessage(url + " is not a valid URL, browser couldn't be started!");
 					box.open();
 				}
-				// FIXME: See below
-				// EObject modelElement = getModelElement();
-				// ModelElementId modelElementId = ModelUtil.getProject(modelElement).getModelElementId(modelElement);
-				// logEvent(modelElementId, modelElementId, WorkspaceManager.getProjectSpace(modelElement),
-				// "org.eclipse.emf.ecp.editor");
 				super.linkActivated(event);
 
 			}
@@ -178,32 +172,6 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 
 		return linkComposite;
 	}
-
-	/**
-	 * Logs an URLEvent.
-	 * 
-	 * @param sourceModelElementId The ID where the widgte was clicked
-	 * @param urlID The ID of the URL
-	 * @param projectSpace The project space to log the event
-	 * @param source The source view
-	 */
-	// FIXME: Remove this?
-	// public static void logEvent(ModelElementId sourceModelElementId, ModelElementId urlID,
-	// final ProjectSpace projectSpace, String source) {
-	// final URLEvent urlEvent = EventsFactory.eINSTANCE.createURLEvent();
-	// urlEvent.setSourceModelElement(sourceModelElementId);
-	// urlEvent.setSourceURL(urlID);
-	// urlEvent.setTimestamp(new Date());
-	// urlEvent.setSourceView(source);
-	// new EMFStoreCommand() {
-	//
-	// @Override
-	// protected void doRun() {
-	// projectSpace.addEvent(urlEvent);
-	// }
-	// }.run(false);
-	//
-	// }
 
 	/**
 	 * Disposes the Composite of this {@link MEURLControl}.

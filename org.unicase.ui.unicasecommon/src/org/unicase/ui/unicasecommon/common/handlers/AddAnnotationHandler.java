@@ -102,9 +102,6 @@ public class AddAnnotationHandler extends AbstractHandler {
 			return null;
 		}
 		attachAnnotation(me, annotation);
-		// log event
-		// FIXME: Remove this?
-		// UnicaseEventUtil.logAnnotationEvent(me, annotation);
 
 		// 3. open annotation object for further editing
 		openAnnotation(annotation);

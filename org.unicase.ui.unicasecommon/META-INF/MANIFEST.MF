@@ -20,7 +20,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.ecp.editor,
  org.eclipse.emf.ecp.navigatoreditorbridge,
  org.eclipse.emf.ecp.navigator,
- org.eclipse.emf.compare
+ org.eclipse.emf.compare,
+ org.unicase.dashboard
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.unicase.ui.unicasecommon,
