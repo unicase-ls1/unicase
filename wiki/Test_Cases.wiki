@@ -13,7 +13,7 @@ http://unicase.googlecode.com/svn/trunk/other/heidelberg/integrated/update
 The plugin is integrated with the following plugins: [Use_Cases Use Cases], [Metrics] and [Context_Completeness Context Completeness]. These plugins are installed together with the test case plugin.
 
 ===Tutorial for users===
-Create a new element "TestCase" from the package "testcase" in UNICASE. The element has several attributes, e.g. pre- and post condition and infrastructure. Navigate to the new page "Test Steps". Test Steps can have input- and output parameters, a short description and exception. For each parameter, the name, type and rage can be specified. 
+Create a new element "TestCase" from the package "testcase" in UNICASE. The element has several attributes, e.g. pre- and post condition and infrastructure. Navigate to the new page "Test Steps". Test Steps can have input- and output parameters, a short description and exception. For each parameter, the name, type and range can be specified. 
 
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/teststep.png]
 
