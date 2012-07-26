@@ -5,11 +5,13 @@ This plugin provides search functionality for UNICASE projects and is based on t
 [http://se.ifi.uni-heidelberg.de/people/alexander_delater.html Alexander Delater]
 
 ===Pre-requisites to install and use plugin==
-EMF Query is pre-installed in Eclipse Modeling Tools. In case EMF Query is not available, please first install EMF Query, version 1.3.0 at least.
+EMF Query is pre-installed in Eclipse Modeling Tools. In case EMF Query is not available, please install EMF Query manually, version 1.3.0 at least.
 http://www.eclipse.org/modeling/emf/downloads/?project=query
 
 ===Link to update-site===
-Please use the following update-site for installing the search plugin: http://unicase.googlecode.com/svn/trunk/other/heidelberg/search/update (Available soon)
+Please use the following update-site for installing the search plugin: http://unicase.googlecode.com/svn/trunk/other/heidelberg/search/update 
+
+*(Available soon with the upcoming external of UNICASE)*
 
 ==Tutorial for users==
 This short tutorial will explain the search panel and how one can define complex search conditions. Furthermore, it provides an overview about the search results. 
