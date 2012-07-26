@@ -12,9 +12,9 @@ package org.unicase.dashboard.util;
  * 
  * @author mharut
  */
-public final class DashboardProperties {
+public final class DashboardPropertyKeys {
 
-	private DashboardProperties() {
+	private DashboardPropertyKeys() {
 		// all constants are accessed statically
 	}
 

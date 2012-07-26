@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.properties.PropertyManager;
 import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
@@ -20,7 +21,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOper
 import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.DashboardNotification;
 import org.unicase.dashboard.SubscriptionComposite;
-import org.unicase.dashboard.util.DashboardProperties;
+import org.unicase.dashboard.util.DashboardPropertyKeys;
 
 /**
  * Provides notifications for subscribed MEs.
@@ -36,12 +37,6 @@ public class SubscriptionNotificationProvider extends AbstractNotificationProvid
 	 * The name.
 	 */
 	public static final String NAME = "Subscription Notification Provider";
-
-	/**
-	 * Default constructor.
-	 */
-	public SubscriptionNotificationProvider() {
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -62,9 +57,15 @@ public class SubscriptionNotificationProvider extends AbstractNotificationProvid
 	public List<DashboardNotification> provideNotifications(ProjectSpace projectSpace,
 		List<ChangePackage> changePackages, String currentUsername) {
 		result = new ArrayList<DashboardNotification>();
-		EMFStoreProperty property = projectSpace.getPropertyManager().getLocalProperty(
-			DashboardProperties.SUBSCRIPTIONS);
 
+		PropertyManager propertyManager = projectSpace.getPropertyManager();
+
+		String subscriptionProvider = propertyManager.getLocalStringProperty(DashboardPropertyKeys.SUBSCRIPTION_PROVIDER);
+		if (subscriptionProvider == null || !Boolean.parseBoolean(subscriptionProvider)) {
+			return result;
+		}
+
+		EMFStoreProperty property = propertyManager.getLocalProperty(DashboardPropertyKeys.SUBSCRIPTIONS);
 		if (property != null) {
 			EObject value = property.getValue();
 			if (value instanceof SubscriptionComposite) {
@@ -131,7 +132,7 @@ public class SubscriptionNotificationProvider extends AbstractNotificationProvid
 	 * {@inheritDoc}
 	 */
 	public String getKey() {
-		return DashboardProperties.SUBSCRIPTION_PROVIDER;
+		return DashboardPropertyKeys.SUBSCRIPTION_PROVIDER;
 	}
 
 	/**

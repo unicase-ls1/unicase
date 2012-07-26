@@ -32,6 +32,9 @@ public class SubscriptionIdList extends EObjectContainmentEList.Resolving<ModelE
 
 	@Override
 	public boolean contains(Object object) {
+		if (data == null) {
+			return false;
+		}
 		if (object instanceof ModelElementId) {
 			ModelElementId id = (ModelElementId) object;
 			for (Object subscriptionId : data) {
@@ -53,6 +56,9 @@ public class SubscriptionIdList extends EObjectContainmentEList.Resolving<ModelE
 
 	@Override
 	public boolean remove(Object object) {
+		if (data == null) {
+			return false;
+		}
 		ModelElementId subscriptionId = null;
 		if (object instanceof ModelElementId) {
 			ModelElementId id = (ModelElementId) object;

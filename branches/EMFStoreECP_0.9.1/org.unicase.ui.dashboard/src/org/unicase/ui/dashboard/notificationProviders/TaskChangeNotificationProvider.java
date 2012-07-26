@@ -20,7 +20,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOpera
 import org.eclipse.emf.emfstore.server.model.versioning.operations.MultiReferenceOperation;
 import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.DashboardNotification;
-import org.unicase.dashboard.util.DashboardProperties;
+import org.unicase.dashboard.util.DashboardPropertyKeys;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.TaskQuery;
@@ -117,7 +117,7 @@ public class TaskChangeNotificationProvider extends AbstractNotificationProvider
 	 * {@inheritDoc}
 	 */
 	public String getKey() {
-		return DashboardProperties.TASK_CHANGE_PROVIDER;
+		return DashboardPropertyKeys.TASK_CHANGE_PROVIDER;
 	}
 
 	/**

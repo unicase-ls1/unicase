@@ -21,7 +21,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationId;
 import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.DashboardNotification;
-import org.unicase.dashboard.util.DashboardProperties;
+import org.unicase.dashboard.util.DashboardPropertyKeys;
 import org.unicase.model.organization.User;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 
@@ -136,6 +136,6 @@ public class UpdateNotificationProvider implements NotificationProvider {
 	 * {@inheritDoc}
 	 */
 	public String getKey() {
-		return DashboardProperties.UPDATE_PROVIDER;
+		return DashboardPropertyKeys.UPDATE_PROVIDER;
 	}
 }

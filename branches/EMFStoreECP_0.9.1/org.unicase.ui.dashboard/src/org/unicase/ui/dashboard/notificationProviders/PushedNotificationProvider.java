@@ -21,7 +21,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationId;
 import org.unicase.dashboard.DashboardNotification;
 import org.unicase.dashboard.DashboardNotificationComposite;
-import org.unicase.dashboard.util.DashboardProperties;
+import org.unicase.dashboard.util.DashboardPropertyKeys;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
@@ -98,11 +98,11 @@ public class PushedNotificationProvider implements NotificationProvider {
 		}
 
 		EMFStoreProperty property = projectSpace.getPropertyManager().getLocalProperty(
-			DashboardProperties.NOTIFICATION_COMPOSITE);
+			DashboardPropertyKeys.NOTIFICATION_COMPOSITE);
 		if (property != null) {
 			DashboardNotificationComposite notificationComposite = (DashboardNotificationComposite) property.getValue();
 			for (DashboardNotification notification : notificationComposite.getNotifications()) {
-				if (notification.getRecipient().equals(user.getName())) {
+				if (notification.getRecipient().equals(user.getName()) && notification.getProvider() == null) {
 					notification.setProvider(getName());
 					result.add(notification);
 					getExcludedOperations().addAll(notification.getRelatedOperations());
@@ -111,7 +111,8 @@ public class PushedNotificationProvider implements NotificationProvider {
 					projectSpace.getProject().getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getGroup(),
 						groups);
 					for (Group group : groups) {
-						if (group.getName().equals(notification.getRecipient()) && group.getOrgUnits().contains(user)) {
+						if (group.getName().equals(notification.getRecipient()) && group.getOrgUnits().contains(user)
+							&& notification.getProvider() == null) {
 							notification.setProvider(getName());
 							result.add(notification);
 							getExcludedOperations().addAll(notification.getRelatedOperations());
@@ -136,6 +137,6 @@ public class PushedNotificationProvider implements NotificationProvider {
 	 * {@inheritDoc}
 	 */
 	public String getKey() {
-		return DashboardProperties.PUSHED_PROVIDER;
+		return DashboardPropertyKeys.PUSHED_PROVIDER;
 	}
 }

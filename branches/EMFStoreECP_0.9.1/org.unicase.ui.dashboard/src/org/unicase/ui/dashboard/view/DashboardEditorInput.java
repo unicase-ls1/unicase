@@ -19,7 +19,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 import org.unicase.dashboard.DashboardNotification;
 import org.unicase.dashboard.DashboardNotificationComposite;
-import org.unicase.dashboard.util.DashboardProperties;
+import org.unicase.dashboard.util.DashboardPropertyKeys;
 import org.unicase.ui.dashboard.Activator;
 
 /**
@@ -119,7 +119,7 @@ public class DashboardEditorInput implements IEditorInput {
 	public List<DashboardNotification> getNotifications() {
 
 		PropertyManager propertyManager = projectSpace.getPropertyManager();
-		EMFStoreProperty property = propertyManager.getLocalProperty(DashboardProperties.NOTIFICATION_COMPOSITE);
+		EMFStoreProperty property = propertyManager.getLocalProperty(DashboardPropertyKeys.NOTIFICATION_COMPOSITE);
 
 		if (property == null) {
 			return Collections.emptyList();
