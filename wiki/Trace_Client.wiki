@@ -25,12 +25,12 @@ http://unicase.googlecode.com/svn/trunk/other/heidelberg/trace/update
 
 Open context-menu on UNICASE Project and select “Open Traceability Center”. 
 
-[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/traceability-center-menu.png]
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/traceability-center-menu.png]
 
 The Traceability Center provides access to all features of the Trace Client. A pie chart shows an overview about the requirements, work items and code files in the project as well as all other elements. 
 
-[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/traceability-center.png]
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/traceability-center.png]
 
-In the following, an overview about all features of the Trace Client (as well as common features of UNICASE like Navigator and Element Editor) is shown:
+In the following, an overview about [Trace_Client_Features all features of the Trace Client] (as well as common features of UNICASE like Navigator and Element Editor) is shown:
 
-[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/traceclient.png]
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/traceclient.png]
