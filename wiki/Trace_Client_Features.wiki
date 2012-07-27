@@ -1,30 +1,4 @@
-In the following, an overview about the elements and features of the *[Trace_Client Trace Client]* is provided.
-
-==Elements==
-
-===Code File===
-
-Code Files are links to local files in the current Eclipse workspace, e.g. Java files. 
-
-[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/codefile.png]
-
-===Revision===
-
-The element Revision stores information about a revision on a Subversion Server. It contains information about all changed code files. 
-
-[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/revision.png]
-
-===Versioned Project===
-
-A Versioned Project is a container for all Code Files that belong to a common project in the current Eclipse Workspace.
-
-[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/versionedproject.png]
-
-===Requirement===
-
-A Requirement is not a particular element of Trace Client. However, requirements are automatically linked to Code Files.
-
-[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/requirement.png]
+In the following, an overview about the features and elements of the *[Trace_Client Trace Client]* is provided.
 
 ==Features==
 
@@ -67,3 +41,30 @@ Visualize single elements, all elements of a section or all elements of a projec
 The icon assistant provides an overview about all important icons used in [Trace_Client Trace Client]
 
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/iconassist.png]
+
+
+==Elements==
+
+===Code File===
+
+Code Files are links to local files in the current Eclipse workspace, e.g. Java files. 
+
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/codefile.png]
+
+===Revision===
+
+The element Revision stores information about a revision on a Subversion Server. It contains information about all changed code files. 
+
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/revision.png]
+
+===Versioned Project===
+
+A Versioned Project is a container for all Code Files that belong to a common project in the current Eclipse Workspace.
+
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/versionedproject.png]
+
+===Requirement===
+
+A Requirement is not a particular element of Trace Client. However, requirements are automatically linked to Code Files.
+
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/requirement.png]
