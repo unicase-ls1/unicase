@@ -3,36 +3,67 @@ In the following, an overview about the elements and features of the *[Trace_Cli
 ==Elements==
 
 ===Code File===
+
+Code Files are links to local files in the current Eclipse workspace, e.g. Java files. 
+
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/codefile.png]
 
 ===Revision===
+
+The element Revision stores information about a revision on a Subversion Server. It contains information about all changed code files. 
+
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/revision.png]
 
 ===Versioned Project===
+
+A Versioned Project is a container for all Code Files that belong to a common project in the current Eclipse Workspace.
+
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/versionedproject.png]
 
 ===Requirement===
+
+A Requirement is not a particular element of Trace Client. However, requirements are automatically linked to Code Files.
+
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/requirement.png]
 
 ==Features==
 
 ===Capturing Requirements===
+
+First, the developer selects a work item from his/her list of assigned work items. While working on the work item, all requirements the developer looks at during implementation are automatically captured, meaning that they are logged while the developer opens them. After finishing implementation, the Revision created on the Subversion server is linked to the selected work item.
+
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/capture.png]
 
-===Requirements Validation Analysis===
+===Requirements Validation===
+
+For each requirement, the number of assigned/resolved work items, the linked revisions and the progress of realization is shown. Requirements Validation can also identify not realized requirements.
+
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/requirementsvalidation.png]
 
 ===Requirements and Code===
+
+For each requirement, the linked code files are shown. Double-clicking on a code file opes them in the code editor.
+
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/requirementsandcode.png]
 
 ===Requirements Impact Analysis===
+
+What artifacts might be affected if a given requirement changes? The potential impact ratio on the project is also shown.
+
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/impact.png]
 
 ===Graph Visualization===
+
+Visualize single elements, all elements of a section or all elements of a project in a graph. Searching within all elements in the graph is supported. Various layout algorithms can be applied to the graph.
+
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/graph.png]
 
 ===Requirements Context===
+
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/requirementscontext.png]
 
 ===Icon Assistant===
+
+The icon assistant provides an overview about all important icons used in [Trace_Client Trace Client]
+
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/iconassist.png]
