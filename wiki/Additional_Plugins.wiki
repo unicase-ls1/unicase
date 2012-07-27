@@ -14,6 +14,13 @@ The following plugins can be installed individually. This means that they can be
 
  * [Glossary]: Provides the element 'GlossaryEntry'. The element 'GlossaryEntry' can be linked to any other element.
 
+===Independent plugins===
+The following plugins depend on the integrated plugins. This means that they have a relation to the integrated plugins.
+
+* [Metrics]: Provides various metrics for UNICASE projects. For example, user metrics (elements per user, action items per user etc.), element metrics (number of elements, elements per development phase etc.) and time frame metrics (elements created between two dates). Queries for metrics can be saved for later usage and results can be exported to Excel.
+
+ * [Context_Completeness Context Completeness]: Provides support for identifying incomplete elements, e.g. isolated elements or elements missing certain mandatory links to other elements. Results can be saved for later usage and exported to Excel. The context of a particular element can be shown, which means all linked elements of the originating element with the ability to directly navigate the linked elements.
+
 ===Integrated plugins===
 
 The following plugins can only be installed together. This means that they are all integrated and cannot be used separately. For all plugins, one update site exists.
@@ -21,7 +28,3 @@ The following plugins can only be installed together. This means that they are a
  * [Use_Cases  Use Cases]: Provides advanced support for specifying use cases, especially new visualization of Flow of Events. 
 
  * [Test_Cases Test Cases]: Provides support for specifying test cases with included test steps. Results of test cases can be documents in test protocols. Test Cases can be linked to Use Cases.
-
- * [Metrics]: Provides various metrics for UNICASE projects. For example, user metrics (elements per user, action items per user etc.), element metrics (number of elements, elements per development phase etc.) and time frame metrics (elements created between two dates). Queries for metrics can be saved for later usage and results can be exported to Excel.
-
- * [Context_Completeness Context Completeness]: Provides support for identifying incomplete elements, e.g. isolated elements or elements missing certain mandatory links to other elements. Results can be saved for later usage and exported to Excel. The context of a particular element can be shown, which means all linked elements of the originating element with the ability to directly navigate the linked elements.
