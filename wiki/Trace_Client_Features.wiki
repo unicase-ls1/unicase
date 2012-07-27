@@ -14,7 +14,9 @@ After validating all artifacts and optionally adding further requirements, the d
 
 ===Inferring Traceability Links===
 
-The traceability links between requirements and work items as well as betwen work items and revisions are used to *infer direct links between requirements and code*. The inference algorithm for creating traceability links between requirements and code is executed when the status of a work item is changed by the developer from assigned to done. The algorithm connects in a brute force manner all linked requirements of a work item with all the code files in the linked revisions of the work item. If the algorithm identifies already existing links, it does not create them again. If a code file was modified, its information is updated for each linked requirement. If a code file is deleted, the link to the requirement is removed.
+The traceability links between requirements and work items as well as betwen work items and revisions (which contain changed code files) are used to *infer direct links between requirements and code*. The algorithm creates automatically elements of type *Code File* (see below). 
+
+The inference algorithm for creating traceability links between requirements and code is executed when the status of a work item is changed by the developer from assigned to done. The algorithm connects in a brute force manner all linked requirements of a work item with all the code files in the linked revisions of the work item. If the algorithm identifies already existing links, it does not create them again. If a code file was modified, its information is updated for each linked requirement. If a code file is deleted, the link to the requirement is removed.
 
 ===Requirements Validation===
 
