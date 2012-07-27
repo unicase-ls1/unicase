@@ -16,9 +16,9 @@ The following plugins can be installed individually. This means that they can be
 
 ===Depending plugins===
 
-The following plugins depend on the integrated plugins (see below). This means that they have a relation to the integrated plugins.
+The following plugins have a *depencendy to the integrated plugins (see below)*. This means that the integrated plugins are required to run one of the following plugins.
 
- * [Business_Process_Editor Business Process Editor]: Enables the modelling of BPMN process models and the linking of BPMN model elements to UNICASE model elements. The editor also provides functionality for a comprehensive modelling of quality information within the process model.
+ * [Business_Process_Editor Business Process Editor]: Enables the modeling of BPMN process models and the linking of BPMN model elements to UNICASE model elements. The editor also provides functionality for a comprehensive modelling of quality information within the process model.
 
  * [Metrics]: Provides various metrics for UNICASE projects. For example, user metrics (elements per user, action items per user etc.), element metrics (number of elements, elements per development phase etc.) and time frame metrics (elements created between two dates). Queries for metrics can be saved for later usage and results can be exported to Excel.
 
@@ -26,7 +26,7 @@ The following plugins depend on the integrated plugins (see below). This means t
 
 ===Integrated plugins===
 
-The following plugins can only be installed together. This means that they are all integrated and cannot be used separately. For all plugins, one update site exists.
+The following plugins can only be installed together. This means that they have dependencies between each other and cannot be used separately. For these plugins, one update site exists.
 
  * [Use_Cases  Use Cases]: Provides advanced support for specifying use cases, especially new visualization of Flow of Events. 
 
