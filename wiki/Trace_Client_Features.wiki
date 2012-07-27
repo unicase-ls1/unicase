@@ -1,0 +1,36 @@
+==Elements==
+
+===Code File===
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/codefile.png]
+
+===Revision===
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/revision.png]
+
+===Versioned Project===
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/versionedproject.png]
+
+===Requirement===
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/requirement.png]
+
+==Features==
+
+===Capturing Requirements===
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/capture.png]
+
+===Requirements Validation Analysis===
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/requirementsvalidation.png]
+
+===Requirements and Code===
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/requirementsandcode.png]
+
+===Requirements Impact Analysis===
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/impact.png]
+
+===Graph Visualization===
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/graph.png]
+
+===Requirements Context===
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/requirementscontext.png]
+
+===Icon Assistant===
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/iconassist.png]
