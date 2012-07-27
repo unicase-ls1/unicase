@@ -57,7 +57,7 @@ The icon assistant provides an overview about all important icons used in [Trace
 
 ===Code File===
 
-Code Files are links to local files in the current Eclipse workspace, e.g. Java files. 
+Code Files are links to local files in the current Eclipse workspace, e.g. Java files. They are automatically created during the *inference of traceability links* (see above)
 
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/codefile.png]
 
@@ -69,7 +69,7 @@ The element Revision stores information about a revision on a Subversion Server.
 
 ===Versioned Project===
 
-A Versioned Project is a container for all Code Files that belong to a common project in the current Eclipse Workspace.
+A Versioned Project is a container for all Code Files that belong to a common project in the current Eclipse Workspace. It is also automatically created during the *inference of traceability links* (see above). Versioned Projects are used to keep number of elements in the UNICASE project at a minimum.
 
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/versionedproject.png]
 
