@@ -31,6 +31,6 @@ The Traceability Center provides access to all features of the Trace Client. A p
 
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/traceability-center.png]
 
-In the following, an overview about [Trace_Client_Features all features of the Trace Client] (as well as common features of UNICASE like Navigator and Element Editor) is shown:
+In the following, an overview about *[Trace_Client_Features all features of the Trace Client]* (as well as common features of UNICASE like Navigator and Element Editor) is shown:
 
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/trace/traceclient.png]
