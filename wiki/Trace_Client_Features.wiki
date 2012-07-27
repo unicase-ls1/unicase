@@ -12,7 +12,9 @@ After finishing the implementation of a work item in the source code, the develo
 
 After validating all artifacts and optionally adding further requirements, the developer selects to commit all information to Subversion. The system then creates a new revision containing only the selected code files. The work item is linked to the newly created revision. Moreover, the system links all validated and selected requirements to the work item.
 
+===Inferring Traceability Links===
 
+The traceability links between requirements and work items as well as betwen work items and revisions are used to *infer direct links between requirements and code*. The inference algorithm for creating traceability links between requirements and code is executed when the status of a work item is changed by the developer from assigned to done. The algorithm connects in a brute force manner all linked requirements of a work item with all the code files in the linked revisions of the work item. If the algorithm identifies already existing links, it does not create them again. If a code file was modified, its information is updated for each linked requirement. If a code file is deleted, the link to the requirement is removed.
 
 ===Requirements Validation===
 
