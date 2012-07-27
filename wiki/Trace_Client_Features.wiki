@@ -1,4 +1,4 @@
-In the following, an overview about the elements and features of the [Trace_Client Trace Client] is provided.
+In the following, an overview about the elements and features of the *[Trace_Client Trace Client]* is provided.
 
 ==Elements==
 
