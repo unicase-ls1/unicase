@@ -10,7 +10,7 @@ http://unicase.googlecode.com/svn/trunk/other/heidelberg/integrated/update
 
 *(Available soon with the upcoming external release of UNICASE)*
 
-The plugin is integrated with the following plugins: [Test_Cases Test Cases], [Metrics] and [Context_Completeness Context Completeness]. These plugins are installed together with the use case plugin.
+The plugin is integrated with the [Test_Cases Test Cases] plugin, which means that these plugins are installed together.
 
 ===Tutorial for users===
 Create a new element "UseCase" from the package "usecase" in UNICASE. The element has several attributes, e.g. pre- and post condition, rules, linked actors, included use cases and system functions etc. Navigate to the new page "Flow of Events". Within the Flow of Events, add Human Steps and IT System Steps. 
