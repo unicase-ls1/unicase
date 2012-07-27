@@ -10,7 +10,7 @@ The plugins UseCases and TestCases are required (see integrated plugins). Please
 
 ===Link to update-site===
 Please use the following update-site to install the plugin:
-http://unicase.googlecode.com/svn/trunk/other/heidelberg/trace/update 
+http://unicase.googlecode.com/svn/trunk/other/heidelberg 
 
 *(Available soon with the upcoming external release of UNICASE)*
 
