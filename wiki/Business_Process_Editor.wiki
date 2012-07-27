@@ -1,5 +1,5 @@
 ==Description==
-This plugin enables the modelling of business processes using BPMN standard model elements. In contrast to other business process modeling editors, this editor also allows to document quality information in the process model. Thus, information on structure and behavior as well as information on quality can be presented in a single view. As business process models are often a starting point of requirements elicitation, process model elements can be linked to UNICASE model elements.
+This plugin enables the modelling of business processes using BPMN standard model elements. In contrast to other business process modeling editors, this editor also allows documenting quality information in the process model. Thus, information on structure and behavior as well as information on quality can be presented in a single view. As business process models are often a starting point of requirements elicitation, process model elements can be linked to UNICASE model elements.
 
 ===Contact===
 [http://se.ifi.uni-heidelberg.de/people/robert_heinrich.html Robert Heinrich]
