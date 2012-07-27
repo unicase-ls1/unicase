@@ -14,7 +14,7 @@ The following plugins can be installed individually. This means that they can be
 
  * [Glossary]: Provides the element 'GlossaryEntry'. The element 'GlossaryEntry' can be linked to any other element.
 
-===Independent plugins===
+===Depending plugins===
 
 The following plugins depend on the integrated plugins. This means that they have a relation to the integrated plugins.
 
