@@ -16,7 +16,7 @@ The following plugins can be installed individually. This means that they can be
 
 ===Depending plugins===
 
-The following plugins depend on the integrated plugins. This means that they have a relation to the integrated plugins.
+The following plugins depend on the integrated plugins (see below). This means that they have a relation to the integrated plugins.
 
  * [Business_Process_Editor Business Process Editor]: Enables the modelling of BPMN process models and the linking of BPMN model elements to UNICASE model elements. The editor also provides functionality for a comprehensive modelling of quality information within the process model.
 
