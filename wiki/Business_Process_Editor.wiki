@@ -17,3 +17,5 @@ Please use the following update-site to install the plugin:
 
 ===Tutorial for users===
 The process model is presented in a split screen view together with the corresponding tables of attributes and measures (QI Details). In the process modeling view (Business Process Model) the modeler can capture information on structure and behavior of the business process as a BPMN model and can additionally capture several quality characteristics. The modeler can add quality characteristics to a process model element by dragging and dropping the characteristic icons from the toolbar besides the process model to the corresponding process model element. By clicking a characteristic icon in the process model, the table of attributes and measures related to the selected characteristic appears in the QI Details view below. Here the modeler can capture the attributes, measures and their values.
+
+[http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/process/BusinessProcessEditor.png]
