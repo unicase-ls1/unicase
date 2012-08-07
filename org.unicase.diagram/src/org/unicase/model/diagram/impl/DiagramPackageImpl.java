@@ -357,6 +357,14 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 			.getEPackage(NotationPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
+		// Change critical GMF runtime information
+		if (theNotationPackage.getView_SourceEdges().isChangeable()) {
+			theNotationPackage.getView_SourceEdges().setChangeable(false);
+		}
+		if (theNotationPackage.getView_TargetEdges().isChangeable()) {
+			theNotationPackage.getView_TargetEdges().setChangeable(false);
+		}
+
 		// Create type parameters
 
 		// Set bounds for type parameters
