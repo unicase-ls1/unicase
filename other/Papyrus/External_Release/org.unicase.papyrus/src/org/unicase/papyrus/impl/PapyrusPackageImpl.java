@@ -291,6 +291,14 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 		NotationPackage theNotationPackage = (NotationPackage) EPackage.Registry.INSTANCE
 			.getEPackage(NotationPackage.eNS_URI);
 
+		// Change critical GMF runtime information
+		if (theNotationPackage.getView_SourceEdges().isChangeable()) {
+			theNotationPackage.getView_SourceEdges().setChangeable(false);
+		}
+		if (theNotationPackage.getView_TargetEdges().isChangeable()) {
+			theNotationPackage.getView_TargetEdges().setChangeable(false);
+		}
+
 		// Create type parameters
 
 		// Set bounds for type parameters

@@ -79,8 +79,11 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 			EObject object = rs.getEObject(uri, false);
 			if (object instanceof UMLModel) {
 				UMLModel model = (UMLModel) object;
-				UMLInitUtil.initialize(model);
 				Diagram diagram = model.getGmfDiagram();
+				if (diagram == null) {
+					UMLInitUtil.initialize(model);
+					diagram = model.getGmfDiagram();
+				}
 				if (diagram != null) {
 					addModelSetQueryAdapter(model);
 					document.setContent(diagram);

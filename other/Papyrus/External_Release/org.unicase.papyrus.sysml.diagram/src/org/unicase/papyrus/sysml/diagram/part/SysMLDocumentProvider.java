@@ -82,9 +82,12 @@ public abstract class SysMLDocumentProvider extends AbstractDocumentProvider imp
 			EObject object = rs.getEObject(uri, false);
 			if (object instanceof SysMLModel) {
 				SysMLModel model = (SysMLModel) object;
-				SysMLInitUtil.initialize(model);
 				boolean isParametric = model.getDiagramType().equals(SysMLDiagramType.PARAMETRIC);
 				Diagram diagram = isParametric ? extractParametricDiagram(model) : model.getGmfDiagram();
+				if (diagram == null) {
+					SysMLInitUtil.initialize(model);
+					diagram = isParametric ? extractParametricDiagram(model) : model.getGmfDiagram();
+				}
 				if (diagram != null) {
 					addModelSetQueryAdapter(model);
 					document.setContent(diagram);
