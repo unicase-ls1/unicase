@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.dashboard.*;
 import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.DashboardNotification;
 import org.unicase.dashboard.DashboardNotificationComposite;
@@ -20,13 +21,12 @@ import org.unicase.dashboard.TaskTraceClassesComposite;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class DashboardFactoryImpl extends EFactoryImpl implements DashboardFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static DashboardFactory init() {
@@ -43,8 +43,8 @@ public class DashboardFactoryImpl extends EFactoryImpl implements DashboardFacto
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public DashboardFactoryImpl() {
@@ -53,7 +53,6 @@ public class DashboardFactoryImpl extends EFactoryImpl implements DashboardFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,6 +66,8 @@ public class DashboardFactoryImpl extends EFactoryImpl implements DashboardFacto
 			return createSubscriptionComposite();
 		case DashboardPackage.TASK_TRACE_CLASSES_COMPOSITE:
 			return createTaskTraceClassesComposite();
+		case DashboardPackage.NOTIFICATION_OPERATION:
+			return createNotificationOperation();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -74,7 +75,6 @@ public class DashboardFactoryImpl extends EFactoryImpl implements DashboardFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DashboardNotification createDashboardNotification() {
@@ -84,7 +84,6 @@ public class DashboardFactoryImpl extends EFactoryImpl implements DashboardFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DashboardNotificationComposite createDashboardNotificationComposite() {
@@ -94,7 +93,6 @@ public class DashboardFactoryImpl extends EFactoryImpl implements DashboardFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SubscriptionComposite createSubscriptionComposite() {
@@ -104,7 +102,6 @@ public class DashboardFactoryImpl extends EFactoryImpl implements DashboardFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TaskTraceClassesComposite createTaskTraceClassesComposite() {
@@ -113,8 +110,17 @@ public class DashboardFactoryImpl extends EFactoryImpl implements DashboardFacto
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationOperation createNotificationOperation() {
+		NotificationOperationImpl notificationOperation = new NotificationOperationImpl();
+		return notificationOperation;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DashboardPackage getDashboardPackage() {
@@ -123,7 +129,6 @@ public class DashboardFactoryImpl extends EFactoryImpl implements DashboardFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

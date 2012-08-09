@@ -62,6 +62,15 @@ public interface DashboardFactory extends EFactory {
 	TaskTraceClassesComposite createTaskTraceClassesComposite();
 
 	/**
+	 * Returns a new object of class '<em>Notification Operation</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Notification Operation</em>'.
+	 * @generated
+	 */
+	NotificationOperation createNotificationOperation();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

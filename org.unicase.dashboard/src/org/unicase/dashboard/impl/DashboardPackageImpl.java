@@ -21,6 +21,7 @@ import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.DashboardNotification;
 import org.unicase.dashboard.DashboardNotificationComposite;
 import org.unicase.dashboard.DashboardPackage;
+import org.unicase.dashboard.NotificationOperation;
 import org.unicase.dashboard.SubscriptionComposite;
 import org.unicase.dashboard.TaskTraceClassesComposite;
 
@@ -58,6 +59,13 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	 * @generated
 	 */
 	private EClass taskTraceClassesCompositeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass notificationOperationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -291,6 +299,33 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getNotificationOperation() {
+		return notificationOperationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getNotificationOperation_Notifications() {
+		return (EReference) notificationOperationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getNotificationOperation_Reversed() {
+		return (EAttribute) notificationOperationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DashboardFactory getDashboardFactory() {
 		return (DashboardFactory) getEFactoryInstance();
 	}
@@ -336,6 +371,10 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 
 		taskTraceClassesCompositeEClass = createEClass(TASK_TRACE_CLASSES_COMPOSITE);
 		createEReference(taskTraceClassesCompositeEClass, TASK_TRACE_CLASSES_COMPOSITE__TASK_TRACE_CLASSES);
+
+		notificationOperationEClass = createEClass(NOTIFICATION_OPERATION);
+		createEReference(notificationOperationEClass, NOTIFICATION_OPERATION__NOTIFICATIONS);
+		createEAttribute(notificationOperationEClass, NOTIFICATION_OPERATION__REVERSED);
 	}
 
 	/**
@@ -374,6 +413,7 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		notificationOperationEClass.getESuperTypes().add(theOperationsPackage.getAbstractOperation());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(dashboardNotificationEClass, DashboardNotification.class, "DashboardNotification", !IS_ABSTRACT,
@@ -429,6 +469,15 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 		initEReference(getTaskTraceClassesComposite_TaskTraceClasses(), ecorePackage.getEObject(), null,
 			"taskTraceClasses", null, 0, -1, TaskTraceClassesComposite.class, !IS_TRANSIENT, !IS_VOLATILE,
 			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(notificationOperationEClass, NotificationOperation.class, "NotificationOperation", !IS_ABSTRACT,
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getNotificationOperation_Notifications(), this.getDashboardNotification(), null,
+			"notifications", null, 0, -1, NotificationOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNotificationOperation_Reversed(), ecorePackage.getEBoolean(), "reversed", null, 0, 1,
+			NotificationOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
