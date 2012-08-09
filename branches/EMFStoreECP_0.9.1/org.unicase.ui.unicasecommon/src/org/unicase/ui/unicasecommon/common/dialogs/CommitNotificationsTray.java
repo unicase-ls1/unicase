@@ -20,11 +20,9 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
-import org.eclipse.emf.emfstore.client.properties.PropertyManager;
 import org.eclipse.emf.emfstore.client.ui.dialogs.CommitDialog;
 import org.eclipse.emf.emfstore.client.ui.dialogs.CommitDialogTray;
 import org.eclipse.emf.emfstore.client.ui.views.changes.ChangePackageVisualizationHelper;
-import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.server.model.ProjectId;
 import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
@@ -63,8 +61,7 @@ import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.DashboardNotification;
-import org.unicase.dashboard.DashboardNotificationComposite;
-import org.unicase.dashboard.util.DashboardPropertyKeys;
+import org.unicase.dashboard.NotificationOperation;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.ui.unicasecommon.Activator;
@@ -209,17 +206,10 @@ public class CommitNotificationsTray extends CommitDialogTray {
 	@Override
 	public void okPressed() {
 		super.okPressed();
-		PropertyManager propertyManager = projectSpace.getPropertyManager();
-		EMFStoreProperty property = propertyManager.getLocalProperty(DashboardPropertyKeys.NOTIFICATION_COMPOSITE);
-		if (property != null) {
-			DashboardNotificationComposite notificationComposite = (DashboardNotificationComposite) property.getValue();
-			notificationComposite.getNotifications().addAll(notifications);
-		} else {
-			DashboardNotificationComposite notificationComposite = DashboardFactory.eINSTANCE
-				.createDashboardNotificationComposite();
-			notificationComposite.getNotifications().addAll(notifications);
-			propertyManager.setLocalProperty(DashboardPropertyKeys.NOTIFICATION_COMPOSITE, notificationComposite);
-		}
+		NotificationOperation operation = DashboardFactory.eINSTANCE.createNotificationOperation();
+		operation.getNotifications().addAll(notifications);
+		operation.setClientDate(new Date());
+		commitDialog.getChangePackage().getOperations().add(operation);
 	}
 
 	/**
@@ -364,10 +354,12 @@ public class CommitNotificationsTray extends CommitDialogTray {
 					notification.setProject(projectIdCopy);
 					notification.setSender(currentUser.getName());
 					notification.setRecipient(user.getName());
+					List<AbstractOperation> operations = commitDialog.getChangePackage().getOperations();
+					notification.setCreationDate(operations.isEmpty() ? new Date(0) : operations.get(
+						operations.size() - 1).getClientDate());
 					String text = commentText.getText();
 					notification.setDetails(text == null ? "" : text);
 					notification.setSeen(false);
-					notification.setCreationDate(new Date());
 					StringBuilder msgBuilder = new StringBuilder();
 					msgBuilder.append(URLHelper
 						.getHTMLLinkForModelElement(currentUser, projectSpace, URLHelper.DEFAULT));

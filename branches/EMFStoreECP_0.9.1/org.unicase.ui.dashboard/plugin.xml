@@ -135,37 +135,37 @@
       <provider
             class="org.unicase.ui.dashboard.notificationProviders.CommentsNotificationProvider"
             name="Comment Notifications"
-            priority="5">
+            priority="6">
       </provider>
       <provider
             class="org.unicase.ui.dashboard.notificationProviders.UpdateNotificationProvider"
             name="Update Notifications"
-            priority="0">
+            priority="1">
       </provider>
       <provider
             class="org.unicase.ui.dashboard.notificationProviders.PushedNotificationProvider"
             name="Pushed Notifications"
-            priority="1">
+            priority="2">
       </provider>
       <provider
             class="org.unicase.ui.dashboard.notificationProviders.TaskNotificationProvider"
             name="Task Notifications"
-            priority="2">
+            priority="3">
       </provider>
       <provider
             class="org.unicase.ui.dashboard.notificationProviders.TaskChangeNotificationProvider"
             name="Task Change Notifications"
-            priority="3">
+            priority="4">
       </provider>
       <provider
             class="org.unicase.ui.dashboard.notificationProviders.SubscriptionNotificationProvider"
             name="Subscriptions Notifications"
-            priority="4">
+            priority="5">
       </provider>
       <provider
             class="org.unicase.ui.dashboard.notificationProviders.TaskObjectNotificationProvider"
             name="Task Trace Notifications"
-            priority="6">
+            priority="7">
       </provider>
    </extension>
 </plugin>

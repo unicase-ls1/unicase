@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -262,6 +263,79 @@ public interface DashboardPackage extends EPackage {
 	int TASK_TRACE_CLASSES_COMPOSITE_FEATURE_COUNT = 1;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.dashboard.impl.NotificationOperationImpl <em>Notification Operation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.dashboard.impl.NotificationOperationImpl
+	 * @see org.unicase.dashboard.impl.DashboardPackageImpl#getNotificationOperation()
+	 * @generated
+	 */
+	int NOTIFICATION_OPERATION = 4;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_OPERATION__IDENTIFIER = OperationsPackage.ABSTRACT_OPERATION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_OPERATION__MODEL_ELEMENT_ID = OperationsPackage.ABSTRACT_OPERATION__MODEL_ELEMENT_ID;
+
+	/**
+	 * The feature id for the '<em><b>Accepted</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_OPERATION__ACCEPTED = OperationsPackage.ABSTRACT_OPERATION__ACCEPTED;
+
+	/**
+	 * The feature id for the '<em><b>Client Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_OPERATION__CLIENT_DATE = OperationsPackage.ABSTRACT_OPERATION__CLIENT_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Notifications</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_OPERATION__NOTIFICATIONS = OperationsPackage.ABSTRACT_OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Reversed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_OPERATION__REVERSED = OperationsPackage.ABSTRACT_OPERATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Notification Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_OPERATION_FEATURE_COUNT = OperationsPackage.ABSTRACT_OPERATION_FEATURE_COUNT + 2;
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.dashboard.DashboardNotification <em>Notification</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -456,6 +530,38 @@ public interface DashboardPackage extends EPackage {
 	EReference getTaskTraceClassesComposite_TaskTraceClasses();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.dashboard.NotificationOperation <em>Notification Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Notification Operation</em>'.
+	 * @see org.unicase.dashboard.NotificationOperation
+	 * @generated
+	 */
+	EClass getNotificationOperation();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.dashboard.NotificationOperation#getNotifications <em>Notifications</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Notifications</em>'.
+	 * @see org.unicase.dashboard.NotificationOperation#getNotifications()
+	 * @see #getNotificationOperation()
+	 * @generated
+	 */
+	EReference getNotificationOperation_Notifications();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.dashboard.NotificationOperation#isReversed <em>Reversed</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Reversed</em>'.
+	 * @see org.unicase.dashboard.NotificationOperation#isReversed()
+	 * @see #getNotificationOperation()
+	 * @generated
+	 */
+	EAttribute getNotificationOperation_Reversed();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -631,6 +737,32 @@ public interface DashboardPackage extends EPackage {
 		 */
 		EReference TASK_TRACE_CLASSES_COMPOSITE__TASK_TRACE_CLASSES = eINSTANCE
 			.getTaskTraceClassesComposite_TaskTraceClasses();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.dashboard.impl.NotificationOperationImpl <em>Notification Operation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.dashboard.impl.NotificationOperationImpl
+		 * @see org.unicase.dashboard.impl.DashboardPackageImpl#getNotificationOperation()
+		 * @generated
+		 */
+		EClass NOTIFICATION_OPERATION = eINSTANCE.getNotificationOperation();
+
+		/**
+		 * The meta object literal for the '<em><b>Notifications</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NOTIFICATION_OPERATION__NOTIFICATIONS = eINSTANCE.getNotificationOperation_Notifications();
+
+		/**
+		 * The meta object literal for the '<em><b>Reversed</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NOTIFICATION_OPERATION__REVERSED = eINSTANCE.getNotificationOperation_Reversed();
 
 	}
 
