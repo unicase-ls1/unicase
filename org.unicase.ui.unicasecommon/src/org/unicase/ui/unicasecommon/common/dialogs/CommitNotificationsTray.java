@@ -24,6 +24,7 @@ import org.eclipse.emf.emfstore.client.ui.dialogs.CommitDialog;
 import org.eclipse.emf.emfstore.client.ui.dialogs.CommitDialogTray;
 import org.eclipse.emf.emfstore.client.ui.views.changes.ChangePackageVisualizationHelper;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.model.ProjectId;
 import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
@@ -206,10 +207,20 @@ public class CommitNotificationsTray extends CommitDialogTray {
 	@Override
 	public void okPressed() {
 		super.okPressed();
-		NotificationOperation operation = DashboardFactory.eINSTANCE.createNotificationOperation();
-		operation.getNotifications().addAll(notifications);
-		operation.setClientDate(new Date());
-		commitDialog.getChangePackage().getOperations().add(operation);
+		if (!notifications.isEmpty()) {
+			try {
+				NotificationOperation operation = DashboardFactory.eINSTANCE.createNotificationOperation();
+				operation.getNotifications().addAll(notifications);
+				operation.setClientDate(new Date());
+				operation.setModelElementId(OrgUnitHelper.getUser(projectSpace).getModelElementId());
+				commitDialog.getChangePackage().getOperations().add(operation);
+			} catch (NoCurrentUserException e) {
+				ModelUtil.logException("Pushing notifications failed: No current user!", e);
+			} catch (CannotMatchUserInProjectException e) {
+				ModelUtil.logException("Pushing notifications failed: User couldn't be matched in project!", e);
+			}
+
+		}
 	}
 
 	/**
