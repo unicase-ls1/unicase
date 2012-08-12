@@ -9,6 +9,7 @@ package scrm.requirements;
 import org.eclipse.emf.common.util.EList;
 
 import scrm.knowledge.NumericalMethod;
+import scrm.requirements.dataObject.DataDefinition;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +22,7 @@ import scrm.knowledge.NumericalMethod;
  *   <li>{@link scrm.requirements.Requirement#getRefinements <em>Refinements</em>}</li>
  *   <li>{@link scrm.requirements.Requirement#getRefinedRequirement <em>Refined Requirement</em>}</li>
  *   <li>{@link scrm.requirements.Requirement#getSpecifiedFeature <em>Specified Feature</em>}</li>
- *   <li>{@link scrm.requirements.Requirement#getDefiningData <em>Defining Data</em>}</li>
+ *   <li>{@link scrm.requirements.Requirement#getHandlingData <em>Handling Data</em>}</li>
  *   <li>{@link scrm.requirements.Requirement#getRealizedMethod <em>Realized Method</em>}</li>
  *   <li>{@link scrm.requirements.Requirement#getProvidedInterface <em>Provided Interface</em>}</li>
  *   <li>{@link scrm.requirements.Requirement#getRequiredInterface <em>Required Interface</em>}</li>
@@ -111,23 +112,23 @@ public interface Requirement extends IRequirement {
 	void setSpecifiedFeature(Feature value);
 
 	/**
-	 * Returns the value of the '<em><b>Defining Data</b></em>' reference list.
-	 * The list contents are of type {@link scrm.requirements.DataDefinition}.
-	 * It is bidirectional and its opposite is '{@link scrm.requirements.DataDefinition#getDefinedRequirement <em>Defined Requirement</em>}'.
+	 * Returns the value of the '<em><b>Handling Data</b></em>' reference list.
+	 * The list contents are of type {@link scrm.requirements.dataObject.DataDefinition}.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.dataObject.DataDefinition#getDefinedRequirement <em>Defined Requirement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Defining Data</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Handling Data</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Defining Data</em>' reference list.
-	 * @see scrm.requirements.RequirementsPackage#getRequirement_DefiningData()
-	 * @see scrm.requirements.DataDefinition#getDefinedRequirement
+	 * @return the value of the '<em>Handling Data</em>' reference list.
+	 * @see scrm.requirements.RequirementsPackage#getRequirement_HandlingData()
+	 * @see scrm.requirements.dataObject.DataDefinition#getDefinedRequirement
 	 * @model opposite="definedRequirement"
 	 *        annotation="org.unicase.ui.meeditor position='right' priority='10'"
 	 * @generated
 	 */
-	EList<DataDefinition> getDefiningData();
+	EList<DataDefinition> getHandlingData();
 
 	/**
 	 * Returns the value of the '<em><b>Realized Method</b></em>' reference.
@@ -160,7 +161,7 @@ public interface Requirement extends IRequirement {
 
 	/**
 	 * Returns the value of the '<em><b>Provided Interface</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link scrm.requirements.Interface#getProvidingRequirements <em>Providing Requirements</em>}'.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.Interface#getDetailsOfProvidingFunctionsAndProperties <em>Details Of Providing Functions And Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Provided Interface</em>' reference isn't clear,
@@ -170,8 +171,8 @@ public interface Requirement extends IRequirement {
 	 * @return the value of the '<em>Provided Interface</em>' reference.
 	 * @see #setProvidedInterface(Interface)
 	 * @see scrm.requirements.RequirementsPackage#getRequirement_ProvidedInterface()
-	 * @see scrm.requirements.Interface#getProvidingRequirements
-	 * @model opposite="providingRequirements"
+	 * @see scrm.requirements.Interface#getDetailsOfProvidingFunctionsAndProperties
+	 * @model opposite="detailsOfProvidingFunctionsAndProperties"
 	 *        annotation="org.unicase.ui.meeditor position='left' priority='25'"
 	 * @generated
 	 */
@@ -189,7 +190,7 @@ public interface Requirement extends IRequirement {
 
 	/**
 	 * Returns the value of the '<em><b>Required Interface</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link scrm.requirements.Interface#getRequiringRequirements <em>Requiring Requirements</em>}'.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.Interface#getDetailsOfRequiringFunctionsAndProperties <em>Details Of Requiring Functions And Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Required Interface</em>' reference isn't clear,
@@ -199,8 +200,8 @@ public interface Requirement extends IRequirement {
 	 * @return the value of the '<em>Required Interface</em>' reference.
 	 * @see #setRequiredInterface(Interface)
 	 * @see scrm.requirements.RequirementsPackage#getRequirement_RequiredInterface()
-	 * @see scrm.requirements.Interface#getRequiringRequirements
-	 * @model opposite="requiringRequirements"
+	 * @see scrm.requirements.Interface#getDetailsOfRequiringFunctionsAndProperties
+	 * @model opposite="detailsOfRequiringFunctionsAndProperties"
 	 *        annotation="org.unicase.ui.meeditor position='left' priority='20'"
 	 * @generated
 	 */

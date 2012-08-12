@@ -71,7 +71,7 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_Dependencies()
 	 * @see scrm.requirements.Hardware#getDependingFeature
 	 * @model opposite="dependingFeature"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='15'"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='26'"
 	 * @generated
 	 */
 	EList<Hardware> getDependencies();

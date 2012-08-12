@@ -11,7 +11,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -19,16 +18,15 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import scrm.knowledge.GeophysicalModel;
-
 /**
  * This is the item provider adapter for a {@link scrm.knowledge.GeophysicalModel} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class GeophysicalModelItemProvider extends MathematicalModelItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+public class GeophysicalModelItemProvider extends
+		Mathematical_GeophysicalModelItemProvider implements
+		IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.

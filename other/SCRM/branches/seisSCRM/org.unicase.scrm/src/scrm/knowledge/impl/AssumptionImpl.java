@@ -17,7 +17,7 @@ import scrm.impl.SCRMModelElementImpl;
 import scrm.knowledge.Assumption;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.KnowledgeSpace;
-import scrm.knowledge.MathematicalModel;
+import scrm.knowledge.Mathematical_GeophysicalModel;
 import scrm.knowledge.NumericalMethod;
 
 /**
@@ -44,7 +44,7 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	 * @generated
 	 * @ordered
 	 */
-	protected MathematicalModel dependingModel;
+	protected Mathematical_GeophysicalModel dependingModel;
 
 	/**
 	 * The cached value of the '{@link #getDependingMethod() <em>Depending Method</em>}' reference.
@@ -146,10 +146,10 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MathematicalModel getDependingModel() {
+	public Mathematical_GeophysicalModel getDependingModel() {
 		if (dependingModel != null && dependingModel.eIsProxy()) {
 			InternalEObject oldDependingModel = (InternalEObject) dependingModel;
-			dependingModel = (MathematicalModel) eResolveProxy(oldDependingModel);
+			dependingModel = (Mathematical_GeophysicalModel) eResolveProxy(oldDependingModel);
 			if (dependingModel != oldDependingModel) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
@@ -165,7 +165,7 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MathematicalModel basicGetDependingModel() {
+	public Mathematical_GeophysicalModel basicGetDependingModel() {
 		return dependingModel;
 	}
 
@@ -175,8 +175,9 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	 * @generated
 	 */
 	public NotificationChain basicSetDependingModel(
-			MathematicalModel newDependingModel, NotificationChain msgs) {
-		MathematicalModel oldDependingModel = dependingModel;
+			Mathematical_GeophysicalModel newDependingModel,
+			NotificationChain msgs) {
+		Mathematical_GeophysicalModel oldDependingModel = dependingModel;
 		dependingModel = newDependingModel;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this,
@@ -196,17 +197,22 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDependingModel(MathematicalModel newDependingModel) {
+	public void setDependingModel(
+			Mathematical_GeophysicalModel newDependingModel) {
 		if (newDependingModel != dependingModel) {
 			NotificationChain msgs = null;
 			if (dependingModel != null)
-				msgs = ((InternalEObject) dependingModel).eInverseRemove(this,
-						KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES,
-						MathematicalModel.class, msgs);
+				msgs = ((InternalEObject) dependingModel)
+						.eInverseRemove(
+								this,
+								KnowledgePackage.MATHEMATICAL_GEOPHYSICAL_MODEL__DEPENDENCIES,
+								Mathematical_GeophysicalModel.class, msgs);
 			if (newDependingModel != null)
-				msgs = ((InternalEObject) newDependingModel).eInverseAdd(this,
-						KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES,
-						MathematicalModel.class, msgs);
+				msgs = ((InternalEObject) newDependingModel)
+						.eInverseAdd(
+								this,
+								KnowledgePackage.MATHEMATICAL_GEOPHYSICAL_MODEL__DEPENDENCIES,
+								Mathematical_GeophysicalModel.class, msgs);
 			msgs = basicSetDependingModel(newDependingModel, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -307,10 +313,13 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 					msgs);
 		case KnowledgePackage.ASSUMPTION__DEPENDING_MODEL:
 			if (dependingModel != null)
-				msgs = ((InternalEObject) dependingModel).eInverseRemove(this,
-						KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES,
-						MathematicalModel.class, msgs);
-			return basicSetDependingModel((MathematicalModel) otherEnd, msgs);
+				msgs = ((InternalEObject) dependingModel)
+						.eInverseRemove(
+								this,
+								KnowledgePackage.MATHEMATICAL_GEOPHYSICAL_MODEL__DEPENDENCIES,
+								Mathematical_GeophysicalModel.class, msgs);
+			return basicSetDependingModel(
+					(Mathematical_GeophysicalModel) otherEnd, msgs);
 		case KnowledgePackage.ASSUMPTION__DEPENDING_METHOD:
 			if (dependingMethod != null)
 				msgs = ((InternalEObject) dependingMethod).eInverseRemove(this,
@@ -395,7 +404,7 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 			setContainingKnowledgeSpace((KnowledgeSpace) newValue);
 			return;
 		case KnowledgePackage.ASSUMPTION__DEPENDING_MODEL:
-			setDependingModel((MathematicalModel) newValue);
+			setDependingModel((Mathematical_GeophysicalModel) newValue);
 			return;
 		case KnowledgePackage.ASSUMPTION__DEPENDING_METHOD:
 			setDependingMethod((NumericalMethod) newValue);
@@ -416,7 +425,7 @@ public class AssumptionImpl extends SCRMModelElementImpl implements Assumption {
 			setContainingKnowledgeSpace((KnowledgeSpace) null);
 			return;
 		case KnowledgePackage.ASSUMPTION__DEPENDING_MODEL:
-			setDependingModel((MathematicalModel) null);
+			setDependingModel((Mathematical_GeophysicalModel) null);
 			return;
 		case KnowledgePackage.ASSUMPTION__DEPENDING_METHOD:
 			setDependingMethod((NumericalMethod) null);

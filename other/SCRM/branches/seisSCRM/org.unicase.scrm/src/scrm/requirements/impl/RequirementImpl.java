@@ -22,12 +22,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import scrm.impl.SCRMModelElementImpl;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.NumericalMethod;
-import scrm.requirements.DataDefinition;
 import scrm.requirements.Feature;
 import scrm.requirements.Interface;
 import scrm.requirements.Requirement;
 import scrm.requirements.RequirementSpace;
 import scrm.requirements.RequirementsPackage;
+import scrm.requirements.dataObject.DataDefinition;
+import scrm.requirements.dataObject.DataObjectPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,7 +41,7 @@ import scrm.requirements.RequirementsPackage;
  *   <li>{@link scrm.requirements.impl.RequirementImpl#getRefinements <em>Refinements</em>}</li>
  *   <li>{@link scrm.requirements.impl.RequirementImpl#getRefinedRequirement <em>Refined Requirement</em>}</li>
  *   <li>{@link scrm.requirements.impl.RequirementImpl#getSpecifiedFeature <em>Specified Feature</em>}</li>
- *   <li>{@link scrm.requirements.impl.RequirementImpl#getDefiningData <em>Defining Data</em>}</li>
+ *   <li>{@link scrm.requirements.impl.RequirementImpl#getHandlingData <em>Handling Data</em>}</li>
  *   <li>{@link scrm.requirements.impl.RequirementImpl#getRealizedMethod <em>Realized Method</em>}</li>
  *   <li>{@link scrm.requirements.impl.RequirementImpl#getProvidedInterface <em>Provided Interface</em>}</li>
  *   <li>{@link scrm.requirements.impl.RequirementImpl#getRequiredInterface <em>Required Interface</em>}</li>
@@ -62,14 +63,14 @@ public class RequirementImpl extends SCRMModelElementImpl implements
 	protected EList<Requirement> refinements;
 
 	/**
-	 * The cached value of the '{@link #getDefiningData() <em>Defining Data</em>}' reference list.
+	 * The cached value of the '{@link #getHandlingData() <em>Handling Data</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDefiningData()
+	 * @see #getHandlingData()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<DataDefinition> definingData;
+	protected EList<DataDefinition> handlingData;
 
 	/**
 	 * The cached value of the '{@link #getRealizedMethod() <em>Realized Method</em>}' reference.
@@ -334,14 +335,14 @@ public class RequirementImpl extends SCRMModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DataDefinition> getDefiningData() {
-		if (definingData == null) {
-			definingData = new EObjectWithInverseResolvingEList<DataDefinition>(
+	public EList<DataDefinition> getHandlingData() {
+		if (handlingData == null) {
+			handlingData = new EObjectWithInverseResolvingEList<DataDefinition>(
 					DataDefinition.class, this,
-					RequirementsPackage.REQUIREMENT__DEFINING_DATA,
-					RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT);
+					RequirementsPackage.REQUIREMENT__HANDLING_DATA,
+					DataObjectPackage.DATA_DEFINITION__DEFINED_REQUIREMENT);
 		}
-		return definingData;
+		return handlingData;
 	}
 
 	/**
@@ -484,15 +485,17 @@ public class RequirementImpl extends SCRMModelElementImpl implements
 		if (newProvidedInterface != providedInterface) {
 			NotificationChain msgs = null;
 			if (providedInterface != null)
-				msgs = ((InternalEObject) providedInterface).eInverseRemove(
-						this,
-						RequirementsPackage.INTERFACE__PROVIDING_REQUIREMENTS,
-						Interface.class, msgs);
+				msgs = ((InternalEObject) providedInterface)
+						.eInverseRemove(
+								this,
+								RequirementsPackage.INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES,
+								Interface.class, msgs);
 			if (newProvidedInterface != null)
-				msgs = ((InternalEObject) newProvidedInterface).eInverseAdd(
-						this,
-						RequirementsPackage.INTERFACE__PROVIDING_REQUIREMENTS,
-						Interface.class, msgs);
+				msgs = ((InternalEObject) newProvidedInterface)
+						.eInverseAdd(
+								this,
+								RequirementsPackage.INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES,
+								Interface.class, msgs);
 			msgs = basicSetProvidedInterface(newProvidedInterface, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -563,15 +566,17 @@ public class RequirementImpl extends SCRMModelElementImpl implements
 		if (newRequiredInterface != requiredInterface) {
 			NotificationChain msgs = null;
 			if (requiredInterface != null)
-				msgs = ((InternalEObject) requiredInterface).eInverseRemove(
-						this,
-						RequirementsPackage.INTERFACE__REQUIRING_REQUIREMENTS,
-						Interface.class, msgs);
+				msgs = ((InternalEObject) requiredInterface)
+						.eInverseRemove(
+								this,
+								RequirementsPackage.INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES,
+								Interface.class, msgs);
 			if (newRequiredInterface != null)
-				msgs = ((InternalEObject) newRequiredInterface).eInverseAdd(
-						this,
-						RequirementsPackage.INTERFACE__REQUIRING_REQUIREMENTS,
-						Interface.class, msgs);
+				msgs = ((InternalEObject) newRequiredInterface)
+						.eInverseAdd(
+								this,
+								RequirementsPackage.INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES,
+								Interface.class, msgs);
 			msgs = basicSetRequiredInterface(newRequiredInterface, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -607,8 +612,8 @@ public class RequirementImpl extends SCRMModelElementImpl implements
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetSpecifiedFeature((Feature) otherEnd, msgs);
-		case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDefiningData())
+		case RequirementsPackage.REQUIREMENT__HANDLING_DATA:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getHandlingData())
 					.basicAdd(otherEnd, msgs);
 		case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:
 			if (realizedMethod != null)
@@ -620,17 +625,19 @@ public class RequirementImpl extends SCRMModelElementImpl implements
 			return basicSetRealizedMethod((NumericalMethod) otherEnd, msgs);
 		case RequirementsPackage.REQUIREMENT__PROVIDED_INTERFACE:
 			if (providedInterface != null)
-				msgs = ((InternalEObject) providedInterface).eInverseRemove(
-						this,
-						RequirementsPackage.INTERFACE__PROVIDING_REQUIREMENTS,
-						Interface.class, msgs);
+				msgs = ((InternalEObject) providedInterface)
+						.eInverseRemove(
+								this,
+								RequirementsPackage.INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES,
+								Interface.class, msgs);
 			return basicSetProvidedInterface((Interface) otherEnd, msgs);
 		case RequirementsPackage.REQUIREMENT__REQUIRED_INTERFACE:
 			if (requiredInterface != null)
-				msgs = ((InternalEObject) requiredInterface).eInverseRemove(
-						this,
-						RequirementsPackage.INTERFACE__REQUIRING_REQUIREMENTS,
-						Interface.class, msgs);
+				msgs = ((InternalEObject) requiredInterface)
+						.eInverseRemove(
+								this,
+								RequirementsPackage.INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES,
+								Interface.class, msgs);
 			return basicSetRequiredInterface((Interface) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -654,8 +661,8 @@ public class RequirementImpl extends SCRMModelElementImpl implements
 			return basicSetRefinedRequirement(null, msgs);
 		case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
 			return basicSetSpecifiedFeature(null, msgs);
-		case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
-			return ((InternalEList<?>) getDefiningData()).basicRemove(otherEnd,
+		case RequirementsPackage.REQUIREMENT__HANDLING_DATA:
+			return ((InternalEList<?>) getHandlingData()).basicRemove(otherEnd,
 					msgs);
 		case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:
 			return basicSetRealizedMethod(null, msgs);
@@ -716,8 +723,8 @@ public class RequirementImpl extends SCRMModelElementImpl implements
 			if (resolve)
 				return getSpecifiedFeature();
 			return basicGetSpecifiedFeature();
-		case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
-			return getDefiningData();
+		case RequirementsPackage.REQUIREMENT__HANDLING_DATA:
+			return getHandlingData();
 		case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:
 			if (resolve)
 				return getRealizedMethod();
@@ -757,9 +764,9 @@ public class RequirementImpl extends SCRMModelElementImpl implements
 		case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
 			setSpecifiedFeature((Feature) newValue);
 			return;
-		case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
-			getDefiningData().clear();
-			getDefiningData().addAll(
+		case RequirementsPackage.REQUIREMENT__HANDLING_DATA:
+			getHandlingData().clear();
+			getHandlingData().addAll(
 					(Collection<? extends DataDefinition>) newValue);
 			return;
 		case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:
@@ -795,8 +802,8 @@ public class RequirementImpl extends SCRMModelElementImpl implements
 		case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
 			setSpecifiedFeature((Feature) null);
 			return;
-		case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
-			getDefiningData().clear();
+		case RequirementsPackage.REQUIREMENT__HANDLING_DATA:
+			getHandlingData().clear();
 			return;
 		case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:
 			setRealizedMethod((NumericalMethod) null);
@@ -827,8 +834,8 @@ public class RequirementImpl extends SCRMModelElementImpl implements
 			return basicGetRefinedRequirement() != null;
 		case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
 			return basicGetSpecifiedFeature() != null;
-		case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
-			return definingData != null && !definingData.isEmpty();
+		case RequirementsPackage.REQUIREMENT__HANDLING_DATA:
+			return handlingData != null && !handlingData.isEmpty();
 		case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:
 			return realizedMethod != null;
 		case RequirementsPackage.REQUIREMENT__PROVIDED_INTERFACE:

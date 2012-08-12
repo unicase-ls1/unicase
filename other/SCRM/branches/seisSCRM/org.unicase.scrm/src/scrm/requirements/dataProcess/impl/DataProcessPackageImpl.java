@@ -17,6 +17,8 @@ import scrm.impl.ScrmPackageImpl;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.impl.KnowledgePackageImpl;
 import scrm.requirements.RequirementsPackage;
+import scrm.requirements.dataObject.DataObjectPackage;
+import scrm.requirements.dataObject.impl.DataObjectPackageImpl;
 import scrm.requirements.dataProcess.DataProcessFactory;
 import scrm.requirements.dataProcess.DataProcessPackage;
 import scrm.requirements.dataProcess.DataProcessSpace;
@@ -173,18 +175,24 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 				.getEPackage(RequirementsPackage.eNS_URI) instanceof RequirementsPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(RequirementsPackage.eNS_URI)
 				: RequirementsPackage.eINSTANCE);
+		DataObjectPackageImpl theDataObjectPackage = (DataObjectPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(DataObjectPackage.eNS_URI) instanceof DataObjectPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(DataObjectPackage.eNS_URI)
+				: DataObjectPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theDataProcessPackage.createPackageContents();
 		theScrmPackage.createPackageContents();
 		theKnowledgePackage.createPackageContents();
 		theRequirementsPackage.createPackageContents();
+		theDataObjectPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theDataProcessPackage.initializePackageContents();
 		theScrmPackage.initializePackageContents();
 		theKnowledgePackage.initializePackageContents();
 		theRequirementsPackage.initializePackageContents();
+		theDataObjectPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theDataProcessPackage.freeze();
@@ -264,7 +272,7 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProcess_DataFlow() {
+	public EReference getProcess_Predecessor() {
 		return (EReference) processEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -273,7 +281,7 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProcess_Predecessor() {
+	public EReference getProcess_Successor() {
 		return (EReference) processEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -282,7 +290,7 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProcess_Successor() {
+	public EReference getProcess_ContainingDataProcessSpace() {
 		return (EReference) processEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -291,7 +299,7 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProcess_ContainingDataProcessSpace() {
+	public EReference getProcess_ErrorHandling() {
 		return (EReference) processEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -300,17 +308,8 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProcess_ErrorHandling() {
-		return (EReference) processEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getProcess_StatusMonitoring() {
-		return (EReference) processEClass.getEStructuralFeatures().get(5);
+		return (EReference) processEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -398,7 +397,6 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 
 		// Create classes and their features
 		processEClass = createEClass(PROCESS);
-		createEReference(processEClass, PROCESS__DATA_FLOW);
 		createEReference(processEClass, PROCESS__PREDECESSOR);
 		createEReference(processEClass, PROCESS__SUCCESSOR);
 		createEReference(processEClass, PROCESS__CONTAINING_DATA_PROCESS_SPACE);
@@ -482,13 +480,6 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 		initEClass(processEClass, scrm.requirements.dataProcess.Process.class,
 				"Process", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProcess_DataFlow(),
-				theRequirementsPackage.getDataFlow(),
-				theRequirementsPackage.getDataFlow_SpecifiedProcess(),
-				"dataFlow", null, 0, 1,
-				scrm.requirements.dataProcess.Process.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProcess_Predecessor(), this.getProcess(),
 				this.getProcess_Successor(), "predecessor", null, 0, 1,
 				scrm.requirements.dataProcess.Process.class, !IS_TRANSIENT,
@@ -582,8 +573,6 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 	 */
 	protected void createOrgAnnotations() {
 		String source = "org.unicase.ui.meeditor";
-		addAnnotation(getProcess_DataFlow(), source, new String[] { "position",
-				"right", "priority", "16" });
 		addAnnotation(getProcess_Predecessor(), source, new String[] {
 				"position", "left", "priority", "15" });
 		addAnnotation(getProcess_Successor(), source, new String[] {

@@ -12,7 +12,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -240,52 +239,6 @@ public class RequirementsItemProviderAdapterFactory extends
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link scrm.requirements.DataFlow} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DataFlowItemProvider dataFlowItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link scrm.requirements.DataFlow}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDataFlowAdapter() {
-		if (dataFlowItemProvider == null) {
-			dataFlowItemProvider = new DataFlowItemProvider(this);
-		}
-
-		return dataFlowItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link scrm.requirements.DataDefinition} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DataDefinitionItemProvider dataDefinitionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link scrm.requirements.DataDefinition}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createDataDefinitionAdapter() {
-		if (dataDefinitionItemProvider == null) {
-			dataDefinitionItemProvider = new DataDefinitionItemProvider(this);
-		}
-
-		return dataDefinitionItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link scrm.requirements.RequirementSpace} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -427,10 +380,6 @@ public class RequirementsItemProviderAdapterFactory extends
 			softwareInterfaceItemProvider.dispose();
 		if (performanceItemProvider != null)
 			performanceItemProvider.dispose();
-		if (dataFlowItemProvider != null)
-			dataFlowItemProvider.dispose();
-		if (dataDefinitionItemProvider != null)
-			dataDefinitionItemProvider.dispose();
 	}
 
 }

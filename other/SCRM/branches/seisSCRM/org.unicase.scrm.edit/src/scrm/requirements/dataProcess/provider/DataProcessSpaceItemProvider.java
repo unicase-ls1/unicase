@@ -11,10 +11,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -28,7 +26,6 @@ import scrm.provider.SCRMModelElementItemProvider;
 import scrm.provider.ScrmEditPlugin;
 import scrm.requirements.RequirementsFactory;
 import scrm.requirements.RequirementsPackage;
-
 import scrm.requirements.dataProcess.DataProcessFactory;
 import scrm.requirements.dataProcess.DataProcessPackage;
 import scrm.requirements.dataProcess.DataProcessSpace;
@@ -67,11 +64,10 @@ public class DataProcessSpaceItemProvider extends SCRMModelElementItemProvider
 			addRefinementsPropertyDescriptor(object);
 			addRefinedRequirementPropertyDescriptor(object);
 			addSpecifiedFeaturePropertyDescriptor(object);
-			addDefiningDataPropertyDescriptor(object);
+			addHandlingDataPropertyDescriptor(object);
 			addRealizedMethodPropertyDescriptor(object);
 			addProvidedInterfacePropertyDescriptor(object);
 			addRequiredInterfacePropertyDescriptor(object);
-			addDataFlowPropertyDescriptor(object);
 			addPredecessorPropertyDescriptor(object);
 			addSuccessorPropertyDescriptor(object);
 			addErrorHandlingPropertyDescriptor(object);
@@ -181,21 +177,21 @@ public class DataProcessSpaceItemProvider extends SCRMModelElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Defining Data feature.
+	 * This adds a property descriptor for the Handling Data feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDefiningDataPropertyDescriptor(Object object) {
+	protected void addHandlingDataPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
 						.getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_Requirement_definingData_feature"),
+				getString("_UI_Requirement_handlingData_feature"),
 				getString("_UI_PropertyDescriptor_description",
-						"_UI_Requirement_definingData_feature",
+						"_UI_Requirement_handlingData_feature",
 						"_UI_Requirement_type"),
-				RequirementsPackage.Literals.REQUIREMENT__DEFINING_DATA, true,
+				RequirementsPackage.Literals.REQUIREMENT__HANDLING_DATA, true,
 				false, true, null, null, null));
 	}
 
@@ -254,24 +250,6 @@ public class DataProcessSpaceItemProvider extends SCRMModelElementItemProvider
 						"_UI_Requirement_type"),
 				RequirementsPackage.Literals.REQUIREMENT__REQUIRED_INTERFACE,
 				true, false, true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Data Flow feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDataFlowPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Process_dataFlow_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Process_dataFlow_feature", "_UI_Process_type"),
-				DataProcessPackage.Literals.PROCESS__DATA_FLOW, true, false,
-				true, null, null, null));
 	}
 
 	/**

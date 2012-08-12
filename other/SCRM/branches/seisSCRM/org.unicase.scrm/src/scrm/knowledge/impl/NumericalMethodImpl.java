@@ -22,7 +22,7 @@ import scrm.impl.SCRMModelElementImpl;
 import scrm.knowledge.Assumption;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.KnowledgeSpace;
-import scrm.knowledge.MathematicalModel;
+import scrm.knowledge.Mathematical_GeophysicalModel;
 import scrm.knowledge.NumericalMethod;
 import scrm.knowledge.ScientificProblem;
 import scrm.requirements.Performance;
@@ -42,7 +42,6 @@ import scrm.requirements.RequirementsPackage;
  *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getRealizingRequirement <em>Realizing Requirement</em>}</li>
  *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getUsingMathematicalModel <em>Using Mathematical Model</em>}</li>
  *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getPerformance <em>Performance</em>}</li>
- *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getAlgorithm <em>Algorithm</em>}</li>
  * </ul>
  * </p>
  *
@@ -88,7 +87,7 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 	 * @generated
 	 * @ordered
 	 */
-	protected MathematicalModel usingMathematicalModel;
+	protected Mathematical_GeophysicalModel usingMathematicalModel;
 
 	/**
 	 * The cached value of the '{@link #getPerformance() <em>Performance</em>}' reference.
@@ -99,26 +98,6 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 	 * @ordered
 	 */
 	protected Performance performance;
-
-	/**
-	 * The default value of the '{@link #getAlgorithm() <em>Algorithm</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAlgorithm()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ALGORITHM_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getAlgorithm() <em>Algorithm</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAlgorithm()
-	 * @generated
-	 * @ordered
-	 */
-	protected String algorithm = ALGORITHM_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -380,10 +359,10 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MathematicalModel getUsingMathematicalModel() {
+	public Mathematical_GeophysicalModel getUsingMathematicalModel() {
 		if (usingMathematicalModel != null && usingMathematicalModel.eIsProxy()) {
 			InternalEObject oldUsingMathematicalModel = (InternalEObject) usingMathematicalModel;
-			usingMathematicalModel = (MathematicalModel) eResolveProxy(oldUsingMathematicalModel);
+			usingMathematicalModel = (Mathematical_GeophysicalModel) eResolveProxy(oldUsingMathematicalModel);
 			if (usingMathematicalModel != oldUsingMathematicalModel) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(
@@ -401,7 +380,7 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MathematicalModel basicGetUsingMathematicalModel() {
+	public Mathematical_GeophysicalModel basicGetUsingMathematicalModel() {
 		return usingMathematicalModel;
 	}
 
@@ -411,8 +390,9 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 	 * @generated
 	 */
 	public NotificationChain basicSetUsingMathematicalModel(
-			MathematicalModel newUsingMathematicalModel, NotificationChain msgs) {
-		MathematicalModel oldUsingMathematicalModel = usingMathematicalModel;
+			Mathematical_GeophysicalModel newUsingMathematicalModel,
+			NotificationChain msgs) {
+		Mathematical_GeophysicalModel oldUsingMathematicalModel = usingMathematicalModel;
 		usingMathematicalModel = newUsingMathematicalModel;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(
@@ -434,21 +414,21 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 	 * @generated
 	 */
 	public void setUsingMathematicalModel(
-			MathematicalModel newUsingMathematicalModel) {
+			Mathematical_GeophysicalModel newUsingMathematicalModel) {
 		if (newUsingMathematicalModel != usingMathematicalModel) {
 			NotificationChain msgs = null;
 			if (usingMathematicalModel != null)
 				msgs = ((InternalEObject) usingMathematicalModel)
 						.eInverseRemove(
 								this,
-								KnowledgePackage.MATHEMATICAL_MODEL__USED_IN_NUMERICAL_METHODS,
-								MathematicalModel.class, msgs);
+								KnowledgePackage.MATHEMATICAL_GEOPHYSICAL_MODEL__USED_IN_NUMERICAL_METHODS,
+								Mathematical_GeophysicalModel.class, msgs);
 			if (newUsingMathematicalModel != null)
 				msgs = ((InternalEObject) newUsingMathematicalModel)
 						.eInverseAdd(
 								this,
-								KnowledgePackage.MATHEMATICAL_MODEL__USED_IN_NUMERICAL_METHODS,
-								MathematicalModel.class, msgs);
+								KnowledgePackage.MATHEMATICAL_GEOPHYSICAL_MODEL__USED_IN_NUMERICAL_METHODS,
+								Mathematical_GeophysicalModel.class, msgs);
 			msgs = basicSetUsingMathematicalModel(newUsingMathematicalModel,
 					msgs);
 			if (msgs != null)
@@ -508,29 +488,6 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getAlgorithm() {
-		return algorithm;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAlgorithm(String newAlgorithm) {
-		String oldAlgorithm = algorithm;
-		algorithm = newAlgorithm;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					KnowledgePackage.NUMERICAL_METHOD__ALGORITHM, oldAlgorithm,
-					algorithm));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
@@ -561,10 +518,10 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 				msgs = ((InternalEObject) usingMathematicalModel)
 						.eInverseRemove(
 								this,
-								KnowledgePackage.MATHEMATICAL_MODEL__USED_IN_NUMERICAL_METHODS,
-								MathematicalModel.class, msgs);
-			return basicSetUsingMathematicalModel((MathematicalModel) otherEnd,
-					msgs);
+								KnowledgePackage.MATHEMATICAL_GEOPHYSICAL_MODEL__USED_IN_NUMERICAL_METHODS,
+								Mathematical_GeophysicalModel.class, msgs);
+			return basicSetUsingMathematicalModel(
+					(Mathematical_GeophysicalModel) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -642,8 +599,6 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 			if (resolve)
 				return getPerformance();
 			return basicGetPerformance();
-		case KnowledgePackage.NUMERICAL_METHOD__ALGORITHM:
-			return getAlgorithm();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -672,13 +627,10 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 			setRealizingRequirement((Requirement) newValue);
 			return;
 		case KnowledgePackage.NUMERICAL_METHOD__USING_MATHEMATICAL_MODEL:
-			setUsingMathematicalModel((MathematicalModel) newValue);
+			setUsingMathematicalModel((Mathematical_GeophysicalModel) newValue);
 			return;
 		case KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE:
 			setPerformance((Performance) newValue);
-			return;
-		case KnowledgePackage.NUMERICAL_METHOD__ALGORITHM:
-			setAlgorithm((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -705,13 +657,10 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 			setRealizingRequirement((Requirement) null);
 			return;
 		case KnowledgePackage.NUMERICAL_METHOD__USING_MATHEMATICAL_MODEL:
-			setUsingMathematicalModel((MathematicalModel) null);
+			setUsingMathematicalModel((Mathematical_GeophysicalModel) null);
 			return;
 		case KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE:
 			setPerformance((Performance) null);
-			return;
-		case KnowledgePackage.NUMERICAL_METHOD__ALGORITHM:
-			setAlgorithm(ALGORITHM_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -737,28 +686,8 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 			return usingMathematicalModel != null;
 		case KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE:
 			return performance != null;
-		case KnowledgePackage.NUMERICAL_METHOD__ALGORITHM:
-			return ALGORITHM_EDEFAULT == null ? algorithm != null
-					: !ALGORITHM_EDEFAULT.equals(algorithm);
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy())
-			return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (algorithm: ");
-		result.append(algorithm);
-		result.append(')');
-		return result.toString();
 	}
 
 } //NumericalMethodImpl

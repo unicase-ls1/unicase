@@ -14,8 +14,6 @@ import org.eclipse.emf.ecore.EObject;
 import scrm.SCRMModelElement;
 import scrm.SCRMSpace;
 import scrm.requirements.Constraint;
-import scrm.requirements.DataDefinition;
-import scrm.requirements.DataFlow;
 import scrm.requirements.Feature;
 import scrm.requirements.Hardware;
 import scrm.requirements.IRequirement;
@@ -130,16 +128,6 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter casePerformance(Performance object) {
 			return createPerformanceAdapter();
-		}
-
-		@Override
-		public Adapter caseDataFlow(DataFlow object) {
-			return createDataFlowAdapter();
-		}
-
-		@Override
-		public Adapter caseDataDefinition(DataDefinition object) {
-			return createDataDefinitionAdapter();
 		}
 
 		@Override
@@ -294,34 +282,6 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPerformanceAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link scrm.requirements.DataFlow <em>Data Flow</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see scrm.requirements.DataFlow
-	 * @generated
-	 */
-	public Adapter createDataFlowAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link scrm.requirements.DataDefinition <em>Data Definition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see scrm.requirements.DataDefinition
-	 * @generated
-	 */
-	public Adapter createDataDefinitionAdapter() {
 		return null;
 	}
 

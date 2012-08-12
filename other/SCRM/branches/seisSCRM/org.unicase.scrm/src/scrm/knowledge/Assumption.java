@@ -26,7 +26,7 @@ package scrm.knowledge;
 public interface Assumption extends ScientificKnowledge {
 	/**
 	 * Returns the value of the '<em><b>Depending Model</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link scrm.knowledge.MathematicalModel#getDependencies <em>Dependencies</em>}'.
+	 * It is bidirectional and its opposite is '{@link scrm.knowledge.Mathematical_GeophysicalModel#getDependencies <em>Dependencies</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Depending Model</em>' reference isn't clear,
@@ -34,14 +34,14 @@ public interface Assumption extends ScientificKnowledge {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Depending Model</em>' reference.
-	 * @see #setDependingModel(MathematicalModel)
+	 * @see #setDependingModel(Mathematical_GeophysicalModel)
 	 * @see scrm.knowledge.KnowledgePackage#getAssumption_DependingModel()
-	 * @see scrm.knowledge.MathematicalModel#getDependencies
+	 * @see scrm.knowledge.Mathematical_GeophysicalModel#getDependencies
 	 * @model opposite="dependencies"
 	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
 	 * @generated
 	 */
-	MathematicalModel getDependingModel();
+	Mathematical_GeophysicalModel getDependingModel();
 
 	/**
 	 * Sets the value of the '{@link scrm.knowledge.Assumption#getDependingModel <em>Depending Model</em>}' reference.
@@ -51,7 +51,7 @@ public interface Assumption extends ScientificKnowledge {
 	 * @see #getDependingModel()
 	 * @generated
 	 */
-	void setDependingModel(MathematicalModel value);
+	void setDependingModel(Mathematical_GeophysicalModel value);
 
 	/**
 	 * Returns the value of the '<em><b>Depending Method</b></em>' reference.

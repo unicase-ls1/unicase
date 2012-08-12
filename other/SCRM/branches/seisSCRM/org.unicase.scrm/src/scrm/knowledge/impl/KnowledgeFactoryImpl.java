@@ -13,11 +13,10 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import scrm.knowledge.Assumption;
-import scrm.knowledge.GeophysicalModel;
 import scrm.knowledge.KnowledgeFactory;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.KnowledgeSpace;
-import scrm.knowledge.MathematicalModel;
+import scrm.knowledge.Mathematical_GeophysicalModel;
 import scrm.knowledge.NumericalMethod;
 import scrm.knowledge.ScientificProblem;
 
@@ -70,14 +69,12 @@ public class KnowledgeFactoryImpl extends EFactoryImpl implements
 			return createKnowledgeSpace();
 		case KnowledgePackage.SCIENTIFIC_PROBLEM:
 			return createScientificProblem();
-		case KnowledgePackage.MATHEMATICAL_MODEL:
-			return createMathematicalModel();
+		case KnowledgePackage.MATHEMATICAL_GEOPHYSICAL_MODEL:
+			return createMathematical_GeophysicalModel();
 		case KnowledgePackage.NUMERICAL_METHOD:
 			return createNumericalMethod();
 		case KnowledgePackage.ASSUMPTION:
 			return createAssumption();
-		case KnowledgePackage.GEOPHYSICAL_MODEL:
-			return createGeophysicalModel();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -99,9 +96,9 @@ public class KnowledgeFactoryImpl extends EFactoryImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MathematicalModel createMathematicalModel() {
-		MathematicalModelImpl mathematicalModel = new MathematicalModelImpl();
-		return mathematicalModel;
+	public Mathematical_GeophysicalModel createMathematical_GeophysicalModel() {
+		Mathematical_GeophysicalModelImpl mathematical_GeophysicalModel = new Mathematical_GeophysicalModelImpl();
+		return mathematical_GeophysicalModel;
 	}
 
 	/**
@@ -122,16 +119,6 @@ public class KnowledgeFactoryImpl extends EFactoryImpl implements
 	public Assumption createAssumption() {
 		AssumptionImpl assumption = new AssumptionImpl();
 		return assumption;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public GeophysicalModel createGeophysicalModel() {
-		GeophysicalModelImpl geophysicalModel = new GeophysicalModelImpl();
-		return geophysicalModel;
 	}
 
 	/**

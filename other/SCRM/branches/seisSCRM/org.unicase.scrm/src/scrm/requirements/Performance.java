@@ -14,7 +14,7 @@ package scrm.requirements;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link scrm.requirements.Performance#getProblemSize <em>Problem Size</em>}</li>
+ *   <li>{@link scrm.requirements.Performance#getHardware <em>Hardware</em>}</li>
  * </ul>
  * </p>
  *
@@ -24,29 +24,29 @@ package scrm.requirements;
  */
 public interface Performance extends Requirement {
 	/**
-	 * Returns the value of the '<em><b>Problem Size</b></em>' attribute.
+	 * Returns the value of the '<em><b>Hardware</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Problem Size</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Hardware</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Problem Size</em>' attribute.
-	 * @see #setProblemSize(String)
-	 * @see scrm.requirements.RequirementsPackage#getPerformance_ProblemSize()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='5'"
+	 * @return the value of the '<em>Hardware</em>' reference.
+	 * @see #setHardware(Hardware)
+	 * @see scrm.requirements.RequirementsPackage#getPerformance_Hardware()
+	 * @model
 	 * @generated
 	 */
-	String getProblemSize();
+	Hardware getHardware();
 
 	/**
-	 * Sets the value of the '{@link scrm.requirements.Performance#getProblemSize <em>Problem Size</em>}' attribute.
+	 * Sets the value of the '{@link scrm.requirements.Performance#getHardware <em>Hardware</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Problem Size</em>' attribute.
-	 * @see #getProblemSize()
+	 * @param value the new value of the '<em>Hardware</em>' reference.
+	 * @see #getHardware()
 	 * @generated
 	 */
-	void setProblemSize(String value);
+	void setHardware(Hardware value);
 
 } // Performance

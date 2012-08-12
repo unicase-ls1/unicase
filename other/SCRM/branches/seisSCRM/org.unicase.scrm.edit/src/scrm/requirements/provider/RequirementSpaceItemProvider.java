@@ -27,6 +27,7 @@ import scrm.provider.ScrmEditPlugin;
 import scrm.requirements.RequirementSpace;
 import scrm.requirements.RequirementsFactory;
 import scrm.requirements.RequirementsPackage;
+import scrm.requirements.dataObject.DataObjectFactory;
 import scrm.requirements.dataProcess.DataProcessFactory;
 
 /**
@@ -238,16 +239,6 @@ public class RequirementSpaceItemProvider extends SCRMModelElementItemProvider
 		newChildDescriptors
 				.add(createChildParameter(
 						RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
-						RequirementsFactory.eINSTANCE.createDataFlow()));
-
-		newChildDescriptors
-				.add(createChildParameter(
-						RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
-						RequirementsFactory.eINSTANCE.createDataDefinition()));
-
-		newChildDescriptors
-				.add(createChildParameter(
-						RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
 						DataProcessFactory.eINSTANCE.createProcess()));
 
 		newChildDescriptors
@@ -294,6 +285,26 @@ public class RequirementSpaceItemProvider extends SCRMModelElementItemProvider
 				.add(createChildParameter(
 						RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
 						DataProcessFactory.eINSTANCE.createPostProcessing()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+						DataObjectFactory.eINSTANCE.createDataDefinition()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+						DataObjectFactory.eINSTANCE.createSeismicSource()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+						DataObjectFactory.eINSTANCE.createComputationalMesh()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+						DataObjectFactory.eINSTANCE.createSyntheticSeismogram()));
 	}
 
 	/**

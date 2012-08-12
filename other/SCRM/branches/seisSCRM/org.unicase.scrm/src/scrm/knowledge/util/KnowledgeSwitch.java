@@ -14,10 +14,9 @@ import org.eclipse.emf.ecore.EObject;
 import scrm.SCRMModelElement;
 import scrm.SCRMSpace;
 import scrm.knowledge.Assumption;
-import scrm.knowledge.GeophysicalModel;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.KnowledgeSpace;
-import scrm.knowledge.MathematicalModel;
+import scrm.knowledge.Mathematical_GeophysicalModel;
 import scrm.knowledge.NumericalMethod;
 import scrm.knowledge.ScientificKnowledge;
 import scrm.knowledge.ScientificProblem;
@@ -126,13 +125,13 @@ public class KnowledgeSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case KnowledgePackage.MATHEMATICAL_MODEL: {
-			MathematicalModel mathematicalModel = (MathematicalModel) theEObject;
-			T result = caseMathematicalModel(mathematicalModel);
+		case KnowledgePackage.MATHEMATICAL_GEOPHYSICAL_MODEL: {
+			Mathematical_GeophysicalModel mathematical_GeophysicalModel = (Mathematical_GeophysicalModel) theEObject;
+			T result = caseMathematical_GeophysicalModel(mathematical_GeophysicalModel);
 			if (result == null)
-				result = caseScientificKnowledge(mathematicalModel);
+				result = caseScientificKnowledge(mathematical_GeophysicalModel);
 			if (result == null)
-				result = caseSCRMModelElement(mathematicalModel);
+				result = caseSCRMModelElement(mathematical_GeophysicalModel);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -155,19 +154,6 @@ public class KnowledgeSwitch<T> {
 				result = caseScientificKnowledge(assumption);
 			if (result == null)
 				result = caseSCRMModelElement(assumption);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case KnowledgePackage.GEOPHYSICAL_MODEL: {
-			GeophysicalModel geophysicalModel = (GeophysicalModel) theEObject;
-			T result = caseGeophysicalModel(geophysicalModel);
-			if (result == null)
-				result = caseMathematicalModel(geophysicalModel);
-			if (result == null)
-				result = caseScientificKnowledge(geophysicalModel);
-			if (result == null)
-				result = caseSCRMModelElement(geophysicalModel);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -208,17 +194,18 @@ public class KnowledgeSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Mathematical Model</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Mathematical Geophysical Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Mathematical Model</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Mathematical Geophysical Model</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMathematicalModel(MathematicalModel object) {
+	public T caseMathematical_GeophysicalModel(
+			Mathematical_GeophysicalModel object) {
 		return null;
 	}
 
@@ -249,21 +236,6 @@ public class KnowledgeSwitch<T> {
 	 * @generated
 	 */
 	public T caseAssumption(Assumption object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Geophysical Model</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Geophysical Model</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseGeophysicalModel(GeophysicalModel object) {
 		return null;
 	}
 

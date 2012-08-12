@@ -24,7 +24,6 @@ import scrm.requirements.Requirement;
  *   <li>{@link scrm.knowledge.NumericalMethod#getRealizingRequirement <em>Realizing Requirement</em>}</li>
  *   <li>{@link scrm.knowledge.NumericalMethod#getUsingMathematicalModel <em>Using Mathematical Model</em>}</li>
  *   <li>{@link scrm.knowledge.NumericalMethod#getPerformance <em>Performance</em>}</li>
- *   <li>{@link scrm.knowledge.NumericalMethod#getAlgorithm <em>Algorithm</em>}</li>
  * </ul>
  * </p>
  *
@@ -112,7 +111,7 @@ public interface NumericalMethod extends ScientificKnowledge {
 
 	/**
 	 * Returns the value of the '<em><b>Using Mathematical Model</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link scrm.knowledge.MathematicalModel#getUsedInNumericalMethods <em>Used In Numerical Methods</em>}'.
+	 * It is bidirectional and its opposite is '{@link scrm.knowledge.Mathematical_GeophysicalModel#getUsedInNumericalMethods <em>Used In Numerical Methods</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Using Mathematical Model</em>' reference isn't clear,
@@ -120,14 +119,14 @@ public interface NumericalMethod extends ScientificKnowledge {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Using Mathematical Model</em>' reference.
-	 * @see #setUsingMathematicalModel(MathematicalModel)
+	 * @see #setUsingMathematicalModel(Mathematical_GeophysicalModel)
 	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_UsingMathematicalModel()
-	 * @see scrm.knowledge.MathematicalModel#getUsedInNumericalMethods
+	 * @see scrm.knowledge.Mathematical_GeophysicalModel#getUsedInNumericalMethods
 	 * @model opposite="usedInNumericalMethods"
 	 *        annotation="org.unicase.ui.meeditor position='left' priority='20'"
 	 * @generated
 	 */
-	MathematicalModel getUsingMathematicalModel();
+	Mathematical_GeophysicalModel getUsingMathematicalModel();
 
 	/**
 	 * Sets the value of the '{@link scrm.knowledge.NumericalMethod#getUsingMathematicalModel <em>Using Mathematical Model</em>}' reference.
@@ -137,7 +136,7 @@ public interface NumericalMethod extends ScientificKnowledge {
 	 * @see #getUsingMathematicalModel()
 	 * @generated
 	 */
-	void setUsingMathematicalModel(MathematicalModel value);
+	void setUsingMathematicalModel(Mathematical_GeophysicalModel value);
 
 	/**
 	 * Returns the value of the '<em><b>Performance</b></em>' reference.
@@ -164,31 +163,5 @@ public interface NumericalMethod extends ScientificKnowledge {
 	 * @generated
 	 */
 	void setPerformance(Performance value);
-
-	/**
-	 * Returns the value of the '<em><b>Algorithm</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Algorithm</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Algorithm</em>' attribute.
-	 * @see #setAlgorithm(String)
-	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_Algorithm()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='7'"
-	 * @generated
-	 */
-	String getAlgorithm();
-
-	/**
-	 * Sets the value of the '{@link scrm.knowledge.NumericalMethod#getAlgorithm <em>Algorithm</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Algorithm</em>' attribute.
-	 * @see #getAlgorithm()
-	 * @generated
-	 */
-	void setAlgorithm(String value);
 
 } // NumericalMethod

@@ -14,10 +14,9 @@ import org.eclipse.emf.ecore.EObject;
 import scrm.SCRMModelElement;
 import scrm.SCRMSpace;
 import scrm.knowledge.Assumption;
-import scrm.knowledge.GeophysicalModel;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.KnowledgeSpace;
-import scrm.knowledge.MathematicalModel;
+import scrm.knowledge.Mathematical_GeophysicalModel;
 import scrm.knowledge.NumericalMethod;
 import scrm.knowledge.ScientificKnowledge;
 import scrm.knowledge.ScientificProblem;
@@ -93,8 +92,9 @@ public class KnowledgeAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseMathematicalModel(MathematicalModel object) {
-			return createMathematicalModelAdapter();
+		public Adapter caseMathematical_GeophysicalModel(
+				Mathematical_GeophysicalModel object) {
+			return createMathematical_GeophysicalModelAdapter();
 		}
 
 		@Override
@@ -105,11 +105,6 @@ public class KnowledgeAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseAssumption(Assumption object) {
 			return createAssumptionAdapter();
-		}
-
-		@Override
-		public Adapter caseGeophysicalModel(GeophysicalModel object) {
-			return createGeophysicalModelAdapter();
 		}
 
 		@Override
@@ -170,16 +165,16 @@ public class KnowledgeAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link scrm.knowledge.MathematicalModel <em>Mathematical Model</em>}'.
+	 * Creates a new adapter for an object of class '{@link scrm.knowledge.Mathematical_GeophysicalModel <em>Mathematical Geophysical Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see scrm.knowledge.MathematicalModel
+	 * @see scrm.knowledge.Mathematical_GeophysicalModel
 	 * @generated
 	 */
-	public Adapter createMathematicalModelAdapter() {
+	public Adapter createMathematical_GeophysicalModelAdapter() {
 		return null;
 	}
 
@@ -208,20 +203,6 @@ public class KnowledgeAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAssumptionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link scrm.knowledge.GeophysicalModel <em>Geophysical Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see scrm.knowledge.GeophysicalModel
-	 * @generated
-	 */
-	public Adapter createGeophysicalModelAdapter() {
 		return null;
 	}
 

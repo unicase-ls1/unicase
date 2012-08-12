@@ -4,11 +4,14 @@
  *
  * $Id$
  */
-package scrm.requirements;
+package scrm.requirements.dataObject;
 
 import org.eclipse.emf.common.util.EList;
 
-import scrm.knowledge.MathematicalModel;
+import scrm.knowledge.Mathematical_GeophysicalModel;
+import scrm.requirements.IRequirement;
+import scrm.requirements.Interface;
+import scrm.requirements.Requirement;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,24 +21,24 @@ import scrm.knowledge.MathematicalModel;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link scrm.requirements.DataDefinition#getDefinedRequirement <em>Defined Requirement</em>}</li>
- *   <li>{@link scrm.requirements.DataDefinition#getAccuracy <em>Accuracy</em>}</li>
- *   <li>{@link scrm.requirements.DataDefinition#getRange <em>Range</em>}</li>
- *   <li>{@link scrm.requirements.DataDefinition#getFormat <em>Format</em>}</li>
- *   <li>{@link scrm.requirements.DataDefinition#getProvidedInterface <em>Provided Interface</em>}</li>
- *   <li>{@link scrm.requirements.DataDefinition#getRequiredInterface <em>Required Interface</em>}</li>
- *   <li>{@link scrm.requirements.DataDefinition#getDescribedModel <em>Described Model</em>}</li>
+ *   <li>{@link scrm.requirements.dataObject.DataDefinition#getDefinedRequirement <em>Defined Requirement</em>}</li>
+ *   <li>{@link scrm.requirements.dataObject.DataDefinition#getAccuracy <em>Accuracy</em>}</li>
+ *   <li>{@link scrm.requirements.dataObject.DataDefinition#getRange <em>Range</em>}</li>
+ *   <li>{@link scrm.requirements.dataObject.DataDefinition#getFormat <em>Format</em>}</li>
+ *   <li>{@link scrm.requirements.dataObject.DataDefinition#getProvidedInterface <em>Provided Interface</em>}</li>
+ *   <li>{@link scrm.requirements.dataObject.DataDefinition#getRequiredInterface <em>Required Interface</em>}</li>
+ *   <li>{@link scrm.requirements.dataObject.DataDefinition#getDescribedModel <em>Described Model</em>}</li>
  * </ul>
  * </p>
  *
- * @see scrm.requirements.RequirementsPackage#getDataDefinition()
+ * @see scrm.requirements.dataObject.DataObjectPackage#getDataDefinition()
  * @model
  * @generated
  */
 public interface DataDefinition extends IRequirement {
 	/**
 	 * Returns the value of the '<em><b>Defined Requirement</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link scrm.requirements.Requirement#getDefiningData <em>Defining Data</em>}'.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.Requirement#getHandlingData <em>Handling Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Defined Requirement</em>' reference isn't clear,
@@ -44,16 +47,16 @@ public interface DataDefinition extends IRequirement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Defined Requirement</em>' reference.
 	 * @see #setDefinedRequirement(Requirement)
-	 * @see scrm.requirements.RequirementsPackage#getDataDefinition_DefinedRequirement()
-	 * @see scrm.requirements.Requirement#getDefiningData
-	 * @model opposite="definingData"
+	 * @see scrm.requirements.dataObject.DataObjectPackage#getDataDefinition_DefinedRequirement()
+	 * @see scrm.requirements.Requirement#getHandlingData
+	 * @model opposite="handlingData"
 	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
 	 * @generated
 	 */
 	Requirement getDefinedRequirement();
 
 	/**
-	 * Sets the value of the '{@link scrm.requirements.DataDefinition#getDefinedRequirement <em>Defined Requirement</em>}' reference.
+	 * Sets the value of the '{@link scrm.requirements.dataObject.DataDefinition#getDefinedRequirement <em>Defined Requirement</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Defined Requirement</em>' reference.
@@ -72,14 +75,14 @@ public interface DataDefinition extends IRequirement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Accuracy</em>' attribute.
 	 * @see #setAccuracy(String)
-	 * @see scrm.requirements.RequirementsPackage#getDataDefinition_Accuracy()
+	 * @see scrm.requirements.dataObject.DataObjectPackage#getDataDefinition_Accuracy()
 	 * @model annotation="org.unicase.ui.meeditor position='left' priority='5'"
 	 * @generated
 	 */
 	String getAccuracy();
 
 	/**
-	 * Sets the value of the '{@link scrm.requirements.DataDefinition#getAccuracy <em>Accuracy</em>}' attribute.
+	 * Sets the value of the '{@link scrm.requirements.dataObject.DataDefinition#getAccuracy <em>Accuracy</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Accuracy</em>' attribute.
@@ -98,14 +101,14 @@ public interface DataDefinition extends IRequirement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Range</em>' attribute.
 	 * @see #setRange(String)
-	 * @see scrm.requirements.RequirementsPackage#getDataDefinition_Range()
+	 * @see scrm.requirements.dataObject.DataObjectPackage#getDataDefinition_Range()
 	 * @model annotation="org.unicase.ui.meeditor position='left' priority='6'"
 	 * @generated
 	 */
 	String getRange();
 
 	/**
-	 * Sets the value of the '{@link scrm.requirements.DataDefinition#getRange <em>Range</em>}' attribute.
+	 * Sets the value of the '{@link scrm.requirements.dataObject.DataDefinition#getRange <em>Range</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Range</em>' attribute.
@@ -124,14 +127,14 @@ public interface DataDefinition extends IRequirement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Format</em>' attribute.
 	 * @see #setFormat(String)
-	 * @see scrm.requirements.RequirementsPackage#getDataDefinition_Format()
+	 * @see scrm.requirements.dataObject.DataObjectPackage#getDataDefinition_Format()
 	 * @model annotation="org.unicase.ui.meeditor position='left' priority='8'"
 	 * @generated
 	 */
 	String getFormat();
 
 	/**
-	 * Sets the value of the '{@link scrm.requirements.DataDefinition#getFormat <em>Format</em>}' attribute.
+	 * Sets the value of the '{@link scrm.requirements.dataObject.DataDefinition#getFormat <em>Format</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Format</em>' attribute.
@@ -151,7 +154,7 @@ public interface DataDefinition extends IRequirement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Provided Interface</em>' reference.
 	 * @see #setProvidedInterface(Interface)
-	 * @see scrm.requirements.RequirementsPackage#getDataDefinition_ProvidedInterface()
+	 * @see scrm.requirements.dataObject.DataObjectPackage#getDataDefinition_ProvidedInterface()
 	 * @see scrm.requirements.Interface#getProvidingData
 	 * @model opposite="providingData"
 	 * @generated
@@ -159,7 +162,7 @@ public interface DataDefinition extends IRequirement {
 	Interface getProvidedInterface();
 
 	/**
-	 * Sets the value of the '{@link scrm.requirements.DataDefinition#getProvidedInterface <em>Provided Interface</em>}' reference.
+	 * Sets the value of the '{@link scrm.requirements.dataObject.DataDefinition#getProvidedInterface <em>Provided Interface</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Provided Interface</em>' reference.
@@ -179,7 +182,7 @@ public interface DataDefinition extends IRequirement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Required Interface</em>' reference.
 	 * @see #setRequiredInterface(Interface)
-	 * @see scrm.requirements.RequirementsPackage#getDataDefinition_RequiredInterface()
+	 * @see scrm.requirements.dataObject.DataObjectPackage#getDataDefinition_RequiredInterface()
 	 * @see scrm.requirements.Interface#getRequiringData
 	 * @model opposite="requiringData"
 	 * @generated
@@ -187,7 +190,7 @@ public interface DataDefinition extends IRequirement {
 	Interface getRequiredInterface();
 
 	/**
-	 * Sets the value of the '{@link scrm.requirements.DataDefinition#getRequiredInterface <em>Required Interface</em>}' reference.
+	 * Sets the value of the '{@link scrm.requirements.dataObject.DataDefinition#getRequiredInterface <em>Required Interface</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Required Interface</em>' reference.
@@ -198,7 +201,8 @@ public interface DataDefinition extends IRequirement {
 
 	/**
 	 * Returns the value of the '<em><b>Described Model</b></em>' reference list.
-	 * The list contents are of type {@link scrm.knowledge.MathematicalModel}.
+	 * The list contents are of type {@link scrm.knowledge.Mathematical_GeophysicalModel}.
+	 * It is bidirectional and its opposite is '{@link scrm.knowledge.Mathematical_GeophysicalModel#getInvolvedData <em>Involved Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Described Model</em>' reference list isn't clear,
@@ -206,10 +210,12 @@ public interface DataDefinition extends IRequirement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Described Model</em>' reference list.
-	 * @see scrm.requirements.RequirementsPackage#getDataDefinition_DescribedModel()
-	 * @model annotation="org.unicase.ui.meeditor position='right' priority='8'"
+	 * @see scrm.requirements.dataObject.DataObjectPackage#getDataDefinition_DescribedModel()
+	 * @see scrm.knowledge.Mathematical_GeophysicalModel#getInvolvedData
+	 * @model opposite="involvedData"
+	 *        annotation="org.unicase.ui.meeditor position='right' priority='8'"
 	 * @generated
 	 */
-	EList<MathematicalModel> getDescribedModel();
+	EList<Mathematical_GeophysicalModel> getDescribedModel();
 
 } // DataDefinition
