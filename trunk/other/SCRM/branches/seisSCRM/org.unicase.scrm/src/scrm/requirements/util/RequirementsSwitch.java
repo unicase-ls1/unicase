@@ -14,8 +14,6 @@ import org.eclipse.emf.ecore.EObject;
 import scrm.SCRMModelElement;
 import scrm.SCRMSpace;
 import scrm.requirements.Constraint;
-import scrm.requirements.DataDefinition;
-import scrm.requirements.DataFlow;
 import scrm.requirements.Feature;
 import scrm.requirements.Hardware;
 import scrm.requirements.IRequirement;
@@ -214,28 +212,6 @@ public class RequirementsSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case RequirementsPackage.DATA_FLOW: {
-			DataFlow dataFlow = (DataFlow) theEObject;
-			T result = caseDataFlow(dataFlow);
-			if (result == null)
-				result = caseIRequirement(dataFlow);
-			if (result == null)
-				result = caseSCRMModelElement(dataFlow);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case RequirementsPackage.DATA_DEFINITION: {
-			DataDefinition dataDefinition = (DataDefinition) theEObject;
-			T result = caseDataDefinition(dataDefinition);
-			if (result == null)
-				result = caseIRequirement(dataDefinition);
-			if (result == null)
-				result = caseSCRMModelElement(dataDefinition);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -373,36 +349,6 @@ public class RequirementsSwitch<T> {
 	 * @generated
 	 */
 	public T casePerformance(Performance object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Data Flow</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Data Flow</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDataFlow(DataFlow object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Data Definition</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Data Definition</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDataDefinition(DataDefinition object) {
 		return null;
 	}
 

@@ -200,22 +200,22 @@ public interface RequirementsPackage extends EPackage {
 	int INTERFACE__REQUIRING_DATA = IREQUIREMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Providing Requirements</b></em>' reference list.
+	 * The feature id for the '<em><b>Details Of Providing Functions And Properties</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE__PROVIDING_REQUIREMENTS = IREQUIREMENT_FEATURE_COUNT + 4;
+	int INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES = IREQUIREMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Requiring Requirements</b></em>' reference list.
+	 * The feature id for the '<em><b>Details Of Requiring Functions And Properties</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE__REQUIRING_REQUIREMENTS = IREQUIREMENT_FEATURE_COUNT + 5;
+	int INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES = IREQUIREMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Interface</em>' class.
@@ -330,13 +330,13 @@ public interface RequirementsPackage extends EPackage {
 	int REQUIREMENT__SPECIFIED_FEATURE = IREQUIREMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
+	 * The feature id for the '<em><b>Handling Data</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__DEFINING_DATA = IREQUIREMENT_FEATURE_COUNT + 3;
+	int REQUIREMENT__HANDLING_DATA = IREQUIREMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Realized Method</b></em>' reference.
@@ -838,22 +838,22 @@ public interface RequirementsPackage extends EPackage {
 	int USER_INTERFACE__REQUIRING_DATA = INTERFACE__REQUIRING_DATA;
 
 	/**
-	 * The feature id for the '<em><b>Providing Requirements</b></em>' reference list.
+	 * The feature id for the '<em><b>Details Of Providing Functions And Properties</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_INTERFACE__PROVIDING_REQUIREMENTS = INTERFACE__PROVIDING_REQUIREMENTS;
+	int USER_INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES = INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Requiring Requirements</b></em>' reference list.
+	 * The feature id for the '<em><b>Details Of Requiring Functions And Properties</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_INTERFACE__REQUIRING_REQUIREMENTS = INTERFACE__REQUIRING_REQUIREMENTS;
+	int USER_INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES = INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES;
 
 	/**
 	 * The number of structural features of the '<em>User Interface</em>' class.
@@ -937,22 +937,22 @@ public interface RequirementsPackage extends EPackage {
 	int SOFTWARE_INTERFACE__REQUIRING_DATA = INTERFACE__REQUIRING_DATA;
 
 	/**
-	 * The feature id for the '<em><b>Providing Requirements</b></em>' reference list.
+	 * The feature id for the '<em><b>Details Of Providing Functions And Properties</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOFTWARE_INTERFACE__PROVIDING_REQUIREMENTS = INTERFACE__PROVIDING_REQUIREMENTS;
+	int SOFTWARE_INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES = INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Requiring Requirements</b></em>' reference list.
+	 * The feature id for the '<em><b>Details Of Requiring Functions And Properties</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOFTWARE_INTERFACE__REQUIRING_REQUIREMENTS = INTERFACE__REQUIRING_REQUIREMENTS;
+	int SOFTWARE_INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES = INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES;
 
 	/**
 	 * The number of structural features of the '<em>Software Interface</em>' class.
@@ -1027,13 +1027,13 @@ public interface RequirementsPackage extends EPackage {
 	int PERFORMANCE__SPECIFIED_FEATURE = REQUIREMENT__SPECIFIED_FEATURE;
 
 	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
+	 * The feature id for the '<em><b>Handling Data</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PERFORMANCE__DEFINING_DATA = REQUIREMENT__DEFINING_DATA;
+	int PERFORMANCE__HANDLING_DATA = REQUIREMENT__HANDLING_DATA;
 
 	/**
 	 * The feature id for the '<em><b>Realized Method</b></em>' reference.
@@ -1063,13 +1063,13 @@ public interface RequirementsPackage extends EPackage {
 	int PERFORMANCE__REQUIRED_INTERFACE = REQUIREMENT__REQUIRED_INTERFACE;
 
 	/**
-	 * The feature id for the '<em><b>Problem Size</b></em>' attribute.
+	 * The feature id for the '<em><b>Hardware</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PERFORMANCE__PROBLEM_SIZE = REQUIREMENT_FEATURE_COUNT + 0;
+	int PERFORMANCE__HARDWARE = REQUIREMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Performance</em>' class.
@@ -1079,188 +1079,6 @@ public interface RequirementsPackage extends EPackage {
 	 * @ordered
 	 */
 	int PERFORMANCE_FEATURE_COUNT = REQUIREMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link scrm.requirements.impl.DataFlowImpl <em>Data Flow</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see scrm.requirements.impl.DataFlowImpl
-	 * @see scrm.requirements.impl.RequirementsPackageImpl#getDataFlow()
-	 * @generated
-	 */
-	int DATA_FLOW = 10;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_FLOW__NAME = IREQUIREMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_FLOW__DESCRIPTION = IREQUIREMENT__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_FLOW__DISPLAYING_DIAGRAMS = IREQUIREMENT__DISPLAYING_DIAGRAMS;
-
-	/**
-	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_FLOW__CONTAINING_REQUIREMENT_SPACE = IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE;
-
-	/**
-	 * The feature id for the '<em><b>Specified Process</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_FLOW__SPECIFIED_PROCESS = IREQUIREMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Data Flow</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_FLOW_FEATURE_COUNT = IREQUIREMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link scrm.requirements.impl.DataDefinitionImpl <em>Data Definition</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see scrm.requirements.impl.DataDefinitionImpl
-	 * @see scrm.requirements.impl.RequirementsPackageImpl#getDataDefinition()
-	 * @generated
-	 */
-	int DATA_DEFINITION = 11;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_DEFINITION__NAME = IREQUIREMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_DEFINITION__DESCRIPTION = IREQUIREMENT__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_DEFINITION__DISPLAYING_DIAGRAMS = IREQUIREMENT__DISPLAYING_DIAGRAMS;
-
-	/**
-	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE = IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE;
-
-	/**
-	 * The feature id for the '<em><b>Defined Requirement</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_DEFINITION__DEFINED_REQUIREMENT = IREQUIREMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Accuracy</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_DEFINITION__ACCURACY = IREQUIREMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Range</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_DEFINITION__RANGE = IREQUIREMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Format</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_DEFINITION__FORMAT = IREQUIREMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Provided Interface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_DEFINITION__PROVIDED_INTERFACE = IREQUIREMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Required Interface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_DEFINITION__REQUIRED_INTERFACE = IREQUIREMENT_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Described Model</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_DEFINITION__DESCRIBED_MODEL = IREQUIREMENT_FEATURE_COUNT + 6;
-
-	/**
-	 * The number of structural features of the '<em>Data Definition</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_DEFINITION_FEATURE_COUNT = IREQUIREMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * Returns the meta object for class '{@link scrm.requirements.IRequirement <em>IRequirement</em>}'.
@@ -1338,26 +1156,26 @@ public interface RequirementsPackage extends EPackage {
 	EReference getInterface_RequiringData();
 
 	/**
-	 * Returns the meta object for the reference list '{@link scrm.requirements.Interface#getProvidingRequirements <em>Providing Requirements</em>}'.
+	 * Returns the meta object for the reference list '{@link scrm.requirements.Interface#getDetailsOfProvidingFunctionsAndProperties <em>Details Of Providing Functions And Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Providing Requirements</em>'.
-	 * @see scrm.requirements.Interface#getProvidingRequirements()
+	 * @return the meta object for the reference list '<em>Details Of Providing Functions And Properties</em>'.
+	 * @see scrm.requirements.Interface#getDetailsOfProvidingFunctionsAndProperties()
 	 * @see #getInterface()
 	 * @generated
 	 */
-	EReference getInterface_ProvidingRequirements();
+	EReference getInterface_DetailsOfProvidingFunctionsAndProperties();
 
 	/**
-	 * Returns the meta object for the reference list '{@link scrm.requirements.Interface#getRequiringRequirements <em>Requiring Requirements</em>}'.
+	 * Returns the meta object for the reference list '{@link scrm.requirements.Interface#getDetailsOfRequiringFunctionsAndProperties <em>Details Of Requiring Functions And Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Requiring Requirements</em>'.
-	 * @see scrm.requirements.Interface#getRequiringRequirements()
+	 * @return the meta object for the reference list '<em>Details Of Requiring Functions And Properties</em>'.
+	 * @see scrm.requirements.Interface#getDetailsOfRequiringFunctionsAndProperties()
 	 * @see #getInterface()
 	 * @generated
 	 */
-	EReference getInterface_RequiringRequirements();
+	EReference getInterface_DetailsOfRequiringFunctionsAndProperties();
 
 	/**
 	 * Returns the meta object for class '{@link scrm.requirements.Feature <em>Feature</em>}'.
@@ -1620,15 +1438,15 @@ public interface RequirementsPackage extends EPackage {
 	EReference getRequirement_SpecifiedFeature();
 
 	/**
-	 * Returns the meta object for the reference list '{@link scrm.requirements.Requirement#getDefiningData <em>Defining Data</em>}'.
+	 * Returns the meta object for the reference list '{@link scrm.requirements.Requirement#getHandlingData <em>Handling Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Defining Data</em>'.
-	 * @see scrm.requirements.Requirement#getDefiningData()
+	 * @return the meta object for the reference list '<em>Handling Data</em>'.
+	 * @see scrm.requirements.Requirement#getHandlingData()
 	 * @see #getRequirement()
 	 * @generated
 	 */
-	EReference getRequirement_DefiningData();
+	EReference getRequirement_HandlingData();
 
 	/**
 	 * Returns the meta object for the reference '{@link scrm.requirements.Requirement#getRealizedMethod <em>Realized Method</em>}'.
@@ -1694,123 +1512,15 @@ public interface RequirementsPackage extends EPackage {
 	EClass getPerformance();
 
 	/**
-	 * Returns the meta object for the attribute '{@link scrm.requirements.Performance#getProblemSize <em>Problem Size</em>}'.
+	 * Returns the meta object for the reference '{@link scrm.requirements.Performance#getHardware <em>Hardware</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Problem Size</em>'.
-	 * @see scrm.requirements.Performance#getProblemSize()
+	 * @return the meta object for the reference '<em>Hardware</em>'.
+	 * @see scrm.requirements.Performance#getHardware()
 	 * @see #getPerformance()
 	 * @generated
 	 */
-	EAttribute getPerformance_ProblemSize();
-
-	/**
-	 * Returns the meta object for class '{@link scrm.requirements.DataFlow <em>Data Flow</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Data Flow</em>'.
-	 * @see scrm.requirements.DataFlow
-	 * @generated
-	 */
-	EClass getDataFlow();
-
-	/**
-	 * Returns the meta object for the reference '{@link scrm.requirements.DataFlow#getSpecifiedProcess <em>Specified Process</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Specified Process</em>'.
-	 * @see scrm.requirements.DataFlow#getSpecifiedProcess()
-	 * @see #getDataFlow()
-	 * @generated
-	 */
-	EReference getDataFlow_SpecifiedProcess();
-
-	/**
-	 * Returns the meta object for class '{@link scrm.requirements.DataDefinition <em>Data Definition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Data Definition</em>'.
-	 * @see scrm.requirements.DataDefinition
-	 * @generated
-	 */
-	EClass getDataDefinition();
-
-	/**
-	 * Returns the meta object for the reference '{@link scrm.requirements.DataDefinition#getDefinedRequirement <em>Defined Requirement</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Defined Requirement</em>'.
-	 * @see scrm.requirements.DataDefinition#getDefinedRequirement()
-	 * @see #getDataDefinition()
-	 * @generated
-	 */
-	EReference getDataDefinition_DefinedRequirement();
-
-	/**
-	 * Returns the meta object for the attribute '{@link scrm.requirements.DataDefinition#getAccuracy <em>Accuracy</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Accuracy</em>'.
-	 * @see scrm.requirements.DataDefinition#getAccuracy()
-	 * @see #getDataDefinition()
-	 * @generated
-	 */
-	EAttribute getDataDefinition_Accuracy();
-
-	/**
-	 * Returns the meta object for the attribute '{@link scrm.requirements.DataDefinition#getRange <em>Range</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Range</em>'.
-	 * @see scrm.requirements.DataDefinition#getRange()
-	 * @see #getDataDefinition()
-	 * @generated
-	 */
-	EAttribute getDataDefinition_Range();
-
-	/**
-	 * Returns the meta object for the attribute '{@link scrm.requirements.DataDefinition#getFormat <em>Format</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Format</em>'.
-	 * @see scrm.requirements.DataDefinition#getFormat()
-	 * @see #getDataDefinition()
-	 * @generated
-	 */
-	EAttribute getDataDefinition_Format();
-
-	/**
-	 * Returns the meta object for the reference '{@link scrm.requirements.DataDefinition#getProvidedInterface <em>Provided Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Provided Interface</em>'.
-	 * @see scrm.requirements.DataDefinition#getProvidedInterface()
-	 * @see #getDataDefinition()
-	 * @generated
-	 */
-	EReference getDataDefinition_ProvidedInterface();
-
-	/**
-	 * Returns the meta object for the reference '{@link scrm.requirements.DataDefinition#getRequiredInterface <em>Required Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Required Interface</em>'.
-	 * @see scrm.requirements.DataDefinition#getRequiredInterface()
-	 * @see #getDataDefinition()
-	 * @generated
-	 */
-	EReference getDataDefinition_RequiredInterface();
-
-	/**
-	 * Returns the meta object for the reference list '{@link scrm.requirements.DataDefinition#getDescribedModel <em>Described Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Described Model</em>'.
-	 * @see scrm.requirements.DataDefinition#getDescribedModel()
-	 * @see #getDataDefinition()
-	 * @generated
-	 */
-	EReference getDataDefinition_DescribedModel();
+	EReference getPerformance_Hardware();
 
 	/**
 	 * Returns the meta object for class '{@link scrm.requirements.RequirementSpace <em>Requirement Space</em>}'.
@@ -1921,22 +1631,22 @@ public interface RequirementsPackage extends EPackage {
 				.getInterface_RequiringData();
 
 		/**
-		 * The meta object literal for the '<em><b>Providing Requirements</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Details Of Providing Functions And Properties</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INTERFACE__PROVIDING_REQUIREMENTS = eINSTANCE
-				.getInterface_ProvidingRequirements();
+		EReference INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES = eINSTANCE
+				.getInterface_DetailsOfProvidingFunctionsAndProperties();
 
 		/**
-		 * The meta object literal for the '<em><b>Requiring Requirements</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Details Of Requiring Functions And Properties</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INTERFACE__REQUIRING_REQUIREMENTS = eINSTANCE
-				.getInterface_RequiringRequirements();
+		EReference INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES = eINSTANCE
+				.getInterface_DetailsOfRequiringFunctionsAndProperties();
 
 		/**
 		 * The meta object literal for the '{@link scrm.requirements.impl.FeatureImpl <em>Feature</em>}' class.
@@ -2152,13 +1862,13 @@ public interface RequirementsPackage extends EPackage {
 				.getRequirement_SpecifiedFeature();
 
 		/**
-		 * The meta object literal for the '<em><b>Defining Data</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Handling Data</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REQUIREMENT__DEFINING_DATA = eINSTANCE
-				.getRequirement_DefiningData();
+		EReference REQUIREMENT__HANDLING_DATA = eINSTANCE
+				.getRequirement_HandlingData();
 
 		/**
 		 * The meta object literal for the '<em><b>Realized Method</b></em>' reference feature.
@@ -2218,104 +1928,12 @@ public interface RequirementsPackage extends EPackage {
 		EClass PERFORMANCE = eINSTANCE.getPerformance();
 
 		/**
-		 * The meta object literal for the '<em><b>Problem Size</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Hardware</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PERFORMANCE__PROBLEM_SIZE = eINSTANCE
-				.getPerformance_ProblemSize();
-
-		/**
-		 * The meta object literal for the '{@link scrm.requirements.impl.DataFlowImpl <em>Data Flow</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see scrm.requirements.impl.DataFlowImpl
-		 * @see scrm.requirements.impl.RequirementsPackageImpl#getDataFlow()
-		 * @generated
-		 */
-		EClass DATA_FLOW = eINSTANCE.getDataFlow();
-
-		/**
-		 * The meta object literal for the '<em><b>Specified Process</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DATA_FLOW__SPECIFIED_PROCESS = eINSTANCE
-				.getDataFlow_SpecifiedProcess();
-
-		/**
-		 * The meta object literal for the '{@link scrm.requirements.impl.DataDefinitionImpl <em>Data Definition</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see scrm.requirements.impl.DataDefinitionImpl
-		 * @see scrm.requirements.impl.RequirementsPackageImpl#getDataDefinition()
-		 * @generated
-		 */
-		EClass DATA_DEFINITION = eINSTANCE.getDataDefinition();
-
-		/**
-		 * The meta object literal for the '<em><b>Defined Requirement</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DATA_DEFINITION__DEFINED_REQUIREMENT = eINSTANCE
-				.getDataDefinition_DefinedRequirement();
-
-		/**
-		 * The meta object literal for the '<em><b>Accuracy</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DATA_DEFINITION__ACCURACY = eINSTANCE
-				.getDataDefinition_Accuracy();
-
-		/**
-		 * The meta object literal for the '<em><b>Range</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DATA_DEFINITION__RANGE = eINSTANCE.getDataDefinition_Range();
-
-		/**
-		 * The meta object literal for the '<em><b>Format</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DATA_DEFINITION__FORMAT = eINSTANCE
-				.getDataDefinition_Format();
-
-		/**
-		 * The meta object literal for the '<em><b>Provided Interface</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DATA_DEFINITION__PROVIDED_INTERFACE = eINSTANCE
-				.getDataDefinition_ProvidedInterface();
-
-		/**
-		 * The meta object literal for the '<em><b>Required Interface</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DATA_DEFINITION__REQUIRED_INTERFACE = eINSTANCE
-				.getDataDefinition_RequiredInterface();
-
-		/**
-		 * The meta object literal for the '<em><b>Described Model</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DATA_DEFINITION__DESCRIBED_MODEL = eINSTANCE
-				.getDataDefinition_DescribedModel();
+		EReference PERFORMANCE__HARDWARE = eINSTANCE.getPerformance_Hardware();
 
 		/**
 		 * The meta object literal for the '{@link scrm.requirements.impl.RequirementSpaceImpl <em>Requirement Space</em>}' class.

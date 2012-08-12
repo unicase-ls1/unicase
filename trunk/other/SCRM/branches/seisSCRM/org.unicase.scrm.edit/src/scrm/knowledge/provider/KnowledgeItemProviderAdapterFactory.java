@@ -12,7 +12,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -102,27 +101,27 @@ public class KnowledgeItemProviderAdapterFactory extends
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link scrm.knowledge.MathematicalModel} instances.
+	 * This keeps track of the one adapter used for all {@link scrm.knowledge.Mathematical_GeophysicalModel} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MathematicalModelItemProvider mathematicalModelItemProvider;
+	protected Mathematical_GeophysicalModelItemProvider mathematical_GeophysicalModelItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link scrm.knowledge.MathematicalModel}.
+	 * This creates an adapter for a {@link scrm.knowledge.Mathematical_GeophysicalModel}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createMathematicalModelAdapter() {
-		if (mathematicalModelItemProvider == null) {
-			mathematicalModelItemProvider = new MathematicalModelItemProvider(
+	public Adapter createMathematical_GeophysicalModelAdapter() {
+		if (mathematical_GeophysicalModelItemProvider == null) {
+			mathematical_GeophysicalModelItemProvider = new Mathematical_GeophysicalModelItemProvider(
 					this);
 		}
 
-		return mathematicalModelItemProvider;
+		return mathematical_GeophysicalModelItemProvider;
 	}
 
 	/**
@@ -169,30 +168,6 @@ public class KnowledgeItemProviderAdapterFactory extends
 		}
 
 		return assumptionItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link scrm.knowledge.GeophysicalModel} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected GeophysicalModelItemProvider geophysicalModelItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link scrm.knowledge.GeophysicalModel}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createGeophysicalModelAdapter() {
-		if (geophysicalModelItemProvider == null) {
-			geophysicalModelItemProvider = new GeophysicalModelItemProvider(
-					this);
-		}
-
-		return geophysicalModelItemProvider;
 	}
 
 	/**
@@ -324,14 +299,12 @@ public class KnowledgeItemProviderAdapterFactory extends
 			knowledgeSpaceItemProvider.dispose();
 		if (scientificProblemItemProvider != null)
 			scientificProblemItemProvider.dispose();
-		if (mathematicalModelItemProvider != null)
-			mathematicalModelItemProvider.dispose();
+		if (mathematical_GeophysicalModelItemProvider != null)
+			mathematical_GeophysicalModelItemProvider.dispose();
 		if (numericalMethodItemProvider != null)
 			numericalMethodItemProvider.dispose();
 		if (assumptionItemProvider != null)
 			assumptionItemProvider.dispose();
-		if (geophysicalModelItemProvider != null)
-			geophysicalModelItemProvider.dispose();
 	}
 
 }

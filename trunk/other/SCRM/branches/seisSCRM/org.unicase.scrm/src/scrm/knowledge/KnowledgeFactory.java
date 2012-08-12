@@ -36,13 +36,13 @@ public interface KnowledgeFactory extends EFactory {
 	ScientificProblem createScientificProblem();
 
 	/**
-	 * Returns a new object of class '<em>Mathematical Model</em>'.
+	 * Returns a new object of class '<em>Mathematical Geophysical Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Mathematical Model</em>'.
+	 * @return a new object of class '<em>Mathematical Geophysical Model</em>'.
 	 * @generated
 	 */
-	MathematicalModel createMathematicalModel();
+	Mathematical_GeophysicalModel createMathematical_GeophysicalModel();
 
 	/**
 	 * Returns a new object of class '<em>Numerical Method</em>'.
@@ -61,15 +61,6 @@ public interface KnowledgeFactory extends EFactory {
 	 * @generated
 	 */
 	Assumption createAssumption();
-
-	/**
-	 * Returns a new object of class '<em>Geophysical Model</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Geophysical Model</em>'.
-	 * @generated
-	 */
-	GeophysicalModel createGeophysicalModel();
 
 	/**
 	 * Returns a new object of class '<em>Space</em>'.

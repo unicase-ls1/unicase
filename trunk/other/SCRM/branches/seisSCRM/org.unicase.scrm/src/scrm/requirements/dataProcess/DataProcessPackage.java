@@ -176,13 +176,13 @@ public interface DataProcessPackage extends EPackage {
 	int PROCESS__SPECIFIED_FEATURE = RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE;
 
 	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
+	 * The feature id for the '<em><b>Handling Data</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS__DEFINING_DATA = RequirementsPackage.REQUIREMENT__DEFINING_DATA;
+	int PROCESS__HANDLING_DATA = RequirementsPackage.REQUIREMENT__HANDLING_DATA;
 
 	/**
 	 * The feature id for the '<em><b>Realized Method</b></em>' reference.
@@ -212,22 +212,13 @@ public interface DataProcessPackage extends EPackage {
 	int PROCESS__REQUIRED_INTERFACE = RequirementsPackage.REQUIREMENT__REQUIRED_INTERFACE;
 
 	/**
-	 * The feature id for the '<em><b>Data Flow</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS__DATA_FLOW = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Predecessor</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS__PREDECESSOR = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 1;
+	int PROCESS__PREDECESSOR = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Successor</b></em>' reference.
@@ -236,7 +227,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS__SUCCESSOR = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 2;
+	int PROCESS__SUCCESSOR = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Containing Data Process Space</b></em>' container reference.
@@ -245,7 +236,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS__CONTAINING_DATA_PROCESS_SPACE = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 3;
+	int PROCESS__CONTAINING_DATA_PROCESS_SPACE = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Error Handling</b></em>' reference.
@@ -254,7 +245,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS__ERROR_HANDLING = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 4;
+	int PROCESS__ERROR_HANDLING = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Status Monitoring</b></em>' reference.
@@ -263,7 +254,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS__STATUS_MONITORING = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 5;
+	int PROCESS__STATUS_MONITORING = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Process</em>' class.
@@ -272,7 +263,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_FEATURE_COUNT = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 6;
+	int PROCESS_FEATURE_COUNT = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -338,13 +329,13 @@ public interface DataProcessPackage extends EPackage {
 	int INPUT_DATA_READING__SPECIFIED_FEATURE = PROCESS__SPECIFIED_FEATURE;
 
 	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
+	 * The feature id for the '<em><b>Handling Data</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INPUT_DATA_READING__DEFINING_DATA = PROCESS__DEFINING_DATA;
+	int INPUT_DATA_READING__HANDLING_DATA = PROCESS__HANDLING_DATA;
 
 	/**
 	 * The feature id for the '<em><b>Realized Method</b></em>' reference.
@@ -372,15 +363,6 @@ public interface DataProcessPackage extends EPackage {
 	 * @ordered
 	 */
 	int INPUT_DATA_READING__REQUIRED_INTERFACE = PROCESS__REQUIRED_INTERFACE;
-
-	/**
-	 * The feature id for the '<em><b>Data Flow</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INPUT_DATA_READING__DATA_FLOW = PROCESS__DATA_FLOW;
 
 	/**
 	 * The feature id for the '<em><b>Predecessor</b></em>' reference.
@@ -500,13 +482,13 @@ public interface DataProcessPackage extends EPackage {
 	int RESULTS_OUTPUT__SPECIFIED_FEATURE = PROCESS__SPECIFIED_FEATURE;
 
 	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
+	 * The feature id for the '<em><b>Handling Data</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESULTS_OUTPUT__DEFINING_DATA = PROCESS__DEFINING_DATA;
+	int RESULTS_OUTPUT__HANDLING_DATA = PROCESS__HANDLING_DATA;
 
 	/**
 	 * The feature id for the '<em><b>Realized Method</b></em>' reference.
@@ -534,15 +516,6 @@ public interface DataProcessPackage extends EPackage {
 	 * @ordered
 	 */
 	int RESULTS_OUTPUT__REQUIRED_INTERFACE = PROCESS__REQUIRED_INTERFACE;
-
-	/**
-	 * The feature id for the '<em><b>Data Flow</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESULTS_OUTPUT__DATA_FLOW = PROCESS__DATA_FLOW;
 
 	/**
 	 * The feature id for the '<em><b>Predecessor</b></em>' reference.
@@ -662,13 +635,13 @@ public interface DataProcessPackage extends EPackage {
 	int ERROR_HANDLING__SPECIFIED_FEATURE = PROCESS__SPECIFIED_FEATURE;
 
 	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
+	 * The feature id for the '<em><b>Handling Data</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ERROR_HANDLING__DEFINING_DATA = PROCESS__DEFINING_DATA;
+	int ERROR_HANDLING__HANDLING_DATA = PROCESS__HANDLING_DATA;
 
 	/**
 	 * The feature id for the '<em><b>Realized Method</b></em>' reference.
@@ -696,15 +669,6 @@ public interface DataProcessPackage extends EPackage {
 	 * @ordered
 	 */
 	int ERROR_HANDLING__REQUIRED_INTERFACE = PROCESS__REQUIRED_INTERFACE;
-
-	/**
-	 * The feature id for the '<em><b>Data Flow</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ERROR_HANDLING__DATA_FLOW = PROCESS__DATA_FLOW;
 
 	/**
 	 * The feature id for the '<em><b>Predecessor</b></em>' reference.
@@ -833,13 +797,13 @@ public interface DataProcessPackage extends EPackage {
 	int STATUS_MONITORING__SPECIFIED_FEATURE = PROCESS__SPECIFIED_FEATURE;
 
 	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
+	 * The feature id for the '<em><b>Handling Data</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATUS_MONITORING__DEFINING_DATA = PROCESS__DEFINING_DATA;
+	int STATUS_MONITORING__HANDLING_DATA = PROCESS__HANDLING_DATA;
 
 	/**
 	 * The feature id for the '<em><b>Realized Method</b></em>' reference.
@@ -867,15 +831,6 @@ public interface DataProcessPackage extends EPackage {
 	 * @ordered
 	 */
 	int STATUS_MONITORING__REQUIRED_INTERFACE = PROCESS__REQUIRED_INTERFACE;
-
-	/**
-	 * The feature id for the '<em><b>Data Flow</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATUS_MONITORING__DATA_FLOW = PROCESS__DATA_FLOW;
 
 	/**
 	 * The feature id for the '<em><b>Predecessor</b></em>' reference.
@@ -1023,13 +978,13 @@ public interface DataProcessPackage extends EPackage {
 	int DATA_PROCESS_SPACE__SPECIFIED_FEATURE = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
+	 * The feature id for the '<em><b>Handling Data</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__DEFINING_DATA = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 4;
+	int DATA_PROCESS_SPACE__HANDLING_DATA = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Realized Method</b></em>' reference.
@@ -1059,22 +1014,13 @@ public interface DataProcessPackage extends EPackage {
 	int DATA_PROCESS_SPACE__REQUIRED_INTERFACE = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 7;
 
 	/**
-	 * The feature id for the '<em><b>Data Flow</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_PROCESS_SPACE__DATA_FLOW = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 8;
-
-	/**
 	 * The feature id for the '<em><b>Predecessor</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__PREDECESSOR = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 9;
+	int DATA_PROCESS_SPACE__PREDECESSOR = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Successor</b></em>' reference.
@@ -1083,7 +1029,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__SUCCESSOR = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 10;
+	int DATA_PROCESS_SPACE__SUCCESSOR = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Containing Data Process Space</b></em>' container reference.
@@ -1092,7 +1038,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__CONTAINING_DATA_PROCESS_SPACE = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 11;
+	int DATA_PROCESS_SPACE__CONTAINING_DATA_PROCESS_SPACE = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Error Handling</b></em>' reference.
@@ -1101,7 +1047,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__ERROR_HANDLING = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 12;
+	int DATA_PROCESS_SPACE__ERROR_HANDLING = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Status Monitoring</b></em>' reference.
@@ -1110,7 +1056,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__STATUS_MONITORING = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 13;
+	int DATA_PROCESS_SPACE__STATUS_MONITORING = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Contained Data Process Steps</b></em>' containment reference list.
@@ -1119,7 +1065,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__CONTAINED_DATA_PROCESS_STEPS = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 14;
+	int DATA_PROCESS_SPACE__CONTAINED_DATA_PROCESS_STEPS = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 13;
 
 	/**
 	 * The number of structural features of the '<em>Space</em>' class.
@@ -1128,7 +1074,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE_FEATURE_COUNT = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 15;
+	int DATA_PROCESS_SPACE_FEATURE_COUNT = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 14;
 
 	/**
 	 * The meta object id for the '{@link scrm.requirements.dataProcess.impl.SolverImpl <em>Solver</em>}' class.
@@ -1204,13 +1150,13 @@ public interface DataProcessPackage extends EPackage {
 	int SOLVER__SPECIFIED_FEATURE = PROCESS__SPECIFIED_FEATURE;
 
 	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
+	 * The feature id for the '<em><b>Handling Data</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOLVER__DEFINING_DATA = PROCESS__DEFINING_DATA;
+	int SOLVER__HANDLING_DATA = PROCESS__HANDLING_DATA;
 
 	/**
 	 * The feature id for the '<em><b>Realized Method</b></em>' reference.
@@ -1238,15 +1184,6 @@ public interface DataProcessPackage extends EPackage {
 	 * @ordered
 	 */
 	int SOLVER__REQUIRED_INTERFACE = PROCESS__REQUIRED_INTERFACE;
-
-	/**
-	 * The feature id for the '<em><b>Data Flow</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SOLVER__DATA_FLOW = PROCESS__DATA_FLOW;
 
 	/**
 	 * The feature id for the '<em><b>Predecessor</b></em>' reference.
@@ -1376,13 +1313,13 @@ public interface DataProcessPackage extends EPackage {
 	int MESH_CREATION__SPECIFIED_FEATURE = PROCESS__SPECIFIED_FEATURE;
 
 	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
+	 * The feature id for the '<em><b>Handling Data</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MESH_CREATION__DEFINING_DATA = PROCESS__DEFINING_DATA;
+	int MESH_CREATION__HANDLING_DATA = PROCESS__HANDLING_DATA;
 
 	/**
 	 * The feature id for the '<em><b>Realized Method</b></em>' reference.
@@ -1410,15 +1347,6 @@ public interface DataProcessPackage extends EPackage {
 	 * @ordered
 	 */
 	int MESH_CREATION__REQUIRED_INTERFACE = PROCESS__REQUIRED_INTERFACE;
-
-	/**
-	 * The feature id for the '<em><b>Data Flow</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MESH_CREATION__DATA_FLOW = PROCESS__DATA_FLOW;
 
 	/**
 	 * The feature id for the '<em><b>Predecessor</b></em>' reference.
@@ -1548,13 +1476,13 @@ public interface DataProcessPackage extends EPackage {
 	int PRE_PROCESSING__SPECIFIED_FEATURE = PROCESS__SPECIFIED_FEATURE;
 
 	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
+	 * The feature id for the '<em><b>Handling Data</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRE_PROCESSING__DEFINING_DATA = PROCESS__DEFINING_DATA;
+	int PRE_PROCESSING__HANDLING_DATA = PROCESS__HANDLING_DATA;
 
 	/**
 	 * The feature id for the '<em><b>Realized Method</b></em>' reference.
@@ -1582,15 +1510,6 @@ public interface DataProcessPackage extends EPackage {
 	 * @ordered
 	 */
 	int PRE_PROCESSING__REQUIRED_INTERFACE = PROCESS__REQUIRED_INTERFACE;
-
-	/**
-	 * The feature id for the '<em><b>Data Flow</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRE_PROCESSING__DATA_FLOW = PROCESS__DATA_FLOW;
 
 	/**
 	 * The feature id for the '<em><b>Predecessor</b></em>' reference.
@@ -1720,13 +1639,13 @@ public interface DataProcessPackage extends EPackage {
 	int POST_PROCESSING__SPECIFIED_FEATURE = PROCESS__SPECIFIED_FEATURE;
 
 	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
+	 * The feature id for the '<em><b>Handling Data</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POST_PROCESSING__DEFINING_DATA = PROCESS__DEFINING_DATA;
+	int POST_PROCESSING__HANDLING_DATA = PROCESS__HANDLING_DATA;
 
 	/**
 	 * The feature id for the '<em><b>Realized Method</b></em>' reference.
@@ -1754,15 +1673,6 @@ public interface DataProcessPackage extends EPackage {
 	 * @ordered
 	 */
 	int POST_PROCESSING__REQUIRED_INTERFACE = PROCESS__REQUIRED_INTERFACE;
-
-	/**
-	 * The feature id for the '<em><b>Data Flow</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POST_PROCESSING__DATA_FLOW = PROCESS__DATA_FLOW;
 
 	/**
 	 * The feature id for the '<em><b>Predecessor</b></em>' reference.
@@ -1889,17 +1799,6 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getProcess();
-
-	/**
-	 * Returns the meta object for the reference '{@link scrm.requirements.dataProcess.Process#getDataFlow <em>Data Flow</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Data Flow</em>'.
-	 * @see scrm.requirements.dataProcess.Process#getDataFlow()
-	 * @see #getProcess()
-	 * @generated
-	 */
-	EReference getProcess_DataFlow();
 
 	/**
 	 * Returns the meta object for the reference '{@link scrm.requirements.dataProcess.Process#getPredecessor <em>Predecessor</em>}'.
@@ -2106,14 +2005,6 @@ public interface DataProcessPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PROCESS = eINSTANCE.getProcess();
-
-		/**
-		 * The meta object literal for the '<em><b>Data Flow</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROCESS__DATA_FLOW = eINSTANCE.getProcess_DataFlow();
 
 		/**
 		 * The meta object literal for the '<em><b>Predecessor</b></em>' reference feature.

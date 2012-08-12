@@ -24,6 +24,8 @@ import scrm.ScrmPackage;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.impl.KnowledgePackageImpl;
 import scrm.requirements.RequirementsPackage;
+import scrm.requirements.dataObject.DataObjectPackage;
+import scrm.requirements.dataObject.impl.DataObjectPackageImpl;
 import scrm.requirements.dataProcess.DataProcessPackage;
 import scrm.requirements.dataProcess.impl.DataProcessPackageImpl;
 import scrm.requirements.impl.RequirementsPackageImpl;
@@ -129,18 +131,24 @@ public class ScrmPackageImpl extends EPackageImpl implements ScrmPackage {
 				.getEPackage(DataProcessPackage.eNS_URI) instanceof DataProcessPackageImpl ? EPackage.Registry.INSTANCE
 				.getEPackage(DataProcessPackage.eNS_URI)
 				: DataProcessPackage.eINSTANCE);
+		DataObjectPackageImpl theDataObjectPackage = (DataObjectPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(DataObjectPackage.eNS_URI) instanceof DataObjectPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(DataObjectPackage.eNS_URI)
+				: DataObjectPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theScrmPackage.createPackageContents();
 		theKnowledgePackage.createPackageContents();
 		theRequirementsPackage.createPackageContents();
 		theDataProcessPackage.createPackageContents();
+		theDataObjectPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theScrmPackage.initializePackageContents();
 		theKnowledgePackage.initializePackageContents();
 		theRequirementsPackage.initializePackageContents();
 		theDataProcessPackage.initializePackageContents();
+		theDataObjectPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theScrmPackage.freeze();

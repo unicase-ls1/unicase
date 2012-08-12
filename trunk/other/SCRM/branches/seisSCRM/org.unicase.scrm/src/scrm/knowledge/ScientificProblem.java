@@ -31,8 +31,8 @@ import scrm.requirements.Feature;
 public interface ScientificProblem extends ScientificKnowledge {
 	/**
 	 * Returns the value of the '<em><b>Representing Model</b></em>' reference list.
-	 * The list contents are of type {@link scrm.knowledge.MathematicalModel}.
-	 * It is bidirectional and its opposite is '{@link scrm.knowledge.MathematicalModel#getRepresentedProblem <em>Represented Problem</em>}'.
+	 * The list contents are of type {@link scrm.knowledge.Mathematical_GeophysicalModel}.
+	 * It is bidirectional and its opposite is '{@link scrm.knowledge.Mathematical_GeophysicalModel#getRepresentedProblem <em>Represented Problem</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Representing Model</em>' reference isn't clear,
@@ -41,11 +41,11 @@ public interface ScientificProblem extends ScientificKnowledge {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Representing Model</em>' reference list.
 	 * @see scrm.knowledge.KnowledgePackage#getScientificProblem_RepresentingModel()
-	 * @see scrm.knowledge.MathematicalModel#getRepresentedProblem
+	 * @see scrm.knowledge.Mathematical_GeophysicalModel#getRepresentedProblem
 	 * @model opposite="representedProblem"
 	 * @generated
 	 */
-	EList<MathematicalModel> getRepresentingModel();
+	EList<Mathematical_GeophysicalModel> getRepresentingModel();
 
 	/**
 	 * Returns the value of the '<em><b>Solving Methods</b></em>' reference list.

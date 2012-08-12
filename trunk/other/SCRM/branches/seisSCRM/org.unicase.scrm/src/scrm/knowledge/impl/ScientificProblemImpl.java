@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import scrm.impl.SCRMModelElementImpl;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.KnowledgeSpace;
-import scrm.knowledge.MathematicalModel;
+import scrm.knowledge.Mathematical_GeophysicalModel;
 import scrm.knowledge.NumericalMethod;
 import scrm.knowledge.ScientificProblem;
 import scrm.requirements.Feature;
@@ -53,7 +53,7 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<MathematicalModel> representingModel;
+	protected EList<Mathematical_GeophysicalModel> representingModel;
 
 	/**
 	 * The cached value of the '{@link #getSolvingMethods() <em>Solving Methods</em>}' reference list.
@@ -168,12 +168,13 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<MathematicalModel> getRepresentingModel() {
+	public EList<Mathematical_GeophysicalModel> getRepresentingModel() {
 		if (representingModel == null) {
-			representingModel = new EObjectWithInverseResolvingEList<MathematicalModel>(
-					MathematicalModel.class, this,
+			representingModel = new EObjectWithInverseResolvingEList<Mathematical_GeophysicalModel>(
+					Mathematical_GeophysicalModel.class,
+					this,
 					KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL,
-					KnowledgePackage.MATHEMATICAL_MODEL__REPRESENTED_PROBLEM);
+					KnowledgePackage.MATHEMATICAL_GEOPHYSICAL_MODEL__REPRESENTED_PROBLEM);
 		}
 		return representingModel;
 	}
@@ -381,8 +382,8 @@ public class ScientificProblemImpl extends SCRMModelElementImpl implements
 			return;
 		case KnowledgePackage.SCIENTIFIC_PROBLEM__REPRESENTING_MODEL:
 			getRepresentingModel().clear();
-			getRepresentingModel().addAll(
-					(Collection<? extends MathematicalModel>) newValue);
+			getRepresentingModel()
+					.addAll((Collection<? extends Mathematical_GeophysicalModel>) newValue);
 			return;
 		case KnowledgePackage.SCIENTIFIC_PROBLEM__SOLVING_METHODS:
 			getSolvingMethods().clear();

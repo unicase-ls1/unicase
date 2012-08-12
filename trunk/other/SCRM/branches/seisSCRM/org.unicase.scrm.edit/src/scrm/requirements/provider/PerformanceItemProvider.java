@@ -11,7 +11,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -19,10 +18,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import scrm.requirements.Performance;
 import scrm.requirements.RequirementsPackage;
 
 /**
@@ -55,29 +51,28 @@ public class PerformanceItemProvider extends RequirementItemProvider implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addProblemSizePropertyDescriptor(object);
+			addHardwarePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Problem Size feature.
+	 * This adds a property descriptor for the Hardware feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addProblemSizePropertyDescriptor(Object object) {
+	protected void addHardwarePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
 						.getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_Performance_problemSize_feature"),
+				getString("_UI_Performance_hardware_feature"),
 				getString("_UI_PropertyDescriptor_description",
-						"_UI_Performance_problemSize_feature",
+						"_UI_Performance_hardware_feature",
 						"_UI_Performance_type"),
-				RequirementsPackage.Literals.PERFORMANCE__PROBLEM_SIZE, true,
-				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
+				RequirementsPackage.Literals.PERFORMANCE__HARDWARE, true,
+				false, true, null, null, null));
 	}
 
 	/**
@@ -113,13 +108,6 @@ public class PerformanceItemProvider extends RequirementItemProvider implements
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(Performance.class)) {
-		case RequirementsPackage.PERFORMANCE__PROBLEM_SIZE:
-			fireNotifyChanged(new ViewerNotification(notification,
-					notification.getNotifier(), false, true));
-			return;
-		}
 		super.notifyChanged(notification);
 	}
 

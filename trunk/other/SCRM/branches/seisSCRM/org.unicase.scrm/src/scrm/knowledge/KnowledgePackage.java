@@ -6,7 +6,6 @@
  */
 package scrm.knowledge;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -126,16 +125,6 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 */
 	int SCIENTIFIC_PROBLEM = 2;
-
-	/**
-	 * The meta object id for the '{@link scrm.knowledge.impl.MathematicalModelImpl <em>Mathematical Model</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see scrm.knowledge.impl.MathematicalModelImpl
-	 * @see scrm.knowledge.impl.KnowledgePackageImpl#getMathematicalModel()
-	 * @generated
-	 */
-	int MATHEMATICAL_MODEL = 3;
 
 	/**
 	 * The meta object id for the '{@link scrm.knowledge.impl.NumericalMethodImpl <em>Numerical Method</em>}' class.
@@ -303,13 +292,23 @@ public interface KnowledgePackage extends EPackage {
 	int SCIENTIFIC_PROBLEM_FEATURE_COUNT = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 3;
 
 	/**
+	 * The meta object id for the '{@link scrm.knowledge.impl.Mathematical_GeophysicalModelImpl <em>Mathematical Geophysical Model</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see scrm.knowledge.impl.Mathematical_GeophysicalModelImpl
+	 * @see scrm.knowledge.impl.KnowledgePackageImpl#getMathematical_GeophysicalModel()
+	 * @generated
+	 */
+	int MATHEMATICAL_GEOPHYSICAL_MODEL = 3;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MATHEMATICAL_MODEL__NAME = SCIENTIFIC_KNOWLEDGE__NAME;
+	int MATHEMATICAL_GEOPHYSICAL_MODEL__NAME = SCIENTIFIC_KNOWLEDGE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -318,7 +317,7 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATHEMATICAL_MODEL__DESCRIPTION = SCIENTIFIC_KNOWLEDGE__DESCRIPTION;
+	int MATHEMATICAL_GEOPHYSICAL_MODEL__DESCRIPTION = SCIENTIFIC_KNOWLEDGE__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
@@ -327,7 +326,7 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATHEMATICAL_MODEL__DISPLAYING_DIAGRAMS = SCIENTIFIC_KNOWLEDGE__DISPLAYING_DIAGRAMS;
+	int MATHEMATICAL_GEOPHYSICAL_MODEL__DISPLAYING_DIAGRAMS = SCIENTIFIC_KNOWLEDGE__DISPLAYING_DIAGRAMS;
 
 	/**
 	 * The feature id for the '<em><b>Containing Knowledge Space</b></em>' container reference.
@@ -336,7 +335,7 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATHEMATICAL_MODEL__CONTAINING_KNOWLEDGE_SPACE = SCIENTIFIC_KNOWLEDGE__CONTAINING_KNOWLEDGE_SPACE;
+	int MATHEMATICAL_GEOPHYSICAL_MODEL__CONTAINING_KNOWLEDGE_SPACE = SCIENTIFIC_KNOWLEDGE__CONTAINING_KNOWLEDGE_SPACE;
 
 	/**
 	 * The feature id for the '<em><b>Represented Problem</b></em>' reference.
@@ -345,7 +344,7 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATHEMATICAL_MODEL__REPRESENTED_PROBLEM = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 0;
+	int MATHEMATICAL_GEOPHYSICAL_MODEL__REPRESENTED_PROBLEM = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Refinements</b></em>' containment reference list.
@@ -354,7 +353,7 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATHEMATICAL_MODEL__REFINEMENTS = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 1;
+	int MATHEMATICAL_GEOPHYSICAL_MODEL__REFINEMENTS = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Refined Model</b></em>' container reference.
@@ -363,7 +362,7 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATHEMATICAL_MODEL__REFINED_MODEL = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 2;
+	int MATHEMATICAL_GEOPHYSICAL_MODEL__REFINED_MODEL = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Used In Numerical Methods</b></em>' reference list.
@@ -372,7 +371,7 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATHEMATICAL_MODEL__USED_IN_NUMERICAL_METHODS = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 3;
+	int MATHEMATICAL_GEOPHYSICAL_MODEL__USED_IN_NUMERICAL_METHODS = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
@@ -381,7 +380,7 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATHEMATICAL_MODEL__DEPENDENCIES = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 4;
+	int MATHEMATICAL_GEOPHYSICAL_MODEL__DEPENDENCIES = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Involved Data</b></em>' reference list.
@@ -390,16 +389,16 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MATHEMATICAL_MODEL__INVOLVED_DATA = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 5;
+	int MATHEMATICAL_GEOPHYSICAL_MODEL__INVOLVED_DATA = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 5;
 
 	/**
-	 * The number of structural features of the '<em>Mathematical Model</em>' class.
+	 * The number of structural features of the '<em>Mathematical Geophysical Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MATHEMATICAL_MODEL_FEATURE_COUNT = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 6;
+	int MATHEMATICAL_GEOPHYSICAL_MODEL_FEATURE_COUNT = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -483,22 +482,13 @@ public interface KnowledgePackage extends EPackage {
 	int NUMERICAL_METHOD__PERFORMANCE = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Algorithm</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMERICAL_METHOD__ALGORITHM = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 5;
-
-	/**
 	 * The number of structural features of the '<em>Numerical Method</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUMERICAL_METHOD_FEATURE_COUNT = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 6;
+	int NUMERICAL_METHOD_FEATURE_COUNT = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -562,115 +552,6 @@ public interface KnowledgePackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSUMPTION_FEATURE_COUNT = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link scrm.knowledge.impl.GeophysicalModelImpl <em>Geophysical Model</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see scrm.knowledge.impl.GeophysicalModelImpl
-	 * @see scrm.knowledge.impl.KnowledgePackageImpl#getGeophysicalModel()
-	 * @generated
-	 */
-	int GEOPHYSICAL_MODEL = 6;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOPHYSICAL_MODEL__NAME = MATHEMATICAL_MODEL__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOPHYSICAL_MODEL__DESCRIPTION = MATHEMATICAL_MODEL__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOPHYSICAL_MODEL__DISPLAYING_DIAGRAMS = MATHEMATICAL_MODEL__DISPLAYING_DIAGRAMS;
-
-	/**
-	 * The feature id for the '<em><b>Containing Knowledge Space</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOPHYSICAL_MODEL__CONTAINING_KNOWLEDGE_SPACE = MATHEMATICAL_MODEL__CONTAINING_KNOWLEDGE_SPACE;
-
-	/**
-	 * The feature id for the '<em><b>Represented Problem</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOPHYSICAL_MODEL__REPRESENTED_PROBLEM = MATHEMATICAL_MODEL__REPRESENTED_PROBLEM;
-
-	/**
-	 * The feature id for the '<em><b>Refinements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOPHYSICAL_MODEL__REFINEMENTS = MATHEMATICAL_MODEL__REFINEMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Refined Model</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOPHYSICAL_MODEL__REFINED_MODEL = MATHEMATICAL_MODEL__REFINED_MODEL;
-
-	/**
-	 * The feature id for the '<em><b>Used In Numerical Methods</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOPHYSICAL_MODEL__USED_IN_NUMERICAL_METHODS = MATHEMATICAL_MODEL__USED_IN_NUMERICAL_METHODS;
-
-	/**
-	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOPHYSICAL_MODEL__DEPENDENCIES = MATHEMATICAL_MODEL__DEPENDENCIES;
-
-	/**
-	 * The feature id for the '<em><b>Involved Data</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOPHYSICAL_MODEL__INVOLVED_DATA = MATHEMATICAL_MODEL__INVOLVED_DATA;
-
-	/**
-	 * The number of structural features of the '<em>Geophysical Model</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEOPHYSICAL_MODEL_FEATURE_COUNT = MATHEMATICAL_MODEL_FEATURE_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link scrm.knowledge.ScientificKnowledge <em>Scientific Knowledge</em>}'.
@@ -737,80 +618,80 @@ public interface KnowledgePackage extends EPackage {
 	EReference getScientificProblem_InfluencedFeature();
 
 	/**
-	 * Returns the meta object for class '{@link scrm.knowledge.MathematicalModel <em>Mathematical Model</em>}'.
+	 * Returns the meta object for class '{@link scrm.knowledge.Mathematical_GeophysicalModel <em>Mathematical Geophysical Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Mathematical Model</em>'.
-	 * @see scrm.knowledge.MathematicalModel
+	 * @return the meta object for class '<em>Mathematical Geophysical Model</em>'.
+	 * @see scrm.knowledge.Mathematical_GeophysicalModel
 	 * @generated
 	 */
-	EClass getMathematicalModel();
+	EClass getMathematical_GeophysicalModel();
 
 	/**
-	 * Returns the meta object for the reference '{@link scrm.knowledge.MathematicalModel#getRepresentedProblem <em>Represented Problem</em>}'.
+	 * Returns the meta object for the reference '{@link scrm.knowledge.Mathematical_GeophysicalModel#getRepresentedProblem <em>Represented Problem</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Represented Problem</em>'.
-	 * @see scrm.knowledge.MathematicalModel#getRepresentedProblem()
-	 * @see #getMathematicalModel()
+	 * @see scrm.knowledge.Mathematical_GeophysicalModel#getRepresentedProblem()
+	 * @see #getMathematical_GeophysicalModel()
 	 * @generated
 	 */
-	EReference getMathematicalModel_RepresentedProblem();
+	EReference getMathematical_GeophysicalModel_RepresentedProblem();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link scrm.knowledge.MathematicalModel#getRefinements <em>Refinements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link scrm.knowledge.Mathematical_GeophysicalModel#getRefinements <em>Refinements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Refinements</em>'.
-	 * @see scrm.knowledge.MathematicalModel#getRefinements()
-	 * @see #getMathematicalModel()
+	 * @see scrm.knowledge.Mathematical_GeophysicalModel#getRefinements()
+	 * @see #getMathematical_GeophysicalModel()
 	 * @generated
 	 */
-	EReference getMathematicalModel_Refinements();
+	EReference getMathematical_GeophysicalModel_Refinements();
 
 	/**
-	 * Returns the meta object for the container reference '{@link scrm.knowledge.MathematicalModel#getRefinedModel <em>Refined Model</em>}'.
+	 * Returns the meta object for the container reference '{@link scrm.knowledge.Mathematical_GeophysicalModel#getRefinedModel <em>Refined Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Refined Model</em>'.
-	 * @see scrm.knowledge.MathematicalModel#getRefinedModel()
-	 * @see #getMathematicalModel()
+	 * @see scrm.knowledge.Mathematical_GeophysicalModel#getRefinedModel()
+	 * @see #getMathematical_GeophysicalModel()
 	 * @generated
 	 */
-	EReference getMathematicalModel_RefinedModel();
+	EReference getMathematical_GeophysicalModel_RefinedModel();
 
 	/**
-	 * Returns the meta object for the reference list '{@link scrm.knowledge.MathematicalModel#getUsedInNumericalMethods <em>Used In Numerical Methods</em>}'.
+	 * Returns the meta object for the reference list '{@link scrm.knowledge.Mathematical_GeophysicalModel#getUsedInNumericalMethods <em>Used In Numerical Methods</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Used In Numerical Methods</em>'.
-	 * @see scrm.knowledge.MathematicalModel#getUsedInNumericalMethods()
-	 * @see #getMathematicalModel()
+	 * @see scrm.knowledge.Mathematical_GeophysicalModel#getUsedInNumericalMethods()
+	 * @see #getMathematical_GeophysicalModel()
 	 * @generated
 	 */
-	EReference getMathematicalModel_UsedInNumericalMethods();
+	EReference getMathematical_GeophysicalModel_UsedInNumericalMethods();
 
 	/**
-	 * Returns the meta object for the reference list '{@link scrm.knowledge.MathematicalModel#getDependencies <em>Dependencies</em>}'.
+	 * Returns the meta object for the reference list '{@link scrm.knowledge.Mathematical_GeophysicalModel#getDependencies <em>Dependencies</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Dependencies</em>'.
-	 * @see scrm.knowledge.MathematicalModel#getDependencies()
-	 * @see #getMathematicalModel()
+	 * @see scrm.knowledge.Mathematical_GeophysicalModel#getDependencies()
+	 * @see #getMathematical_GeophysicalModel()
 	 * @generated
 	 */
-	EReference getMathematicalModel_Dependencies();
+	EReference getMathematical_GeophysicalModel_Dependencies();
 
 	/**
-	 * Returns the meta object for the reference list '{@link scrm.knowledge.MathematicalModel#getInvolvedData <em>Involved Data</em>}'.
+	 * Returns the meta object for the reference list '{@link scrm.knowledge.Mathematical_GeophysicalModel#getInvolvedData <em>Involved Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Involved Data</em>'.
-	 * @see scrm.knowledge.MathematicalModel#getInvolvedData()
-	 * @see #getMathematicalModel()
+	 * @see scrm.knowledge.Mathematical_GeophysicalModel#getInvolvedData()
+	 * @see #getMathematical_GeophysicalModel()
 	 * @generated
 	 */
-	EReference getMathematicalModel_InvolvedData();
+	EReference getMathematical_GeophysicalModel_InvolvedData();
 
 	/**
 	 * Returns the meta object for class '{@link scrm.knowledge.NumericalMethod <em>Numerical Method</em>}'.
@@ -878,17 +759,6 @@ public interface KnowledgePackage extends EPackage {
 	EReference getNumericalMethod_Performance();
 
 	/**
-	 * Returns the meta object for the attribute '{@link scrm.knowledge.NumericalMethod#getAlgorithm <em>Algorithm</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Algorithm</em>'.
-	 * @see scrm.knowledge.NumericalMethod#getAlgorithm()
-	 * @see #getNumericalMethod()
-	 * @generated
-	 */
-	EAttribute getNumericalMethod_Algorithm();
-
-	/**
 	 * Returns the meta object for class '{@link scrm.knowledge.Assumption <em>Assumption</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -919,16 +789,6 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getAssumption_DependingMethod();
-
-	/**
-	 * Returns the meta object for class '{@link scrm.knowledge.GeophysicalModel <em>Geophysical Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Geophysical Model</em>'.
-	 * @see scrm.knowledge.GeophysicalModel
-	 * @generated
-	 */
-	EClass getGeophysicalModel();
 
 	/**
 	 * Returns the meta object for class '{@link scrm.knowledge.KnowledgeSpace <em>Space</em>}'.
@@ -1030,14 +890,15 @@ public interface KnowledgePackage extends EPackage {
 				.getScientificProblem_InfluencedFeature();
 
 		/**
-		 * The meta object literal for the '{@link scrm.knowledge.impl.MathematicalModelImpl <em>Mathematical Model</em>}' class.
+		 * The meta object literal for the '{@link scrm.knowledge.impl.Mathematical_GeophysicalModelImpl <em>Mathematical Geophysical Model</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see scrm.knowledge.impl.MathematicalModelImpl
-		 * @see scrm.knowledge.impl.KnowledgePackageImpl#getMathematicalModel()
+		 * @see scrm.knowledge.impl.Mathematical_GeophysicalModelImpl
+		 * @see scrm.knowledge.impl.KnowledgePackageImpl#getMathematical_GeophysicalModel()
 		 * @generated
 		 */
-		EClass MATHEMATICAL_MODEL = eINSTANCE.getMathematicalModel();
+		EClass MATHEMATICAL_GEOPHYSICAL_MODEL = eINSTANCE
+				.getMathematical_GeophysicalModel();
 
 		/**
 		 * The meta object literal for the '<em><b>Represented Problem</b></em>' reference feature.
@@ -1045,8 +906,8 @@ public interface KnowledgePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MATHEMATICAL_MODEL__REPRESENTED_PROBLEM = eINSTANCE
-				.getMathematicalModel_RepresentedProblem();
+		EReference MATHEMATICAL_GEOPHYSICAL_MODEL__REPRESENTED_PROBLEM = eINSTANCE
+				.getMathematical_GeophysicalModel_RepresentedProblem();
 
 		/**
 		 * The meta object literal for the '<em><b>Refinements</b></em>' containment reference list feature.
@@ -1054,8 +915,8 @@ public interface KnowledgePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MATHEMATICAL_MODEL__REFINEMENTS = eINSTANCE
-				.getMathematicalModel_Refinements();
+		EReference MATHEMATICAL_GEOPHYSICAL_MODEL__REFINEMENTS = eINSTANCE
+				.getMathematical_GeophysicalModel_Refinements();
 
 		/**
 		 * The meta object literal for the '<em><b>Refined Model</b></em>' container reference feature.
@@ -1063,8 +924,8 @@ public interface KnowledgePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MATHEMATICAL_MODEL__REFINED_MODEL = eINSTANCE
-				.getMathematicalModel_RefinedModel();
+		EReference MATHEMATICAL_GEOPHYSICAL_MODEL__REFINED_MODEL = eINSTANCE
+				.getMathematical_GeophysicalModel_RefinedModel();
 
 		/**
 		 * The meta object literal for the '<em><b>Used In Numerical Methods</b></em>' reference list feature.
@@ -1072,8 +933,8 @@ public interface KnowledgePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MATHEMATICAL_MODEL__USED_IN_NUMERICAL_METHODS = eINSTANCE
-				.getMathematicalModel_UsedInNumericalMethods();
+		EReference MATHEMATICAL_GEOPHYSICAL_MODEL__USED_IN_NUMERICAL_METHODS = eINSTANCE
+				.getMathematical_GeophysicalModel_UsedInNumericalMethods();
 
 		/**
 		 * The meta object literal for the '<em><b>Dependencies</b></em>' reference list feature.
@@ -1081,8 +942,8 @@ public interface KnowledgePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MATHEMATICAL_MODEL__DEPENDENCIES = eINSTANCE
-				.getMathematicalModel_Dependencies();
+		EReference MATHEMATICAL_GEOPHYSICAL_MODEL__DEPENDENCIES = eINSTANCE
+				.getMathematical_GeophysicalModel_Dependencies();
 
 		/**
 		 * The meta object literal for the '<em><b>Involved Data</b></em>' reference list feature.
@@ -1090,8 +951,8 @@ public interface KnowledgePackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MATHEMATICAL_MODEL__INVOLVED_DATA = eINSTANCE
-				.getMathematicalModel_InvolvedData();
+		EReference MATHEMATICAL_GEOPHYSICAL_MODEL__INVOLVED_DATA = eINSTANCE
+				.getMathematical_GeophysicalModel_InvolvedData();
 
 		/**
 		 * The meta object literal for the '{@link scrm.knowledge.impl.NumericalMethodImpl <em>Numerical Method</em>}' class.
@@ -1149,15 +1010,6 @@ public interface KnowledgePackage extends EPackage {
 				.getNumericalMethod_Performance();
 
 		/**
-		 * The meta object literal for the '<em><b>Algorithm</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NUMERICAL_METHOD__ALGORITHM = eINSTANCE
-				.getNumericalMethod_Algorithm();
-
-		/**
 		 * The meta object literal for the '{@link scrm.knowledge.impl.AssumptionImpl <em>Assumption</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1184,16 +1036,6 @@ public interface KnowledgePackage extends EPackage {
 		 */
 		EReference ASSUMPTION__DEPENDING_METHOD = eINSTANCE
 				.getAssumption_DependingMethod();
-
-		/**
-		 * The meta object literal for the '{@link scrm.knowledge.impl.GeophysicalModelImpl <em>Geophysical Model</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see scrm.knowledge.impl.GeophysicalModelImpl
-		 * @see scrm.knowledge.impl.KnowledgePackageImpl#getGeophysicalModel()
-		 * @generated
-		 */
-		EClass GEOPHYSICAL_MODEL = eINSTANCE.getGeophysicalModel();
 
 		/**
 		 * The meta object literal for the '{@link scrm.knowledge.impl.KnowledgeSpaceImpl <em>Space</em>}' class.

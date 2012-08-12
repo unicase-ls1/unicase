@@ -4,7 +4,9 @@
  *
  * $Id$
  */
-package scrm.requirements;
+package scrm.requirements.dataObject;
+
+import scrm.requirements.IRequirement;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,11 +16,11 @@ package scrm.requirements;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link scrm.requirements.DataFlow#getSpecifiedProcess <em>Specified Process</em>}</li>
+ *   <li>{@link scrm.requirements.dataObject.DataFlow#getSpecifiedProcess <em>Specified Process</em>}</li>
  * </ul>
  * </p>
  *
- * @see scrm.requirements.RequirementsPackage#getDataFlow()
+ * @see scrm.requirements.dataObject.DataObjectPackage#getDataFlow()
  * @model
  * @generated
  */
@@ -34,7 +36,7 @@ public interface DataFlow extends IRequirement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Specified Process</em>' reference.
 	 * @see #setSpecifiedProcess(scrm.requirements.dataProcess.Process)
-	 * @see scrm.requirements.RequirementsPackage#getDataFlow_SpecifiedProcess()
+	 * @see scrm.requirements.dataObject.DataObjectPackage#getDataFlow_SpecifiedProcess()
 	 * @see scrm.requirements.dataProcess.Process#getDataFlow
 	 * @model opposite="dataFlow"
 	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
@@ -43,7 +45,7 @@ public interface DataFlow extends IRequirement {
 	scrm.requirements.dataProcess.Process getSpecifiedProcess();
 
 	/**
-	 * Sets the value of the '{@link scrm.requirements.DataFlow#getSpecifiedProcess <em>Specified Process</em>}' reference.
+	 * Sets the value of the '{@link scrm.requirements.dataObject.DataFlow#getSpecifiedProcess <em>Specified Process</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Specified Process</em>' reference.

@@ -42,5 +42,12 @@
          <modelPackage
             modelPackage="http://unicase.org/model/scrm"></modelPackage>
    </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="scrm.requirements.dataObject.DataObjectPackage"
+            uri="http://unicase.org/model/scrm/requirements/dataObject">
+      </package>
+   </extension>
 
 </plugin>

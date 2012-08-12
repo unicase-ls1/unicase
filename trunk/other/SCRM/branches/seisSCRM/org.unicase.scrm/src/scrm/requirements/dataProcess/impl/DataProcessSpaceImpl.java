@@ -26,14 +26,14 @@ import scrm.impl.SCRMModelElementImpl;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.NumericalMethod;
 import scrm.lists.SCRMSpaceContainedModelElementsList;
-import scrm.requirements.DataDefinition;
-import scrm.requirements.DataFlow;
 import scrm.requirements.Feature;
 import scrm.requirements.IRequirement;
 import scrm.requirements.Interface;
 import scrm.requirements.Requirement;
 import scrm.requirements.RequirementSpace;
 import scrm.requirements.RequirementsPackage;
+import scrm.requirements.dataObject.DataDefinition;
+import scrm.requirements.dataObject.DataObjectPackage;
 import scrm.requirements.dataProcess.DataProcessPackage;
 import scrm.requirements.dataProcess.DataProcessSpace;
 import scrm.requirements.dataProcess.ErrorHandling;
@@ -52,11 +52,10 @@ import scrm.requirements.dataProcess.StatusMonitoring;
  *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getRefinements <em>Refinements</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getRefinedRequirement <em>Refined Requirement</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getSpecifiedFeature <em>Specified Feature</em>}</li>
- *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getDefiningData <em>Defining Data</em>}</li>
+ *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getHandlingData <em>Handling Data</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getRealizedMethod <em>Realized Method</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getProvidedInterface <em>Provided Interface</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getRequiredInterface <em>Required Interface</em>}</li>
- *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getDataFlow <em>Data Flow</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getPredecessor <em>Predecessor</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getSuccessor <em>Successor</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getContainingDataProcessSpace <em>Containing Data Process Space</em>}</li>
@@ -91,14 +90,14 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 	protected EList<Requirement> refinements;
 
 	/**
-	 * The cached value of the '{@link #getDefiningData() <em>Defining Data</em>}' reference list.
+	 * The cached value of the '{@link #getHandlingData() <em>Handling Data</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDefiningData()
+	 * @see #getHandlingData()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<DataDefinition> definingData;
+	protected EList<DataDefinition> handlingData;
 
 	/**
 	 * The cached value of the '{@link #getRealizedMethod() <em>Realized Method</em>}' reference.
@@ -129,16 +128,6 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 	 * @ordered
 	 */
 	protected Interface requiredInterface;
-
-	/**
-	 * The cached value of the '{@link #getDataFlow() <em>Data Flow</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDataFlow()
-	 * @generated
-	 * @ordered
-	 */
-	protected DataFlow dataFlow;
 
 	/**
 	 * The cached value of the '{@link #getPredecessor() <em>Predecessor</em>}' reference.
@@ -531,14 +520,14 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DataDefinition> getDefiningData() {
-		if (definingData == null) {
-			definingData = new EObjectWithInverseResolvingEList<DataDefinition>(
+	public EList<DataDefinition> getHandlingData() {
+		if (handlingData == null) {
+			handlingData = new EObjectWithInverseResolvingEList<DataDefinition>(
 					DataDefinition.class, this,
-					DataProcessPackage.DATA_PROCESS_SPACE__DEFINING_DATA,
-					RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT);
+					DataProcessPackage.DATA_PROCESS_SPACE__HANDLING_DATA,
+					DataObjectPackage.DATA_DEFINITION__DEFINED_REQUIREMENT);
 		}
-		return definingData;
+		return handlingData;
 	}
 
 	/**
@@ -683,15 +672,17 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 		if (newProvidedInterface != providedInterface) {
 			NotificationChain msgs = null;
 			if (providedInterface != null)
-				msgs = ((InternalEObject) providedInterface).eInverseRemove(
-						this,
-						RequirementsPackage.INTERFACE__PROVIDING_REQUIREMENTS,
-						Interface.class, msgs);
+				msgs = ((InternalEObject) providedInterface)
+						.eInverseRemove(
+								this,
+								RequirementsPackage.INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES,
+								Interface.class, msgs);
 			if (newProvidedInterface != null)
-				msgs = ((InternalEObject) newProvidedInterface).eInverseAdd(
-						this,
-						RequirementsPackage.INTERFACE__PROVIDING_REQUIREMENTS,
-						Interface.class, msgs);
+				msgs = ((InternalEObject) newProvidedInterface)
+						.eInverseAdd(
+								this,
+								RequirementsPackage.INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES,
+								Interface.class, msgs);
 			msgs = basicSetProvidedInterface(newProvidedInterface, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -762,15 +753,17 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 		if (newRequiredInterface != requiredInterface) {
 			NotificationChain msgs = null;
 			if (requiredInterface != null)
-				msgs = ((InternalEObject) requiredInterface).eInverseRemove(
-						this,
-						RequirementsPackage.INTERFACE__REQUIRING_REQUIREMENTS,
-						Interface.class, msgs);
+				msgs = ((InternalEObject) requiredInterface)
+						.eInverseRemove(
+								this,
+								RequirementsPackage.INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES,
+								Interface.class, msgs);
 			if (newRequiredInterface != null)
-				msgs = ((InternalEObject) newRequiredInterface).eInverseAdd(
-						this,
-						RequirementsPackage.INTERFACE__REQUIRING_REQUIREMENTS,
-						Interface.class, msgs);
+				msgs = ((InternalEObject) newRequiredInterface)
+						.eInverseAdd(
+								this,
+								RequirementsPackage.INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES,
+								Interface.class, msgs);
 			msgs = basicSetRequiredInterface(newRequiredInterface, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -778,81 +771,6 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 			eNotify(new ENotificationImpl(this, Notification.SET,
 					DataProcessPackage.DATA_PROCESS_SPACE__REQUIRED_INTERFACE,
 					newRequiredInterface, newRequiredInterface));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DataFlow getDataFlow() {
-		if (dataFlow != null && dataFlow.eIsProxy()) {
-			InternalEObject oldDataFlow = (InternalEObject) dataFlow;
-			dataFlow = (DataFlow) eResolveProxy(oldDataFlow);
-			if (dataFlow != oldDataFlow) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							DataProcessPackage.DATA_PROCESS_SPACE__DATA_FLOW,
-							oldDataFlow, dataFlow));
-			}
-		}
-		return dataFlow;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DataFlow basicGetDataFlow() {
-		return dataFlow;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDataFlow(DataFlow newDataFlow,
-			NotificationChain msgs) {
-		DataFlow oldDataFlow = dataFlow;
-		dataFlow = newDataFlow;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET,
-					DataProcessPackage.DATA_PROCESS_SPACE__DATA_FLOW,
-					oldDataFlow, newDataFlow);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDataFlow(DataFlow newDataFlow) {
-		if (newDataFlow != dataFlow) {
-			NotificationChain msgs = null;
-			if (dataFlow != null)
-				msgs = ((InternalEObject) dataFlow).eInverseRemove(this,
-						RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS,
-						DataFlow.class, msgs);
-			if (newDataFlow != null)
-				msgs = ((InternalEObject) newDataFlow).eInverseAdd(this,
-						RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS,
-						DataFlow.class, msgs);
-			msgs = basicSetDataFlow(newDataFlow, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					DataProcessPackage.DATA_PROCESS_SPACE__DATA_FLOW,
-					newDataFlow, newDataFlow));
 	}
 
 	/**
@@ -1269,8 +1187,8 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetSpecifiedFeature((Feature) otherEnd, msgs);
-		case DataProcessPackage.DATA_PROCESS_SPACE__DEFINING_DATA:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDefiningData())
+		case DataProcessPackage.DATA_PROCESS_SPACE__HANDLING_DATA:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getHandlingData())
 					.basicAdd(otherEnd, msgs);
 		case DataProcessPackage.DATA_PROCESS_SPACE__REALIZED_METHOD:
 			if (realizedMethod != null)
@@ -1282,24 +1200,20 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 			return basicSetRealizedMethod((NumericalMethod) otherEnd, msgs);
 		case DataProcessPackage.DATA_PROCESS_SPACE__PROVIDED_INTERFACE:
 			if (providedInterface != null)
-				msgs = ((InternalEObject) providedInterface).eInverseRemove(
-						this,
-						RequirementsPackage.INTERFACE__PROVIDING_REQUIREMENTS,
-						Interface.class, msgs);
+				msgs = ((InternalEObject) providedInterface)
+						.eInverseRemove(
+								this,
+								RequirementsPackage.INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES,
+								Interface.class, msgs);
 			return basicSetProvidedInterface((Interface) otherEnd, msgs);
 		case DataProcessPackage.DATA_PROCESS_SPACE__REQUIRED_INTERFACE:
 			if (requiredInterface != null)
-				msgs = ((InternalEObject) requiredInterface).eInverseRemove(
-						this,
-						RequirementsPackage.INTERFACE__REQUIRING_REQUIREMENTS,
-						Interface.class, msgs);
+				msgs = ((InternalEObject) requiredInterface)
+						.eInverseRemove(
+								this,
+								RequirementsPackage.INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES,
+								Interface.class, msgs);
 			return basicSetRequiredInterface((Interface) otherEnd, msgs);
-		case DataProcessPackage.DATA_PROCESS_SPACE__DATA_FLOW:
-			if (dataFlow != null)
-				msgs = ((InternalEObject) dataFlow).eInverseRemove(this,
-						RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS,
-						DataFlow.class, msgs);
-			return basicSetDataFlow((DataFlow) otherEnd, msgs);
 		case DataProcessPackage.DATA_PROCESS_SPACE__PREDECESSOR:
 			if (predecessor != null)
 				msgs = ((InternalEObject) predecessor).eInverseRemove(this,
@@ -1360,8 +1274,8 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 			return basicSetRefinedRequirement(null, msgs);
 		case DataProcessPackage.DATA_PROCESS_SPACE__SPECIFIED_FEATURE:
 			return basicSetSpecifiedFeature(null, msgs);
-		case DataProcessPackage.DATA_PROCESS_SPACE__DEFINING_DATA:
-			return ((InternalEList<?>) getDefiningData()).basicRemove(otherEnd,
+		case DataProcessPackage.DATA_PROCESS_SPACE__HANDLING_DATA:
+			return ((InternalEList<?>) getHandlingData()).basicRemove(otherEnd,
 					msgs);
 		case DataProcessPackage.DATA_PROCESS_SPACE__REALIZED_METHOD:
 			return basicSetRealizedMethod(null, msgs);
@@ -1369,8 +1283,6 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 			return basicSetProvidedInterface(null, msgs);
 		case DataProcessPackage.DATA_PROCESS_SPACE__REQUIRED_INTERFACE:
 			return basicSetRequiredInterface(null, msgs);
-		case DataProcessPackage.DATA_PROCESS_SPACE__DATA_FLOW:
-			return basicSetDataFlow(null, msgs);
 		case DataProcessPackage.DATA_PROCESS_SPACE__PREDECESSOR:
 			return basicSetPredecessor(null, msgs);
 		case DataProcessPackage.DATA_PROCESS_SPACE__SUCCESSOR:
@@ -1447,8 +1359,8 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 			if (resolve)
 				return getSpecifiedFeature();
 			return basicGetSpecifiedFeature();
-		case DataProcessPackage.DATA_PROCESS_SPACE__DEFINING_DATA:
-			return getDefiningData();
+		case DataProcessPackage.DATA_PROCESS_SPACE__HANDLING_DATA:
+			return getHandlingData();
 		case DataProcessPackage.DATA_PROCESS_SPACE__REALIZED_METHOD:
 			if (resolve)
 				return getRealizedMethod();
@@ -1461,10 +1373,6 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 			if (resolve)
 				return getRequiredInterface();
 			return basicGetRequiredInterface();
-		case DataProcessPackage.DATA_PROCESS_SPACE__DATA_FLOW:
-			if (resolve)
-				return getDataFlow();
-			return basicGetDataFlow();
 		case DataProcessPackage.DATA_PROCESS_SPACE__PREDECESSOR:
 			if (resolve)
 				return getPredecessor();
@@ -1517,9 +1425,9 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 		case DataProcessPackage.DATA_PROCESS_SPACE__SPECIFIED_FEATURE:
 			setSpecifiedFeature((Feature) newValue);
 			return;
-		case DataProcessPackage.DATA_PROCESS_SPACE__DEFINING_DATA:
-			getDefiningData().clear();
-			getDefiningData().addAll(
+		case DataProcessPackage.DATA_PROCESS_SPACE__HANDLING_DATA:
+			getHandlingData().clear();
+			getHandlingData().addAll(
 					(Collection<? extends DataDefinition>) newValue);
 			return;
 		case DataProcessPackage.DATA_PROCESS_SPACE__REALIZED_METHOD:
@@ -1530,9 +1438,6 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 			return;
 		case DataProcessPackage.DATA_PROCESS_SPACE__REQUIRED_INTERFACE:
 			setRequiredInterface((Interface) newValue);
-			return;
-		case DataProcessPackage.DATA_PROCESS_SPACE__DATA_FLOW:
-			setDataFlow((DataFlow) newValue);
 			return;
 		case DataProcessPackage.DATA_PROCESS_SPACE__PREDECESSOR:
 			setPredecessor((scrm.requirements.dataProcess.Process) newValue);
@@ -1581,8 +1486,8 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 		case DataProcessPackage.DATA_PROCESS_SPACE__SPECIFIED_FEATURE:
 			setSpecifiedFeature((Feature) null);
 			return;
-		case DataProcessPackage.DATA_PROCESS_SPACE__DEFINING_DATA:
-			getDefiningData().clear();
+		case DataProcessPackage.DATA_PROCESS_SPACE__HANDLING_DATA:
+			getHandlingData().clear();
 			return;
 		case DataProcessPackage.DATA_PROCESS_SPACE__REALIZED_METHOD:
 			setRealizedMethod((NumericalMethod) null);
@@ -1592,9 +1497,6 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 			return;
 		case DataProcessPackage.DATA_PROCESS_SPACE__REQUIRED_INTERFACE:
 			setRequiredInterface((Interface) null);
-			return;
-		case DataProcessPackage.DATA_PROCESS_SPACE__DATA_FLOW:
-			setDataFlow((DataFlow) null);
 			return;
 		case DataProcessPackage.DATA_PROCESS_SPACE__PREDECESSOR:
 			setPredecessor((scrm.requirements.dataProcess.Process) null);
@@ -1636,16 +1538,14 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 			return basicGetRefinedRequirement() != null;
 		case DataProcessPackage.DATA_PROCESS_SPACE__SPECIFIED_FEATURE:
 			return basicGetSpecifiedFeature() != null;
-		case DataProcessPackage.DATA_PROCESS_SPACE__DEFINING_DATA:
-			return definingData != null && !definingData.isEmpty();
+		case DataProcessPackage.DATA_PROCESS_SPACE__HANDLING_DATA:
+			return handlingData != null && !handlingData.isEmpty();
 		case DataProcessPackage.DATA_PROCESS_SPACE__REALIZED_METHOD:
 			return realizedMethod != null;
 		case DataProcessPackage.DATA_PROCESS_SPACE__PROVIDED_INTERFACE:
 			return providedInterface != null;
 		case DataProcessPackage.DATA_PROCESS_SPACE__REQUIRED_INTERFACE:
 			return requiredInterface != null;
-		case DataProcessPackage.DATA_PROCESS_SPACE__DATA_FLOW:
-			return dataFlow != null;
 		case DataProcessPackage.DATA_PROCESS_SPACE__PREDECESSOR:
 			return predecessor != null;
 		case DataProcessPackage.DATA_PROCESS_SPACE__SUCCESSOR:
@@ -1686,8 +1586,8 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 				return RequirementsPackage.REQUIREMENT__REFINED_REQUIREMENT;
 			case DataProcessPackage.DATA_PROCESS_SPACE__SPECIFIED_FEATURE:
 				return RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE;
-			case DataProcessPackage.DATA_PROCESS_SPACE__DEFINING_DATA:
-				return RequirementsPackage.REQUIREMENT__DEFINING_DATA;
+			case DataProcessPackage.DATA_PROCESS_SPACE__HANDLING_DATA:
+				return RequirementsPackage.REQUIREMENT__HANDLING_DATA;
 			case DataProcessPackage.DATA_PROCESS_SPACE__REALIZED_METHOD:
 				return RequirementsPackage.REQUIREMENT__REALIZED_METHOD;
 			case DataProcessPackage.DATA_PROCESS_SPACE__PROVIDED_INTERFACE:
@@ -1700,8 +1600,6 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 		}
 		if (baseClass == scrm.requirements.dataProcess.Process.class) {
 			switch (derivedFeatureID) {
-			case DataProcessPackage.DATA_PROCESS_SPACE__DATA_FLOW:
-				return DataProcessPackage.PROCESS__DATA_FLOW;
 			case DataProcessPackage.DATA_PROCESS_SPACE__PREDECESSOR:
 				return DataProcessPackage.PROCESS__PREDECESSOR;
 			case DataProcessPackage.DATA_PROCESS_SPACE__SUCCESSOR:
@@ -1742,8 +1640,8 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 				return DataProcessPackage.DATA_PROCESS_SPACE__REFINED_REQUIREMENT;
 			case RequirementsPackage.REQUIREMENT__SPECIFIED_FEATURE:
 				return DataProcessPackage.DATA_PROCESS_SPACE__SPECIFIED_FEATURE;
-			case RequirementsPackage.REQUIREMENT__DEFINING_DATA:
-				return DataProcessPackage.DATA_PROCESS_SPACE__DEFINING_DATA;
+			case RequirementsPackage.REQUIREMENT__HANDLING_DATA:
+				return DataProcessPackage.DATA_PROCESS_SPACE__HANDLING_DATA;
 			case RequirementsPackage.REQUIREMENT__REALIZED_METHOD:
 				return DataProcessPackage.DATA_PROCESS_SPACE__REALIZED_METHOD;
 			case RequirementsPackage.REQUIREMENT__PROVIDED_INTERFACE:
@@ -1756,8 +1654,6 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 		}
 		if (baseClass == scrm.requirements.dataProcess.Process.class) {
 			switch (baseFeatureID) {
-			case DataProcessPackage.PROCESS__DATA_FLOW:
-				return DataProcessPackage.DATA_PROCESS_SPACE__DATA_FLOW;
 			case DataProcessPackage.PROCESS__PREDECESSOR:
 				return DataProcessPackage.DATA_PROCESS_SPACE__PREDECESSOR;
 			case DataProcessPackage.PROCESS__SUCCESSOR:

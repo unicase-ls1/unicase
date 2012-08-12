@@ -90,24 +90,6 @@ public interface RequirementsFactory extends EFactory {
 	Performance createPerformance();
 
 	/**
-	 * Returns a new object of class '<em>Data Flow</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Data Flow</em>'.
-	 * @generated
-	 */
-	DataFlow createDataFlow();
-
-	/**
-	 * Returns a new object of class '<em>Data Definition</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Data Definition</em>'.
-	 * @generated
-	 */
-	DataDefinition createDataDefinition();
-
-	/**
 	 * Returns a new object of class '<em>Requirement Space</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
