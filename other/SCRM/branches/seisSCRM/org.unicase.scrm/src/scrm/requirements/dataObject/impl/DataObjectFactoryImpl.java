@@ -13,10 +13,12 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import scrm.requirements.dataObject.ComputationalMesh;
+import scrm.requirements.dataObject.ControlParameter;
 import scrm.requirements.dataObject.DataDefinition;
 import scrm.requirements.dataObject.DataObjectFactory;
 import scrm.requirements.dataObject.DataObjectPackage;
 import scrm.requirements.dataObject.SeismicSource;
+import scrm.requirements.dataObject.Station;
 import scrm.requirements.dataObject.SyntheticSeismogram;
 
 /**
@@ -72,6 +74,10 @@ public class DataObjectFactoryImpl extends EFactoryImpl implements
 			return createComputationalMesh();
 		case DataObjectPackage.SYNTHETIC_SEISMOGRAM:
 			return createSyntheticSeismogram();
+		case DataObjectPackage.STATION:
+			return createStation();
+		case DataObjectPackage.CONTROL_PARAMETER:
+			return createControlParameter();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -116,6 +122,26 @@ public class DataObjectFactoryImpl extends EFactoryImpl implements
 	public SyntheticSeismogram createSyntheticSeismogram() {
 		SyntheticSeismogramImpl syntheticSeismogram = new SyntheticSeismogramImpl();
 		return syntheticSeismogram;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Station createStation() {
+		StationImpl station = new StationImpl();
+		return station;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ControlParameter createControlParameter() {
+		ControlParameterImpl controlParameter = new ControlParameterImpl();
+		return controlParameter;
 	}
 
 	/**

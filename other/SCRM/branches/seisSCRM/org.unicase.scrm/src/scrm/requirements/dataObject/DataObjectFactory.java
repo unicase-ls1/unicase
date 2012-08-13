@@ -63,6 +63,24 @@ public interface DataObjectFactory extends EFactory {
 	SyntheticSeismogram createSyntheticSeismogram();
 
 	/**
+	 * Returns a new object of class '<em>Station</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Station</em>'.
+	 * @generated
+	 */
+	Station createStation();
+
+	/**
+	 * Returns a new object of class '<em>Control Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Control Parameter</em>'.
+	 * @generated
+	 */
+	ControlParameter createControlParameter();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

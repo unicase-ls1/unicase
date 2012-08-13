@@ -14,9 +14,11 @@ import org.eclipse.emf.ecore.EObject;
 import scrm.SCRMModelElement;
 import scrm.requirements.IRequirement;
 import scrm.requirements.dataObject.ComputationalMesh;
+import scrm.requirements.dataObject.ControlParameter;
 import scrm.requirements.dataObject.DataDefinition;
 import scrm.requirements.dataObject.DataObjectPackage;
 import scrm.requirements.dataObject.SeismicSource;
+import scrm.requirements.dataObject.Station;
 import scrm.requirements.dataObject.SyntheticSeismogram;
 
 /**
@@ -92,6 +94,16 @@ public class DataObjectAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseSyntheticSeismogram(SyntheticSeismogram object) {
 			return createSyntheticSeismogramAdapter();
+		}
+
+		@Override
+		public Adapter caseStation(Station object) {
+			return createStationAdapter();
+		}
+
+		@Override
+		public Adapter caseControlParameter(ControlParameter object) {
+			return createControlParameterAdapter();
 		}
 
 		@Override
@@ -176,6 +188,34 @@ public class DataObjectAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSyntheticSeismogramAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link scrm.requirements.dataObject.Station <em>Station</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see scrm.requirements.dataObject.Station
+	 * @generated
+	 */
+	public Adapter createStationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link scrm.requirements.dataObject.ControlParameter <em>Control Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see scrm.requirements.dataObject.ControlParameter
+	 * @generated
+	 */
+	public Adapter createControlParameterAdapter() {
 		return null;
 	}
 

@@ -72,6 +72,7 @@ public class DataProcessSpaceItemProvider extends SCRMModelElementItemProvider
 			addSuccessorPropertyDescriptor(object);
 			addErrorHandlingPropertyDescriptor(object);
 			addStatusMonitoringPropertyDescriptor(object);
+			addControlParametersPropertyDescriptor(object);
 			addContainedDataProcessStepsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -324,6 +325,25 @@ public class DataProcessSpaceItemProvider extends SCRMModelElementItemProvider
 						"_UI_Process_statusMonitoring_feature",
 						"_UI_Process_type"),
 				DataProcessPackage.Literals.PROCESS__STATUS_MONITORING, true,
+				false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Control Parameters feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addControlParametersPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Process_controlParameters_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Process_controlParameters_feature",
+						"_UI_Process_type"),
+				DataProcessPackage.Literals.PROCESS__CONTROL_PARAMETERS, true,
 				false, true, null, null, null));
 	}
 

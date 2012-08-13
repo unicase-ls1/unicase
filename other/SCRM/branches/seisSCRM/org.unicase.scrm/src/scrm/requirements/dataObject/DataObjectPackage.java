@@ -535,6 +535,197 @@ public interface DataObjectPackage extends EPackage {
 	int SYNTHETIC_SEISMOGRAM_FEATURE_COUNT = DATA_DEFINITION_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link scrm.requirements.dataObject.impl.StationImpl <em>Station</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see scrm.requirements.dataObject.impl.StationImpl
+	 * @see scrm.requirements.dataObject.impl.DataObjectPackageImpl#getStation()
+	 * @generated
+	 */
+	int STATION = 4;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION__NAME = DATA_DEFINITION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION__DESCRIPTION = DATA_DEFINITION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION__DISPLAYING_DIAGRAMS = DATA_DEFINITION__DISPLAYING_DIAGRAMS;
+
+	/**
+	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION__CONTAINING_REQUIREMENT_SPACE = DATA_DEFINITION__CONTAINING_REQUIREMENT_SPACE;
+
+	/**
+	 * The feature id for the '<em><b>Defined Requirement</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION__DEFINED_REQUIREMENT = DATA_DEFINITION__DEFINED_REQUIREMENT;
+
+	/**
+	 * The feature id for the '<em><b>Accuracy</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION__ACCURACY = DATA_DEFINITION__ACCURACY;
+
+	/**
+	 * The feature id for the '<em><b>Range</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION__RANGE = DATA_DEFINITION__RANGE;
+
+	/**
+	 * The feature id for the '<em><b>Format</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION__FORMAT = DATA_DEFINITION__FORMAT;
+
+	/**
+	 * The feature id for the '<em><b>Provided Interface</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION__PROVIDED_INTERFACE = DATA_DEFINITION__PROVIDED_INTERFACE;
+
+	/**
+	 * The feature id for the '<em><b>Required Interface</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION__REQUIRED_INTERFACE = DATA_DEFINITION__REQUIRED_INTERFACE;
+
+	/**
+	 * The feature id for the '<em><b>Described Model</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION__DESCRIBED_MODEL = DATA_DEFINITION__DESCRIBED_MODEL;
+
+	/**
+	 * The number of structural features of the '<em>Station</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATION_FEATURE_COUNT = DATA_DEFINITION_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link scrm.requirements.dataObject.impl.ControlParameterImpl <em>Control Parameter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see scrm.requirements.dataObject.impl.ControlParameterImpl
+	 * @see scrm.requirements.dataObject.impl.DataObjectPackageImpl#getControlParameter()
+	 * @generated
+	 */
+	int CONTROL_PARAMETER = 5;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_PARAMETER__NAME = RequirementsPackage.IREQUIREMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_PARAMETER__DESCRIPTION = RequirementsPackage.IREQUIREMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_PARAMETER__DISPLAYING_DIAGRAMS = RequirementsPackage.IREQUIREMENT__DISPLAYING_DIAGRAMS;
+
+	/**
+	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_PARAMETER__CONTAINING_REQUIREMENT_SPACE = RequirementsPackage.IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE;
+
+	/**
+	 * The feature id for the '<em><b>Controlled Process</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_PARAMETER__CONTROLLED_PROCESS = RequirementsPackage.IREQUIREMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Format</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_PARAMETER__FORMAT = RequirementsPackage.IREQUIREMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Control Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_PARAMETER_FEATURE_COUNT = RequirementsPackage.IREQUIREMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * Returns the meta object for class '{@link scrm.requirements.dataObject.DataDefinition <em>Data Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -650,6 +841,48 @@ public interface DataObjectPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getSyntheticSeismogram();
+
+	/**
+	 * Returns the meta object for class '{@link scrm.requirements.dataObject.Station <em>Station</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Station</em>'.
+	 * @see scrm.requirements.dataObject.Station
+	 * @generated
+	 */
+	EClass getStation();
+
+	/**
+	 * Returns the meta object for class '{@link scrm.requirements.dataObject.ControlParameter <em>Control Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Control Parameter</em>'.
+	 * @see scrm.requirements.dataObject.ControlParameter
+	 * @generated
+	 */
+	EClass getControlParameter();
+
+	/**
+	 * Returns the meta object for the reference '{@link scrm.requirements.dataObject.ControlParameter#getControlledProcess <em>Controlled Process</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Controlled Process</em>'.
+	 * @see scrm.requirements.dataObject.ControlParameter#getControlledProcess()
+	 * @see #getControlParameter()
+	 * @generated
+	 */
+	EReference getControlParameter_ControlledProcess();
+
+	/**
+	 * Returns the meta object for the attribute '{@link scrm.requirements.dataObject.ControlParameter#getFormat <em>Format</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Format</em>'.
+	 * @see scrm.requirements.dataObject.ControlParameter#getFormat()
+	 * @see #getControlParameter()
+	 * @generated
+	 */
+	EAttribute getControlParameter_Format();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -774,6 +1007,44 @@ public interface DataObjectPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SYNTHETIC_SEISMOGRAM = eINSTANCE.getSyntheticSeismogram();
+
+		/**
+		 * The meta object literal for the '{@link scrm.requirements.dataObject.impl.StationImpl <em>Station</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see scrm.requirements.dataObject.impl.StationImpl
+		 * @see scrm.requirements.dataObject.impl.DataObjectPackageImpl#getStation()
+		 * @generated
+		 */
+		EClass STATION = eINSTANCE.getStation();
+
+		/**
+		 * The meta object literal for the '{@link scrm.requirements.dataObject.impl.ControlParameterImpl <em>Control Parameter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see scrm.requirements.dataObject.impl.ControlParameterImpl
+		 * @see scrm.requirements.dataObject.impl.DataObjectPackageImpl#getControlParameter()
+		 * @generated
+		 */
+		EClass CONTROL_PARAMETER = eINSTANCE.getControlParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Controlled Process</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONTROL_PARAMETER__CONTROLLED_PROCESS = eINSTANCE
+				.getControlParameter_ControlledProcess();
+
+		/**
+		 * The meta object literal for the '<em><b>Format</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONTROL_PARAMETER__FORMAT = eINSTANCE
+				.getControlParameter_Format();
 
 	}
 

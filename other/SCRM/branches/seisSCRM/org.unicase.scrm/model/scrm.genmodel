@@ -167,6 +167,8 @@
               ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataProcess/Process/errorHandling"/>
           <genFeatures notify="false" createChild="false" propertySortChoices="true"
               ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataProcess/Process/statusMonitoring"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataProcess/Process/controlParameters"/>
         </genClasses>
         <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/InputDataReading"/>
         <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/ResultsOutput"/>
@@ -204,6 +206,12 @@
         <genClasses ecoreClass="scrm.ecore#//requirements/dataObject/SeismicSource"/>
         <genClasses ecoreClass="scrm.ecore#//requirements/dataObject/ComputationalMesh"/>
         <genClasses ecoreClass="scrm.ecore#//requirements/dataObject/SyntheticSeismogram"/>
+        <genClasses ecoreClass="scrm.ecore#//requirements/dataObject/Station"/>
+        <genClasses ecoreClass="scrm.ecore#//requirements/dataObject/ControlParameter">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataObject/ControlParameter/controlledProcess"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//requirements/dataObject/ControlParameter/format"/>
+        </genClasses>
       </nestedGenPackages>
     </nestedGenPackages>
   </genPackages>

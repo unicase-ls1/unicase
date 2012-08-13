@@ -20,10 +20,12 @@ import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.impl.KnowledgePackageImpl;
 import scrm.requirements.RequirementsPackage;
 import scrm.requirements.dataObject.ComputationalMesh;
+import scrm.requirements.dataObject.ControlParameter;
 import scrm.requirements.dataObject.DataDefinition;
 import scrm.requirements.dataObject.DataObjectFactory;
 import scrm.requirements.dataObject.DataObjectPackage;
 import scrm.requirements.dataObject.SeismicSource;
+import scrm.requirements.dataObject.Station;
 import scrm.requirements.dataObject.SyntheticSeismogram;
 import scrm.requirements.dataProcess.DataProcessPackage;
 import scrm.requirements.dataProcess.impl.DataProcessPackageImpl;
@@ -64,6 +66,20 @@ public class DataObjectPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	private EClass syntheticSeismogramEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass controlParameterEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -269,6 +285,44 @@ public class DataObjectPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getStation() {
+		return stationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getControlParameter() {
+		return controlParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getControlParameter_ControlledProcess() {
+		return (EReference) controlParameterEClass.getEStructuralFeatures()
+				.get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getControlParameter_Format() {
+		return (EAttribute) controlParameterEClass.getEStructuralFeatures()
+				.get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DataObjectFactory getDataObjectFactory() {
 		return (DataObjectFactory) getEFactoryInstance();
 	}
@@ -310,6 +364,13 @@ public class DataObjectPackageImpl extends EPackageImpl implements
 		computationalMeshEClass = createEClass(COMPUTATIONAL_MESH);
 
 		syntheticSeismogramEClass = createEClass(SYNTHETIC_SEISMOGRAM);
+
+		stationEClass = createEClass(STATION);
+
+		controlParameterEClass = createEClass(CONTROL_PARAMETER);
+		createEReference(controlParameterEClass,
+				CONTROL_PARAMETER__CONTROLLED_PROCESS);
+		createEAttribute(controlParameterEClass, CONTROL_PARAMETER__FORMAT);
 	}
 
 	/**
@@ -343,6 +404,8 @@ public class DataObjectPackageImpl extends EPackageImpl implements
 				.getEPackage(EcorePackage.eNS_URI);
 		KnowledgePackage theKnowledgePackage = (KnowledgePackage) EPackage.Registry.INSTANCE
 				.getEPackage(KnowledgePackage.eNS_URI);
+		DataProcessPackage theDataProcessPackage = (DataProcessPackage) EPackage.Registry.INSTANCE
+				.getEPackage(DataProcessPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -355,6 +418,9 @@ public class DataObjectPackageImpl extends EPackageImpl implements
 		computationalMeshEClass.getESuperTypes().add(this.getDataDefinition());
 		syntheticSeismogramEClass.getESuperTypes()
 				.add(this.getDataDefinition());
+		stationEClass.getESuperTypes().add(this.getDataDefinition());
+		controlParameterEClass.getESuperTypes().add(
+				theRequirementsPackage.getIRequirement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(dataDefinitionEClass, DataDefinition.class,
@@ -414,6 +480,24 @@ public class DataObjectPackageImpl extends EPackageImpl implements
 				"SyntheticSeismogram", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(stationEClass, Station.class, "Station", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(controlParameterEClass, ControlParameter.class,
+				"ControlParameter", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getControlParameter_ControlledProcess(),
+				theDataProcessPackage.getProcess(),
+				theDataProcessPackage.getProcess_ControlParameters(),
+				"controlledProcess", null, 0, 1, ControlParameter.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getControlParameter_Format(), ecorePackage.getEString(),
+				"format", null, 0, 1, ControlParameter.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+
 		// Create annotations
 		// org.unicase.ui.meeditor
 		createOrgAnnotations();
@@ -437,6 +521,8 @@ public class DataObjectPackageImpl extends EPackageImpl implements
 				"position", "left", "priority", "8" });
 		addAnnotation(getDataDefinition_DescribedModel(), source, new String[] {
 				"position", "right", "priority", "8" });
+		addAnnotation(getControlParameter_Format(), source, new String[] {
+				"position", "left", "priority", "8" });
 	}
 
 } //DataObjectPackageImpl

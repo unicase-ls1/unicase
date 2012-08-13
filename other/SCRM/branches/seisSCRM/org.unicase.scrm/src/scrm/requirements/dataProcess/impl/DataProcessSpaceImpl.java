@@ -32,6 +32,7 @@ import scrm.requirements.Interface;
 import scrm.requirements.Requirement;
 import scrm.requirements.RequirementSpace;
 import scrm.requirements.RequirementsPackage;
+import scrm.requirements.dataObject.ControlParameter;
 import scrm.requirements.dataObject.DataDefinition;
 import scrm.requirements.dataObject.DataObjectPackage;
 import scrm.requirements.dataProcess.DataProcessPackage;
@@ -61,6 +62,7 @@ import scrm.requirements.dataProcess.StatusMonitoring;
  *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getContainingDataProcessSpace <em>Containing Data Process Space</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getErrorHandling <em>Error Handling</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getStatusMonitoring <em>Status Monitoring</em>}</li>
+ *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getControlParameters <em>Control Parameters</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl#getContainedDataProcessSteps <em>Contained Data Process Steps</em>}</li>
  * </ul>
  * </p>
@@ -168,6 +170,16 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 	 * @ordered
 	 */
 	protected StatusMonitoring statusMonitoring;
+
+	/**
+	 * The cached value of the '{@link #getControlParameters() <em>Control Parameters</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getControlParameters()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ControlParameter> controlParameters;
 
 	/**
 	 * The cached value of the '{@link #getContainedDataProcessSteps() <em>Contained Data Process Steps</em>}' containment reference list.
@@ -1160,6 +1172,21 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ControlParameter> getControlParameters() {
+		if (controlParameters == null) {
+			controlParameters = new EObjectWithInverseResolvingEList<ControlParameter>(
+					ControlParameter.class, this,
+					DataProcessPackage.DATA_PROCESS_SPACE__CONTROL_PARAMETERS,
+					DataObjectPackage.CONTROL_PARAMETER__CONTROLLED_PROCESS);
+		}
+		return controlParameters;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
@@ -1247,6 +1274,9 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 								DataProcessPackage.STATUS_MONITORING__MONITORED_PROCESS,
 								StatusMonitoring.class, msgs);
 			return basicSetStatusMonitoring((StatusMonitoring) otherEnd, msgs);
+		case DataProcessPackage.DATA_PROCESS_SPACE__CONTROL_PARAMETERS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getControlParameters())
+					.basicAdd(otherEnd, msgs);
 		case DataProcessPackage.DATA_PROCESS_SPACE__CONTAINED_DATA_PROCESS_STEPS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getContainedDataProcessSteps())
 					.basicAdd(otherEnd, msgs);
@@ -1293,6 +1323,9 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 			return basicSetErrorHandling(null, msgs);
 		case DataProcessPackage.DATA_PROCESS_SPACE__STATUS_MONITORING:
 			return basicSetStatusMonitoring(null, msgs);
+		case DataProcessPackage.DATA_PROCESS_SPACE__CONTROL_PARAMETERS:
+			return ((InternalEList<?>) getControlParameters()).basicRemove(
+					otherEnd, msgs);
 		case DataProcessPackage.DATA_PROCESS_SPACE__CONTAINED_DATA_PROCESS_STEPS:
 			return ((InternalEList<?>) getContainedDataProcessSteps())
 					.basicRemove(otherEnd, msgs);
@@ -1393,6 +1426,8 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 			if (resolve)
 				return getStatusMonitoring();
 			return basicGetStatusMonitoring();
+		case DataProcessPackage.DATA_PROCESS_SPACE__CONTROL_PARAMETERS:
+			return getControlParameters();
 		case DataProcessPackage.DATA_PROCESS_SPACE__CONTAINED_DATA_PROCESS_STEPS:
 			return getContainedDataProcessSteps();
 		}
@@ -1454,6 +1489,11 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 		case DataProcessPackage.DATA_PROCESS_SPACE__STATUS_MONITORING:
 			setStatusMonitoring((StatusMonitoring) newValue);
 			return;
+		case DataProcessPackage.DATA_PROCESS_SPACE__CONTROL_PARAMETERS:
+			getControlParameters().clear();
+			getControlParameters().addAll(
+					(Collection<? extends ControlParameter>) newValue);
+			return;
 		case DataProcessPackage.DATA_PROCESS_SPACE__CONTAINED_DATA_PROCESS_STEPS:
 			getContainedDataProcessSteps().clear();
 			getContainedDataProcessSteps()
@@ -1513,6 +1553,9 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 		case DataProcessPackage.DATA_PROCESS_SPACE__STATUS_MONITORING:
 			setStatusMonitoring((StatusMonitoring) null);
 			return;
+		case DataProcessPackage.DATA_PROCESS_SPACE__CONTROL_PARAMETERS:
+			getControlParameters().clear();
+			return;
 		case DataProcessPackage.DATA_PROCESS_SPACE__CONTAINED_DATA_PROCESS_STEPS:
 			getContainedDataProcessSteps().clear();
 			return;
@@ -1556,6 +1599,8 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 			return errorHandling != null;
 		case DataProcessPackage.DATA_PROCESS_SPACE__STATUS_MONITORING:
 			return statusMonitoring != null;
+		case DataProcessPackage.DATA_PROCESS_SPACE__CONTROL_PARAMETERS:
+			return controlParameters != null && !controlParameters.isEmpty();
 		case DataProcessPackage.DATA_PROCESS_SPACE__CONTAINED_DATA_PROCESS_STEPS:
 			return containedDataProcessSteps != null
 					&& !containedDataProcessSteps.isEmpty();
@@ -1610,6 +1655,8 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 				return DataProcessPackage.PROCESS__ERROR_HANDLING;
 			case DataProcessPackage.DATA_PROCESS_SPACE__STATUS_MONITORING:
 				return DataProcessPackage.PROCESS__STATUS_MONITORING;
+			case DataProcessPackage.DATA_PROCESS_SPACE__CONTROL_PARAMETERS:
+				return DataProcessPackage.PROCESS__CONTROL_PARAMETERS;
 			default:
 				return -1;
 			}
@@ -1664,6 +1711,8 @@ public class DataProcessSpaceImpl extends SCRMModelElementImpl implements
 				return DataProcessPackage.DATA_PROCESS_SPACE__ERROR_HANDLING;
 			case DataProcessPackage.PROCESS__STATUS_MONITORING:
 				return DataProcessPackage.DATA_PROCESS_SPACE__STATUS_MONITORING;
+			case DataProcessPackage.PROCESS__CONTROL_PARAMETERS:
+				return DataProcessPackage.DATA_PROCESS_SPACE__CONTROL_PARAMETERS;
 			default:
 				return -1;
 			}

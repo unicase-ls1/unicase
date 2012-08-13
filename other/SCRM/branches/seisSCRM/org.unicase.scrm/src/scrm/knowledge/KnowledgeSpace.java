@@ -6,8 +6,6 @@
  */
 package scrm.knowledge;
 
-import org.eclipse.emf.common.util.EList;
-
 import scrm.SCRMModelElement;
 import scrm.SCRMSpace;
 import scrm.lists.SCRMSpaceContainedModelElementsList;
