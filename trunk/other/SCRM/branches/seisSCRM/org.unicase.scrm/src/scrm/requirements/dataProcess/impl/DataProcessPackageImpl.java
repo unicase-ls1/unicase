@@ -317,6 +317,15 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getProcess_ControlParameters() {
+		return (EReference) processEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDataProcessSpace() {
 		return dataProcessSpaceEClass;
 	}
@@ -402,6 +411,7 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 		createEReference(processEClass, PROCESS__CONTAINING_DATA_PROCESS_SPACE);
 		createEReference(processEClass, PROCESS__ERROR_HANDLING);
 		createEReference(processEClass, PROCESS__STATUS_MONITORING);
+		createEReference(processEClass, PROCESS__CONTROL_PARAMETERS);
 
 		inputDataReadingEClass = createEClass(INPUT_DATA_READING);
 
@@ -454,6 +464,8 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 		// Obtain other dependent packages
 		RequirementsPackage theRequirementsPackage = (RequirementsPackage) EPackage.Registry.INSTANCE
 				.getEPackage(RequirementsPackage.eNS_URI);
+		DataObjectPackage theDataObjectPackage = (DataObjectPackage) EPackage.Registry.INSTANCE
+				.getEPackage(DataObjectPackage.eNS_URI);
 		ScrmPackage theScrmPackage = (ScrmPackage) EPackage.Registry.INSTANCE
 				.getEPackage(ScrmPackage.eNS_URI);
 
@@ -507,6 +519,13 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 				this.getStatusMonitoring(),
 				this.getStatusMonitoring_MonitoredProcess(),
 				"statusMonitoring", null, 0, 1,
+				scrm.requirements.dataProcess.Process.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProcess_ControlParameters(),
+				theDataObjectPackage.getControlParameter(),
+				theDataObjectPackage.getControlParameter_ControlledProcess(),
+				"controlParameters", null, 0, -1,
 				scrm.requirements.dataProcess.Process.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -583,6 +602,8 @@ public class DataProcessPackageImpl extends EPackageImpl implements
 				"position", "right", "priority", "20" });
 		addAnnotation(getProcess_StatusMonitoring(), source, new String[] {
 				"position", "right", "priority", "20" });
+		addAnnotation(getProcess_ControlParameters(), source, new String[] {
+				"position", "right", "priority", "10" });
 		addAnnotation(getDataProcessSpace_ContainedDataProcessSteps(), source,
 				new String[] { "position", "right", "priority", "5" });
 	}

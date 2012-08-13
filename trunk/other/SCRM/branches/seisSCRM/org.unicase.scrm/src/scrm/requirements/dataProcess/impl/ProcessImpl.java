@@ -6,13 +6,20 @@
  */
 package scrm.requirements.dataProcess.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
 
+import scrm.requirements.dataObject.ControlParameter;
+import scrm.requirements.dataObject.DataObjectPackage;
 import scrm.requirements.dataProcess.DataProcessPackage;
 import scrm.requirements.dataProcess.DataProcessSpace;
 import scrm.requirements.dataProcess.ErrorHandling;
@@ -31,6 +38,7 @@ import scrm.requirements.impl.RequirementImpl;
  *   <li>{@link scrm.requirements.dataProcess.impl.ProcessImpl#getContainingDataProcessSpace <em>Containing Data Process Space</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.impl.ProcessImpl#getErrorHandling <em>Error Handling</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.impl.ProcessImpl#getStatusMonitoring <em>Status Monitoring</em>}</li>
+ *   <li>{@link scrm.requirements.dataProcess.impl.ProcessImpl#getControlParameters <em>Control Parameters</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,6 +85,16 @@ public class ProcessImpl extends RequirementImpl implements
 	 * @ordered
 	 */
 	protected StatusMonitoring statusMonitoring;
+
+	/**
+	 * The cached value of the '{@link #getControlParameters() <em>Control Parameters</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getControlParameters()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ControlParameter> controlParameters;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -475,6 +493,22 @@ public class ProcessImpl extends RequirementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ControlParameter> getControlParameters() {
+		if (controlParameters == null) {
+			controlParameters = new EObjectWithInverseResolvingEList<ControlParameter>(
+					ControlParameter.class, this,
+					DataProcessPackage.PROCESS__CONTROL_PARAMETERS,
+					DataObjectPackage.CONTROL_PARAMETER__CONTROLLED_PROCESS);
+		}
+		return controlParameters;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
@@ -512,6 +546,9 @@ public class ProcessImpl extends RequirementImpl implements
 								DataProcessPackage.STATUS_MONITORING__MONITORED_PROCESS,
 								StatusMonitoring.class, msgs);
 			return basicSetStatusMonitoring((StatusMonitoring) otherEnd, msgs);
+		case DataProcessPackage.PROCESS__CONTROL_PARAMETERS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getControlParameters())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -535,6 +572,9 @@ public class ProcessImpl extends RequirementImpl implements
 			return basicSetErrorHandling(null, msgs);
 		case DataProcessPackage.PROCESS__STATUS_MONITORING:
 			return basicSetStatusMonitoring(null, msgs);
+		case DataProcessPackage.PROCESS__CONTROL_PARAMETERS:
+			return ((InternalEList<?>) getControlParameters()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -586,6 +626,8 @@ public class ProcessImpl extends RequirementImpl implements
 			if (resolve)
 				return getStatusMonitoring();
 			return basicGetStatusMonitoring();
+		case DataProcessPackage.PROCESS__CONTROL_PARAMETERS:
+			return getControlParameters();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -595,6 +637,7 @@ public class ProcessImpl extends RequirementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -612,6 +655,11 @@ public class ProcessImpl extends RequirementImpl implements
 			return;
 		case DataProcessPackage.PROCESS__STATUS_MONITORING:
 			setStatusMonitoring((StatusMonitoring) newValue);
+			return;
+		case DataProcessPackage.PROCESS__CONTROL_PARAMETERS:
+			getControlParameters().clear();
+			getControlParameters().addAll(
+					(Collection<? extends ControlParameter>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -640,6 +688,9 @@ public class ProcessImpl extends RequirementImpl implements
 		case DataProcessPackage.PROCESS__STATUS_MONITORING:
 			setStatusMonitoring((StatusMonitoring) null);
 			return;
+		case DataProcessPackage.PROCESS__CONTROL_PARAMETERS:
+			getControlParameters().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -662,6 +713,8 @@ public class ProcessImpl extends RequirementImpl implements
 			return errorHandling != null;
 		case DataProcessPackage.PROCESS__STATUS_MONITORING:
 			return statusMonitoring != null;
+		case DataProcessPackage.PROCESS__CONTROL_PARAMETERS:
+			return controlParameters != null && !controlParameters.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

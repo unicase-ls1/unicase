@@ -14,9 +14,11 @@ import org.eclipse.emf.ecore.EObject;
 import scrm.SCRMModelElement;
 import scrm.requirements.IRequirement;
 import scrm.requirements.dataObject.ComputationalMesh;
+import scrm.requirements.dataObject.ControlParameter;
 import scrm.requirements.dataObject.DataDefinition;
 import scrm.requirements.dataObject.DataObjectPackage;
 import scrm.requirements.dataObject.SeismicSource;
+import scrm.requirements.dataObject.Station;
 import scrm.requirements.dataObject.SyntheticSeismogram;
 
 /**
@@ -140,6 +142,30 @@ public class DataObjectSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case DataObjectPackage.STATION: {
+			Station station = (Station) theEObject;
+			T result = caseStation(station);
+			if (result == null)
+				result = caseDataDefinition(station);
+			if (result == null)
+				result = caseIRequirement(station);
+			if (result == null)
+				result = caseSCRMModelElement(station);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DataObjectPackage.CONTROL_PARAMETER: {
+			ControlParameter controlParameter = (ControlParameter) theEObject;
+			T result = caseControlParameter(controlParameter);
+			if (result == null)
+				result = caseIRequirement(controlParameter);
+			if (result == null)
+				result = caseSCRMModelElement(controlParameter);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -202,6 +228,36 @@ public class DataObjectSwitch<T> {
 	 * @generated
 	 */
 	public T caseSyntheticSeismogram(SyntheticSeismogram object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Station</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Station</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStation(Station object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Control Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Control Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseControlParameter(ControlParameter object) {
 		return null;
 	}
 

@@ -6,7 +6,10 @@
  */
 package scrm.requirements.dataProcess;
 
+import org.eclipse.emf.common.util.EList;
+
 import scrm.requirements.Requirement;
+import scrm.requirements.dataObject.ControlParameter;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,6 +24,7 @@ import scrm.requirements.Requirement;
  *   <li>{@link scrm.requirements.dataProcess.Process#getContainingDataProcessSpace <em>Containing Data Process Space</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.Process#getErrorHandling <em>Error Handling</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.Process#getStatusMonitoring <em>Status Monitoring</em>}</li>
+ *   <li>{@link scrm.requirements.dataProcess.Process#getControlParameters <em>Control Parameters</em>}</li>
  * </ul>
  * </p>
  *
@@ -173,5 +177,24 @@ public interface Process extends Requirement {
 	 * @generated
 	 */
 	void setStatusMonitoring(StatusMonitoring value);
+
+	/**
+	 * Returns the value of the '<em><b>Control Parameters</b></em>' reference list.
+	 * The list contents are of type {@link scrm.requirements.dataObject.ControlParameter}.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.dataObject.ControlParameter#getControlledProcess <em>Controlled Process</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Control Parameters</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Control Parameters</em>' reference list.
+	 * @see scrm.requirements.dataProcess.DataProcessPackage#getProcess_ControlParameters()
+	 * @see scrm.requirements.dataObject.ControlParameter#getControlledProcess
+	 * @model opposite="controlledProcess"
+	 *        annotation="org.unicase.ui.meeditor position='right' priority='10'"
+	 * @generated
+	 */
+	EList<ControlParameter> getControlParameters();
 
 } // Process

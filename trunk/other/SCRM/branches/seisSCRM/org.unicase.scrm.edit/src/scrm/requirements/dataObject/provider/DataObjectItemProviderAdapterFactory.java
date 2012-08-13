@@ -171,6 +171,53 @@ public class DataObjectItemProviderAdapterFactory extends
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link scrm.requirements.dataObject.Station} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StationItemProvider stationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link scrm.requirements.dataObject.Station}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStationAdapter() {
+		if (stationItemProvider == null) {
+			stationItemProvider = new StationItemProvider(this);
+		}
+
+		return stationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link scrm.requirements.dataObject.ControlParameter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ControlParameterItemProvider controlParameterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link scrm.requirements.dataObject.ControlParameter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createControlParameterAdapter() {
+		if (controlParameterItemProvider == null) {
+			controlParameterItemProvider = new ControlParameterItemProvider(
+					this);
+		}
+
+		return controlParameterItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -280,6 +327,10 @@ public class DataObjectItemProviderAdapterFactory extends
 			computationalMeshItemProvider.dispose();
 		if (syntheticSeismogramItemProvider != null)
 			syntheticSeismogramItemProvider.dispose();
+		if (stationItemProvider != null)
+			stationItemProvider.dispose();
+		if (controlParameterItemProvider != null)
+			controlParameterItemProvider.dispose();
 	}
 
 }

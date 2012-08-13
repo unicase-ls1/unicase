@@ -305,6 +305,16 @@ public class RequirementSpaceItemProvider extends SCRMModelElementItemProvider
 				.add(createChildParameter(
 						RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
 						DataObjectFactory.eINSTANCE.createSyntheticSeismogram()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+						DataObjectFactory.eINSTANCE.createStation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						RequirementsPackage.Literals.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
+						DataObjectFactory.eINSTANCE.createControlParameter()));
 	}
 
 	/**

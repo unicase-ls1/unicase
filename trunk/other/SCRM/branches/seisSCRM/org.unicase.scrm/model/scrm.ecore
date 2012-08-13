@@ -459,6 +459,13 @@
             <details key="priority" value="20"/>
           </eAnnotations>
         </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="controlParameters"
+            upperBound="-1" eType="#//requirements/dataObject/ControlParameter" eOpposite="#//requirements/dataObject/ControlParameter/controlledProcess">
+          <eAnnotations source="org.unicase.ui.meeditor">
+            <details key="position" value="right"/>
+            <details key="priority" value="10"/>
+          </eAnnotations>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="InputDataReading" eSuperTypes="#//requirements/dataProcess/Process"/>
       <eClassifiers xsi:type="ecore:EClass" name="ResultsOutput" eSuperTypes="#//requirements/dataProcess/Process"/>
@@ -528,6 +535,17 @@
       <eClassifiers xsi:type="ecore:EClass" name="SeismicSource" eSuperTypes="#//requirements/dataObject/DataDefinition"/>
       <eClassifiers xsi:type="ecore:EClass" name="ComputationalMesh" eSuperTypes="#//requirements/dataObject/DataDefinition"/>
       <eClassifiers xsi:type="ecore:EClass" name="SyntheticSeismogram" eSuperTypes="#//requirements/dataObject/DataDefinition"/>
+      <eClassifiers xsi:type="ecore:EClass" name="Station" eSuperTypes="#//requirements/dataObject/DataDefinition"/>
+      <eClassifiers xsi:type="ecore:EClass" name="ControlParameter" eSuperTypes="#//requirements/IRequirement">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="controlledProcess"
+            eType="#//requirements/dataProcess/Process" eOpposite="#//requirements/dataProcess/Process/controlParameters"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="format" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+          <eAnnotations source="org.unicase.ui.meeditor">
+            <details key="position" value="left"/>
+            <details key="priority" value="8"/>
+          </eAnnotations>
+        </eStructuralFeatures>
+      </eClassifiers>
     </eSubpackages>
   </eSubpackages>
 </ecore:EPackage>

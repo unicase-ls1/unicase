@@ -257,13 +257,22 @@ public interface DataProcessPackage extends EPackage {
 	int PROCESS__STATUS_MONITORING = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Control Parameters</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS__CONTROL_PARAMETERS = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Process</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_FEATURE_COUNT = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 5;
+	int PROCESS_FEATURE_COUNT = RequirementsPackage.REQUIREMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -408,6 +417,15 @@ public interface DataProcessPackage extends EPackage {
 	 * @ordered
 	 */
 	int INPUT_DATA_READING__STATUS_MONITORING = PROCESS__STATUS_MONITORING;
+
+	/**
+	 * The feature id for the '<em><b>Control Parameters</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_DATA_READING__CONTROL_PARAMETERS = PROCESS__CONTROL_PARAMETERS;
 
 	/**
 	 * The number of structural features of the '<em>Input Data Reading</em>' class.
@@ -563,6 +581,15 @@ public interface DataProcessPackage extends EPackage {
 	int RESULTS_OUTPUT__STATUS_MONITORING = PROCESS__STATUS_MONITORING;
 
 	/**
+	 * The feature id for the '<em><b>Control Parameters</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULTS_OUTPUT__CONTROL_PARAMETERS = PROCESS__CONTROL_PARAMETERS;
+
+	/**
 	 * The number of structural features of the '<em>Results Output</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -714,6 +741,15 @@ public interface DataProcessPackage extends EPackage {
 	 * @ordered
 	 */
 	int ERROR_HANDLING__STATUS_MONITORING = PROCESS__STATUS_MONITORING;
+
+	/**
+	 * The feature id for the '<em><b>Control Parameters</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ERROR_HANDLING__CONTROL_PARAMETERS = PROCESS__CONTROL_PARAMETERS;
 
 	/**
 	 * The feature id for the '<em><b>Handled Process</b></em>' reference.
@@ -876,6 +912,15 @@ public interface DataProcessPackage extends EPackage {
 	 * @ordered
 	 */
 	int STATUS_MONITORING__STATUS_MONITORING = PROCESS__STATUS_MONITORING;
+
+	/**
+	 * The feature id for the '<em><b>Control Parameters</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STATUS_MONITORING__CONTROL_PARAMETERS = PROCESS__CONTROL_PARAMETERS;
 
 	/**
 	 * The feature id for the '<em><b>Monitored Process</b></em>' reference.
@@ -1059,13 +1104,22 @@ public interface DataProcessPackage extends EPackage {
 	int DATA_PROCESS_SPACE__STATUS_MONITORING = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 12;
 
 	/**
+	 * The feature id for the '<em><b>Control Parameters</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_PROCESS_SPACE__CONTROL_PARAMETERS = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 13;
+
+	/**
 	 * The feature id for the '<em><b>Contained Data Process Steps</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE__CONTAINED_DATA_PROCESS_STEPS = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 13;
+	int DATA_PROCESS_SPACE__CONTAINED_DATA_PROCESS_STEPS = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 14;
 
 	/**
 	 * The number of structural features of the '<em>Space</em>' class.
@@ -1074,7 +1128,7 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_PROCESS_SPACE_FEATURE_COUNT = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 14;
+	int DATA_PROCESS_SPACE_FEATURE_COUNT = ScrmPackage.SCRM_SPACE_FEATURE_COUNT + 15;
 
 	/**
 	 * The meta object id for the '{@link scrm.requirements.dataProcess.impl.SolverImpl <em>Solver</em>}' class.
@@ -1229,6 +1283,15 @@ public interface DataProcessPackage extends EPackage {
 	 * @ordered
 	 */
 	int SOLVER__STATUS_MONITORING = PROCESS__STATUS_MONITORING;
+
+	/**
+	 * The feature id for the '<em><b>Control Parameters</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLVER__CONTROL_PARAMETERS = PROCESS__CONTROL_PARAMETERS;
 
 	/**
 	 * The number of structural features of the '<em>Solver</em>' class.
@@ -1394,6 +1457,15 @@ public interface DataProcessPackage extends EPackage {
 	int MESH_CREATION__STATUS_MONITORING = PROCESS__STATUS_MONITORING;
 
 	/**
+	 * The feature id for the '<em><b>Control Parameters</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESH_CREATION__CONTROL_PARAMETERS = PROCESS__CONTROL_PARAMETERS;
+
+	/**
 	 * The number of structural features of the '<em>Mesh Creation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1555,6 +1627,15 @@ public interface DataProcessPackage extends EPackage {
 	 * @ordered
 	 */
 	int PRE_PROCESSING__STATUS_MONITORING = PROCESS__STATUS_MONITORING;
+
+	/**
+	 * The feature id for the '<em><b>Control Parameters</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRE_PROCESSING__CONTROL_PARAMETERS = PROCESS__CONTROL_PARAMETERS;
 
 	/**
 	 * The number of structural features of the '<em>Pre Processing</em>' class.
@@ -1720,6 +1801,15 @@ public interface DataProcessPackage extends EPackage {
 	int POST_PROCESSING__STATUS_MONITORING = PROCESS__STATUS_MONITORING;
 
 	/**
+	 * The feature id for the '<em><b>Control Parameters</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POST_PROCESSING__CONTROL_PARAMETERS = PROCESS__CONTROL_PARAMETERS;
+
+	/**
 	 * The number of structural features of the '<em>Post Processing</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1854,6 +1944,17 @@ public interface DataProcessPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getProcess_StatusMonitoring();
+
+	/**
+	 * Returns the meta object for the reference list '{@link scrm.requirements.dataProcess.Process#getControlParameters <em>Control Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Control Parameters</em>'.
+	 * @see scrm.requirements.dataProcess.Process#getControlParameters()
+	 * @see #getProcess()
+	 * @generated
+	 */
+	EReference getProcess_ControlParameters();
 
 	/**
 	 * Returns the meta object for class '{@link scrm.requirements.dataProcess.DataProcessSpace <em>Space</em>}'.
@@ -2048,6 +2149,15 @@ public interface DataProcessPackage extends EPackage {
 		 */
 		EReference PROCESS__STATUS_MONITORING = eINSTANCE
 				.getProcess_StatusMonitoring();
+
+		/**
+		 * The meta object literal for the '<em><b>Control Parameters</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROCESS__CONTROL_PARAMETERS = eINSTANCE
+				.getProcess_ControlParameters();
 
 		/**
 		 * The meta object literal for the '{@link scrm.requirements.dataProcess.impl.DataProcessSpaceImpl <em>Space</em>}' class.
