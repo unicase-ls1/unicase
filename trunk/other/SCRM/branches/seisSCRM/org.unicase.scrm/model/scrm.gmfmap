@@ -49,14 +49,14 @@
     <ownedChild
         relatedDiagrams="//@diagram">
       <domainMetaElement
-          href="scrm.ecore#//knowledge/MathematicalModel"/>
+          href="scrm.ecore#//knowledge/Mathematical_GeophysicalModel"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
           viewPattern=""
           editorPattern=""
           editPattern="">
         <diagramLabel
-            href="scrm.gmfgraph#MathematicalModelNode_name"/>
+            href="scrm.gmfgraph#MathematicalModel_GeophysicalModelNode_name"/>
         <features
             href="scrm.ecore#//SCRMModelElement/name"/>
       </labelMappings>
@@ -66,35 +66,15 @@
           editorPattern="{0}"
           editPattern="{0}">
         <diagramLabel
-            href="scrm.gmfgraph#MathematicalModelNode_description"/>
+            href="scrm.gmfgraph#MathematicalModel_GeophysicalModelNode_description"/>
         <features
             href="scrm.ecore#//SCRMModelElement/description"/>
-      </labelMappings>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern="Theory: {0}"
-          editorPattern="{0}"
-          editPattern="{0}">
-        <diagramLabel
-            href="scrm.gmfgraph#MathematicalModelNode_theory"/>
-        <features
-            href="scrm.ecore#//knowledge/MathematicalModel/theory"/>
-      </labelMappings>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern="Mathematical Expression: {0}"
-          editorPattern="{0}"
-          editPattern="{0}">
-        <diagramLabel
-            href="scrm.gmfgraph#MathematicalModelNode_mathematicalExpression"/>
-        <features
-            href="scrm.ecore#//knowledge/MathematicalModel/mathematicalExpression"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
           href="scrm.gmftool#//@palette/@tools.0/@tools.1"/>
       <diagramNode
-          href="scrm.gmfgraph#MathematicalModelNode"/>
+          href="scrm.gmfgraph#Mathematical_GeophysicalModelNode"/>
     </ownedChild>
   </nodes>
   <nodes>
@@ -122,26 +102,6 @@
             href="scrm.gmfgraph#NumericalMethodNode_description"/>
         <features
             href="scrm.ecore#//SCRMModelElement/description"/>
-      </labelMappings>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern="Theory: {0}"
-          editorPattern="{0}"
-          editPattern="{0}">
-        <diagramLabel
-            href="scrm.gmfgraph#NumericalMethodNode_theory"/>
-        <features
-            href="scrm.ecore#//knowledge/NumericalMethod/theory"/>
-      </labelMappings>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern="Algorithm: {0}"
-          editorPattern="{0}"
-          editPattern="{0}">
-        <diagramLabel
-            href="scrm.gmfgraph#NumericalMethodNode_algorithm"/>
-        <features
-            href="scrm.ecore#//knowledge/NumericalMethod/algorithm"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
@@ -194,6 +154,39 @@
     <ownedChild
         relatedDiagrams="//@diagram">
       <domainMetaElement
+          href="scrm.ecore#//requirements/Requirement"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping">
+        <diagramLabel
+            href="scrm.gmfgraph#RequirementNode_name"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#RequirementNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="scrm.gmftool#//@palette/@tools.1/@tools.0"/>
+      <diagramNode
+          href="scrm.gmfgraph#RequirementNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="scrm.ecore#//SCRMDiagram/newElements"/>
+    <childrenFeature
+        href="scrm.ecore#//SCRMDiagram/elements"/>
+    <ownedChild
+        relatedDiagrams="//@diagram">
+      <domainMetaElement
           href="scrm.ecore#//requirements/Feature"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
@@ -217,7 +210,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.0"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.1"/>
       <diagramNode
           href="scrm.gmfgraph#FeatureNode"/>
     </ownedChild>
@@ -283,7 +276,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.1"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.2"/>
       <diagramNode
           href="scrm.gmfgraph#HardwareNode"/>
     </ownedChild>
@@ -319,7 +312,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.2"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.3"/>
       <diagramNode
           href="scrm.gmfgraph#ConstraintNode"/>
     </ownedChild>
@@ -355,7 +348,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.3"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.4"/>
       <diagramNode
           href="scrm.gmfgraph#UserInterfaceNode"/>
     </ownedChild>
@@ -389,21 +382,47 @@
         <features
             href="scrm.ecore#//SCRMModelElement/description"/>
       </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="scrm.gmftool#//@palette/@tools.1/@tools.5"/>
+      <diagramNode
+          href="scrm.gmfgraph#SoftwareInterfaceNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="scrm.ecore#//SCRMDiagram/newElements"/>
+    <childrenFeature
+        href="scrm.ecore#//SCRMDiagram/elements"/>
+    <ownedChild
+        relatedDiagrams="//@diagram">
+      <domainMetaElement
+          href="scrm.ecore#//requirements/Performance"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern="Data Types: {0}"
+          viewPattern=""
+          editorPattern=""
+          editPattern="">
+        <diagramLabel
+            href="scrm.gmfgraph#PerformanceNode_name"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
           editorPattern="{0}"
           editPattern="{0}">
         <diagramLabel
-            href="scrm.gmfgraph#SoftwareInterfaceNode_dataTypes"/>
+            href="scrm.gmfgraph#PerformanceNode_description"/>
         <features
-            href="scrm.ecore#//requirements/SoftwareInterface/dataTypes"/>
+            href="scrm.ecore#//SCRMModelElement/description"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.4"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.6"/>
       <diagramNode
-          href="scrm.gmfgraph#SoftwareInterfaceNode"/>
+          href="scrm.gmfgraph#PerformanceNode"/>
     </ownedChild>
   </nodes>
   <nodes>
@@ -437,167 +456,9 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.16"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.9"/>
       <diagramNode
           href="scrm.gmfgraph#ProcessNode"/>
-    </ownedChild>
-  </nodes>
-  <nodes>
-    <containmentFeature
-        href="scrm.ecore#//SCRMDiagram/newElements"/>
-    <childrenFeature
-        href="scrm.ecore#//SCRMDiagram/elements"/>
-    <ownedChild
-        relatedDiagrams="//@diagram">
-      <domainMetaElement
-          href="scrm.ecore#//requirements/Performance"/>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern=""
-          editorPattern=""
-          editPattern="">
-        <diagramLabel
-            href="scrm.gmfgraph#PerformanceNode_name"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/name"/>
-      </labelMappings>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern="Description: {0}"
-          editorPattern="{0}"
-          editPattern="{0}">
-        <diagramLabel
-            href="scrm.gmfgraph#PerformanceNode_description"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/description"/>
-      </labelMappings>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern="Problem Size: {0}"
-          editorPattern="{0}"
-          editPattern="{0}">
-        <diagramLabel
-            href="scrm.gmfgraph#PerformanceNode_problemSize"/>
-        <features
-            href="scrm.ecore#//requirements/Performance/problemSize"/>
-      </labelMappings>
-      <tool
-          xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.5"/>
-      <diagramNode
-          href="scrm.gmfgraph#PerformanceNode"/>
-    </ownedChild>
-  </nodes>
-  <nodes>
-    <containmentFeature
-        href="scrm.ecore#//SCRMDiagram/newElements"/>
-    <childrenFeature
-        href="scrm.ecore#//SCRMDiagram/elements"/>
-    <ownedChild
-        relatedDiagrams="//@diagram">
-      <domainMetaElement
-          href="scrm.ecore#//requirements/DataFlow"/>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern=""
-          editorPattern=""
-          editPattern="">
-        <diagramLabel
-            href="scrm.gmfgraph#DataFlowNode_name"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/name"/>
-      </labelMappings>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern="Description: {0}"
-          editorPattern="{0}"
-          editPattern="{0}">
-        <diagramLabel
-            href="scrm.gmfgraph#DataFlowNode_description"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/description"/>
-      </labelMappings>
-      <tool
-          xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.6"/>
-      <diagramNode
-          href="scrm.gmfgraph#DataFlowNode"/>
-    </ownedChild>
-  </nodes>
-  <nodes>
-    <containmentFeature
-        href="scrm.ecore#//SCRMDiagram/newElements"/>
-    <childrenFeature
-        href="scrm.ecore#//SCRMDiagram/elements"/>
-    <ownedChild
-        relatedDiagrams="//@diagram">
-      <domainMetaElement
-          href="scrm.ecore#//requirements/DataDefinition"/>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern=""
-          editorPattern=""
-          editPattern="">
-        <diagramLabel
-            href="scrm.gmfgraph#DataDefinitionNode_name"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/name"/>
-      </labelMappings>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern="Description: {0}"
-          editorPattern="{0}"
-          editPattern="{0}">
-        <diagramLabel
-            href="scrm.gmfgraph#DataDefinitionNode_description"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/description"/>
-      </labelMappings>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern="Accuracy: {0}"
-          editorPattern="{0}"
-          editPattern="{0}">
-        <diagramLabel
-            href="scrm.gmfgraph#DataDefinitionNode_accuracy"/>
-        <features
-            href="scrm.ecore#//requirements/DataDefinition/accuracy"/>
-      </labelMappings>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern="Format: {0}"
-          editorPattern="{0}"
-          editPattern="{0}">
-        <diagramLabel
-            href="scrm.gmfgraph#DataDefinitionNode_format"/>
-        <features
-            href="scrm.ecore#//requirements/DataDefinition/format"/>
-      </labelMappings>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern="Range: {0}"
-          editorPattern="{0}"
-          editPattern="{0}">
-        <diagramLabel
-            href="scrm.gmfgraph#DataDefinitionNode_range"/>
-        <features
-            href="scrm.ecore#//requirements/DataDefinition/range"/>
-      </labelMappings>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern="Data Type: {0}"
-          editorPattern="{0}"
-          editPattern="{0}">
-        <diagramLabel
-            href="scrm.gmfgraph#DataDefinitionNode_dataType"/>
-        <features
-            href="scrm.ecore#//requirements/DataDefinition/dataType"/>
-      </labelMappings>
-      <tool
-          xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.7"/>
-      <diagramNode
-          href="scrm.gmfgraph#DataDefinitionNode"/>
     </ownedChild>
   </nodes>
   <nodes>
@@ -631,45 +492,9 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.11"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.10"/>
       <diagramNode
           href="scrm.gmfgraph#InputDataReadingNode"/>
-    </ownedChild>
-  </nodes>
-  <nodes>
-    <containmentFeature
-        href="scrm.ecore#//SCRMDiagram/newElements"/>
-    <childrenFeature
-        href="scrm.ecore#//SCRMDiagram/elements"/>
-    <ownedChild
-        relatedDiagrams="//@diagram">
-      <domainMetaElement
-          href="scrm.ecore#//requirements/dataProcess/DataHandling"/>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern=""
-          editorPattern=""
-          editPattern="">
-        <diagramLabel
-            href="scrm.gmfgraph#DataHandlingNode_name"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/name"/>
-      </labelMappings>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping"
-          viewPattern="Description: {0}"
-          editorPattern="{0}"
-          editPattern="{0}">
-        <diagramLabel
-            href="scrm.gmfgraph#DataHandlingNode_description"/>
-        <features
-            href="scrm.ecore#//SCRMModelElement/description"/>
-      </labelMappings>
-      <tool
-          xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.12"/>
-      <diagramNode
-          href="scrm.gmfgraph#DataHandlingNode"/>
     </ownedChild>
   </nodes>
   <nodes>
@@ -703,7 +528,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.13"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.11"/>
       <diagramNode
           href="scrm.gmfgraph#ResultsOutputNode"/>
     </ownedChild>
@@ -739,7 +564,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.14"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.12"/>
       <diagramNode
           href="scrm.gmfgraph#ErrorHandlingNode"/>
     </ownedChild>
@@ -775,7 +600,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.15"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.13"/>
       <diagramNode
           href="scrm.gmfgraph#StatusMonitoringNode"/>
     </ownedChild>
@@ -788,11 +613,14 @@
     <ownedChild
         relatedDiagrams="//@diagram">
       <domainMetaElement
-          href="scrm.ecore#//requirements/Requirement"/>
+          href="scrm.ecore#//requirements/dataProcess/Solver"/>
       <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping">
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern=""
+          editorPattern=""
+          editPattern="">
         <diagramLabel
-            href="scrm.gmfgraph#RequirementNode_name"/>
+            href="scrm.gmfgraph#SolverNode_name"/>
         <features
             href="scrm.ecore#//SCRMModelElement/name"/>
       </labelMappings>
@@ -802,15 +630,496 @@
           editorPattern="{0}"
           editPattern="{0}">
         <diagramLabel
-            href="scrm.gmfgraph#RequirementNode_description"/>
+            href="scrm.gmfgraph#SolverNode_description"/>
         <features
             href="scrm.ecore#//SCRMModelElement/description"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.8"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.14"/>
       <diagramNode
-          href="scrm.gmfgraph#RequirementNode"/>
+          href="scrm.gmfgraph#SolverNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="scrm.ecore#//SCRMDiagram/newElements"/>
+    <childrenFeature
+        href="scrm.ecore#//SCRMDiagram/elements"/>
+    <ownedChild
+        relatedDiagrams="//@diagram">
+      <domainMetaElement
+          href="scrm.ecore#//requirements/dataProcess/MeshCreation"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern=""
+          editorPattern=""
+          editPattern="">
+        <diagramLabel
+            href="scrm.gmfgraph#MeshCreationNode_name"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#MeshCreationNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="scrm.gmftool#//@palette/@tools.1/@tools.15"/>
+      <diagramNode
+          href="scrm.gmfgraph#MeshCreationNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="scrm.ecore#//SCRMDiagram/newElements"/>
+    <childrenFeature
+        href="scrm.ecore#//SCRMDiagram/elements"/>
+    <ownedChild
+        relatedDiagrams="//@diagram">
+      <domainMetaElement
+          href="scrm.ecore#//requirements/dataProcess/PreProcessing"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern=""
+          editorPattern=""
+          editPattern="">
+        <diagramLabel
+            href="scrm.gmfgraph#PreProcessingNode_name"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#PreProcessingNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="scrm.gmftool#//@palette/@tools.1/@tools.16"/>
+      <diagramNode
+          href="scrm.gmfgraph#PreProcessingNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="scrm.ecore#//SCRMDiagram/newElements"/>
+    <childrenFeature
+        href="scrm.ecore#//SCRMDiagram/elements"/>
+    <ownedChild
+        relatedDiagrams="//@diagram">
+      <domainMetaElement
+          href="scrm.ecore#//requirements/dataProcess/PostProcessing"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern=""
+          editorPattern=""
+          editPattern="">
+        <diagramLabel
+            href="scrm.gmfgraph#PostProcessingNode_name"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#PostProcessingNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="scrm.gmftool#//@palette/@tools.1/@tools.17"/>
+      <diagramNode
+          href="scrm.gmfgraph#PostProcessingNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="scrm.ecore#//SCRMDiagram/newElements"/>
+    <childrenFeature
+        href="scrm.ecore#//SCRMDiagram/elements"/>
+    <ownedChild
+        relatedDiagrams="//@diagram">
+      <domainMetaElement
+          href="scrm.ecore#//requirements/dataObject/DataDefinition"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern=""
+          editorPattern=""
+          editPattern="">
+        <diagramLabel
+            href="scrm.gmfgraph#DataDefinitionNode_name"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#DataDefinitionNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Accuracy: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#DataDefinitionNode_accuracy"/>
+        <features
+            href="scrm.ecore#//requirements/dataObject/DataDefinition/accuracy"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Format: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#DataDefinitionNode_format"/>
+        <features
+            href="scrm.ecore#//requirements/dataObject/DataDefinition/format"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Range: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#DataDefinitionNode_range"/>
+        <features
+            href="scrm.ecore#//requirements/dataObject/DataDefinition/range"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="scrm.gmftool#//@palette/@tools.1/@tools.20"/>
+      <diagramNode
+          href="scrm.gmfgraph#DataDefinitionNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="scrm.ecore#//SCRMDiagram/newElements"/>
+    <childrenFeature
+        href="scrm.ecore#//SCRMDiagram/elements"/>
+    <ownedChild
+        relatedDiagrams="//@diagram">
+      <domainMetaElement
+          href="scrm.ecore#//requirements/dataObject/SeismicSource"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern=""
+          editorPattern=""
+          editPattern="">
+        <diagramLabel
+            href="scrm.gmfgraph#SeismicSourceNode_name"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#SeismicSourceNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Accuracy: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#SeismicSourceNode_accuracy"/>
+        <features
+            href="scrm.ecore#//requirements/dataObject/DataDefinition/accuracy"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Format: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#SeismicSourceNode_format"/>
+        <features
+            href="scrm.ecore#//requirements/dataObject/DataDefinition/format"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Range: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#SeismicSourceNode_range"/>
+        <features
+            href="scrm.ecore#//requirements/dataObject/DataDefinition/range"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="scrm.gmftool#//@palette/@tools.1/@tools.21"/>
+      <diagramNode
+          href="scrm.gmfgraph#SeismicSourceNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="scrm.ecore#//SCRMDiagram/newElements"/>
+    <childrenFeature
+        href="scrm.ecore#//SCRMDiagram/elements"/>
+    <ownedChild
+        relatedDiagrams="//@diagram">
+      <domainMetaElement
+          href="scrm.ecore#//requirements/dataObject/ComputationalMesh"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern=""
+          editorPattern=""
+          editPattern="">
+        <diagramLabel
+            href="scrm.gmfgraph#ComputationalMeshNode_name"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#ComputationalMeshNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Accuracy: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#ComputationalMeshNode_accuracy"/>
+        <features
+            href="scrm.ecore#//requirements/dataObject/DataDefinition/accuracy"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Format: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#ComputationalMeshNode_format"/>
+        <features
+            href="scrm.ecore#//requirements/dataObject/DataDefinition/format"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Range: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#ComputationalMeshNode_range"/>
+        <features
+            href="scrm.ecore#//requirements/dataObject/DataDefinition/range"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="scrm.gmftool#//@palette/@tools.1/@tools.22"/>
+      <diagramNode
+          href="scrm.gmfgraph#ComputationalMeshNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="scrm.ecore#//SCRMDiagram/newElements"/>
+    <childrenFeature
+        href="scrm.ecore#//SCRMDiagram/elements"/>
+    <ownedChild
+        relatedDiagrams="//@diagram">
+      <domainMetaElement
+          href="scrm.ecore#//requirements/dataObject/SyntheticSeismogram"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern=""
+          editorPattern=""
+          editPattern="">
+        <diagramLabel
+            href="scrm.gmfgraph#SyntheticSeismogramNode_name"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#SyntheticSeismogramNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Accuracy: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#SyntheticSeismogramNode_accuracy"/>
+        <features
+            href="scrm.ecore#//requirements/dataObject/DataDefinition/accuracy"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Format: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#SyntheticSeismogramNode_format"/>
+        <features
+            href="scrm.ecore#//requirements/dataObject/DataDefinition/format"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Range: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#SyntheticSeismogramNode_range"/>
+        <features
+            href="scrm.ecore#//requirements/dataObject/DataDefinition/range"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="scrm.gmftool#//@palette/@tools.1/@tools.23"/>
+      <diagramNode
+          href="scrm.gmfgraph#SyntheticSeismogramNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="scrm.ecore#//SCRMDiagram/newElements"/>
+    <childrenFeature
+        href="scrm.ecore#//SCRMDiagram/elements"/>
+    <ownedChild
+        relatedDiagrams="//@diagram">
+      <domainMetaElement
+          href="scrm.ecore#//requirements/dataObject/Station"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern=""
+          editorPattern=""
+          editPattern="">
+        <diagramLabel
+            href="scrm.gmfgraph#StationNode_name"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#StationNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Accuracy: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#StationNode_accuracy"/>
+        <features
+            href="scrm.ecore#//requirements/dataObject/DataDefinition/accuracy"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Format: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#StationNode_format"/>
+        <features
+            href="scrm.ecore#//requirements/dataObject/DataDefinition/format"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Range: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#StationNode_range"/>
+        <features
+            href="scrm.ecore#//requirements/dataObject/DataDefinition/range"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="scrm.gmftool#//@palette/@tools.1/@tools.24"/>
+      <diagramNode
+          href="scrm.gmfgraph#StationNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="scrm.ecore#//SCRMDiagram/newElements"/>
+    <childrenFeature
+        href="scrm.ecore#//SCRMDiagram/elements"/>
+    <ownedChild
+        relatedDiagrams="//@diagram">
+      <domainMetaElement
+          href="scrm.ecore#//requirements/dataObject/ControlParameter"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping">
+        <diagramLabel
+            href="scrm.gmfgraph#ControlParameterNode_name"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/name"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Description: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#ControlParameterNode_description"/>
+        <features
+            href="scrm.ecore#//SCRMModelElement/description"/>
+      </labelMappings>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="Format: {0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="scrm.gmfgraph#ControlParameterNode_format"/>
+        <features
+            href="scrm.ecore#//requirements/dataObject/ControlParameter/format"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="scrm.gmftool#//@palette/@tools.1/@tools.25"/>
+      <diagramNode
+          href="scrm.gmfgraph#ControlParameterNode"/>
     </ownedChild>
   </nodes>
   <nodes>
@@ -835,37 +1144,37 @@
       <diagramNode
           href="scrm.gmfgraph#KnowledgeSpaceNode"/>
       <children
-          compartment="//@nodes.19/@ownedChild/@compartments.0"
+          compartment="//@nodes.26/@ownedChild/@compartments.0"
           referencedChild="//@nodes.0/@ownedChild">
         <containmentFeature
             href="scrm.ecore#//knowledge/KnowledgeSpace/containedScientificKnowledge"/>
       </children>
       <children
-          compartment="//@nodes.19/@ownedChild/@compartments.0"
+          compartment="//@nodes.26/@ownedChild/@compartments.0"
           referencedChild="//@nodes.2/@ownedChild">
         <containmentFeature
             href="scrm.ecore#//knowledge/KnowledgeSpace/containedScientificKnowledge"/>
       </children>
       <children
-          compartment="//@nodes.19/@ownedChild/@compartments.0"
+          compartment="//@nodes.26/@ownedChild/@compartments.0"
           referencedChild="//@nodes.1/@ownedChild">
         <containmentFeature
             href="scrm.ecore#//knowledge/KnowledgeSpace/containedScientificKnowledge"/>
       </children>
       <children
-          compartment="//@nodes.19/@ownedChild/@compartments.0"
+          compartment="//@nodes.26/@ownedChild/@compartments.0"
           referencedChild="//@nodes.3/@ownedChild">
         <containmentFeature
             href="scrm.ecore#//knowledge/KnowledgeSpace/containedScientificKnowledge"/>
       </children>
       <children
-          compartment="//@nodes.19/@ownedChild/@compartments.0"
-          referencedChild="//@nodes.19/@ownedChild">
+          compartment="//@nodes.26/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.26/@ownedChild">
         <containmentFeature
             href="scrm.ecore#//knowledge/KnowledgeSpace/containedScientificKnowledge"/>
       </children>
       <compartments
-          children="//@nodes.19/@ownedChild/@children.0 //@nodes.19/@ownedChild/@children.1 //@nodes.19/@ownedChild/@children.2 //@nodes.19/@ownedChild/@children.3 //@nodes.19/@ownedChild/@children.4">
+          children="//@nodes.26/@ownedChild/@children.0 //@nodes.26/@ownedChild/@children.1 //@nodes.26/@ownedChild/@children.2 //@nodes.26/@ownedChild/@children.3 //@nodes.26/@ownedChild/@children.4">
         <compartment
             href="scrm.gmfgraph#KnowledgeSpaceCompartment"/>
       </compartments>
@@ -889,113 +1198,155 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.9"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.7"/>
       <diagramNode
           href="scrm.gmfgraph#RequirementSpaceNode"/>
       <children
-          compartment="//@nodes.20/@ownedChild/@compartments.0"
-          referencedChild="//@nodes.6/@ownedChild">
-        <containmentFeature
-            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
-      </children>
-      <children
-          compartment="//@nodes.20/@ownedChild/@compartments.0"
-          referencedChild="//@nodes.12/@ownedChild">
-        <containmentFeature
-            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
-      </children>
-      <children
-          compartment="//@nodes.20/@ownedChild/@compartments.0"
-          referencedChild="//@nodes.11/@ownedChild">
-        <containmentFeature
-            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
-      </children>
-      <children
-          compartment="//@nodes.20/@ownedChild/@compartments.0"
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
           referencedChild="//@nodes.4/@ownedChild">
         <containmentFeature
             href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
       </children>
       <children
-          compartment="//@nodes.20/@ownedChild/@compartments.0"
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
           referencedChild="//@nodes.5/@ownedChild">
         <containmentFeature
             href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
       </children>
       <children
-          compartment="//@nodes.20/@ownedChild/@compartments.0"
-          referencedChild="//@nodes.10/@ownedChild">
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.6/@ownedChild">
         <containmentFeature
             href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
       </children>
       <children
-          compartment="//@nodes.20/@ownedChild/@compartments.0"
-          referencedChild="//@nodes.18/@ownedChild">
-        <containmentFeature
-            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
-      </children>
-      <children
-          compartment="//@nodes.20/@ownedChild/@compartments.0"
-          referencedChild="//@nodes.8/@ownedChild">
-        <containmentFeature
-            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
-      </children>
-      <children
-          compartment="//@nodes.20/@ownedChild/@compartments.0"
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
           referencedChild="//@nodes.7/@ownedChild">
         <containmentFeature
             href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
       </children>
       <children
-          compartment="//@nodes.20/@ownedChild/@compartments.0"
-          referencedChild="//@nodes.20/@ownedChild">
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.8/@ownedChild">
         <containmentFeature
             href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
       </children>
       <children
-          compartment="//@nodes.20/@ownedChild/@compartments.0"
-          referencedChild="//@nodes.17/@ownedChild">
-        <containmentFeature
-            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
-      </children>
-      <children
-          compartment="//@nodes.20/@ownedChild/@compartments.0"
-          referencedChild="//@nodes.15/@ownedChild">
-        <containmentFeature
-            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
-      </children>
-      <children
-          compartment="//@nodes.20/@ownedChild/@compartments.0"
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
           referencedChild="//@nodes.9/@ownedChild">
         <containmentFeature
             href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
       </children>
       <children
-          compartment="//@nodes.20/@ownedChild/@compartments.0"
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.10/@ownedChild">
+        <containmentFeature
+            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
+      </children>
+      <children
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.11/@ownedChild">
+        <containmentFeature
+            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
+      </children>
+      <children
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.12/@ownedChild">
+        <containmentFeature
+            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
+      </children>
+      <children
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
           referencedChild="//@nodes.13/@ownedChild">
         <containmentFeature
             href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
       </children>
       <children
-          compartment="//@nodes.20/@ownedChild/@compartments.0"
-          referencedChild="//@nodes.16/@ownedChild">
-        <containmentFeature
-            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
-      </children>
-      <children
-          compartment="//@nodes.20/@ownedChild/@compartments.0"
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
           referencedChild="//@nodes.14/@ownedChild">
         <containmentFeature
             href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
       </children>
       <children
-          compartment="//@nodes.20/@ownedChild/@compartments.0"
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.15/@ownedChild">
+        <containmentFeature
+            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
+      </children>
+      <children
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.16/@ownedChild">
+        <containmentFeature
+            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
+      </children>
+      <children
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.17/@ownedChild">
+        <containmentFeature
+            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
+      </children>
+      <children
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.18/@ownedChild">
+        <containmentFeature
+            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
+      </children>
+      <children
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.19/@ownedChild">
+        <containmentFeature
+            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
+      </children>
+      <children
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.20/@ownedChild">
+        <containmentFeature
+            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
+      </children>
+      <children
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
           referencedChild="//@nodes.21/@ownedChild">
         <containmentFeature
             href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
       </children>
+      <children
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.22/@ownedChild">
+        <containmentFeature
+            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
+      </children>
+      <children
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.23/@ownedChild">
+        <containmentFeature
+            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
+      </children>
+      <children
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.24/@ownedChild">
+        <containmentFeature
+            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
+      </children>
+      <children
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.25/@ownedChild">
+        <containmentFeature
+            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
+      </children>
+      <children
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.27/@ownedChild">
+        <containmentFeature
+            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
+      </children>
+      <children
+          compartment="//@nodes.27/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.28/@ownedChild">
+        <containmentFeature
+            href="scrm.ecore#//requirements/RequirementSpace/containedInformationofRequirements"/>
+      </children>
       <compartments
-          children="//@nodes.20/@ownedChild/@children.0 //@nodes.20/@ownedChild/@children.1 //@nodes.20/@ownedChild/@children.2 //@nodes.20/@ownedChild/@children.3 //@nodes.20/@ownedChild/@children.4 //@nodes.20/@ownedChild/@children.5 //@nodes.20/@ownedChild/@children.6 //@nodes.20/@ownedChild/@children.9 //@nodes.20/@ownedChild/@children.7 //@nodes.20/@ownedChild/@children.8 //@nodes.20/@ownedChild/@children.15 //@nodes.20/@ownedChild/@children.16 //@nodes.20/@ownedChild/@children.14 //@nodes.20/@ownedChild/@children.13 //@nodes.20/@ownedChild/@children.12 //@nodes.20/@ownedChild/@children.11 //@nodes.20/@ownedChild/@children.10">
+          children="//@nodes.27/@ownedChild/@children.3 //@nodes.27/@ownedChild/@children.16 //@nodes.27/@ownedChild/@children.1 //@nodes.27/@ownedChild/@children.2 //@nodes.27/@ownedChild/@children.6 //@nodes.27/@ownedChild/@children.0 //@nodes.27/@ownedChild/@children.22 //@nodes.27/@ownedChild/@children.5 //@nodes.27/@ownedChild/@children.4 //@nodes.27/@ownedChild/@children.23 //@nodes.27/@ownedChild/@children.10 //@nodes.27/@ownedChild/@children.8 //@nodes.27/@ownedChild/@children.7 //@nodes.27/@ownedChild/@children.9 //@nodes.27/@ownedChild/@children.11 //@nodes.27/@ownedChild/@children.18 //@nodes.27/@ownedChild/@children.21 //@nodes.27/@ownedChild/@children.13 //@nodes.27/@ownedChild/@children.15 //@nodes.27/@ownedChild/@children.14 //@nodes.27/@ownedChild/@children.17 //@nodes.27/@ownedChild/@children.12 //@nodes.27/@ownedChild/@children.20 //@nodes.27/@ownedChild/@children.19">
         <compartment
             href="scrm.gmfgraph#RequirementSpaceCompartment"/>
       </compartments>
@@ -1013,59 +1364,77 @@
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
         <diagramLabel
-            href="scrm.gmfgraph#DataProcessNode_name"/>
+            href="scrm.gmfgraph#DataProcessSpaceNode_name"/>
         <features
             href="scrm.ecore#//SCRMModelElement/name"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="scrm.gmftool#//@palette/@tools.1/@tools.17"/>
+          href="scrm.gmftool#//@palette/@tools.1/@tools.18"/>
       <diagramNode
           href="scrm.gmfgraph#DataProcessSpace"/>
       <children
-          compartment="//@nodes.21/@ownedChild/@compartments.0"
-          referencedChild="//@nodes.17/@ownedChild">
+          compartment="//@nodes.28/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.11/@ownedChild">
         <containmentFeature
             href="scrm.ecore#//requirements/dataProcess/DataProcessSpace/containedDataProcessSteps"/>
       </children>
       <children
-          compartment="//@nodes.21/@ownedChild/@compartments.0"
-          referencedChild="//@nodes.15/@ownedChild">
+          compartment="//@nodes.28/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.12/@ownedChild">
         <containmentFeature
             href="scrm.ecore#//requirements/dataProcess/DataProcessSpace/containedDataProcessSteps"/>
       </children>
       <children
-          compartment="//@nodes.21/@ownedChild/@compartments.0"
-          referencedChild="//@nodes.9/@ownedChild">
-        <containmentFeature
-            href="scrm.ecore#//requirements/dataProcess/DataProcessSpace/containedDataProcessSteps"/>
-      </children>
-      <children
-          compartment="//@nodes.21/@ownedChild/@compartments.0"
+          compartment="//@nodes.28/@ownedChild/@compartments.0"
           referencedChild="//@nodes.13/@ownedChild">
         <containmentFeature
             href="scrm.ecore#//requirements/dataProcess/DataProcessSpace/containedDataProcessSteps"/>
       </children>
       <children
-          compartment="//@nodes.21/@ownedChild/@compartments.0"
-          referencedChild="//@nodes.16/@ownedChild">
-        <containmentFeature
-            href="scrm.ecore#//requirements/dataProcess/DataProcessSpace/containedDataProcessSteps"/>
-      </children>
-      <children
-          compartment="//@nodes.21/@ownedChild/@compartments.0"
+          compartment="//@nodes.28/@ownedChild/@compartments.0"
           referencedChild="//@nodes.14/@ownedChild">
         <containmentFeature
             href="scrm.ecore#//requirements/dataProcess/DataProcessSpace/containedDataProcessSteps"/>
       </children>
       <children
-          compartment="//@nodes.21/@ownedChild/@compartments.0"
-          referencedChild="//@nodes.21/@ownedChild">
+          compartment="//@nodes.28/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.15/@ownedChild">
+        <containmentFeature
+            href="scrm.ecore#//requirements/dataProcess/DataProcessSpace/containedDataProcessSteps"/>
+      </children>
+      <children
+          compartment="//@nodes.28/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.28/@ownedChild">
+        <containmentFeature
+            href="scrm.ecore#//requirements/dataProcess/DataProcessSpace/containedDataProcessSteps"/>
+      </children>
+      <children
+          compartment="//@nodes.28/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.16/@ownedChild">
+        <containmentFeature
+            href="scrm.ecore#//requirements/dataProcess/DataProcessSpace/containedDataProcessSteps"/>
+      </children>
+      <children
+          compartment="//@nodes.28/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.17/@ownedChild">
+        <containmentFeature
+            href="scrm.ecore#//requirements/dataProcess/DataProcessSpace/containedDataProcessSteps"/>
+      </children>
+      <children
+          compartment="//@nodes.28/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.18/@ownedChild">
+        <containmentFeature
+            href="scrm.ecore#//requirements/dataProcess/DataProcessSpace/containedDataProcessSteps"/>
+      </children>
+      <children
+          compartment="//@nodes.28/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.19/@ownedChild">
         <containmentFeature
             href="scrm.ecore#//requirements/dataProcess/DataProcessSpace/containedDataProcessSteps"/>
       </children>
       <compartments
-          children="//@nodes.21/@ownedChild/@children.5 //@nodes.21/@ownedChild/@children.6 //@nodes.21/@ownedChild/@children.4 //@nodes.21/@ownedChild/@children.3 //@nodes.21/@ownedChild/@children.2 //@nodes.21/@ownedChild/@children.1 //@nodes.21/@ownedChild/@children.0">
+          children="//@nodes.28/@ownedChild/@children.5 //@nodes.28/@ownedChild/@children.3 //@nodes.28/@ownedChild/@children.1 //@nodes.28/@ownedChild/@children.0 //@nodes.28/@ownedChild/@children.2 //@nodes.28/@ownedChild/@children.4 //@nodes.28/@ownedChild/@children.7 //@nodes.28/@ownedChild/@children.9 //@nodes.28/@ownedChild/@children.8 //@nodes.28/@ownedChild/@children.6">
         <compartment
             href="scrm.gmfgraph#DataProcessSpaceCompartment"/>
       </compartments>
@@ -1081,19 +1450,7 @@
         href="scrm.gmfgraph#ScientificProblem_RepresentingModelConnection"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="scrm.ecore#//knowledge/MathematicalModel/representedProblem"/>
-  </links>
-  <links
-      relatedDiagrams="//@diagram">
-    <labelMappings>
-      <diagramLabel
-          href="scrm.gmfgraph#ScientificProblem_SolvingMethodsConnectionLabel"/>
-    </labelMappings>
-    <diagramLink
-        href="scrm.gmfgraph#ScientificProblem_SolvingMethodsConnection"/>
-    <linkMetaFeature
-        xsi:type="ecore:EReference"
-        href="scrm.ecore#//knowledge/NumericalMethod/solvedProblem"/>
+        href="scrm.ecore#//knowledge/ScientificProblem/representingModel"/>
   </links>
   <links
       relatedDiagrams="//@diagram">
@@ -1111,37 +1468,61 @@
       relatedDiagrams="//@diagram">
     <labelMappings>
       <diagramLabel
-          href="scrm.gmfgraph#MathematicalModel_RefinementsConnectionLabel"/>
+          href="scrm.gmfgraph#Mathematical_GeophysicalModel_RefinementsConnectionLabel"/>
     </labelMappings>
     <diagramLink
-        href="scrm.gmfgraph#MathematicalModel_RefinementsConnection"/>
+        href="scrm.gmfgraph#Mathematical_GeophysicalModel_RefinementsConnection"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="scrm.ecore#//knowledge/MathematicalModel/refinedModel"/>
+        href="scrm.ecore#//knowledge/Mathematical_GeophysicalModel/refinements"/>
   </links>
   <links
       relatedDiagrams="//@diagram">
     <labelMappings>
       <diagramLabel
-          href="scrm.gmfgraph#MathematicalModel_NumericalMethodsConnectionLabel"/>
+          href="scrm.gmfgraph#Mathematical_GeophysicalModel_NumericalMethodsConnectionLabel"/>
     </labelMappings>
     <diagramLink
-        href="scrm.gmfgraph#MathematicalModel_NumericalMethodsConnection"/>
+        href="scrm.gmfgraph#Mathematical_GeophysicalModel_NumericalMethodsConnection"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="scrm.ecore#//knowledge/MathematicalModel/numericalMethods"/>
+        href="scrm.ecore#//knowledge/Mathematical_GeophysicalModel/usedInNumericalMethods"/>
   </links>
   <links
       relatedDiagrams="//@diagram">
     <labelMappings>
       <diagramLabel
-          href="scrm.gmfgraph#MathematicalModel_DependenciesConnectionLabel"/>
+          href="scrm.gmfgraph#Mathematical_GeophysicalModel_DependenciesConnectionLabel"/>
     </labelMappings>
     <diagramLink
-        href="scrm.gmfgraph#MathematicalModel_DependenciesConnection"/>
+        href="scrm.gmfgraph#Mathematical_GeophysicalModel_DependenciesConnection"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="scrm.ecore#//knowledge/MathematicalModel/dependencies"/>
+        href="scrm.ecore#//knowledge/Mathematical_GeophysicalModel/dependencies"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <labelMappings>
+      <diagramLabel
+          href="scrm.gmfgraph#Mathematical_GeophysicalModel_InvolvedDataConnectionLabel"/>
+    </labelMappings>
+    <diagramLink
+        href="scrm.gmfgraph#Mathematical_GeophysicalModel_InvolvedDataConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="scrm.ecore#//knowledge/Mathematical_GeophysicalModel/involvedData"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <labelMappings>
+      <diagramLabel
+          href="scrm.gmfgraph#NumericalMethod_SolvedProblemConnectionLabel"/>
+    </labelMappings>
+    <diagramLink
+        href="scrm.gmfgraph#NumericalMethod_SolvedProblemConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="scrm.ecore#//knowledge/NumericalMethod/solvedProblem"/>
   </links>
   <links
       relatedDiagrams="//@diagram">
@@ -1165,7 +1546,7 @@
         href="scrm.gmfgraph#NumericalMethod_RealizingRequirementConnection"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="scrm.ecore#//requirements/Requirement/realizedMethod"/>
+        href="scrm.ecore#//knowledge/NumericalMethod/realizingRequirement"/>
   </links>
   <links
       relatedDiagrams="//@diagram">
@@ -1177,7 +1558,103 @@
         href="scrm.gmfgraph#NumericalMethod_PerformanceConnection"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="scrm.ecore#//requirements/Performance/describedMethod"/>
+        href="scrm.ecore#//knowledge/NumericalMethod/performance"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <labelMappings>
+      <diagramLabel
+          href="scrm.gmfgraph#Interface_DetailsOfProvidingFunctionsAndPropertiesConnectionLabel"/>
+    </labelMappings>
+    <diagramLink
+        href="scrm.gmfgraph#Interface_DetailsOfProvidingFunctionsAndPropertiesConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="scrm.ecore#//requirements/Interface/detailsOfProvidingFunctionsAndProperties"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <labelMappings>
+      <diagramLabel
+          href="scrm.gmfgraph#Interface_DetailsOfRequiringFunctionsAndPropertiesConnectionLabel"/>
+    </labelMappings>
+    <diagramLink
+        href="scrm.gmfgraph#Interface_DetailsOfRequiringFunctionsAndPropertiesConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="scrm.ecore#//requirements/Interface/detailsOfRequiringFunctionsAndProperties"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <labelMappings>
+      <diagramLabel
+          href="scrm.gmfgraph#Requirement_RefinementsConnectionLabel"/>
+    </labelMappings>
+    <diagramLink
+        href="scrm.gmfgraph#Requirement_RefinementsConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="scrm.ecore#//requirements/Requirement/refinedRequirement"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <labelMappings>
+      <diagramLabel
+          href="scrm.gmfgraph#Requirement_SpecifiedFeatureConnectionLabel"/>
+    </labelMappings>
+    <diagramLink
+        href="scrm.gmfgraph#Requirement_SpecifiedFeatureConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="scrm.ecore#//requirements/Requirement/specifiedFeature"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <labelMappings>
+      <diagramLabel
+          href="scrm.gmfgraph#Requirement_ProvidedInterfaceConnectionLabel"/>
+    </labelMappings>
+    <diagramLink
+        href="scrm.gmfgraph#Requirement_ProvidedInterfaceConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="scrm.ecore#//requirements/Requirement/providedInterface"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <labelMappings>
+      <diagramLabel
+          href="scrm.gmfgraph#Requirement_RequiredInterfaceConnectionLabel"/>
+    </labelMappings>
+    <diagramLink
+        href="scrm.gmfgraph#Requirement_RequiredInterfaceConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="scrm.ecore#//requirements/Requirement/requiredInterface"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <labelMappings>
+      <diagramLabel
+          href="scrm.gmfgraph#Feature_SuperFeatureConnectionLabel"/>
+    </labelMappings>
+    <diagramLink
+        href="scrm.gmfgraph#Feature_SuperFeatureConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="scrm.ecore#//requirements/Feature/superFeature"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <labelMappings>
+      <diagramLabel
+          href="scrm.gmfgraph#Feature_DependenciesConnectionLabel"/>
+    </labelMappings>
+    <diagramLink
+        href="scrm.gmfgraph#Feature_DependenciesConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="scrm.ecore#//requirements/Feature/dependencies"/>
   </links>
   <links
       relatedDiagrams="//@diagram">
@@ -1207,54 +1684,6 @@
       relatedDiagrams="//@diagram">
     <labelMappings>
       <diagramLabel
-          href="scrm.gmfgraph#Feature_ConstraintsConnectionLabel"/>
-    </labelMappings>
-    <diagramLink
-        href="scrm.gmfgraph#Feature_ConstraintsConnection"/>
-    <linkMetaFeature
-        xsi:type="ecore:EReference"
-        href="scrm.ecore#//requirements/Constraint/restrictedFeature"/>
-  </links>
-  <links
-      relatedDiagrams="//@diagram">
-    <labelMappings>
-      <diagramLabel
-          href="scrm.gmfgraph#Feature_DependenciesConnectionLabel"/>
-    </labelMappings>
-    <diagramLink
-        href="scrm.gmfgraph#Feature_DependenciesConnection"/>
-    <linkMetaFeature
-        xsi:type="ecore:EReference"
-        href="scrm.ecore#//requirements/Feature/dependencies"/>
-  </links>
-  <links
-      relatedDiagrams="//@diagram">
-    <labelMappings>
-      <diagramLabel
-          href="scrm.gmfgraph#Feature_DetailedRequirementsConnectionLabel"/>
-    </labelMappings>
-    <diagramLink
-        href="scrm.gmfgraph#Feature_DetailedRequirementsConnection"/>
-    <linkMetaFeature
-        xsi:type="ecore:EReference"
-        href="scrm.ecore#//requirements/Requirement/specifiedFeature"/>
-  </links>
-  <links
-      relatedDiagrams="//@diagram">
-    <labelMappings>
-      <diagramLabel
-          href="scrm.gmfgraph#Feature_SubFeaturesConnectionLabel"/>
-    </labelMappings>
-    <diagramLink
-        href="scrm.gmfgraph#Feature_SubFeaturesConnection"/>
-    <linkMetaFeature
-        xsi:type="ecore:EReference"
-        href="scrm.ecore#//requirements/Feature/superFeature"/>
-  </links>
-  <links
-      relatedDiagrams="//@diagram">
-    <labelMappings>
-      <diagramLabel
           href="scrm.gmfgraph#Feature_RequiredFeaturesConnectionLabel"/>
     </labelMappings>
     <diagramLink
@@ -1279,37 +1708,25 @@
       relatedDiagrams="//@diagram">
     <labelMappings>
       <diagramLabel
-          href="scrm.gmfgraph#Requirement_RefinementsConnectionLabel"/>
+          href="scrm.gmfgraph#Constraint_RestrictedFeatureConnectionLabel"/>
     </labelMappings>
     <diagramLink
-        href="scrm.gmfgraph#Requirement_RefinementsConnection"/>
+        href="scrm.gmfgraph#Constraint_RestrictedFeatureConnection"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="scrm.ecore#//requirements/Requirement/refinedRequirement"/>
+        href="scrm.ecore#//requirements/Constraint/restrictedFeature"/>
   </links>
   <links
       relatedDiagrams="//@diagram">
     <labelMappings>
       <diagramLabel
-          href="scrm.gmfgraph#Requirement_DefiningDataConnectionLabel"/>
+          href="scrm.gmfgraph#Performance_HardwareConnectionLabel"/>
     </labelMappings>
     <diagramLink
-        href="scrm.gmfgraph#Requirement_DefiningDataConnection"/>
+        href="scrm.gmfgraph#Performance_HardwareConnection"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="scrm.ecore#//requirements/Requirement/definingData"/>
-  </links>
-  <links
-      relatedDiagrams="//@diagram">
-    <labelMappings>
-      <diagramLabel
-          href="scrm.gmfgraph#Process_DataFlowConnectionLabel"/>
-    </labelMappings>
-    <diagramLink
-        href="scrm.gmfgraph#Process_DataFlowConnection"/>
-    <linkMetaFeature
-        xsi:type="ecore:EReference"
-        href="scrm.ecore#//requirements/DataFlow/specifiedProcess"/>
+        href="scrm.ecore#//requirements/Performance/hardware"/>
   </links>
   <links
       relatedDiagrams="//@diagram">
@@ -1346,6 +1763,54 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="scrm.ecore#//requirements/dataProcess/StatusMonitoring/monitoredProcess"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <labelMappings>
+      <diagramLabel
+          href="scrm.gmfgraph#DataDefinition_DefinedRequirementConnectionLabel"/>
+    </labelMappings>
+    <diagramLink
+        href="scrm.gmfgraph#DataDefinition_DefinedRequirementConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="scrm.ecore#//requirements/dataObject/DataDefinition/definedRequirement"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <labelMappings>
+      <diagramLabel
+          href="scrm.gmfgraph#DataDefinition_ProvidedInterfaceConnectionLabel"/>
+    </labelMappings>
+    <diagramLink
+        href="scrm.gmfgraph#DataDefinition_ProvidedInterfaceConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="scrm.ecore#//requirements/dataObject/DataDefinition/providedInterface"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <labelMappings>
+      <diagramLabel
+          href="scrm.gmfgraph#DataDefinition_RequiredInterfaceConnectionLabel"/>
+    </labelMappings>
+    <diagramLink
+        href="scrm.gmfgraph#DataDefinition_RequiredInterfaceConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="scrm.ecore#//requirements/dataObject/DataDefinition/requiredInterface"/>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <labelMappings>
+      <diagramLabel
+          href="scrm.gmfgraph#ControlParameter_ControlledProcessConnectionLabel"/>
+    </labelMappings>
+    <diagramLink
+        href="scrm.gmfgraph#ControlParameter_ControlledProcessConnection"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="scrm.ecore#//requirements/dataObject/ControlParameter/controlledProcess"/>
   </links>
   <diagram>
     <diagramCanvas

@@ -11,6 +11,7 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: scrm.knowledge.provider,
  scrm.provider,
  scrm.requirements.dataProcess.provider,
+ scrm.requirements.dataObject.provider,
  scrm.requirements.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.unicase.scrm;visibility:=reexport,
