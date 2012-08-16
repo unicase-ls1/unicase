@@ -15,7 +15,7 @@
           title="ScientificProblem"/>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="MathematicalModel"/>
+          title="Mathematical_GeophysicalModel"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="NumericalMethod"/>
@@ -31,6 +31,9 @@
         title="Requirements"
         description=""
         collapsible="true">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Requirement"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Feature"/>
@@ -51,25 +54,16 @@
           title="Performance"/>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="DataFlow"/>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="DataDefinition"/>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="Requirement"/>
-      <tools
-          xsi:type="gmftool:CreationTool"
           title="RequirementSpace"/>
       <tools
           xsi:type="gmftool:PaletteSeparator"
           title="Requirement-DataProcess"/>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="InputDataReading"/>
+          title="Process"/>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="DataHandling"/>
+          title="InputDataReading"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="ResultsOutput"/>
@@ -81,10 +75,40 @@
           title="StatusMonitoring"/>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Process"/>
+          title="Solver"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="MeshCreation"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="PreProcessing"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="PostProcessing"/>
       <tools
           xsi:type="gmftool:CreationTool"
           title="DataProcessSpace"/>
+      <tools
+          xsi:type="gmftool:PaletteSeparator"
+          title="DataProcess-DataObject"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="DataDefinition"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="SeismicSource"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="ComputationalMesh"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="SyntheticSeismogram"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Station"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="ControlParameter"/>
     </tools>
   </palette>
 </gmftool:ToolRegistry>
