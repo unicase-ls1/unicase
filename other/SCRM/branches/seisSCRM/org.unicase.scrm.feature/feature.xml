@@ -4,12 +4,17 @@
       label="SCRM Feature"
       version="1.0.0.qualifier">
 
-   <description url="http://code.google.com/p/unicase/wiki/SCRM_in_EMFCP">
-      This feature will install SCRM, a tool to model requirements for scientific computing projects. The tool provides a meta-model using EMF mechanisms and a graphical editor using GMF mechanisms. For further information, navigate to the provided link.
+   <description>
+      This feature will install SCRM, a tool to model requirements
+for scientific computing projects. The tool provides a meta-model
+using EMF mechanisms and a graphical editor using GMF mechanisms.
+
+Note: Installing this feature will install the required EMFCP and EMFStore features (version 0.7.3)
    </description>
 
    <url>
-      <update label="SCRM Tool" url="http://unicase.googlecode.com/svn/trunk/other/SCRM/updatesite"/>
+      <update label="SCRM Tool" url="http://unicase.googlecode.com/svn/trunk/other/SCRM/branches/seisSCRM/updatesite"/>
+      <discovery label="EMFStore project home" url="http://www.eclipse.org/emfstore"/>
    </url>
 
    <requires>
@@ -17,7 +22,6 @@
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.gmf.runtime.notation"/>
       <import plugin="org.unicase.metamodel"/>
-      <import plugin="org.unicase.ui.meeditor"/>
       <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.core.expressions"/>
       <import plugin="org.eclipse.jface"/>
@@ -42,6 +46,7 @@
       <import plugin="org.eclipse.emf.ecore.edit"/>
       <import plugin="org.eclipse.gmf.runtime.notation.edit"/>
       <import plugin="org.eclipse.gef"/>
+      <import plugin="org.unicase.ui.meeditor"/>
       <import plugin="org.unicase.workspace"/>
       <import plugin="org.eclipse.emf.edit"/>
       <import feature="org.unicase.emfstore.transaction.feature"/>
@@ -63,6 +68,188 @@
 
    <plugin
          id="org.unicase.scrm.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.backchannel.client"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.unicase.backchannel.server"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.unicase.ecp.model"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ecpemfstorebridge"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.emfstore"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.unicase.emfstore.backchannel.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.unicase.emfstore.branding"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.emfstore.client.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.unicase.emfstore.client.ui.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.unicase.emfstore.common.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.unicase.emfstore.esmodel"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.emfstore.esmodel.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.emfstore.migration"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.emfstore.server.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.unicase.emfstore.transaction"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.metamodel"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.metamodel.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.common"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.common.rcp"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.meeditor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.navigator"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.navigatormeeditorbridge"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.util"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.util"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.workspace"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.workspace.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.workspace.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
