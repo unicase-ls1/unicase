@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.unicase.scrm.feature_1.0.0.201208161410.jar" id="org.unicase.scrm.feature" version="1.0.0.201208161410">
+   <feature url="features/org.unicase.scrm.feature_1.0.0.201208161910.jar" id="org.unicase.scrm.feature" version="1.0.0.201208161910">
       <category name="SCRM"/>
    </feature>
    <category-def name="SCRM" label="SCRM">
