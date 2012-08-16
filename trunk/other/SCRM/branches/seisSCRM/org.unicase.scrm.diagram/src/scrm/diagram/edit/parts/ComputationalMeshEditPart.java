@@ -206,10 +206,10 @@ public class ComputationalMeshEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT: adjusted size
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(130, 65);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(185, 120);
 		return result;
 	}
 
@@ -532,7 +532,7 @@ public class ComputationalMeshEditPart extends ShapeNodeEditPart {
 		private WrappingLabel fFigureComputationalMesh_format;
 
 		/**
-		 * @generated
+		 * @generated NOT: adjusted size
 		 */
 		public ComputationalMeshFigure() {
 
@@ -544,8 +544,8 @@ public class ComputationalMeshEditPart extends ShapeNodeEditPart {
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(32),
 					getMapMode().DPtoLP(32)));
 			this.setBackgroundColor(THIS_BACK);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(130),
-					getMapMode().DPtoLP(65)));
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(185),
+					getMapMode().DPtoLP(120)));
 			createContents();
 		}
 

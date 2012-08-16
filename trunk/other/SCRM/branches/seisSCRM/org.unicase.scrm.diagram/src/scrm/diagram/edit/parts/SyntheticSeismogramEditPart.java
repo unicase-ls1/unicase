@@ -206,10 +206,10 @@ public class SyntheticSeismogramEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT: adjusted size
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(130, 65);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(195, 120);
 		return result;
 	}
 
@@ -532,7 +532,7 @@ public class SyntheticSeismogramEditPart extends ShapeNodeEditPart {
 		private WrappingLabel fFigureSyntheticSeismogram_format;
 
 		/**
-		 * @generated
+		 * @generated NOT: adjusted size
 		 */
 		public SyntheticSeismogramFigure() {
 
@@ -544,8 +544,8 @@ public class SyntheticSeismogramEditPart extends ShapeNodeEditPart {
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(32),
 					getMapMode().DPtoLP(32)));
 			this.setBackgroundColor(THIS_BACK);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(130),
-					getMapMode().DPtoLP(65)));
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(195),
+					getMapMode().DPtoLP(120)));
 			createContents();
 		}
 

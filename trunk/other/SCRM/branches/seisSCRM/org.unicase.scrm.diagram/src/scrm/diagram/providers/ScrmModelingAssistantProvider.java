@@ -222,11 +222,11 @@ public class ScrmModelingAssistantProvider extends ModelingAssistantProvider {
 
 	private static List<IElementType> getKnowledgeTypes() {
 		ArrayList<IElementType> types = new ArrayList<IElementType>(5);
-		types.add(ScrmElementTypes.ScientificProblem_3001);
-		types.add(ScrmElementTypes.NumericalMethod_3002);
-		types.add(ScrmElementTypes.Mathematical_GeophysicalModel_3030);
-		types.add(ScrmElementTypes.Assumption_3004);
-		types.add(ScrmElementTypes.KnowledgeSpace_3005);
+		types.add(ScrmElementTypes.ScientificProblem_2007);
+		types.add(ScrmElementTypes.NumericalMethod_2006);
+		types.add(ScrmElementTypes.Mathematical_GeophysicalModel_2047);
+		types.add(ScrmElementTypes.Assumption_2008);
+		types.add(ScrmElementTypes.KnowledgeSpace_2044);
 		return types;
 	}
 
