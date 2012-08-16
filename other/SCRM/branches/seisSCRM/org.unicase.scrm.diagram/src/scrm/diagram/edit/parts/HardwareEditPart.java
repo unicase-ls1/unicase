@@ -201,10 +201,10 @@ public class HardwareEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT: adjusted size
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(140, 110);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(160, 120);
 		return result;
 	}
 
@@ -358,7 +358,7 @@ public class HardwareEditPart extends ShapeNodeEditPart {
 		private WrappingLabel fFigureHardware_memory;
 
 		/**
-		 * @generated
+		 * @generated NOT: adjusted size
 		 */
 		public HardwareFigure() {
 
@@ -370,8 +370,8 @@ public class HardwareEditPart extends ShapeNodeEditPart {
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(32),
 					getMapMode().DPtoLP(32)));
 			this.setBackgroundColor(THIS_BACK);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(140),
-					getMapMode().DPtoLP(110)));
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(160),
+					getMapMode().DPtoLP(120)));
 			createContents();
 		}
 

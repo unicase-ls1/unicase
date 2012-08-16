@@ -188,10 +188,10 @@ public class ControlParameterEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT: adjusted size
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(130, 65);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(170, 85);
 		return result;
 	}
 

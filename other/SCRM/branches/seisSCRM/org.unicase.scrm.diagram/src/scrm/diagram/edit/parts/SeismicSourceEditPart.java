@@ -203,10 +203,10 @@ public class SeismicSourceEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT: adjusted size
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(130, 65);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(160, 120);
 		return result;
 	}
 
@@ -529,7 +529,7 @@ public class SeismicSourceEditPart extends ShapeNodeEditPart {
 		private WrappingLabel fFigureSeismicSource_format;
 
 		/**
-		 * @generated
+		 * @generated NOT: adjusted size
 		 */
 		public SeismicSourceFigure() {
 
@@ -541,8 +541,8 @@ public class SeismicSourceEditPart extends ShapeNodeEditPart {
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(32),
 					getMapMode().DPtoLP(32)));
 			this.setBackgroundColor(THIS_BACK);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(130),
-					getMapMode().DPtoLP(65)));
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(160),
+					getMapMode().DPtoLP(120)));
 			createContents();
 		}
 
