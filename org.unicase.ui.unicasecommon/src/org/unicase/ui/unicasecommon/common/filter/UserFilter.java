@@ -100,8 +100,8 @@ public class UserFilter extends ViewerFilter {
 
 			// if team contains assignee of this work item then show the work item
 			OrgUnit assignee = workItem.getAssignee();
-			if (assignee != null) {
-				return (team.contains(assignee));
+			if (assignee != null && team.contains(assignee)) {
+				return true;
 			}
 
 			// if work item is resolved and its reviewer is member of this team then show it

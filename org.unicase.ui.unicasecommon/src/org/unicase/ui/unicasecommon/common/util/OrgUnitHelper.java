@@ -69,6 +69,8 @@ public final class OrgUnitHelper {
 		} catch (NoWorkspaceException e) {
 			ModelUtil.logException("Retrieving current user failed!", e);
 			return null;
+		} catch (NullPointerException e) {
+			throw new NoCurrentUserException();
 		}
 
 	}
