@@ -59,11 +59,6 @@ import org.unicase.model.impl.AttachmentImpl;
  */
 public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1316169257375326716L;
-
-	/**
 	 * The cached value of the '{@link #getElements() <em>Elements</em>}' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 

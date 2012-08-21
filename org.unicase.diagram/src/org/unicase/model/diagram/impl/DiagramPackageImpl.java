@@ -356,14 +356,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		NotationPackage theNotationPackage = (NotationPackage) EPackage.Registry.INSTANCE
 			.getEPackage(NotationPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-
-		// Change critical GMF runtime information
-		if (theNotationPackage.getView_SourceEdges().isChangeable()) {
-			theNotationPackage.getView_SourceEdges().setChangeable(false);
-		}
-		if (theNotationPackage.getView_TargetEdges().isChangeable()) {
-			theNotationPackage.getView_TargetEdges().setChangeable(false);
-		}
+		org.eclipse.emf.emfstore.common.model.ModelPackage theModelPackage_1 = (org.eclipse.emf.emfstore.common.model.ModelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(org.eclipse.emf.emfstore.common.model.ModelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -378,6 +372,15 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		activityDiagramEClass.getESuperTypes().add(this.getMEDiagram());
 		workItemDiagramEClass.getESuperTypes().add(this.getMEDiagram());
 		meRelativeBendpointsEClass.getESuperTypes().add(theNotationPackage.getRelativeBendpoints());
+		meRelativeBendpointsEClass.getESuperTypes().add(theModelPackage_1.getNonDomainElement());
+
+		// Change critical GMF runtime information
+		if (theNotationPackage.getView_SourceEdges().isChangeable()) {
+			theNotationPackage.getView_SourceEdges().setChangeable(false);
+		}
+		if (theNotationPackage.getView_TargetEdges().isChangeable()) {
+			theNotationPackage.getView_TargetEdges().setChangeable(false);
+		}
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(meDiagramEClass, MEDiagram.class, "MEDiagram", IS_ABSTRACT, !IS_INTERFACE,

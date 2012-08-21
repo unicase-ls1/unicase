@@ -25,10 +25,10 @@ import org.unicase.dashboard.SubscriptionComposite;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.dashboard.impl.SubscriptionCompositeImpl#getSubscriptions <em>Subscriptions</em>}</li>
+ * <li>{@link org.unicase.dashboard.impl.SubscriptionCompositeImpl#getSubscriptions <em>Subscriptions</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class SubscriptionCompositeImpl extends EObjectImpl implements SubscriptionComposite {
@@ -44,6 +44,7 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected SubscriptionCompositeImpl() {
@@ -52,6 +53,7 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -61,6 +63,7 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElementId> getSubscriptions() {
@@ -73,6 +76,7 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,6 +90,7 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -99,6 +104,7 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -115,6 +121,7 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -129,6 +136,7 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

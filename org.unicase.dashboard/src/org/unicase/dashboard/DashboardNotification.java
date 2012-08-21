@@ -14,45 +14,42 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 
+import org.eclipse.emf.emfstore.common.model.NonDomainElement;
 import org.eclipse.emf.emfstore.server.model.ProjectId;
 
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationId;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Notification</b></em>'.
- * <!-- end-user-doc -->
- *
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Notification</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.dashboard.DashboardNotification#isSeen <em>Seen</em>}</li>
- *   <li>{@link org.unicase.dashboard.DashboardNotification#getName <em>Name</em>}</li>
- *   <li>{@link org.unicase.dashboard.DashboardNotification#getMessage <em>Message</em>}</li>
- *   <li>{@link org.unicase.dashboard.DashboardNotification#getDetails <em>Details</em>}</li>
- *   <li>{@link org.unicase.dashboard.DashboardNotification#getSender <em>Sender</em>}</li>
- *   <li>{@link org.unicase.dashboard.DashboardNotification#getRecipient <em>Recipient</em>}</li>
- *   <li>{@link org.unicase.dashboard.DashboardNotification#getProvider <em>Provider</em>}</li>
- *   <li>{@link org.unicase.dashboard.DashboardNotification#getCreationDate <em>Creation Date</em>}</li>
- *   <li>{@link org.unicase.dashboard.DashboardNotification#getProject <em>Project</em>}</li>
- *   <li>{@link org.unicase.dashboard.DashboardNotification#getRelatedModelElements <em>Related Model Elements</em>}</li>
- *   <li>{@link org.unicase.dashboard.DashboardNotification#getRelatedOperations <em>Related Operations</em>}</li>
+ * <li>{@link org.unicase.dashboard.DashboardNotification#isSeen <em>Seen</em>}</li>
+ * <li>{@link org.unicase.dashboard.DashboardNotification#getName <em>Name</em>}</li>
+ * <li>{@link org.unicase.dashboard.DashboardNotification#getMessage <em>Message</em>}</li>
+ * <li>{@link org.unicase.dashboard.DashboardNotification#getDetails <em>Details</em>}</li>
+ * <li>{@link org.unicase.dashboard.DashboardNotification#getSender <em>Sender</em>}</li>
+ * <li>{@link org.unicase.dashboard.DashboardNotification#getRecipient <em>Recipient</em>}</li>
+ * <li>{@link org.unicase.dashboard.DashboardNotification#getProvider <em>Provider</em>}</li>
+ * <li>{@link org.unicase.dashboard.DashboardNotification#getCreationDate <em>Creation Date</em>}</li>
+ * <li>{@link org.unicase.dashboard.DashboardNotification#getProject <em>Project</em>}</li>
+ * <li>{@link org.unicase.dashboard.DashboardNotification#getRelatedModelElements <em>Related Model Elements</em>}</li>
+ * <li>{@link org.unicase.dashboard.DashboardNotification#getRelatedOperations <em>Related Operations</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.dashboard.DashboardPackage#getDashboardNotification()
  * @model
  * @generated
  */
-public interface DashboardNotification extends EObject {
+public interface DashboardNotification extends NonDomainElement {
 	/**
-	 * Returns the value of the '<em><b>Seen</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Seen</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Seen</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Seen</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Seen</em>' attribute.
 	 * @see #setSeen(boolean)
 	 * @see org.unicase.dashboard.DashboardPackage#getDashboardNotification_Seen()
@@ -62,9 +59,9 @@ public interface DashboardNotification extends EObject {
 	boolean isSeen();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.dashboard.DashboardNotification#isSeen <em>Seen</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.dashboard.DashboardNotification#isSeen <em>Seen</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Seen</em>' attribute.
 	 * @see #isSeen()
 	 * @generated
@@ -72,13 +69,12 @@ public interface DashboardNotification extends EObject {
 	void setSeen(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.unicase.dashboard.DashboardPackage#getDashboardNotification_Name()
@@ -88,9 +84,9 @@ public interface DashboardNotification extends EObject {
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.dashboard.DashboardNotification#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.dashboard.DashboardNotification#getName <em>Name</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
@@ -98,13 +94,13 @@ public interface DashboardNotification extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Message</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Message</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Message</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Message</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Message</em>' attribute.
 	 * @see #setMessage(String)
 	 * @see org.unicase.dashboard.DashboardPackage#getDashboardNotification_Message()
@@ -114,9 +110,9 @@ public interface DashboardNotification extends EObject {
 	String getMessage();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.dashboard.DashboardNotification#getMessage <em>Message</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.dashboard.DashboardNotification#getMessage <em>Message</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Message</em>' attribute.
 	 * @see #getMessage()
 	 * @generated
@@ -124,13 +120,13 @@ public interface DashboardNotification extends EObject {
 	void setMessage(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Details</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Details</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Details</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Details</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Details</em>' attribute.
 	 * @see #setDetails(String)
 	 * @see org.unicase.dashboard.DashboardPackage#getDashboardNotification_Details()
@@ -140,9 +136,9 @@ public interface DashboardNotification extends EObject {
 	String getDetails();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.dashboard.DashboardNotification#getDetails <em>Details</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.dashboard.DashboardNotification#getDetails <em>Details</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Details</em>' attribute.
 	 * @see #getDetails()
 	 * @generated
@@ -150,13 +146,13 @@ public interface DashboardNotification extends EObject {
 	void setDetails(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Sender</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Sender</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sender</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Sender</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Sender</em>' attribute.
 	 * @see #setSender(String)
 	 * @see org.unicase.dashboard.DashboardPackage#getDashboardNotification_Sender()
@@ -167,8 +163,8 @@ public interface DashboardNotification extends EObject {
 
 	/**
 	 * Sets the value of the '{@link org.unicase.dashboard.DashboardNotification#getSender <em>Sender</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Sender</em>' attribute.
 	 * @see #getSender()
 	 * @generated
@@ -176,13 +172,13 @@ public interface DashboardNotification extends EObject {
 	void setSender(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Recipient</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Recipient</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Recipient</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Recipient</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Recipient</em>' attribute.
 	 * @see #setRecipient(String)
 	 * @see org.unicase.dashboard.DashboardPackage#getDashboardNotification_Recipient()
@@ -192,9 +188,9 @@ public interface DashboardNotification extends EObject {
 	String getRecipient();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.dashboard.DashboardNotification#getRecipient <em>Recipient</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.dashboard.DashboardNotification#getRecipient <em>Recipient</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Recipient</em>' attribute.
 	 * @see #getRecipient()
 	 * @generated
@@ -202,13 +198,13 @@ public interface DashboardNotification extends EObject {
 	void setRecipient(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Provider</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Provider</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Provider</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Provider</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Provider</em>' attribute.
 	 * @see #setProvider(String)
 	 * @see org.unicase.dashboard.DashboardPackage#getDashboardNotification_Provider()
@@ -218,9 +214,9 @@ public interface DashboardNotification extends EObject {
 	String getProvider();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.dashboard.DashboardNotification#getProvider <em>Provider</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.dashboard.DashboardNotification#getProvider <em>Provider</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Provider</em>' attribute.
 	 * @see #getProvider()
 	 * @generated
@@ -228,13 +224,13 @@ public interface DashboardNotification extends EObject {
 	void setProvider(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Creation Date</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Creation Date</em>' attribute isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Creation Date</em>' attribute.
 	 * @see #setCreationDate(Date)
 	 * @see org.unicase.dashboard.DashboardPackage#getDashboardNotification_CreationDate()
@@ -244,9 +240,9 @@ public interface DashboardNotification extends EObject {
 	Date getCreationDate();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.dashboard.DashboardNotification#getCreationDate <em>Creation Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.dashboard.DashboardNotification#getCreationDate <em>Creation Date</em>}
+	 * ' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Creation Date</em>' attribute.
 	 * @see #getCreationDate()
 	 * @generated
@@ -254,13 +250,13 @@ public interface DashboardNotification extends EObject {
 	void setCreationDate(Date value);
 
 	/**
-	 * Returns the value of the '<em><b>Project</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Project</b></em>' containment reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Project</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Project</em>' containment reference isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Project</em>' containment reference.
 	 * @see #setProject(ProjectId)
 	 * @see org.unicase.dashboard.DashboardPackage#getDashboardNotification_Project()
@@ -270,9 +266,9 @@ public interface DashboardNotification extends EObject {
 	ProjectId getProject();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.dashboard.DashboardNotification#getProject <em>Project</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.dashboard.DashboardNotification#getProject <em>Project</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Project</em>' containment reference.
 	 * @see #getProject()
 	 * @generated
@@ -280,14 +276,14 @@ public interface DashboardNotification extends EObject {
 	void setProject(ProjectId value);
 
 	/**
-	 * Returns the value of the '<em><b>Related Model Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.emfstore.common.model.ModelElementId}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Related Model Elements</b></em>' containment reference list. The list contents
+	 * are of type {@link org.eclipse.emf.emfstore.common.model.ModelElementId}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Related Model Elements</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Related Model Elements</em>' containment reference list isn't clear, there really
+	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Related Model Elements</em>' containment reference list.
 	 * @see org.unicase.dashboard.DashboardPackage#getDashboardNotification_RelatedModelElements()
 	 * @model containment="true" resolveProxies="true"
@@ -296,14 +292,14 @@ public interface DashboardNotification extends EObject {
 	EList<ModelElementId> getRelatedModelElements();
 
 	/**
-	 * Returns the value of the '<em><b>Related Operations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.emfstore.server.model.versioning.operations.OperationId}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Related Operations</b></em>' containment reference list. The list contents are
+	 * of type {@link org.eclipse.emf.emfstore.server.model.versioning.operations.OperationId}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Related Operations</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Related Operations</em>' containment reference list isn't clear, there really should
+	 * be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Related Operations</em>' containment reference list.
 	 * @see org.unicase.dashboard.DashboardPackage#getDashboardNotification_RelatedOperations()
 	 * @model containment="true" resolveProxies="true"

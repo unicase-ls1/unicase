@@ -7,36 +7,35 @@
 package org.unicase.dashboard;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.emfstore.common.model.NonDomainElement;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Notification Operation</b></em>'.
- * <!-- end-user-doc -->
- *
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Notification Operation</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.dashboard.NotificationOperation#getNotifications <em>Notifications</em>}</li>
- *   <li>{@link org.unicase.dashboard.NotificationOperation#isReversed <em>Reversed</em>}</li>
+ * <li>{@link org.unicase.dashboard.NotificationOperation#getNotifications <em>Notifications</em>}</li>
+ * <li>{@link org.unicase.dashboard.NotificationOperation#isReversed <em>Reversed</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.dashboard.DashboardPackage#getNotificationOperation()
  * @model
  * @generated
  */
-public interface NotificationOperation extends AbstractOperation {
+public interface NotificationOperation extends AbstractOperation, NonDomainElement {
 
 	/**
-	 * Returns the value of the '<em><b>Notifications</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.dashboard.DashboardNotification}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Notifications</b></em>' containment reference list. The list contents are of
+	 * type {@link org.unicase.dashboard.DashboardNotification}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Notifications</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Notifications</em>' containment reference list isn't clear, there really should be
+	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Notifications</em>' containment reference list.
 	 * @see org.unicase.dashboard.DashboardPackage#getNotificationOperation_Notifications()
 	 * @model containment="true" resolveProxies="true"
@@ -45,13 +44,13 @@ public interface NotificationOperation extends AbstractOperation {
 	EList<DashboardNotification> getNotifications();
 
 	/**
-	 * Returns the value of the '<em><b>Reversed</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Reversed</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Reversed</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Reversed</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Reversed</em>' attribute.
 	 * @see #setReversed(boolean)
 	 * @see org.unicase.dashboard.DashboardPackage#getNotificationOperation_Reversed()
@@ -61,9 +60,9 @@ public interface NotificationOperation extends AbstractOperation {
 	boolean isReversed();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.dashboard.NotificationOperation#isReversed <em>Reversed</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.dashboard.NotificationOperation#isReversed <em>Reversed</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Reversed</em>' attribute.
 	 * @see #isReversed()
 	 * @generated
