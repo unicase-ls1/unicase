@@ -17,5 +17,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.notation;visibility:=reexport,
  org.eclipse.gmf.runtime.notation.edit;visibility:=reexport,
  org.eclipse.uml2.uml;visibility:=reexport,
- org.eclipse.uml2.uml.edit;visibility:=reexport
+ org.eclipse.uml2.uml.edit;visibility:=reexport,
+ org.eclipse.emf.emfstore.common.model,
+ org.eclipse.emf.emfstore.common.model.edit
 Bundle-ActivationPolicy: lazy

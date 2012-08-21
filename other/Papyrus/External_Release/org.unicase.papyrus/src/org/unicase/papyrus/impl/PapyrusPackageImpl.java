@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.emf.emfstore.common.model.ModelPackage;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.unicase.papyrus.PapyrusFactory;
@@ -97,13 +98,11 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
-	 * @return a newly initialized {@link PapyrusPackage}
 	 * @generated
 	 */
 	public static PapyrusPackage init() {
-		if (isInited) {
+		if (isInited)
 			return (PapyrusPackage) EPackage.Registry.INSTANCE.getEPackage(PapyrusPackage.eNS_URI);
-		}
 
 		// Obtain or create and register package
 		PapyrusPackageImpl thePapyrusPackage = (PapyrusPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof PapyrusPackageImpl ? EPackage.Registry.INSTANCE
@@ -112,6 +111,7 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
+		ModelPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
 		UMLPackage.eINSTANCE.eClass();
 
@@ -290,6 +290,7 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 		UMLPackage theUMLPackage = (UMLPackage) EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
 		NotationPackage theNotationPackage = (NotationPackage) EPackage.Registry.INSTANCE
 			.getEPackage(NotationPackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 
 		// Change critical GMF runtime information
 		if (theNotationPackage.getView_SourceEdges().isChangeable()) {
@@ -307,6 +308,7 @@ public class PapyrusPackageImpl extends EPackageImpl implements PapyrusPackage {
 		umlModelEClass.getESuperTypes().add(theUMLPackage.getModel());
 		sysMLModelEClass.getESuperTypes().add(theUMLPackage.getModel());
 		sysMLClassEClass.getESuperTypes().add(theUMLPackage.getClass_());
+		sysMLClassEClass.getESuperTypes().add(theModelPackage.getNonDomainElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(umlModelEClass, UMLModel.class, "UMLModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

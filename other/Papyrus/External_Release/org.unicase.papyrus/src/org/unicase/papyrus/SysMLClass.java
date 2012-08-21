@@ -6,6 +6,7 @@
  */
 package org.unicase.papyrus;
 
+import org.eclipse.emf.emfstore.common.model.NonDomainElement;
 import org.eclipse.gmf.runtime.notation.Diagram;
 
 /**
@@ -21,7 +22,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
  * @model
  * @generated
  */
-public interface SysMLClass extends org.eclipse.uml2.uml.Class {
+public interface SysMLClass extends org.eclipse.uml2.uml.Class, NonDomainElement {
 
 	/**
 	 * Returns the value of the '<em><b>Gmf Diagram</b></em>' containment reference. <!-- begin-user-doc -->
