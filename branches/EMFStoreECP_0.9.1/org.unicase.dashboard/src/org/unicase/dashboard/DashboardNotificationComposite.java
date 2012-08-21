@@ -8,34 +8,33 @@ package org.unicase.dashboard;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.emfstore.common.model.NonDomainElement;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Notification Composite</b></em>'.
- * <!-- end-user-doc -->
- *
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Notification Composite</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.dashboard.DashboardNotificationComposite#getNotifications <em>Notifications</em>}</li>
+ * <li>{@link org.unicase.dashboard.DashboardNotificationComposite#getNotifications <em>Notifications</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.dashboard.DashboardPackage#getDashboardNotificationComposite()
  * @model
  * @generated
  */
-public interface DashboardNotificationComposite extends EObject {
+public interface DashboardNotificationComposite extends NonDomainElement {
 	/**
-	 * Returns the value of the '<em><b>Notifications</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.dashboard.DashboardNotification}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Notifications</b></em>' containment reference list. The list contents are of
+	 * type {@link org.unicase.dashboard.DashboardNotification}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Notifications</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Notifications</em>' containment reference list isn't clear, there really should be
+	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Notifications</em>' containment reference list.
 	 * @see org.unicase.dashboard.DashboardPackage#getDashboardNotificationComposite_Notifications()
 	 * @model containment="true" resolveProxies="true"

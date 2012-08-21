@@ -21,23 +21,22 @@ import org.unicase.dashboard.DashboardPackage;
 import org.unicase.dashboard.TaskTraceClassesComposite;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Task Trace Classes Composite</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Task Trace Classes Composite</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.dashboard.impl.TaskTraceClassesCompositeImpl#getTaskTraceClasses <em>Task Trace Classes</em>}</li>
+ * <li>{@link org.unicase.dashboard.impl.TaskTraceClassesCompositeImpl#getTaskTraceClasses <em>Task Trace Classes</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class TaskTraceClassesCompositeImpl extends EObjectImpl implements TaskTraceClassesComposite {
 	/**
-	 * The cached value of the '{@link #getTaskTraceClasses() <em>Task Trace Classes</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getTaskTraceClasses() <em>Task Trace Classes</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getTaskTraceClasses()
 	 * @generated
 	 * @ordered
@@ -45,8 +44,8 @@ public class TaskTraceClassesCompositeImpl extends EObjectImpl implements TaskTr
 	protected EList<EObject> taskTraceClasses;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TaskTraceClassesCompositeImpl() {
@@ -54,8 +53,8 @@ public class TaskTraceClassesCompositeImpl extends EObjectImpl implements TaskTr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,8 +63,8 @@ public class TaskTraceClassesCompositeImpl extends EObjectImpl implements TaskTr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<EObject> getTaskTraceClasses() {
@@ -77,8 +76,8 @@ public class TaskTraceClassesCompositeImpl extends EObjectImpl implements TaskTr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -91,8 +90,8 @@ public class TaskTraceClassesCompositeImpl extends EObjectImpl implements TaskTr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -108,8 +107,8 @@ public class TaskTraceClassesCompositeImpl extends EObjectImpl implements TaskTr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -123,8 +122,8 @@ public class TaskTraceClassesCompositeImpl extends EObjectImpl implements TaskTr
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -136,4 +135,4 @@ public class TaskTraceClassesCompositeImpl extends EObjectImpl implements TaskTr
 		return super.eIsSet(featureID);
 	}
 
-} //TaskTraceClassesCompositeImpl
+} // TaskTraceClassesCompositeImpl

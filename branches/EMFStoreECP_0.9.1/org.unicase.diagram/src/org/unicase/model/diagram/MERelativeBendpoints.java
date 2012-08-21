@@ -6,6 +6,7 @@
  */
 package org.unicase.model.diagram;
 
+import org.eclipse.emf.emfstore.common.model.NonDomainElement;
 import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
 
 /**
@@ -16,5 +17,5 @@ import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
  * @model
  * @generated
  */
-public interface MERelativeBendpoints extends RelativeBendpoints {
+public interface MERelativeBendpoints extends RelativeBendpoints, NonDomainElement {
 } // MERelativeBendpoints

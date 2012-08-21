@@ -26,16 +26,16 @@ import org.unicase.papyrus.PapyrusPackage;
 import org.unicase.papyrus.SysMLModel;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.papyrus.SysMLModel} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.papyrus.SysMLModel} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class SysMLModelItemProvider extends ModelItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public SysMLModelItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +43,8 @@ public class SysMLModelItemProvider extends ModelItemProvider implements IEditin
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -57,8 +57,8 @@ public class SysMLModelItemProvider extends ModelItemProvider implements IEditin
 	}
 
 	/**
-	 * This returns SysMLModel.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns SysMLModel.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -100,9 +100,9 @@ public class SysMLModelItemProvider extends ModelItemProvider implements IEditin
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -129,9 +129,9 @@ public class SysMLModelItemProvider extends ModelItemProvider implements IEditin
 	}
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -153,8 +153,8 @@ public class SysMLModelItemProvider extends ModelItemProvider implements IEditin
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

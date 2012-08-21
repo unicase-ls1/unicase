@@ -26,57 +26,54 @@ import org.unicase.dashboard.SubscriptionComposite;
 import org.unicase.dashboard.TaskTraceClassesComposite;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Package</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class DashboardPackageImpl extends EPackageImpl implements DashboardPackage {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass dashboardNotificationEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass dashboardNotificationCompositeEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass subscriptionCompositeEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass taskTraceClassesCompositeEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass notificationOperationEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
-	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
+	 * EPackage.Registry} by the package package URI value.
+	 * <p>
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also
+	 * performs initialization of the package, or returns the registered package, if one already exists. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.unicase.dashboard.DashboardPackage#eNS_URI
 	 * @see #init()
@@ -87,19 +84,19 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * <p>
+	 * This method is used to initialize {@link DashboardPackage#eINSTANCE} when that field is accessed. Clients should
+	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
-	 * <p>This method is used to initialize {@link DashboardPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -133,8 +130,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getDashboardNotification() {
@@ -142,8 +139,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getDashboardNotification_Seen() {
@@ -151,8 +148,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getDashboardNotification_Name() {
@@ -160,8 +157,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getDashboardNotification_Message() {
@@ -169,8 +166,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getDashboardNotification_Details() {
@@ -178,8 +175,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getDashboardNotification_Sender() {
@@ -187,8 +184,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getDashboardNotification_Recipient() {
@@ -196,8 +193,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getDashboardNotification_Provider() {
@@ -205,8 +202,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getDashboardNotification_CreationDate() {
@@ -214,8 +211,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDashboardNotification_Project() {
@@ -223,8 +220,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDashboardNotification_RelatedModelElements() {
@@ -232,8 +229,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDashboardNotification_RelatedOperations() {
@@ -241,8 +238,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getDashboardNotificationComposite() {
@@ -250,8 +247,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getDashboardNotificationComposite_Notifications() {
@@ -259,8 +256,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getSubscriptionComposite() {
@@ -268,8 +265,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getSubscriptionComposite_Subscriptions() {
@@ -277,8 +274,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getTaskTraceClassesComposite() {
@@ -286,8 +283,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getTaskTraceClassesComposite_TaskTraceClasses() {
@@ -295,8 +292,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getNotificationOperation() {
@@ -304,8 +301,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getNotificationOperation_Notifications() {
@@ -313,8 +310,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getNotificationOperation_Reversed() {
@@ -322,8 +319,8 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DashboardFactory getDashboardFactory() {
@@ -331,17 +328,16 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
+	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -378,17 +374,16 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
+	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -402,9 +397,9 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		org.eclipse.emf.emfstore.common.model.ModelPackage theModelPackage_1 = (org.eclipse.emf.emfstore.common.model.ModelPackage) EPackage.Registry.INSTANCE
 			.getEPackage(org.eclipse.emf.emfstore.common.model.ModelPackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		OperationsPackage theOperationsPackage = (OperationsPackage) EPackage.Registry.INSTANCE
 			.getEPackage(OperationsPackage.eNS_URI);
 
@@ -413,7 +408,12 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		dashboardNotificationEClass.getESuperTypes().add(theModelPackage_1.getNonDomainElement());
+		dashboardNotificationCompositeEClass.getESuperTypes().add(theModelPackage_1.getNonDomainElement());
+		subscriptionCompositeEClass.getESuperTypes().add(theModelPackage_1.getNonDomainElement());
+		taskTraceClassesCompositeEClass.getESuperTypes().add(theModelPackage_1.getNonDomainElement());
 		notificationOperationEClass.getESuperTypes().add(theOperationsPackage.getAbstractOperation());
+		notificationOperationEClass.getESuperTypes().add(theModelPackage_1.getNonDomainElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(dashboardNotificationEClass, DashboardNotification.class, "DashboardNotification", !IS_ABSTRACT,
@@ -483,4 +483,4 @@ public class DashboardPackageImpl extends EPackageImpl implements DashboardPacka
 		createResource(eNS_URI);
 	}
 
-} //DashboardPackageImpl
+} // DashboardPackageImpl

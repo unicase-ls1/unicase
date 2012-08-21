@@ -25,23 +25,22 @@ import org.unicase.dashboard.DashboardNotificationComposite;
 import org.unicase.dashboard.DashboardPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Notification Composite</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Notification Composite</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.dashboard.impl.DashboardNotificationCompositeImpl#getNotifications <em>Notifications</em>}</li>
+ * <li>{@link org.unicase.dashboard.impl.DashboardNotificationCompositeImpl#getNotifications <em>Notifications</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class DashboardNotificationCompositeImpl extends EObjectImpl implements DashboardNotificationComposite {
 	/**
-	 * The cached value of the '{@link #getNotifications() <em>Notifications</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getNotifications() <em>Notifications</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getNotifications()
 	 * @generated
 	 * @ordered
@@ -49,8 +48,8 @@ public class DashboardNotificationCompositeImpl extends EObjectImpl implements D
 	protected EList<DashboardNotification> notifications;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DashboardNotificationCompositeImpl() {
@@ -58,8 +57,8 @@ public class DashboardNotificationCompositeImpl extends EObjectImpl implements D
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,8 +67,8 @@ public class DashboardNotificationCompositeImpl extends EObjectImpl implements D
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<DashboardNotification> getNotifications() {
@@ -81,8 +80,8 @@ public class DashboardNotificationCompositeImpl extends EObjectImpl implements D
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -95,8 +94,8 @@ public class DashboardNotificationCompositeImpl extends EObjectImpl implements D
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -109,8 +108,8 @@ public class DashboardNotificationCompositeImpl extends EObjectImpl implements D
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -126,8 +125,8 @@ public class DashboardNotificationCompositeImpl extends EObjectImpl implements D
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,8 +140,8 @@ public class DashboardNotificationCompositeImpl extends EObjectImpl implements D
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -154,4 +153,4 @@ public class DashboardNotificationCompositeImpl extends EObjectImpl implements D
 		return super.eIsSet(featureID);
 	}
 
-} //DashboardNotificationCompositeImpl
+} // DashboardNotificationCompositeImpl

@@ -33,33 +33,32 @@ import org.unicase.dashboard.DashboardNotification;
 import org.unicase.dashboard.DashboardPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Notification</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Notification</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#isSeen <em>Seen</em>}</li>
- *   <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#getMessage <em>Message</em>}</li>
- *   <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#getDetails <em>Details</em>}</li>
- *   <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#getSender <em>Sender</em>}</li>
- *   <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#getRecipient <em>Recipient</em>}</li>
- *   <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#getProvider <em>Provider</em>}</li>
- *   <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#getCreationDate <em>Creation Date</em>}</li>
- *   <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#getProject <em>Project</em>}</li>
- *   <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#getRelatedModelElements <em>Related Model Elements</em>}</li>
- *   <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#getRelatedOperations <em>Related Operations</em>}</li>
+ * <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#isSeen <em>Seen</em>}</li>
+ * <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#getName <em>Name</em>}</li>
+ * <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#getMessage <em>Message</em>}</li>
+ * <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#getDetails <em>Details</em>}</li>
+ * <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#getSender <em>Sender</em>}</li>
+ * <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#getRecipient <em>Recipient</em>}</li>
+ * <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#getProvider <em>Provider</em>}</li>
+ * <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#getCreationDate <em>Creation Date</em>}</li>
+ * <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#getProject <em>Project</em>}</li>
+ * <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#getRelatedModelElements <em>Related Model Elements
+ * </em>}</li>
+ * <li>{@link org.unicase.dashboard.impl.DashboardNotificationImpl#getRelatedOperations <em>Related Operations</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class DashboardNotificationImpl extends EObjectImpl implements DashboardNotification {
 	/**
-	 * The default value of the '{@link #isSeen() <em>Seen</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #isSeen() <em>Seen</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #isSeen()
 	 * @generated
 	 * @ordered
@@ -67,9 +66,9 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	protected static final boolean SEEN_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isSeen() <em>Seen</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #isSeen() <em>Seen</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #isSeen()
 	 * @generated
 	 * @ordered
@@ -77,9 +76,9 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	protected boolean seen = SEEN_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -87,9 +86,9 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -97,9 +96,9 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getMessage() <em>Message</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getMessage() <em>Message</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getMessage()
 	 * @generated
 	 * @ordered
@@ -107,9 +106,9 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	protected static final String MESSAGE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getMessage() <em>Message</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getMessage() <em>Message</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getMessage()
 	 * @generated
 	 * @ordered
@@ -117,9 +116,9 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	protected String message = MESSAGE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDetails() <em>Details</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getDetails() <em>Details</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getDetails()
 	 * @generated
 	 * @ordered
@@ -127,9 +126,9 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	protected static final String DETAILS_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDetails() <em>Details</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDetails() <em>Details</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getDetails()
 	 * @generated
 	 * @ordered
@@ -137,9 +136,9 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	protected String details = DETAILS_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSender() <em>Sender</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getSender() <em>Sender</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getSender()
 	 * @generated
 	 * @ordered
@@ -147,9 +146,9 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	protected static final String SENDER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getSender() <em>Sender</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSender() <em>Sender</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getSender()
 	 * @generated
 	 * @ordered
@@ -157,9 +156,9 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	protected String sender = SENDER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getRecipient() <em>Recipient</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getRecipient() <em>Recipient</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getRecipient()
 	 * @generated
 	 * @ordered
@@ -167,9 +166,9 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	protected static final String RECIPIENT_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getRecipient() <em>Recipient</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRecipient() <em>Recipient</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getRecipient()
 	 * @generated
 	 * @ordered
@@ -177,9 +176,9 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	protected String recipient = RECIPIENT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getProvider() <em>Provider</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The default value of the '{@link #getProvider() <em>Provider</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getProvider()
 	 * @generated
 	 * @ordered
@@ -187,9 +186,9 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	protected static final String PROVIDER_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getProvider() <em>Provider</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getProvider() <em>Provider</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @see #getProvider()
 	 * @generated
 	 * @ordered
@@ -197,9 +196,9 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	protected String provider = PROVIDER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getCreationDate()
 	 * @generated
 	 * @ordered
@@ -207,9 +206,9 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	protected static final Date CREATION_DATE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getCreationDate()
 	 * @generated
 	 * @ordered
@@ -217,9 +216,9 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	protected Date creationDate = CREATION_DATE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getProject() <em>Project</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getProject() <em>Project</em>}' containment reference. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getProject()
 	 * @generated
 	 * @ordered
@@ -227,9 +226,9 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	protected ProjectId project;
 
 	/**
-	 * The cached value of the '{@link #getRelatedModelElements() <em>Related Model Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRelatedModelElements() <em>Related Model Elements</em>}' containment
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getRelatedModelElements()
 	 * @generated
 	 * @ordered
@@ -238,8 +237,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 
 	/**
 	 * The cached value of the '{@link #getRelatedOperations() <em>Related Operations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getRelatedOperations()
 	 * @generated
 	 * @ordered
@@ -247,8 +246,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	protected EList<OperationId> relatedOperations;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DashboardNotificationImpl() {
@@ -256,8 +255,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -266,8 +265,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public boolean isSeen() {
@@ -275,8 +274,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSeen(boolean newSeen) {
@@ -288,8 +287,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -297,8 +296,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
@@ -310,8 +309,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getMessage() {
@@ -319,8 +318,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setMessage(String newMessage) {
@@ -332,8 +331,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getDetails() {
@@ -341,8 +340,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDetails(String newDetails) {
@@ -354,8 +353,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getSender() {
@@ -363,8 +362,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSender(String newSender) {
@@ -376,8 +375,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getRecipient() {
@@ -385,8 +384,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setRecipient(String newRecipient) {
@@ -398,8 +397,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getProvider() {
@@ -407,8 +406,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setProvider(String newProvider) {
@@ -420,8 +419,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Date getCreationDate() {
@@ -429,8 +428,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCreationDate(Date newCreationDate) {
@@ -442,8 +441,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectId getProject() {
@@ -469,8 +468,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectId basicGetProject() {
@@ -478,8 +477,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetProject(ProjectId newProject, NotificationChain msgs) {
@@ -497,8 +496,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setProject(ProjectId newProject) {
@@ -519,8 +518,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElementId> getRelatedModelElements() {
@@ -532,8 +531,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<OperationId> getRelatedOperations() {
@@ -545,8 +544,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -563,8 +562,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -599,8 +598,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -647,8 +646,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -692,8 +691,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -726,8 +725,8 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -756,4 +755,4 @@ public class DashboardNotificationImpl extends EObjectImpl implements DashboardN
 		return result.toString();
 	}
 
-} //DashboardNotificationImpl
+} // DashboardNotificationImpl

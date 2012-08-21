@@ -32,7 +32,7 @@
     <eLiterals name="Requirement" value="3"/>
     <eLiterals name="InternalBlock" value="4"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SysMLClass" eSuperTypes="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class">
+  <eClassifiers xsi:type="ecore:EClass" name="SysMLClass" eSuperTypes="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Class platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.ecore#//NonDomainElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="gmfDiagram" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"
         containment="true"/>
   </eClassifiers>

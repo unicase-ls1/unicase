@@ -9,33 +9,32 @@ package org.unicase.dashboard;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.common.model.NonDomainElement;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Task Trace Classes Composite</b></em>'.
- * <!-- end-user-doc -->
- *
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Task Trace Classes Composite</b></em>'. <!--
+ * end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.dashboard.TaskTraceClassesComposite#getTaskTraceClasses <em>Task Trace Classes</em>}</li>
+ * <li>{@link org.unicase.dashboard.TaskTraceClassesComposite#getTaskTraceClasses <em>Task Trace Classes</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.dashboard.DashboardPackage#getTaskTraceClassesComposite()
  * @model
  * @generated
  */
-public interface TaskTraceClassesComposite extends EObject {
+public interface TaskTraceClassesComposite extends NonDomainElement {
 	/**
-	 * Returns the value of the '<em><b>Task Trace Classes</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Task Trace Classes</b></em>' reference list. The list contents are of type
+	 * {@link org.eclipse.emf.ecore.EObject}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Task Trace Classes</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Task Trace Classes</em>' reference list isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Task Trace Classes</em>' reference list.
 	 * @see org.unicase.dashboard.DashboardPackage#getTaskTraceClassesComposite_TaskTraceClasses()
 	 * @model
