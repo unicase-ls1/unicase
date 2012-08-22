@@ -22,7 +22,6 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.MERelativeBendpoints;
 import org.unicase.model.diagram.StateDiagram;
 import org.unicase.model.diagram.UseCaseDiagram;
-import org.unicase.model.diagram.WorkItemDiagram;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the call
@@ -150,19 +149,6 @@ public class DiagramSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case DiagramPackage.WORK_ITEM_DIAGRAM: {
-			WorkItemDiagram workItemDiagram = (WorkItemDiagram) theEObject;
-			T result = caseWorkItemDiagram(workItemDiagram);
-			if (result == null)
-				result = caseMEDiagram(workItemDiagram);
-			if (result == null)
-				result = caseAttachment(workItemDiagram);
-			if (result == null)
-				result = caseUnicaseModelElement(workItemDiagram);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case DiagramPackage.ME_RELATIVE_BENDPOINTS: {
 			MERelativeBendpoints meRelativeBendpoints = (MERelativeBendpoints) theEObject;
 			T result = caseMERelativeBendpoints(meRelativeBendpoints);
@@ -259,20 +245,6 @@ public class DiagramSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseActivityDiagram(ActivityDiagram object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Work Item Diagram</em>'. <!-- begin-user-doc
-	 * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc
-	 * -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Work Item Diagram</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseWorkItemDiagram(WorkItemDiagram object) {
 		return null;
 	}
 
