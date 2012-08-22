@@ -24,7 +24,6 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.MERelativeBendpoints;
 import org.unicase.model.diagram.StateDiagram;
 import org.unicase.model.diagram.UseCaseDiagram;
-import org.unicase.model.diagram.WorkItemDiagram;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
@@ -73,13 +72,6 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * @generated
 	 */
 	private EClass activityDiagramEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private EClass workItemDiagramEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -254,15 +246,6 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 	 * 
 	 * @generated
 	 */
-	public EClass getWorkItemDiagram() {
-		return workItemDiagramEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public EClass getMERelativeBendpoints() {
 		return meRelativeBendpointsEClass;
 	}
@@ -320,8 +303,6 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 
 		activityDiagramEClass = createEClass(ACTIVITY_DIAGRAM);
 
-		workItemDiagramEClass = createEClass(WORK_ITEM_DIAGRAM);
-
 		meRelativeBendpointsEClass = createEClass(ME_RELATIVE_BENDPOINTS);
 
 		// Create data types
@@ -370,17 +351,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		componentDiagramEClass.getESuperTypes().add(this.getMEDiagram());
 		stateDiagramEClass.getESuperTypes().add(this.getMEDiagram());
 		activityDiagramEClass.getESuperTypes().add(this.getMEDiagram());
-		workItemDiagramEClass.getESuperTypes().add(this.getMEDiagram());
 		meRelativeBendpointsEClass.getESuperTypes().add(theNotationPackage.getRelativeBendpoints());
 		meRelativeBendpointsEClass.getESuperTypes().add(theModelPackage_1.getNonDomainElement());
-
-		// Change critical GMF runtime information
-		if (theNotationPackage.getView_SourceEdges().isChangeable()) {
-			theNotationPackage.getView_SourceEdges().setChangeable(false);
-		}
-		if (theNotationPackage.getView_TargetEdges().isChangeable()) {
-			theNotationPackage.getView_TargetEdges().setChangeable(false);
-		}
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(meDiagramEClass, MEDiagram.class, "MEDiagram", IS_ABSTRACT, !IS_INTERFACE,
@@ -411,9 +383,6 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 			IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(activityDiagramEClass, ActivityDiagram.class, "ActivityDiagram", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(workItemDiagramEClass, WorkItemDiagram.class, "WorkItemDiagram", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(meRelativeBendpointsEClass, MERelativeBendpoints.class, "MERelativeBendpoints", !IS_ABSTRACT,

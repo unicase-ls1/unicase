@@ -941,153 +941,6 @@ public interface DiagramPackage extends EPackage {
 	int ACTIVITY_DIAGRAM_FEATURE_COUNT = ME_DIAGRAM_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.diagram.impl.WorkItemDiagramImpl <em>Work Item Diagram</em>}
-	 * ' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see org.unicase.model.diagram.impl.WorkItemDiagramImpl
-	 * @see org.unicase.model.diagram.impl.DiagramPackageImpl#getWorkItemDiagram()
-	 * @generated
-	 */
-	int WORK_ITEM_DIAGRAM = 6;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_DIAGRAM__NAME = ME_DIAGRAM__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_DIAGRAM__DESCRIPTION = ME_DIAGRAM__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_DIAGRAM__ANNOTATIONS = ME_DIAGRAM__ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_DIAGRAM__ATTACHMENTS = ME_DIAGRAM__ATTACHMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_DIAGRAM__INCOMING_DOCUMENT_REFERENCES = ME_DIAGRAM__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_DIAGRAM__STATE = ME_DIAGRAM__STATE;
-
-	/**
-	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_DIAGRAM__APPLIED_STEREOTYPE_INSTANCES = ME_DIAGRAM__APPLIED_STEREOTYPE_INSTANCES;
-
-	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_DIAGRAM__COMMENTS = ME_DIAGRAM__COMMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_DIAGRAM__CREATION_DATE = ME_DIAGRAM__CREATION_DATE;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_DIAGRAM__CREATOR = ME_DIAGRAM__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Referring Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_DIAGRAM__REFERRING_MODEL_ELEMENTS = ME_DIAGRAM__REFERRING_MODEL_ELEMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Elements</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_DIAGRAM__ELEMENTS = ME_DIAGRAM__ELEMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Gmfdiagram</b></em>' containment reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_DIAGRAM__GMFDIAGRAM = ME_DIAGRAM__GMFDIAGRAM;
-
-	/**
-	 * The feature id for the '<em><b>New Elements</b></em>' containment reference list. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_DIAGRAM__NEW_ELEMENTS = ME_DIAGRAM__NEW_ELEMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Diagram Layout</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_DIAGRAM__DIAGRAM_LAYOUT = ME_DIAGRAM__DIAGRAM_LAYOUT;
-
-	/**
-	 * The number of structural features of the '<em>Work Item Diagram</em>' class. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_DIAGRAM_FEATURE_COUNT = ME_DIAGRAM_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.unicase.model.diagram.impl.MERelativeBendpointsImpl
 	 * <em>ME Relative Bendpoints</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -1095,7 +948,7 @@ public interface DiagramPackage extends EPackage {
 	 * @see org.unicase.model.diagram.impl.DiagramPackageImpl#getMERelativeBendpoints()
 	 * @generated
 	 */
-	int ME_RELATIVE_BENDPOINTS = 7;
+	int ME_RELATIVE_BENDPOINTS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Points</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1122,7 +975,7 @@ public interface DiagramPackage extends EPackage {
 	 * @see org.unicase.model.diagram.impl.DiagramPackageImpl#getMERelativeBendpoint()
 	 * @generated
 	 */
-	int ME_RELATIVE_BENDPOINT = 8;
+	int ME_RELATIVE_BENDPOINT = 7;
 
 	/**
 	 * Returns the meta object for class ' {@link org.unicase.model.diagram.MEDiagram <em>ME Diagram</em>}'. <!--
@@ -1228,16 +1081,6 @@ public interface DiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getActivityDiagram();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.model.diagram.WorkItemDiagram <em>Work Item Diagram</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for class '<em>Work Item Diagram</em>'.
-	 * @see org.unicase.model.diagram.WorkItemDiagram
-	 * @generated
-	 */
-	EClass getWorkItemDiagram();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.diagram.MERelativeBendpoints
@@ -1372,16 +1215,6 @@ public interface DiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ACTIVITY_DIAGRAM = eINSTANCE.getActivityDiagram();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.model.diagram.impl.WorkItemDiagramImpl
-		 * <em>Work Item Diagram</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @see org.unicase.model.diagram.impl.WorkItemDiagramImpl
-		 * @see org.unicase.model.diagram.impl.DiagramPackageImpl#getWorkItemDiagram()
-		 * @generated
-		 */
-		EClass WORK_ITEM_DIAGRAM = eINSTANCE.getWorkItemDiagram();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.diagram.impl.MERelativeBendpointsImpl

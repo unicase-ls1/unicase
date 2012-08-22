@@ -40,7 +40,6 @@ import org.unicase.model.diagram.ComponentDiagram;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.StateDiagram;
 import org.unicase.model.diagram.UseCaseDiagram;
-import org.unicase.model.diagram.WorkItemDiagram;
 
 /**
  * @author Hodaie This class contains some utility method for commands and handlers.
@@ -174,8 +173,6 @@ public final class UnicaseActionHelper {
 			id = "org.unicase.ui.diagram.stateDiagram.part.ModelDiagramEditorID";
 		} else if (diagram instanceof ActivityDiagram) {
 			id = "org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorID";
-		} else if (diagram instanceof WorkItemDiagram) {
-			id = "org.unicase.ui.diagram.workItemDiagram.part.ModelDiagramEditorID";
 		}
 
 		if (id == null) {

@@ -10,10 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
 import org.eclipse.gmf.runtime.notation.impl.RelativeBendpointsImpl;
-
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MERelativeBendpoints;
 
