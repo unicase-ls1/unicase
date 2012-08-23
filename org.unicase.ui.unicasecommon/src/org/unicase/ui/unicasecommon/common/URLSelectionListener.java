@@ -62,27 +62,11 @@ public final class URLSelectionListener implements SelectionListener {
 			} catch (MEUrlResolutionException e1) {
 			}
 			ActionHelper.openModelElement(modelElement, e.getSource().getClass().getName());
-			// logEvent(modelElementUrlFragment.getModelElementId(), e.getSource().getClass().getName());
 		} catch (MalformedURLException ex) {
 			WorkspaceUtil.logException("Invalid EMFStore URL pattern", ex);
 		}
 
 	}
-
-	// private void logEvent(ModelElementId modelElementId, String source) {
-	// final ReadEvent readEvent = EventsFactory.eINSTANCE.createReadEvent();
-	// readEvent.setModelElement(modelElementId);
-	// readEvent.setReadView("org.eclipse.emf.ecp.editor");
-	// readEvent.setSourceView(source);
-	// readEvent.setTimestamp(new Date());
-	// new EMFStoreCommand() {
-	//
-	// @Override
-	// protected void doRun() {
-	// projectSpace.addEvent(readEvent);
-	// }
-	// }.run();
-	// }
 
 	/**
 	 * Gets the singleton instance for this project space.

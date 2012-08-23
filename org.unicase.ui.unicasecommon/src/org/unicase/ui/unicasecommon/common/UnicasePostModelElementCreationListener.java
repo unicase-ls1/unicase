@@ -18,13 +18,11 @@ import org.unicase.model.organization.User;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 
 /**
- * Change listener, that sets the creation date and, if available, the creator
- * attribute on UNICASE model elements.
+ * Change listener, that sets the creation date and, if available, the creator attribute on UNICASE model elements.
  * 
  * @author emueller
  */
-public class UnicasePostModelElementCreationListener implements
-		PostCreationObserver {
+public class UnicasePostModelElementCreationListener implements PostCreationObserver {
 
 	/**
 	 * {@inheritDoc}
@@ -43,8 +41,7 @@ public class UnicasePostModelElementCreationListener implements
 			unicaseModelElement.setCreationDate(new Date());
 			User user;
 			try {
-				user = OrgUnitHelper.getCurrentUser(WorkspaceManager
-						.getInstance().getCurrentWorkspace());
+				user = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance().getCurrentWorkspace());
 				if (user != null) {
 					unicaseModelElement.setCreator(user.getName());
 				}
