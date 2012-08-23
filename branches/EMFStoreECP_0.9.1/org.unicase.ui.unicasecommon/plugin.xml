@@ -973,4 +973,13 @@
            commitObserver="org.unicase.ui.unicasecommon.meeditor.mecontrols.MEFileChooserControl">
      </observer>
   </extension>
+  <extension
+        point="org.eclipse.emf.ecp.common.menuContributionEnablement">
+     <MenuContributionEnablement
+           enabled="true">
+        <Command
+              commandID="org.eclipse.emf.ecp.navigator.dynamicMECreationCommands">
+        </Command>
+     </MenuContributionEnablement>
+  </extension>
 </plugin>
