@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.implementation.operations.*;
 import org.unicase.implementation.operations.ExtractClassOperation;
 import org.unicase.implementation.operations.ExtractSuperClassOperation;
 import org.unicase.implementation.operations.InlineClassOperation;
@@ -24,30 +23,31 @@ import org.unicase.implementation.operations.PushDownOperation;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static OperationsFactory init() {
 		try {
-			OperationsFactory theOperationsFactory = (OperationsFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/operations"); 
+			OperationsFactory theOperationsFactory = (OperationsFactory) EPackage.Registry.INSTANCE
+				.getEFactory("http://unicase.org/operations");
 			if (theOperationsFactory != null) {
 				return theOperationsFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new OperationsFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OperationsFactoryImpl() {
@@ -56,25 +56,34 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION: return createExtractSuperClassOperation();
-			case OperationsPackage.INLINE_SUPER_CLASS_OPERATION: return createInlineSuperClassOperation();
-			case OperationsPackage.EXTRACT_CLASS_OPERATION: return createExtractClassOperation();
-			case OperationsPackage.INLINE_CLASS_OPERATION: return createInlineClassOperation();
-			case OperationsPackage.PARTITION_ASSOCIATION_OPERATION: return createPartitionAssociationOperation();
-			case OperationsPackage.PUSH_DOWN_OPERATION: return createPushDownOperation();
-			case OperationsPackage.PULL_UP_OPERATION: return createPullUpOperation();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION:
+			return createExtractSuperClassOperation();
+		case OperationsPackage.INLINE_SUPER_CLASS_OPERATION:
+			return createInlineSuperClassOperation();
+		case OperationsPackage.EXTRACT_CLASS_OPERATION:
+			return createExtractClassOperation();
+		case OperationsPackage.INLINE_CLASS_OPERATION:
+			return createInlineClassOperation();
+		case OperationsPackage.PARTITION_ASSOCIATION_OPERATION:
+			return createPartitionAssociationOperation();
+		case OperationsPackage.PUSH_DOWN_OPERATION:
+			return createPushDownOperation();
+		case OperationsPackage.PULL_UP_OPERATION:
+			return createPullUpOperation();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ExtractSuperClassOperation createExtractSuperClassOperation() {
@@ -84,6 +93,7 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public InlineSuperClassOperation createInlineSuperClassOperation() {
@@ -93,6 +103,7 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public InlineClassOperation createInlineClassOperation() {
@@ -102,6 +113,7 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ExtractClassOperation createExtractClassOperation() {
@@ -111,6 +123,7 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PartitionAssociationOperation createPartitionAssociationOperation() {
@@ -120,6 +133,7 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PushDownOperation createPushDownOperation() {
@@ -129,6 +143,7 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PullUpOperation createPullUpOperation() {
@@ -138,14 +153,16 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OperationsPackage getOperationsPackage() {
-		return (OperationsPackage)getEPackage();
+		return (OperationsPackage) getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
