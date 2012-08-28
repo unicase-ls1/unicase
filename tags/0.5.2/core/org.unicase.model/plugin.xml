@@ -825,7 +825,7 @@
   <extension
         point="org.eclipse.emf.emfstore.common.model.modelversion">
      <ModelVersion
-           versionIdentifier="7">
+           versionIdentifier="8">
      </ModelVersion>
   </extension>
   <extension
