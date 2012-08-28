@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.unicase.docExport.DocumentExport;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
 import org.unicase.docExport.exportModel.renderers.elements.UParagraph;
 import org.unicase.docExport.exportModel.renderers.elements.USection;
@@ -70,7 +70,7 @@ public class PackageFlatRendererImpl extends ModelElementRendererImpl implements
 		section.getSectionOption().setLeaveOutPreviousSectionNumbering(true);
 		section.getSectionOption().setSectionNumberingStyle(SectionNumberingStyle.NONE);
 
-		UParagraph desc = new UParagraph(WorkspaceUtil.cleanFormatedText(uPackage.getDescription()), getTemplate()
+		UParagraph desc = new UParagraph(DocumentExport.cleanFormatedText(uPackage.getDescription()), getTemplate()
 			.getLayoutOptions().getDefaultTextOption());
 		section.add(desc);
 		desc.getBoxModel().setMarginTop(0);

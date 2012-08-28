@@ -12,13 +12,15 @@ import java.util.Comparator;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.emf.emfstore.client.model.ModelPackage;
-import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.Workspace;
-import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
-import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.IdEObjectCollectionChangeObserver;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -40,9 +42,9 @@ import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 /**
  * @author Shterev
  */
-public class SprintStatusComposite extends Composite implements ProjectChangeObserver {
+public class SprintStatusComposite extends Composite implements IdEObjectCollectionChangeObserver {
 
-	private Workspace workspace;
+	private ECPWorkspace workspace;
 	private AdapterImpl adapterImpl;
 	private SprintStatusDropAdapter wpTabDropAdapter;
 	private ArrayList<TableViewer> tables = new ArrayList<TableViewer>();
@@ -106,24 +108,30 @@ public class SprintStatusComposite extends Composite implements ProjectChangeObs
 		addDnDSupport();
 		hookDoubleClick();
 
-		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-		if (workspace.getActiveProjectSpace() != null) {
-			workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(SprintStatusComposite.this);
+		try {
+			workspace = ECPWorkspaceManager.getInstance().getWorkSpace();
+		} catch (NoWorkspaceException e) {
+			ModelUtil.logException("Failed to receive Project!", e);
+			return;
+		}
+		if (workspace.getActiveProject() != null) {
+			((Project) workspace.getActiveProject().getRootContainer()).addIdEObjectCollectionChangeObserver(this);
 		}
 		adapterImpl = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(Workspace.class)) == ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
+				if ((msg.getFeatureID(ECPWorkspace.class)) == org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT) {
 
 					// remove old listeners
 					Object oldValue = msg.getOldValue();
-					if (oldValue instanceof ProjectSpace) {
-						((ProjectSpace) oldValue).getProject().removeProjectChangeObserver(SprintStatusComposite.this);
+					if (oldValue instanceof ECPProject) {
+						((Project) ((ECPProject) oldValue).getRootContainer())
+							.removeIdEObjectCollectionChangeObserver(SprintStatusComposite.this);
 					}
 					// add listener to get notified when work items get deleted/added/changed
-					if (workspace.getActiveProjectSpace() != null) {
-						workspace.getActiveProjectSpace().getProject()
-							.addProjectChangeObserver(SprintStatusComposite.this);
+					if (workspace.getActiveProject() != null) {
+						((Project) workspace.getActiveProject().getRootContainer())
+							.addIdEObjectCollectionChangeObserver(SprintStatusComposite.this);
 					}
 				}
 			}
@@ -211,8 +219,8 @@ public class SprintStatusComposite extends Composite implements ProjectChangeObs
 	public void dispose() {
 
 		workspace.eAdapters().remove(adapterImpl);
-		if (workspace.getActiveProjectSpace() != null && workspace.getActiveProjectSpace().getProject() != null) {
-			workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(SprintStatusComposite.this);
+		if (workspace.getActiveProject() != null && workspace.getActiveProject().getRootContainer() != null) {
+			((Project) workspace.getActiveProject().getRootContainer()).removeIdEObjectCollectionChangeObserver(this);
 		}
 		super.dispose();
 	}
@@ -293,10 +301,10 @@ public class SprintStatusComposite extends Composite implements ProjectChangeObs
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
+	 * @see org.eclipse.emf.emfstore.common.model.util.IdEObjectCollectionChangeObserver#collectionDeleted(org.eclipse.emf.emfstore.common.model.IdEObjectCollection)
 	 */
-	public void projectDeleted(IdEObjectCollection project) {
-		// TODO Auto-generated method stub
-
+	public void collectionDeleted(IdEObjectCollection collection) {
+		// nothing to do
 	}
+
 }

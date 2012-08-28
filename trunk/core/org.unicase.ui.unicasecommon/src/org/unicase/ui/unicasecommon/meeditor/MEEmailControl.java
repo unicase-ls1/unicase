@@ -23,7 +23,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Text;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
 
@@ -39,19 +38,22 @@ public class MEEmailControl extends AbstractUnicaseMEControl {
 	@Override
 	public Control createControl(Composite parent, int style) {
 
+		final EObject modelElement = getModelElement();
 		Composite composite = getToolkit().createComposite(parent, style);
 		GridLayout gridLayout = new GridLayout(2, false);
 		composite.setLayout(gridLayout);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(composite);
 		meAreaControl = new METextControl();
-		final Text txtEmail = (Text) meAreaControl.createControl(composite, style, getItemPropertyDescriptor(),
-			getModelElement(), UnicaseActionHelper.getContext(getModelElement()), getToolkit());
+		final Composite txtEmail = (Composite) meAreaControl.createControl(composite, style,
+			getItemPropertyDescriptor(), modelElement, UnicaseActionHelper.getContext(modelElement), getToolkit());
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(txtEmail);
 		final Action mail = new Action("Send email", SWT.PUSH) {
 
 			@Override
 			public void run() {
-				String email = txtEmail.getText();
+
+				EStructuralFeature feature = (EStructuralFeature) getItemPropertyDescriptor().getFeature(modelElement);
+				String email = (String) modelElement.eGet(feature);
 				ExtProgramFactoryFacade.useEmail("mailto:" + email);
 			}
 

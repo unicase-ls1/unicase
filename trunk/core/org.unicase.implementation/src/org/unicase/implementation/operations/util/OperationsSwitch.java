@@ -28,20 +28,21 @@ import org.unicase.implementation.operations.PushDownOperation;
  * {@link #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each class of the model,
  * starting with the actual class of the object and proceeding up the inheritance hierarchy until a non-null result is
  * returned, which is the result of the switch. <!-- end-user-doc -->
+ * 
  * @see org.unicase.implementation.operations.OperationsPackage
  * @generated
  */
 public class OperationsSwitch<T> {
 	/**
-	 * The cached model package
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected static OperationsPackage modelPackage;
 
 	/**
-	 * Creates an instance of the switch.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the switch. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OperationsSwitch() {
@@ -51,8 +52,9 @@ public class OperationsSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
+	 * result. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
@@ -61,103 +63,137 @@ public class OperationsSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
+	 * result. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
+		} else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
+			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
+	 * result. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION: {
-				ExtractSuperClassOperation extractSuperClassOperation = (ExtractSuperClassOperation)theEObject;
-				T result = caseExtractSuperClassOperation(extractSuperClassOperation);
-				if (result == null) result = caseSemanticCompositeOperation(extractSuperClassOperation);
-				if (result == null) result = caseCompositeOperation(extractSuperClassOperation);
-				if (result == null) result = caseAbstractOperation(extractSuperClassOperation);
-				if (result == null) result = caseIdentifiableElement(extractSuperClassOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case OperationsPackage.INLINE_SUPER_CLASS_OPERATION: {
-				InlineSuperClassOperation inlineSuperClassOperation = (InlineSuperClassOperation)theEObject;
-				T result = caseInlineSuperClassOperation(inlineSuperClassOperation);
-				if (result == null) result = caseSemanticCompositeOperation(inlineSuperClassOperation);
-				if (result == null) result = caseCompositeOperation(inlineSuperClassOperation);
-				if (result == null) result = caseAbstractOperation(inlineSuperClassOperation);
-				if (result == null) result = caseIdentifiableElement(inlineSuperClassOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case OperationsPackage.EXTRACT_CLASS_OPERATION: {
-				ExtractClassOperation extractClassOperation = (ExtractClassOperation)theEObject;
-				T result = caseExtractClassOperation(extractClassOperation);
-				if (result == null) result = caseSemanticCompositeOperation(extractClassOperation);
-				if (result == null) result = caseCompositeOperation(extractClassOperation);
-				if (result == null) result = caseAbstractOperation(extractClassOperation);
-				if (result == null) result = caseIdentifiableElement(extractClassOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case OperationsPackage.INLINE_CLASS_OPERATION: {
-				InlineClassOperation inlineClassOperation = (InlineClassOperation)theEObject;
-				T result = caseInlineClassOperation(inlineClassOperation);
-				if (result == null) result = caseSemanticCompositeOperation(inlineClassOperation);
-				if (result == null) result = caseCompositeOperation(inlineClassOperation);
-				if (result == null) result = caseAbstractOperation(inlineClassOperation);
-				if (result == null) result = caseIdentifiableElement(inlineClassOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case OperationsPackage.PARTITION_ASSOCIATION_OPERATION: {
-				PartitionAssociationOperation partitionAssociationOperation = (PartitionAssociationOperation)theEObject;
-				T result = casePartitionAssociationOperation(partitionAssociationOperation);
-				if (result == null) result = caseSemanticCompositeOperation(partitionAssociationOperation);
-				if (result == null) result = caseCompositeOperation(partitionAssociationOperation);
-				if (result == null) result = caseAbstractOperation(partitionAssociationOperation);
-				if (result == null) result = caseIdentifiableElement(partitionAssociationOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case OperationsPackage.PUSH_DOWN_OPERATION: {
-				PushDownOperation pushDownOperation = (PushDownOperation)theEObject;
-				T result = casePushDownOperation(pushDownOperation);
-				if (result == null) result = caseSemanticCompositeOperation(pushDownOperation);
-				if (result == null) result = caseCompositeOperation(pushDownOperation);
-				if (result == null) result = caseAbstractOperation(pushDownOperation);
-				if (result == null) result = caseIdentifiableElement(pushDownOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case OperationsPackage.PULL_UP_OPERATION: {
-				PullUpOperation pullUpOperation = (PullUpOperation)theEObject;
-				T result = casePullUpOperation(pullUpOperation);
-				if (result == null) result = caseSemanticCompositeOperation(pullUpOperation);
-				if (result == null) result = caseCompositeOperation(pullUpOperation);
-				if (result == null) result = caseAbstractOperation(pullUpOperation);
-				if (result == null) result = caseIdentifiableElement(pullUpOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
+		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION: {
+			ExtractSuperClassOperation extractSuperClassOperation = (ExtractSuperClassOperation) theEObject;
+			T result = caseExtractSuperClassOperation(extractSuperClassOperation);
+			if (result == null)
+				result = caseSemanticCompositeOperation(extractSuperClassOperation);
+			if (result == null)
+				result = caseCompositeOperation(extractSuperClassOperation);
+			if (result == null)
+				result = caseAbstractOperation(extractSuperClassOperation);
+			if (result == null)
+				result = caseIdentifiableElement(extractSuperClassOperation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case OperationsPackage.INLINE_SUPER_CLASS_OPERATION: {
+			InlineSuperClassOperation inlineSuperClassOperation = (InlineSuperClassOperation) theEObject;
+			T result = caseInlineSuperClassOperation(inlineSuperClassOperation);
+			if (result == null)
+				result = caseSemanticCompositeOperation(inlineSuperClassOperation);
+			if (result == null)
+				result = caseCompositeOperation(inlineSuperClassOperation);
+			if (result == null)
+				result = caseAbstractOperation(inlineSuperClassOperation);
+			if (result == null)
+				result = caseIdentifiableElement(inlineSuperClassOperation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case OperationsPackage.EXTRACT_CLASS_OPERATION: {
+			ExtractClassOperation extractClassOperation = (ExtractClassOperation) theEObject;
+			T result = caseExtractClassOperation(extractClassOperation);
+			if (result == null)
+				result = caseSemanticCompositeOperation(extractClassOperation);
+			if (result == null)
+				result = caseCompositeOperation(extractClassOperation);
+			if (result == null)
+				result = caseAbstractOperation(extractClassOperation);
+			if (result == null)
+				result = caseIdentifiableElement(extractClassOperation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case OperationsPackage.INLINE_CLASS_OPERATION: {
+			InlineClassOperation inlineClassOperation = (InlineClassOperation) theEObject;
+			T result = caseInlineClassOperation(inlineClassOperation);
+			if (result == null)
+				result = caseSemanticCompositeOperation(inlineClassOperation);
+			if (result == null)
+				result = caseCompositeOperation(inlineClassOperation);
+			if (result == null)
+				result = caseAbstractOperation(inlineClassOperation);
+			if (result == null)
+				result = caseIdentifiableElement(inlineClassOperation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case OperationsPackage.PARTITION_ASSOCIATION_OPERATION: {
+			PartitionAssociationOperation partitionAssociationOperation = (PartitionAssociationOperation) theEObject;
+			T result = casePartitionAssociationOperation(partitionAssociationOperation);
+			if (result == null)
+				result = caseSemanticCompositeOperation(partitionAssociationOperation);
+			if (result == null)
+				result = caseCompositeOperation(partitionAssociationOperation);
+			if (result == null)
+				result = caseAbstractOperation(partitionAssociationOperation);
+			if (result == null)
+				result = caseIdentifiableElement(partitionAssociationOperation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case OperationsPackage.PUSH_DOWN_OPERATION: {
+			PushDownOperation pushDownOperation = (PushDownOperation) theEObject;
+			T result = casePushDownOperation(pushDownOperation);
+			if (result == null)
+				result = caseSemanticCompositeOperation(pushDownOperation);
+			if (result == null)
+				result = caseCompositeOperation(pushDownOperation);
+			if (result == null)
+				result = caseAbstractOperation(pushDownOperation);
+			if (result == null)
+				result = caseIdentifiableElement(pushDownOperation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case OperationsPackage.PULL_UP_OPERATION: {
+			PullUpOperation pullUpOperation = (PullUpOperation) theEObject;
+			T result = casePullUpOperation(pullUpOperation);
+			if (result == null)
+				result = caseSemanticCompositeOperation(pullUpOperation);
+			if (result == null)
+				result = caseCompositeOperation(pullUpOperation);
+			if (result == null)
+				result = caseAbstractOperation(pullUpOperation);
+			if (result == null)
+				result = caseIdentifiableElement(pullUpOperation);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		default:
+			return defaultCase(theEObject);
 		}
 	}
 
@@ -190,20 +226,6 @@ public class OperationsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Inline Class Operation</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Inline Class Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInlineClassOperation(InlineClassOperation object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Extract Class Operation</em>'. <!--
 	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
@@ -214,6 +236,20 @@ public class OperationsSwitch<T> {
 	 * @generated
 	 */
 	public T caseExtractClassOperation(ExtractClassOperation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Inline Class Operation</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Inline Class Operation</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInlineClassOperation(InlineClassOperation object) {
 		return null;
 	}
 
@@ -316,10 +352,10 @@ public class OperationsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'. <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate the switch, but this is the last case
 	 * anyway. <!-- end-user-doc -->
+	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)

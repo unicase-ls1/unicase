@@ -15,8 +15,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.exceptions.UnkownProjectException;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.unicase.docExport.DocumentExport;
 import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.exportModel.Template;
@@ -47,7 +50,7 @@ import org.unicase.model.document.Section;
 import org.unicase.model.document.impl.LeafSectionImpl;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Default Document Renderer</b></em>'. <!--
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Default Document Renderer</b></em>'. <!--
  * end-user-doc -->
  * <p>
  * </p>
@@ -84,7 +87,8 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		if (!(modelElement instanceof LeafSection) && !(modelElement instanceof CompositeSection)) {
 			template = EcoreUtil.copy(template);
 
-			// hiding the header and footer on a document without and document structure is not good.
+			// hiding the header and footer on a document without and document
+			// structure is not good.
 			template.getLayoutOptions().setHideHeaderAndFooterOnCoverPage(false);
 		}
 
@@ -106,7 +110,11 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		}
 
 		if (modelElement instanceof CompositeSection) {
-			renderDocCompositeSection((CompositeSection) modelElement, template.getLayoutOptions());
+			try {
+				renderDocCompositeSection((CompositeSection) modelElement, template.getLayoutOptions());
+			} catch (UnkownProjectException e) {
+				ModelUtil.logException("Failed to receive project!", e);
+			}
 		} else if (modelElement instanceof LeafSection) {
 			renderDocLeafSection((LeafSectionImpl) modelElement, template.getLayoutOptions());
 		} else {
@@ -172,7 +180,8 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		root.setHeader(headerContainer);
 
 		// This is a hack for margin top of the header region.
-		// Apache FOP doesn't render the extend attribute of the fo:xsl-region-before
+		// Apache FOP doesn't render the extend attribute of the
+		// fo:xsl-region-before
 		UImage marginTop = new UImage(new Path("i_do_not_exist"));
 		headerContainer.add(marginTop);
 		marginTop.setHeight(15);
@@ -214,8 +223,10 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		appendix.getBoxModel().setBreakBefore(true);
 		appendix.getSectionOption().setSectionNumberingStyle(SectionNumberingStyle.NONE);
 
-		// make sure, that the appendix section is added to the CompositeSection if
-		// a Composite Section is exported. If you don't do this, the Appendix won't
+		// make sure, that the appendix section is added to the CompositeSection
+		// if
+		// a Composite Section is exported. If you don't do this, the Appendix
+		// won't
 		// appear in the Table of Contents
 		if (getDoc().getChildren().get(0) instanceof UCompositeSection) {
 			((UCompositeSection) getDoc().getChildren().get(0)).add(appendix);
@@ -236,8 +247,8 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		USection section = new USection("  " + modelElement.getName(), layoutOptions.getSectionTextOption());
 		getDoc().add(section);
 
-		section.add(new UParagraph(WorkspaceUtil.cleanFormatedText(modelElement.getDescription()) + "\n", layoutOptions
-			.getDefaultTextOption()));
+		section.add(new UParagraph(DocumentExport.cleanFormatedText(modelElement.getDescription()) + "\n",
+			layoutOptions.getDefaultTextOption()));
 
 		EList<EObject> subSections = modelElement.getModelElements();
 		for (EObject child : subSections) {
@@ -248,8 +259,14 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 	/**
 	 * Renders a CompositeSection as the first section of the document. Therefore there won't be an USection for the
 	 * CompositeSection. The Main chapters of the rendered document will be the sub sections of the CompositeSection.
+	 * 
+	 * @throws UnkownProjectException if receiving the project failed
 	 */
-	private void renderDocCompositeSection(CompositeSection modelElement, LayoutOptions layoutOptions) {
+	private void renderDocCompositeSection(CompositeSection modelElement, LayoutOptions layoutOptions)
+		throws UnkownProjectException {
+
+		ProjectSpace ps = WorkspaceManager.getInstance().getCurrentWorkspace()
+			.getProjectSpace(ModelUtil.getProject(modelElement));
 
 		if (layoutOptions.isLogoOnCoverPage()) {
 			UImage logo = new UImage(new Path(TemplateRegistry.TEMPLATE_IMAGE_FOLDER + layoutOptions.getLogoImage()));
@@ -261,7 +278,7 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 
 		USection section = new USection(modelElement.getName(), layoutOptions.getDocumentTitleTextOption());
 		getDoc().add(section);
-		UParagraph descr = new UParagraph(WorkspaceUtil.cleanFormatedText(modelElement.getDescription()),
+		UParagraph descr = new UParagraph(DocumentExport.cleanFormatedText(modelElement.getDescription()),
 			layoutOptions.getDefaultTextOption());
 		section.add(descr);
 
@@ -281,15 +298,14 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		project.getOption().setTextAlign(TextAlign.END);
 		project.getBoxModel().setMarginRight(8);
 		documentInfo.add(project);
-		documentInfo.add(WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProjectName());
+		documentInfo.add(ps.getProjectName());
 
 		UParagraph unicaseVersion = new UParagraph("Project version:", layoutOptions.getDefaultTextOption());
 		unicaseVersion.getOption().setTextAlign(TextAlign.END);
 		unicaseVersion.getBoxModel().setMarginRight(8);
 		documentInfo.add(unicaseVersion);
-		if (WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getBaseVersion() != null) {
-			documentInfo.add(String.valueOf(WorkspaceManager.getInstance().getCurrentWorkspace()
-				.getActiveProjectSpace().getBaseVersion().getIdentifier()));
+		if (ps.getBaseVersion() != null) {
+			documentInfo.add(String.valueOf(ps.getBaseVersion().getIdentifier()));
 		} else {
 			documentInfo.add("(local Project)");
 		}
@@ -354,9 +370,8 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 						* section.getDepth());
 		}
 
-		UParagraph description = new UParagraph(
-			WorkspaceUtil.cleanFormatedText(unicaseSection.getDescription()) + "\n",
-			layoutOptions.getDefaultTextOption());
+		UParagraph description = new UParagraph(DocumentExport.cleanFormatedText(unicaseSection.getDescription())
+			+ "\n", layoutOptions.getDefaultTextOption());
 		description.getBoxModel().setKeepWithPrevious(true);
 		section.add(description);
 

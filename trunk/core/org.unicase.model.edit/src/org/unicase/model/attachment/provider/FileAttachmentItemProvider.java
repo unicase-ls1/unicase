@@ -35,8 +35,8 @@ import org.unicase.model.provider.ModelEditPlugin;
 public class FileAttachmentItemProvider extends AttachmentItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public FileAttachmentItemProvider(AdapterFactory adapterFactory) {
@@ -44,8 +44,8 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -61,8 +61,8 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 	}
 
 	/**
-	 * This adds a property descriptor for the File Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the File Name feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addFileNamePropertyDescriptor(Object object) {
@@ -76,8 +76,8 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 	}
 
 	/**
-	 * This adds a property descriptor for the File Size feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the File Size feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addFileSizePropertyDescriptor(Object object) {
@@ -91,8 +91,8 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 	}
 
 	/**
-	 * This adds a property descriptor for the File Type feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the File Type feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addFileTypePropertyDescriptor(Object object) {
@@ -106,8 +106,8 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 	}
 
 	/**
-	 * This returns FileAttachment.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns FileAttachment.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -152,9 +152,9 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -163,8 +163,8 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

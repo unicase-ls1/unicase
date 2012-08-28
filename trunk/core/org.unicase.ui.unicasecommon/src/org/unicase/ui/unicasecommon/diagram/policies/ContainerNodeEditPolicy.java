@@ -84,8 +84,8 @@ public class ContainerNodeEditPolicy extends GraphicalNodeEditPolicy {
 		cc.add(new ICommandProxy(createOtherEndCmd));
 
 		// Adds the command to create the connection view and element.
-		ICommand connectionCmd = isDirectionReversed ? getCreateConnectionCommand(request, menuCmd
-			.getConnectionAdapter(), createOtherEndCmd.getResult(), request.getSourceEditPart())
+		ICommand connectionCmd = isDirectionReversed ? getCreateConnectionCommand(request,
+			menuCmd.getConnectionAdapter(), createOtherEndCmd.getResult(), request.getSourceEditPart())
 			: getCreateConnectionCommand(request, menuCmd.getConnectionAdapter(), request.getSourceEditPart(),
 				createOtherEndCmd.getResult());
 

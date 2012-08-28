@@ -23,7 +23,6 @@ import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.provider.AccesscontrolItemProviderAdapterFactory;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.provider.RolesItemProviderAdapterFactory;
-import org.eclipse.emf.emfstore.server.model.notification.provider.NotificationItemProviderAdapterFactory;
 import org.eclipse.emf.emfstore.server.model.url.provider.UrlItemProviderAdapterFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.events.provider.EventsItemProviderAdapterFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.events.server.provider.ServerItemProviderAdapterFactory;
@@ -158,7 +157,6 @@ public class ModelDiagramEditorPlugin extends AbstractUIPlugin {
 		factories.add(new ServerItemProviderAdapterFactory());
 		factories.add(new AccesscontrolItemProviderAdapterFactory());
 		factories.add(new RolesItemProviderAdapterFactory());
-		factories.add(new NotificationItemProviderAdapterFactory());
 		factories.add(new UrlItemProviderAdapterFactory());
 		factories.add(new ModelItemProviderAdapterFactory());
 		factories.add(new NotationItemProviderAdapterFactory());

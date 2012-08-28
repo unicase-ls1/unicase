@@ -14,7 +14,6 @@ import java.util.Set;
 import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
-import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
 import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.CompositeOperation;
@@ -24,6 +23,7 @@ import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationId;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.ReferenceOperation;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.SingleReferenceOperation;
+import org.unicase.dashboard.DashboardNotification;
 import org.unicase.model.organization.User;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 
@@ -49,9 +49,9 @@ public abstract class AbstractNotificationProvider implements NotificationProvid
 	 * Implements the common sanity checks and delegates to {@link #createNotifications(List, String)} and
 	 * {@link #handleOperation(AbstractOperation)}.<br>
 	 * <br>
-	 * All subclasses should mainly implement two methods:<br> {@link #handleOperation(AbstractOperation)} - to process a
-	 * single operation and acquire information and {@link #createNotifications(List, String)} - to create notification
-	 * from the gathered data. <br>
+	 * All subclasses should mainly implement two methods:<br>
+	 * {@link #handleOperation(AbstractOperation)} - to process a single operation and acquire information and
+	 * {@link #createNotifications(List, String)} - to create notification from the gathered data. <br>
 	 * <br>
 	 * These methods are separated in order to introduce flexibility in each provider's implementation. Instead of
 	 * feeding a single list with elements and returning it as a value, {@link #handleOperation(AbstractOperation)} can
@@ -59,8 +59,9 @@ public abstract class AbstractNotificationProvider implements NotificationProvid
 	 * As an example - the task notification provider gathers data and saves it in 3 categories, which will be
 	 * responsible for 3 different notification types. {@inheritDoc}
 	 */
-	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages) {
-		List<ESNotification> result = new ArrayList<ESNotification>();
+	public List<DashboardNotification> provideNotifications(ProjectSpace projectSpace,
+		List<ChangePackage> changePackages) {
+		List<DashboardNotification> result = new ArrayList<DashboardNotification>();
 
 		try {
 			User currentUser = OrgUnitHelper.getUser(projectSpace);
@@ -76,9 +77,9 @@ public abstract class AbstractNotificationProvider implements NotificationProvid
 	 * Implements the common sanity checks and delegates to {@link #createNotifications(List, String)} and
 	 * {@link #handleOperation(AbstractOperation)}.<br>
 	 * <br>
-	 * All subclasses should mainly implement two methods:<br> {@link #handleOperation(AbstractOperation)} - to process a
-	 * single operation and acquire information and {@link #createNotifications(List, String)} - to create notification
-	 * from the gathered data. <br>
+	 * All subclasses should mainly implement two methods:<br>
+	 * {@link #handleOperation(AbstractOperation)} - to process a single operation and acquire information and
+	 * {@link #createNotifications(List, String)} - to create notification from the gathered data. <br>
 	 * <br>
 	 * These methods are separated in order to introduce flexibility in each provider's implementation. Instead of
 	 * feeding a single list with elements and returning it as a value, {@link #handleOperation(AbstractOperation)} can
@@ -86,10 +87,10 @@ public abstract class AbstractNotificationProvider implements NotificationProvid
 	 * As an example - the task notification provider gathers data and saves it in 3 categories, which will be
 	 * responsible for 3 different notification types. {@inheritDoc}
 	 */
-	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
-		String username) {
+	public List<DashboardNotification> provideNotifications(ProjectSpace projectSpace,
+		List<ChangePackage> changePackages, String username) {
 		// sanity checks
-		List<ESNotification> result = new ArrayList<ESNotification>();
+		List<DashboardNotification> result = new ArrayList<DashboardNotification>();
 		if (projectSpace == null || username == null) {
 			return result;
 		}
@@ -179,7 +180,7 @@ public abstract class AbstractNotificationProvider implements NotificationProvid
 	 * 
 	 * @return the list of generated notifications
 	 */
-	protected abstract List<ESNotification> createNotifications();
+	protected abstract List<DashboardNotification> createNotifications();
 
 	/**
 	 * @return the user.

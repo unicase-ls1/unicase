@@ -14,8 +14,8 @@ import org.unicase.model.classes.validation.ClassesHelper;
 
 /**
  * Helper class for UML class refactorings.
+ * 
  * @author herrmi
- *
  */
 public final class ClassesOperationHelper {
 
@@ -25,6 +25,7 @@ public final class ClassesOperationHelper {
 
 	/**
 	 * Get all attributes of a class that look like the given attribute.
+	 * 
 	 * @param c the other class
 	 * @param attribute the original attribute
 	 * @return a list of same attributes
@@ -43,7 +44,7 @@ public final class ClassesOperationHelper {
 				}
 			} catch (NullPointerException e) {
 				// ignore
-				//FIXME herrmi: BAD design
+				// FIXME herrmi: BAD design
 			}
 		}
 		return null;
@@ -51,6 +52,7 @@ public final class ClassesOperationHelper {
 
 	/**
 	 * Get all outgoing associations of a class that look like the given association.
+	 * 
 	 * @param c the other class
 	 * @param association the original association
 	 * @return a list of same associations
@@ -73,9 +75,10 @@ public final class ClassesOperationHelper {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Get all incoming associations of a class that look like the given association.
+	 * 
 	 * @param c the other class
 	 * @param association the original association
 	 * @return a list of same associations

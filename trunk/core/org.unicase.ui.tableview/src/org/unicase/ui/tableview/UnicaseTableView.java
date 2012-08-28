@@ -14,13 +14,15 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
 import org.eclipse.emf.ecp.common.util.UiUtil;
-import org.eclipse.emf.emfstore.client.model.ModelPackage;
-import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.Workspace;
-import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
 import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.IdEObjectCollectionChangeObserver;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IToolBarManager;
@@ -49,8 +51,7 @@ import org.unicase.ui.unicasecommon.common.util.UnicaseUiUtil;
  * 
  * @author Abdelhamid Barzali, Hodaie
  */
-public class UnicaseTableView extends ViewPart implements
-	org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver {
+public class UnicaseTableView extends ViewPart implements IdEObjectCollectionChangeObserver {
 
 	/**
 	 * Filter model elements by name in table viewer.
@@ -95,7 +96,7 @@ public class UnicaseTableView extends ViewPart implements
 	private METableViewer viewer;
 
 	private Project activeProject;
-	private Workspace workspace;
+	private ECPWorkspace workspace;
 	private AdapterImpl workspaceListenerAdapter;
 
 	private Text txtFilter;
@@ -114,16 +115,21 @@ public class UnicaseTableView extends ViewPart implements
 		viewer.getTableViewer().getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		viewer.createColumns(EcoreFactory.eINSTANCE.getEcorePackage().getEObject(), null, false);
 
-		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+		try {
+			workspace = ECPWorkspaceManager.getInstance().getWorkSpace();
+		} catch (NoWorkspaceException e) {
+			ModelUtil.logException("Failed to receive Project!", e);
+			return;
+		}
 		workspaceListenerAdapter = new AdapterImpl() {
 
 			@Override
 			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(Workspace.class)) == ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
-					ProjectSpace activeProjectSpace = workspace.getActiveProjectSpace();
-					if (activeProjectSpace != null) {
-						activeProject = activeProjectSpace.getProject();
-						activeProject.addProjectChangeObserver(UnicaseTableView.this);
+				if ((msg.getFeatureID(ECPWorkspace.class)) == org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT) {
+					ECPProject activeECPProject = workspace.getActiveProject();
+					if (activeECPProject != null) {
+						activeProject = (Project) activeECPProject.getRootContainer();
+						activeProject.addIdEObjectCollectionChangeObserver(UnicaseTableView.this);
 
 						viewer.setInput(activeProject);
 					} else {
@@ -143,9 +149,9 @@ public class UnicaseTableView extends ViewPart implements
 
 		hookDoubleClickAction();
 
-		if (workspace.getActiveProjectSpace() != null) {
-			activeProject = workspace.getActiveProjectSpace().getProject();
-			activeProject.addProjectChangeObserver(UnicaseTableView.this);
+		if (workspace.getActiveProject() != null) {
+			activeProject = (Project) workspace.getActiveProject().getRootContainer();
+			activeProject.addIdEObjectCollectionChangeObserver(this);
 		}
 		viewer.setInput(activeProject);
 		viewer.addFilter(new ModelElementNameFilter());
@@ -244,8 +250,8 @@ public class UnicaseTableView extends ViewPart implements
 	@Override
 	public void dispose() {
 		workspace.eAdapters().remove(workspaceListenerAdapter);
-		if (activeProject != null) {
-			workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(this);
+		if (workspace.getActiveProject() != null && workspace.getActiveProject().getRootContainer() != null) {
+			((Project) workspace.getActiveProject().getRootContainer()).removeIdEObjectCollectionChangeObserver(this);
 		}
 
 		super.dispose();
@@ -283,10 +289,10 @@ public class UnicaseTableView extends ViewPart implements
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
+	 * @see org.eclipse.emf.emfstore.common.model.util.IdEObjectCollectionChangeObserver#collectionDeleted(org.eclipse.emf.emfstore.common.model.IdEObjectCollection)
 	 */
-	public void projectDeleted(IdEObjectCollection project) {
-		// TODO Auto-generated method stub
+	public void collectionDeleted(IdEObjectCollection collection) {
+		// nothing to do
 
 	}
 

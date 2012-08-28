@@ -9,8 +9,6 @@ package org.unicase.ui.stem.views.sprintstatus;
 import java.util.Comparator;
 import java.util.HashSet;
 
-import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
-import org.eclipse.emf.ecp.common.observer.FocusEventObserver;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.action.Action;
@@ -224,8 +222,6 @@ public class SprintStatusView extends ViewPart {
 	 */
 	@Override
 	public void setFocus() {
-		ECPWorkspaceManager.getObserverBus().notify(FocusEventObserver.class).onFocusEvent(ID);
-		// getViewSite().getPart().setFocus();
 	}
 
 	/**

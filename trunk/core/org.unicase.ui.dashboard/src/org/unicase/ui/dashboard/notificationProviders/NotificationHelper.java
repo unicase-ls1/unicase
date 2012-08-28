@@ -23,9 +23,9 @@ import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
 import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
+import org.unicase.dashboard.DashboardNotification;
 import org.unicase.model.UnicaseModelElement;
 
 /**
@@ -46,7 +46,7 @@ public final class NotificationHelper {
 	 * @param changePackages the changes to generate notifications from
 	 * @return all generated notifications as a list
 	 */
-	public static List<ESNotification> generateNotifications(ProjectSpace projectSpace,
+	public static List<DashboardNotification> generateNotifications(ProjectSpace projectSpace,
 		List<ChangePackage> changePackages) {
 
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
@@ -93,10 +93,10 @@ public final class NotificationHelper {
 	 * @param changePackages the changes to generate notifications from
 	 * @return all generated notifications as a list
 	 */
-	public static List<ESNotification> generateNotificationsByProvider(ProjectSpace projectSpace,
+	public static List<DashboardNotification> generateNotificationsByProvider(ProjectSpace projectSpace,
 		List<NotificationProvider> providers, List<ChangePackage> changePackages) {
 
-		List<ESNotification> result = new ArrayList<ESNotification>();
+		List<DashboardNotification> result = new ArrayList<DashboardNotification>();
 
 		String username = projectSpace.getUsersession().getUsername();
 
@@ -124,8 +124,8 @@ public final class NotificationHelper {
 				current.getExcludedOperations().addAll(prev.getExcludedOperations());
 			}
 			try {
-				List<ESNotification> provideNotifications = current.provideNotifications(projectSpace, changePackages,
-					username);
+				List<DashboardNotification> provideNotifications = current.provideNotifications(projectSpace,
+					changePackages, username);
 				result.addAll(provideNotifications);
 				prev = current;
 

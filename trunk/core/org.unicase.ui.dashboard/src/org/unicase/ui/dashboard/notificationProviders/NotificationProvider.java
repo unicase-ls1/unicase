@@ -10,10 +10,9 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.preferences.DashboardKey;
-import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
 import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationId;
+import org.unicase.dashboard.DashboardNotification;
 
 /**
  * Provides notifications.
@@ -37,7 +36,7 @@ public interface NotificationProvider {
 	 * @param currentUsername the name of the current user
 	 * @return a list of notifications
 	 */
-	List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
+	List<DashboardNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
 		String currentUsername);
 
 	/**
@@ -52,6 +51,6 @@ public interface NotificationProvider {
 	/**
 	 * @return the Enum key for this provider's settings
 	 */
-	DashboardKey getKey();
+	String getKey();
 
 }

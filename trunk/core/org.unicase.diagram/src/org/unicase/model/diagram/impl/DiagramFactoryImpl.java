@@ -20,7 +20,6 @@ import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MERelativeBendpoints;
 import org.unicase.model.diagram.StateDiagram;
 import org.unicase.model.diagram.UseCaseDiagram;
-import org.unicase.model.diagram.WorkItemDiagram;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
@@ -73,8 +72,6 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 			return createStateDiagram();
 		case DiagramPackage.ACTIVITY_DIAGRAM:
 			return createActivityDiagram();
-		case DiagramPackage.WORK_ITEM_DIAGRAM:
-			return createWorkItemDiagram();
 		case DiagramPackage.ME_RELATIVE_BENDPOINTS:
 			return createMERelativeBendpoints();
 		default:
@@ -160,16 +157,6 @@ public class DiagramFactoryImpl extends EFactoryImpl implements DiagramFactory {
 	public ActivityDiagram createActivityDiagram() {
 		ActivityDiagramImpl activityDiagram = new ActivityDiagramImpl();
 		return activityDiagram;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public WorkItemDiagram createWorkItemDiagram() {
-		WorkItemDiagramImpl workItemDiagram = new WorkItemDiagramImpl();
-		return workItemDiagram;
 	}
 
 	/**

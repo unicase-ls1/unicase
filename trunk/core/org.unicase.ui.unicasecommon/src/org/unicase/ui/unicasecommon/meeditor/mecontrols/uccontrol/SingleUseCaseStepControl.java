@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecp.editor.ControlFactory;
 import org.eclipse.emf.ecp.editor.mecontrols.AbstractMEControl;
-import org.eclipse.emf.ecp.editor.mecontrols.MERichTextControl;
 import org.eclipse.emf.ecp.editor.mecontrols.melinkcontrol.MEHyperLinkDeleteAdapter;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
@@ -267,11 +266,6 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 		IItemPropertyDescriptor pDescriptorDescription = adapterFactoryItemDelegator.getPropertyDescriptor(
 			getModelElement(), "description");
 		textControlDescription = cFactory.createControl(pDescriptorDescription, getModelElement());
-
-		if (textControlDescription instanceof MERichTextControl) {
-			MERichTextControl meRichTextControl = (MERichTextControl) textControlDescription;
-			meRichTextControl.setShowExpand(false);
-		}
 
 		cDescription = textControlDescription.createControl(textComposite, parentStyle, pDescriptorDescription,
 			getModelElement(), UnicaseActionHelper.getContext(getModelElement()), getToolkit());

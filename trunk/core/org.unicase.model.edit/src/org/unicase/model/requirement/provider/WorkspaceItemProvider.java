@@ -22,17 +22,16 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.UnicaseModelElementItemProvider;
 import org.unicase.model.requirement.RequirementPackage;
+import org.unicase.model.requirement.Workspace;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.model.requirement.Workspace} object. <!-- begin-user-doc
+ * This is the item provider adapter for a {@link org.unicase.model.requirement.Workspace} object.
+ * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
  * @generated
  */
-public class WorkspaceItemProvider extends UnicaseModelElementItemProvider
-		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class WorkspaceItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -67,26 +66,22 @@ public class WorkspaceItemProvider extends UnicaseModelElementItemProvider
 	 */
 	protected void addSystemFunctionsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Workspace_systemFunctions_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Workspace_systemFunctions_feature",
-						"_UI_Workspace_type"),
-				RequirementPackage.Literals.WORKSPACE__SYSTEM_FUNCTIONS, true,
-				false, true, null, null, null));
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+			getResourceLocator(),
+			getString("_UI_Workspace_systemFunctions_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Workspace_systemFunctions_feature",
+				"_UI_Workspace_type"), RequirementPackage.Literals.WORKSPACE__SYSTEM_FUNCTIONS, true, false, true,
+			null, null, null));
 	}
 
 	/**
-	 * This returns Workspace.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Workspace.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/Workspace.png"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Workspace"));
 	}
 
 	/**
@@ -101,11 +96,10 @@ public class WorkspaceItemProvider extends UnicaseModelElementItemProvider
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -122,8 +116,7 @@ public class WorkspaceItemProvider extends UnicaseModelElementItemProvider
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

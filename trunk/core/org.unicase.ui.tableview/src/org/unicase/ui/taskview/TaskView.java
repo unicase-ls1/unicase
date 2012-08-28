@@ -7,23 +7,28 @@
 package org.unicase.ui.taskview;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecp.common.observer.FocusEventObserver;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.ModelElementContextListener;
+import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
 import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.Workspace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
 import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
 import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
+import org.eclipse.emf.emfstore.common.model.util.IdEObjectCollectionChangeObserver;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ControlContribution;
 import org.eclipse.jface.action.GroupMarker;
@@ -34,13 +39,18 @@ import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.EditingSupport;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.IWorkbenchActionConstants;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.organization.OrganizationFactory;
@@ -54,7 +64,6 @@ import org.unicase.ui.tableview.viewer.METableViewer;
 import org.unicase.ui.taskview.filters.BlockedElementsViewerFilter;
 import org.unicase.ui.taskview.filters.ResolvedBugReportFilter;
 import org.unicase.ui.taskview.filters.UncheckedElementsViewerFilter;
-import org.unicase.ui.unicasecommon.common.filter.TeamFilter;
 import org.unicase.ui.unicasecommon.common.filter.UserFilter;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
@@ -65,12 +74,13 @@ import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
  * @author Florian Schneider
  * @author Zardosht Hodaie
  */
-public class TaskView extends ViewPart implements ProjectChangeObserver {
+public class TaskView extends ViewPart implements IdEObjectCollectionChangeObserver {
 
 	private METableViewer viewer;
-	private AdapterImpl workspaceListenerAdapter;
-	private Workspace workspace;
+	private ECPWorkspace workspace;
 	private Project activeProject;
+	private TaskViewSelectionListener selectionListener;
+	private TaskViewContextListener contextListener;
 
 	private UncheckedElementsViewerFilter uncheckedFilter;
 	private Action filterToUnchecked;
@@ -79,7 +89,6 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	private Action filterToLoggedInUser;
 	private IAction filterToSelectedUser;
 
-	private TeamFilter teamFilter;
 	private Action filterToTeam;
 
 	private BlockedElementsViewerFilter blockedFilter;
@@ -97,6 +106,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 
 	private static final String TASKVIEW_FILTERS_GROUP = "taskviewFilters";
 	private static final String TASKVIEW_USER_GROUP = "taskviewUserFilter";
+	private static final Set<Project> VISITED_PROJECTS = new HashSet<Project>();
 
 	/**
 	 * {@inheritDoc}
@@ -108,37 +118,29 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 
 		viewer = initMETableViewer(parent);
 
-		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-		workspaceListenerAdapter = new AdapterImpl() {
+		try {
+			workspace = ECPWorkspaceManager.getInstance().getWorkSpace();
+		} catch (NoWorkspaceException e) {
+			ModelUtil.logException("Failed to receive Project!", e);
+			return;
+		}
 
-			@Override
-			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(Workspace.class)) == org.eclipse.emf.emfstore.client.model.ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
-					ProjectSpace activeProjectSpace = workspace.getActiveProjectSpace();
-					if (activeProjectSpace != null) {
-						activeProject = activeProjectSpace.getProject();
-						activeProject.addProjectChangeObserver(TaskView.this);
-						initLoggedInUser();
-						viewer.setInput(activeProject);
-					} else {
-						activeProject = null;
-						viewer.setInput(activeProject);
-					}
+		selectionListener = new TaskViewSelectionListener();
+		contextListener = new TaskViewContextListener();
 
-				}
-				super.notifyChanged(msg);
-			}
-		};
-		workspace.eAdapters().add(workspaceListenerAdapter);
+		getSite().getPage().addSelectionListener(selectionListener);
 
 		createActions();
 
 		getSite().setSelectionProvider(viewer.getTableViewer());
 		hookDoubleClickAction();
 
-		if (workspace.getActiveProjectSpace() != null) {
-			activeProject = workspace.getActiveProjectSpace().getProject();
-			activeProject.addProjectChangeObserver(TaskView.this);
+		if (workspace.getActiveProject() != null) {
+			activeProject = (Project) workspace.getActiveProject().getRootContainer();
+			activeProject.addIdEObjectCollectionChangeObserver(this);
+			VISITED_PROJECTS.add(activeProject);
+
+			ECPWorkspaceManager.getECPProject(activeProject).addModelElementContextListener(contextListener);
 		}
 		initLoggedInUser();
 		viewer.setInput(activeProject);
@@ -321,7 +323,6 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		//
 		// team filter
 		//
-		teamFilter = new TeamFilter(selectedUser);
 		filterToTeam = new Action("", SWT.TOGGLE) {
 			@Override
 			public void run() {
@@ -351,10 +352,16 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	 */
 	@Override
 	public void dispose() {
-		workspace.eAdapters().remove(workspaceListenerAdapter);
-		if (activeProject != null) {
-			workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(this);
+		for (Project project : VISITED_PROJECTS) {
+			project.removeIdEObjectCollectionChangeObserver(this);
+			ECPProject ecpProject = ECPWorkspaceManager.getECPProject(project);
+			if (ecpProject != null) {
+				ecpProject.removeModelElementContextListener(contextListener);
+			}
 		}
+		VISITED_PROJECTS.clear();
+
+		getSite().getPage().removeSelectionListener(selectionListener);
 
 		super.dispose();
 	}
@@ -408,16 +415,17 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	}
 
 	private void initLoggedInUser() {
-		try {
-			loggedInUser = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance().getCurrentWorkspace());
-		} catch (NoCurrentUserException e) {
-			loggedInUser = null;
-		} catch (CannotMatchUserInProjectException e) {
-			loggedInUser = null;
+		if (activeProject != null) {
+			try {
+				loggedInUser = OrgUnitHelper.getUser(WorkspaceManager.getProjectSpace(activeProject));
+			} catch (NoCurrentUserException e) {
+				loggedInUser = null;
+			} catch (CannotMatchUserInProjectException e) {
+				loggedInUser = null;
+			}
 		}
 		selectedUser = null;
 		viewer.removeFilter(userFilter);
-		viewer.removeFilter(teamFilter);
 		viewer.removeFilter(resolvedBugReportFilter);
 		if (txtUser != null) {
 			txtUser.setText("[no user]");
@@ -431,8 +439,8 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		if (loggedInUser == null) {
 			filterToLoggedInUser.setEnabled(false);
 			if (selectedUser != null) {
-				setUserFilter(true, selectedUser);
 				setTeamFilter(true);
+				setUserFilter(true, selectedUser);
 				// here false = set filter
 				setResolvedBugReportsFilter(false, selectedUser);
 			} else {
@@ -444,8 +452,8 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		} else {
 			filterToLoggedInUser.setEnabled(true);
 			if (filterToLoggedInUser.isChecked()) {
-				setUserFilter(true, loggedInUser);
 				setTeamFilter(filterToTeam.isChecked());
+				setUserFilter(true, loggedInUser);
 				setResolvedBugReportsFilter(filterResolvedBugReports.isChecked(), loggedInUser);
 			}
 
@@ -521,7 +529,6 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	@Override
 	public void setFocus() {
 		viewer.getTableViewer().getTable().setFocus();
-		WorkspaceManager.getObserverBus().notify(FocusEventObserver.class).onFocusEvent("org.unicase.ui.taskview");
 	}
 
 	/**
@@ -618,7 +625,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	/**
 	 * {@inheritDoc}
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Object getAdapter(Class adapter) {
 		if (adapter.equals(UserFilter.class)) {
@@ -630,10 +637,78 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
+	 * @see org.eclipse.emf.emfstore.common.model.util.IdEObjectCollectionChangeObserver#collectionDeleted(org.eclipse.emf.emfstore.common.model.IdEObjectCollection)
 	 */
-	public void projectDeleted(IdEObjectCollection project) {
+	public void collectionDeleted(IdEObjectCollection collection) {
 		viewer.refresh();
+	}
+
+	/**
+	 * Selection listener that will update the active project based on the current user selection.
+	 * 
+	 * @author mharut
+	 */
+	private class TaskViewSelectionListener implements ISelectionListener {
+
+		public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+			if (part instanceof IEditorPart) {
+				Project project = (Project) part.getAdapter(Project.class);
+				if (project != null) {
+					setActiveProject(project);
+				}
+			}
+			if (selection instanceof IStructuredSelection) {
+				IStructuredSelection ss = (IStructuredSelection) selection;
+				Object o = ss.getFirstElement();
+				if (o instanceof EObject) {
+					Project project;
+					if (o instanceof ProjectSpace) {
+						project = ((ProjectSpace) o).getProject();
+					} else {
+						project = ModelUtil.getProject((EObject) o);
+					}
+					if (project != null) {
+						setActiveProject(project);
+					}
+
+				}
+			}
+		}
+
+		private void setActiveProject(Project project) {
+			activeProject = project;
+
+			if (!VISITED_PROJECTS.contains(activeProject)) {
+				activeProject.addIdEObjectCollectionChangeObserver(TaskView.this);
+				VISITED_PROJECTS.add(activeProject);
+
+				ECPWorkspaceManager.getECPProject(activeProject).addModelElementContextListener(contextListener);
+			}
+			initLoggedInUser();
+			viewer.setInput(activeProject);
+		}
+	}
+
+	/**
+	 * Model element context listener that will remove the current input, if the project gets deleted.
+	 * 
+	 * @author mharut
+	 */
+	private class TaskViewContextListener extends ModelElementContextListener {
+
+		@Override
+		public void onModelElementDeleted(EObject deleted) {
+			// do nothing
+		}
+
+		@Override
+		public void onContextDeleted() {
+			if (activeProject != null) {
+				VISITED_PROJECTS.remove(activeProject);
+			}
+			activeProject = null;
+			viewer.setInput(activeProject);
+		}
 
 	}
 }

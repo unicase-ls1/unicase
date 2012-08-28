@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.emfstore.client.ui.dialogs.merge.util.DecisionConfig;
-import org.eclipse.emf.emfstore.client.ui.dialogs.merge.util.DecisionUtil;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
@@ -24,7 +21,6 @@ import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -151,17 +147,17 @@ public class SolutionSelectionDialog extends Dialog {
 	private void refreshItems() {
 		for (int i = 0; i < entries.size(); i++) {
 			Entry entry = entries.get(i);
-
-			if (i == selectedIndex) {
-				entry.setColor(DecisionConfig.getOptionSelectedBack(), DecisionConfig.getOptionSelectedFor());
-				continue;
-			}
-
-			if (i % 2 == 0) {
-				entry.setColor(DecisionConfig.getFirstDecisionBoxColor(), DecisionConfig.getDefaultTextColor());
-			} else {
-				entry.setColor(DecisionConfig.getSecondDecisionBoxColor(), DecisionConfig.getDefaultTextColor());
-			}
+			// FIXME: Access restriction
+			// if (i == selectedIndex) {
+			// entry.setColor(DecisionConfig.getOptionSelectedBack(), DecisionConfig.getOptionSelectedFor());
+			// continue;
+			// }
+			//
+			// if (i % 2 == 0) {
+			// entry.setColor(DecisionConfig.getFirstDecisionBoxColor(), DecisionConfig.getDefaultTextColor());
+			// } else {
+			// entry.setColor(DecisionConfig.getSecondDecisionBoxColor(), DecisionConfig.getDefaultTextColor());
+			// }
 		}
 	}
 
@@ -204,34 +200,36 @@ public class SolutionSelectionDialog extends Dialog {
 			super(parent, SWT.BORDER);
 			setLayout(new GridLayout());
 			GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, false).applyTo(this);
-			AdapterFactoryLabelProvider labelProvider = DecisionUtil.getAdapterFactory();
-
-			OptionMouseListener listener = new OptionMouseListener(this);
-			this.addListener(SWT.MouseEnter, listener);
-			this.addListener(SWT.MouseExit, listener);
-			this.addListener(SWT.MouseUp, listener);
-
-			title = new CLabel(this, SWT.WRAP);
-			title.setText(labelProvider.getText(element));
-			title.setImage(labelProvider.getImage(element));
-			title.setLayoutData(new GridData(SWT.BEGINNING, SWT.BEGINNING, true, false));
-			title.addListener(SWT.MouseEnter, listener);
-			title.addListener(SWT.MouseExit, listener);
-			title.addListener(SWT.MouseUp, listener);
-
-			String description = DecisionUtil.cutString(DecisionUtil.stripNewLine(element.getDescription()), 250, true)
-				.trim();
-			if (!(description != null && !description.equals(""))) {
-				return;
-			}
-			text = new StyledText(this, SWT.WRAP | SWT.MULTI);
-			text.setText(description);
-			text.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-			text.setEditable(false);
-			text.setEnabled(false);
-			text.addListener(SWT.MouseEnter, listener);
-			text.addListener(SWT.MouseExit, listener);
-			text.addListener(SWT.MouseUp, listener);
+			// FIXME: Access restriction
+			// AdapterFactoryLabelProvider labelProvider = DecisionUtil.getAdapterFactory();
+			//
+			// OptionMouseListener listener = new OptionMouseListener(this);
+			// this.addListener(SWT.MouseEnter, listener);
+			// this.addListener(SWT.MouseExit, listener);
+			// this.addListener(SWT.MouseUp, listener);
+			//
+			// title = new CLabel(this, SWT.WRAP);
+			// title.setText(labelProvider.getText(element));
+			// title.setImage(labelProvider.getImage(element));
+			// title.setLayoutData(new GridData(SWT.BEGINNING, SWT.BEGINNING, true, false));
+			// title.addListener(SWT.MouseEnter, listener);
+			// title.addListener(SWT.MouseExit, listener);
+			// title.addListener(SWT.MouseUp, listener);
+			//
+			// String description = DecisionUtil.cutString(DecisionUtil.stripNewLine(element.getDescription()), 250,
+			// true)
+			// .trim();
+			// if (!(description != null && !description.equals(""))) {
+			// return;
+			// }
+			// text = new StyledText(this, SWT.WRAP | SWT.MULTI);
+			// text.setText(description);
+			// text.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+			// text.setEditable(false);
+			// text.setEnabled(false);
+			// text.addListener(SWT.MouseEnter, listener);
+			// text.addListener(SWT.MouseExit, listener);
+			// text.addListener(SWT.MouseUp, listener);
 		}
 
 		public void setColor(Color background, Color foreground) {
@@ -268,7 +266,8 @@ public class SolutionSelectionDialog extends Dialog {
 					break;
 
 				case SWT.MouseEnter:
-					entry.setColor(DecisionConfig.getOptionEnteredColor(), DecisionConfig.getDefaultTextColor());
+					// FIXME: Access restriction
+					// entry.setColor(DecisionConfig.getOptionEnteredColor(), DecisionConfig.getDefaultTextColor());
 					break;
 
 				case SWT.MouseUp:

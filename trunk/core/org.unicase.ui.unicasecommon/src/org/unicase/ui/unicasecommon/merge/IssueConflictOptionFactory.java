@@ -6,38 +6,38 @@
  */
 package org.unicase.ui.unicasecommon.merge;
 
-import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.Conflict;
-import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.CustomConflictOption;
-import org.eclipse.emf.emfstore.client.ui.dialogs.merge.conflict.CustomConflictOptionFactory;
 
 /**
  * Custom option factory for {@link IssueOption}.
  * 
  * @author wesendon
  */
-public class IssueConflictOptionFactory implements CustomConflictOptionFactory {
+// FIXME: Access restriction
+public class IssueConflictOptionFactory { // implements CustomConflictOptionFactory {
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.ui.dialogs.merge.conflict.CustomConflictOptionFactory#createCustomConflictOption(org.unicase.workspace.ui.dialogs.merge.conflict.Conflict)
-	 */
-	public CustomConflictOption createCustomConflictOption(Conflict conflict) {
-		if (!isApplicableConflict(conflict)) {
-			return null;
-		}
-		IssueOption issueOption = new IssueOption();
-		issueOption.setConflict(conflict);
-		return issueOption;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.ui.dialogs.merge.conflict.CustomConflictOptionFactory#isApplicableConflict(org.unicase.workspace.ui.dialogs.merge.conflict.Conflict)
-	 */
-	public boolean isApplicableConflict(Conflict conflict) {
-		return true;
-	}
-
+	// /**
+	// * {@inheritDoc}
+	// *
+	// * @see
+	// org.unicase.workspace.ui.dialogs.merge.conflict.CustomConflictOptionFactory#createCustomConflictOption(org.unicase.workspace.ui.dialogs.merge.conflict.Conflict)
+	// */
+	// public CustomConflictOption createCustomConflictOption(Conflict conflict) {
+	// if (!isApplicableConflict(conflict)) {
+	// return null;
+	// }
+	// IssueOption issueOption = new IssueOption();
+	// issueOption.setConflict(conflict);
+	// return issueOption;
+	// }
+	//
+	// /**
+	// * {@inheritDoc}
+	// *
+	// * @see
+	// org.unicase.workspace.ui.dialogs.merge.conflict.CustomConflictOptionFactory#isApplicableConflict(org.unicase.workspace.ui.dialogs.merge.conflict.Conflict)
+	// */
+	// public boolean isApplicableConflict(Conflict conflict) {
+	// return true;
+	// }
+	//
 }

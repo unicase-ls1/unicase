@@ -14,15 +14,16 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.emf.emfstore.client.model.ModelPackage;
-import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.Workspace;
-import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
 import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
+import org.eclipse.emf.emfstore.common.model.util.IdEObjectCollectionChangeObserver;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
@@ -33,17 +34,22 @@ import org.unicase.model.task.WorkPackage;
  * 
  * @author Helming
  */
-public class WorkpackageContentProvider extends AdapterFactoryContentProvider implements ProjectChangeObserver {
+public class WorkpackageContentProvider extends AdapterFactoryContentProvider implements
+	IdEObjectCollectionChangeObserver {
 
 	/**
 	 * remove listener.
 	 */
 	@Override
 	public void dispose() {
-		if (WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace() != null
-			&& WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject() != null) {
-			WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject()
-				.removeProjectChangeObserver(this);
+		try {
+			if (ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject() != null
+				&& ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject().getRootContainer() != null) {
+				((Project) ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject().getRootContainer())
+					.removeIdEObjectCollectionChangeObserver(this);
+			}
+		} catch (NoWorkspaceException e) {
+			ModelUtil.logException("Failed to receive Project!", e);
 		}
 
 		super.dispose();
@@ -58,29 +64,37 @@ public class WorkpackageContentProvider extends AdapterFactoryContentProvider im
 		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		// Listen to active project space change and register as listener
 		final WorkpackageContentProvider instance = this;
-		final Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-		ProjectSpace activeProjectSapce = currentWorkspace.getActiveProjectSpace();
-		if (activeProjectSapce != null) {
-			activeProjectSapce.getProject().addProjectChangeObserver(this);
-		}
+		try {
+			final ECPWorkspace currentWorkspace = ECPWorkspaceManager.getInstance().getWorkSpace();
 
-		currentWorkspace.eAdapters().add(new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(Workspace.class)) == ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
-					if (currentWorkspace.getActiveProjectSpace() != null) {
-						Object oldValue = msg.getOldValue();
-						if (oldValue instanceof ProjectSpace) {
-							((ProjectSpace) oldValue).getProject().removeProjectChangeObserver(instance);
-						}
-						Object newValue = msg.getNewValue();
-						if (newValue instanceof ProjectSpace) {
-							((ProjectSpace) newValue).getProject().addProjectChangeObserver(instance);
+			ECPProject activeProject = currentWorkspace.getActiveProject();
+			if (activeProject != null) {
+				((Project) activeProject.getRootContainer()).addIdEObjectCollectionChangeObserver(this);
+			}
+
+			currentWorkspace.eAdapters().add(new AdapterImpl() {
+				@Override
+				public void notifyChanged(Notification msg) {
+					if ((msg.getFeatureID(ECPWorkspace.class)) == org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT) {
+						if (currentWorkspace.getActiveProject() != null) {
+							Object oldValue = msg.getOldValue();
+							if (oldValue instanceof ECPProject) {
+								((Project) ((ECPProject) oldValue).getRootContainer())
+									.removeIdEObjectCollectionChangeObserver(instance);
+							}
+							Object newValue = msg.getNewValue();
+							if (newValue instanceof ECPProject) {
+								((Project) ((ECPProject) oldValue).getRootContainer())
+									.addIdEObjectCollectionChangeObserver(instance);
+							}
 						}
 					}
 				}
-			}
-		});
+			});
+		} catch (NoWorkspaceException e) {
+			ModelUtil.logException("Failed to receive Project!", e);
+		}
+
 	}
 
 	/**
@@ -189,11 +203,10 @@ public class WorkpackageContentProvider extends AdapterFactoryContentProvider im
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
+	 * @see org.eclipse.emf.emfstore.common.model.util.IdEObjectCollectionChangeObserver#collectionDeleted(org.eclipse.emf.emfstore.common.model.IdEObjectCollection)
 	 */
-	public void projectDeleted(IdEObjectCollection project) {
-		// TODO Auto-generated method stub
-
+	public void collectionDeleted(IdEObjectCollection collection) {
+		// nothing to do
 	}
 
 }

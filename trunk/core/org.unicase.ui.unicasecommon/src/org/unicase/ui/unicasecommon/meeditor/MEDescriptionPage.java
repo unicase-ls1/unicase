@@ -129,7 +129,6 @@ public class MEDescriptionPage extends AbstractMEEditorPage {
 		if (textControl == null) {
 			textControl = new MERichTextControl();
 		}
-		(textControl).setShowExpand(false);
 		AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IItemPropertyDescriptor propertyDescriptor = adapterFactoryItemDelegator.getPropertyDescriptor(modelElement,

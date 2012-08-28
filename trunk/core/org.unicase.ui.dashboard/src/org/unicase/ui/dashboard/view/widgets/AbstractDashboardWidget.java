@@ -11,7 +11,6 @@ import java.util.List;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.preference.PreferenceDialog;
@@ -192,8 +191,8 @@ public abstract class AbstractDashboardWidget implements PaintListener {
 			@Override
 			public void linkActivated(HyperlinkEvent e) {
 				PreferenceDialog propertyDialog = PreferencesUtil.createPropertyDialogOn(Display.getCurrent()
-					.getActiveShell(), WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
-					.getProject(), "org.unicase.workspace.ui.dashboardWidgetProperties", null, null);
+					.getActiveShell(), dashboard.getProjectSpace().getProject(),
+					"org.unicase.workspace.ui.dashboardWidgetProperties", null, null);
 				propertyDialog.open();
 			}
 		});

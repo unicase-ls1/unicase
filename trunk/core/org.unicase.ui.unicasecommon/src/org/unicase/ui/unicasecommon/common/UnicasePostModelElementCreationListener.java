@@ -10,10 +10,9 @@ import java.util.Date;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
-import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.observers.PostCreationListener;
 import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
+import org.eclipse.emf.emfstore.client.model.observers.PostCreationObserver;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.User;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
@@ -23,15 +22,14 @@ import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
  * 
  * @author emueller
  */
-public class UnicasePostModelElementCreationListener implements PostCreationListener {
+public class UnicasePostModelElementCreationListener implements PostCreationObserver {
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.observers.PostCreationListener#onCreation(org.unicase.workspace.ProjectSpace,
-	 *      org.eclipse.emf.ecore.EObject)
+	 * @see org.eclipse.emf.emfstore.client.model.observers.PostCreationObserver#onCreation(org.eclipse.emf.ecore.EObject)
 	 */
-	public void onCreation(ProjectSpace projectSpace, EObject modelElement) {
+	public void onCreation(EObject modelElement) {
 		if (modelElement instanceof UnicaseModelElement) {
 			UnicaseModelElement unicaseModelElement = (UnicaseModelElement) modelElement;
 

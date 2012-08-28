@@ -188,29 +188,6 @@ public class DiagramItemProviderAdapterFactory extends DiagramAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.diagram.WorkItemDiagram} instances.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected WorkItemDiagramItemProvider workItemDiagramItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.model.diagram.WorkItemDiagram}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createWorkItemDiagramAdapter() {
-		if (workItemDiagramItemProvider == null) {
-			workItemDiagramItemProvider = new WorkItemDiagramItemProvider(this);
-		}
-
-		return workItemDiagramItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -314,8 +291,6 @@ public class DiagramItemProviderAdapterFactory extends DiagramAdapterFactory imp
 			stateDiagramItemProvider.dispose();
 		if (activityDiagramItemProvider != null)
 			activityDiagramItemProvider.dispose();
-		if (workItemDiagramItemProvider != null)
-			workItemDiagramItemProvider.dispose();
 	}
 
 }

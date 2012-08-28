@@ -24,7 +24,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.emf.emfstore.common.model.ModelPackage;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolFactory;
 import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.RolesFactory;
-import org.eclipse.emf.emfstore.server.model.notification.NotificationFactory;
 import org.eclipse.emf.emfstore.server.model.url.UrlFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
@@ -488,9 +487,6 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			OperationsFactory.eINSTANCE.createOperationId()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
@@ -504,81 +500,6 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			EventsFactory.eINSTANCE.createEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createReadEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createMergeEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createCheckoutEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createExceptionEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createPluginStartEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createUpdateEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createAnnotationEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createRevertEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createShowHistoryEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createPerspectiveEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createDNDEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createLinkEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createTraceEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createNavigatorCreateEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createPluginFocusEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createPresentationSwitchEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createUndoEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createValidate()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createShowChangesEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createNotificationReadEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createNotificationGenerationEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createNotificationIgnoreEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createURLEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createMergeChoiceEvent()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createMergeGlobalChoiceEvent()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			ServerFactory.eINSTANCE.createProjectUpdatedEvent()));
@@ -609,9 +530,6 @@ public class LeafSectionItemProvider extends UnicaseModelElementItemProvider imp
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			RolesFactory.eINSTANCE.createServerAdmin()));
-
-		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
-			NotificationFactory.eINSTANCE.createESNotification()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			UrlFactory.eINSTANCE.createServerUrl()));

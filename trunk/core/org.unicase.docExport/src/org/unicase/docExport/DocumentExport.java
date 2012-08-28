@@ -22,8 +22,9 @@ import org.unicase.docExport.exportModel.renderers.elements.URootCompositeSectio
 import org.unicase.model.UnicaseModelElement;
 
 /**
- * This class wraps the document rendering (see package renderers) and document writing (see package docWriter) into an
- * class which can be used for progress bars.
+ * This class wraps the document rendering (see package renderers) and document
+ * writing (see package docWriter) into an class which can be used for progress
+ * bars.
  * 
  * @author Sebastian Hoecht
  */
@@ -41,13 +42,19 @@ public class DocumentExport implements IRunnableWithProgress {
 	private static HashSet<EObject> linkedModelElements;
 
 	/**
-	 * @param modelElement the ModelElement you want to export
-	 * @param docWriter the docWriter used to write the document
-	 * @param documentTemplate the template which defines how the modelElement is rendered
-	 * @param renderer the DocumentRenderer which renders the modelElement using the template
+	 * @param modelElement
+	 *            the ModelElement you want to export
+	 * @param docWriter
+	 *            the docWriter used to write the document
+	 * @param documentTemplate
+	 *            the template which defines how the modelElement is rendered
+	 * @param renderer
+	 *            the DocumentRenderer which renders the modelElement using the
+	 *            template
 	 */
-	public DocumentExport(UnicaseModelElement modelElement, DocWriter docWriter, Template documentTemplate,
-		DocumentRenderer renderer) {
+	public DocumentExport(UnicaseModelElement modelElement,
+			DocWriter docWriter, Template documentTemplate,
+			DocumentRenderer renderer) {
 		this.modelElement = modelElement;
 		this.docWriter = docWriter;
 		this.template = documentTemplate;
@@ -60,8 +67,10 @@ public class DocumentExport implements IRunnableWithProgress {
 	/**
 	 * exports a EObject to the file.
 	 * 
-	 * @param fileLocation the location where the EObject shall be exported.
-	 * @throws DocumentExportException when the export failed for any reason.
+	 * @param fileLocation
+	 *            the location where the EObject shall be exported.
+	 * @throws DocumentExportException
+	 *             when the export failed for any reason.
 	 */
 	public void export(String fileLocation) throws DocumentExportException {
 		URootCompositeSection doc = renderer.render(modelElement, template);
@@ -72,7 +81,8 @@ public class DocumentExport implements IRunnableWithProgress {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+	public void run(IProgressMonitor monitor) throws InvocationTargetException,
+			InterruptedException {
 
 		monitor.beginTask("Exporting Document", IProgressMonitor.UNKNOWN);
 		try {
@@ -89,23 +99,27 @@ public class DocumentExport implements IRunnableWithProgress {
 	}
 
 	/**
-	 * @param fileLocation the fileLocation to set
+	 * @param fileLocation
+	 *            the fileLocation to set
 	 */
 	public void setFileLocation(String fileLocation) {
 		this.fileLocation = fileLocation;
 	}
 
 	/**
-	 * If a EObject is linked in the Document, it should be added with this function. This is required for the appendix.
+	 * If a EObject is linked in the Document, it should be added with this
+	 * function. This is required for the appendix.
 	 * 
-	 * @param eObject The EObject to add
+	 * @param eObject
+	 *            The EObject to add
 	 */
 	public static void addLinkedModelElement(EObject eObject) {
 		linkedModelElements.add(eObject);
 	}
 
 	/**
-	 * @return a set of EObjects which have been linked in the ongoing DocumentExport
+	 * @return a set of EObjects which have been linked in the ongoing
+	 *         DocumentExport
 	 */
 	public static HashSet<EObject> getLinkedModelElements() {
 		return linkedModelElements;
@@ -114,25 +128,32 @@ public class DocumentExport implements IRunnableWithProgress {
 	/**
 	 * This function is required, to avoid recursive EObject rendering.
 	 * 
-	 * @param eObject the EObject which has been rendered to the Document
+	 * @param eObject
+	 *            the EObject which has been rendered to the Document
 	 */
 	public static void addRenderedModelElement(EObject eObject) {
-		ModelElementId meId = ModelUtil.getProject(eObject).getModelElementId(eObject);
+		ModelElementId meId = ModelUtil.getProject(eObject).getModelElementId(
+				eObject);
 		renderedModelElements.add(meId.getId());
 	}
 
 	/**
-	 * @param eObject the EObject which shall be tested, if it has already been rednered to the document
+	 * @param eObject
+	 *            the EObject which shall be tested, if it has already been
+	 *            rednered to the document
 	 * @return true, if the EObject has been rendered already
 	 */
 	public static boolean hasAlreadyBeenRendered(EObject eObject) {
-		ModelElementId meId = ModelUtil.getProject(eObject).getModelElementId(eObject);
+		ModelElementId meId = ModelUtil.getProject(eObject).getModelElementId(
+				eObject);
 		return renderedModelElements.contains(meId.getId());
 	}
 
 	/**
 	 * @see #hasAlreadyBeenRendered(EObject)
-	 * @param modelElementId the ModelElementId of the modelElement which shall be checked for rendering
+	 * @param modelElementId
+	 *            the ModelElementId of the modelElement which shall be checked
+	 *            for rendering
 	 * @return true, if the EObject has been rendered already
 	 */
 	public static boolean hasAlreadyBeenRendered(String modelElementId) {
@@ -140,7 +161,8 @@ public class DocumentExport implements IRunnableWithProgress {
 	}
 
 	/**
-	 * Resets all HashSets. This function should be called before any document rendering is started.
+	 * Resets all HashSets. This function should be called before any document
+	 * rendering is started.
 	 */
 	public static void initiateRenderedModelElements() {
 		renderedModelElements = new HashSet<String>();
@@ -148,7 +170,8 @@ public class DocumentExport implements IRunnableWithProgress {
 	}
 
 	/**
-	 * @param recursionDepth the recursionDepth to set
+	 * @param recursionDepth
+	 *            the recursionDepth to set
 	 */
 	public static void setRecursionDepth(int recursionDepth) {
 		DocumentExport.recursionDepth = recursionDepth;
@@ -162,9 +185,11 @@ public class DocumentExport implements IRunnableWithProgress {
 	}
 
 	/**
-	 * @param treatModelElementAsLeafSection the treatModelElementAsLeafSection to set
+	 * @param treatModelElementAsLeafSection
+	 *            the treatModelElementAsLeafSection to set
 	 */
-	public static void setTreatModelElementAsLeafSection(boolean treatModelElementAsLeafSection) {
+	public static void setTreatModelElementAsLeafSection(
+			boolean treatModelElementAsLeafSection) {
 		DocumentExport.treatModelElementAsLeafSection = treatModelElementAsLeafSection;
 	}
 
@@ -173,6 +198,27 @@ public class DocumentExport implements IRunnableWithProgress {
 	 */
 	public static boolean isTreatModelElementAsLeafSection() {
 		return treatModelElementAsLeafSection;
+	}
+
+	/**
+	 * Clean a formatted text from the list formatting.
+	 * 
+	 * @param text
+	 *            the text which shall be cleaned
+	 * @return a string only containing the plain text
+	 */
+	public static String cleanFormatedText(String text) {
+		if (text == null) {
+			return "";
+		}
+		text = text.replaceAll("\n", "\r\n");
+		text = text.replaceAll("<br>", "\r\n");
+		text = text.replaceAll("<br\\/>", "\r\n");
+		text = text.replaceAll("<li><P[^>]*>", "\r\n\u2022 ");
+		text = text.replaceAll("<P[^>]*>", "\r\n");
+		text = text.replaceAll("<[^<]*>", "");
+		text = text.replaceAll("\\&nbsp;", " ");
+		return text;
 	}
 
 }

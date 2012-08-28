@@ -26,6 +26,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
+import org.unicase.model.diagram.MEDiagram;
 
 /**
  * @generated
@@ -35,23 +36,19 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public List getTypesForPopupBar(IAdaptable host) {
-		IGraphicalEditPart editPart = (IGraphicalEditPart) host
-				.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart editPart = (IGraphicalEditPart) host.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof org.unicase.ui.diagram.classDiagram.edit.parts.ClassEditPart) {
 			ArrayList types = new ArrayList(2);
-			types
-					.add(org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Attribute_3001);
-			types
-					.add(org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Method_3002);
+			types.add(org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Attribute_3001);
+			types.add(org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Method_3002);
 			return types;
 		}
 		if (editPart instanceof org.unicase.ui.diagram.classDiagram.edit.parts.MEDiagramEditPart) {
 			ArrayList types = new ArrayList(2);
-			types
-					.add(org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Class_2001);
-			types
-					.add(org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Package_2002);
+			types.add(org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Class_2001);
+			types.add(org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Package_2002);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -257,58 +254,63 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 		return Collections.EMPTY_LIST;
 	}
 
-
 	/**
 	 * @generated
 	 */
-	public EObject selectExistingElementForSource(IAdaptable target,
-			IElementType relationshipType) {
-		return selectExistingElement(target, getTypesForSource(target,
-				relationshipType));
+	@Override
+	public EObject selectExistingElementForSource(IAdaptable target, IElementType relationshipType) {
+		return selectExistingElement(target, getTypesForSource(target, relationshipType));
 	}
 
 	/**
 	 * @generated
 	 */
-	public EObject selectExistingElementForTarget(IAdaptable source,
-			IElementType relationshipType) {
-		return selectExistingElement(source, getTypesForTarget(source,
-				relationshipType));
+	@Override
+	public EObject selectExistingElementForTarget(IAdaptable source, IElementType relationshipType) {
+		return selectExistingElement(source, getTypesForTarget(source, relationshipType));
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected EObject selectExistingElement(IAdaptable host, Collection types) {
 		if (types.isEmpty()) {
 			return null;
 		}
-		IGraphicalEditPart editPart = (IGraphicalEditPart) host
-				.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart editPart = (IGraphicalEditPart) host.getAdapter(IGraphicalEditPart.class);
 		if (editPart == null) {
 			return null;
 		}
 		Diagram diagram = (Diagram) editPart.getRoot().getContents().getModel();
 		Collection elements = new HashSet();
-		for (Iterator it = diagram.getElement().eAllContents(); it.hasNext();) {
-			EObject element = (EObject) it.next();
-			if (isApplicableElement(element, types)) {
-				elements.add(element);
+
+		EObject diagramElement = diagram.getElement();
+
+		if (diagramElement instanceof MEDiagram) {
+			for (EObject element : ((MEDiagram) diagramElement).getElements()) {
+				if (isApplicableElement(element, types)) {
+					elements.add(element);
+				}
+			}
+		} else {
+			for (Iterator it = diagramElement.eAllContents(); it.hasNext();) {
+				EObject element = (EObject) it.next();
+				if (isApplicableElement(element, types)) {
+					elements.add(element);
+				}
 			}
 		}
 		if (elements.isEmpty()) {
 			return null;
 		}
-		return selectElement((EObject[]) elements.toArray(new EObject[elements
-				.size()]));
+		return selectElement((EObject[]) elements.toArray(new EObject[elements.size()]));
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean isApplicableElement(EObject element, Collection types) {
-		IElementType type = ElementTypeRegistry.getInstance().getElementType(
-				element);
+		IElementType type = ElementTypeRegistry.getInstance().getElementType(element);
 		return types.contains(type);
 	}
 
@@ -318,14 +320,11 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	protected EObject selectElement(EObject[] elements) {
 		Shell shell = Display.getCurrent().getActiveShell();
 		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
-				org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorPlugin
-						.getInstance().getItemProvidersAdapterFactory());
-		ElementListSelectionDialog dialog = new ElementListSelectionDialog(
-				shell, labelProvider);
-		dialog
-				.setMessage(org.unicase.ui.diagram.classDiagram.part.Messages.ModelModelingAssistantProviderMessage);
-		dialog
-				.setTitle(org.unicase.ui.diagram.classDiagram.part.Messages.ModelModelingAssistantProviderTitle);
+			org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorPlugin.getInstance()
+				.getItemProvidersAdapterFactory());
+		ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
+		dialog.setMessage(org.unicase.ui.diagram.classDiagram.part.Messages.ModelModelingAssistantProviderMessage);
+		dialog.setTitle(org.unicase.ui.diagram.classDiagram.part.Messages.ModelModelingAssistantProviderTitle);
 		dialog.setMultipleSelection(false);
 		dialog.setElements(elements);
 		EObject selected = null;
