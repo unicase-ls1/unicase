@@ -69,7 +69,8 @@ Export-Package: org.unicase.model,
 Require-Bundle: org.eclipse.emf.transaction;visibility:=reexport,
  org.eclipse.emf.emfstore.common.model,
  org.eclipse.emf.emfstore.server.model,
- org.eclipse.emf.ecp.common.model
+ org.eclipse.emf.ecp.common.model,
+ org.eclipse.emf.emfstore.client
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.emf.emfstore.common.model,
  org.eclipse.emf.emfstore.server.model
