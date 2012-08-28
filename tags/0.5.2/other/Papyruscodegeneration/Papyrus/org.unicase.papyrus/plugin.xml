@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+   <extension-point id="service" name="Service" schema="schema/service.exsd"/>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://unicase.org/model/papyrus"
+            class="org.unicase.papyrus.PapyrusPackage"
+            genModel="model/papyrus.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="papyrus"
+            class="org.unicase.papyrus.util.PapyrusResourceFactoryImpl"/>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecp.model.ecppackage">
+      <modelPackage
+            modelPackage="http://unicase.org/model/papyrus">
+      </modelPackage>
+      <modelPackage
+            modelPackage="http://www.eclipse.org/uml2/3.0.0/UML">
+      </modelPackage>
+   </extension>
+<!--   <extension
+         point="org.unicase.ecp.model.ecpModelPackage">
+         <modelPackage
+            modelPackage="http://unicase.org/model/papyrus"></modelPackage>
+   </extension>
+-->
+</plugin>

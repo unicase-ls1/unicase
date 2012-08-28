@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.unicase.ui.meeditor.pages">
+      <page
+            class="org.unicase.ui.descriptionpage.LatexDescriptionPage"
+            name="org.unicase.ui.descriptionPage.page1">
+      </page>
+   </extension>
+
+</plugin>

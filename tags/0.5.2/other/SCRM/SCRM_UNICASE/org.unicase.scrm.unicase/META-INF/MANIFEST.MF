@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SCRM-Unicase
+Bundle-SymbolicName: org.unicase.scrm.unicase;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.unicase.scrm.diagram,
+ org.eclipse.ui,
+ org.unicase.model,
+ org.unicase.ui.unicasecommon

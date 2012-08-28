@@ -1,0 +1,10 @@
+«IMPORT "http://www.eclipse.org/gmf/2009/GenModel"»
+
+
+«DEFINE javaClass FOR gmfgen::GenDiagram»
+	«FILE name+".java"»
+		public class «name» {
+			
+		}
+	«ENDFILE»
+«ENDDEFINE»

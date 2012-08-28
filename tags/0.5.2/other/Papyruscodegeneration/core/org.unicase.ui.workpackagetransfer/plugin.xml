@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.unicase.ui.workpackagetransfer.handler1"
+            name="Move ModelElements">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.unicase.ui.workpackagetransfer.navigator.commands.WorkpackageTransferWizardHandler"
+            commandId="org.unicase.ui.workpackagetransfer.handler1">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.eclipse.emf.ecp.navigator.viewer">
+         <separator
+               name="org.unicase.ui.workpackagetransfer"
+               visible="true">
+         </separator>
+         <command
+               commandId="org.unicase.ui.workpackagetransfer.handler1"
+               icon="icons/database_go.png"
+               label="Move to WorkPackage..."
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate
+                     ifEmpty="false">
+                  <instanceof
+                        value="org.unicase.model.task.WorkPackage">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+</plugin>
