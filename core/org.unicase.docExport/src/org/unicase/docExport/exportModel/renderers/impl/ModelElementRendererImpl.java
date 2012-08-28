@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
@@ -467,7 +466,7 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 		 */
 
 		// ########################## Description ##########################
-		UParagraph description = new UParagraph(WorkspaceUtil.cleanFormatedText(modelElement.getDescription()),
+		UParagraph description = new UParagraph(DocumentExport.cleanFormatedText(modelElement.getDescription()),
 			getTemplate().getLayoutOptions().getDefaultTextOption());
 		description.getBoxModel().setKeepWithPrevious(true);
 		description.getOption().setTextAlign(TextAlign.JUSTIFY);

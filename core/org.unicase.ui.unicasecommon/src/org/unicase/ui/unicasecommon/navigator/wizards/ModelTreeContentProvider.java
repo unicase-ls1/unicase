@@ -40,12 +40,20 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 	 */
 	@Override
 	public Object[] getElements(Object inputElement) {
-		//
-		// EPackage modelPackage = ModelPackageImpl.eINSTANCE;
-		// EList<EPackage> array = modelPackage.getESubpackages();
-		//
 		Object[] array = UnicaseUiUtil.getAllModelPackages().toArray();
-		return array;
+		ArrayList<Object> result = new ArrayList<Object>(array.length);
+		for (Object object : array) {
+			if (object instanceof EPackage) {
+				Object[] children = getChildren(object);
+				// only add packages that actually have children
+				if (children != null && children.length > 0) {
+					result.add(object);
+				}
+			} else {
+				result.add(object);
+			}
+		}
+		return result.toArray();
 	}
 
 	/**

@@ -31,10 +31,11 @@ import org.unicase.model.classes.Class;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.implementation.operations.impl.InlineSuperClassOperationImpl#getSuperClass <em>Super Class</em>}</li>
+ * <li>{@link org.unicase.implementation.operations.impl.InlineSuperClassOperationImpl#getSuperClass <em>Super Class
+ * </em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class InlineSuperClassOperationImpl extends SemanticCompositeOperationImpl implements InlineSuperClassOperation {
@@ -50,6 +51,7 @@ public class InlineSuperClassOperationImpl extends SemanticCompositeOperationImp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected InlineSuperClassOperationImpl() {
@@ -58,6 +60,7 @@ public class InlineSuperClassOperationImpl extends SemanticCompositeOperationImp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,6 +70,7 @@ public class InlineSuperClassOperationImpl extends SemanticCompositeOperationImp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelElementId getSuperClass() {
@@ -75,38 +79,48 @@ public class InlineSuperClassOperationImpl extends SemanticCompositeOperationImp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSuperClass(ModelElementId newSuperClass, NotificationChain msgs) {
 		ModelElementId oldSuperClass = superClass;
 		superClass = newSuperClass;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OperationsPackage.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS, oldSuperClass, newSuperClass);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS, oldSuperClass, newSuperClass);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSuperClass(ModelElementId newSuperClass) {
 		if (newSuperClass != superClass) {
 			NotificationChain msgs = null;
 			if (superClass != null)
-				msgs = ((InternalEObject)superClass).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS, null, msgs);
+				msgs = ((InternalEObject) superClass).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS, null, msgs);
 			if (newSuperClass != null)
-				msgs = ((InternalEObject)newSuperClass).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OperationsPackage.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS, null, msgs);
+				msgs = ((InternalEObject) newSuperClass).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- OperationsPackage.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS, null, msgs);
 			msgs = basicSetSuperClass(newSuperClass, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS, newSuperClass, newSuperClass));
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS, newSuperClass, newSuperClass));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class getSuperClass(Project project) {
@@ -128,67 +142,72 @@ public class InlineSuperClassOperationImpl extends SemanticCompositeOperationImp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case OperationsPackage.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS:
-				return basicSetSuperClass(null, msgs);
+		case OperationsPackage.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS:
+			return basicSetSuperClass(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OperationsPackage.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS:
-				return getSuperClass();
+		case OperationsPackage.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS:
+			return getSuperClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OperationsPackage.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS:
-				setSuperClass((ModelElementId)newValue);
-				return;
+		case OperationsPackage.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS:
+			setSuperClass((ModelElementId) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OperationsPackage.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS:
-				setSuperClass((ModelElementId)null);
-				return;
+		case OperationsPackage.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS:
+			setSuperClass((ModelElementId) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OperationsPackage.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS:
-				return superClass != null;
+		case OperationsPackage.INLINE_SUPER_CLASS_OPERATION__SUPER_CLASS:
+			return superClass != null;
 		}
 		return super.eIsSet(featureID);
 	}

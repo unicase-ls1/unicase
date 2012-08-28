@@ -10,13 +10,15 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.TableViewerColumnSorter;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.emf.emfstore.client.model.ModelPackage;
-import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.Workspace;
-import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
-import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.IdEObjectCollectionChangeObserver;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -53,7 +55,7 @@ import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
  * 
  * @author Hodaie
  */
-public class FlatTabComposite extends Composite implements ProjectChangeObserver {
+public class FlatTabComposite extends Composite implements IdEObjectCollectionChangeObserver {
 	/**
 	 * Sorter to sort a status view.
 	 * 
@@ -104,7 +106,7 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 	private FlatTabDropAdapter flatTabDropAdapter;
 	private StatusViewTabsDragAdapter flatTabDragAdapter;
 	private AdapterImpl adapterImpl;
-	private Workspace workspace;
+	private ECPWorkspace workspace;
 
 	// //for future use maybe
 	// private ModelElement input;
@@ -119,23 +121,31 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 		super(parent, style);
 		this.setLayout(new GridLayout());
 		createTable();
-		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-		if (workspace.getActiveProjectSpace() != null) {
-			workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(FlatTabComposite.this);
+
+		try {
+			workspace = ECPWorkspaceManager.getInstance().getWorkSpace();
+		} catch (NoWorkspaceException e) {
+			ModelUtil.logException("Failed to receive Project!", e);
+			return;
+		}
+		if (workspace.getActiveProject() != null) {
+			((Project) workspace.getActiveProject().getRootContainer()).addIdEObjectCollectionChangeObserver(this);
 		}
 		adapterImpl = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(Workspace.class)) == ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
+				if ((msg.getFeatureID(ECPWorkspace.class)) == org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT) {
 
 					// remove old listeners
 					Object oldValue = msg.getOldValue();
-					if (oldValue instanceof ProjectSpace) {
-						((ProjectSpace) oldValue).getProject().removeProjectChangeObserver(FlatTabComposite.this);
+					if (oldValue instanceof ECPProject) {
+						((Project) ((ECPProject) oldValue).getRootContainer())
+							.removeIdEObjectCollectionChangeObserver(FlatTabComposite.this);
 					}
 					// add listener to get notified when work items get deleted/added/changed
-					if (workspace.getActiveProjectSpace() != null) {
-						workspace.getActiveProjectSpace().getProject().addProjectChangeObserver(FlatTabComposite.this);
+					if (workspace.getActiveProject() != null) {
+						((Project) workspace.getActiveProject().getRootContainer())
+							.addIdEObjectCollectionChangeObserver(FlatTabComposite.this);
 					}
 				}
 			}
@@ -369,8 +379,8 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 	public void dispose() {
 
 		workspace.eAdapters().remove(adapterImpl);
-		if (workspace.getActiveProjectSpace() != null && workspace.getActiveProjectSpace().getProject() != null) {
-			workspace.getActiveProjectSpace().getProject().removeProjectChangeObserver(FlatTabComposite.this);
+		if (workspace.getActiveProject() != null && workspace.getActiveProject().getRootContainer() != null) {
+			((Project) workspace.getActiveProject().getRootContainer()).removeIdEObjectCollectionChangeObserver(this);
 		}
 
 		super.dispose();
@@ -379,10 +389,10 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#projectDeleted(org.unicase.metamodel.Project)
+	 * @see org.eclipse.emf.emfstore.common.model.util.IdEObjectCollectionChangeObserver#collectionDeleted(org.eclipse.emf.emfstore.common.model.IdEObjectCollection)
 	 */
-	public void projectDeleted(IdEObjectCollection project) {
-		// TODO Auto-generated method stub
+	public void collectionDeleted(IdEObjectCollection collection) {
+		// nothing to do
 
 	}
 

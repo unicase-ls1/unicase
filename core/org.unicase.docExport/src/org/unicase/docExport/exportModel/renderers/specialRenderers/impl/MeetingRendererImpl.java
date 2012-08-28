@@ -15,7 +15,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.unicase.docExport.DocumentExport;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
 import org.unicase.docExport.exportModel.renderers.elements.UParagraph;
 import org.unicase.docExport.exportModel.renderers.elements.USection;
@@ -362,7 +362,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 
 		if (workItem instanceof Issue) {
 			Issue issue = (Issue) workItem;
-			UParagraph issueDescriptionPar = new UParagraph(WorkspaceUtil.cleanFormatedText(issue.getDescription()),
+			UParagraph issueDescriptionPar = new UParagraph(DocumentExport.cleanFormatedText(issue.getDescription()),
 				getWorkItemTextOption());
 			issueDescriptionPar.setIndentionLeft(2);
 			workItemSection.add(issueDescriptionPar);
@@ -370,7 +370,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 			for (Proposal proposal : issue.getProposals()) {
 				String text2 = "P[" + number + "." + i++ + "]: " + proposal.getName();
 				UParagraph par2 = new UParagraph(text2, getWorkItemTextOption());
-				String text3 = WorkspaceUtil.cleanFormatedText(proposal.getDescription());
+				String text3 = DocumentExport.cleanFormatedText(proposal.getDescription());
 				UParagraph par3 = new UParagraph(text3, getWorkItemTextOption());
 				par2.setIndentionLeft(3);
 				par3.setIndentionLeft(4);
@@ -381,7 +381,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 			if (issue.getSolution() != null) {
 				UParagraph solution = new UParagraph("Solution: " + issue.getSolution().getName(),
 					getWorkItemTextOption());
-				String solutionDescription = WorkspaceUtil.cleanFormatedText(issue.getSolution().getDescription());
+				String solutionDescription = DocumentExport.cleanFormatedText(issue.getSolution().getDescription());
 				UParagraph solutionPar = new UParagraph(solutionDescription, getWorkItemTextOption());
 				solution.setIndentionLeft(3);
 				workItemSection.add(solution);
@@ -400,7 +400,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 	}
 
 	protected void renderDescription(UCompositeSection parent, UnicaseModelElement me) {
-		UParagraph descr = new UParagraph(WorkspaceUtil.cleanFormatedText(me.getDescription()) + "\n", getTemplate()
+		UParagraph descr = new UParagraph(DocumentExport.cleanFormatedText(me.getDescription()) + "\n", getTemplate()
 			.getLayoutOptions().getDefaultTextOption());
 		descr.setIndentionLeft(1);
 		parent.add(descr);

@@ -11,9 +11,9 @@ import java.util.List;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CheckboxCellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
@@ -37,10 +37,13 @@ public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 	/**
 	 * default constructor.
 	 * 
-	 * @param viewer The viewer
-	 * @param currentUser the current user of task view
+	 * @param viewer
+	 *            The viewer
+	 * @param currentUser
+	 *            the current user of task view
 	 */
-	public WorkItemDoneOrResolvedEditingSupport(TableViewer viewer, User currentUser) {
+	public WorkItemDoneOrResolvedEditingSupport(TableViewer viewer,
+			User currentUser) {
 		super(viewer);
 		this.setCurrentUser(currentUser);
 		cellEditor = new CheckboxCellEditor();
@@ -121,21 +124,25 @@ public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 		if (element instanceof WorkItem) {
 			WorkItem workItem = (WorkItem) element;
 			if (workItem.getReviewer() != null) {
-				// if current user is the reviewer of work item, then set work item to done
+				// if current user is the reviewer of work item, then set work
+				// item to done
 				// else, set it to resolved.
 				if (isCurrentUserReviewer(workItem)) {
 					((Checkable) workItem).setChecked(isChecked);
 				} else if (isCurrentUserAssigneeOrCreator(workItem)) {
-					// maybe if current user is assignee or creator of work item. but generally:
+					// maybe if current user is assignee or creator of work
+					// item. but generally:
 					workItem.setResolved(isChecked);
 				}
 			} else {
-				// work item has no reviewer. Show reviewer selection dialog if it is checked, or set it not done and
+				// work item has no reviewer. Show reviewer selection dialog if
+				// it is checked, or set it not done and
 				// not resolved regardless of who unchecks it.
 				if (isChecked) {
 					showReviewerSelectionDialog(workItem);
 				} else {
-					if (isCurrentUserReviewer(workItem) || isCurrentUserAssigneeOrCreator(workItem)) {
+					if (isCurrentUserReviewer(workItem)
+							|| isCurrentUserAssigneeOrCreator(workItem)) {
 						// set not checked (not done)
 						// set not resolved
 						((Checkable) workItem).setChecked(false);
@@ -160,7 +167,8 @@ public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 		}
 		OrgUnit assignee = workItem.getAssignee();
 		String creator = workItem.getCreator();
-		return currentUser.equals(assignee) || currentUser.getName().equals(creator);
+		return currentUser.equals(assignee)
+				|| currentUser.getName().equals(creator);
 	}
 
 	/**
@@ -181,22 +189,28 @@ public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 	 * @param workItem
 	 */
 	private void showReviewerSelectionDialog(WorkItem workItem) {
-		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
-		ReviewerSelectionDialog reviwerSelectionDialog = new ReviewerSelectionDialog(this.getViewer().getControl()
-			.getShell(), labelProvider, workItem);
-		reviwerSelectionDialog.setMessage(ReviewerSelectionDialog.REVIEWERSELECTIONDIALOG_MESSAGE);
+		ReviewerSelectionDialog reviwerSelectionDialog = new ReviewerSelectionDialog(
+				this.getViewer().getControl().getShell(), labelProvider,
+				workItem);
+		reviwerSelectionDialog
+				.setMessage(ReviewerSelectionDialog.REVIEWERSELECTIONDIALOG_MESSAGE);
 
-		Project project = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject();
-		List<User> users = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
-			new BasicEList<User>());
+		Project project = ModelUtil.getProject(workItem);
+		List<User> users = project
+				.getAllModelElementsbyClass(
+						OrganizationPackage.eINSTANCE.getUser(),
+						new BasicEList<User>());
 		reviwerSelectionDialog.setElements(users.toArray());
 		reviwerSelectionDialog.open();
 	}
 
 	/**
-	 * @param currentUser the currentUser to set
+	 * @param currentUser
+	 *            the currentUser to set
 	 */
 	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;

@@ -6,24 +6,17 @@
  */
 package org.unicase.ui.unicasecommon.meeditor;
 
-import java.util.Date;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.common.utilities.ExtProgramFactoryFacade;
 import org.eclipse.emf.ecp.editor.mecontrols.AbstractMEControl;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
-import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.ModelElementChangeObserver;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
-import org.eclipse.emf.emfstore.server.model.versioning.events.URLEvent;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
@@ -111,35 +104,21 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 				});
 			}
 
-			public void projectDeleted(IdEObjectCollection project) {
-				// TODO Auto-generated method stub
-
-			}
-
-			public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
-				// TODO Auto-generated method stub
-
-			}
-
-			public void modelElementAdded(IdEObjectCollection project, EObject modelElement) {
-				// TODO Auto-generated method stub
-
-			}
-
-			public void modelElementRemoved(IdEObjectCollection project, EObject modelElement) {
-				// TODO Auto-generated method stub
-
-			}
-
 			@Override
 			protected void onElementDeleted(EObject element) {
-				// TODO Auto-generated method stub
-
 			}
 
+			public void notify(Notification notification, IdEObjectCollection collection, EObject modelElement) {
+			}
+
+			public void modelElementAdded(IdEObjectCollection collection, EObject modelElement) {
+			}
+
+			public void modelElementRemoved(IdEObjectCollection collection, EObject modelElement) {
+			}
 		};
 
-		ModelUtil.getProject(getModelElement()).addProjectChangeObserver(observer);
+		ModelUtil.getProject(getModelElement()).addIdEObjectCollectionChangeObserver(observer);
 		observer.observeElement(getModelElement());
 
 		String url = urlattachement.getUrl();
@@ -161,10 +140,6 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 					box.setMessage(url + " is not a valid URL, browser couldn't be started!");
 					box.open();
 				}
-				EObject modelElement = getModelElement();
-				ModelElementId modelElementId = ModelUtil.getProject(modelElement).getModelElementId(modelElement);
-				logEvent(modelElementId, modelElementId, WorkspaceManager.getProjectSpace(modelElement),
-					"org.eclipse.emf.ecp.editor");
 				super.linkActivated(event);
 
 			}
@@ -199,31 +174,6 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 	}
 
 	/**
-	 * Logs an URLEvent.
-	 * 
-	 * @param sourceModelElementId The ID where the widgte was clicked
-	 * @param urlID The ID of the URL
-	 * @param projectSpace The project space to log the event
-	 * @param source The source view
-	 */
-	public static void logEvent(ModelElementId sourceModelElementId, ModelElementId urlID,
-		final ProjectSpace projectSpace, String source) {
-		final URLEvent urlEvent = EventsFactory.eINSTANCE.createURLEvent();
-		urlEvent.setSourceModelElement(sourceModelElementId);
-		urlEvent.setSourceURL(urlID);
-		urlEvent.setTimestamp(new Date());
-		urlEvent.setSourceView(source);
-		new EMFStoreCommand() {
-
-			@Override
-			protected void doRun() {
-				projectSpace.addEvent(urlEvent);
-			}
-		}.run(false);
-
-	}
-
-	/**
 	 * Disposes the Composite of this {@link MEURLControl}.
 	 */
 	@Override
@@ -231,7 +181,7 @@ public class MEURLControl extends AbstractUnicaseMEControl {
 		if (getModelElement() != null) {
 			Project project = ModelUtil.getProject(getModelElement());
 			if (project != null) {
-				project.removeProjectChangeObserver(observer);
+				project.removeIdEObjectCollectionChangeObserver(observer);
 			}
 		}
 		if (linkComposite != null) {

@@ -26,7 +26,6 @@ import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
-import org.unicase.ui.unicasecommon.common.util.UnicaseEventUtil;
 
 /**
  * . This is a generic handler to add different types of Annotations to a ModelElement
@@ -103,8 +102,6 @@ public class AddAnnotationHandler extends AbstractHandler {
 			return null;
 		}
 		attachAnnotation(me, annotation);
-		// log event
-		UnicaseEventUtil.logAnnotationEvent(me, annotation);
 
 		// 3. open annotation object for further editing
 		openAnnotation(annotation);

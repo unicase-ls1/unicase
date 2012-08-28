@@ -14,6 +14,8 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
 import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.Usersession;
@@ -22,6 +24,7 @@ import org.eclipse.emf.emfstore.client.model.accesscontrol.AccessControlHelper;
 import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.exceptions.AccessControlException;
 import org.eclipse.emf.emfstore.server.exceptions.ConnectionException;
 import org.eclipse.emf.emfstore.server.exceptions.EmfStoreException;
@@ -56,11 +59,20 @@ public final class OrgUnitHelper {
 	 */
 	public static User getCurrentUser(Workspace currentWorkspace) throws NoCurrentUserException,
 		CannotMatchUserInProjectException {
-		ProjectSpace activeProjectSpace = currentWorkspace.getActiveProjectSpace();
-		if (activeProjectSpace == null) {
+		try {
+			ProjectSpace activeProjectSpace = (ProjectSpace) ECPWorkspaceManager.getInstance().getWorkSpace()
+				.getActiveProject().getRootObject();
+			if (activeProjectSpace == null) {
+				throw new NoCurrentUserException();
+			}
+			return getUser(activeProjectSpace);
+		} catch (NoWorkspaceException e) {
+			ModelUtil.logException("Retrieving current user failed!", e);
+			return null;
+		} catch (NullPointerException e) {
 			throw new NoCurrentUserException();
 		}
-		return getUser(activeProjectSpace);
+
 	}
 
 	/**
@@ -165,8 +177,7 @@ public final class OrgUnitHelper {
 		AccessControlHelper accessControlHelper = new AccessControlHelper(projectSpace.getUsersession());
 		accessControlHelper.checkProjectAdminAccess(projectSpace.getProjectId());
 		try {
-
-			List<ACOrgUnit> participants = projectSpace.getUsersession().getAdminBroker()
+			List<ACOrgUnit> participants = projectSpace.getWorkspace().getAdminBroker(projectSpace.getUsersession())
 				.getParticipants(projectSpace.getProjectId());
 			if (participants != null) {
 				addToProject(participants, projectSpace);
@@ -235,7 +246,8 @@ public final class OrgUnitHelper {
 			if (orgUnit instanceof ACGroup) {
 				List<ACOrgUnit> recursiveList = null;
 				try {
-					recursiveList = projectSpace.getUsersession().getAdminBroker().getMembers(orgUnit.getId());
+					recursiveList = projectSpace.getWorkspace().getAdminBroker(projectSpace.getUsersession())
+						.getMembers(orgUnit.getId());
 				} catch (ConnectionException e) {
 					WorkspaceUtil.logException("Importing users failed!", e);
 				} catch (EmfStoreException e) {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
+   <extension-point id="org.eclipse.emf.emfstore.client.postCreationObserver" name="PostCreationObserver" schema="schema/org.eclipse.emf.emfstore.client.postCreationObserver.exsd"/>
    
     <extension
        point="org.eclipse.core.expressions.propertyTesters">
@@ -154,13 +155,6 @@
 
     <!--    -->
    
-   <extension
-         point="org.eclipse.emf.ecore.content_parser">
-      <parser
-            class="org.unicase.ui.unicasecommon.common.diagram.MEDiagramResource"
-            contentTypeIdentifier="MEDiagram">
-      </parser>
-   </extension>
   <extension
         point="org.eclipse.ui.menus">
      <menuContribution
@@ -914,10 +908,17 @@
      </ContentProvider>
   </extension>
   <extension
-        point="org.eclipse.emf.emfstore.client.notify.postcreationlistener">
-     <postcreationlistener
-           class="org.unicase.ui.unicasecommon.common.UnicasePostModelElementCreationListener">
-     </postcreationlistener>
+        point="org.eclipse.emf.emfstore.common.observer">
+     <observer
+           extensionPointName="org.eclipse.emf.emfstore.client.postCreationObserver"
+           observerAttributeName="postCreationObserver">
+     </observer>
+  </extension>
+  <extension
+        point="org.eclipse.emf.emfstore.client.postCreationObserver">
+     <observer
+           postCreationObserver="org.unicase.ui.unicasecommon.common.UnicasePostModelElementCreationListener">
+     </observer>
   </extension>
   <extension
         point="org.eclipse.emf.emfstore.client.defaultConfigurationProvider">
@@ -967,9 +968,18 @@
      </provider>
   </extension>
   <extension
-        point="org.eclipse.emf.emfstore.client.notify.postinit">
-     <initiator
-           class="org.unicase.ui.unicasecommon.common.AdapterInitiator">
-     </initiator>
+        point="org.eclipse.emf.emfstore.client.commitObserver">
+     <observer
+           commitObserver="org.unicase.ui.unicasecommon.meeditor.mecontrols.MEFileChooserControl">
+     </observer>
+  </extension>
+  <extension
+        point="org.eclipse.emf.ecp.common.menuContributionEnablement">
+     <MenuContributionEnablement
+           enabled="true">
+        <Command
+              commandID="org.eclipse.emf.ecp.navigator.dynamicMECreationCommands">
+        </Command>
+     </MenuContributionEnablement>
   </extension>
 </plugin>

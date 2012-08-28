@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.unicase.docExport.DocumentExport;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
 import org.unicase.docExport.exportModel.renderers.elements.ULink;
@@ -112,7 +113,7 @@ public class StepsAttributeRendererImpl extends AttributeRendererImpl implements
 				stepName.getOption().setBold(true);
 			}
 
-			UParagraph stepDescription = new UParagraph(WorkspaceUtil.cleanFormatedText(step.getDescription()),
+			UParagraph stepDescription = new UParagraph(DocumentExport.cleanFormatedText(step.getDescription()),
 				template.getLayoutOptions().getDefaultTextOption());
 			stepDescription.getBoxModel().setKeepWithPrevious(true);
 			content.add(stepDescription);

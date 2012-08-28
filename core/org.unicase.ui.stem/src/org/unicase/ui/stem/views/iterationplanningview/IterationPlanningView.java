@@ -14,12 +14,14 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecp.common.dnd.ComposedDropAdapter;
 import org.eclipse.emf.ecp.common.dnd.UCDragAdapter;
 import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
-import org.eclipse.emf.ecp.common.observer.FocusEventObserver;
+import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
+import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
 import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.emf.emfstore.client.model.Workspace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
+import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.DialogSettings;
@@ -108,15 +110,20 @@ public class IterationPlanningView extends ViewPart {
 		} catch (IOException e) {
 			// Do nothing.
 		}
-		final Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-		workspace.eAdapters().add(new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(Workspace.class)) == org.eclipse.emf.emfstore.client.model.ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
-					initFilters();
+		try {
+			final ECPWorkspace workspace = ECPWorkspaceManager.getInstance().getWorkSpace();
+			workspace.eAdapters().add(new AdapterImpl() {
+				@Override
+				public void notifyChanged(Notification msg) {
+					if ((msg.getFeatureID(ECPWorkspace.class)) == org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT) {
+						initFilters();
+					}
 				}
-			}
-		});
+			});
+		} catch (NoWorkspaceException e) {
+			ModelUtil.logException("Failed to receive Project!", e);
+			return;
+		}
 	}
 
 	/**
@@ -147,28 +154,33 @@ public class IterationPlanningView extends ViewPart {
 		addDNDSupport();
 
 		// respond to change of active ProjectSpace
-		final Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-		workspace.eAdapters().add(new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(Workspace.class)) == org.eclipse.emf.emfstore.client.model.ModelPackage.WORKSPACE__ACTIVE_PROJECT_SPACE) {
-					if (workspace.getActiveProjectSpace() != null) {
-						project = workspace.getActiveProjectSpace().getProject();
-					} else {
-						project = null;
+		try {
+			final ECPWorkspace workspace = ECPWorkspaceManager.getInstance().getWorkSpace();
+			workspace.eAdapters().add(new AdapterImpl() {
+				@Override
+				public void notifyChanged(Notification msg) {
+					if ((msg.getFeatureID(ECPWorkspace.class)) == org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT) {
+						if (workspace.getActiveProject() != null) {
+							project = (Project) workspace.getActiveProject().getRootContainer();
+						} else {
+							project = null;
+						}
+						setInput();
 					}
-					setInput();
+					super.notifyChanged(msg);
 				}
-				super.notifyChanged(msg);
-			}
-		});
+			});
 
-		// set input when showing the view for the first time.
-		if (workspace.getActiveProjectSpace() != null) {
-			project = workspace.getActiveProjectSpace().getProject();
-		} else {
-			project = null;
+			// set input when showing the view for the first time.
+			if (workspace.getActiveProject() != null) {
+				project = (Project) workspace.getActiveProject().getRootContainer();
+			} else {
+				project = null;
+			}
+		} catch (NoWorkspaceException e) {
+			ModelUtil.logException("Failed to receive Project!", e);
 		}
+
 		setInput();
 
 	}
@@ -357,8 +369,6 @@ public class IterationPlanningView extends ViewPart {
 	@Override
 	public void setFocus() {
 		viewer.getTree().setFocus();
-		ECPWorkspaceManager.getObserverBus().notify(FocusEventObserver.class)
-			.onFocusEvent("org.unicase.ui.treeview.views.IterationPlanningView");
 	}
 
 	private void addDNDSupport() {

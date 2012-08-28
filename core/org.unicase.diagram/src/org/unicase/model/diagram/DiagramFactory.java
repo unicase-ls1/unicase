@@ -64,14 +64,6 @@ public interface DiagramFactory extends EFactory {
 	ActivityDiagram createActivityDiagram();
 
 	/**
-	 * Returns a new object of class '<em>Work Item Diagram</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return a new object of class '<em>Work Item Diagram</em>'.
-	 * @generated
-	 */
-	WorkItemDiagram createWorkItemDiagram();
-
-	/**
 	 * Returns a new object of class '<em>ME Relative Bendpoints</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>ME Relative Bendpoints</em>'.

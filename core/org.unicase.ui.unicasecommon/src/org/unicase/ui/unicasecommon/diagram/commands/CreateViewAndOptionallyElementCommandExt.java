@@ -63,6 +63,7 @@ public class CreateViewAndOptionallyElementCommandExt extends CreateViewAndOptio
 
 		// Create the element first, if one does not exist.
 		EObject element = (EObject) getElementAdapter().getAdapter(EObject.class);
+
 		if (element == null) {
 			IElementType type = (IElementType) getElementAdapter().getAdapter(IElementType.class);
 			if (type == null) {
@@ -79,7 +80,7 @@ public class CreateViewAndOptionallyElementCommandExt extends CreateViewAndOptio
 		if (target != null) {
 
 			// Command theCmd = CommandFactory.createCreateNodeViewCommand(element, );
-			Command theCmd = getContainerEP().getCommand(createRequest);
+			Command theCmd = target.getCommand(createRequest);
 			if (element != null
 				&& !((MEDiagram) EditPartUtility.getElement(getContainerEP())).getElements().contains(element)) {
 				theCmd = theCmd.chain(CommandFactory.createDiagramElementAddCommand(element, getContainerEP(), true));
@@ -88,21 +89,23 @@ public class CreateViewAndOptionallyElementCommandExt extends CreateViewAndOptio
 
 			View theExistingView = getExistingView(element);
 
-			if (theExistingView != null && useExistingView(theExistingView)) {
+			if (theExistingView != null) {
 				setResult(new EObjectAdapter(theExistingView));
 				return CommandResult.newOKCommandResult(getResult());
 			}
 
-			ICommand cmd = DiagramCommandStack.getICommand(getCommand());
-			cmd.execute(progressMonitor, info);
-			if (progressMonitor.isCanceled()) {
-				return CommandResult.newCancelledCommandResult();
-			} else if (!(cmd.getCommandResult().getStatus().isOK())) {
-				return cmd.getCommandResult();
+			if (getCommand().canExecute()) {
+				ICommand cmd = DiagramCommandStack.getICommand(getCommand());
+				cmd.execute(progressMonitor, info);
+				if (progressMonitor.isCanceled()) {
+					return CommandResult.newCancelledCommandResult();
+				} else if (!(cmd.getCommandResult().getStatus().isOK())) {
+					return cmd.getCommandResult();
+				}
+				Object obj = ((List<IAdaptable>) createRequest.getNewObject()).get(0);
+				setResult((IAdaptable) obj);
+				return CommandResult.newOKCommandResult(getResult());
 			}
-			Object obj = ((List<IAdaptable>) createRequest.getNewObject()).get(0);
-			setResult((IAdaptable) obj);
-			return CommandResult.newOKCommandResult(getResult());
 		}
 		return CommandResult.newErrorCommandResult(getLabel());
 	}

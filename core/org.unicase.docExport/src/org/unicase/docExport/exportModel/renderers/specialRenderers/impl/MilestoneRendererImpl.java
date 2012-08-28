@@ -10,7 +10,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.unicase.docExport.DocumentExport;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
 import org.unicase.docExport.exportModel.renderers.elements.UList;
 import org.unicase.docExport.exportModel.renderers.elements.UParagraph;
@@ -60,7 +60,7 @@ public class MilestoneRendererImpl extends ModelElementRendererImpl implements M
 
 		USection section = new USection(modelElement.getName(), getTemplate().getLayoutOptions().getSectionTextOption());
 		section.getBoxModel().setMarginTop(15);
-		UParagraph description = new UParagraph(WorkspaceUtil.cleanFormatedText(modelElement.getDescription()),
+		UParagraph description = new UParagraph(DocumentExport.cleanFormatedText(modelElement.getDescription()),
 			getTemplate().getLayoutOptions().getDefaultTextOption());
 		description.setIndentionLeft(1);
 

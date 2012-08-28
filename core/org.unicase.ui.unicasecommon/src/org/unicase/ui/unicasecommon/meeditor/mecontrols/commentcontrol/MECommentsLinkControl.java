@@ -20,8 +20,8 @@ import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
 import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.common.model.util.IdEObjectCollectionChangeObserver;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.emf.emfstore.common.model.util.ProjectChangeObserver;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -50,7 +50,7 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 	 * 
 	 * @author helming
 	 */
-	private final class ProjectChangeObserverImplementation implements ProjectChangeObserver {
+	private final class ProjectChangeObserverImplementation implements IdEObjectCollectionChangeObserver {
 
 		public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
 			// TODO Auto-generated method stub
@@ -73,13 +73,13 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 
 		}
 
-		public void projectDeleted(IdEObjectCollection project) {
+		public void collectionDeleted(IdEObjectCollection project) {
 			// TODO Auto-generated method stub
 
 		}
 	}
 
-	private ProjectChangeObserver observerImpl;
+	private IdEObjectCollectionChangeObserver observerImpl;
 	private EReference reference;
 	private Composite commentComposite;
 
@@ -103,7 +103,7 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 		if (getModelElement() instanceof UnicaseModelElement) {
 			UnicaseModelElement me = (UnicaseModelElement) getModelElement();
 			project = WorkspaceManager.getProjectSpace(me).getProject();
-			project.addProjectChangeObserver(observerImpl);
+			project.addIdEObjectCollectionChangeObserver(observerImpl);
 		}
 		commentComposite = getToolkit().createComposite(parent);
 		GridLayoutFactory.fillDefaults().numColumns(2).spacing(2, 0).applyTo(commentComposite);
@@ -139,7 +139,7 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 	 */
 	@Override
 	public void dispose() {
-		project.removeProjectChangeObserver(observerImpl);
+		project.removeIdEObjectCollectionChangeObserver(observerImpl);
 		super.dispose();
 	}
 

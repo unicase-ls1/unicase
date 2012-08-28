@@ -14,7 +14,14 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.emfstore.client.model.util.SemanticCommand;
+import org.eclipse.emf.emfstore.client.model.CompositeOperationHandle;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.client.model.Workspace;
+import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
+import org.eclipse.emf.emfstore.client.model.exceptions.InvalidHandleException;
+import org.eclipse.emf.emfstore.client.model.exceptions.UnkownProjectException;
+import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.common.model.ModelFactory;
 import org.eclipse.emf.emfstore.common.model.Project;
@@ -91,5 +98,58 @@ public abstract class OperationHandlerBase extends AbstractHandler {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Command for executing semantic operations on a project.
+	 * 
+	 * @author koegel
+	 */
+	public class SemanticCommand extends EMFStoreCommand {
+
+		private final Project project;
+		private final SemanticCompositeOperation semanticOperation;
+
+		/**
+		 * Constructor.
+		 * 
+		 * @param project the project to run the operation on.
+		 * @param semanticOperation the operation to execute.
+		 */
+		public SemanticCommand(Project project, SemanticCompositeOperation semanticOperation) {
+			if (semanticOperation.getCompositeName() == null || semanticOperation.getCompositeDescription() == null
+				|| semanticOperation.getModelElementId() == null) {
+				throw new IllegalArgumentException("Name, description or modelElementId are not set!");
+			}
+			this.project = project;
+			this.semanticOperation = semanticOperation;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand#doRun()
+		 */
+		@Override
+		protected void doRun() {
+			Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+			try {
+				ProjectSpace projectSpace = currentWorkspace.getProjectSpace(project);
+				CompositeOperationHandle handle = projectSpace.beginCompositeOperation();
+				semanticOperation.semanticApply(project);
+				try {
+					handle.end(semanticOperation);
+				} catch (InvalidHandleException e) {
+					WorkspaceUtil.logException(
+						"Semantic command failed because of illegal state of composite operation handle!", e);
+				}
+
+			} catch (UnkownProjectException e) {
+				// project is not in a projectspace, just execute operation
+				semanticOperation.semanticApply(project);
+				return;
+			}
+
+		}
 	}
 }

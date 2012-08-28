@@ -11,6 +11,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.nebula.widgets.ganttchart.GanttChart;
@@ -114,8 +117,11 @@ public class GantChart {
 		tclmWorkItem.setLabelProvider(emfColumnLabelProvider);
 
 		viewer.setContentProvider(new GantItemProvider());
-		viewer.setInput(org.eclipse.emf.emfstore.client.model.WorkspaceManager.getInstance().getCurrentWorkspace()
-			.getActiveProjectSpace().getProject());
+		try {
+			viewer.setInput(ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject().getRootContainer());
+		} catch (NoWorkspaceException e) {
+			ModelUtil.logException("Failed to receive Project!", e);
+		}
 		// viewer.expandAll();
 
 		TreeItem[] items = tree.getItems();

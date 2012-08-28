@@ -6,9 +6,6 @@
  */
 package org.unicase.ui.unicasecommon.common.handlers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -18,14 +15,15 @@ import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
-import org.eclipse.emf.emfstore.client.model.preferences.DashboardKey;
-import org.eclipse.emf.emfstore.client.model.preferences.PreferenceManager;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.client.properties.PropertyManager;
+import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.emf.emfstore.server.model.accesscontrol.OrgUnitProperty;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
+import org.unicase.dashboard.DashboardFactory;
+import org.unicase.dashboard.SubscriptionComposite;
+import org.unicase.dashboard.util.DashboardPropertyKeys;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
@@ -68,27 +66,48 @@ public class SubscriptionHandler extends AbstractHandler {
 			return null;
 		}
 
-		OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SUBSCRIPTIONS);
+		final PropertyManager propertyManager = projectSpace.getPropertyManager();
+		EMFStoreProperty property = propertyManager.getLocalProperty(DashboardPropertyKeys.SUBSCRIPTIONS);
 
-		final List<EObject> properties = property.getEObjectListProperty(new ArrayList<EObject>());
-
+		boolean contains;
+		final SubscriptionComposite subscriptionComposite;
+		final ModelElementId modelElementId = projectSpace.getProject().getModelElementId(eObject);
+		if (property != null) {
+			subscriptionComposite = (SubscriptionComposite) property.getValue();
+			contains = subscriptionComposite.getSubscriptions().contains(modelElementId);
+		} else {
+			subscriptionComposite = DashboardFactory.eINSTANCE.createSubscriptionComposite();
+			contains = false;
+		}
 		String feedback;
-		ModelElementId modelElementId = ModelUtil.getProject(eObject).getModelElementId(eObject);
-		if (properties.contains(modelElementId)) {
-			properties.remove(modelElementId);
+		EMFStoreCommand command;
+		if (contains) {
+			command = new EMFStoreCommand() {
+
+				@Override
+				protected void doRun() {
+					subscriptionComposite.getSubscriptions().remove(modelElementId);
+					propertyManager.setLocalProperty(DashboardPropertyKeys.SUBSCRIPTIONS, subscriptionComposite);
+				}
+
+			};
+
 			feedback = " removed from ";
 		} else {
-			properties.add(modelElementId);
+			command = new EMFStoreCommand() {
+
+				@Override
+				protected void doRun() {
+					subscriptionComposite.getSubscriptions().add(modelElementId);
+					propertyManager.setLocalProperty(DashboardPropertyKeys.SUBSCRIPTIONS, subscriptionComposite);
+				}
+
+			};
+
 			feedback = " added to ";
 		}
 
-		new EMFStoreCommand() {
-			@Override
-			protected void doRun() {
-				PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.SUBSCRIPTIONS,
-					properties.toArray(new EObject[0]));
-			}
-		}.run();
+		command.run(true);
 
 		// TODO fix label provider
 		MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "Subscription",

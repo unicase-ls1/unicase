@@ -9,7 +9,6 @@ package org.unicase.ui.dashboard.view;
 import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -19,20 +18,13 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.exceptions.MEUrlResolutionException;
-import org.eclipse.emf.emfstore.client.model.preferences.DashboardKey;
-import org.eclipse.emf.emfstore.client.model.preferences.PreferenceManager;
 import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
-import org.eclipse.emf.emfstore.client.ui.util.URLHelper;
 import org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
 import org.eclipse.emf.emfstore.server.model.url.ModelElementUrl;
 import org.eclipse.emf.emfstore.server.model.url.ModelElementUrlFragment;
 import org.eclipse.emf.emfstore.server.model.url.UrlFactory;
-import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
-import org.eclipse.emf.emfstore.server.model.versioning.events.NotificationIgnoreEvent;
-import org.eclipse.emf.emfstore.server.model.versioning.events.NotificationReadEvent;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -59,11 +51,14 @@ import org.eclipse.swt.widgets.Link;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.dashboard.DashboardNotification;
+import org.unicase.dashboard.util.DashboardPropertyKeys;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.ui.dashboard.Activator;
 import org.unicase.ui.dashboard.notificationProviders.CommentsNotificationProvider;
 import org.unicase.ui.dashboard.notificationProviders.PushedNotificationProvider;
+import org.unicase.ui.unicasecommon.common.util.URLHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.common.widgets.MECommentWidget;
 import org.unicase.ui.unicasecommon.common.widgets.MECommentWidgetListener;
@@ -119,11 +114,8 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 	 */
 	private final class LinkSelectionListener extends SelectionAdapter {
 
-		private String source;
-
-		public LinkSelectionListener(String source) {
+		public LinkSelectionListener() {
 			super();
-			this.source = source;
 		}
 
 		/**
@@ -147,7 +139,6 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 				} catch (MEUrlResolutionException e1) {
 				}
 				UnicaseActionHelper.openModelElement(modelElement, DashboardEditor.ID);
-				logEvent(modelElementUrlFragment.getModelElementId(), source);
 			} catch (MalformedURLException ex) {
 				WorkspaceUtil.logException("Invalid unicase URL pattern", ex);
 			}
@@ -180,8 +171,8 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 	 * @param project the project.
 	 * @param page a back link to the dashboard page (needed only for layout purposes).
 	 */
-	public DashboardNotificationEntry(DashboardPage page, Composite parent, int style, ESNotification notification,
-		ProjectSpace project) {
+	public DashboardNotificationEntry(DashboardPage page, Composite parent, int style,
+		DashboardNotification notification, ProjectSpace project) {
 		super(page, parent, style, notification, project);
 		localResources = new ArrayList<Resource>();
 
@@ -189,10 +180,12 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		localResources.add(lightBlue);
 
 		notificationColor = getDisplay().getSystemColor(SWT.COLOR_WHITE);
-		if (getNotification().getProvider().equals(PushedNotificationProvider.NAME)
-			&& PreferenceManager.INSTANCE.getProperty(getProjectSpace(), DashboardKey.HIGHLIGHT_PUSHED_COMMENTS)
-				.getBooleanProperty()) {
-			notificationColor = getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND);
+		if (getNotification().getProvider().equals(PushedNotificationProvider.NAME)) {
+			String property = getProjectSpace().getPropertyManager().getLocalStringProperty(
+				DashboardPropertyKeys.HIGHLIGHT_PUSHED_COMMENTS);
+			if (property != null && Boolean.parseBoolean(property)) {
+				notificationColor = getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND);
+			}
 		}
 		format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
@@ -341,7 +334,6 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 						@Override
 						protected void doRun() {
 							getNotification().setSeen(true);
-							logEvent(getNotification(), getProjectSpace());
 							((DashboardEditor) getPage().getEditor()).refresh();
 						}
 					}.run();
@@ -387,7 +379,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		entryMessage.setText(text);
 		int height = Activator.getDefault().fixHeightForCocoa(entryMessage.computeSize(400, SWT.DEFAULT).y);
 		GridDataFactory.fillDefaults().hint(400, height).grab(true, false).applyTo(entryMessage);
-		entryMessage.addSelectionListener(new LinkSelectionListener("link"));
+		entryMessage.addSelectionListener(new LinkSelectionListener());
 		entryMessage.setToolTipText("Click to get to the item."); // Text can be changed.
 		ModelElementClassTooltip.enableFor(entryMessage);
 
@@ -460,17 +452,6 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		if (open) {
 			GridDataFactory.createFrom((GridData) drawerComposite.getLayoutData()).hint(380, SWT.DEFAULT)
 				.applyTo(drawerComposite);
-			final NotificationReadEvent readEvent = EventsFactory.eINSTANCE.createNotificationReadEvent();
-			readEvent.setNotificationId(getNotification().getIdentifier());
-			readEvent.setReadView(DashboardEditor.ID);
-			readEvent.setSourceView(DashboardEditor.ID);
-			readEvent.setTimestamp(new Date());
-			new EMFStoreCommand() {
-				@Override
-				protected void doRun() {
-					getProjectSpace().addEvent(readEvent);
-				}
-			}.run();
 		} else {
 			GridDataFactory.createFrom((GridData) drawerComposite.getLayoutData()).hint(380, 0)
 				.applyTo(drawerComposite);
@@ -479,28 +460,6 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		getPage().getForm().reflow(true);
 		notificationComposite.setFocus();
 		getParent().layout();
-	}
-
-	private void logEvent(ModelElementId modelElementId, String source) {
-		final NotificationReadEvent readEvent = EventsFactory.eINSTANCE.createNotificationReadEvent();
-		readEvent.setModelElement(modelElementId);
-		readEvent.setNotificationId(getNotification().getIdentifier());
-		readEvent.setReadView("org.eclipse.emf.ecp.editor");
-		readEvent.setSourceView(DashboardEditor.ID + "." + source);
-		readEvent.setTimestamp(new Date());
-		new EMFStoreCommand() {
-			@Override
-			protected void doRun() {
-				getProjectSpace().addEvent(readEvent);
-			}
-		}.run();
-	}
-
-	private void logEvent(ESNotification n, ProjectSpace projectSpace) {
-		NotificationIgnoreEvent notificationIgnoreEvent = EventsFactory.eINSTANCE.createNotificationIgnoreEvent();
-		notificationIgnoreEvent.setTimestamp(new Date());
-		notificationIgnoreEvent.setNotificationId(n.getIdentifier());
-		projectSpace.addEvent(notificationIgnoreEvent);
 	}
 
 	private List<Comment> getComments() {

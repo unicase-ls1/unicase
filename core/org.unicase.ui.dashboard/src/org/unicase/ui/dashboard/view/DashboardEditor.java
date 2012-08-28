@@ -7,7 +7,9 @@
 package org.unicase.ui.dashboard.view;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
@@ -113,6 +115,22 @@ public class DashboardEditor extends SharedHeaderFormEditor {
 		super.setFocus();
 		page.setFocus();
 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.part.MultiPageEditorPart#getAdapter(java.lang.Class)
+	 */
+	@Override
+	@SuppressWarnings("rawtypes")
+	public Object getAdapter(Class adapter) {
+		if (adapter.equals(ProjectSpace.class)) {
+			return page.getProjectSpace();
+		} else if (adapter.equals(Project.class)) {
+			return page.getProjectSpace().getProject();
+		}
+		return super.getAdapter(adapter);
 	}
 
 }

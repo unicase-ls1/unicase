@@ -29,18 +29,19 @@ import org.unicase.model.classes.Attribute;
  * </p>
  * 
  * @see org.unicase.implementation.operations.OperationsPackage#getPullUpOperation()
- * @model annotation="http://unicase.org/operations description='Attributes and associations are pulled up into a common super class.' label='Pull Up Attributes and Associations'"
+ * @model annotation=
+ *        "http://unicase.org/operations description='Attributes and associations are pulled up into a common super class.' label='Pull Up Attributes and Associations'"
  * @generated
  */
 public interface PullUpOperation extends SemanticCompositeOperation {
 	/**
-	 * Returns the value of the '<em><b>Super Class</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Super Class</b></em>' containment reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Super Class</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Super Class</em>' containment reference.
 	 * @see #setSuperClass(ModelElementId)
 	 * @see org.unicase.implementation.operations.OperationsPackage#getPullUpOperation_SuperClass()
@@ -50,8 +51,9 @@ public interface PullUpOperation extends SemanticCompositeOperation {
 	ModelElementId getSuperClass();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.implementation.operations.PullUpOperation#getSuperClass <em>Super Class</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.implementation.operations.PullUpOperation#getSuperClass
+	 * <em>Super Class</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Super Class</em>' containment reference.
 	 * @see #getSuperClass()
 	 * @generated
@@ -59,14 +61,14 @@ public interface PullUpOperation extends SemanticCompositeOperation {
 	void setSuperClass(ModelElementId value);
 
 	/**
-	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.emfstore.common.model.ModelElementId}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list. The list contents are of type
+	 * {@link org.eclipse.emf.emfstore.common.model.ModelElementId}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Attributes</em>' containment reference list isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Attributes</em>' containment reference list.
 	 * @see org.unicase.implementation.operations.OperationsPackage#getPullUpOperation_Attributes()
 	 * @model containment="true"
@@ -75,14 +77,14 @@ public interface PullUpOperation extends SemanticCompositeOperation {
 	EList<ModelElementId> getAttributes();
 
 	/**
-	 * Returns the value of the '<em><b>Outgoing Associations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.emfstore.common.model.ModelElementId}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Outgoing Associations</b></em>' containment reference list. The list contents
+	 * are of type {@link org.eclipse.emf.emfstore.common.model.ModelElementId}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Outgoing Associations</em>' containment reference list isn't clear, there really
 	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Outgoing Associations</em>' containment reference list.
 	 * @see org.unicase.implementation.operations.OperationsPackage#getPullUpOperation_OutgoingAssociations()
 	 * @model containment="true"
@@ -91,14 +93,14 @@ public interface PullUpOperation extends SemanticCompositeOperation {
 	EList<ModelElementId> getOutgoingAssociations();
 
 	/**
-	 * Returns the value of the '<em><b>Incoming Associations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.emfstore.common.model.ModelElementId}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Incoming Associations</b></em>' containment reference list. The list contents
+	 * are of type {@link org.eclipse.emf.emfstore.common.model.ModelElementId}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Incoming Associations</em>' containment reference list isn't clear, there really
 	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Incoming Associations</em>' containment reference list.
 	 * @see org.unicase.implementation.operations.OperationsPackage#getPullUpOperation_IncomingAssociations()
 	 * @model containment="true"
@@ -108,13 +110,16 @@ public interface PullUpOperation extends SemanticCompositeOperation {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getAttributes());'"
+	 * 
+	 * @model annotation=
+	 *        "http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getAttributes());'"
 	 * @generated
 	 */
 	EList<Attribute> getAttributes(Project project);
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @model
 	 * @generated
 	 */
@@ -122,13 +127,16 @@ public interface PullUpOperation extends SemanticCompositeOperation {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getOutgoingAssociations());'"
+	 * 
+	 * @model annotation=
+	 *        "http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getOutgoingAssociations());'"
 	 * @generated
 	 */
 	EList<Association> getOutgoingAssociations(Project project);
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @model
 	 * @generated
 	 */
@@ -136,13 +144,16 @@ public interface PullUpOperation extends SemanticCompositeOperation {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getIncomingAssociations());'"
+	 * 
+	 * @model annotation=
+	 *        "http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getIncomingAssociations());'"
 	 * @generated
 	 */
 	EList<Association> getIncomingAssociations(Project project);
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @model
 	 * @generated
 	 */
@@ -150,22 +161,25 @@ public interface PullUpOperation extends SemanticCompositeOperation {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @model required="true"
-	 *        annotation="http://unicase.org/operations description='At least one attribute or association must be pulled up.'"
+	 * 
+	 * @model required="true" annotation=
+	 *        "http://unicase.org/operations description='At least one attribute or association must be pulled up.'"
 	 * @generated
 	 */
 	boolean validateAttributesAssociations(Project project);
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElement(project, getSuperClass());'"
+	 * 
+	 * @model required="true" annotation=
+	 *        "http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElement(project, getSuperClass());'"
 	 * @generated
 	 */
 	org.unicase.model.classes.Class getSuperClass(Project project);
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @model
 	 * @generated
 	 */

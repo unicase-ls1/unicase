@@ -24,7 +24,6 @@ import org.eclipse.emf.ecp.common.util.UiUtil;
 import org.eclipse.emf.ecp.common.utilities.ActionHelper;
 import org.eclipse.emf.edit.provider.DelegatingWrapperItemProvider;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -41,7 +40,6 @@ import org.unicase.model.diagram.ComponentDiagram;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.StateDiagram;
 import org.unicase.model.diagram.UseCaseDiagram;
-import org.unicase.model.diagram.WorkItemDiagram;
 
 /**
  * @author Hodaie This class contains some utility method for commands and handlers.
@@ -175,8 +173,6 @@ public final class UnicaseActionHelper {
 			id = "org.unicase.ui.diagram.stateDiagram.part.ModelDiagramEditorID";
 		} else if (diagram instanceof ActivityDiagram) {
 			id = "org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorID";
-		} else if (diagram instanceof WorkItemDiagram) {
-			id = "org.unicase.ui.diagram.workItemDiagram.part.ModelDiagramEditorID";
 		}
 
 		if (id == null) {
@@ -266,14 +262,6 @@ public final class UnicaseActionHelper {
 
 	private static final String DASHBOARD_CONTEXT_VARIABLE = "org.unicase.ui.dashboardInput";
 	private static final String DASHBOARD_COMMAND = "org.unicase.ui.dashboard.showDashboard";
-
-	/**
-	 * Opens the dashboard for the currently selected projectspace.
-	 */
-	public static void openDashboard() {
-		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
-		openDashboard(projectSpace);
-	}
 
 	/**
 	 * Opens the dashboard for the given project.

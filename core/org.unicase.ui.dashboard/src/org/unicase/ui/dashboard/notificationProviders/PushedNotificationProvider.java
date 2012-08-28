@@ -16,10 +16,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
-import org.eclipse.emf.emfstore.client.model.preferences.DashboardKey;
-import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
+import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationId;
+import org.unicase.dashboard.DashboardNotification;
+import org.unicase.dashboard.DashboardNotificationComposite;
+import org.unicase.dashboard.util.DashboardPropertyKeys;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
@@ -60,8 +62,9 @@ public class PushedNotificationProvider implements NotificationProvider {
 	 * @see org.unicase.workspace.notification.NotificationProvider#provideNotifications(org.unicase.workspace.ProjectSpace,
 	 *      java.util.List, java.lang.String)
 	 */
-	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages) {
-		List<ESNotification> result = new ArrayList<ESNotification>();
+	public List<DashboardNotification> provideNotifications(ProjectSpace projectSpace,
+		List<ChangePackage> changePackages) {
+		List<DashboardNotification> result = new ArrayList<DashboardNotification>();
 
 		try {
 			User currentUser = OrgUnitHelper.getUser(projectSpace);
@@ -79,10 +82,10 @@ public class PushedNotificationProvider implements NotificationProvider {
 	 * @see org.unicase.workspace.notification.NotificationProvider#provideNotifications(org.unicase.workspace.ProjectSpace,
 	 *      java.util.List, java.lang.String)
 	 */
-	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
-		String username) {
+	public List<DashboardNotification> provideNotifications(ProjectSpace projectSpace,
+		List<ChangePackage> changePackages, String username) {
 		// sanity checks
-		List<ESNotification> result = new ArrayList<ESNotification>();
+		List<DashboardNotification> result = new ArrayList<DashboardNotification>();
 		if (projectSpace == null || username == null) {
 			return result;
 		}
@@ -94,9 +97,12 @@ public class PushedNotificationProvider implements NotificationProvider {
 			return result;
 		}
 
-		for (ChangePackage cp : changePackages) {
-			for (ESNotification notification : cp.getNotifications()) {
-				if (notification.getRecipient().equals(user.getName())) {
+		EMFStoreProperty property = projectSpace.getPropertyManager().getLocalProperty(
+			DashboardPropertyKeys.NOTIFICATION_COMPOSITE);
+		if (property != null) {
+			DashboardNotificationComposite notificationComposite = (DashboardNotificationComposite) property.getValue();
+			for (DashboardNotification notification : notificationComposite.getNotifications()) {
+				if (notification.getRecipient().equals(user.getName()) && notification.getProvider() == null) {
 					notification.setProvider(getName());
 					result.add(notification);
 					getExcludedOperations().addAll(notification.getRelatedOperations());
@@ -105,7 +111,8 @@ public class PushedNotificationProvider implements NotificationProvider {
 					projectSpace.getProject().getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getGroup(),
 						groups);
 					for (Group group : groups) {
-						if (group.getName().equals(notification.getRecipient()) && group.getOrgUnits().contains(user)) {
+						if (group.getName().equals(notification.getRecipient()) && group.getOrgUnits().contains(user)
+							&& notification.getProvider() == null) {
 							notification.setProvider(getName());
 							result.add(notification);
 							getExcludedOperations().addAll(notification.getRelatedOperations());
@@ -129,7 +136,7 @@ public class PushedNotificationProvider implements NotificationProvider {
 	/**
 	 * {@inheritDoc}
 	 */
-	public DashboardKey getKey() {
-		return DashboardKey.PUSHED_PROVIDER;
+	public String getKey() {
+		return DashboardPropertyKeys.PUSHED_PROVIDER;
 	}
 }

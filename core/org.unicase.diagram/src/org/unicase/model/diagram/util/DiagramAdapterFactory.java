@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.common.model.NonDomainElement;
 import org.eclipse.gmf.runtime.notation.Bendpoints;
 import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
 import org.unicase.model.Attachment;
@@ -22,7 +23,6 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.MERelativeBendpoints;
 import org.unicase.model.diagram.StateDiagram;
 import org.unicase.model.diagram.UseCaseDiagram;
-import org.unicase.model.diagram.WorkItemDiagram;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code>
@@ -106,11 +106,6 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseWorkItemDiagram(WorkItemDiagram object) {
-			return createWorkItemDiagramAdapter();
-		}
-
-		@Override
 		public Adapter caseMERelativeBendpoints(MERelativeBendpoints object) {
 			return createMERelativeBendpointsAdapter();
 		}
@@ -133,6 +128,11 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseRelativeBendpoints(RelativeBendpoints object) {
 			return createRelativeBendpointsAdapter();
+		}
+
+		@Override
+		public Adapter caseNonDomainElement(NonDomainElement object) {
+			return createNonDomainElementAdapter();
 		}
 
 		@Override
@@ -237,20 +237,6 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.diagram.WorkItemDiagram
-	 * <em>Work Item Diagram</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-	 * end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.unicase.model.diagram.WorkItemDiagram
-	 * @generated
-	 */
-	public Adapter createWorkItemDiagramAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.model.diagram.MERelativeBendpoints
 	 * <em>ME Relative Bendpoints</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we
 	 * can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
@@ -316,6 +302,20 @@ public class DiagramAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRelativeBendpointsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.emfstore.common.model.NonDomainElement
+	 * <em>Non Domain Element</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.emfstore.common.model.NonDomainElement
+	 * @generated
+	 */
+	public Adapter createNonDomainElementAdapter() {
 		return null;
 	}
 

@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.emfstore.client.model.ModelFactory;
 import org.eclipse.emf.emfstore.client.model.PostWorkspaceInitiator;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.client.model.Workspace;
@@ -19,12 +18,18 @@ import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.observers.CheckoutObserver;
 import org.eclipse.emf.emfstore.client.model.observers.DeleteProjectSpaceObserver;
 import org.eclipse.emf.emfstore.client.model.observers.UpdateObserver;
-import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
+import org.eclipse.emf.emfstore.client.properties.PropertyManager;
+import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.dashboard.DashboardFactory;
+import org.unicase.dashboard.DashboardNotification;
+import org.unicase.dashboard.DashboardNotificationComposite;
+import org.unicase.dashboard.util.DashboardPropertyKeys;
 import org.unicase.ui.dashboard.notificationProviders.NotificationHelper;
 import org.unicase.ui.dashboard.view.DashboardEditorInput;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
@@ -51,37 +56,11 @@ public class DashboardProjectObserver implements DeleteProjectSpaceObserver, Che
 
 	/**
 	 * {@inheritDoc}
-	 */
-	public void projectDeleted(ProjectSpace projectSpace) {
-		// close all open editors before deleting
-		IWorkbenchPage wbpage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		IEditorReference[] editors = wbpage.getEditorReferences();
-		for (IEditorReference editorReference : editors) {
-			try {
-				if (editorReference.getEditorInput() instanceof DashboardEditorInput) {
-					DashboardEditorInput editorInput = (DashboardEditorInput) editorReference.getEditorInput();
-					if (projectSpace.equals(editorInput.getProjectSpace())) {
-						wbpage.closeEditor(editorReference.getEditor(false), false);
-					}
-				}
-			} catch (PartInitException e) {
-				// Just print the stacktrace
-				e.printStackTrace();
-			}
-		}
-
-	}
-
-	/**
-	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.workspace.observers.CheckoutObserver#checkoutDone(org.unicase.workspace.ProjectSpace)
 	 */
 	public void checkoutDone(ProjectSpace projectSpace) {
-		generateNotifications(projectSpace);
-		WorkspaceManager.getInstance().getCurrentWorkspace().setActiveProjectSpace(projectSpace);
-		UnicaseActionHelper.openDashboard(projectSpace);
-
+		runDashboardCommand(projectSpace);
 	}
 
 	/**
@@ -90,9 +69,13 @@ public class DashboardProjectObserver implements DeleteProjectSpaceObserver, Che
 	 * @see org.unicase.workspace.observers.UpdateObserver#updateCompleted(org.unicase.workspace.ProjectSpace)
 	 */
 	public void updateCompleted(ProjectSpace projectSpace) {
-		generateNotifications(projectSpace);
-		WorkspaceManager.getInstance().getCurrentWorkspace().setActiveProjectSpace(projectSpace);
-		UnicaseActionHelper.openDashboard(projectSpace);
+		Display.getDefault().asyncExec(new Runnable() {
+			public void run() {
+				PlatformUI.getWorkbench().getDecoratorManager()
+					.update("org.eclipse.emf.emfstore.client.ui.decorators.VersionDecorator");
+			}
+		});
+		runDashboardCommand(projectSpace);
 	}
 
 	/**
@@ -110,11 +93,94 @@ public class DashboardProjectObserver implements DeleteProjectSpaceObserver, Che
 	private void generateNotifications(ProjectSpace projectSpace) {
 		List<ChangePackage> changePackages = projectToChanges.get(projectSpace);
 		List<ChangePackage> changes = changePackages == null ? Collections.EMPTY_LIST : changePackages;
-		List<ESNotification> notifications = NotificationHelper.generateNotifications(projectSpace, changes);
+		List<DashboardNotification> notifications = NotificationHelper.generateNotifications(projectSpace, changes);
 
-		if (projectSpace.getNotificationComposite() == null) {
-			projectSpace.setNotificationComposite(ModelFactory.eINSTANCE.createNotificationComposite());
+		PropertyManager propertyManager = projectSpace.getPropertyManager();
+		EMFStoreProperty property = propertyManager.getLocalProperty(DashboardPropertyKeys.NOTIFICATION_COMPOSITE);
+		DashboardNotificationComposite notificationComposite;
+		if (property != null) {
+			notificationComposite = (DashboardNotificationComposite) property.getValue();
+			notificationComposite.getNotifications().addAll(notifications);
+		} else {
+			notificationComposite = DashboardFactory.eINSTANCE.createDashboardNotificationComposite();
 		}
-		projectSpace.getNotificationComposite().getNotifications().addAll(notifications);
+
+		notificationComposite.getNotifications().addAll(notifications);
+		propertyManager.setLocalProperty(DashboardPropertyKeys.NOTIFICATION_COMPOSITE, notificationComposite);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.emf.emfstore.client.model.observers.DeleteProjectSpaceObserver#projectSpaceDeleted(org.eclipse.emf.emfstore.client.model.ProjectSpace)
+	 */
+	public void projectSpaceDeleted(ProjectSpace projectSpace) {
+		// close all open editors before deleting
+		IWorkbenchPage wbpage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		IEditorReference[] editors = wbpage.getEditorReferences();
+		for (IEditorReference editorReference : editors) {
+			try {
+				if (editorReference.getEditorInput() instanceof DashboardEditorInput) {
+					DashboardEditorInput editorInput = (DashboardEditorInput) editorReference.getEditorInput();
+					if (projectSpace.equals(editorInput.getProjectSpace())) {
+						wbpage.closeEditor(editorReference.getEditor(false), false);
+					}
+				}
+			} catch (PartInitException e) {
+				// Just print the stacktrace
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private void runDashboardCommand(final ProjectSpace projectSpace) {
+		checkProperties(projectSpace);
+		generateNotifications(projectSpace);
+		Display.getDefault().asyncExec(new Runnable() {
+			public void run() {
+				UnicaseActionHelper.openDashboard(projectSpace);
+			}
+		});
+
+	}
+
+	private void checkProperties(ProjectSpace projectSpace) {
+		PropertyManager propertyManager = projectSpace.getPropertyManager();
+
+		checkProviderProperties(propertyManager);
+
+		if (propertyManager.getLocalStringProperty(DashboardPropertyKeys.DASHBOARD_SIZE) == null) {
+			propertyManager.setLocalStringProperty(DashboardPropertyKeys.DASHBOARD_SIZE, "10");
+		}
+		if (propertyManager.getLocalStringProperty(DashboardPropertyKeys.HIGHLIGHT_PUSHED_COMMENTS) == null) {
+			propertyManager.setLocalStringProperty(DashboardPropertyKeys.HIGHLIGHT_PUSHED_COMMENTS, "true");
+		}
+		if (propertyManager.getLocalStringProperty(DashboardPropertyKeys.SHOW_CONTAINMENT_REPLIES) == null) {
+			propertyManager.setLocalStringProperty(DashboardPropertyKeys.SHOW_CONTAINMENT_REPLIES, "true");
+		}
+		if (propertyManager.getLocalStringProperty(DashboardPropertyKeys.TASKTRACE_LENGTH) == null) {
+			propertyManager.setLocalStringProperty(DashboardPropertyKeys.TASKTRACE_LENGTH, "5");
+		}
+	}
+
+	private void checkProviderProperties(PropertyManager propertyManager) {
+		if (propertyManager.getLocalStringProperty(DashboardPropertyKeys.TASK_PROVIDER) == null) {
+			propertyManager.setLocalStringProperty(DashboardPropertyKeys.TASK_PROVIDER, "true");
+		}
+		if (propertyManager.getLocalStringProperty(DashboardPropertyKeys.TASK_CHANGE_PROVIDER) == null) {
+			propertyManager.setLocalStringProperty(DashboardPropertyKeys.TASK_CHANGE_PROVIDER, "true");
+		}
+		if (propertyManager.getLocalStringProperty(DashboardPropertyKeys.TASK_REVIEW_PROVIDER) == null) {
+			propertyManager.setLocalStringProperty(DashboardPropertyKeys.TASK_REVIEW_PROVIDER, "true");
+		}
+		if (propertyManager.getLocalStringProperty(DashboardPropertyKeys.TASK_TRACE_PROVIDER) == null) {
+			propertyManager.setLocalStringProperty(DashboardPropertyKeys.TASK_TRACE_PROVIDER, "true");
+		}
+		if (propertyManager.getLocalStringProperty(DashboardPropertyKeys.SUBSCRIPTION_PROVIDER) == null) {
+			propertyManager.setLocalStringProperty(DashboardPropertyKeys.SUBSCRIPTION_PROVIDER, "true");
+		}
+		if (propertyManager.getLocalStringProperty(DashboardPropertyKeys.COMMENTS_PROVIDER) == null) {
+			propertyManager.setLocalStringProperty(DashboardPropertyKeys.COMMENTS_PROVIDER, "true");
+		}
 	}
 }

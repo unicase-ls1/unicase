@@ -19,16 +19,13 @@ import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
 import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
 import org.eclipse.emf.emfstore.client.ui.dialogs.CommitDialog;
 import org.eclipse.emf.emfstore.client.ui.dialogs.CommitDialogTray;
-import org.eclipse.emf.emfstore.client.ui.util.URLHelper;
 import org.eclipse.emf.emfstore.client.ui.views.changes.ChangePackageVisualizationHelper;
 import org.eclipse.emf.emfstore.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.server.model.ProjectId;
-import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
-import org.eclipse.emf.emfstore.server.model.notification.NotificationFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
 import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
@@ -63,10 +60,14 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
+import org.unicase.dashboard.DashboardFactory;
+import org.unicase.dashboard.DashboardNotification;
+import org.unicase.dashboard.NotificationOperation;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.ui.unicasecommon.Activator;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
+import org.unicase.ui.unicasecommon.common.util.URLHelper;
 
 /**
  * This class shows a dialog tray for the commit notifications.
@@ -75,7 +76,7 @@ import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
  */
 public class CommitNotificationsTray extends CommitDialogTray {
 
-	private List<ESNotification> notifications;
+	private List<DashboardNotification> notifications;
 	private Image comment;
 	private Image remove;
 	private Image add;
@@ -85,6 +86,7 @@ public class CommitNotificationsTray extends CommitDialogTray {
 	private CommitDialog commitDialog;
 	private ColumnLabelProvider notificationLabelProvider;
 	private ChangePackageVisualizationHelper visualizationHelper;
+	private ProjectSpace projectSpace;
 
 	/**
 	 * Default initialization.
@@ -93,10 +95,11 @@ public class CommitNotificationsTray extends CommitDialogTray {
 	 */
 	@Override
 	public void init(CommitDialog commitDialog) {
-		notifications = new ArrayList<ESNotification>();
+		notifications = new ArrayList<DashboardNotification>();
 		this.commitDialog = commitDialog;
+		projectSpace = commitDialog.getActiveProjectSpace();
 		visualizationHelper = new ChangePackageVisualizationHelper(Arrays.asList(commitDialog.getChangePackage()),
-			commitDialog.getActiveProjectSpace().getProject());
+			projectSpace.getProject());
 	}
 
 	/**
@@ -138,7 +141,7 @@ public class CommitNotificationsTray extends CommitDialogTray {
 		notificationLabelProvider = new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
-				ESNotification notification = (ESNotification) element;
+				DashboardNotification notification = (DashboardNotification) element;
 				return notification.getDetails() + "[" + notification.getRecipient() + "]";
 			}
 
@@ -176,7 +179,8 @@ public class CommitNotificationsTray extends CommitDialogTray {
 			@Override
 			public void linkActivated(HyperlinkEvent e) {
 
-				CommitNotificationDialog dialog = new CommitNotificationDialog(commitDialog.getShell());
+				CommitNotificationDialog dialog = new CommitNotificationDialog(commitDialog.getShell(),
+					getProjectSpace());
 				dialog.open();
 			}
 		});
@@ -203,26 +207,34 @@ public class CommitNotificationsTray extends CommitDialogTray {
 	@Override
 	public void okPressed() {
 		super.okPressed();
-		commitDialog.getChangePackage().getNotifications().addAll(notifications);
+		if (!notifications.isEmpty()) {
+			try {
+				NotificationOperation operation = DashboardFactory.eINSTANCE.createNotificationOperation();
+				operation.getNotifications().addAll(notifications);
+				operation.setClientDate(new Date());
+				operation.setModelElementId(OrgUnitHelper.getUser(projectSpace).getModelElementId());
+				commitDialog.getChangePackage().getOperations().add(operation);
+			} catch (NoCurrentUserException e) {
+				ModelUtil.logException("Pushing notifications failed: No current user!", e);
+			} catch (CannotMatchUserInProjectException e) {
+				ModelUtil.logException("Pushing notifications failed: User couldn't be matched in project!", e);
+			}
+
+		}
 	}
 
 	/**
 	 * @return the pushed notifications.
 	 */
-	public List<ESNotification> getNotifications() {
+	public List<DashboardNotification> getNotifications() {
 		return notifications;
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @return the involved project space
 	 */
-	@Override
-	public void dispose() {
-		if (comment != null) {
-			comment.dispose();
-			add.dispose();
-			remove.dispose();
-		}
+	public ProjectSpace getProjectSpace() {
+		return projectSpace;
 	}
 
 	/**
@@ -237,15 +249,15 @@ public class CommitNotificationsTray extends CommitDialogTray {
 		private ProjectSpace projectSpace;
 		private Text commentText;
 
-		public CommitNotificationDialog(Shell parentShell) {
+		public CommitNotificationDialog(Shell parentShell, ProjectSpace projectSpace) {
 			super(parentShell);
+			this.projectSpace = projectSpace;
 		}
 
 		@Override
 		protected Control createDialogArea(Composite parent) {
 			setTitle("Create new notification");
 			setMessage("Select the users you want to notify and the operation you want to notify them about");
-			projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
 
 			final AdapterFactoryLabelProvider userLabelProvider = new AdapterFactoryLabelProvider(
 				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
@@ -347,16 +359,18 @@ public class CommitNotificationsTray extends CommitDialogTray {
 				currentUser = OrgUnitHelper.getUser(projectSpace);
 
 				for (User user : users) {
-					ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
+					DashboardNotification notification = DashboardFactory.eINSTANCE.createDashboardNotification();
 					notification.setName("Pushed name");
 					ProjectId projectIdCopy = EcoreUtil.copy(projectSpace.getProjectId());
 					notification.setProject(projectIdCopy);
 					notification.setSender(currentUser.getName());
 					notification.setRecipient(user.getName());
+					List<AbstractOperation> operations = commitDialog.getChangePackage().getOperations();
+					notification.setCreationDate(operations.isEmpty() ? new Date(0) : operations.get(
+						operations.size() - 1).getClientDate());
 					String text = commentText.getText();
 					notification.setDetails(text == null ? "" : text);
 					notification.setSeen(false);
-					notification.setCreationDate(new Date());
 					StringBuilder msgBuilder = new StringBuilder();
 					msgBuilder.append(URLHelper
 						.getHTMLLinkForModelElement(currentUser, projectSpace, URLHelper.DEFAULT));

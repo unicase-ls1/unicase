@@ -9,7 +9,6 @@ package org.unicase.ui.dashboard.view;
 import java.text.SimpleDateFormat;
 
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.server.model.notification.ESNotification;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -17,6 +16,7 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.unicase.dashboard.DashboardNotification;
 import org.unicase.ui.dashboard.Activator;
 
 /**
@@ -42,7 +42,7 @@ public class UpdateDashboardEntry extends AbstractDashboardEntry {
 	 * @param project the project.
 	 * @param page a back link to the dashboard page (needed only for layout purposes).
 	 */
-	public UpdateDashboardEntry(DashboardPage page, Composite parent, int style, ESNotification notification,
+	public UpdateDashboardEntry(DashboardPage page, Composite parent, int style, DashboardNotification notification,
 		ProjectSpace project) {
 		super(page, parent, style, notification, project);
 

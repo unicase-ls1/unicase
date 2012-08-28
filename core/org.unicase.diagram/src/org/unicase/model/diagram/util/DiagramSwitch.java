@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.common.model.NonDomainElement;
 import org.eclipse.gmf.runtime.notation.Bendpoints;
 import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
 import org.unicase.model.Attachment;
@@ -22,7 +23,6 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.MERelativeBendpoints;
 import org.unicase.model.diagram.StateDiagram;
 import org.unicase.model.diagram.UseCaseDiagram;
-import org.unicase.model.diagram.WorkItemDiagram;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the call
@@ -164,24 +164,13 @@ public class DiagramSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case DiagramPackage.WORK_ITEM_DIAGRAM: {
-			WorkItemDiagram workItemDiagram = (WorkItemDiagram) theEObject;
-			T result = caseWorkItemDiagram(workItemDiagram);
-			if (result == null)
-				result = caseMEDiagram(workItemDiagram);
-			if (result == null)
-				result = caseAttachment(workItemDiagram);
-			if (result == null)
-				result = caseUnicaseModelElement(workItemDiagram);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case DiagramPackage.ME_RELATIVE_BENDPOINTS: {
 			MERelativeBendpoints meRelativeBendpoints = (MERelativeBendpoints) theEObject;
 			T result = caseMERelativeBendpoints(meRelativeBendpoints);
 			if (result == null)
 				result = caseRelativeBendpoints(meRelativeBendpoints);
+			if (result == null)
+				result = caseNonDomainElement(meRelativeBendpoints);
 			if (result == null)
 				result = caseBendpoints(meRelativeBendpoints);
 			if (result == null)
@@ -275,20 +264,6 @@ public class DiagramSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Work Item Diagram</em>'. <!-- begin-user-doc
-	 * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc
-	 * -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Work Item Diagram</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseWorkItemDiagram(WorkItemDiagram object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>ME Relative Bendpoints</em>'. <!--
 	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
@@ -353,6 +328,20 @@ public class DiagramSwitch<T> {
 	 * @generated
 	 */
 	public T caseRelativeBendpoints(RelativeBendpoints object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Non Domain Element</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Non Domain Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNonDomainElement(NonDomainElement object) {
 		return null;
 	}
 

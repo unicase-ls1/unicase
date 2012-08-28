@@ -6,10 +6,12 @@
  */
 package org.unicase.ui.stem.views.sprintstatus;
 
+import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
+import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.ui.util.URLHelper;
-import org.eclipse.emf.emfstore.client.ui.util.URLSelectionListener;
+import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -22,11 +24,18 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.unicase.model.task.WorkItem;
+import org.unicase.ui.unicasecommon.common.URLSelectionListener;
+import org.unicase.ui.unicasecommon.common.util.URLHelper;
 
 /**
  * @author Shterev
  */
 public class SprintStatusItem extends Composite {
+
+	private static AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
+		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+
+	private static final int NAME_LIMIT = 30;
 
 	/**
 	 * Default constructor.
@@ -38,7 +47,14 @@ public class SprintStatusItem extends Composite {
 	 */
 	public SprintStatusItem(Composite parent, int style, WorkItem workItem, int bg) {
 		super(parent, style);
-		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
+		ProjectSpace projectSpace;
+		try {
+			projectSpace = (ProjectSpace) ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject()
+				.getRootObject();
+		} catch (NoWorkspaceException e) {
+			ModelUtil.logException("Failed to create SprintStatusItem!", e);
+			return;
+		}
 		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 0).equalWidth(false).applyTo(this);
 
 		Composite header = new Composite(this, SWT.NONE);
