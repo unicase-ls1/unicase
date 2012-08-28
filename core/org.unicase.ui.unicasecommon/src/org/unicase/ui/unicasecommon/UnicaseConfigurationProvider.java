@@ -59,15 +59,13 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 			return false;
 		}
 		Bundle unicaseBundle = Platform.getBundle("org.unicase.ui.unicasecommon");
-		String unicaseVersionString = (String) unicaseBundle.getHeaders().get(
-			org.osgi.framework.Constants.BUNDLE_VERSION);
+		String unicaseVersionString = unicaseBundle.getHeaders().get(org.osgi.framework.Constants.BUNDLE_VERSION);
 		return !unicaseVersionString.endsWith("qualifier");
 	}
 
 	private static boolean isInternalUnicaseReleaseVersion() {
 		Bundle unicaseBundle = Platform.getBundle("org.unicase.ui.unicasecommon");
-		String unicaseVersionString = (String) unicaseBundle.getHeaders().get(
-			org.osgi.framework.Constants.BUNDLE_VERSION);
+		String unicaseVersionString = unicaseBundle.getHeaders().get(org.osgi.framework.Constants.BUNDLE_VERSION);
 		return unicaseVersionString.endsWith("internal");
 	}
 
