@@ -10,7 +10,6 @@ import java.io.IOException;
 
 import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.papyrus.SysMLDiagramType;
 import org.unicase.papyrus.SysMLModel;

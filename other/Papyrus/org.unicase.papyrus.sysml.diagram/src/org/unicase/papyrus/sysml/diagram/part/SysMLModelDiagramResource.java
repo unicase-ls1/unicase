@@ -30,7 +30,6 @@ import org.eclipse.uml2.uml.Type;
 import org.unicase.papyrus.PapyrusFactory;
 import org.unicase.papyrus.SysMLClass;
 import org.unicase.papyrus.SysMLModel;
-import org.unicase.papyrus.diagram.UnicaseModelSetQueryAdapter;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
@@ -100,17 +99,6 @@ public class SysMLModelDiagramResource extends ResourceImpl implements Resource,
 
 	private void initialize() {
 		// TODO: improve this, maybe move it to a centralized location
-		boolean hasModelSetQuery = false;
-		for (Object adapter : model.eResource().eAdapters()) {
-			if (adapter instanceof UnicaseModelSetQueryAdapter) {
-				hasModelSetQuery = true;
-				break;
-			}
-		}
-
-		if (!hasModelSetQuery) {
-			model.eResource().eAdapters().add(new UnicaseModelSetQueryAdapter());
-		}
 
 		// parametric diagrams also require a class in addition to the model
 		new ECPCommand(model) {

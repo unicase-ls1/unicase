@@ -7,10 +7,7 @@
 package org.unicase.papyrus.diagram.services;
 
 import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.papyrus.core.services.IServiceFactory;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.osgi.framework.ServiceException;
 
 /**
  * Service factory for unicase page manager regarding Papyrus UML diagrams. This factory will return a

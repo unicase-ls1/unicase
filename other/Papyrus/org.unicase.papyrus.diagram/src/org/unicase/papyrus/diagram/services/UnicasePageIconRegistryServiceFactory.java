@@ -6,9 +6,7 @@
  */
 package org.unicase.papyrus.diagram.services;
 
-import org.eclipse.papyrus.core.services.IServiceFactory;
-import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.osgi.framework.ServiceException;
 
 /**
  * Service factory for page icons in Unicase. Will return an instance of {@link UnicasePapyrusIconRegistry}.
