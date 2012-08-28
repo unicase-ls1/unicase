@@ -91,10 +91,10 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 			// plugin. This is done, because one assumes that the default key is
 			// in the plugin's keystore. It would
 			// be nicer to add the default certificate to the given keystore.
-			if (!keyStoreManager.certificateExists(keyStoreManager.getDefaultCertificate())) {
+			if (keyStoreManager.getDefaultCertificate().equals(KeyStoreManager.DEFAULT_CERTIFICATE)) {
 				File clientKeyTarget = new File(keyStoreManager.getPathToKeyStore());
 				clientKeyTarget.delete();
-				InputStream inputStream = getClass().getResourceAsStream(KeyStoreManager.KEYSTORENAME);
+				InputStream inputStream = getClass().getResourceAsStream("/keystore/" + KeyStoreManager.KEYSTORENAME);
 				FileUtil.copyFile(inputStream, clientKeyTarget);
 				keyStoreManager.reloadKeyStore();
 			}
