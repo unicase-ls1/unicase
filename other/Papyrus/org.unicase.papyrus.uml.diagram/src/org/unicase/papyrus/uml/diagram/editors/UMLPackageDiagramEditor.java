@@ -7,7 +7,12 @@
 package org.unicase.papyrus.uml.diagram.editors;
 
 import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
+import org.eclipse.papyrus.diagram.clazz.part.DiagramEditorContextMenuProvider;
+import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IFileEditorInput;
 import org.unicase.papyrus.uml.diagram.part.UMLDiagramEditor;
 
 /**
