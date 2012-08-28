@@ -7,7 +7,14 @@
 package org.unicase.papyrus.uml.diagram.part;
 
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.PackageableElement;

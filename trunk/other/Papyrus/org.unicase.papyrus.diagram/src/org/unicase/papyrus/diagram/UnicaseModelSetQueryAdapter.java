@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.papyrus.core.modelsetquery.IModelSetQueryAdapter;
 
 /**
  * A {@link ModelSetQueryAdapter} that only returns EObjects as reachable objects, that are in the same project as the

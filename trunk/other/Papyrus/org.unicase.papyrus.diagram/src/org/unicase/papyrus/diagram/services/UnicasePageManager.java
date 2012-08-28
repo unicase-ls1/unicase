@@ -15,7 +15,8 @@ import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
 import org.eclipse.emf.ecp.common.utilities.ActionHelper;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.ui.part.IPage;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.sasheditor.editor.IPage;
 import org.unicase.papyrus.SysMLModel;
 import org.unicase.papyrus.UMLModel;
 

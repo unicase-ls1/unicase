@@ -6,6 +6,8 @@
  */
 package org.unicase.papyrus.diagram.services;
 
+import org.eclipse.papyrus.core.services.IServiceFactory;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.osgi.framework.ServiceException;
 
 /**
