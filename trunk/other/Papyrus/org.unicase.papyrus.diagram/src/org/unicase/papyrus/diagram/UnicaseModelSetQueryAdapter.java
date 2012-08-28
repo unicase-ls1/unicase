@@ -8,6 +8,7 @@ package org.unicase.papyrus.diagram;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -15,7 +16,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.papyrus.core.modelsetquery.impl.ModelSetQueryAdapter;
 
 /**
  * A {@link ModelSetQueryAdapter} that only returns EObjects as reachable objects, that are in the same project as the
@@ -23,7 +23,7 @@ import org.eclipse.papyrus.core.modelsetquery.impl.ModelSetQueryAdapter;
  * 
  * @author mharut
  */
-public class UnicaseModelSetQueryAdapter extends ModelSetQueryAdapter {
+public class UnicaseModelSetQueryAdapter extends AdapterImpl implements IModelSetQueryAdapter {
 
 	/**
 	 * {@inheritDoc}

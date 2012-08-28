@@ -6,12 +6,9 @@
  */
 package org.unicase.papyrus.uml.diagram.part;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -29,22 +26,17 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.transaction.NotificationFilter;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.AbstractDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.DiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
-import org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.diagram.activity.part.Messages;
-import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.part.FileEditorInput;
+import org.unicase.papyrus.UMLModel;
+import org.unicase.papyrus.diagram.UnicaseModelSetQueryAdapter;
 
 /**
  * This document provider is the superclass of all document providers for Papyrus UML diagrams.
@@ -73,40 +65,27 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 	 * @param element The new content element
 	 * @throws CoreException if an exceptional error occurs
 	 */
-	@SuppressWarnings("unchecked")
 	protected void setDocumentContent(IDocument document, IEditorInput element) throws CoreException {
-		IDiagramDocument diagramDocument = (IDiagramDocument) document;
-		TransactionalEditingDomain domain = diagramDocument.getEditingDomain();
 		if (element instanceof URIEditorInput) {
 			URI uri = ((URIEditorInput) element).getURI();
-			Resource resource = null;
-			try {
-				resource = domain.getResourceSet().createResource(uri, "UMLModel");
-				if (!resource.isLoaded()) {
-					try {
-						Map<?, ?> options = new HashMap<Object, Object>(GMFResourceFactory.getDefaultLoadOptions());
-						resource.load(options);
-					} catch (IOException e) {
-						resource.unload();
-						throw e;
-					}
+			Resource resource = WorkspaceManager.getInstance().getCurrentWorkspace().eResource();
+			ResourceSet rs = resource.getResourceSet();
+			EObject object = rs.getEObject(uri, false);
+			if (object instanceof UMLModel) {
+				UMLModel model = (UMLModel) object;
+				Diagram diagram = model.getGmfDiagram();
+				if (diagram == null) {
+					UMLInitUtil.initialize(model);
+					diagram = model.getGmfDiagram();
 				}
-				for (Iterator<EObject> it = resource.getContents().iterator(); it.hasNext();) {
-					EObject rootElement = it.next();
-					if (rootElement instanceof Diagram) {
-						document.setContent(rootElement);
-						return;
-					}
+				if (diagram != null) {
+					addModelSetQueryAdapter(model);
+					document.setContent(diagram);
+					return;
 				}
-				throw new RuntimeException("Diagram is not present in resource");
-			} catch (IOException e) {
-				String msg = e.getLocalizedMessage();
-				CoreException thrownExcp = new CoreException(new Status(IStatus.ERROR, "org.unicase.ui.common", 0,
-					msg != null ? msg : "Error loading diagram", e));
-				throw thrownExcp;
-
 			}
 
+			throw new RuntimeException("Diagram is not present in resource");
 		} else {
 			throw new CoreException(new Status(IStatus.ERROR, "org.unicase.ui.common", 0, NLS.bind(
 				"Incorrect editor input", new Object[] { element,
@@ -602,6 +581,20 @@ public abstract class UMLDocumentProvider extends AbstractDocumentProvider imple
 			}
 		}
 
+	}
+
+	private void addModelSetQueryAdapter(EObject eObject) {
+		boolean hasModelSetQuery = false;
+		for (Object adapter : eObject.eResource().eAdapters()) {
+			if (adapter instanceof UnicaseModelSetQueryAdapter) {
+				hasModelSetQuery = true;
+				break;
+			}
+		}
+
+		if (!hasModelSetQuery) {
+			eObject.eResource().eAdapters().add(new UnicaseModelSetQueryAdapter());
+		}
 	}
 
 }

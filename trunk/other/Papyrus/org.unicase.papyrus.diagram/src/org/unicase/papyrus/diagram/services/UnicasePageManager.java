@@ -15,7 +15,7 @@ import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
 import org.eclipse.emf.ecp.common.utilities.ActionHelper;
 import org.eclipse.emf.emfstore.common.model.Project;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.ui.part.IPage;
 import org.unicase.papyrus.SysMLModel;
 import org.unicase.papyrus.UMLModel;
 
@@ -130,6 +130,90 @@ public class UnicasePageManager implements IPageMngr {
 	 */
 	public boolean isOpen(Object pageIdentifier) {
 		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void pageChanged(IPage newPage) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void pageOpened(IPage page) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void pageClosed(IPage page) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void pageActivated(IPage page) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void pageDeactivated(IPage page) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void pageAboutToBeOpened(IPage page) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void pageAboutToBeClosed(IPage page) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void openPrevious() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void openNext() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean hasPreviousHistory() {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean hasNextHistory() {
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public int isInHsitory(Object pageIdentifier) {
+		throw new UnsupportedOperationException();
 	}
 
 }
