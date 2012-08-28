@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.unicase.papyrus.feature_0.5.2.jar" id="org.unicase.papyrus.feature" version="0.5.2">
+      <category name="Papyrus"/>
+   </feature>
+   <category-def name="Papyrus" label="Papyrus">
+      <description>
+         This category contains the Papyrus feature for UNICASE.
+      </description>
+   </category-def>
+</site>
