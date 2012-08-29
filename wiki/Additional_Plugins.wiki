@@ -10,8 +10,6 @@ The following plugins can be installed individually. This means that they can be
 
  * [Search]: Provides search functionality for UNICASE projects and is based on the EMF Query project of Eclipse. Enables searching for names and descriptions of model elements. Searches can be restricted by element type and regular expressions for search string.
 
- * [Duplicate_Projects Duplicate Projects]: Can duplicate/copy a project. Projects can be automatically shared with EMFStore Server.
-
  * [Glossary]: Provides the element 'GlossaryEntry'. The element 'GlossaryEntry' can be linked to any other element.
 
 ===Depending plugins===
