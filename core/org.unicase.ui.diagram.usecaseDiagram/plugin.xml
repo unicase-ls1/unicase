@@ -57,21 +57,6 @@
       </wizard>
    </extension>
 
-      <extension point="org.eclipse.ui.actionSets" id="init-diagram-action">
-      <?gmfgen generated="true"?>
-      <actionSet
-            label="%initDiagramActionLabel"
-            visible="true"
-            id="org.unicase.ui.diagram.usecaseDiagram.InitDiagram">
-         <action
-               label="%initDiagramActionLabel"
-               class="org.unicase.ui.diagram.usecaseDiagram.part.ModelInitDiagramFileAction"
-               menubarPath="file/additions"
-               id="org.unicase.ui.diagram.usecaseDiagram.InitDiagramAction">
-         </action>
-      </actionSet>
-   </extension>
-	
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
       <?gmfgen generated="true"?>
       <GlobalActionHandlerProvider
@@ -339,67 +324,6 @@
       </application>
    </extension>
 
-
-   <extension point="org.eclipse.ui.commands" id="rcp-menu-commands">
-      <?gmfgen generated="true"?>
-      <command
-            name="%openURIActionLabel"
-            description="%openURIActionDescription"
-            categoryId="org.eclipse.ui.category.file"
-            id="org.unicase.ui.diagram.usecaseDiagram.OpenURICommand"/>  
-      <command
-            name="%openActionLabel"
-            description="%openActionDescription"
-            categoryId="org.eclipse.ui.category.file"
-            id="org.unicase.ui.diagram.usecaseDiagram.OpenCommand"/>  
-   </extension>
-
-   <extension point="org.eclipse.ui.bindings" id="rcp-command-bindings">
-      <?gmfgen generated="true"?>
-      <key
-            commandId="org.unicase.ui.diagram.usecaseDiagram.OpenURICommand"
-            sequence="M1+U"
-            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
-      <key
-            commandId="org.unicase.ui.diagram.usecaseDiagram.OpenCommand"
-            sequence="M1+O"
-            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
-   </extension>
-
-   <extension point="org.eclipse.ui.actionSets" id="rcp-actions">
-      <?gmfgen generated="true"?>
-      <actionSet
-            label="%applicationActionSetLabel"
-            visible="true"
-            id="org.unicase.ui.diagram.usecaseDiagram.ActionSet">
-         <action
-               label="%newDiagramActionLabel"
-               class="org.unicase.ui.diagram.usecaseDiagram.application.DiagramEditorActionBarAdvisor$NewDiagramAction"
-               menubarPath="file/new/additions"
-               id="org.unicase.ui.diagram.usecaseDiagram.NewDiagramAction">
-         </action>
-         <action
-               label="%aboutActionLabel"
-               class="org.unicase.ui.diagram.usecaseDiagram.application.DiagramEditorActionBarAdvisor$AboutAction"
-               menubarPath="help/additions"
-               id="org.unicase.ui.diagram.usecaseDiagram.AboutAction">
-         </action>
-         <action
-               label="%openURIActionLabel"
-               definitionId="org.unicase.ui.diagram.usecaseDiagram.OpenURICommand"
-               class="org.unicase.ui.diagram.usecaseDiagram.application.DiagramEditorActionBarAdvisor$OpenURIAction"
-               menubarPath="file/additions"
-               id="org.unicase.ui.diagram.usecaseDiagram.OpenURIAction">
-         </action>
-         <action
-               label="%openActionLabel"
-               definitionId="org.unicase.ui.diagram.usecaseDiagram.OpenCommand"
-               class="org.unicase.ui.diagram.usecaseDiagram.application.DiagramEditorActionBarAdvisor$OpenAction"
-               menubarPath="file/additions"
-               id="org.unicase.ui.diagram.usecaseDiagram.OpenAction">
-         </action>
-      </actionSet>
-   </extension>
    <extension point="org.eclipse.ui.commands" id="update-cmd">
       <?gmfgen generated="true"?>
       <command
