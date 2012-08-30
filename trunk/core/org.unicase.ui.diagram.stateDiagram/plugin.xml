@@ -56,22 +56,6 @@
   	  	 <description>%newWizardDesc</description>  
       </wizard>
    </extension>
-
-   <extension point="org.eclipse.ui.popupMenus" id="init-diagram-action">
-      <?gmfgen generated="true"?>
-      <objectContribution
-            id="org.unicase.ui.diagram.stateDiagram.InitDiagram"
-            nameFilter="*.model"
-            objectClass="org.eclipse.core.resources.IFile">
-         <action
-               label="%initDiagramActionLabel"
-               class="org.unicase.ui.diagram.stateDiagram.part.ModelInitDiagramFileAction"
-               menubarPath="additions"
-               enablesFor="1"
-               id="org.unicase.ui.diagram.stateDiagram.InitDiagramAction">
-         </action>
-      </objectContribution>
-   </extension>
 	
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
       <?gmfgen generated="true"?>
