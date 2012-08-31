@@ -24,7 +24,7 @@ public class USection extends UCompositeSection {
 
 	private static final int SECTION_NUMBER_DEFAULT = 1;
 	private static final int SECTION_DEPTH_DEFAULT = 0;
-	private UParagraph titleParagraph;
+	private UParagraph titleParagraph = new UParagraph("empty title");
 	private int sectionNumber = SECTION_NUMBER_DEFAULT;
 	private int depth = SECTION_DEPTH_DEFAULT;
 	private SectionOption sectionOption = OptionsFactory.eINSTANCE.createSectionOption();
