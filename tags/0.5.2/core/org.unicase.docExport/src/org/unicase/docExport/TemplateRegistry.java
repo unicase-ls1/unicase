@@ -146,7 +146,7 @@ public final class TemplateRegistry {
 				// I couldn't find a function, which generates the correct path string.
 				// so i take this one and manipulate it.
 				// cut the last file separator and the "!"
-				jarFilePath = jarFilePath.substring(0, jarFilePath.length() - 1);
+				jarFilePath = jarFilePath.substring(0, jarFilePath.length() - 2);
 				jarFilePath = jarFilePath.replace("file:", "");
 
 				JarFile jarFile = new JarFile(jarFilePath);
@@ -180,7 +180,7 @@ public final class TemplateRegistry {
 
 	private static boolean isDeveloperVersion() {
 		Bundle docExportBundle = Platform.getBundle("org.unicase.docExport");
-		String version = (String) docExportBundle.getHeaders().get(org.osgi.framework.Constants.BUNDLE_VERSION);
+		String version = docExportBundle.getHeaders().get(org.osgi.framework.Constants.BUNDLE_VERSION);
 		return version.endsWith("qualifier");
 	}
 
