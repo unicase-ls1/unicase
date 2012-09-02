@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="UNICASE" uid="org.unicase.client" id="org.unicase.client.product" application="org.unicase.client.application" version="0.4.4" useFeatures="false" includeLaunchers="true">
+<product name="UNICASE" uid="org.unicase.client.product" id="org.unicase.client.product" application="org.unicase.client.application" version="0.5.2" useFeatures="true" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/org.unicase.client/about.png"/>
@@ -24,8 +24,8 @@ http://www.unicase.org
 
    <splash
       location="org.unicase.client"
-      startupProgressRect="5,310,490,15"
-      startupMessageRect="20,285,460,20"
+      startupProgressRect="85,413,490,15"
+      startupMessageRect="90,393,460,20"
       startupForegroundColor="FFFFFF" />
    <launcher name="unicase">
       <macosx icon="/org.unicase.client/icons/unicase.icns"/>
@@ -123,17 +123,7 @@ This Agreement is governed by the laws of the State of New York and the intellec
 
    <plugins>
       <plugin id="com.ibm.icu"/>
-      <plugin id="edu.tum.cs.cope.common"/>
-      <plugin id="edu.tum.cs.cope.declaration"/>
-      <plugin id="edu.tum.cs.cope.declaration.registry"/>
-      <plugin id="edu.tum.cs.cope.migration"/>
-      <plugin id="edu.tum.cs.cope.migration.execution"/>
-      <plugin id="javax.servlet"/>
-      <plugin id="javax.servlet.jsp"/>
-      <plugin id="javax.transaction" fragment="true"/>
-      <plugin id="javax.xml"/>
-      <plugin id="net.sourceforge.lpg.lpgjavaruntime"/>
-      <plugin id="org.apache.ant"/>
+      <plugin id="lpg.runtime.java"/>
       <plugin id="org.apache.batik.bridge"/>
       <plugin id="org.apache.batik.css"/>
       <plugin id="org.apache.batik.dom"/>
@@ -147,16 +137,8 @@ This Agreement is governed by the laws of the State of New York and the intellec
       <plugin id="org.apache.batik.util.gui"/>
       <plugin id="org.apache.batik.xml"/>
       <plugin id="org.apache.commons.codec"/>
-      <plugin id="org.apache.commons.el"/>
       <plugin id="org.apache.commons.logging"/>
-      <plugin id="org.apache.jasper"/>
-      <plugin id="org.apache.lucene"/>
-      <plugin id="org.apache.lucene.analysis"/>
-      <plugin id="org.apache.xerces"/>
-      <plugin id="org.apache.xml.resolver"/>
-      <plugin id="org.apache.xml.serializer"/>
-      <plugin id="org.codehaus.groovy"/>
-      <plugin id="org.eclipse.ant.core"/>
+      <plugin id="org.eclipse.compare"/>
       <plugin id="org.eclipse.compare.core"/>
       <plugin id="org.eclipse.core.commands"/>
       <plugin id="org.eclipse.core.contenttype"/>
@@ -167,66 +149,73 @@ This Agreement is governed by the laws of the State of New York and the intellec
       <plugin id="org.eclipse.core.expressions"/>
       <plugin id="org.eclipse.core.filebuffers"/>
       <plugin id="org.eclipse.core.filesystem"/>
-      <plugin id="org.eclipse.core.filesystem.hpux.PA_RISC" fragment="true"/>
+      <plugin id="org.eclipse.core.filesystem.aix.ppc" fragment="true"/>
       <plugin id="org.eclipse.core.filesystem.hpux.ia64_32" fragment="true"/>
-      <plugin id="org.eclipse.core.filesystem.linux.ppc" fragment="true"/>
       <plugin id="org.eclipse.core.filesystem.linux.x86" fragment="true"/>
       <plugin id="org.eclipse.core.filesystem.linux.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.filesystem.macosx" fragment="true"/>
-      <plugin id="org.eclipse.core.filesystem.qnx.x86" fragment="true"/>
       <plugin id="org.eclipse.core.filesystem.solaris.sparc" fragment="true"/>
       <plugin id="org.eclipse.core.filesystem.win32.x86" fragment="true"/>
       <plugin id="org.eclipse.core.filesystem.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.jobs"/>
-      <plugin id="org.eclipse.core.net"/>
-      <plugin id="org.eclipse.core.net.linux.x86" fragment="true"/>
-      <plugin id="org.eclipse.core.net.win32.x86" fragment="true"/>
-      <plugin id="org.eclipse.core.net.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.resources"/>
-      <plugin id="org.eclipse.core.resources.compatibility" fragment="true"/>
       <plugin id="org.eclipse.core.resources.win32.x86" fragment="true"/>
       <plugin id="org.eclipse.core.runtime"/>
-      <plugin id="org.eclipse.core.runtime.compatibility.auth"/>
       <plugin id="org.eclipse.core.runtime.compatibility.registry" fragment="true"/>
       <plugin id="org.eclipse.core.variables"/>
       <plugin id="org.eclipse.draw2d"/>
-      <plugin id="org.eclipse.ecf"/>
-      <plugin id="org.eclipse.ecf.filetransfer"/>
-      <plugin id="org.eclipse.ecf.identity"/>
-      <plugin id="org.eclipse.ecf.ssl" fragment="true"/>
       <plugin id="org.eclipse.emf.common"/>
       <plugin id="org.eclipse.emf.common.ui"/>
+      <plugin id="org.eclipse.emf.compare"/>
       <plugin id="org.eclipse.emf.databinding"/>
       <plugin id="org.eclipse.emf.databinding.edit"/>
       <plugin id="org.eclipse.emf.ecore"/>
       <plugin id="org.eclipse.emf.ecore.change"/>
-      <plugin id="org.eclipse.emf.ecore.change.edit"/>
       <plugin id="org.eclipse.emf.ecore.edit"/>
       <plugin id="org.eclipse.emf.ecore.editor"/>
       <plugin id="org.eclipse.emf.ecore.xmi"/>
+      <plugin id="org.eclipse.emf.ecp.common"/>
+      <plugin id="org.eclipse.emf.ecp.common.model"/>
+      <plugin id="org.eclipse.emf.ecp.common.rcp" fragment="true"/>
+      <plugin id="org.eclipse.emf.ecp.common.util"/>
+      <plugin id="org.eclipse.emf.ecp.editor"/>
+      <plugin id="org.eclipse.emf.ecp.emfstorebridge"/>
+      <plugin id="org.eclipse.emf.ecp.navigator"/>
+      <plugin id="org.eclipse.emf.ecp.navigatoreditorbridge"/>
       <plugin id="org.eclipse.emf.edit"/>
       <plugin id="org.eclipse.emf.edit.ui"/>
+      <plugin id="org.eclipse.emf.emfstore.client"/>
+      <plugin id="org.eclipse.emf.emfstore.client.model.edit"/>
+      <plugin id="org.eclipse.emf.emfstore.client.ui"/>
+      <plugin id="org.eclipse.emf.emfstore.common"/>
+      <plugin id="org.eclipse.emf.emfstore.common.model"/>
+      <plugin id="org.eclipse.emf.emfstore.common.model.edit"/>
+      <plugin id="org.eclipse.emf.emfstore.migration"/>
+      <plugin id="org.eclipse.emf.emfstore.server"/>
+      <plugin id="org.eclipse.emf.emfstore.server.model"/>
+      <plugin id="org.eclipse.emf.emfstore.server.model.edit"/>
       <plugin id="org.eclipse.emf.transaction"/>
-      <plugin id="org.eclipse.emf.transaction.ui"/>
       <plugin id="org.eclipse.emf.validation"/>
       <plugin id="org.eclipse.emf.workspace"/>
       <plugin id="org.eclipse.equinox.app"/>
       <plugin id="org.eclipse.equinox.common"/>
-      <plugin id="org.eclipse.equinox.concurrent"/>
-      <plugin id="org.eclipse.equinox.http.jetty"/>
-      <plugin id="org.eclipse.equinox.http.servlet"/>
-      <plugin id="org.eclipse.equinox.p2.artifact.repository"/>
+      <plugin id="org.eclipse.equinox.ds"/>
       <plugin id="org.eclipse.equinox.p2.core"/>
+      <plugin id="org.eclipse.equinox.p2.director"/>
       <plugin id="org.eclipse.equinox.p2.engine"/>
-      <plugin id="org.eclipse.equinox.p2.jarprocessor"/>
       <plugin id="org.eclipse.equinox.p2.metadata"/>
       <plugin id="org.eclipse.equinox.p2.metadata.repository"/>
+      <plugin id="org.eclipse.equinox.p2.operations"/>
       <plugin id="org.eclipse.equinox.p2.repository"/>
+      <plugin id="org.eclipse.equinox.p2.updatechecker"/>
       <plugin id="org.eclipse.equinox.preferences"/>
       <plugin id="org.eclipse.equinox.registry"/>
       <plugin id="org.eclipse.equinox.security"/>
       <plugin id="org.eclipse.equinox.security.macosx" fragment="true"/>
       <plugin id="org.eclipse.equinox.security.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.equinox.security.win32.x86_64" fragment="true"/>
+      <plugin id="org.eclipse.equinox.simpleconfigurator"/>
+      <plugin id="org.eclipse.equinox.util"/>
       <plugin id="org.eclipse.gef"/>
       <plugin id="org.eclipse.gmf.runtime.common.core"/>
       <plugin id="org.eclipse.gmf.runtime.common.ui"/>
@@ -261,10 +250,11 @@ This Agreement is governed by the laws of the State of New York and the intellec
       <plugin id="org.eclipse.gmf.runtime.notation"/>
       <plugin id="org.eclipse.gmf.runtime.notation.edit"/>
       <plugin id="org.eclipse.help"/>
-      <plugin id="org.eclipse.help.base"/>
       <plugin id="org.eclipse.jface"/>
       <plugin id="org.eclipse.jface.databinding"/>
       <plugin id="org.eclipse.jface.text"/>
+      <plugin id="org.eclipse.ltk.core.refactoring"/>
+      <plugin id="org.eclipse.ltk.ui.refactoring"/>
       <plugin id="org.eclipse.ocl"/>
       <plugin id="org.eclipse.ocl.ecore"/>
       <plugin id="org.eclipse.osgi"/>
@@ -273,23 +263,20 @@ This Agreement is governed by the laws of the State of New York and the intellec
       <plugin id="org.eclipse.swt.carbon.macosx" fragment="true"/>
       <plugin id="org.eclipse.swt.cocoa.macosx" fragment="true"/>
       <plugin id="org.eclipse.swt.cocoa.macosx.x86_64" fragment="true"/>
-      <plugin id="org.eclipse.swt.gtk.linux.ppc" fragment="true"/>
+      <plugin id="org.eclipse.swt.gtk.aix.ppc" fragment="true"/>
+      <plugin id="org.eclipse.swt.gtk.aix.ppc64" fragment="true"/>
+      <plugin id="org.eclipse.swt.gtk.hpux.ia64_32" fragment="true"/>
+      <plugin id="org.eclipse.swt.gtk.linux.ppc64" fragment="true"/>
       <plugin id="org.eclipse.swt.gtk.linux.s390" fragment="true"/>
       <plugin id="org.eclipse.swt.gtk.linux.s390x" fragment="true"/>
       <plugin id="org.eclipse.swt.gtk.linux.x86" fragment="true"/>
       <plugin id="org.eclipse.swt.gtk.linux.x86_64" fragment="true"/>
       <plugin id="org.eclipse.swt.gtk.solaris.sparc" fragment="true"/>
       <plugin id="org.eclipse.swt.gtk.solaris.x86" fragment="true"/>
-      <plugin id="org.eclipse.swt.motif.aix.ppc" fragment="true"/>
-      <plugin id="org.eclipse.swt.motif.hpux.PA_RISC" fragment="true"/>
-      <plugin id="org.eclipse.swt.motif.hpux.ia64_32" fragment="true"/>
-      <plugin id="org.eclipse.swt.motif.linux.x86" fragment="true"/>
-      <plugin id="org.eclipse.swt.motif.solaris.sparc" fragment="true"/>
-      <plugin id="org.eclipse.swt.photon.qnx.x86" fragment="true"/>
       <plugin id="org.eclipse.swt.win32.win32.x86" fragment="true"/>
       <plugin id="org.eclipse.swt.win32.win32.x86_64" fragment="true"/>
-      <plugin id="org.eclipse.swt.wpf.win32.x86" fragment="true"/>
       <plugin id="org.eclipse.team.core"/>
+      <plugin id="org.eclipse.team.ui"/>
       <plugin id="org.eclipse.text"/>
       <plugin id="org.eclipse.ui"/>
       <plugin id="org.eclipse.ui.carbon" fragment="true"/>
@@ -298,52 +285,57 @@ This Agreement is governed by the laws of the State of New York and the intellec
       <plugin id="org.eclipse.ui.editors"/>
       <plugin id="org.eclipse.ui.forms"/>
       <plugin id="org.eclipse.ui.ide"/>
-      <plugin id="org.eclipse.ui.ide.application"/>
       <plugin id="org.eclipse.ui.intro"/>
       <plugin id="org.eclipse.ui.navigator"/>
       <plugin id="org.eclipse.ui.navigator.resources"/>
       <plugin id="org.eclipse.ui.views"/>
+      <plugin id="org.eclipse.ui.views.log"/>
       <plugin id="org.eclipse.ui.views.properties.tabbed"/>
       <plugin id="org.eclipse.ui.win32" fragment="true"/>
       <plugin id="org.eclipse.ui.workbench"/>
       <plugin id="org.eclipse.ui.workbench.texteditor"/>
-      <plugin id="org.junit"/>
-      <plugin id="org.mortbay.jetty.server"/>
-      <plugin id="org.mortbay.jetty.util"/>
+      <plugin id="org.sat4j.core"/>
+      <plugin id="org.sat4j.pb"/>
       <plugin id="org.unicase.client"/>
+      <plugin id="org.unicase.dashboard"/>
+      <plugin id="org.unicase.diagram"/>
+      <plugin id="org.unicase.diagram.edit"/>
       <plugin id="org.unicase.docExport"/>
-      <plugin id="org.unicase.emfstore"/>
-      <plugin id="org.unicase.emfstore.esmodel"/>
-      <plugin id="org.unicase.emfstore.esmodel.edit"/>
       <plugin id="org.unicase.implementation"/>
       <plugin id="org.unicase.implementation.edit"/>
       <plugin id="org.unicase.implementation.ui"/>
-      <plugin id="org.unicase.metamodel"/>
-      <plugin id="org.unicase.metamodel.edit"/>
       <plugin id="org.unicase.model"/>
       <plugin id="org.unicase.model.edit"/>
       <plugin id="org.unicase.model.migrator"/>
-      <plugin id="org.unicase.ui.common"/>
-      <plugin id="org.unicase.ui.componentDiagram"/>
       <plugin id="org.unicase.ui.dashboard"/>
       <plugin id="org.unicase.ui.diagram.activityDiagram"/>
       <plugin id="org.unicase.ui.diagram.classDiagram"/>
+      <plugin id="org.unicase.ui.diagram.componentDiagram"/>
       <plugin id="org.unicase.ui.diagram.stateDiagram"/>
       <plugin id="org.unicase.ui.diagram.usecaseDiagram"/>
-      <plugin id="org.unicase.ui.meeditor"/>
       <plugin id="org.unicase.ui.multiaction"/>
-      <plugin id="org.unicase.ui.navigator"/>
       <plugin id="org.unicase.ui.stem"/>
       <plugin id="org.unicase.ui.tableview"/>
       <plugin id="org.unicase.ui.unicasecommon"/>
-      <plugin id="org.unicase.workspace"/>
-      <plugin id="org.unicase.workspace.edit"/>
-      <plugin id="org.unicase.workspace.ui"/>
+      <plugin id="org.unicase.ui.workpackagetransfer"/>
       <plugin id="org.w3c.css.sac"/>
       <plugin id="org.w3c.dom.events"/>
       <plugin id="org.w3c.dom.smil"/>
       <plugin id="org.w3c.dom.svg"/>
    </plugins>
 
+   <features>
+      <feature id="org.unicase.client" version="0.5.2"/>
+      <feature id="org.eclipse.rcp" version="3.7.2.v20120120-1424-9DB5FmnFq5JCf1UA38R-kz0S0272"/>
+      <feature id="org.eclipse.equinox.p2.user.ui" version="2.1.2.R37x_v20110815-1155-6-Bk8pYWZz0qUTX5I15GZWwbXkrl"/>
+   </features>
+
+   <configurations>
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="4" />
+      <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
+      <plugin id="org.unicase.client" autoStart="false" startLevel="5" />
+   </configurations>
 
 </product>
