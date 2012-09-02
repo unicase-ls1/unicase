@@ -65,7 +65,7 @@ public class UnicaseWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 	public void postWindowOpen() {
 		try {
 			final MetadataRepositoryElement unicaseRepository = new MetadataRepositoryElement(null, new URI("http://unicase.googlecode.com/svn/updatesite/release/0.5.2"), true);
-			final MetadataRepositoryElement papyrusRepository = new MetadataRepositoryElement(null, new URI("http://unicase.googlecode.com/svn/trunk/other/Papyrus/updatesite/0.5.2"), true);
+			final MetadataRepositoryElement papyrusRepository = new MetadataRepositoryElement(null, new URI("http://unicase.googlecode.com/svn/trunk/other/Papyrus/updatesite/RCP"), true);
 			ElementUtils.updateRepositoryUsingElements(ProvisioningUI.getDefaultUI(), new MetadataRepositoryElement[] {unicaseRepository, papyrusRepository}, null);
 		} catch (URISyntaxException e) {
 		}
