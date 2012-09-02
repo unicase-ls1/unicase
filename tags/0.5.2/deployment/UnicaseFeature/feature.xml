@@ -104,204 +104,177 @@ This Agreement is governed by the laws of the State of New York and the intellec
    </license>
 
    <url>
-      <update label="UNICASE update site" url="http://wwwbruegge.in.tum.de/static/unicase/"/>
+      <update label="UNICASE update site" url="http://www.bruegge.in.tum.de/static/unicase/"/>
    </url>
 
-   <includes
-         id="edu.tum.cs.cope.runtime.feature"
-         version="0.0.0"
-         search-location="both"/>
-
    <requires>
-      <import plugin="org.eclipse.gmf.runtime.notation"/>
-      <import plugin="org.eclipse.emf.transaction"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.core"/>
-      <import plugin="org.eclipse.emf.ecore.edit"/>
-      <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.emf"/>
-      <import plugin="org.eclipse.emf.common"/>
       <import plugin="org.eclipse.emf.ecore"/>
-      <import plugin="org.eclipse.emf.ecore.xmi"/>
-      <import plugin="org.eclipse.core.expressions"/>
-      <import plugin="org.eclipse.core.resources"/>
-      <import plugin="org.eclipse.emf.edit.ui"/>
-      <import plugin="org.eclipse.emf.transaction.ui"/>
-      <import plugin="org.eclipse.ui.forms" version="3.3.100" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.databinding.edit"/>
-      <import plugin="org.eclipse.jface.databinding"/>
-      <import plugin="org.eclipse.jface.text"/>
+      <import plugin="org.eclipse.gmf.runtime.notation"/>
+      <import plugin="org.eclipse.ocl.ecore"/>
       <import plugin="org.eclipse.emf.edit"/>
-      <import plugin="org.eclipse.emf.transaction" version="1.2.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.ecore.change"/>
+      <import plugin="org.eclipse.emf.ecore.edit"/>
       <import plugin="org.eclipse.gmf.runtime.notation.edit"/>
-      <import plugin="org.apache.commons.logging" version="1.0.4" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.ecore.change.edit"/>
-      <import plugin="org.eclipse.ui.console"/>
-      <import plugin="org.eclipse.jdt.ui"/>
-      <import plugin="org.eclipse.ui.ide"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui.resources.editor"/>
-      <import plugin="org.eclipse.gef"/>
-      <import plugin="org.eclipse.draw2d"/>
-      <import plugin="org.eclipse.gmf.runtime.common.ui"/>
-      <import plugin="org.eclipse.gmf.runtime.common.ui.services"/>
+      <import plugin="org.eclipse.gmf.runtime.diagram.ui.render"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui"/>
-      <import plugin="org.eclipse.ui.views.properties.tabbed"/>
+      <import plugin="org.eclipse.core.databinding"/>
+      <import plugin="org.eclipse.jface.databinding"/>
+      <import plugin="org.eclipse.core.databinding.beans"/>
+      <import plugin="org.eclipse.core.filesystem"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.emf.ecore.editor"/>
+      <import plugin="org.eclipse.core.expressions"/>
+      <import plugin="org.eclipse.emf.transaction"/>
+      <import plugin="org.eclipse.emf.edit.ui"/>
+      <import plugin="org.eclipse.core.resources"/>
       <import plugin="org.eclipse.jface"/>
+      <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.ui.views"/>
       <import plugin="org.eclipse.ui.navigator"/>
       <import plugin="org.eclipse.ui.navigator.resources"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.gmf.runtime.emf.core"/>
       <import plugin="org.eclipse.gmf.runtime.emf.commands.core"/>
       <import plugin="org.eclipse.gmf.runtime.emf.ui.properties"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.properties"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.providers"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.providers.ide"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui.render"/>
+      <import plugin="org.eclipse.gmf.runtime.diagram.ui.resources.editor"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide"/>
+      <import plugin="org.eclipse.draw2d"/>
       <import plugin="org.eclipse.gmf.runtime.draw2d.ui"/>
-      <import plugin="org.eclipse.ocl.ecore"/>
-      <import plugin="org.eclipse.emf.ecore.xmi" version="2.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.gef"/>
+      <import plugin="org.eclipse.ui.forms"/>
+      <import plugin="org.eclipse.gmf.runtime.diagram.core"/>
+      <import plugin="org.eclipse.emf.compare"/>
+      <import plugin="org.eclipse.emf.common.ui"/>
+      <import plugin="org.eclipse.core.expressions" version="3.4.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.forms" version="3.4.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.edit" version="2.5.0" match="compatible"/>
+      <import plugin="org.eclipse.emf.databinding.edit"/>
+      <import plugin="org.eclipse.jface.text"/>
+      <import plugin="org.apache.commons.codec" version="1.3.0" match="greaterOrEqual"/>
+      <import plugin="org.apache.commons.logging"/>
+      <import plugin="org.eclipse.emf.ecore" version="2.5.0" match="compatible"/>
+      <import plugin="org.eclipse.emf.ecore.xmi" version="2.5.0" match="compatible"/>
+      <import plugin="org.eclipse.ui.console"/>
+      <import plugin="org.eclipse.ui.intro"/>
+      <import plugin="org.eclipse.equinox.p2.ui"/>
+      <import plugin="org.eclipse.equinox.p2.operations"/>
+      <import plugin="org.eclipse.equinox.p2.metadata" version="2.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.equinox.launcher" version="1.0.0"/>
    </requires>
 
    <plugin
-         id="org.unicase.model"
+         id="org.unicase.dashboard"
          download-size="0"
          install-size="0"
-         version="0.3.24.internal"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.unicase.model.edit"
+         id="org.unicase.diagram"
          download-size="0"
          install-size="0"
-         version="0.3.24.internal"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.unicase.ui.common"
+         id="org.unicase.diagram.edit"
          download-size="0"
          install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.esbrowser"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.meeditor"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.navigator"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.tableview"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.workspace"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.workspace.edit"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.stem"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.classDiagram"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.componentDiagram"
-         download-size="0"
-         install-size="0"
-         version="1.0.0.qualifier"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.ui.usecaseDiagram"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.emfstore.esmodel"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.emfstore"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
-         unpack="false"/>
-
-   <plugin
-         id="org.unicase.emfstore.esmodel.edit"
-         download-size="0"
-         install-size="0"
-         version="0.3.24.internal"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.docExport"
          download-size="0"
          install-size="0"
-         version="0.3.24.internal"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.unicase.ui.stateDiagram"
+         id="org.unicase.implementation"
          download-size="0"
          install-size="0"
-         version="0.3.24.internal"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.implementation.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.implementation.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.model"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.model.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.unicase.model.migrator"
          download-size="0"
          install-size="0"
-         version="0.3.24.internal"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.unicase.workspace.ui"
+         id="org.unicase.ui.dashboard"
          download-size="0"
          install-size="0"
-         version="0.3.24.internal"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.diagram.activityDiagram"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.diagram.classDiagram"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.diagram.componentDiagram"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.diagram.stateDiagram"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.diagram.usecaseDiagram"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
@@ -312,7 +285,160 @@ This Agreement is governed by the laws of the State of New York and the intellec
          unpack="false"/>
 
    <plugin
+         id="org.unicase.ui.stem"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.tableview"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.unicasecommon"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.workpackagetransfer"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.unicase.client.branding"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.emfstore.client"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.emfstore.client.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.emfstore.common.model"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.emfstore.common.model.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.emfstore.migration"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.emfstore.server.model"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.emfstore.server.model.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.ecp.common"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.ecp.common.model"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.ecp.common.util"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.ecp.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.ecp.emfstorebridge"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.ecp.navigator"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.ecp.navigatoreditorbridge"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.emfstore.server"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.eclipse.emf.emfstore.client.model.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.emfstore.common"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.client"
          download-size="0"
          install-size="0"
          version="0.0.0"
