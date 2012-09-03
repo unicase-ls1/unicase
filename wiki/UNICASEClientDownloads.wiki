@@ -6,15 +6,8 @@ We currently have two different update sites. The internal update site contains 
 
 Internal Update Site: [http://unicase.googlecode.com/svn/updatesite/internal/ http://unicase.googlecode.com/svn/updatesite/internal/]
 
-External Update Site: [http://wwwbruegge.in.tum.de/static/unicase/ http://wwwbruegge.in.tum.de/static/unicase/]
+External Update Site: [http://unicase.googlecode.com/svn/updatesite/release/0.5.2/ http://unicase.googlecode.com/svn/updatesite/release/0.5.2/]
 
 ===Standalone UNICASE Client Download===
 
 Standalone clients of UNICASE and its latest external release are available for download on the [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/50f86/Downloads.html product website].
-
-===Standalone UNICASE Server Download===
-
-  * [http://www1.in.tum.de/static/shared/unicase/products/0.4.1/0.4.1-emfstorestandalone.linux.gtk.x86.zip 0.4.1 for Linux gtk x86]
-  * [http://www1.in.tum.de/static/shared/unicase/products/0.4.1/0.4.1-emfstorestandalone.macosx.carbon.x86.zip 0.4.1 for MacOsX Carbon x86]
-  * [http://www1.in.tum.de/static/shared/unicase/products/0.4.1/0.4.1-emfstorestandalone.macosx.cocoa.x86.zip 0.4.1 for MacOsX Cocoa x86 and 64bit]
-  * [http://www1.in.tum.de/static/shared/unicase/products/0.4.1/0.4.1-emfstorestandalone.win32.win32.x86_64.zip 0.4.1 for Windows x86 and 64bit]
