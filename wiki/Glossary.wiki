@@ -8,7 +8,5 @@ This plugin provides a new element 'GlossaryEntry'. A 'GlossaryEntry' can be add
 Please use the following update-site to install the plugin:
 http://unicase.googlecode.com/svn/trunk/other/heidelberg/glossary/update
 
-*(Available soon with the upcoming external release of UNICASE)*
-
 ===Tutorial for users===
 Create a new element "GlossaryEntry" from the package "glossary" in UNICASE. Link the new element to any other element in UNICASE.
