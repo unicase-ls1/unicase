@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.unicase.usecasetestcase.feature_1.0.0.jar" id="org.unicase.usecasetestcase.feature" version="1.0.0">
+      <category name="unicase"/>
+   </feature>
+   <category-def name="unicase" label="UNICASE Use Case and Test Case"/>
+</site>
