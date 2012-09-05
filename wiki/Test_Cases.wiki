@@ -6,9 +6,7 @@ This plugin provides support for specifying test cases with included test steps.
 
 ===Link to update-site===
 Please use the following update-site to install the plugin:
-http://unicase.googlecode.com/svn/trunk/other/heidelberg/integrated/update
-
-*(Available soon with the upcoming external release of UNICASE)*
+http://unicase.googlecode.com/svn/trunk/other/heidelberg/usecasetestcase/update/
 
 The plugin is integrated with the [Use_Cases Use Cases] plugin, which means that these plugins are installed together.
 
