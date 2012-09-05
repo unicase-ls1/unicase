@@ -17,9 +17,9 @@ ZEST Framework is required for visualizing graphs. Please install ZEST using thi
 
 ===Link to update-site===
 Please use the following update-site to install the plugin:
-http://unicase.googlecode.com/svn/trunk/other/heidelberg/trace/update 
+http://unicase.googlecode.com/svn/trunk/other/heidelberg/trace/update/
 
-*(Available soon with the upcoming external release of UNICASE)*
+<font color="red">*Not yet available. Please contact [http://se.ifi.uni-heidelberg.de/people/alexander_delater.html Alexander Delater] for early access.*</font>
 
 *<font color="red">Please follow the [Trace_Client_Setip Setup Guide] to setup Trace Client property.</font>*
 
