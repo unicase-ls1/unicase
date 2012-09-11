@@ -20,7 +20,7 @@ All repositories with the usernames/passwords are saved in the Secure Storage of
 
 ==Trace Client Preferences==
 
-[Trace_Client Trace Client] provides various preferences that can be configured in Eclipse > Preferences > Unicase.
+[TraceClient Trace Client] provides various preferences that can be configured in Eclipse > Preferences > Unicase.
 
 ===SVN Preferences===
 Trace Client needs to query SVN information after each Commit operation from SVN Server. This query is delayed to wait until SVN Server created new Revision by a pre-defined query delay of *5 seconds*. This query delay can be changed in case large Commit operations not finished in 5 seconds will be performed.
