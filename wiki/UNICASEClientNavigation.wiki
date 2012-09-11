@@ -6,11 +6,9 @@
 
   * [UNICASEClientDownloads Downloads]
 
-  * [http://code.google.com/p/unicase/wiki/Video_Tutorials Documentation and Tutorials]
+  * [http://code.google.com/p/unicase/wiki/Video_Tutorials Documentation and Video Tutorials]
 
-  * [http://code.google.com/p/unicase/wiki/Video_Tutorials Video Tutorials]
-
-  * [http://code.google.com/p/unicase/wiki/Additional_Plugins Additional Plugins provided by third parties]
+  * [http://code.google.com/p/unicase/wiki/AdditionalPlugins Additional Plugins provided by third parties]
 
 
 [http://www.eclipse.org/donate/images/friendslogo200.jpg]
