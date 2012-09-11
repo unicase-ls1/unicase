@@ -5,7 +5,7 @@ This plugin enables the modelling of business processes using BPMN standard mode
 [http://se.ifi.uni-heidelberg.de/people/robert_heinrich.html Robert Heinrich]
 
 ===Pre-requisites to install and use plugin===
-The plugins [Use_Cases Use Cases] and [Test_Cases Test Cases] are required. Please install these plugins using the following update site: 
+The plugins [UseCases Use Cases] and [TestCases Test Cases] are required. Please install these plugins using the following update site: 
 
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/usecasetestcase/update/]
 
