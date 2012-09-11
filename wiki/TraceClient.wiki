@@ -21,7 +21,7 @@ http://unicase.googlecode.com/svn/trunk/other/heidelberg/trace/update/
 
 <font color="red">*Not yet available. Please contact [http://se.ifi.uni-heidelberg.de/people/alexander_delater.html Alexander Delater] for early access.*</font>
 
-*<font color="red">Please follow the [Trace_Client_Setip Setup Guide] to setup Trace Client property.</font>*
+*<font color="red">Please follow the [TraceClientSetup Setup Guide] to setup Trace Client property.</font>*
 
 ===Tutorial for users===
 
