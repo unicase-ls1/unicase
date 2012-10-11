@@ -5,7 +5,7 @@
    <extension
          point="org.eclipse.ui.views">
       <category
-            name="Review Category"
+            name="Review"
             id="org.unicase.scrm.review.ui">
       </category>
       <view
