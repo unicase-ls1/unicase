@@ -33,6 +33,7 @@ import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
+import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -43,11 +44,14 @@ import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerSorter;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.ISelectionListener;
@@ -104,8 +108,8 @@ public class ReviewView extends ViewPart implements ISelectionListener {
 	public static final String ID = "org.unicase.scrm.review.ui.views.ReviewView";
 
 	private CheckboxTableViewer viewer;
+	private ExportWizard wizard;
 	private Action exportAction;
-	private Action action2;
 	private Action doubleClickAction;
 	
     /**
@@ -126,6 +130,8 @@ public class ReviewView extends ViewPart implements ISelectionListener {
     public static final String DEFAULT_PATH = Configuration.getWorkspaceDirectory();
 
 	private Metrics measurement;
+
+	private TableColumn tableHeaderColumn;
 
 
     public void initReview(){
@@ -188,9 +194,8 @@ public class ReviewView extends ViewPart implements ISelectionListener {
 			List<IItemPropertyDescriptor> attributes = adapterFactoryItemDelegator
 	        .getPropertyDescriptors(measurement);
 			
-	        
-			content.add("You are reviewing: " + modelElement.getName() + ". This requirements is:");
-			viewer.setGrayed(content.get(0), true);
+			
+			tableHeaderColumn.setText("You are reviewing: ' " + modelElement.getName() + " '. This requirement is:");			
 					
 			for (IItemPropertyDescriptor itemPropertyDescriptor : attributes) {
 				final Object feature = itemPropertyDescriptor.getFeature(measurement);
@@ -249,6 +254,10 @@ public class ReviewView extends ViewPart implements ISelectionListener {
 //		viewer = new TableViewer(parent, SWT.H_SCROLL | SWT.V_SCROLL);
 		viewer = CheckboxTableViewer.newCheckList(
 		        parent, SWT.BORDER);
+		viewer.getTable().setHeaderVisible(true);
+		tableHeaderColumn = new TableColumn(viewer.getTable(), SWT.BOLD);
+		tableHeaderColumn.setWidth(GridData.FILL_HORIZONTAL);
+		
 		viewer.getTable().setLayoutData(new GridData(GridData.FILL_BOTH));
 		viewer.setContentProvider(new ViewContentProvider());
 //		viewer.setLabelProvider(new ViewLabelProvider());
@@ -339,25 +348,30 @@ public class ReviewView extends ViewPart implements ISelectionListener {
 	private void fillLocalPullDown(IMenuManager manager) {
 		manager.add(exportAction);
 		manager.add(new Separator());
-		manager.add(action2);
 	}
 
 	private void fillContextMenu(IMenuManager manager) {
 		manager.add(exportAction);
-		manager.add(action2);
 		// Other plug-ins can contribute there actions here
 		manager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
 	}
 	
 	private void fillLocalToolBar(IToolBarManager manager) {
 		manager.add(exportAction);
-		manager.add(action2);
 	}
 
 	private void makeActions() {
 		exportAction = new Action() {
+			
+
 			public void run() {
 				try {
+					
+					wizard = new ExportWizard();
+					WizardDialog dialog = new WizardDialog(Display.getCurrent().getActiveShell(), wizard);
+					wizard.setWindowTitle("Export Review Result");
+					dialog.create();
+					dialog.open();
 					exportResult();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -370,26 +384,7 @@ public class ReviewView extends ViewPart implements ISelectionListener {
 		exportAction.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
 			getImageDescriptor(ISharedImages.IMG_ETOOL_SAVEALL_EDIT));
 		
-		action2 = new Action() {
-			public void run() {
-				editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
-					
-					@Override
-					protected void doExecute() {						
-						try {
-							review.eResource().save(null);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}					
-				});
-			}
-		};
-		action2.setText("Action 2");
-		action2.setToolTipText("Action 2 tooltip");
-		action2.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().
-				getImageDescriptor(ISharedImages.IMG_OBJS_INFO_TSK));
+
 		doubleClickAction = new Action() {
 			public void run() {
 				ISelection selection = viewer.getSelection();
@@ -400,9 +395,9 @@ public class ReviewView extends ViewPart implements ISelectionListener {
 	}
 
 	private void exportResult() throws IOException {
-		final CSVWriter writer = new CSVWriter(new FileWriter(DEFAULT_PATH+"result.csv"), '\t');
+		final CSVWriter writer = new CSVWriter(new FileWriter(wizard.getPath()), '\t');
 	     // feed in your array (or convert your data to an array)
-	     String[] header = "RequirementID#RequirementName#Correct#EasyToUnderstand#Unambiguous#TotalRequirements".split("#");
+	     String[] header = "RequirementID#RequirementName#Correct#EasyToUnderstand#Unambiguous#Incomplete#TotalRequirements".split("#");
 	     writer.writeNext(header);
 	     editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
 			
@@ -423,6 +418,7 @@ public class ReviewView extends ViewPart implements ISelectionListener {
 					line.add(Boolean.toString(metrics.isCorrect()));
 					line.add(Boolean.toString(metrics.isEasyToUnderstand()));
 					line.add(Boolean.toString(metrics.isUnambiguous()));
+					line.add(wizard.getIncompleteNumber());
 					line.add(Integer.toString(requirements.size()));
 					String[] nextLine = Arrays.copyOf(line.toArray(),line.size(),String[].class);
 					writer.writeNext(nextLine);
@@ -500,7 +496,7 @@ public class ReviewView extends ViewPart implements ISelectionListener {
 					int count = 0;
 				for(Metrics metrics : review.getMeasurement()){
 					count++;
-					//FIXME: this equals might not work properly
+
 					if(EcoreUtil.equals(metrics.getMeasuredRequirement(),modelElement)){
 						measurement = metrics;
 						viewer.setChecked("correct", measurement.isCorrect());

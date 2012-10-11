@@ -8,15 +8,16 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.databinding,
  org.eclipse.emf.ecore,
- org.unicase.scrm.review;bundle-version="1.0.0"
+ org.unicase.scrm.review;bundle-version="1.0.0.qualifier"
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Import-Package: org.eclipse.emf.databinding,
  org.eclipse.emf.databinding.edit,
  org.eclipse.emf.edit.domain,
  org.eclipse.emf.edit.provider,
  org.eclipse.emf.transaction,
  org.eclipse.jface.databinding.swt,
+ org.eclipse.ui.dialogs,
  org.unicase.ui.meeditor,
  org.unicase.workspace
 Bundle-ClassPath: .,
