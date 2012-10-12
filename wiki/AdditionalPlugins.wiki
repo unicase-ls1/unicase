@@ -1,6 +1,6 @@
 The [http://se.ifi.uni-heidelberg.de/ Software Engineering Group] at the Institute of Computer Science, [http://www.uni-heidelberg.de University of Heidelberg] has developed several plugins for UNICASE. 
 
-If you have any questions, please contact [http://se.ifi.uni-heidelberg.de/people/alexander_delater.html Alexander Delater] or [http://se.ifi.uni-heidelberg.de/people/robert_heinrich.html Robert Heinrich]. They are maintaining all plugins and provide support for installing and using them.
+If you have any questions, please contact [http://se.ifi.uni-heidelberg.de/people/alexander_delater.html Alexander Delater], [http://se.ifi.uni-heidelberg.de/people/robert_heinrich.html Robert Heinrich] or [http://se.ifi.uni-heidelberg.de/people/paul_huebner.html Paul Huebner]. They are maintaining all plugins and provide support for installing and using them.
 
 ===Independent plugins===
 
