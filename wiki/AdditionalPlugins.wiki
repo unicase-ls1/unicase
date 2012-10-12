@@ -12,7 +12,7 @@ The following plugins can be installed individually. This means that they can be
 
  * [Glossary]: Provides the element 'GlossaryEntry'. The element 'GlossaryEntry' can be linked to any other element.
 
-* [UserTasks]: Provides advanced support for specifying use tasks as user requirements, especially new sub tasks. 
+ * [UserTasks]: Provides advanced support for specifying use tasks as user requirements, especially new sub tasks. 
 
 ===Depending plugins===
 
