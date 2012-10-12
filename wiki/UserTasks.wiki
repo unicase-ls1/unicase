@@ -1,0 +1,12 @@
+==Description==
+This plugin provides advanced support for specifying use tasks as user requirements, especially new sub tasks.
+
+===Contact===
+[http://se.ifi.uni-heidelberg.de/people/paul_huebner.html Paul Huebner]
+
+===Link to update-site===
+Please use the following update-site to install the plugin:
+http://unicase.googlecode.com/svn/trunk/other/heidelberg/usertask/update/
+
+===Tutorial for users===
+Create a new element "UserTask" from the package "usertask" in UNICASE.  
