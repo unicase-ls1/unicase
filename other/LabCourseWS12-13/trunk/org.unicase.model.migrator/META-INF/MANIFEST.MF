@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: unicase Model MIgrator plugin
+Bundle-SymbolicName: org.unicase.model.migrator;singleton:=true
+Bundle-Version: 0.5.2.qualifier
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: unicase.org
+Require-Bundle: org.unicase.model,
+ org.eclipse.emf.emfstore.migration
