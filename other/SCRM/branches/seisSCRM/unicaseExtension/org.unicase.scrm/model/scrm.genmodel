@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.unicase.scrm/src"
+    modelPluginID="org.unicase.scrm" modelName="Scrm" codeFormatting="true" importerID="org.eclipse.emf.importer.ecore"
+    containmentProxies="true" complianceLevel="5.0" copyrightFields="false" runtimeVersion="2.2"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.unicase.metamodel/model/metamodel.genmodel#//metamodel ../../org.unicase.model/model/model.genmodel#//model platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation">
+  <foreignModel>scrm.ecore</foreignModel>
+  <genPackages prefix="Scrm" disposableProviderFactory="true" ecorePackage="scrm.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="scrm.ecore#//DiagramType">
+      <genEnumLiterals ecoreEnumLiteral="scrm.ecore#//DiagramType/DefaultDiagram"/>
+      <genEnumLiterals ecoreEnumLiteral="scrm.ecore#//DiagramType/KnowledgeDiagram"/>
+      <genEnumLiterals ecoreEnumLiteral="scrm.ecore#//DiagramType/RequirementsDiagram"/>
+      <genEnumLiterals ecoreEnumLiteral="scrm.ecore#//DiagramType/DataProcessDiagram"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="scrm.ecore#//SCRMModelElement">
+      <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference scrm.ecore#//SCRMModelElement/displayingDiagrams"/>
+    </genClasses>
+    <genClasses ecoreClass="scrm.ecore#//SCRMDiagram">
+      <genFeatures children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference scrm.ecore#//SCRMDiagram/elements"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//SCRMDiagram/gmfdiagram"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//SCRMDiagram/newElements"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//SCRMDiagram/diagramLayout"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//SCRMDiagram/diagramType"/>
+    </genClasses>
+    <nestedGenPackages prefix="Knowledge" basePackage="scrm" disposableProviderFactory="true"
+        ecorePackage="scrm.ecore#//knowledge">
+      <genClasses image="false" ecoreClass="scrm.ecore#//knowledge/ScientificKnowledge"/>
+      <genClasses ecoreClass="scrm.ecore#//knowledge/ScientificProblem">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//knowledge/ScientificProblem/representingModel"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//knowledge/ScientificProblem/solvingMethods"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//knowledge/ScientificProblem/influencedFeature"/>
+      </genClasses>
+      <genClasses ecoreClass="scrm.ecore#//knowledge/Mathematical_GeophysicalModel">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//knowledge/Mathematical_GeophysicalModel/representedProblem"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/Mathematical_GeophysicalModel/refinements"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//knowledge/Mathematical_GeophysicalModel/refinedModel"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//knowledge/Mathematical_GeophysicalModel/usedInNumericalMethods"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//knowledge/Mathematical_GeophysicalModel/dependencies"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//knowledge/Mathematical_GeophysicalModel/involvedData"/>
+      </genClasses>
+      <genClasses ecoreClass="scrm.ecore#//knowledge/NumericalMethod">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//knowledge/NumericalMethod/solvedProblem"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//knowledge/NumericalMethod/dependencies"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//knowledge/NumericalMethod/realizingRequirement"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//knowledge/NumericalMethod/usingMathematicalModel"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//knowledge/NumericalMethod/performance"/>
+      </genClasses>
+      <genClasses ecoreClass="scrm.ecore#//knowledge/Assumption">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//knowledge/Assumption/dependingModel"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//knowledge/Assumption/dependingMethod"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Requirements" basePackage="scrm" disposableProviderFactory="true"
+        ecorePackage="scrm.ecore#//requirements">
+      <genClasses image="false" ecoreClass="scrm.ecore#//requirements/IRequirement"/>
+      <genClasses image="false" ecoreClass="scrm.ecore#//requirements/Interface">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Interface/providingFeatures"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Interface/requiringFeatures"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Interface/providingData"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Interface/requiringData"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Interface/detailsOfProvidingFunctionsAndProperties"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Interface/detailsOfRequiringFunctionsAndProperties"/>
+      </genClasses>
+      <genClasses ecoreClass="scrm.ecore#//requirements/Requirement">
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//requirements/Requirement/refinements"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//requirements/Requirement/refinedRequirement"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//requirements/Requirement/specifiedFeature"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Requirement/handlingData"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Requirement/realizedMethod"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Requirement/providedInterface"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Requirement/requiredInterface"/>
+      </genClasses>
+      <genClasses ecoreClass="scrm.ecore#//requirements/Feature">
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//requirements/Feature/detailedRequirements"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//requirements/Feature/subFeatures"/>
+        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference scrm.ecore#//requirements/Feature/superFeature"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Feature/constraints"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Feature/dependencies"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Feature/requiredInterfaces"/>
+        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference scrm.ecore#//requirements/Feature/providedInterfaces"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Feature/influencingProblem"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Feature/requiredFeatures"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Feature/requiringFeatures"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Feature/excludedFeatures"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Feature/excludingFeatures"/>
+      </genClasses>
+      <genClasses ecoreClass="scrm.ecore#//requirements/Hardware">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Hardware/dependingFeature"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//requirements/Hardware/processor"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//requirements/Hardware/platform"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//requirements/Hardware/memory"/>
+      </genClasses>
+      <genClasses ecoreClass="scrm.ecore#//requirements/Constraint">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Constraint/restrictedFeature"/>
+      </genClasses>
+      <genClasses ecoreClass="scrm.ecore#//requirements/UserInterface"/>
+      <genClasses ecoreClass="scrm.ecore#//requirements/SoftwareInterface"/>
+      <genClasses ecoreClass="scrm.ecore#//requirements/Performance">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference scrm.ecore#//requirements/Performance/hardware"/>
+      </genClasses>
+      <nestedGenPackages prefix="DataProcess" basePackage="scrm.requirements" disposableProviderFactory="true"
+          ecorePackage="scrm.ecore#//requirements/dataProcess">
+        <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/Process">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataProcess/Process/predecessor"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataProcess/Process/successor"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataProcess/Process/errorHandling"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataProcess/Process/statusMonitoring"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataProcess/Process/controlParameters"/>
+        </genClasses>
+        <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/InputDataReading"/>
+        <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/ResultsOutput"/>
+        <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/ErrorHandling">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataProcess/ErrorHandling/handledProcess"/>
+        </genClasses>
+        <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/StatusMonitoring">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataProcess/StatusMonitoring/monitoredProcess"/>
+        </genClasses>
+        <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/Solver"/>
+        <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/MeshCreation"/>
+        <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/PreProcessing"/>
+        <genClasses ecoreClass="scrm.ecore#//requirements/dataProcess/PostProcessing"/>
+      </nestedGenPackages>
+      <nestedGenPackages prefix="DataObject" basePackage="scrm.requirements" disposableProviderFactory="true"
+          ecorePackage="scrm.ecore#//requirements/dataObject">
+        <genClasses ecoreClass="scrm.ecore#//requirements/dataObject/DataDefinition">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataObject/DataDefinition/definedRequirement"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//requirements/dataObject/DataDefinition/accuracy"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//requirements/dataObject/DataDefinition/range"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//requirements/dataObject/DataDefinition/format"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataObject/DataDefinition/providedInterface"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataObject/DataDefinition/requiredInterface"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataObject/DataDefinition/describedModel"/>
+        </genClasses>
+        <genClasses ecoreClass="scrm.ecore#//requirements/dataObject/SeismicSource"/>
+        <genClasses ecoreClass="scrm.ecore#//requirements/dataObject/ComputationalMesh"/>
+        <genClasses ecoreClass="scrm.ecore#//requirements/dataObject/SyntheticSeismogram"/>
+        <genClasses ecoreClass="scrm.ecore#//requirements/dataObject/Station"/>
+        <genClasses ecoreClass="scrm.ecore#//requirements/dataObject/ControlParameter">
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference scrm.ecore#//requirements/dataObject/ControlParameter/controlledProcess"/>
+          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute scrm.ecore#//requirements/dataObject/ControlParameter/format"/>
+        </genClasses>
+      </nestedGenPackages>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>
