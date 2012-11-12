@@ -2,4 +2,4 @@
 
 <img src="http://unicase.googlecode.com/files/emfstoreSmall.png" alt="EMF Logo" align="right" />
 
-*NEWS*: EMFStore is now an Eclipse Project, [http://www.eclipse.org/emf-store/ see here].
+*NEWS*: EMFStore is now an Eclipse Project, [http://eclipse.org/emfstore/ see here].
