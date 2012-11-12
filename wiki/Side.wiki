@@ -6,7 +6,7 @@ Sub-projects:
    * [Architecture Architecture]
    * [UNICASEClientDownloads Downloads]
    * [Video_Tutorials Video Tutorials]
-   * [Additional_Plugins AdditionalPlugins]
+   * [Additional_Plugins http://code.google.com/p/unicase/wiki/AdditionalPlugins]
 
    <wiki:comment>
    * [ECPGettingStarted Getting Started with the ECP]
