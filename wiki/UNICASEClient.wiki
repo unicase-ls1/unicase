@@ -20,3 +20,5 @@ UNICASE is a CASE-Tool integrating models from the different development acitivi
           ** Operation-based Merging
           ** Versioning
           ** Offline Operation Support for Clients
+
+<wiki:gadget url="http://unicase.googlecode.com/svn/trunk/documentation/featuremap/featuremap.xml" height="600" width="1100" border="0" />
