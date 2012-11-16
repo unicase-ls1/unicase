@@ -4,7 +4,19 @@
   <ModulePrefs title="UNICASE feature map"/> 
   <Content type="html">
 	<![CDATA[
-	<applet code="freemind.main.FreeMindApplet.class" archive="http://unicase.googlecode.com/svn/trunk/documentation/featuremap/freemindbrowser.jar" width="100%" height="100%"><param name="type" value="application/x-java-applet;version=1.4"/><param name="scriptable" value="false"/><param name="modes" value="freemind.modes.browsemode.BrowseMode"/><param name="browsemode_initial_map" value="http://unicase.googlecode.com/svn/trunk/documentation/featuremap/map.mm"/><param name="initial_mode" value="Browse"/><param name="selection_method" value="selection_method_direct"/></applet>	
-    ]]>
+	<script type="text/javascript" src="http://unicase.googlecode.com/svn/trunk/documentation/featuremap/flashobject.js"> </script>
+	<div id="flashcontent">
+		 Flash plugin or Javascript are turned off.
+		 <a href="http://unicase.googlecode.com/svn/trunk/documentation/featuremap/noflash.html" target="_blank">Please click here for the feature map Java applet.</a>
+	</div><script type="text/javascript">
+		var fo = new FlashObject("http://unicase.googlecode.com/svn/trunk/documentation/featuremap/visorFreemind.swf", "visorFreeMind", "100%", "100%", 6, "#9999ff");
+		fo.addParam("quality", "high");
+		fo.addParam("bgcolor", "#ffffff");
+		fo.addVariable("openUrl", "_blank");
+		fo.addVariable("initLoadFile", "http://unicase.googlecode.com/svn/trunk/documentation/featuremap/map.mm");
+		fo.addVariable("startCollapsedToLevel","2");
+		fo.write("flashcontent");
+	</script>
+	]]>
   </Content>
 </Module>
