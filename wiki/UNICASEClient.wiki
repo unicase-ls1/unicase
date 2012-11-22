@@ -21,6 +21,6 @@ UNICASE is a CASE-Tool integrating models from the different development acitivi
           ** Versioning
           ** Offline Operation Support for Clients
 
-You can explore the features of UNICASE in our feature map. Some features might not be available as part of the current release. So, if you are interested to try a particular feature (that is not available in the current release), please contact us.
+You can explore the features of UNICASE in our feature map below. Some features might not be available as part of the current release. So, if you are interested to try a particular feature (that is not available in the current release), please contact us.
 
 <wiki:gadget url="http://unicase.googlecode.com/svn/trunk/documentation/featuremap/featuremap.xml" height="600" width="1100" border="0" />
