@@ -1,15 +1,15 @@
 = Reporting Bugs =
 
-We appreciate your input to improve UNICASE. You are the our most valuable source of bug reports and feature requests. If you find a bug or if you have feature request please do not hesitate to report it to us. Please give us as much information on the feature or bug as you can, in particular the following information is very useful in descending order of priority:
+We appreciate your input to improve UNICASE. You are our most valuable source of bug reports and feature requests. If you find a bug or if you have feature requests please do not hesitate to report it to us (unicase-bugs@googlegroups.com). Please give us as much information on the feature or bug as you can, in particular the following information is very useful in descending order of priority:
 
-    * The version of UNICASE the problem occured in
+    * The version of UNICASE the problem occurred in
     * Steps to reproduce the problem
     * User Environment: Eclipse version, Java version, OS
     * A screenshot of the error or problem
     * A log entry of the problem
     * A zipped copy of your .unicase folder in your user home
 
-Please send add your bug report in the project "unicase" on our UNICASE beta server. In this project we manage the UNICASE development itself, a.k.a. "Eat your own dog food". Add the bug report or feature request in the section "NEW bug reports" in the Project Management Document. You can assign it preliminarily to Jonas (helming), Maximilian (koegel) or a developer you think is capable of handling or resolving the bug, so you do not see it in your task list anymore.
+If you have access to our unicase project on our UNICASE internal server, please add your bug report in the project "unicase". In this project we manage the UNICASE development itself, a.k.a. "Eat your own dog food". Add a bug report or feature request in the section "NEW bug reports" in the Project Management Document. You can assign it preliminarily to Nitesh (narayan), Yang (liya) or a developer you think is capable of handling or resolving the bug, so you do not see it in your task list anymore.
 
 The bug report process is as follows:
 
