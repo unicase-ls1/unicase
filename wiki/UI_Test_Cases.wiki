@@ -1,4 +1,6 @@
-*  We have number of UI test cases to evaluate the run-time behavior of the system on the functional requirement. 
+* The UI test cases (org.unicase.ui.test.*) are no longer compatible to the latest unicase plugins. 
+
+We have number of UI test cases to evaluate the run-time behavior of the system on the functional requirement. 
 
 ===Environment===   
 
