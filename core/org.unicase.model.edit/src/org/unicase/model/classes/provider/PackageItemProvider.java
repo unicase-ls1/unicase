@@ -24,16 +24,16 @@ import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.classes.ClassesPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.classes.Package} object.
- * <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.classes.Package} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class PackageItemProvider extends PackageElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PackageItemProvider(AdapterFactory adapterFactory) {
@@ -41,8 +41,8 @@ public class PackageItemProvider extends PackageElementItemProvider implements I
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -57,9 +57,9 @@ public class PackageItemProvider extends PackageElementItemProvider implements I
 	}
 
 	/**
-	 * This adds a property descriptor for the Contained Package Elements feature.
-	 * <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Contained Package Elements feature. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addContainedPackageElementsPropertyDescriptor(Object object) {
@@ -73,8 +73,8 @@ public class PackageItemProvider extends PackageElementItemProvider implements I
 	}
 
 	/**
-	 * This adds a property descriptor for the Facade Class feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Facade Class feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addFacadeClassPropertyDescriptor(Object object) {
@@ -88,9 +88,9 @@ public class PackageItemProvider extends PackageElementItemProvider implements I
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -104,6 +104,7 @@ public class PackageItemProvider extends PackageElementItemProvider implements I
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,8 +116,8 @@ public class PackageItemProvider extends PackageElementItemProvider implements I
 	}
 
 	/**
-	 * This returns Package.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Package.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -154,9 +155,9 @@ public class PackageItemProvider extends PackageElementItemProvider implements I
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

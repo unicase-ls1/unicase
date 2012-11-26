@@ -29,16 +29,16 @@ import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.UnicaseModelElementItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.classes.Method} object.
- * <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.model.classes.Method} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
+ * 
  * @generated
  */
 public class MethodItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public MethodItemProvider(AdapterFactory adapterFactory) {
@@ -46,8 +46,8 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -71,8 +71,8 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 	}
 
 	/**
-	 * This adds a property descriptor for the Visibility feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Visibility feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addVisibilityPropertyDescriptor(Object object) {
@@ -85,8 +85,8 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 	}
 
 	/**
-	 * This adds a property descriptor for the Scope feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Scope feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addScopePropertyDescriptor(Object object) {
@@ -99,8 +99,8 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 	}
 
 	/**
-	 * This adds a property descriptor for the Defining Class feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Defining Class feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addDefiningClassPropertyDescriptor(Object object) {
@@ -112,8 +112,8 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 	}
 
 	/**
-	 * This adds a property descriptor for the Return Type feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Return Type feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addReturnTypePropertyDescriptor(Object object) {
@@ -126,8 +126,8 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 	}
 
 	/**
-	 * This adds a property descriptor for the Arguments feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Arguments feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addArgumentsPropertyDescriptor(Object object) {
@@ -139,8 +139,8 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 	}
 
 	/**
-	 * This adds a property descriptor for the Properties feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Properties feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addPropertiesPropertyDescriptor(Object object) {
@@ -153,8 +153,8 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 	}
 
 	/**
-	 * This adds a property descriptor for the Label feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Label feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addLabelPropertyDescriptor(Object object) {
@@ -167,8 +167,8 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 	}
 
 	/**
-	 * This adds a property descriptor for the Stubbed feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Stubbed feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addStubbedPropertyDescriptor(Object object) {
@@ -181,8 +181,8 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 	}
 
 	/**
-	 * This adds a property descriptor for the Called Methods feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Called Methods feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addCalledMethodsPropertyDescriptor(Object object) {
@@ -194,8 +194,8 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 	}
 
 	/**
-	 * This adds a property descriptor for the Calling Methods feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Calling Methods feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addCallingMethodsPropertyDescriptor(Object object) {
@@ -226,9 +226,9 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -242,6 +242,7 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -253,8 +254,8 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 	}
 
 	/**
-	 * This returns Method.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Method.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -302,9 +303,9 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -316,8 +317,8 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

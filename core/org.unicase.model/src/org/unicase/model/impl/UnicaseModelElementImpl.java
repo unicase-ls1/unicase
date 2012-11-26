@@ -383,7 +383,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setCreator(String newCreator) {
 		String oldCreator = creator;
@@ -405,7 +405,7 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setCreationDate(Date newCreationDate) {
 		Date oldCreationDate = creationDate;
@@ -619,12 +619,6 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 			getComments().clear();
 			getComments().addAll((Collection<? extends Comment>) newValue);
 			return;
-		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE:
-			setCreationDate((Date) newValue);
-			return;
-		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR:
-			setCreator((String) newValue);
-			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -657,12 +651,6 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 			return;
 		case ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS:
 			getComments().clear();
-			return;
-		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE:
-			setCreationDate(CREATION_DATE_EDEFAULT);
-			return;
-		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR:
-			setCreator(CREATOR_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -740,7 +728,8 @@ public abstract class UnicaseModelElementImpl extends EObjectImpl implements Uni
 	}
 
 	public void removeModelElementChangeListener(ModelElementChangeListener listener) {
-		// if we are notifying listeners at the moment than just add listener for later removal
+		// if we are notifying listeners at the moment than just add listener
+		// for later removal
 		if (isNotifying) {
 			listenersToBeRemoved.add(listener);
 			return;

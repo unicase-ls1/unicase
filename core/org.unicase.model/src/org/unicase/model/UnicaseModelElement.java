@@ -207,9 +207,8 @@ public interface UnicaseModelElement extends EObject {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Creator</em>' attribute.
-	 * @see #setCreator(String)
 	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_Creator()
-	 * @model
+	 * @model changeable="false"
 	 * @generated
 	 */
 	String getCreator();
@@ -220,7 +219,7 @@ public interface UnicaseModelElement extends EObject {
 	 * 
 	 * @param value the new value of the '<em>Creator</em>' attribute.
 	 * @see #getCreator()
-	 * @generated
+	 * @generated NOT
 	 */
 	void setCreator(String value);
 
@@ -233,9 +232,8 @@ public interface UnicaseModelElement extends EObject {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Creation Date</em>' attribute.
-	 * @see #setCreationDate(Date)
 	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_CreationDate()
-	 * @model
+	 * @model changeable="false"
 	 * @generated
 	 */
 	Date getCreationDate();
@@ -246,7 +244,7 @@ public interface UnicaseModelElement extends EObject {
 	 * 
 	 * @param value the new value of the '<em>Creation Date</em>' attribute.
 	 * @see #getCreationDate()
-	 * @generated
+	 * @generated NOT
 	 */
 	void setCreationDate(Date value);
 

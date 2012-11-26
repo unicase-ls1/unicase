@@ -25,16 +25,16 @@ import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationalePackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.rationale.Comment} object.
- * <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.rationale.Comment} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class CommentItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public CommentItemProvider(AdapterFactory adapterFactory) {
@@ -42,8 +42,8 @@ public class CommentItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,8 +59,8 @@ public class CommentItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds a property descriptor for the Sender feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Sender feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addSenderPropertyDescriptor(Object object) {
@@ -72,8 +72,8 @@ public class CommentItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds a property descriptor for the Recipients feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Recipients feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addRecipientsPropertyDescriptor(Object object) {
@@ -85,8 +85,8 @@ public class CommentItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds a property descriptor for the Commented Element feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Commented Element feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addCommentedElementPropertyDescriptor(Object object) {
@@ -101,8 +101,8 @@ public class CommentItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This returns Comment.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Comment.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -111,8 +111,8 @@ public class CommentItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -136,9 +136,9 @@ public class CommentItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -147,8 +147,8 @@ public class CommentItemProvider extends UnicaseModelElementItemProvider impleme
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

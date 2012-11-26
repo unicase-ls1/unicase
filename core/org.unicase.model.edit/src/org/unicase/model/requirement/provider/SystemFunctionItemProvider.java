@@ -27,8 +27,7 @@ import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.SystemFunction;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.model.requirement.SystemFunction} object. <!--
+ * This is the item provider adapter for a {@link org.unicase.model.requirement.SystemFunction} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
@@ -36,8 +35,7 @@ import org.unicase.model.requirement.SystemFunction;
 public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -46,8 +44,7 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -67,8 +64,7 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Input feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Input feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -83,8 +79,7 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Output feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Output feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -99,8 +94,7 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Exception feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Exception feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -115,8 +109,7 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Workspace feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Workspace feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -131,8 +124,7 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Usecases feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Usecases feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -147,8 +139,9 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Non Functional Requirement feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Non Functional Requirement feature. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addNonFunctionalRequirementPropertyDescriptor(Object object) {
@@ -162,9 +155,8 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This returns SystemFunction.gif.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This returns SystemFunction.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -173,8 +165,7 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT {@inheritDoc}
 	 */
@@ -184,10 +175,10 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -205,9 +196,8 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-	 * describing the children that can be created under this object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -217,8 +207,7 @@ public class SystemFunctionItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
