@@ -1,3 +1,11 @@
 #summary Video Tutorial on how to run the UNICASE client as a developer.
 
- <wiki:video url="http://www.youtube.com/watch?v=AmUV0wI3Y_A"/>
+ <wiki:video url="http://www.youtube.com/watch?v=bdiheu3oeLc"/>
+
+This tutorial explains how to run UNICASE client as a developer. The version used is 0.5.2 which uses EMFStore in version 0.9.3.
+
+In order to follow this tutorial, you need to check out the UNICASE plug-ins and run a local EMFStore server instance.
+
+See:<br />
+[http://code.google.com/p/unicase/wiki/CheckoutTutorial Checkout UNICASE code from SVN]<br />
+[http://code.google.com/p/unicase/wiki/RunServerTutorial Run EMFStore Server as Developer]
