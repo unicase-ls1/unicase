@@ -1,2 +1,10 @@
 #summary Video Tutorial on how to run model driven development with UNICASE.
- <wiki:video url="http://www.youtube.com/watch?v=dctQTKHR080"/> 
+ <wiki:video url="http://www.youtube.com/watch?v=RHfEQNKN494"/> 
+
+This tutorial explains how to apply Model Driven Development (MDD) with UNICASE. The version used is 0.5.2 which uses EMFStore in version 0.9.3.
+
+In order to follow this tutorial, you need to check out the UNICASE plug-ins and know how to run a the UNICASE client.
+
+See:<br />
+[http://code.google.com/p/unicase/wiki/CheckoutTutorial Checkout UNICASE code from SVN]<br />
+[http://code.google.com/p/unicase/wiki/RunClientTutorial Run UNICASE Client as Developer]
