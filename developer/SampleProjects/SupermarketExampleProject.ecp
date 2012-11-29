@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.eclipse.emf.emfstore.common.model:Project xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:org.eclipse.emf.emfstore.common.model="http://eclipse.org/emf/emfstore/common/model" xmlns:org.unicase.model.bug="http://unicase.org/model/bug" xmlns:org.unicase.model.classes="http://unicase.org/model/classes" xmlns:org.unicase.model.diagram="http://unicase.org/model/diagram" xmlns:org.unicase.model.document="http://unicase.org/model/document" xmlns:org.unicase.model.meeting="http://unicase.org/model/meeting" xmlns:org.unicase.model.organization="http://unicase.org/model/organization" xmlns:org.unicase.model.rationale="http://unicase.org/model/rationale" xmlns:org.unicase.model.requirement="http://unicase.org/model/requirement" xmlns:org.unicase.model.task="http://unicase.org/model/task">
+  <modelElements xsi:type="org.unicase.model.document:CompositeSection" name="Requirements Analysis Document" description="">
+    <subsections xsi:type="org.unicase.model.document:CompositeSection" name="Requirements" description="">
+      <subsections xsi:type="org.unicase.model.document:LeafSection" name="Functional Requirements" description="">
+        <modelElements xsi:type="org.unicase.model.requirement:FunctionalRequirement" name="Shopping">
+          <refiningRequirements name="Checkout" description="Items can be checked out at the checkout desk and a cashier will accept the payment."/>
+          <refiningRequirements name="Enter Store" description="There must be a possibility to enter the store." useCases="//@modelElements.0/@subsections.1/@modelElements.0"/>
+          <refiningRequirements name="Item Transportation" description="Shopping items need to be transported within the store by the customers." useCases="//@modelElements.0/@subsections.1/@modelElements.1"/>
+        </modelElements>
+      </subsections>
+      <subsections xsi:type="org.unicase.model.document:LeafSection" name="Non-functional Requirements">
+        <modelElements xsi:type="org.unicase.model.requirement:NonFunctionalRequirement" name="Usability" description="The Supermarket must be easy to use for a customer." assessments="//@modelElements.1/@subsections.0/@modelElements.0/@containedWorkItems.2/@proposals.0/@assessments.0 //@modelElements.1/@subsections.0/@modelElements.0/@containedWorkItems.2/@proposals.1/@assessments.0"/>
+      </subsections>
+    </subsections>
+    <subsections xsi:type="org.unicase.model.document:LeafSection" name="Usecases" description="">
+      <modelElements xsi:type="org.unicase.model.requirement:UseCase" name="Walk through automatic door" description="This usecase describes how a user enters the supermarket through the automatic door." attachments="//@modelElements.0/@subsections.3/@modelElements.0" initiatingActor="//@modelElements.0/@subsections.1/@modelElements.2" precondition="" postcondition="" scenarios="//@modelElements.0/@subsections.2/@modelElements.0" functionalRequirements="//@modelElements.0/@subsections.0/@subsections.0/@modelElements.0/@refiningRequirements.1" identifiedClasses="//@modelElements.0/@subsections.4/@modelElements.0/@containedPackageElements.2 //@modelElements.0/@subsections.4/@modelElements.0/@containedPackageElements.0 //@modelElements.0/@subsections.4/@modelElements.0/@containedPackageElements.1">
+        <useCaseSteps name="Approaching" description="The shopper approaches the automatic door." userStep="true"/>
+        <useCaseSteps name="Opening" description="The door recognizes the approaching shopper and automatically opens the door."/>
+        <useCaseSteps name="Passing" description="The shopper passes the automatic door." userStep="true"/>
+        <useCaseSteps name="Closing" description="After the shopper has completely passed the door, the door automatically closes."/>
+      </modelElements>
+      <modelElements xsi:type="org.unicase.model.requirement:UseCase" name="Get a shopping cart" description="This usecase describes how a user obtains a shopping cart." annotations="//@modelElements.1/@subsections.0/@modelElements.0/@containedWorkItems.1" initiatingActor="//@modelElements.0/@subsections.1/@modelElements.2" precondition="" postcondition="" scenarios="//@modelElements.0/@subsections.2/@modelElements.0" functionalRequirements="//@modelElements.0/@subsections.0/@subsections.0/@modelElements.0/@refiningRequirements.2" identifiedClasses="//@modelElements.0/@subsections.4/@modelElements.1/@containedPackageElements.1 //@modelElements.0/@subsections.4/@modelElements.1/@containedPackageElements.0">
+        <useCaseSteps name="Inserting coin" description="The shopper selects the first cart in the row and inserts a coin into the cart." userStep="true"/>
+        <useCaseSteps name="Releasing the cart" description="The cart checks if the coin is valid and removes the chain, which fixes the cart to the next one in line."/>
+        <useCaseSteps name="Taking the cart" description="The shopper takes the cart and starts to shop." userStep="true"/>
+      </modelElements>
+      <modelElements xsi:type="org.unicase.model.requirement:Actor" name="Shopper" initiatedUseCases="//@modelElements.0/@subsections.1/@modelElements.0 //@modelElements.0/@subsections.1/@modelElements.1" instances="//@modelElements.0/@subsections.2/@modelElements.1"/>
+    </subsections>
+    <subsections xsi:type="org.unicase.model.document:LeafSection" name="Scenarios">
+      <modelElements xsi:type="org.unicase.model.requirement:Scenario" name="Shopping for a dinner on friday night" description="Tom does the shopping for friday night. He parks his car on a parking lot designated for wheelchair drivers and gets a shopping cart next to the entrance. The doors of the supermarket open automatically. He collects the following items for his dinner: a bag of sugar, potatoe wedges from the freezer and a six pack of beer. After queuing about 7.5 minutes at the checkout to the left he puts his items on the checkout desk and waits for the cashier to take his debit card for payment. The cashier hands over the paper receipt and Tom signs on the back. Tom leaves the store, puts his items in the trunk and drives off without returning the shopping cart." initiatingActorInstance="//@modelElements.0/@subsections.2/@modelElements.1" instantiatedUseCases="//@modelElements.0/@subsections.1/@modelElements.0 //@modelElements.0/@subsections.1/@modelElements.1"/>
+      <modelElements xsi:type="org.unicase.model.requirement:ActorInstance" name="Tom" initiatedScenarios="//@modelElements.0/@subsections.2/@modelElements.0" instantiatedActor="//@modelElements.0/@subsections.1/@modelElements.2"/>
+    </subsections>
+    <subsections xsi:type="org.unicase.model.document:LeafSection" name="Diagrams">
+      <modelElements xsi:type="org.unicase.model.diagram:ClassDiagram" name="WalkThroughAutomaticDoor Class Diagra" referringModelElements="//@modelElements.0/@subsections.1/@modelElements.0" elements="//@modelElements.0/@subsections.4/@modelElements.0 //@modelElements.0/@subsections.4/@modelElements.0/@containedPackageElements.2 //@modelElements.0/@subsections.4/@modelElements.0/@containedPackageElements.1 //@modelElements.0/@subsections.4/@modelElements.0/@containedPackageElements.0 //@modelElements.0/@subsections.3/@modelElements.1">
+        <gmfdiagram type="Class" element="//@modelElements.0/@subsections.3/@modelElements.0" measurementUnit="Pixel">
+          <children xsi:type="notation:Shape" type="2002" element="//@modelElements.0/@subsections.4/@modelElements.0">
+            <children xsi:type="notation:DecorationNode" type="5002"/>
+            <layoutConstraint xsi:type="notation:Bounds" x="72" y="72" width="552" height="330"/>
+          </children>
+          <children xsi:type="notation:Shape" type="2001" element="//@modelElements.0/@subsections.4/@modelElements.0/@containedPackageElements.2">
+            <children xsi:type="notation:DecorationNode" type="5001"/>
+            <children xsi:type="notation:DecorationNode" type="7001">
+              <styles xsi:type="notation:SortingStyle"/>
+              <styles xsi:type="notation:FilteringStyle"/>
+            </children>
+            <children xsi:type="notation:DecorationNode" type="7002">
+              <styles xsi:type="notation:SortingStyle"/>
+              <styles xsi:type="notation:FilteringStyle"/>
+            </children>
+            <layoutConstraint xsi:type="notation:Bounds" x="324" y="149"/>
+          </children>
+          <children xsi:type="notation:Shape" type="2001" element="//@modelElements.0/@subsections.4/@modelElements.0/@containedPackageElements.1">
+            <children xsi:type="notation:DecorationNode" type="5001"/>
+            <children xsi:type="notation:DecorationNode" type="7001">
+              <styles xsi:type="notation:SortingStyle"/>
+              <styles xsi:type="notation:FilteringStyle"/>
+            </children>
+            <children xsi:type="notation:DecorationNode" type="7002">
+              <styles xsi:type="notation:SortingStyle"/>
+              <styles xsi:type="notation:FilteringStyle"/>
+            </children>
+            <layoutConstraint xsi:type="notation:Bounds" x="129" y="342"/>
+          </children>
+          <children xsi:type="notation:Shape" type="2001" element="//@modelElements.0/@subsections.4/@modelElements.0/@containedPackageElements.0">
+            <children xsi:type="notation:DecorationNode" type="5001"/>
+            <children xsi:type="notation:DecorationNode" type="7001">
+              <styles xsi:type="notation:SortingStyle"/>
+              <styles xsi:type="notation:FilteringStyle"/>
+            </children>
+            <children xsi:type="notation:DecorationNode" type="7002">
+              <styles xsi:type="notation:SortingStyle"/>
+              <styles xsi:type="notation:FilteringStyle"/>
+            </children>
+            <layoutConstraint xsi:type="notation:Bounds" x="467" y="346"/>
+          </children>
+          <styles xsi:type="notation:DiagramStyle"/>
+          <edges xsi:type="notation:Connector" type="4007" source="//@modelElements.0/@subsections.3/@modelElements.0/@gmfdiagram/@children.3" target="//@modelElements.0/@subsections.3/@modelElements.0/@gmfdiagram/@children.1">
+            <styles xsi:type="notation:FontStyle"/>
+            <element xsi:nil="true"/>
+            <bendpoints xsi:type="org.unicase.model.diagram:MERelativeBendpoints" points="[-20, -23, 151, 174]$[-152, -174, 19, 23]"/>
+          </edges>
+          <edges xsi:type="notation:Connector" type="4002" element="//@modelElements.0/@subsections.3/@modelElements.1" source="//@modelElements.0/@subsections.3/@modelElements.0/@gmfdiagram/@children.3" target="//@modelElements.0/@subsections.3/@modelElements.0/@gmfdiagram/@children.2">
+            <children xsi:type="notation:DecorationNode" type="6004">
+              <layoutConstraint xsi:type="notation:Location" y="40"/>
+            </children>
+            <children xsi:type="notation:DecorationNode" type="6005">
+              <layoutConstraint xsi:type="notation:Location"/>
+            </children>
+            <children xsi:type="notation:DecorationNode" type="6006">
+              <layoutConstraint xsi:type="notation:Location"/>
+            </children>
+            <styles xsi:type="notation:FontStyle"/>
+            <bendpoints xsi:type="org.unicase.model.diagram:MERelativeBendpoints" points="[-37, -4, 287, 0]$[-318, -12, 6, -8]"/>
+            <sourceAnchor xsi:type="notation:IdentityAnchor" id="(0.33636363636363636,0.17391304347826086)"/>
+            <targetAnchor xsi:type="notation:IdentityAnchor" id="(0.6623376623376623,0.17391304347826086)"/>
+          </edges>
+        </gmfdiagram>
+      </modelElements>
+      <modelElements xsi:type="org.unicase.model.classes:Association" name="Handles" source="//@modelElements.0/@subsections.4/@modelElements.0/@containedPackageElements.0" target="//@modelElements.0/@subsections.4/@modelElements.0/@containedPackageElements.1" type="Aggregation"/>
+    </subsections>
+    <subsections xsi:type="org.unicase.model.document:LeafSection" name="Packages and Classes">
+      <modelElements xsi:type="org.unicase.model.classes:Package" name="Door" description="">
+        <containedPackageElements xsi:type="org.unicase.model.classes:Class" name="AutomaticDoor" description="" annotations="//@modelElements.1/@subsections.0/@modelElements.0/@containedWorkItems.0" participatedUseCases="//@modelElements.0/@subsections.1/@modelElements.0" superClasses="//@modelElements.0/@subsections.4/@modelElements.0/@containedPackageElements.2" outgoingAssociations="//@modelElements.0/@subsections.3/@modelElements.1"/>
+        <containedPackageElements xsi:type="org.unicase.model.classes:Class" name="Detector" annotations="//@modelElements.1/@subsections.2/@modelElements.0 //@modelElements.1/@subsections.0/@modelElements.0/@containedWorkItems.0" participatedUseCases="//@modelElements.0/@subsections.1/@modelElements.0" incomingAssociations="//@modelElements.0/@subsections.3/@modelElements.1"/>
+        <containedPackageElements xsi:type="org.unicase.model.classes:Class" name="Door" participatedUseCases="//@modelElements.0/@subsections.1/@modelElements.0" subClasses="//@modelElements.0/@subsections.4/@modelElements.0/@containedPackageElements.0"/>
+      </modelElements>
+      <modelElements xsi:type="org.unicase.model.classes:Package" name="Shopping Cart" description="">
+        <containedPackageElements xsi:type="org.unicase.model.classes:Class" name="ShoppingCart" description="" participatedUseCases="//@modelElements.0/@subsections.1/@modelElements.1"/>
+        <containedPackageElements xsi:type="org.unicase.model.classes:Class" name="Coin" description="" participatedUseCases="//@modelElements.0/@subsections.1/@modelElements.1"/>
+      </modelElements>
+    </subsections>
+  </modelElements>
+  <modelElements xsi:type="org.unicase.model.document:CompositeSection" name="Project Management Document">
+    <subsections xsi:type="org.unicase.model.document:LeafSection" name="Sprints">
+      <modelElements xsi:type="org.unicase.model.task:WorkPackage" name="Sprint 1" description="" successors="//@modelElements.1/@subsections.0/@modelElements.1" assignee="//@modelElements.1/@subsections.3/@modelElements.3" reviewer="//@modelElements.1/@subsections.3/@modelElements.0">
+        <containedWorkItems xsi:type="org.unicase.model.bug:BugReport" name="DoorBug" description="Door also opens on the detection of small animals (e.g. dogs). The door should only open if a human approaches." annotatedModelElements="//@modelElements.0/@subsections.4/@modelElements.0/@containedPackageElements.0 //@modelElements.0/@subsections.4/@modelElements.0/@containedPackageElements.1" assignee="//@modelElements.1/@subsections.3/@modelElements.0" reviewer="//@modelElements.1/@subsections.3/@modelElements.3"/>
+        <containedWorkItems xsi:type="org.unicase.model.task:ActionItem" name="Clarify &quot;Get a shopping cart&quot; usecase" description="Exceptional case &quot;Shopper uses a token which is not a real coin&quot; is not handled or described." annotatedModelElements="//@modelElements.0/@subsections.1/@modelElements.1" assignee="//@modelElements.1/@subsections.3/@modelElements.2" reviewer="//@modelElements.1/@subsections.3/@modelElements.0"/>
+        <containedWorkItems xsi:type="org.unicase.model.rationale:Issue" name="Should we have an entrance class?" description="The entrance is not contained in the model yet. Should we model it?" assignee="//@modelElements.1/@subsections.3/@modelElements.2" reviewer="//@modelElements.1/@subsections.3/@modelElements.0">
+          <proposals name="Rename the door class to entrance">
+            <assessments name="Rename assessment" description="" criterion="//@modelElements.0/@subsections.0/@subsections.1/@modelElements.0"/>
+          </proposals>
+          <proposals name="Have an additional entrance class">
+            <assessments name="Additional class assessment" description="" criterion="//@modelElements.0/@subsections.0/@subsections.1/@modelElements.0"/>
+          </proposals>
+        </containedWorkItems>
+      </modelElements>
+      <modelElements xsi:type="org.unicase.model.task:WorkPackage" name="Sprint 2" predecessors="//@modelElements.1/@subsections.0/@modelElements.0" assignee="//@modelElements.1/@subsections.3/@modelElements.3" reviewer="//@modelElements.1/@subsections.3/@modelElements.1"/>
+      <modelElements xsi:type="org.unicase.model.task:WorkPackage" name="Backlog">
+        <containedWorkItems xsi:type="org.unicase.model.task:WorkPackage" name="High priority"/>
+        <containedWorkItems xsi:type="org.unicase.model.task:WorkPackage" name="Medium priority"/>
+        <containedWorkItems xsi:type="org.unicase.model.task:WorkPackage" name="Low priority"/>
+        <containedWorkItems xsi:type="org.unicase.model.task:WorkPackage" name="Postponed"/>
+      </modelElements>
+    </subsections>
+    <subsections xsi:type="org.unicase.model.document:LeafSection" name="Meetings">
+      <modelElements xsi:type="org.unicase.model.meeting:Meeting" name="Team Meeting" description="This meeting will be a sprint planning meeting for sprint 1." location="FMI 01.07.041" facilitator="//@modelElements.1/@subsections.3/@modelElements.0" minutetaker="//@modelElements.1/@subsections.3/@modelElements.2" timekeeper="//@modelElements.1/@subsections.3/@modelElements.3" participants="//@modelElements.1/@subsections.3/@modelElements.0 //@modelElements.1/@subsections.3/@modelElements.1 //@modelElements.1/@subsections.3/@modelElements.2 //@modelElements.1/@subsections.3/@modelElements.3" identifiedIssuesSection="//@modelElements.1/@subsections.1/@modelElements.0/@sections.1" identifiedWorkItemsSection="//@modelElements.1/@subsections.1/@modelElements.0/@sections.2">
+        <sections xsi:type="org.unicase.model.meeting:WorkItemMeetingSection" name="Status" includedWorkItems="//@modelElements.1/@subsections.0/@modelElements.2"/>
+        <sections xsi:type="org.unicase.model.meeting:IssueMeetingSection" name="Discussion" allocatedTime="50" includedIssues="//@modelElements.1/@subsections.0/@modelElements.0/@containedWorkItems.2"/>
+        <sections xsi:type="org.unicase.model.meeting:WorkItemMeetingSection" name="Identified and Assigned Workitems" includedWorkItems="//@modelElements.1/@subsections.0/@modelElements.0"/>
+      </modelElements>
+    </subsections>
+    <subsections xsi:type="org.unicase.model.document:LeafSection" name="New Bug and Feature Reports" description="">
+      <modelElements xsi:type="org.unicase.model.bug:BugReport" name="Detector does not work in wet environment" description="The scanner does produce wrong results if the surface on the floor is wet." annotatedModelElements="//@modelElements.0/@subsections.4/@modelElements.0/@containedPackageElements.1"/>
+    </subsections>
+    <subsections xsi:type="org.unicase.model.document:LeafSection" name="Project Members">
+      <modelElements xsi:type="org.unicase.model.organization:User" name="Alice" description="" assignments="//@modelElements.1/@subsections.0/@modelElements.0/@containedWorkItems.0" firstName="" workItemsToReview="//@modelElements.1/@subsections.0/@modelElements.0 //@modelElements.1/@subsections.0/@modelElements.0/@containedWorkItems.1 //@modelElements.1/@subsections.0/@modelElements.0/@containedWorkItems.2"/>
+      <modelElements xsi:type="org.unicase.model.organization:User" name="Bob" firstName="" workItemsToReview="//@modelElements.1/@subsections.0/@modelElements.1"/>
+      <modelElements xsi:type="org.unicase.model.organization:User" name="Claire" assignments="//@modelElements.1/@subsections.0/@modelElements.0/@containedWorkItems.1 //@modelElements.1/@subsections.0/@modelElements.0/@containedWorkItems.2" firstName=""/>
+      <modelElements xsi:type="org.unicase.model.organization:User" name="David" description="" assignments="//@modelElements.1/@subsections.0/@modelElements.0 //@modelElements.1/@subsections.0/@modelElements.1" firstName="" workItemsToReview="//@modelElements.1/@subsections.0/@modelElements.0/@containedWorkItems.0"/>
+    </subsections>
+  </modelElements>
+</org.eclipse.emf.emfstore.common.model:Project>
