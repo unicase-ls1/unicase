@@ -207,10 +207,10 @@
       <?gmfgen generated="true"?>
       <modelingAssistantProvider class="org.unicase.ui.diagram.componentDiagram.providers.ModelModelingAssistantProvider">
          <Priority name="Lowest"/>
-         <object class="org.unicase.ui.diagram.componentDiagram.edit.parts.MEDiagramEditPart" id="ComponentDiagram_1000"/>
+         <object class="org.unicase.ui.diagram.componentDiagram.edit.parts.MEDiagramEditPart" id="ComponentDiagram_88"/>
          <object class="org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentServiceEditPart" id="ComponentService_2001"/>
          <object class="org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentEditPart" id="Component_2002"/>
-         <context elements="ComponentDiagram_1000,ComponentService_2001,Component_2002"/>
+         <context elements="ComponentDiagram_88,ComponentService_2001,Component_2002"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -232,12 +232,12 @@
       <?gmfgen generated="true"?>
       <metamodel nsURI="http://unicase.org/model/diagram">
          <metamodelType
-               id="org.unicase.ui.diagram.componentDiagram.ComponentDiagram_1000"
-               name="%metatype.name.ComponentDiagram_1000"
+               id="org.unicase.ui.diagram.componentDiagram.ComponentDiagram_88"
+               name="%metatype.name.ComponentDiagram_88"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ComponentDiagram"
                edithelper="org.unicase.ui.diagram.componentDiagram.edit.helpers.MEDiagramEditHelper">
-            <param name="semanticHint" value="1000"/>
+            <param name="semanticHint" value="88"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/component">
@@ -290,7 +290,7 @@
          </enablement>
       </clientContext> 
       <binding context="org.unicase.ui.diagram.componentDiagram.TypeContext">
-         <elementType ref="org.unicase.ui.diagram.componentDiagram.ComponentDiagram_1000"/>
+         <elementType ref="org.unicase.ui.diagram.componentDiagram.ComponentDiagram_88"/>
          <elementType ref="org.unicase.ui.diagram.componentDiagram.ComponentService_2001"/>
          <elementType ref="org.unicase.ui.diagram.componentDiagram.Component_2002"/>
          <elementType ref="org.unicase.ui.diagram.componentDiagram.ComponentOfferedServices_4001"/>

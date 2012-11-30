@@ -34,7 +34,7 @@ public class ModelDiagramUpdater {
 		switch (org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
 		case org.unicase.ui.diagram.componentDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return getComponentDiagram_1000SemanticChildren(view);
+			return getComponentDiagram_88SemanticChildren(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -42,7 +42,7 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getComponentDiagram_1000SemanticChildren(View view) {
+	public static List getComponentDiagram_88SemanticChildren(View view) {
 		if (!view.isSetElement()) {
 			return Collections.EMPTY_LIST;
 		}
@@ -75,7 +75,7 @@ public class ModelDiagramUpdater {
 		switch (org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
 		case org.unicase.ui.diagram.componentDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return getComponentDiagram_1000ContainedLinks(view);
+			return getComponentDiagram_88ContainedLinks(view);
 		case org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentServiceEditPart.VISUAL_ID:
 			return getComponentService_2001ContainedLinks(view);
 		case org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID:
@@ -115,7 +115,7 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getComponentDiagram_1000ContainedLinks(View view) {
+	public static List getComponentDiagram_88ContainedLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 

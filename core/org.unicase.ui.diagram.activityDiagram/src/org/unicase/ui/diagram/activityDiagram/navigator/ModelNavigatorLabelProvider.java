@@ -92,7 +92,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 				.getVisualID(view)) {
 		case org.unicase.ui.diagram.activityDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Diagram?http://unicase.org/model/diagram?ActivityDiagram", org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.ActivityDiagram_1000); //$NON-NLS-1$
+					"Navigator?Diagram?http://unicase.org/model/diagram?ActivityDiagram", org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.ActivityDiagram_33); //$NON-NLS-1$
 		case org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://unicase.org/model/activity?Activity", org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Activity_2002); //$NON-NLS-1$
@@ -168,7 +168,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		switch (org.unicase.ui.diagram.activityDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
 		case org.unicase.ui.diagram.activityDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return getActivityDiagram_1000Text(view);
+			return getActivityDiagram_33Text(view);
 		case org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEditPart.VISUAL_ID:
 			return getActivity_2002Text(view);
 		case org.unicase.ui.diagram.activityDiagram.edit.parts.ForkEditPart.VISUAL_ID:
@@ -188,7 +188,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getActivityDiagram_1000Text(View view) {
+	private String getActivityDiagram_33Text(View view) {
 		ActivityDiagram domainModelElement = (ActivityDiagram) view
 				.getElement();
 		if (domainModelElement != null) {
@@ -197,7 +197,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
 					.getInstance()
 					.logError(
-							"No domain element for view with visualID = " + 1000); //$NON-NLS-1$
+							"No domain element for view with visualID = " + 33); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

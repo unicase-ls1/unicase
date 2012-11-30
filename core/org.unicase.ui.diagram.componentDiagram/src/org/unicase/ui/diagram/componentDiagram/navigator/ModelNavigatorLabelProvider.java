@@ -88,7 +88,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 				.getVisualID(view)) {
 		case org.unicase.ui.diagram.componentDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Diagram?http://unicase.org/model/diagram?ComponentDiagram", org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes.ComponentDiagram_1000); //$NON-NLS-1$
+					"Navigator?Diagram?http://unicase.org/model/diagram?ComponentDiagram", org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes.ComponentDiagram_88); //$NON-NLS-1$
 		case org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentServiceEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://unicase.org/model/component?ComponentService", org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes.ComponentService_2001); //$NON-NLS-1$
@@ -158,7 +158,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		switch (org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
 		case org.unicase.ui.diagram.componentDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return getComponentDiagram_1000Text(view);
+			return getComponentDiagram_88Text(view);
 		case org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentServiceEditPart.VISUAL_ID:
 			return getComponentService_2001Text(view);
 		case org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID:
@@ -174,7 +174,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getComponentDiagram_1000Text(View view) {
+	private String getComponentDiagram_88Text(View view) {
 		ComponentDiagram domainModelElement = (ComponentDiagram) view
 				.getElement();
 		if (domainModelElement != null) {
@@ -183,7 +183,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 			org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorPlugin
 					.getInstance()
 					.logError(
-							"No domain element for view with visualID = " + 1000); //$NON-NLS-1$
+							"No domain element for view with visualID = " + 88); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

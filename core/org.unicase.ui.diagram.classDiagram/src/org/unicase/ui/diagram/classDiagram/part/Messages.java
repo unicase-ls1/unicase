@@ -339,7 +339,7 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ClassDiagram_1000_links;
+	public static String NavigatorGroupName_ClassDiagram_99_links;
 
 	/**
 	 * @generated

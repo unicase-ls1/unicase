@@ -53,7 +53,7 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType ComponentDiagram_1000 = getElementType("org.unicase.ui.diagram.componentDiagram.ComponentDiagram_1000"); //$NON-NLS-1$
+	public static final IElementType ComponentDiagram_88 = getElementType("org.unicase.ui.diagram.componentDiagram.ComponentDiagram_88"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -182,7 +182,7 @@ public class ModelElementTypes extends ElementInitializers {
 		if (elements == null) {
 			elements = new IdentityHashMap();
 
-			elements.put(ComponentDiagram_1000, DiagramPackage.eINSTANCE
+			elements.put(ComponentDiagram_88, DiagramPackage.eINSTANCE
 					.getComponentDiagram());
 
 			elements.put(ComponentService_2001, ComponentPackage.eINSTANCE
@@ -213,7 +213,7 @@ public class ModelElementTypes extends ElementInitializers {
 	public static boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet();
-			KNOWN_ELEMENT_TYPES.add(ComponentDiagram_1000);
+			KNOWN_ELEMENT_TYPES.add(ComponentDiagram_88);
 			KNOWN_ELEMENT_TYPES.add(ComponentService_2001);
 			KNOWN_ELEMENT_TYPES.add(Component_2002);
 			KNOWN_ELEMENT_TYPES.add(ComponentOfferedServices_4001);
@@ -228,7 +228,7 @@ public class ModelElementTypes extends ElementInitializers {
 	public static IElementType getElementType(int visualID) {
 		switch (visualID) {
 		case org.unicase.ui.diagram.componentDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return ComponentDiagram_1000;
+			return ComponentDiagram_88;
 		case org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentServiceEditPart.VISUAL_ID:
 			return ComponentService_2001;
 		case org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID:

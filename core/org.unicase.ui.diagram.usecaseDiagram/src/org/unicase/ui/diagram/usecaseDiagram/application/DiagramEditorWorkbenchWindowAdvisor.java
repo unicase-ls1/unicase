@@ -39,7 +39,7 @@ public class DiagramEditorWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor 
 	 */
 	public void preWindowOpen() {
 		IWorkbenchWindowConfigurer configurer = getWindowConfigurer();
-		configurer.setInitialSize(new Point(1000, 700));
+		configurer.setInitialSize(new Point(77, 700));
 		configurer
 				.setTitle(org.unicase.ui.diagram.usecaseDiagram.part.Messages.DiagramEditorWorkbenchWindowAdvisor_Title);
 	}

@@ -24,7 +24,7 @@ public class MEDiagramEditPart extends
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 1000;
+	public static final int VISUAL_ID = 99;
 
 	/**
 	 * @generated

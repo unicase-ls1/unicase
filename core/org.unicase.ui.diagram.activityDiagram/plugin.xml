@@ -207,13 +207,13 @@
       <?gmfgen generated="true"?>
       <modelingAssistantProvider class="org.unicase.ui.diagram.activityDiagram.providers.ModelModelingAssistantProvider">
          <Priority name="Lowest"/>
-         <object class="org.unicase.ui.diagram.activityDiagram.edit.parts.MEDiagramEditPart" id="ActivityDiagram_1000"/>
+         <object class="org.unicase.ui.diagram.activityDiagram.edit.parts.MEDiagramEditPart" id="ActivityDiagram_33"/>
          <object class="org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEditPart" id="Activity_2002"/>
          <object class="org.unicase.ui.diagram.activityDiagram.edit.parts.ForkEditPart" id="Fork_2003"/>
          <object class="org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityInitialEditPart" id="ActivityInitial_2004"/>
          <object class="org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEndEditPart" id="ActivityEnd_2005"/>
          <object class="org.unicase.ui.diagram.activityDiagram.edit.parts.BranchEditPart" id="Branch_2006"/>
-         <context elements="ActivityDiagram_1000,Activity_2002,Fork_2003,ActivityInitial_2004,ActivityEnd_2005,Branch_2006"/>
+         <context elements="ActivityDiagram_33,Activity_2002,Fork_2003,ActivityInitial_2004,ActivityEnd_2005,Branch_2006"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -235,12 +235,12 @@
       <?gmfgen generated="true"?>
       <metamodel nsURI="http://unicase.org/model/diagram">
          <metamodelType
-               id="org.unicase.ui.diagram.activityDiagram.ActivityDiagram_1000"
-               name="%metatype.name.ActivityDiagram_1000"
+               id="org.unicase.ui.diagram.activityDiagram.ActivityDiagram_33"
+               name="%metatype.name.ActivityDiagram_33"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ActivityDiagram"
                edithelper="org.unicase.ui.diagram.activityDiagram.edit.helpers.MEDiagramEditHelper">
-            <param name="semanticHint" value="1000"/>
+            <param name="semanticHint" value="33"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/activity">
@@ -315,7 +315,7 @@
          </enablement>
       </clientContext> 
       <binding context="org.unicase.ui.diagram.activityDiagram.TypeContext">
-         <elementType ref="org.unicase.ui.diagram.activityDiagram.ActivityDiagram_1000"/>
+         <elementType ref="org.unicase.ui.diagram.activityDiagram.ActivityDiagram_33"/>
          <elementType ref="org.unicase.ui.diagram.activityDiagram.Activity_2002"/>
          <elementType ref="org.unicase.ui.diagram.activityDiagram.Fork_2003"/>
          <elementType ref="org.unicase.ui.diagram.activityDiagram.ActivityInitial_2004"/>
