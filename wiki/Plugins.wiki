@@ -24,9 +24,9 @@
 
  * *ui.multiaction* - The functionality to assign a task to a group of users lies within this plug-in.
 
- * *ui.stem* - This plug-in provides the StatusView, which displays the status of a UNICASE project.
+ * *ui.stem* - This plug-in provides the {{{StatusView}}}, which displays the status of a UNICASE project.
 
- * *ui.tableview* - Contains the definition of the TableView for UNICASE, which displays the model elements in a table instead of the tree view, integrated in the ECP navigator.
+ * *ui.tableview* - Contains the definition of the {{{TableView}}} for UNICASE, which displays the model elements in a table instead of the tree view, integrated in the ECP navigator.
 
  * *ui.unicasecommon* - This plug-in contains common UI classes used by several UNICASE plug-ins, like dialogs, drag & drop extensions or custom editor controls 
 
