@@ -6,9 +6,9 @@ All video tutorials are hosted on !YouTube in the [http://www.youtube.com/user/T
  
  * [RunServerTutorial Run EMFStore Server as a Developer]
 
- * [SetupProjectTutorial Setup a Project for EMFStore Server] 
-
  * [RunClientTutorial Run UNICASE Client as a Developer]
+
+ * [SetupProjectTutorial Setup a Project for EMFStore Server]
 
  * [MDDTutorial Model Driven Development via UNICASE]
 
