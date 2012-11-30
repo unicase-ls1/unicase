@@ -25,4 +25,3 @@ The ID's of all the UNICASE diagrams can be seen from the table below.
 ||!UseCase diagram||77||
 ||State diagram||55||
 ||Activity diagram||33||
-||!WorkItem diagram||22||
