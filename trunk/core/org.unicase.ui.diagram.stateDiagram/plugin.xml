@@ -207,11 +207,11 @@
       <?gmfgen generated="true"?>
       <modelingAssistantProvider class="org.unicase.ui.diagram.stateDiagram.providers.ModelModelingAssistantProvider">
          <Priority name="Lowest"/>
-         <object class="org.unicase.ui.diagram.stateDiagram.edit.parts.MEDiagramEditPart" id="StateDiagram_1000"/>
+         <object class="org.unicase.ui.diagram.stateDiagram.edit.parts.MEDiagramEditPart" id="StateDiagram_55"/>
          <object class="org.unicase.ui.diagram.stateDiagram.edit.parts.StateEditPart" id="State_2001"/>
          <object class="org.unicase.ui.diagram.stateDiagram.edit.parts.StateInitialEditPart" id="StateInitial_2002"/>
          <object class="org.unicase.ui.diagram.stateDiagram.edit.parts.StateEndEditPart" id="StateEnd_2003"/>
-         <context elements="StateDiagram_1000,State_2001,StateInitial_2002,StateEnd_2003"/>
+         <context elements="StateDiagram_55,State_2001,StateInitial_2002,StateEnd_2003"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -233,12 +233,12 @@
       <?gmfgen generated="true"?>
       <metamodel nsURI="http://unicase.org/model/diagram">
          <metamodelType
-               id="org.unicase.ui.diagram.stateDiagram.StateDiagram_1000"
-               name="%metatype.name.StateDiagram_1000"
+               id="org.unicase.ui.diagram.stateDiagram.StateDiagram_55"
+               name="%metatype.name.StateDiagram_55"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="StateDiagram"
                edithelper="org.unicase.ui.diagram.stateDiagram.edit.helpers.MEDiagramEditHelper">
-            <param name="semanticHint" value="1000"/>
+            <param name="semanticHint" value="55"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/state">
@@ -293,7 +293,7 @@
          </enablement>
       </clientContext> 
       <binding context="org.unicase.ui.diagram.stateDiagram.TypeContext">
-         <elementType ref="org.unicase.ui.diagram.stateDiagram.StateDiagram_1000"/>
+         <elementType ref="org.unicase.ui.diagram.stateDiagram.StateDiagram_55"/>
          <elementType ref="org.unicase.ui.diagram.stateDiagram.State_2001"/>
          <elementType ref="org.unicase.ui.diagram.stateDiagram.StateInitial_2002"/>
          <elementType ref="org.unicase.ui.diagram.stateDiagram.StateEnd_2003"/>

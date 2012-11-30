@@ -22,7 +22,7 @@ public class MEDiagramEditPart extends org.unicase.ui.unicasecommon.diagram.edit
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 1000;
+	public static final int VISUAL_ID = 77;
 
 	/**
 	 * @generated

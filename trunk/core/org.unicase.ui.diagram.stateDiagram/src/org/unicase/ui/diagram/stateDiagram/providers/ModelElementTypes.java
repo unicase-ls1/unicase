@@ -53,7 +53,7 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType StateDiagram_1000 = getElementType("org.unicase.ui.diagram.stateDiagram.StateDiagram_1000"); //$NON-NLS-1$
+	public static final IElementType StateDiagram_55 = getElementType("org.unicase.ui.diagram.stateDiagram.StateDiagram_55"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -182,7 +182,7 @@ public class ModelElementTypes extends ElementInitializers {
 		if (elements == null) {
 			elements = new IdentityHashMap();
 
-			elements.put(StateDiagram_1000, DiagramPackage.eINSTANCE
+			elements.put(StateDiagram_55, DiagramPackage.eINSTANCE
 					.getStateDiagram());
 
 			elements.put(State_2001, StatePackage.eINSTANCE.getState());
@@ -211,7 +211,7 @@ public class ModelElementTypes extends ElementInitializers {
 	public static boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet();
-			KNOWN_ELEMENT_TYPES.add(StateDiagram_1000);
+			KNOWN_ELEMENT_TYPES.add(StateDiagram_55);
 			KNOWN_ELEMENT_TYPES.add(State_2001);
 			KNOWN_ELEMENT_TYPES.add(StateInitial_2002);
 			KNOWN_ELEMENT_TYPES.add(StateEnd_2003);
@@ -226,7 +226,7 @@ public class ModelElementTypes extends ElementInitializers {
 	public static IElementType getElementType(int visualID) {
 		switch (visualID) {
 		case org.unicase.ui.diagram.stateDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return StateDiagram_1000;
+			return StateDiagram_55;
 		case org.unicase.ui.diagram.stateDiagram.edit.parts.StateEditPart.VISUAL_ID:
 			return State_2001;
 		case org.unicase.ui.diagram.stateDiagram.edit.parts.StateInitialEditPart.VISUAL_ID:

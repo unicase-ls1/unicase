@@ -196,10 +196,10 @@
       <?gmfgen generated="true"?>
       <modelingAssistantProvider class="org.unicase.ui.diagram.usecaseDiagram.providers.ModelModelingAssistantProvider">
          <Priority name="Lowest"/>
-         <object class="org.unicase.ui.diagram.usecaseDiagram.edit.parts.MEDiagramEditPart" id="UseCaseDiagram_1000"/>
+         <object class="org.unicase.ui.diagram.usecaseDiagram.edit.parts.MEDiagramEditPart" id="UseCaseDiagram_77"/>
          <object class="org.unicase.ui.diagram.usecaseDiagram.edit.parts.ActorEditPart" id="Actor_2001"/>
          <object class="org.unicase.ui.diagram.usecaseDiagram.edit.parts.UseCaseEditPart" id="UseCase_2002"/>
-         <context elements="UseCaseDiagram_1000,Actor_2001,UseCase_2002"/>
+         <context elements="UseCaseDiagram_77,Actor_2001,UseCase_2002"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -221,12 +221,12 @@
       <?gmfgen generated="true"?>
       <metamodel nsURI="http://unicase.org/model/diagram">
          <metamodelType
-               id="org.unicase.ui.diagram.usecaseDiagram.UseCaseDiagram_1000"
-               name="%metatype.name.UseCaseDiagram_1000"
+               id="org.unicase.ui.diagram.usecaseDiagram.UseCaseDiagram_77"
+               name="%metatype.name.UseCaseDiagram_77"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="UseCaseDiagram"
                edithelper="org.unicase.ui.diagram.usecaseDiagram.edit.helpers.MEDiagramEditHelper">
-            <param name="semanticHint" value="1000"/>
+            <param name="semanticHint" value="77"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/requirement">
@@ -297,7 +297,7 @@
          </enablement>
       </clientContext> 
       <binding context="org.unicase.ui.diagram.usecaseDiagram.TypeContext">
-         <elementType ref="org.unicase.ui.diagram.usecaseDiagram.UseCaseDiagram_1000"/>
+         <elementType ref="org.unicase.ui.diagram.usecaseDiagram.UseCaseDiagram_77"/>
          <elementType ref="org.unicase.ui.diagram.usecaseDiagram.Actor_2001"/>
          <elementType ref="org.unicase.ui.diagram.usecaseDiagram.UseCase_2002"/>
          <elementType ref="org.unicase.ui.diagram.usecaseDiagram.ActorParticipatedUseCases_4001"/>

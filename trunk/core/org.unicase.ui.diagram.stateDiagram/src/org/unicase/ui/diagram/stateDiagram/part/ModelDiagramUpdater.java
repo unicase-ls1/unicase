@@ -39,7 +39,7 @@ public class ModelDiagramUpdater {
 		switch (org.unicase.ui.diagram.stateDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
 		case org.unicase.ui.diagram.stateDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return getStateDiagram_1000SemanticChildren(view);
+			return getStateDiagram_55SemanticChildren(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -47,7 +47,7 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getStateDiagram_1000SemanticChildren(View view) {
+	public static List getStateDiagram_55SemanticChildren(View view) {
 		if (!view.isSetElement()) {
 			return Collections.EMPTY_LIST;
 		}
@@ -86,7 +86,7 @@ public class ModelDiagramUpdater {
 		switch (org.unicase.ui.diagram.stateDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
 		case org.unicase.ui.diagram.stateDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return getStateDiagram_1000ContainedLinks(view);
+			return getStateDiagram_55ContainedLinks(view);
 		case org.unicase.ui.diagram.stateDiagram.edit.parts.StateEditPart.VISUAL_ID:
 			return getState_2001ContainedLinks(view);
 		case org.unicase.ui.diagram.stateDiagram.edit.parts.StateInitialEditPart.VISUAL_ID:
@@ -138,7 +138,7 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getStateDiagram_1000ContainedLinks(View view) {
+	public static List getStateDiagram_55ContainedLinks(View view) {
 		StateDiagram modelElement = (StateDiagram) view.getElement();
 		List result = new LinkedList();
 		result

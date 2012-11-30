@@ -53,7 +53,7 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType UseCaseDiagram_1000 = getElementType("org.unicase.ui.diagram.usecaseDiagram.UseCaseDiagram_1000"); //$NON-NLS-1$
+	public static final IElementType UseCaseDiagram_77 = getElementType("org.unicase.ui.diagram.usecaseDiagram.UseCaseDiagram_77"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -190,7 +190,7 @@ public class ModelElementTypes extends ElementInitializers {
 		if (elements == null) {
 			elements = new IdentityHashMap();
 
-			elements.put(UseCaseDiagram_1000, DiagramPackage.eINSTANCE
+			elements.put(UseCaseDiagram_77, DiagramPackage.eINSTANCE
 					.getUseCaseDiagram());
 
 			elements.put(Actor_2001, RequirementPackage.eINSTANCE.getActor());
@@ -227,7 +227,7 @@ public class ModelElementTypes extends ElementInitializers {
 	public static boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet();
-			KNOWN_ELEMENT_TYPES.add(UseCaseDiagram_1000);
+			KNOWN_ELEMENT_TYPES.add(UseCaseDiagram_77);
 			KNOWN_ELEMENT_TYPES.add(Actor_2001);
 			KNOWN_ELEMENT_TYPES.add(UseCase_2002);
 			KNOWN_ELEMENT_TYPES.add(ActorParticipatedUseCases_4001);
@@ -244,7 +244,7 @@ public class ModelElementTypes extends ElementInitializers {
 	public static IElementType getElementType(int visualID) {
 		switch (visualID) {
 		case org.unicase.ui.diagram.usecaseDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return UseCaseDiagram_1000;
+			return UseCaseDiagram_77;
 		case org.unicase.ui.diagram.usecaseDiagram.edit.parts.ActorEditPart.VISUAL_ID:
 			return Actor_2001;
 		case org.unicase.ui.diagram.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID:

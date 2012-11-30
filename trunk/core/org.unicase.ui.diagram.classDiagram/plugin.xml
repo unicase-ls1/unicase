@@ -207,10 +207,10 @@
       <?gmfgen generated="true"?>
       <modelingAssistantProvider class="org.unicase.ui.diagram.classDiagram.providers.ModelModelingAssistantProvider">
          <Priority name="Lowest"/>
-         <object class="org.unicase.ui.diagram.classDiagram.edit.parts.MEDiagramEditPart" id="ClassDiagram_1000"/>
+         <object class="org.unicase.ui.diagram.classDiagram.edit.parts.MEDiagramEditPart" id="ClassDiagram_99"/>
          <object class="org.unicase.ui.diagram.classDiagram.edit.parts.ClassEditPart" id="Class_2001"/>
          <object class="org.unicase.ui.diagram.classDiagram.edit.parts.PackageEditPart" id="Package_2002"/>
-         <context elements="ClassDiagram_1000,Class_2001,Package_2002"/>
+         <context elements="ClassDiagram_99,Class_2001,Package_2002"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -232,12 +232,12 @@
       <?gmfgen generated="true"?>
       <metamodel nsURI="http://unicase.org/model/diagram">
          <metamodelType
-               id="org.unicase.ui.diagram.classDiagram.ClassDiagram_1000"
-               name="%metatype.name.ClassDiagram_1000"
+               id="org.unicase.ui.diagram.classDiagram.ClassDiagram_99"
+               name="%metatype.name.ClassDiagram_99"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ClassDiagram"
                edithelper="org.unicase.ui.diagram.classDiagram.edit.helpers.MEDiagramEditHelper">
-            <param name="semanticHint" value="1000"/>
+            <param name="semanticHint" value="99"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/classes">
@@ -348,7 +348,7 @@
          </enablement>
       </clientContext> 
       <binding context="org.unicase.ui.diagram.classDiagram.TypeContext">
-         <elementType ref="org.unicase.ui.diagram.classDiagram.ClassDiagram_1000"/>
+         <elementType ref="org.unicase.ui.diagram.classDiagram.ClassDiagram_99"/>
          <elementType ref="org.unicase.ui.diagram.classDiagram.Class_2001"/>
          <elementType ref="org.unicase.ui.diagram.classDiagram.Package_2002"/>
          <elementType ref="org.unicase.ui.diagram.classDiagram.Attribute_3001"/>

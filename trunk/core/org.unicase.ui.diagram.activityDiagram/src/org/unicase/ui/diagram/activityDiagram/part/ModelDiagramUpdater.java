@@ -41,7 +41,7 @@ public class ModelDiagramUpdater {
 		switch (org.unicase.ui.diagram.activityDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
 		case org.unicase.ui.diagram.activityDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return getActivityDiagram_1000SemanticChildren(view);
+			return getActivityDiagram_33SemanticChildren(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -49,7 +49,7 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getActivityDiagram_1000SemanticChildren(View view) {
+	public static List getActivityDiagram_33SemanticChildren(View view) {
 		if (!view.isSetElement()) {
 			return Collections.EMPTY_LIST;
 		}
@@ -100,7 +100,7 @@ public class ModelDiagramUpdater {
 		switch (org.unicase.ui.diagram.activityDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
 		case org.unicase.ui.diagram.activityDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return getActivityDiagram_1000ContainedLinks(view);
+			return getActivityDiagram_33ContainedLinks(view);
 		case org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEditPart.VISUAL_ID:
 			return getActivity_2002ContainedLinks(view);
 		case org.unicase.ui.diagram.activityDiagram.edit.parts.ForkEditPart.VISUAL_ID:
@@ -164,7 +164,7 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getActivityDiagram_1000ContainedLinks(View view) {
+	public static List getActivityDiagram_33ContainedLinks(View view) {
 		ActivityDiagram modelElement = (ActivityDiagram) view.getElement();
 		List result = new LinkedList();
 		result

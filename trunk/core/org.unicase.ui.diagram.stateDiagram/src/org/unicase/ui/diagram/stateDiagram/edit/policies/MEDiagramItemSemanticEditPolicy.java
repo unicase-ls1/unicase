@@ -25,7 +25,7 @@ public class MEDiagramItemSemanticEditPolicy
 	 */
 	public MEDiagramItemSemanticEditPolicy() {
 		super(
-				org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes.StateDiagram_1000);
+				org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes.StateDiagram_55);
 	}
 
 	/**

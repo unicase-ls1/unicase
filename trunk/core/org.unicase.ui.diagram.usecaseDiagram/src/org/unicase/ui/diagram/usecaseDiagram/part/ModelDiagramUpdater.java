@@ -34,7 +34,7 @@ public class ModelDiagramUpdater {
 		switch (org.unicase.ui.diagram.usecaseDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
 		case org.unicase.ui.diagram.usecaseDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return getUseCaseDiagram_1000SemanticChildren(view);
+			return getUseCaseDiagram_77SemanticChildren(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -42,7 +42,7 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getUseCaseDiagram_1000SemanticChildren(View view) {
+	public static List getUseCaseDiagram_77SemanticChildren(View view) {
 		if (!view.isSetElement()) {
 			return Collections.EMPTY_LIST;
 		}
@@ -75,7 +75,7 @@ public class ModelDiagramUpdater {
 		switch (org.unicase.ui.diagram.usecaseDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
 		case org.unicase.ui.diagram.usecaseDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return getUseCaseDiagram_1000ContainedLinks(view);
+			return getUseCaseDiagram_77ContainedLinks(view);
 		case org.unicase.ui.diagram.usecaseDiagram.edit.parts.ActorEditPart.VISUAL_ID:
 			return getActor_2001ContainedLinks(view);
 		case org.unicase.ui.diagram.usecaseDiagram.edit.parts.UseCaseEditPart.VISUAL_ID:
@@ -115,7 +115,7 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getUseCaseDiagram_1000ContainedLinks(View view) {
+	public static List getUseCaseDiagram_77ContainedLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 

@@ -45,7 +45,7 @@ public class ModelDiagramUpdater {
 		case org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_methodsEditPart.VISUAL_ID:
 			return getClassClassNode_methods_7002SemanticChildren(view);
 		case org.unicase.ui.diagram.classDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return getClassDiagram_1000SemanticChildren(view);
+			return getClassDiagram_99SemanticChildren(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -109,7 +109,7 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getClassDiagram_1000SemanticChildren(View view) {
+	public static List getClassDiagram_99SemanticChildren(View view) {
 		if (!view.isSetElement()) {
 			return Collections.EMPTY_LIST;
 		}
@@ -142,7 +142,7 @@ public class ModelDiagramUpdater {
 		switch (org.unicase.ui.diagram.classDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
 		case org.unicase.ui.diagram.classDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return getClassDiagram_1000ContainedLinks(view);
+			return getClassDiagram_99ContainedLinks(view);
 		case org.unicase.ui.diagram.classDiagram.edit.parts.ClassEditPart.VISUAL_ID:
 			return getClass_2001ContainedLinks(view);
 		case org.unicase.ui.diagram.classDiagram.edit.parts.PackageEditPart.VISUAL_ID:
@@ -224,7 +224,7 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getClassDiagram_1000ContainedLinks(View view) {
+	public static List getClassDiagram_99ContainedLinks(View view) {
 		ClassDiagram modelElement = (ClassDiagram) view.getElement();
 		List result = new LinkedList();
 		result

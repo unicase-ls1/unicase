@@ -89,7 +89,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 				.getVisualID(view)) {
 		case org.unicase.ui.diagram.classDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Diagram?http://unicase.org/model/diagram?ClassDiagram", org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.ClassDiagram_1000); //$NON-NLS-1$
+					"Navigator?Diagram?http://unicase.org/model/diagram?ClassDiagram", org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.ClassDiagram_99); //$NON-NLS-1$
 		case org.unicase.ui.diagram.classDiagram.edit.parts.ClassEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?TopLevelNode?http://unicase.org/model/classes?Class", org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Class_2001); //$NON-NLS-1$
@@ -177,7 +177,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		switch (org.unicase.ui.diagram.classDiagram.part.ModelVisualIDRegistry
 				.getVisualID(view)) {
 		case org.unicase.ui.diagram.classDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			return getClassDiagram_1000Text(view);
+			return getClassDiagram_99Text(view);
 		case org.unicase.ui.diagram.classDiagram.edit.parts.ClassEditPart.VISUAL_ID:
 			return getClass_2001Text(view);
 		case org.unicase.ui.diagram.classDiagram.edit.parts.PackageEditPart.VISUAL_ID:
@@ -205,7 +205,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	/**
 	 * @generated
 	 */
-	private String getClassDiagram_1000Text(View view) {
+	private String getClassDiagram_99Text(View view) {
 		ClassDiagram domainModelElement = (ClassDiagram) view.getElement();
 		if (domainModelElement != null) {
 			return domainModelElement.getName();
@@ -213,7 +213,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 			org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorPlugin
 					.getInstance()
 					.logError(
-							"No domain element for view with visualID = " + 1000); //$NON-NLS-1$
+							"No domain element for view with visualID = " + 99); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
