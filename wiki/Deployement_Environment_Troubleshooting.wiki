@@ -1,6 +1,6 @@
 If you have trouble starting UNICASE (server or client), you get an unexpected exception or similar, it is best practice to bring your development environment to a well-defined state. Situations in which this might be necessary include:
 
-    * changes to the UNICASE model, emfstore model or workspace model
+    * changes to the .ecore model
     * a server crash where the database was rolled back
     * a client crash where the workspace was damaged
 
@@ -13,5 +13,5 @@ Follow this procedure to fix your development environment
    # Delete the eclipse runtime workspace
          * Go to your default workspace location
          * Delete the folder named runtime-!EclipseApplication
-   # Delete the UNICASE workspace: Delete the folder ~/.unicase.dev/workspace
+   # Delete the UNICASE workspace: Delete the folder ~/.emfstore/ or ~/.unicase/  
    # Restart Eclipse
