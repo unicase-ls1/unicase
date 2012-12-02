@@ -14,8 +14,6 @@ We have a workflow and a set of rules in place to work with the ecore models in 
    # For newly created model packages update the org.unicase.model plugin.xml to export the package, package.impl and package.util packages. Also update the org.unicase.model.edit plugin.xml to export the package.provider package and make sure to register the appropriate itemProviderAdapter factories under extensions.
    # Check for compile problems
    # Reload and check depending models for compile or validation problems
-         * esmodel depends on model
-         * workspace depends on esmodel and model
    # Organize imports on model and edit (!ContextMenu: Source -> Organize Imports)
    # Format model and edit (!ContextMenu: Source -> Format)
    # Update all plugins to detect potential problems
