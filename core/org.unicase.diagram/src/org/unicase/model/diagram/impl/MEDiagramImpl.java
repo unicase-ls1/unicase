@@ -286,10 +286,7 @@ public abstract class MEDiagramImpl extends AttachmentImpl implements MEDiagram 
 	 * @generated NOT
 	 * @return the type
 	 */
-	public String getType() {
-		throw new UnsupportedOperationException(
-			"getType is not implemented. Must be implmented in any subtype of MEDiagram");
-	}
+	public abstract String getType();
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

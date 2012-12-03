@@ -132,28 +132,6 @@ public class ModelDocumentProvider extends org.unicase.ui.unicasecommon.diagram.
 	}
 
 	/**
-	 * @generated NOT
-	 * @return An empty document
-	 */
-	@Override
-	protected IDocument createEmptyDocument() {
-		return super.createEmptyDocument();
-	}
-
-	/**
-	 * @generated NOT
-	 * @see org.unicase.ui.common.diagram.part.ModelDocumentProvider#setDocumentContent(org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument,
-	 *      org.eclipse.ui.IEditorInput)
-	 * @param document The document whose content should be set
-	 * @param element The new content element
-	 * @throws CoreException if an exceptional error occurs
-	 */
-	@Override
-	protected void setDocumentContent(IDocument document, IEditorInput element) throws CoreException {
-		super.setDocumentContent(document, element);
-	}
-
-	/**
 	 * @generated
 	 */
 	@Override
