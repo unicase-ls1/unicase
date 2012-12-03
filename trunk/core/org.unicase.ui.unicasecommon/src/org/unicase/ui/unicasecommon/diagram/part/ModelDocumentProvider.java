@@ -45,7 +45,7 @@ public abstract class ModelDocumentProvider extends AbstractDocumentProvider imp
 	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.AbstractDocumentProvider#createEmptyDocument()
 	 */
 	@Override
-	protected IDocument createEmptyDocument() {
+	final protected IDocument createEmptyDocument() {
 		DiagramDocument document = new DiagramDocument();
 		document.setEditingDomain((TransactionalEditingDomain) WorkspaceManager.getInstance().getCurrentWorkspace()
 			.getEditingDomain());
@@ -59,7 +59,7 @@ public abstract class ModelDocumentProvider extends AbstractDocumentProvider imp
 	 * @param element The new content element
 	 * @throws CoreException if an exceptional error occurs
 	 */
-	protected void setDocumentContent(IDocument document, IEditorInput element) throws CoreException {
+	final protected void setDocumentContent(IDocument document, IEditorInput element) throws CoreException {
 		IDiagramDocument diagramDocument = (IDiagramDocument) document;
 		TransactionalEditingDomain domain = diagramDocument.getEditingDomain();
 		if (element instanceof FileEditorInput) {
@@ -112,6 +112,9 @@ public abstract class ModelDocumentProvider extends AbstractDocumentProvider imp
 				}
 				// JH: Build switch for different diagram types
 				final Diagram result = ViewService.createDiagram(diagram, id, getPreferencesHint());
+				if (result == null) {
+					return null;
+				}
 				result.setElement(diagram);
 				new ECPCommand(diagram) {
 					@Override
