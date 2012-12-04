@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: UNICASE Dashboard Plug-in
+Bundle-SymbolicName: org.unicase.ui.dashboard;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.unicase.ui.dashboard.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.unicase.ui.unicasecommon;visibility:=reexport
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.unicase.ui.dashboard,
+ org.unicase.ui.dashboard.notificationProviders,
+ org.unicase.ui.dashboard.view,
+ org.unicase.ui.dashboard.view.widgets
+Bundle-Vendor: unicase.org
+Bundle-ActivationPolicy: lazy
