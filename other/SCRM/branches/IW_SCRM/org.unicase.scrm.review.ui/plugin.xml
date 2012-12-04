@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Review"
+            id="org.unicase.scrm.review.ui">
+      </category>
+      <view
+            name="Review View"
+            icon="icons/sample.gif"
+            category="org.unicase.scrm.review.ui"
+            class="org.unicase.scrm.review.ui.views.ReviewView"
+            id="org.unicase.scrm.review.ui.views.ReviewView">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               ratio="0.5"
+               relative="org.eclipse.ui.views.TaskList"
+               relationship="right"
+               id="org.unicase.scrm.review.ui.views.ReviewView">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+
+</plugin>
