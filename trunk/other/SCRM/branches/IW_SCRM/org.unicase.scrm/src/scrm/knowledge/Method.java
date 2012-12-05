@@ -1,0 +1,167 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package scrm.knowledge;
+
+import org.eclipse.emf.common.util.EList;
+
+import scrm.requirements.Performance;
+import scrm.requirements.Requirement;
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Method</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link scrm.knowledge.Method#getSolvedProblem <em>Solved Problem</em>}</li>
+ *   <li>{@link scrm.knowledge.Method#getDependencies <em>Dependencies</em>}</li>
+ *   <li>{@link scrm.knowledge.Method#getRealizingRequirement <em>Realizing Requirement</em>}</li>
+ *   <li>{@link scrm.knowledge.Method#getUsingModel <em>Using Model</em>}</li>
+ *   <li>{@link scrm.knowledge.Method#getPerformance <em>Performance</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @see scrm.knowledge.KnowledgePackage#getMethod()
+ * @model
+ * @generated
+ */
+public interface Method extends ScientificKnowledge {
+	/**
+	 * Returns the value of the '<em><b>Solved Problem</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link scrm.knowledge.ScientificProblem#getSolvingMethods <em>Solving Methods</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Solved Problem</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Solved Problem</em>' reference.
+	 * @see #setSolvedProblem(ScientificProblem)
+	 * @see scrm.knowledge.KnowledgePackage#getMethod_SolvedProblem()
+	 * @see scrm.knowledge.ScientificProblem#getSolvingMethods
+	 * @model opposite="solvingMethods"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
+	 * @generated
+	 */
+	ScientificProblem getSolvedProblem();
+
+	/**
+	 * Sets the value of the '{@link scrm.knowledge.Method#getSolvedProblem <em>Solved Problem</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Solved Problem</em>' reference.
+	 * @see #getSolvedProblem()
+	 * @generated
+	 */
+	void setSolvedProblem(ScientificProblem value);
+
+	/**
+	 * Returns the value of the '<em><b>Dependencies</b></em>' reference list.
+	 * The list contents are of type {@link scrm.knowledge.Assumption}.
+	 * It is bidirectional and its opposite is '{@link scrm.knowledge.Assumption#getDependingMethod <em>Depending Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Dependencies</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Dependencies</em>' reference list.
+	 * @see scrm.knowledge.KnowledgePackage#getMethod_Dependencies()
+	 * @see scrm.knowledge.Assumption#getDependingMethod
+	 * @model opposite="dependingMethod"
+	 *        annotation="org.unicase.ui.meeditor position='right' priority='10'"
+	 * @generated
+	 */
+	EList<Assumption> getDependencies();
+
+	/**
+	 * Returns the value of the '<em><b>Realizing Requirement</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.Requirement#getRealizedMethod <em>Realized Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Realizing Requirement</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Realizing Requirement</em>' reference.
+	 * @see #setRealizingRequirement(Requirement)
+	 * @see scrm.knowledge.KnowledgePackage#getMethod_RealizingRequirement()
+	 * @see scrm.requirements.Requirement#getRealizedMethod
+	 * @model opposite="realizedMethod"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='25'"
+	 * @generated
+	 */
+	Requirement getRealizingRequirement();
+
+	/**
+	 * Sets the value of the '{@link scrm.knowledge.Method#getRealizingRequirement <em>Realizing Requirement</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Realizing Requirement</em>' reference.
+	 * @see #getRealizingRequirement()
+	 * @generated
+	 */
+	void setRealizingRequirement(Requirement value);
+
+	/**
+	 * Returns the value of the '<em><b>Using Model</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link scrm.knowledge.Model#getUsedInMethods <em>Used In Methods</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Using Model</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Using Model</em>' reference.
+	 * @see #setUsingModel(Model)
+	 * @see scrm.knowledge.KnowledgePackage#getMethod_UsingModel()
+	 * @see scrm.knowledge.Model#getUsedInMethods
+	 * @model opposite="usedInMethods"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='20'"
+	 * @generated
+	 */
+	Model getUsingModel();
+
+	/**
+	 * Sets the value of the '{@link scrm.knowledge.Method#getUsingModel <em>Using Model</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Using Model</em>' reference.
+	 * @see #getUsingModel()
+	 * @generated
+	 */
+	void setUsingModel(Model value);
+
+	/**
+	 * Returns the value of the '<em><b>Performance</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Performance</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Performance</em>' reference.
+	 * @see #setPerformance(Performance)
+	 * @see scrm.knowledge.KnowledgePackage#getMethod_Performance()
+	 * @model annotation="org.unicase.ui.meeditor position='left' priority='30'"
+	 * @generated
+	 */
+	Performance getPerformance();
+
+	/**
+	 * Sets the value of the '{@link scrm.knowledge.Method#getPerformance <em>Performance</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Performance</em>' reference.
+	 * @see #getPerformance()
+	 * @generated
+	 */
+	void setPerformance(Performance value);
+
+} // Method
