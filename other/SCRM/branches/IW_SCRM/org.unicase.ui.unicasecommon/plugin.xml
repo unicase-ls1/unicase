@@ -662,16 +662,6 @@
      </decorator>
   </extension>
     <extension
-          point="org.eclipse.ui.perspectives">
-       <perspective
-             class="org.unicase.ui.unicasecommon.common.UnicasePerspective"
-             fixed="false"
-             icon="icons/unicase.png"
-             id="org.unicase.ui.unicasecommon.common.UnicasePerspective"
-             name="Unicase">
-       </perspective>
-    </extension>
-    <extension
       point="org.eclipse.ui.perspectiveExtensions">
    <perspectiveExtension
          targetID="org.unicase.ui.unicasecommon.common.UnicasePerspective">
