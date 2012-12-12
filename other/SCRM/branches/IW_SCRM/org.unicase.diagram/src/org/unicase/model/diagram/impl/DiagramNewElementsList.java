@@ -78,7 +78,7 @@ public class DiagramNewElementsList extends BasicInternalEList<UnicaseModelEleme
 		if (leafsection == null && project != null) {
 			return project.getModelElements().add(arg0);
 		} else if (leafsection != null) {
-			return leafsection.getModelElements().add(arg0);
+			return leafsection.getContainedElements().add(arg0);
 
 		} else {
 			throw new IllegalStateException("Neither project nor leafsection available for new element");

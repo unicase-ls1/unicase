@@ -10,27 +10,21 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import scrm.impl.SCRMModelElementImpl;
-
 import scrm.knowledge.Assumption;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.KnowledgeSpace;
 import scrm.knowledge.MathematicalModel;
 import scrm.knowledge.NumericalMethod;
 import scrm.knowledge.ScientificProblem;
-
 import scrm.requirements.Performance;
 import scrm.requirements.Requirement;
 import scrm.requirements.RequirementsPackage;
@@ -46,7 +40,7 @@ import scrm.requirements.RequirementsPackage;
  *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getSolvedProblem <em>Solved Problem</em>}</li>
  *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getRealizingRequirement <em>Realizing Requirement</em>}</li>
- *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getMathematicalModel <em>Mathematical Model</em>}</li>
+ *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getUsingMathematicalModel <em>Using Mathematical Model</em>}</li>
  *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getPerformance <em>Performance</em>}</li>
  *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getTheory <em>Theory</em>}</li>
  *   <li>{@link scrm.knowledge.impl.NumericalMethodImpl#getAlgorithm <em>Algorithm</em>}</li>
@@ -88,14 +82,14 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 	protected Requirement realizingRequirement;
 
 	/**
-	 * The cached value of the '{@link #getMathematicalModel() <em>Mathematical Model</em>}' reference.
+	 * The cached value of the '{@link #getUsingMathematicalModel() <em>Using Mathematical Model</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMathematicalModel()
+	 * @see #getUsingMathematicalModel()
 	 * @generated
 	 * @ordered
 	 */
-	protected MathematicalModel mathematicalModel;
+	protected MathematicalModel usingMathematicalModel;
 
 	/**
 	 * The cached value of the '{@link #getPerformance() <em>Performance</em>}' reference.
@@ -407,20 +401,20 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MathematicalModel getMathematicalModel() {
-		if (mathematicalModel != null && mathematicalModel.eIsProxy()) {
-			InternalEObject oldMathematicalModel = (InternalEObject) mathematicalModel;
-			mathematicalModel = (MathematicalModel) eResolveProxy(oldMathematicalModel);
-			if (mathematicalModel != oldMathematicalModel) {
+	public MathematicalModel getUsingMathematicalModel() {
+		if (usingMathematicalModel != null && usingMathematicalModel.eIsProxy()) {
+			InternalEObject oldUsingMathematicalModel = (InternalEObject) usingMathematicalModel;
+			usingMathematicalModel = (MathematicalModel) eResolveProxy(oldUsingMathematicalModel);
+			if (usingMathematicalModel != oldUsingMathematicalModel) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(
 							this,
 							Notification.RESOLVE,
-							KnowledgePackage.NUMERICAL_METHOD__MATHEMATICAL_MODEL,
-							oldMathematicalModel, mathematicalModel));
+							KnowledgePackage.NUMERICAL_METHOD__USING_MATHEMATICAL_MODEL,
+							oldUsingMathematicalModel, usingMathematicalModel));
 			}
 		}
-		return mathematicalModel;
+		return usingMathematicalModel;
 	}
 
 	/**
@@ -428,8 +422,8 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MathematicalModel basicGetMathematicalModel() {
-		return mathematicalModel;
+	public MathematicalModel basicGetUsingMathematicalModel() {
+		return usingMathematicalModel;
 	}
 
 	/**
@@ -437,15 +431,16 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetMathematicalModel(
-			MathematicalModel newMathematicalModel, NotificationChain msgs) {
-		MathematicalModel oldMathematicalModel = mathematicalModel;
-		mathematicalModel = newMathematicalModel;
+	public NotificationChain basicSetUsingMathematicalModel(
+			MathematicalModel newUsingMathematicalModel, NotificationChain msgs) {
+		MathematicalModel oldUsingMathematicalModel = usingMathematicalModel;
+		usingMathematicalModel = newUsingMathematicalModel;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
+			ENotificationImpl notification = new ENotificationImpl(
+					this,
 					Notification.SET,
-					KnowledgePackage.NUMERICAL_METHOD__MATHEMATICAL_MODEL,
-					oldMathematicalModel, newMathematicalModel);
+					KnowledgePackage.NUMERICAL_METHOD__USING_MATHEMATICAL_MODEL,
+					oldUsingMathematicalModel, newUsingMathematicalModel);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -459,26 +454,32 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMathematicalModel(MathematicalModel newMathematicalModel) {
-		if (newMathematicalModel != mathematicalModel) {
+	public void setUsingMathematicalModel(
+			MathematicalModel newUsingMathematicalModel) {
+		if (newUsingMathematicalModel != usingMathematicalModel) {
 			NotificationChain msgs = null;
-			if (mathematicalModel != null)
-				msgs = ((InternalEObject) mathematicalModel).eInverseRemove(
-						this,
-						KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS,
-						MathematicalModel.class, msgs);
-			if (newMathematicalModel != null)
-				msgs = ((InternalEObject) newMathematicalModel).eInverseAdd(
-						this,
-						KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS,
-						MathematicalModel.class, msgs);
-			msgs = basicSetMathematicalModel(newMathematicalModel, msgs);
+			if (usingMathematicalModel != null)
+				msgs = ((InternalEObject) usingMathematicalModel)
+						.eInverseRemove(
+								this,
+								KnowledgePackage.MATHEMATICAL_MODEL__USEDIN_NUMERICAL_METHODS,
+								MathematicalModel.class, msgs);
+			if (newUsingMathematicalModel != null)
+				msgs = ((InternalEObject) newUsingMathematicalModel)
+						.eInverseAdd(
+								this,
+								KnowledgePackage.MATHEMATICAL_MODEL__USEDIN_NUMERICAL_METHODS,
+								MathematicalModel.class, msgs);
+			msgs = basicSetUsingMathematicalModel(newUsingMathematicalModel,
+					msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					KnowledgePackage.NUMERICAL_METHOD__MATHEMATICAL_MODEL,
-					newMathematicalModel, newMathematicalModel));
+			eNotify(new ENotificationImpl(
+					this,
+					Notification.SET,
+					KnowledgePackage.NUMERICAL_METHOD__USING_MATHEMATICAL_MODEL,
+					newUsingMathematicalModel, newUsingMathematicalModel));
 	}
 
 	/**
@@ -632,13 +633,15 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 						this, RequirementsPackage.REQUIREMENT__REALIZED_METHOD,
 						Requirement.class, msgs);
 			return basicSetRealizingRequirement((Requirement) otherEnd, msgs);
-		case KnowledgePackage.NUMERICAL_METHOD__MATHEMATICAL_MODEL:
-			if (mathematicalModel != null)
-				msgs = ((InternalEObject) mathematicalModel).eInverseRemove(
-						this,
-						KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS,
-						MathematicalModel.class, msgs);
-			return basicSetMathematicalModel((MathematicalModel) otherEnd, msgs);
+		case KnowledgePackage.NUMERICAL_METHOD__USING_MATHEMATICAL_MODEL:
+			if (usingMathematicalModel != null)
+				msgs = ((InternalEObject) usingMathematicalModel)
+						.eInverseRemove(
+								this,
+								KnowledgePackage.MATHEMATICAL_MODEL__USEDIN_NUMERICAL_METHODS,
+								MathematicalModel.class, msgs);
+			return basicSetUsingMathematicalModel((MathematicalModel) otherEnd,
+					msgs);
 		case KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE:
 			if (performance != null)
 				msgs = ((InternalEObject) performance).eInverseRemove(this,
@@ -667,8 +670,8 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 					msgs);
 		case KnowledgePackage.NUMERICAL_METHOD__REALIZING_REQUIREMENT:
 			return basicSetRealizingRequirement(null, msgs);
-		case KnowledgePackage.NUMERICAL_METHOD__MATHEMATICAL_MODEL:
-			return basicSetMathematicalModel(null, msgs);
+		case KnowledgePackage.NUMERICAL_METHOD__USING_MATHEMATICAL_MODEL:
+			return basicSetUsingMathematicalModel(null, msgs);
 		case KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE:
 			return basicSetPerformance(null, msgs);
 		}
@@ -716,10 +719,10 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 			if (resolve)
 				return getRealizingRequirement();
 			return basicGetRealizingRequirement();
-		case KnowledgePackage.NUMERICAL_METHOD__MATHEMATICAL_MODEL:
+		case KnowledgePackage.NUMERICAL_METHOD__USING_MATHEMATICAL_MODEL:
 			if (resolve)
-				return getMathematicalModel();
-			return basicGetMathematicalModel();
+				return getUsingMathematicalModel();
+			return basicGetUsingMathematicalModel();
 		case KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE:
 			if (resolve)
 				return getPerformance();
@@ -755,8 +758,8 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 		case KnowledgePackage.NUMERICAL_METHOD__REALIZING_REQUIREMENT:
 			setRealizingRequirement((Requirement) newValue);
 			return;
-		case KnowledgePackage.NUMERICAL_METHOD__MATHEMATICAL_MODEL:
-			setMathematicalModel((MathematicalModel) newValue);
+		case KnowledgePackage.NUMERICAL_METHOD__USING_MATHEMATICAL_MODEL:
+			setUsingMathematicalModel((MathematicalModel) newValue);
 			return;
 		case KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE:
 			setPerformance((Performance) newValue);
@@ -791,8 +794,8 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 		case KnowledgePackage.NUMERICAL_METHOD__REALIZING_REQUIREMENT:
 			setRealizingRequirement((Requirement) null);
 			return;
-		case KnowledgePackage.NUMERICAL_METHOD__MATHEMATICAL_MODEL:
-			setMathematicalModel((MathematicalModel) null);
+		case KnowledgePackage.NUMERICAL_METHOD__USING_MATHEMATICAL_MODEL:
+			setUsingMathematicalModel((MathematicalModel) null);
 			return;
 		case KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE:
 			setPerformance((Performance) null);
@@ -823,8 +826,8 @@ public class NumericalMethodImpl extends SCRMModelElementImpl implements
 			return dependencies != null && !dependencies.isEmpty();
 		case KnowledgePackage.NUMERICAL_METHOD__REALIZING_REQUIREMENT:
 			return realizingRequirement != null;
-		case KnowledgePackage.NUMERICAL_METHOD__MATHEMATICAL_MODEL:
-			return mathematicalModel != null;
+		case KnowledgePackage.NUMERICAL_METHOD__USING_MATHEMATICAL_MODEL:
+			return usingMathematicalModel != null;
 		case KnowledgePackage.NUMERICAL_METHOD__PERFORMANCE:
 			return performance != null;
 		case KnowledgePackage.NUMERICAL_METHOD__THEORY:

@@ -6,7 +6,6 @@
  */
 package scrm.requirements.dataProcess;
 
-import scrm.requirements.DataFlow;
 import scrm.requirements.Requirement;
 
 /**
@@ -17,7 +16,6 @@ import scrm.requirements.Requirement;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link scrm.requirements.dataProcess.Process#getDataFlow <em>Data Flow</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.Process#getPredecessor <em>Predecessor</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.Process#getSuccessor <em>Successor</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.Process#getContainingDataProcessSpace <em>Containing Data Process Space</em>}</li>
@@ -32,35 +30,6 @@ import scrm.requirements.Requirement;
  */
 public interface Process extends Requirement {
 	/**
-	 * Returns the value of the '<em><b>Data Flow</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link scrm.requirements.DataFlow#getSpecifiedProcess <em>Specified Process</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Data Flow</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Data Flow</em>' reference.
-	 * @see #setDataFlow(DataFlow)
-	 * @see scrm.requirements.dataProcess.DataProcessPackage#getProcess_DataFlow()
-	 * @see scrm.requirements.DataFlow#getSpecifiedProcess
-	 * @model opposite="specifiedProcess"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
-	 * @generated
-	 */
-	DataFlow getDataFlow();
-
-	/**
-	 * Sets the value of the '{@link scrm.requirements.dataProcess.Process#getDataFlow <em>Data Flow</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Data Flow</em>' reference.
-	 * @see #getDataFlow()
-	 * @generated
-	 */
-	void setDataFlow(DataFlow value);
-
-	/**
 	 * Returns the value of the '<em><b>Predecessor</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link scrm.requirements.dataProcess.Process#getSuccessor <em>Successor</em>}'.
 	 * <!-- begin-user-doc -->
@@ -74,7 +43,7 @@ public interface Process extends Requirement {
 	 * @see scrm.requirements.dataProcess.DataProcessPackage#getProcess_Predecessor()
 	 * @see scrm.requirements.dataProcess.Process#getSuccessor
 	 * @model opposite="successor"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='16'"
 	 * @generated
 	 */
 	Process getPredecessor();
@@ -103,7 +72,7 @@ public interface Process extends Requirement {
 	 * @see scrm.requirements.dataProcess.DataProcessPackage#getProcess_Successor()
 	 * @see scrm.requirements.dataProcess.Process#getPredecessor
 	 * @model opposite="predecessor"
-	 *        annotation="org.unicase.ui.meeditor position='left' priority='20'"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='16'"
 	 * @generated
 	 */
 	Process getSuccessor();
@@ -161,6 +130,7 @@ public interface Process extends Requirement {
 	 * @see scrm.requirements.dataProcess.DataProcessPackage#getProcess_ErrorHandling()
 	 * @see scrm.requirements.dataProcess.ErrorHandling#getHandledProcess
 	 * @model opposite="handledProcess"
+	 *        annotation="org.unicase.ui.meeditor position='right' priority='16'"
 	 * @generated
 	 */
 	ErrorHandling getErrorHandling();
@@ -189,6 +159,7 @@ public interface Process extends Requirement {
 	 * @see scrm.requirements.dataProcess.DataProcessPackage#getProcess_StatusMonitoring()
 	 * @see scrm.requirements.dataProcess.StatusMonitoring#getMonitoredProcess
 	 * @model opposite="monitoredProcess"
+	 *        annotation="org.unicase.ui.meeditor position='right' priority='16'"
 	 * @generated
 	 */
 	StatusMonitoring getStatusMonitoring();

@@ -11,7 +11,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -62,7 +61,6 @@ public class DataDefinitionItemProvider extends SCRMModelElementItemProvider
 			addDefinedRequirementPropertyDescriptor(object);
 			addAccuracyPropertyDescriptor(object);
 			addRangePropertyDescriptor(object);
-			addDataTypePropertyDescriptor(object);
 			addFormatPropertyDescriptor(object);
 			addProvidedInterfacePropertyDescriptor(object);
 			addRequiredInterfacePropertyDescriptor(object);
@@ -213,26 +211,6 @@ public class DataDefinitionItemProvider extends SCRMModelElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Data Type feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDataTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_DataDefinition_dataType_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_DataDefinition_dataType_feature",
-						"_UI_DataDefinition_type"),
-				RequirementsPackage.Literals.DATA_DEFINITION__DATA_TYPE, true,
-				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
-	}
-
-	/**
 	 * This returns DataDefinition.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -269,7 +247,6 @@ public class DataDefinitionItemProvider extends SCRMModelElementItemProvider
 		switch (notification.getFeatureID(DataDefinition.class)) {
 		case RequirementsPackage.DATA_DEFINITION__ACCURACY:
 		case RequirementsPackage.DATA_DEFINITION__RANGE:
-		case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
 		case RequirementsPackage.DATA_DEFINITION__FORMAT:
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), false, true));

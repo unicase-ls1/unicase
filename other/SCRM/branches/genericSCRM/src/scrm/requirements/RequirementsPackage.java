@@ -91,6 +91,78 @@ public interface RequirementsPackage extends EPackage {
 	int IREQUIREMENT__DESCRIPTION = ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IREQUIREMENT__ANNOTATIONS = ScrmPackage.SCRM_MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IREQUIREMENT__ATTACHMENTS = ScrmPackage.SCRM_MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IREQUIREMENT__INCOMING_DOCUMENT_REFERENCES = ScrmPackage.SCRM_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IREQUIREMENT__LEAF_SECTION = ScrmPackage.SCRM_MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IREQUIREMENT__STATE = ScrmPackage.SCRM_MODEL_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IREQUIREMENT__COMMENTS = ScrmPackage.SCRM_MODEL_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IREQUIREMENT__CREATION_DATE = ScrmPackage.SCRM_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IREQUIREMENT__CREATOR = ScrmPackage.SCRM_MODEL_ELEMENT__CREATOR;
+
+	/**
 	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -144,6 +216,78 @@ public interface RequirementsPackage extends EPackage {
 	 * @ordered
 	 */
 	int INTERFACE__DESCRIPTION = IREQUIREMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERFACE__ANNOTATIONS = IREQUIREMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERFACE__ATTACHMENTS = IREQUIREMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERFACE__INCOMING_DOCUMENT_REFERENCES = IREQUIREMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERFACE__LEAF_SECTION = IREQUIREMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERFACE__STATE = IREQUIREMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERFACE__COMMENTS = IREQUIREMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERFACE__CREATION_DATE = IREQUIREMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTERFACE__CREATOR = IREQUIREMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
@@ -200,22 +344,22 @@ public interface RequirementsPackage extends EPackage {
 	int INTERFACE__REQUIRING_DATA = IREQUIREMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Providing Requirements</b></em>' reference list.
+	 * The feature id for the '<em><b>Details Of Providing Functions And Properties</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE__PROVIDING_REQUIREMENTS = IREQUIREMENT_FEATURE_COUNT + 4;
+	int INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES = IREQUIREMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Requiring Requirements</b></em>' reference list.
+	 * The feature id for the '<em><b>Details Of Requiring Functions And Properties</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTERFACE__REQUIRING_REQUIREMENTS = IREQUIREMENT_FEATURE_COUNT + 5;
+	int INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES = IREQUIREMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Interface</em>' class.
@@ -285,6 +429,78 @@ public interface RequirementsPackage extends EPackage {
 	int REQUIREMENT__DESCRIPTION = IREQUIREMENT__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT__ANNOTATIONS = IREQUIREMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT__ATTACHMENTS = IREQUIREMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT__INCOMING_DOCUMENT_REFERENCES = IREQUIREMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT__LEAF_SECTION = IREQUIREMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT__STATE = IREQUIREMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT__COMMENTS = IREQUIREMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT__CREATION_DATE = IREQUIREMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT__CREATOR = IREQUIREMENT__CREATOR;
+
+	/**
 	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -330,13 +546,13 @@ public interface RequirementsPackage extends EPackage {
 	int REQUIREMENT__SPECIFIED_FEATURE = IREQUIREMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
+	 * The feature id for the '<em><b>Handling Data</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__DEFINING_DATA = IREQUIREMENT_FEATURE_COUNT + 3;
+	int REQUIREMENT__HANDLING_DATA = IREQUIREMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Realized Method</b></em>' reference.
@@ -405,16 +621,6 @@ public interface RequirementsPackage extends EPackage {
 	int PERFORMANCE = 9;
 
 	/**
-	 * The meta object id for the '{@link scrm.requirements.impl.DataFlowImpl <em>Data Flow</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see scrm.requirements.impl.DataFlowImpl
-	 * @see scrm.requirements.impl.RequirementsPackageImpl#getDataFlow()
-	 * @generated
-	 */
-	int DATA_FLOW = 10;
-
-	/**
 	 * The meta object id for the '{@link scrm.requirements.impl.DataDefinitionImpl <em>Data Definition</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -422,7 +628,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @see scrm.requirements.impl.RequirementsPackageImpl#getDataDefinition()
 	 * @generated
 	 */
-	int DATA_DEFINITION = 11;
+	int DATA_DEFINITION = 10;
 
 	/**
 	 * The meta object id for the '{@link scrm.requirements.impl.RequirementSpaceImpl <em>Requirement Space</em>}' class.
@@ -451,6 +657,78 @@ public interface RequirementsPackage extends EPackage {
 	 * @ordered
 	 */
 	int REQUIREMENT_SPACE__DESCRIPTION = ScrmPackage.SCRM_SPACE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT_SPACE__ANNOTATIONS = ScrmPackage.SCRM_SPACE__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT_SPACE__ATTACHMENTS = ScrmPackage.SCRM_SPACE__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT_SPACE__INCOMING_DOCUMENT_REFERENCES = ScrmPackage.SCRM_SPACE__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT_SPACE__LEAF_SECTION = ScrmPackage.SCRM_SPACE__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT_SPACE__STATE = ScrmPackage.SCRM_SPACE__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT_SPACE__COMMENTS = ScrmPackage.SCRM_SPACE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT_SPACE__CREATION_DATE = ScrmPackage.SCRM_SPACE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUIREMENT_SPACE__CREATOR = ScrmPackage.SCRM_SPACE__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
@@ -516,6 +794,78 @@ public interface RequirementsPackage extends EPackage {
 	int FEATURE__DESCRIPTION = IREQUIREMENT__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__ANNOTATIONS = IREQUIREMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__ATTACHMENTS = IREQUIREMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__INCOMING_DOCUMENT_REFERENCES = IREQUIREMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__LEAF_SECTION = IREQUIREMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__STATE = IREQUIREMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__COMMENTS = IREQUIREMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__CREATION_DATE = IREQUIREMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__CREATOR = IREQUIREMENT__CREATOR;
+
+	/**
 	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -552,13 +902,13 @@ public interface RequirementsPackage extends EPackage {
 	int FEATURE__SUB_FEATURES = IREQUIREMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Super Feature</b></em>' container reference.
+	 * The feature id for the '<em><b>Parent Feature</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE__SUPER_FEATURE = IREQUIREMENT_FEATURE_COUNT + 2;
+	int FEATURE__PARENT_FEATURE = IREQUIREMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' reference list.
@@ -669,6 +1019,78 @@ public interface RequirementsPackage extends EPackage {
 	int HARDWARE__DESCRIPTION = IREQUIREMENT__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HARDWARE__ANNOTATIONS = IREQUIREMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HARDWARE__ATTACHMENTS = IREQUIREMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HARDWARE__INCOMING_DOCUMENT_REFERENCES = IREQUIREMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HARDWARE__LEAF_SECTION = IREQUIREMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HARDWARE__STATE = IREQUIREMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HARDWARE__COMMENTS = IREQUIREMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HARDWARE__CREATION_DATE = IREQUIREMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HARDWARE__CREATOR = IREQUIREMENT__CREATOR;
+
+	/**
 	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -750,6 +1172,78 @@ public interface RequirementsPackage extends EPackage {
 	int CONSTRAINT__DESCRIPTION = IREQUIREMENT__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__ANNOTATIONS = IREQUIREMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__ATTACHMENTS = IREQUIREMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__INCOMING_DOCUMENT_REFERENCES = IREQUIREMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__LEAF_SECTION = IREQUIREMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__STATE = IREQUIREMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__COMMENTS = IREQUIREMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__CREATION_DATE = IREQUIREMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__CREATOR = IREQUIREMENT__CREATOR;
+
+	/**
 	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -802,6 +1296,78 @@ public interface RequirementsPackage extends EPackage {
 	 * @ordered
 	 */
 	int USER_INTERFACE__DESCRIPTION = INTERFACE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_INTERFACE__ANNOTATIONS = INTERFACE__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_INTERFACE__ATTACHMENTS = INTERFACE__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_INTERFACE__INCOMING_DOCUMENT_REFERENCES = INTERFACE__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_INTERFACE__LEAF_SECTION = INTERFACE__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_INTERFACE__STATE = INTERFACE__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_INTERFACE__COMMENTS = INTERFACE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_INTERFACE__CREATION_DATE = INTERFACE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_INTERFACE__CREATOR = INTERFACE__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
@@ -858,22 +1424,22 @@ public interface RequirementsPackage extends EPackage {
 	int USER_INTERFACE__REQUIRING_DATA = INTERFACE__REQUIRING_DATA;
 
 	/**
-	 * The feature id for the '<em><b>Providing Requirements</b></em>' reference list.
+	 * The feature id for the '<em><b>Details Of Providing Functions And Properties</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_INTERFACE__PROVIDING_REQUIREMENTS = INTERFACE__PROVIDING_REQUIREMENTS;
+	int USER_INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES = INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Requiring Requirements</b></em>' reference list.
+	 * The feature id for the '<em><b>Details Of Requiring Functions And Properties</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_INTERFACE__REQUIRING_REQUIREMENTS = INTERFACE__REQUIRING_REQUIREMENTS;
+	int USER_INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES = INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES;
 
 	/**
 	 * The number of structural features of the '<em>User Interface</em>' class.
@@ -901,6 +1467,78 @@ public interface RequirementsPackage extends EPackage {
 	 * @ordered
 	 */
 	int SOFTWARE_INTERFACE__DESCRIPTION = INTERFACE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFTWARE_INTERFACE__ANNOTATIONS = INTERFACE__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFTWARE_INTERFACE__ATTACHMENTS = INTERFACE__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFTWARE_INTERFACE__INCOMING_DOCUMENT_REFERENCES = INTERFACE__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFTWARE_INTERFACE__LEAF_SECTION = INTERFACE__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFTWARE_INTERFACE__STATE = INTERFACE__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFTWARE_INTERFACE__COMMENTS = INTERFACE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFTWARE_INTERFACE__CREATION_DATE = INTERFACE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOFTWARE_INTERFACE__CREATOR = INTERFACE__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
@@ -957,31 +1595,31 @@ public interface RequirementsPackage extends EPackage {
 	int SOFTWARE_INTERFACE__REQUIRING_DATA = INTERFACE__REQUIRING_DATA;
 
 	/**
-	 * The feature id for the '<em><b>Providing Requirements</b></em>' reference list.
+	 * The feature id for the '<em><b>Details Of Providing Functions And Properties</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOFTWARE_INTERFACE__PROVIDING_REQUIREMENTS = INTERFACE__PROVIDING_REQUIREMENTS;
+	int SOFTWARE_INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES = INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Requiring Requirements</b></em>' reference list.
+	 * The feature id for the '<em><b>Details Of Requiring Functions And Properties</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOFTWARE_INTERFACE__REQUIRING_REQUIREMENTS = INTERFACE__REQUIRING_REQUIREMENTS;
+	int SOFTWARE_INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES = INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES;
 
 	/**
-	 * The feature id for the '<em><b>Data Types</b></em>' attribute.
+	 * The feature id for the '<em><b>Version</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SOFTWARE_INTERFACE__DATA_TYPES = INTERFACE_FEATURE_COUNT + 0;
+	int SOFTWARE_INTERFACE__VERSION = INTERFACE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Software Interface</em>' class.
@@ -1009,6 +1647,78 @@ public interface RequirementsPackage extends EPackage {
 	 * @ordered
 	 */
 	int PERFORMANCE__DESCRIPTION = REQUIREMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERFORMANCE__ANNOTATIONS = REQUIREMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERFORMANCE__ATTACHMENTS = REQUIREMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERFORMANCE__INCOMING_DOCUMENT_REFERENCES = REQUIREMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERFORMANCE__LEAF_SECTION = REQUIREMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERFORMANCE__STATE = REQUIREMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERFORMANCE__COMMENTS = REQUIREMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERFORMANCE__CREATION_DATE = REQUIREMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERFORMANCE__CREATOR = REQUIREMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
@@ -1056,13 +1766,13 @@ public interface RequirementsPackage extends EPackage {
 	int PERFORMANCE__SPECIFIED_FEATURE = REQUIREMENT__SPECIFIED_FEATURE;
 
 	/**
-	 * The feature id for the '<em><b>Defining Data</b></em>' reference list.
+	 * The feature id for the '<em><b>Handling Data</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PERFORMANCE__DEFINING_DATA = REQUIREMENT__DEFINING_DATA;
+	int PERFORMANCE__HANDLING_DATA = REQUIREMENT__HANDLING_DATA;
 
 	/**
 	 * The feature id for the '<em><b>Realized Method</b></em>' reference.
@@ -1125,60 +1835,6 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_FLOW__NAME = IREQUIREMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_FLOW__DESCRIPTION = IREQUIREMENT__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_FLOW__DISPLAYING_DIAGRAMS = IREQUIREMENT__DISPLAYING_DIAGRAMS;
-
-	/**
-	 * The feature id for the '<em><b>Containing Requirement Space</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_FLOW__CONTAINING_REQUIREMENT_SPACE = IREQUIREMENT__CONTAINING_REQUIREMENT_SPACE;
-
-	/**
-	 * The feature id for the '<em><b>Specified Process</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_FLOW__SPECIFIED_PROCESS = IREQUIREMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Data Flow</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_FLOW_FEATURE_COUNT = IREQUIREMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
 	int DATA_DEFINITION__NAME = IREQUIREMENT__NAME;
 
 	/**
@@ -1189,6 +1845,78 @@ public interface RequirementsPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATA_DEFINITION__DESCRIPTION = IREQUIREMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_DEFINITION__ANNOTATIONS = IREQUIREMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_DEFINITION__ATTACHMENTS = IREQUIREMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_DEFINITION__INCOMING_DOCUMENT_REFERENCES = IREQUIREMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_DEFINITION__LEAF_SECTION = IREQUIREMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_DEFINITION__STATE = IREQUIREMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_DEFINITION__COMMENTS = IREQUIREMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_DEFINITION__CREATION_DATE = IREQUIREMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_DEFINITION__CREATOR = IREQUIREMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
@@ -1236,22 +1964,13 @@ public interface RequirementsPackage extends EPackage {
 	int DATA_DEFINITION__RANGE = IREQUIREMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Data Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_DEFINITION__DATA_TYPE = IREQUIREMENT_FEATURE_COUNT + 3;
-
-	/**
 	 * The feature id for the '<em><b>Format</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_DEFINITION__FORMAT = IREQUIREMENT_FEATURE_COUNT + 4;
+	int DATA_DEFINITION__FORMAT = IREQUIREMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Provided Interface</b></em>' reference.
@@ -1260,7 +1979,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_DEFINITION__PROVIDED_INTERFACE = IREQUIREMENT_FEATURE_COUNT + 5;
+	int DATA_DEFINITION__PROVIDED_INTERFACE = IREQUIREMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Required Interface</b></em>' reference.
@@ -1269,7 +1988,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_DEFINITION__REQUIRED_INTERFACE = IREQUIREMENT_FEATURE_COUNT + 6;
+	int DATA_DEFINITION__REQUIRED_INTERFACE = IREQUIREMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Data Definition</em>' class.
@@ -1278,7 +1997,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_DEFINITION_FEATURE_COUNT = IREQUIREMENT_FEATURE_COUNT + 7;
+	int DATA_DEFINITION_FEATURE_COUNT = IREQUIREMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * Returns the meta object for class '{@link scrm.requirements.IRequirement <em>IRequirement</em>}'.
@@ -1356,26 +2075,26 @@ public interface RequirementsPackage extends EPackage {
 	EReference getInterface_RequiringData();
 
 	/**
-	 * Returns the meta object for the reference list '{@link scrm.requirements.Interface#getProvidingRequirements <em>Providing Requirements</em>}'.
+	 * Returns the meta object for the reference list '{@link scrm.requirements.Interface#getDetailsOfProvidingFunctionsAndProperties <em>Details Of Providing Functions And Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Providing Requirements</em>'.
-	 * @see scrm.requirements.Interface#getProvidingRequirements()
+	 * @return the meta object for the reference list '<em>Details Of Providing Functions And Properties</em>'.
+	 * @see scrm.requirements.Interface#getDetailsOfProvidingFunctionsAndProperties()
 	 * @see #getInterface()
 	 * @generated
 	 */
-	EReference getInterface_ProvidingRequirements();
+	EReference getInterface_DetailsOfProvidingFunctionsAndProperties();
 
 	/**
-	 * Returns the meta object for the reference list '{@link scrm.requirements.Interface#getRequiringRequirements <em>Requiring Requirements</em>}'.
+	 * Returns the meta object for the reference list '{@link scrm.requirements.Interface#getDetailsOfRequiringFunctionsAndProperties <em>Details Of Requiring Functions And Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Requiring Requirements</em>'.
-	 * @see scrm.requirements.Interface#getRequiringRequirements()
+	 * @return the meta object for the reference list '<em>Details Of Requiring Functions And Properties</em>'.
+	 * @see scrm.requirements.Interface#getDetailsOfRequiringFunctionsAndProperties()
 	 * @see #getInterface()
 	 * @generated
 	 */
-	EReference getInterface_RequiringRequirements();
+	EReference getInterface_DetailsOfRequiringFunctionsAndProperties();
 
 	/**
 	 * Returns the meta object for class '{@link scrm.requirements.Feature <em>Feature</em>}'.
@@ -1465,15 +2184,15 @@ public interface RequirementsPackage extends EPackage {
 	EReference getFeature_SubFeatures();
 
 	/**
-	 * Returns the meta object for the container reference '{@link scrm.requirements.Feature#getSuperFeature <em>Super Feature</em>}'.
+	 * Returns the meta object for the container reference '{@link scrm.requirements.Feature#getParentFeature <em>Parent Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Super Feature</em>'.
-	 * @see scrm.requirements.Feature#getSuperFeature()
+	 * @return the meta object for the container reference '<em>Parent Feature</em>'.
+	 * @see scrm.requirements.Feature#getParentFeature()
 	 * @see #getFeature()
 	 * @generated
 	 */
-	EReference getFeature_SuperFeature();
+	EReference getFeature_ParentFeature();
 
 	/**
 	 * Returns the meta object for the reference list '{@link scrm.requirements.Feature#getRequiredFeatures <em>Required Features</em>}'.
@@ -1638,15 +2357,15 @@ public interface RequirementsPackage extends EPackage {
 	EReference getRequirement_SpecifiedFeature();
 
 	/**
-	 * Returns the meta object for the reference list '{@link scrm.requirements.Requirement#getDefiningData <em>Defining Data</em>}'.
+	 * Returns the meta object for the reference list '{@link scrm.requirements.Requirement#getHandlingData <em>Handling Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Defining Data</em>'.
-	 * @see scrm.requirements.Requirement#getDefiningData()
+	 * @return the meta object for the reference list '<em>Handling Data</em>'.
+	 * @see scrm.requirements.Requirement#getHandlingData()
 	 * @see #getRequirement()
 	 * @generated
 	 */
-	EReference getRequirement_DefiningData();
+	EReference getRequirement_HandlingData();
 
 	/**
 	 * Returns the meta object for the reference '{@link scrm.requirements.Requirement#getRealizedMethod <em>Realized Method</em>}'.
@@ -1702,15 +2421,15 @@ public interface RequirementsPackage extends EPackage {
 	EClass getSoftwareInterface();
 
 	/**
-	 * Returns the meta object for the attribute '{@link scrm.requirements.SoftwareInterface#getDataTypes <em>Data Types</em>}'.
+	 * Returns the meta object for the attribute '{@link scrm.requirements.SoftwareInterface#getVersion <em>Version</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Data Types</em>'.
-	 * @see scrm.requirements.SoftwareInterface#getDataTypes()
+	 * @return the meta object for the attribute '<em>Version</em>'.
+	 * @see scrm.requirements.SoftwareInterface#getVersion()
 	 * @see #getSoftwareInterface()
 	 * @generated
 	 */
-	EAttribute getSoftwareInterface_DataTypes();
+	EAttribute getSoftwareInterface_Version();
 
 	/**
 	 * Returns the meta object for class '{@link scrm.requirements.Performance <em>Performance</em>}'.
@@ -1743,27 +2462,6 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPerformance_DescribedMethod();
-
-	/**
-	 * Returns the meta object for class '{@link scrm.requirements.DataFlow <em>Data Flow</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Data Flow</em>'.
-	 * @see scrm.requirements.DataFlow
-	 * @generated
-	 */
-	EClass getDataFlow();
-
-	/**
-	 * Returns the meta object for the reference '{@link scrm.requirements.DataFlow#getSpecifiedProcess <em>Specified Process</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Specified Process</em>'.
-	 * @see scrm.requirements.DataFlow#getSpecifiedProcess()
-	 * @see #getDataFlow()
-	 * @generated
-	 */
-	EReference getDataFlow_SpecifiedProcess();
 
 	/**
 	 * Returns the meta object for class '{@link scrm.requirements.DataDefinition <em>Data Definition</em>}'.
@@ -1840,17 +2538,6 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getDataDefinition_Range();
-
-	/**
-	 * Returns the meta object for the attribute '{@link scrm.requirements.DataDefinition#getDataType <em>Data Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Data Type</em>'.
-	 * @see scrm.requirements.DataDefinition#getDataType()
-	 * @see #getDataDefinition()
-	 * @generated
-	 */
-	EAttribute getDataDefinition_DataType();
 
 	/**
 	 * Returns the meta object for class '{@link scrm.requirements.RequirementSpace <em>Requirement Space</em>}'.
@@ -1961,22 +2648,22 @@ public interface RequirementsPackage extends EPackage {
 				.getInterface_RequiringData();
 
 		/**
-		 * The meta object literal for the '<em><b>Providing Requirements</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Details Of Providing Functions And Properties</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INTERFACE__PROVIDING_REQUIREMENTS = eINSTANCE
-				.getInterface_ProvidingRequirements();
+		EReference INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES = eINSTANCE
+				.getInterface_DetailsOfProvidingFunctionsAndProperties();
 
 		/**
-		 * The meta object literal for the '<em><b>Requiring Requirements</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Details Of Requiring Functions And Properties</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference INTERFACE__REQUIRING_REQUIREMENTS = eINSTANCE
-				.getInterface_RequiringRequirements();
+		EReference INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES = eINSTANCE
+				.getInterface_DetailsOfRequiringFunctionsAndProperties();
 
 		/**
 		 * The meta object literal for the '{@link scrm.requirements.impl.FeatureImpl <em>Feature</em>}' class.
@@ -2049,12 +2736,13 @@ public interface RequirementsPackage extends EPackage {
 		EReference FEATURE__SUB_FEATURES = eINSTANCE.getFeature_SubFeatures();
 
 		/**
-		 * The meta object literal for the '<em><b>Super Feature</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Parent Feature</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FEATURE__SUPER_FEATURE = eINSTANCE.getFeature_SuperFeature();
+		EReference FEATURE__PARENT_FEATURE = eINSTANCE
+				.getFeature_ParentFeature();
 
 		/**
 		 * The meta object literal for the '<em><b>Required Features</b></em>' reference list feature.
@@ -2192,13 +2880,13 @@ public interface RequirementsPackage extends EPackage {
 				.getRequirement_SpecifiedFeature();
 
 		/**
-		 * The meta object literal for the '<em><b>Defining Data</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Handling Data</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference REQUIREMENT__DEFINING_DATA = eINSTANCE
-				.getRequirement_DefiningData();
+		EReference REQUIREMENT__HANDLING_DATA = eINSTANCE
+				.getRequirement_HandlingData();
 
 		/**
 		 * The meta object literal for the '<em><b>Realized Method</b></em>' reference feature.
@@ -2248,13 +2936,13 @@ public interface RequirementsPackage extends EPackage {
 		EClass SOFTWARE_INTERFACE = eINSTANCE.getSoftwareInterface();
 
 		/**
-		 * The meta object literal for the '<em><b>Data Types</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Version</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SOFTWARE_INTERFACE__DATA_TYPES = eINSTANCE
-				.getSoftwareInterface_DataTypes();
+		EAttribute SOFTWARE_INTERFACE__VERSION = eINSTANCE
+				.getSoftwareInterface_Version();
 
 		/**
 		 * The meta object literal for the '{@link scrm.requirements.impl.PerformanceImpl <em>Performance</em>}' class.
@@ -2283,25 +2971,6 @@ public interface RequirementsPackage extends EPackage {
 		 */
 		EReference PERFORMANCE__DESCRIBED_METHOD = eINSTANCE
 				.getPerformance_DescribedMethod();
-
-		/**
-		 * The meta object literal for the '{@link scrm.requirements.impl.DataFlowImpl <em>Data Flow</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see scrm.requirements.impl.DataFlowImpl
-		 * @see scrm.requirements.impl.RequirementsPackageImpl#getDataFlow()
-		 * @generated
-		 */
-		EClass DATA_FLOW = eINSTANCE.getDataFlow();
-
-		/**
-		 * The meta object literal for the '<em><b>Specified Process</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DATA_FLOW__SPECIFIED_PROCESS = eINSTANCE
-				.getDataFlow_SpecifiedProcess();
 
 		/**
 		 * The meta object literal for the '{@link scrm.requirements.impl.DataDefinitionImpl <em>Data Definition</em>}' class.
@@ -2365,15 +3034,6 @@ public interface RequirementsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DATA_DEFINITION__RANGE = eINSTANCE.getDataDefinition_Range();
-
-		/**
-		 * The meta object literal for the '<em><b>Data Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DATA_DEFINITION__DATA_TYPE = eINSTANCE
-				.getDataDefinition_DataType();
 
 		/**
 		 * The meta object literal for the '{@link scrm.requirements.impl.RequirementSpaceImpl <em>Requirement Space</em>}' class.

@@ -8,7 +8,6 @@ package scrm;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.gmf.runtime.notation.Diagram;
 
 import scrm.impl.DiagramLoadException;

@@ -1,6 +1,7 @@
 package scrm.lists;
 
 import java.util.Collection;
+
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 

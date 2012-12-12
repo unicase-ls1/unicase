@@ -7,6 +7,7 @@ package org.unicase.model.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.unicase.metamodel.provider.MetamodelEditPlugin;
 
 /**
  * This is the central singleton for the Model edit plugin.

@@ -30,7 +30,7 @@ public class LeafSectionDropAdapter extends UCDropAdapter {
 	@Override
 	public void drop(DropTargetEvent event, EObject target, List<EObject> source) {
 		for (EObject me : source) {
-			((LeafSection) target).getModelElements().add(me);
+			((LeafSection) target).getContainedElements().add(me);
 		}
 	}
 

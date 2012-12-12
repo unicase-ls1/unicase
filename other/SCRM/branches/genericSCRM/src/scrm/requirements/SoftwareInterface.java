@@ -14,7 +14,7 @@ package scrm.requirements;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link scrm.requirements.SoftwareInterface#getDataTypes <em>Data Types</em>}</li>
+ *   <li>{@link scrm.requirements.SoftwareInterface#getVersion <em>Version</em>}</li>
  * </ul>
  * </p>
  *
@@ -24,29 +24,31 @@ package scrm.requirements;
  */
 public interface SoftwareInterface extends Interface {
 	/**
-	 * Returns the value of the '<em><b>Data Types</b></em>' attribute.
+	 * Returns the value of the '<em><b>Version</b></em>' attribute.
+	 * The default value is <code>"1.0.x"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Data Types</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Version</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Data Types</em>' attribute.
-	 * @see #setDataTypes(String)
-	 * @see scrm.requirements.RequirementsPackage#getSoftwareInterface_DataTypes()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='5'"
+	 * @return the value of the '<em>Version</em>' attribute.
+	 * @see #setVersion(String)
+	 * @see scrm.requirements.RequirementsPackage#getSoftwareInterface_Version()
+	 * @model default="1.0.x"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='10'"
 	 * @generated
 	 */
-	String getDataTypes();
+	String getVersion();
 
 	/**
-	 * Sets the value of the '{@link scrm.requirements.SoftwareInterface#getDataTypes <em>Data Types</em>}' attribute.
+	 * Sets the value of the '{@link scrm.requirements.SoftwareInterface#getVersion <em>Version</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Data Types</em>' attribute.
-	 * @see #getDataTypes()
+	 * @param value the new value of the '<em>Version</em>' attribute.
+	 * @see #getVersion()
 	 * @generated
 	 */
-	void setDataTypes(String value);
+	void setVersion(String value);
 
 } // SoftwareInterface

@@ -38,8 +38,8 @@ import scrm.requirements.UserInterface;
  *   <li>{@link scrm.requirements.impl.UserInterfaceImpl#getRequiringFeatures <em>Requiring Features</em>}</li>
  *   <li>{@link scrm.requirements.impl.UserInterfaceImpl#getProvidingData <em>Providing Data</em>}</li>
  *   <li>{@link scrm.requirements.impl.UserInterfaceImpl#getRequiringData <em>Requiring Data</em>}</li>
- *   <li>{@link scrm.requirements.impl.UserInterfaceImpl#getProvidingRequirements <em>Providing Requirements</em>}</li>
- *   <li>{@link scrm.requirements.impl.UserInterfaceImpl#getRequiringRequirements <em>Requiring Requirements</em>}</li>
+ *   <li>{@link scrm.requirements.impl.UserInterfaceImpl#getDetailsOfProvidingFunctionsAndProperties <em>Details Of Providing Functions And Properties</em>}</li>
+ *   <li>{@link scrm.requirements.impl.UserInterfaceImpl#getDetailsOfRequiringFunctionsAndProperties <em>Details Of Requiring Functions And Properties</em>}</li>
  * </ul>
  * </p>
  *
@@ -76,23 +76,24 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements
 	 */
 	protected EList<DataDefinition> requiringData;
 	/**
-	 * The cached value of the '{@link #getProvidingRequirements() <em>Providing Requirements</em>}' reference list.
+	 * The cached value of the '{@link #getDetailsOfProvidingFunctionsAndProperties() <em>Details Of Providing Functions And Properties</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProvidingRequirements()
+	 * @see #getDetailsOfProvidingFunctionsAndProperties()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Requirement> providingRequirements;
+	protected EList<Requirement> detailsOfProvidingFunctionsAndProperties;
+
 	/**
-	 * The cached value of the '{@link #getRequiringRequirements() <em>Requiring Requirements</em>}' reference list.
+	 * The cached value of the '{@link #getDetailsOfRequiringFunctionsAndProperties() <em>Details Of Requiring Functions And Properties</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRequiringRequirements()
+	 * @see #getDetailsOfRequiringFunctionsAndProperties()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Requirement> requiringRequirements;
+	protected EList<Requirement> detailsOfRequiringFunctionsAndProperties;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -295,14 +296,15 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Requirement> getProvidingRequirements() {
-		if (providingRequirements == null) {
-			providingRequirements = new EObjectWithInverseResolvingEList<Requirement>(
-					Requirement.class, this,
-					RequirementsPackage.USER_INTERFACE__PROVIDING_REQUIREMENTS,
+	public EList<Requirement> getDetailsOfProvidingFunctionsAndProperties() {
+		if (detailsOfProvidingFunctionsAndProperties == null) {
+			detailsOfProvidingFunctionsAndProperties = new EObjectWithInverseResolvingEList<Requirement>(
+					Requirement.class,
+					this,
+					RequirementsPackage.USER_INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES,
 					RequirementsPackage.REQUIREMENT__PROVIDED_INTERFACE);
 		}
-		return providingRequirements;
+		return detailsOfProvidingFunctionsAndProperties;
 	}
 
 	/**
@@ -310,14 +312,15 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Requirement> getRequiringRequirements() {
-		if (requiringRequirements == null) {
-			requiringRequirements = new EObjectWithInverseResolvingEList<Requirement>(
-					Requirement.class, this,
-					RequirementsPackage.USER_INTERFACE__REQUIRING_REQUIREMENTS,
+	public EList<Requirement> getDetailsOfRequiringFunctionsAndProperties() {
+		if (detailsOfRequiringFunctionsAndProperties == null) {
+			detailsOfRequiringFunctionsAndProperties = new EObjectWithInverseResolvingEList<Requirement>(
+					Requirement.class,
+					this,
+					RequirementsPackage.USER_INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES,
 					RequirementsPackage.REQUIREMENT__REQUIRED_INTERFACE);
 		}
-		return requiringRequirements;
+		return detailsOfRequiringFunctionsAndProperties;
 	}
 
 	/**
@@ -348,11 +351,11 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements
 		case RequirementsPackage.USER_INTERFACE__REQUIRING_DATA:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRequiringData())
 					.basicAdd(otherEnd, msgs);
-		case RequirementsPackage.USER_INTERFACE__PROVIDING_REQUIREMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getProvidingRequirements())
+		case RequirementsPackage.USER_INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDetailsOfProvidingFunctionsAndProperties())
 					.basicAdd(otherEnd, msgs);
-		case RequirementsPackage.USER_INTERFACE__REQUIRING_REQUIREMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRequiringRequirements())
+		case RequirementsPackage.USER_INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDetailsOfRequiringFunctionsAndProperties())
 					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -380,12 +383,12 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements
 		case RequirementsPackage.USER_INTERFACE__REQUIRING_DATA:
 			return ((InternalEList<?>) getRequiringData()).basicRemove(
 					otherEnd, msgs);
-		case RequirementsPackage.USER_INTERFACE__PROVIDING_REQUIREMENTS:
-			return ((InternalEList<?>) getProvidingRequirements()).basicRemove(
-					otherEnd, msgs);
-		case RequirementsPackage.USER_INTERFACE__REQUIRING_REQUIREMENTS:
-			return ((InternalEList<?>) getRequiringRequirements()).basicRemove(
-					otherEnd, msgs);
+		case RequirementsPackage.USER_INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES:
+			return ((InternalEList<?>) getDetailsOfProvidingFunctionsAndProperties())
+					.basicRemove(otherEnd, msgs);
+		case RequirementsPackage.USER_INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES:
+			return ((InternalEList<?>) getDetailsOfRequiringFunctionsAndProperties())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -435,10 +438,10 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements
 			return getProvidingData();
 		case RequirementsPackage.USER_INTERFACE__REQUIRING_DATA:
 			return getRequiringData();
-		case RequirementsPackage.USER_INTERFACE__PROVIDING_REQUIREMENTS:
-			return getProvidingRequirements();
-		case RequirementsPackage.USER_INTERFACE__REQUIRING_REQUIREMENTS:
-			return getRequiringRequirements();
+		case RequirementsPackage.USER_INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES:
+			return getDetailsOfProvidingFunctionsAndProperties();
+		case RequirementsPackage.USER_INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES:
+			return getDetailsOfRequiringFunctionsAndProperties();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -473,14 +476,14 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements
 			getRequiringData().addAll(
 					(Collection<? extends DataDefinition>) newValue);
 			return;
-		case RequirementsPackage.USER_INTERFACE__PROVIDING_REQUIREMENTS:
-			getProvidingRequirements().clear();
-			getProvidingRequirements().addAll(
+		case RequirementsPackage.USER_INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES:
+			getDetailsOfProvidingFunctionsAndProperties().clear();
+			getDetailsOfProvidingFunctionsAndProperties().addAll(
 					(Collection<? extends Requirement>) newValue);
 			return;
-		case RequirementsPackage.USER_INTERFACE__REQUIRING_REQUIREMENTS:
-			getRequiringRequirements().clear();
-			getRequiringRequirements().addAll(
+		case RequirementsPackage.USER_INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES:
+			getDetailsOfRequiringFunctionsAndProperties().clear();
+			getDetailsOfRequiringFunctionsAndProperties().addAll(
 					(Collection<? extends Requirement>) newValue);
 			return;
 		}
@@ -510,11 +513,11 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements
 		case RequirementsPackage.USER_INTERFACE__REQUIRING_DATA:
 			getRequiringData().clear();
 			return;
-		case RequirementsPackage.USER_INTERFACE__PROVIDING_REQUIREMENTS:
-			getProvidingRequirements().clear();
+		case RequirementsPackage.USER_INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES:
+			getDetailsOfProvidingFunctionsAndProperties().clear();
 			return;
-		case RequirementsPackage.USER_INTERFACE__REQUIRING_REQUIREMENTS:
-			getRequiringRequirements().clear();
+		case RequirementsPackage.USER_INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES:
+			getDetailsOfRequiringFunctionsAndProperties().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -538,12 +541,12 @@ public class UserInterfaceImpl extends SCRMModelElementImpl implements
 			return providingData != null && !providingData.isEmpty();
 		case RequirementsPackage.USER_INTERFACE__REQUIRING_DATA:
 			return requiringData != null && !requiringData.isEmpty();
-		case RequirementsPackage.USER_INTERFACE__PROVIDING_REQUIREMENTS:
-			return providingRequirements != null
-					&& !providingRequirements.isEmpty();
-		case RequirementsPackage.USER_INTERFACE__REQUIRING_REQUIREMENTS:
-			return requiringRequirements != null
-					&& !requiringRequirements.isEmpty();
+		case RequirementsPackage.USER_INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES:
+			return detailsOfProvidingFunctionsAndProperties != null
+					&& !detailsOfProvidingFunctionsAndProperties.isEmpty();
+		case RequirementsPackage.USER_INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES:
+			return detailsOfRequiringFunctionsAndProperties != null
+					&& !detailsOfRequiringFunctionsAndProperties.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

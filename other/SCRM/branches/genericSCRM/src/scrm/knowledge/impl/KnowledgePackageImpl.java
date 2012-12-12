@@ -10,15 +10,12 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.unicase.model.ModelPackage;
 
 import scrm.ScrmPackage;
-
 import scrm.impl.ScrmPackageImpl;
-
 import scrm.knowledge.Assumption;
 import scrm.knowledge.KnowledgeFactory;
 import scrm.knowledge.KnowledgePackage;
@@ -27,9 +24,7 @@ import scrm.knowledge.MathematicalModel;
 import scrm.knowledge.NumericalMethod;
 import scrm.knowledge.ScientificKnowledge;
 import scrm.knowledge.ScientificProblem;
-
 import scrm.requirements.RequirementsPackage;
-
 import scrm.requirements.dataProcess.DataProcessPackage;
 import scrm.requirements.dataProcess.impl.DataProcessPackageImpl;
 import scrm.requirements.impl.RequirementsPackageImpl;
@@ -135,6 +130,7 @@ public class KnowledgePackageImpl extends EPackageImpl implements
 		isInited = true;
 
 		// Initialize simple dependencies
+		ModelPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -273,7 +269,7 @@ public class KnowledgePackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMathematicalModel_NumericalMethods() {
+	public EReference getMathematicalModel_UsedinNumericalMethods() {
 		return (EReference) mathematicalModelEClass.getEStructuralFeatures()
 				.get(3);
 	}
@@ -286,26 +282,6 @@ public class KnowledgePackageImpl extends EPackageImpl implements
 	public EReference getMathematicalModel_Dependencies() {
 		return (EReference) mathematicalModelEClass.getEStructuralFeatures()
 				.get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMathematicalModel_Theory() {
-		return (EAttribute) mathematicalModelEClass.getEStructuralFeatures()
-				.get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getMathematicalModel_MathematicalExpression() {
-		return (EAttribute) mathematicalModelEClass.getEStructuralFeatures()
-				.get(6);
 	}
 
 	/**
@@ -352,7 +328,7 @@ public class KnowledgePackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNumericalMethod_MathematicalModel() {
+	public EReference getNumericalMethod_UsingMathematicalModel() {
 		return (EReference) numericalMethodEClass.getEStructuralFeatures().get(
 				3);
 	}
@@ -486,12 +462,9 @@ public class KnowledgePackageImpl extends EPackageImpl implements
 		createEReference(mathematicalModelEClass,
 				MATHEMATICAL_MODEL__REFINED_MODEL);
 		createEReference(mathematicalModelEClass,
-				MATHEMATICAL_MODEL__NUMERICAL_METHODS);
+				MATHEMATICAL_MODEL__USEDIN_NUMERICAL_METHODS);
 		createEReference(mathematicalModelEClass,
 				MATHEMATICAL_MODEL__DEPENDENCIES);
-		createEAttribute(mathematicalModelEClass, MATHEMATICAL_MODEL__THEORY);
-		createEAttribute(mathematicalModelEClass,
-				MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION);
 
 		numericalMethodEClass = createEClass(NUMERICAL_METHOD);
 		createEReference(numericalMethodEClass,
@@ -500,7 +473,7 @@ public class KnowledgePackageImpl extends EPackageImpl implements
 		createEReference(numericalMethodEClass,
 				NUMERICAL_METHOD__REALIZING_REQUIREMENT);
 		createEReference(numericalMethodEClass,
-				NUMERICAL_METHOD__MATHEMATICAL_MODEL);
+				NUMERICAL_METHOD__USING_MATHEMATICAL_MODEL);
 		createEReference(numericalMethodEClass, NUMERICAL_METHOD__PERFORMANCE);
 		createEAttribute(numericalMethodEClass, NUMERICAL_METHOD__THEORY);
 		createEAttribute(numericalMethodEClass, NUMERICAL_METHOD__ALGORITHM);
@@ -628,10 +601,10 @@ public class KnowledgePackageImpl extends EPackageImpl implements
 				0, 1, MathematicalModel.class, !IS_TRANSIENT, !IS_VOLATILE,
 				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMathematicalModel_NumericalMethods(),
+		initEReference(getMathematicalModel_UsedinNumericalMethods(),
 				this.getNumericalMethod(),
-				this.getNumericalMethod_MathematicalModel(),
-				"numericalMethods", null, 0, -1, MathematicalModel.class,
+				this.getNumericalMethod_UsingMathematicalModel(),
+				"usedinNumericalMethods", null, 0, -1, MathematicalModel.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
@@ -640,16 +613,6 @@ public class KnowledgePackageImpl extends EPackageImpl implements
 				"dependencies", null, 0, -1, MathematicalModel.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getMathematicalModel_Theory(),
-				ecorePackage.getEString(), "theory", null, 0, 1,
-				MathematicalModel.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getMathematicalModel_MathematicalExpression(),
-				ecorePackage.getEString(), "mathematicalExpression", null, 0,
-				1, MathematicalModel.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 
 		initEClass(numericalMethodEClass, NumericalMethod.class,
@@ -673,10 +636,10 @@ public class KnowledgePackageImpl extends EPackageImpl implements
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-		initEReference(getNumericalMethod_MathematicalModel(),
+		initEReference(getNumericalMethod_UsingMathematicalModel(),
 				this.getMathematicalModel(),
-				this.getMathematicalModel_NumericalMethods(),
-				"mathematicalModel", null, 0, 1, NumericalMethod.class,
+				this.getMathematicalModel_UsedinNumericalMethods(),
+				"usingMathematicalModel", null, 0, 1, NumericalMethod.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
@@ -741,21 +704,17 @@ public class KnowledgePackageImpl extends EPackageImpl implements
 				"position", "right", "priority", "5" });
 		addAnnotation(getMathematicalModel_RefinedModel(), source,
 				new String[] { "position", "left", "priority", "12" });
-		addAnnotation(getMathematicalModel_NumericalMethods(), source,
+		addAnnotation(getMathematicalModel_UsedinNumericalMethods(), source,
 				new String[] { "position", "right", "priority", "10" });
 		addAnnotation(getMathematicalModel_Dependencies(), source,
 				new String[] { "position", "right", "priority", "15" });
-		addAnnotation(getMathematicalModel_Theory(), source, new String[] {
-				"position", "left", "priority", "5" });
-		addAnnotation(getMathematicalModel_MathematicalExpression(), source,
-				new String[] { "position", "left", "priority", "7" });
 		addAnnotation(getNumericalMethod_SolvedProblem(), source, new String[] {
 				"position", "left", "priority", "15" });
 		addAnnotation(getNumericalMethod_Dependencies(), source, new String[] {
 				"position", "right", "priority", "10" });
 		addAnnotation(getNumericalMethod_RealizingRequirement(), source,
 				new String[] { "position", "left", "priority", "25" });
-		addAnnotation(getNumericalMethod_MathematicalModel(), source,
+		addAnnotation(getNumericalMethod_UsingMathematicalModel(), source,
 				new String[] { "position", "left", "priority", "20" });
 		addAnnotation(getNumericalMethod_Performance(), source, new String[] {
 				"position", "left", "priority", "30" });

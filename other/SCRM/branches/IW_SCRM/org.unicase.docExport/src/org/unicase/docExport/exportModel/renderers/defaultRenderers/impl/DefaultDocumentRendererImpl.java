@@ -50,7 +50,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements DefaultDocumentRenderer {
@@ -60,6 +60,7 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DefaultDocumentRendererImpl() {
@@ -68,6 +69,7 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -235,7 +237,7 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		section.add(new UParagraph(WorkspaceUtil.cleanFormatedText(modelElement.getDescription()) + "\n", layoutOptions
 			.getDefaultTextOption()));
 
-		EList<EObject> subSections = modelElement.getModelElements();
+		EList<EObject> subSections = modelElement.getContainedElements();
 		for (EObject child : subSections) {
 			renderModelElement(section, child);
 		}
@@ -357,7 +359,7 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		section.add(description);
 
 		if (unicaseSection instanceof LeafSection) {
-			EList<EObject> subSections = ((LeafSection) unicaseSection).getModelElements();
+			EList<EObject> subSections = ((LeafSection) unicaseSection).getContainedElements();
 			for (EObject child : subSections) {
 				if (child instanceof LeafSection) {
 					renderSection(section, (LeafSection) child, layoutOptions, false);

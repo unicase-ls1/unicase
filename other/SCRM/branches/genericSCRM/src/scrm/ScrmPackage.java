@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.unicase.model.ModelPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -77,7 +78,7 @@ public interface ScrmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_MODEL_ELEMENT__NAME = 0;
+	int SCRM_MODEL_ELEMENT__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -86,7 +87,79 @@ public interface ScrmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_MODEL_ELEMENT__DESCRIPTION = 1;
+	int SCRM_MODEL_ELEMENT__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_MODEL_ELEMENT__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_MODEL_ELEMENT__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_MODEL_ELEMENT__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_MODEL_ELEMENT__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_MODEL_ELEMENT__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_MODEL_ELEMENT__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_MODEL_ELEMENT__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
@@ -95,7 +168,7 @@ public interface ScrmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_MODEL_ELEMENT__DISPLAYING_DIAGRAMS = 2;
+	int SCRM_MODEL_ELEMENT__DISPLAYING_DIAGRAMS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>SCRM Model Element</em>' class.
@@ -104,7 +177,7 @@ public interface ScrmPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCRM_MODEL_ELEMENT_FEATURE_COUNT = 3;
+	int SCRM_MODEL_ELEMENT_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link scrm.impl.SCRMDiagramImpl <em>SCRM Diagram</em>}' class.
@@ -133,6 +206,78 @@ public interface ScrmPackage extends EPackage {
 	 * @ordered
 	 */
 	int SCRM_DIAGRAM__DESCRIPTION = SCRM_MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_DIAGRAM__ANNOTATIONS = SCRM_MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_DIAGRAM__ATTACHMENTS = SCRM_MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_DIAGRAM__INCOMING_DOCUMENT_REFERENCES = SCRM_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_DIAGRAM__LEAF_SECTION = SCRM_MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_DIAGRAM__STATE = SCRM_MODEL_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_DIAGRAM__COMMENTS = SCRM_MODEL_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_DIAGRAM__CREATION_DATE = SCRM_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_DIAGRAM__CREATOR = SCRM_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
@@ -235,6 +380,78 @@ public interface ScrmPackage extends EPackage {
 	int SCRM_SPACE__DESCRIPTION = SCRM_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_SPACE__ANNOTATIONS = SCRM_MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_SPACE__ATTACHMENTS = SCRM_MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_SPACE__INCOMING_DOCUMENT_REFERENCES = SCRM_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_SPACE__LEAF_SECTION = SCRM_MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_SPACE__STATE = SCRM_MODEL_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_SPACE__COMMENTS = SCRM_MODEL_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_SPACE__CREATION_DATE = SCRM_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCRM_SPACE__CREATOR = SCRM_MODEL_ELEMENT__CREATOR;
+
+	/**
 	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -280,28 +497,6 @@ public interface ScrmPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getSCRMModelElement();
-
-	/**
-	 * Returns the meta object for the attribute '{@link scrm.SCRMModelElement#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see scrm.SCRMModelElement#getName()
-	 * @see #getSCRMModelElement()
-	 * @generated
-	 */
-	EAttribute getSCRMModelElement_Name();
-
-	/**
-	 * Returns the meta object for the attribute '{@link scrm.SCRMModelElement#getDescription <em>Description</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Description</em>'.
-	 * @see scrm.SCRMModelElement#getDescription()
-	 * @see #getSCRMModelElement()
-	 * @generated
-	 */
-	EAttribute getSCRMModelElement_Description();
 
 	/**
 	 * Returns the meta object for the reference list '{@link scrm.SCRMModelElement#getDisplayingDiagrams <em>Displaying Diagrams</em>}'.
@@ -452,24 +647,6 @@ public interface ScrmPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SCRM_MODEL_ELEMENT = eINSTANCE.getSCRMModelElement();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SCRM_MODEL_ELEMENT__NAME = eINSTANCE
-				.getSCRMModelElement_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SCRM_MODEL_ELEMENT__DESCRIPTION = eINSTANCE
-				.getSCRMModelElement_Description();
 
 		/**
 		 * The meta object literal for the '<em><b>Displaying Diagrams</b></em>' reference list feature.

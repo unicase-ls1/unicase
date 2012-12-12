@@ -17,7 +17,6 @@ package scrm.requirements;
  *   <li>{@link scrm.requirements.DataDefinition#getDefinedRequirement <em>Defined Requirement</em>}</li>
  *   <li>{@link scrm.requirements.DataDefinition#getAccuracy <em>Accuracy</em>}</li>
  *   <li>{@link scrm.requirements.DataDefinition#getRange <em>Range</em>}</li>
- *   <li>{@link scrm.requirements.DataDefinition#getDataType <em>Data Type</em>}</li>
  *   <li>{@link scrm.requirements.DataDefinition#getFormat <em>Format</em>}</li>
  *   <li>{@link scrm.requirements.DataDefinition#getProvidedInterface <em>Provided Interface</em>}</li>
  *   <li>{@link scrm.requirements.DataDefinition#getRequiredInterface <em>Required Interface</em>}</li>
@@ -31,7 +30,7 @@ package scrm.requirements;
 public interface DataDefinition extends IRequirement {
 	/**
 	 * Returns the value of the '<em><b>Defined Requirement</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link scrm.requirements.Requirement#getDefiningData <em>Defining Data</em>}'.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.Requirement#getHandlingData <em>Handling Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Defined Requirement</em>' container reference isn't clear,
@@ -41,8 +40,8 @@ public interface DataDefinition extends IRequirement {
 	 * @return the value of the '<em>Defined Requirement</em>' reference.
 	 * @see #setDefinedRequirement(Requirement)
 	 * @see scrm.requirements.RequirementsPackage#getDataDefinition_DefinedRequirement()
-	 * @see scrm.requirements.Requirement#getDefiningData
-	 * @model opposite="definingData"
+	 * @see scrm.requirements.Requirement#getHandlingData
+	 * @model opposite="handlingData"
 	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
 	 * @generated
 	 */
@@ -191,31 +190,5 @@ public interface DataDefinition extends IRequirement {
 	 * @generated
 	 */
 	void setRange(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Data Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Data Type</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Data Type</em>' attribute.
-	 * @see #setDataType(String)
-	 * @see scrm.requirements.RequirementsPackage#getDataDefinition_DataType()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='7'"
-	 * @generated
-	 */
-	String getDataType();
-
-	/**
-	 * Sets the value of the '{@link scrm.requirements.DataDefinition#getDataType <em>Data Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Data Type</em>' attribute.
-	 * @see #getDataType()
-	 * @generated
-	 */
-	void setDataType(String value);
 
 } // DataDefinition

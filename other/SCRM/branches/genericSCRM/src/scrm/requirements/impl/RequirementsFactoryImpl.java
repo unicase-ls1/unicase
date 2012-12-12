@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import scrm.requirements.Constraint;
 import scrm.requirements.DataDefinition;
-import scrm.requirements.DataFlow;
 import scrm.requirements.Feature;
 import scrm.requirements.Hardware;
 import scrm.requirements.Performance;
@@ -86,8 +85,6 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements
 			return createSoftwareInterface();
 		case RequirementsPackage.PERFORMANCE:
 			return createPerformance();
-		case RequirementsPackage.DATA_FLOW:
-			return createDataFlow();
 		case RequirementsPackage.DATA_DEFINITION:
 			return createDataDefinition();
 		default:
@@ -164,16 +161,6 @@ public class RequirementsFactoryImpl extends EFactoryImpl implements
 	public Performance createPerformance() {
 		PerformanceImpl performance = new PerformanceImpl();
 		return performance;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DataFlow createDataFlow() {
-		DataFlowImpl dataFlow = new DataFlowImpl();
-		return dataFlow;
 	}
 
 	/**

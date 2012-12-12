@@ -10,21 +10,16 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import scrm.impl.SCRMModelElementImpl;
-
 import scrm.knowledge.Assumption;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.KnowledgeSpace;
@@ -43,10 +38,8 @@ import scrm.knowledge.ScientificProblem;
  *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getRepresentedProblem <em>Represented Problem</em>}</li>
  *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getRefinements <em>Refinements</em>}</li>
  *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getRefinedModel <em>Refined Model</em>}</li>
- *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getNumericalMethods <em>Numerical Methods</em>}</li>
+ *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getUsedinNumericalMethods <em>Usedin Numerical Methods</em>}</li>
  *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getDependencies <em>Dependencies</em>}</li>
- *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getTheory <em>Theory</em>}</li>
- *   <li>{@link scrm.knowledge.impl.MathematicalModelImpl#getMathematicalExpression <em>Mathematical Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -75,14 +68,14 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements
 	protected EList<MathematicalModel> refinements;
 
 	/**
-	 * The cached value of the '{@link #getNumericalMethods() <em>Numerical Methods</em>}' reference list.
+	 * The cached value of the '{@link #getUsedinNumericalMethods() <em>Usedin Numerical Methods</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNumericalMethods()
+	 * @see #getUsedinNumericalMethods()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<NumericalMethod> numericalMethods;
+	protected EList<NumericalMethod> usedinNumericalMethods;
 
 	/**
 	 * The cached value of the '{@link #getDependencies() <em>Dependencies</em>}' reference list.
@@ -93,46 +86,6 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements
 	 * @ordered
 	 */
 	protected EList<Assumption> dependencies;
-
-	/**
-	 * The default value of the '{@link #getTheory() <em>Theory</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTheory()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String THEORY_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getTheory() <em>Theory</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTheory()
-	 * @generated
-	 * @ordered
-	 */
-	protected String theory = THEORY_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getMathematicalExpression() <em>Mathematical Expression</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMathematicalExpression()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String MATHEMATICAL_EXPRESSION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getMathematicalExpression() <em>Mathematical Expression</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMathematicalExpression()
-	 * @generated
-	 * @ordered
-	 */
-	protected String mathematicalExpression = MATHEMATICAL_EXPRESSION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -384,14 +337,15 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<NumericalMethod> getNumericalMethods() {
-		if (numericalMethods == null) {
-			numericalMethods = new EObjectWithInverseResolvingEList<NumericalMethod>(
-					NumericalMethod.class, this,
-					KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS,
-					KnowledgePackage.NUMERICAL_METHOD__MATHEMATICAL_MODEL);
+	public EList<NumericalMethod> getUsedinNumericalMethods() {
+		if (usedinNumericalMethods == null) {
+			usedinNumericalMethods = new EObjectWithInverseResolvingEList<NumericalMethod>(
+					NumericalMethod.class,
+					this,
+					KnowledgePackage.MATHEMATICAL_MODEL__USEDIN_NUMERICAL_METHODS,
+					KnowledgePackage.NUMERICAL_METHOD__USING_MATHEMATICAL_MODEL);
 		}
-		return numericalMethods;
+		return usedinNumericalMethods;
 	}
 
 	/**
@@ -407,54 +361,6 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements
 					KnowledgePackage.ASSUMPTION__DEPENDING_MODEL);
 		}
 		return dependencies;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getTheory() {
-		return theory;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTheory(String newTheory) {
-		String oldTheory = theory;
-		theory = newTheory;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					KnowledgePackage.MATHEMATICAL_MODEL__THEORY, oldTheory,
-					theory));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getMathematicalExpression() {
-		return mathematicalExpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMathematicalExpression(String newMathematicalExpression) {
-		String oldMathematicalExpression = mathematicalExpression;
-		mathematicalExpression = newMathematicalExpression;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(
-					this,
-					Notification.SET,
-					KnowledgePackage.MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION,
-					oldMathematicalExpression, mathematicalExpression));
 	}
 
 	/**
@@ -488,8 +394,8 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetRefinedModel((MathematicalModel) otherEnd, msgs);
-		case KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getNumericalMethods())
+		case KnowledgePackage.MATHEMATICAL_MODEL__USEDIN_NUMERICAL_METHODS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUsedinNumericalMethods())
 					.basicAdd(otherEnd, msgs);
 		case KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDependencies())
@@ -516,9 +422,9 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements
 					msgs);
 		case KnowledgePackage.MATHEMATICAL_MODEL__REFINED_MODEL:
 			return basicSetRefinedModel(null, msgs);
-		case KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS:
-			return ((InternalEList<?>) getNumericalMethods()).basicRemove(
-					otherEnd, msgs);
+		case KnowledgePackage.MATHEMATICAL_MODEL__USEDIN_NUMERICAL_METHODS:
+			return ((InternalEList<?>) getUsedinNumericalMethods())
+					.basicRemove(otherEnd, msgs);
 		case KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES:
 			return ((InternalEList<?>) getDependencies()).basicRemove(otherEnd,
 					msgs);
@@ -571,14 +477,10 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements
 			if (resolve)
 				return getRefinedModel();
 			return basicGetRefinedModel();
-		case KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS:
-			return getNumericalMethods();
+		case KnowledgePackage.MATHEMATICAL_MODEL__USEDIN_NUMERICAL_METHODS:
+			return getUsedinNumericalMethods();
 		case KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES:
 			return getDependencies();
-		case KnowledgePackage.MATHEMATICAL_MODEL__THEORY:
-			return getTheory();
-		case KnowledgePackage.MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION:
-			return getMathematicalExpression();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -606,21 +508,15 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements
 		case KnowledgePackage.MATHEMATICAL_MODEL__REFINED_MODEL:
 			setRefinedModel((MathematicalModel) newValue);
 			return;
-		case KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS:
-			getNumericalMethods().clear();
-			getNumericalMethods().addAll(
+		case KnowledgePackage.MATHEMATICAL_MODEL__USEDIN_NUMERICAL_METHODS:
+			getUsedinNumericalMethods().clear();
+			getUsedinNumericalMethods().addAll(
 					(Collection<? extends NumericalMethod>) newValue);
 			return;
 		case KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES:
 			getDependencies().clear();
 			getDependencies().addAll(
 					(Collection<? extends Assumption>) newValue);
-			return;
-		case KnowledgePackage.MATHEMATICAL_MODEL__THEORY:
-			setTheory((String) newValue);
-			return;
-		case KnowledgePackage.MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION:
-			setMathematicalExpression((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -646,17 +542,11 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements
 		case KnowledgePackage.MATHEMATICAL_MODEL__REFINED_MODEL:
 			setRefinedModel((MathematicalModel) null);
 			return;
-		case KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS:
-			getNumericalMethods().clear();
+		case KnowledgePackage.MATHEMATICAL_MODEL__USEDIN_NUMERICAL_METHODS:
+			getUsedinNumericalMethods().clear();
 			return;
 		case KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES:
 			getDependencies().clear();
-			return;
-		case KnowledgePackage.MATHEMATICAL_MODEL__THEORY:
-			setTheory(THEORY_EDEFAULT);
-			return;
-		case KnowledgePackage.MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION:
-			setMathematicalExpression(MATHEMATICAL_EXPRESSION_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -678,38 +568,13 @@ public class MathematicalModelImpl extends SCRMModelElementImpl implements
 			return refinements != null && !refinements.isEmpty();
 		case KnowledgePackage.MATHEMATICAL_MODEL__REFINED_MODEL:
 			return basicGetRefinedModel() != null;
-		case KnowledgePackage.MATHEMATICAL_MODEL__NUMERICAL_METHODS:
-			return numericalMethods != null && !numericalMethods.isEmpty();
+		case KnowledgePackage.MATHEMATICAL_MODEL__USEDIN_NUMERICAL_METHODS:
+			return usedinNumericalMethods != null
+					&& !usedinNumericalMethods.isEmpty();
 		case KnowledgePackage.MATHEMATICAL_MODEL__DEPENDENCIES:
 			return dependencies != null && !dependencies.isEmpty();
-		case KnowledgePackage.MATHEMATICAL_MODEL__THEORY:
-			return THEORY_EDEFAULT == null ? theory != null : !THEORY_EDEFAULT
-					.equals(theory);
-		case KnowledgePackage.MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION:
-			return MATHEMATICAL_EXPRESSION_EDEFAULT == null ? mathematicalExpression != null
-					: !MATHEMATICAL_EXPRESSION_EDEFAULT
-							.equals(mathematicalExpression);
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy())
-			return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (theory: ");
-		result.append(theory);
-		result.append(", mathematicalExpression: ");
-		result.append(mathematicalExpression);
-		result.append(')');
-		return result.toString();
 	}
 
 } //MathematicalModelImpl

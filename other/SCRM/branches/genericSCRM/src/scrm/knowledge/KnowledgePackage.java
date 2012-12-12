@@ -91,6 +91,78 @@ public interface KnowledgePackage extends EPackage {
 	int SCIENTIFIC_KNOWLEDGE__DESCRIPTION = ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_KNOWLEDGE__ANNOTATIONS = ScrmPackage.SCRM_MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_KNOWLEDGE__ATTACHMENTS = ScrmPackage.SCRM_MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_KNOWLEDGE__INCOMING_DOCUMENT_REFERENCES = ScrmPackage.SCRM_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_KNOWLEDGE__LEAF_SECTION = ScrmPackage.SCRM_MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_KNOWLEDGE__STATE = ScrmPackage.SCRM_MODEL_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_KNOWLEDGE__COMMENTS = ScrmPackage.SCRM_MODEL_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_KNOWLEDGE__CREATION_DATE = ScrmPackage.SCRM_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_KNOWLEDGE__CREATOR = ScrmPackage.SCRM_MODEL_ELEMENT__CREATOR;
+
+	/**
 	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -186,6 +258,78 @@ public interface KnowledgePackage extends EPackage {
 	int KNOWLEDGE_SPACE__DESCRIPTION = ScrmPackage.SCRM_SPACE__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KNOWLEDGE_SPACE__ANNOTATIONS = ScrmPackage.SCRM_SPACE__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KNOWLEDGE_SPACE__ATTACHMENTS = ScrmPackage.SCRM_SPACE__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KNOWLEDGE_SPACE__INCOMING_DOCUMENT_REFERENCES = ScrmPackage.SCRM_SPACE__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KNOWLEDGE_SPACE__LEAF_SECTION = ScrmPackage.SCRM_SPACE__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KNOWLEDGE_SPACE__STATE = ScrmPackage.SCRM_SPACE__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KNOWLEDGE_SPACE__COMMENTS = ScrmPackage.SCRM_SPACE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KNOWLEDGE_SPACE__CREATION_DATE = ScrmPackage.SCRM_SPACE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int KNOWLEDGE_SPACE__CREATOR = ScrmPackage.SCRM_SPACE__CREATOR;
+
+	/**
 	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -247,6 +391,78 @@ public interface KnowledgePackage extends EPackage {
 	 * @ordered
 	 */
 	int SCIENTIFIC_PROBLEM__DESCRIPTION = SCIENTIFIC_KNOWLEDGE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_PROBLEM__ANNOTATIONS = SCIENTIFIC_KNOWLEDGE__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_PROBLEM__ATTACHMENTS = SCIENTIFIC_KNOWLEDGE__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_PROBLEM__INCOMING_DOCUMENT_REFERENCES = SCIENTIFIC_KNOWLEDGE__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_PROBLEM__LEAF_SECTION = SCIENTIFIC_KNOWLEDGE__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_PROBLEM__STATE = SCIENTIFIC_KNOWLEDGE__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_PROBLEM__COMMENTS = SCIENTIFIC_KNOWLEDGE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_PROBLEM__CREATION_DATE = SCIENTIFIC_KNOWLEDGE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCIENTIFIC_PROBLEM__CREATOR = SCIENTIFIC_KNOWLEDGE__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
@@ -321,6 +537,78 @@ public interface KnowledgePackage extends EPackage {
 	int MATHEMATICAL_MODEL__DESCRIPTION = SCIENTIFIC_KNOWLEDGE__DESCRIPTION;
 
 	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATHEMATICAL_MODEL__ANNOTATIONS = SCIENTIFIC_KNOWLEDGE__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATHEMATICAL_MODEL__ATTACHMENTS = SCIENTIFIC_KNOWLEDGE__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATHEMATICAL_MODEL__INCOMING_DOCUMENT_REFERENCES = SCIENTIFIC_KNOWLEDGE__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATHEMATICAL_MODEL__LEAF_SECTION = SCIENTIFIC_KNOWLEDGE__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATHEMATICAL_MODEL__STATE = SCIENTIFIC_KNOWLEDGE__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATHEMATICAL_MODEL__COMMENTS = SCIENTIFIC_KNOWLEDGE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATHEMATICAL_MODEL__CREATION_DATE = SCIENTIFIC_KNOWLEDGE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATHEMATICAL_MODEL__CREATOR = SCIENTIFIC_KNOWLEDGE__CREATOR;
+
+	/**
 	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -366,13 +654,13 @@ public interface KnowledgePackage extends EPackage {
 	int MATHEMATICAL_MODEL__REFINED_MODEL = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Numerical Methods</b></em>' reference list.
+	 * The feature id for the '<em><b>Usedin Numerical Methods</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MATHEMATICAL_MODEL__NUMERICAL_METHODS = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 3;
+	int MATHEMATICAL_MODEL__USEDIN_NUMERICAL_METHODS = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Dependencies</b></em>' reference list.
@@ -384,31 +672,13 @@ public interface KnowledgePackage extends EPackage {
 	int MATHEMATICAL_MODEL__DEPENDENCIES = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Theory</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MATHEMATICAL_MODEL__THEORY = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Mathematical Expression</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 6;
-
-	/**
 	 * The number of structural features of the '<em>Mathematical Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MATHEMATICAL_MODEL_FEATURE_COUNT = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 7;
+	int MATHEMATICAL_MODEL_FEATURE_COUNT = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -427,6 +697,78 @@ public interface KnowledgePackage extends EPackage {
 	 * @ordered
 	 */
 	int NUMERICAL_METHOD__DESCRIPTION = SCIENTIFIC_KNOWLEDGE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERICAL_METHOD__ANNOTATIONS = SCIENTIFIC_KNOWLEDGE__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERICAL_METHOD__ATTACHMENTS = SCIENTIFIC_KNOWLEDGE__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERICAL_METHOD__INCOMING_DOCUMENT_REFERENCES = SCIENTIFIC_KNOWLEDGE__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERICAL_METHOD__LEAF_SECTION = SCIENTIFIC_KNOWLEDGE__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERICAL_METHOD__STATE = SCIENTIFIC_KNOWLEDGE__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERICAL_METHOD__COMMENTS = SCIENTIFIC_KNOWLEDGE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERICAL_METHOD__CREATION_DATE = SCIENTIFIC_KNOWLEDGE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERICAL_METHOD__CREATOR = SCIENTIFIC_KNOWLEDGE__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
@@ -474,13 +816,13 @@ public interface KnowledgePackage extends EPackage {
 	int NUMERICAL_METHOD__REALIZING_REQUIREMENT = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Mathematical Model</b></em>' reference.
+	 * The feature id for the '<em><b>Using Mathematical Model</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUMERICAL_METHOD__MATHEMATICAL_MODEL = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 3;
+	int NUMERICAL_METHOD__USING_MATHEMATICAL_MODEL = SCIENTIFIC_KNOWLEDGE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Performance</b></em>' reference.
@@ -535,6 +877,78 @@ public interface KnowledgePackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSUMPTION__DESCRIPTION = SCIENTIFIC_KNOWLEDGE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSUMPTION__ANNOTATIONS = SCIENTIFIC_KNOWLEDGE__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSUMPTION__ATTACHMENTS = SCIENTIFIC_KNOWLEDGE__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSUMPTION__INCOMING_DOCUMENT_REFERENCES = SCIENTIFIC_KNOWLEDGE__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSUMPTION__LEAF_SECTION = SCIENTIFIC_KNOWLEDGE__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSUMPTION__STATE = SCIENTIFIC_KNOWLEDGE__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSUMPTION__COMMENTS = SCIENTIFIC_KNOWLEDGE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSUMPTION__CREATION_DATE = SCIENTIFIC_KNOWLEDGE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSUMPTION__CREATOR = SCIENTIFIC_KNOWLEDGE__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Displaying Diagrams</b></em>' reference list.
@@ -689,15 +1103,15 @@ public interface KnowledgePackage extends EPackage {
 	EReference getMathematicalModel_RefinedModel();
 
 	/**
-	 * Returns the meta object for the reference list '{@link scrm.knowledge.MathematicalModel#getNumericalMethods <em>Numerical Methods</em>}'.
+	 * Returns the meta object for the reference list '{@link scrm.knowledge.MathematicalModel#getUsedinNumericalMethods <em>Usedin Numerical Methods</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Numerical Methods</em>'.
-	 * @see scrm.knowledge.MathematicalModel#getNumericalMethods()
+	 * @return the meta object for the reference list '<em>Usedin Numerical Methods</em>'.
+	 * @see scrm.knowledge.MathematicalModel#getUsedinNumericalMethods()
 	 * @see #getMathematicalModel()
 	 * @generated
 	 */
-	EReference getMathematicalModel_NumericalMethods();
+	EReference getMathematicalModel_UsedinNumericalMethods();
 
 	/**
 	 * Returns the meta object for the reference list '{@link scrm.knowledge.MathematicalModel#getDependencies <em>Dependencies</em>}'.
@@ -709,28 +1123,6 @@ public interface KnowledgePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMathematicalModel_Dependencies();
-
-	/**
-	 * Returns the meta object for the attribute '{@link scrm.knowledge.MathematicalModel#getTheory <em>Theory</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Theory</em>'.
-	 * @see scrm.knowledge.MathematicalModel#getTheory()
-	 * @see #getMathematicalModel()
-	 * @generated
-	 */
-	EAttribute getMathematicalModel_Theory();
-
-	/**
-	 * Returns the meta object for the attribute '{@link scrm.knowledge.MathematicalModel#getMathematicalExpression <em>Mathematical Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Mathematical Expression</em>'.
-	 * @see scrm.knowledge.MathematicalModel#getMathematicalExpression()
-	 * @see #getMathematicalModel()
-	 * @generated
-	 */
-	EAttribute getMathematicalModel_MathematicalExpression();
 
 	/**
 	 * Returns the meta object for class '{@link scrm.knowledge.NumericalMethod <em>Numerical Method</em>}'.
@@ -776,15 +1168,15 @@ public interface KnowledgePackage extends EPackage {
 	EReference getNumericalMethod_RealizingRequirement();
 
 	/**
-	 * Returns the meta object for the reference '{@link scrm.knowledge.NumericalMethod#getMathematicalModel <em>Mathematical Model</em>}'.
+	 * Returns the meta object for the reference '{@link scrm.knowledge.NumericalMethod#getUsingMathematicalModel <em>Using Mathematical Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Mathematical Model</em>'.
-	 * @see scrm.knowledge.NumericalMethod#getMathematicalModel()
+	 * @return the meta object for the reference '<em>Using Mathematical Model</em>'.
+	 * @see scrm.knowledge.NumericalMethod#getUsingMathematicalModel()
 	 * @see #getNumericalMethod()
 	 * @generated
 	 */
-	EReference getNumericalMethod_MathematicalModel();
+	EReference getNumericalMethod_UsingMathematicalModel();
 
 	/**
 	 * Returns the meta object for the reference '{@link scrm.knowledge.NumericalMethod#getPerformance <em>Performance</em>}'.
@@ -988,13 +1380,13 @@ public interface KnowledgePackage extends EPackage {
 				.getMathematicalModel_RefinedModel();
 
 		/**
-		 * The meta object literal for the '<em><b>Numerical Methods</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Usedin Numerical Methods</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MATHEMATICAL_MODEL__NUMERICAL_METHODS = eINSTANCE
-				.getMathematicalModel_NumericalMethods();
+		EReference MATHEMATICAL_MODEL__USEDIN_NUMERICAL_METHODS = eINSTANCE
+				.getMathematicalModel_UsedinNumericalMethods();
 
 		/**
 		 * The meta object literal for the '<em><b>Dependencies</b></em>' reference list feature.
@@ -1004,24 +1396,6 @@ public interface KnowledgePackage extends EPackage {
 		 */
 		EReference MATHEMATICAL_MODEL__DEPENDENCIES = eINSTANCE
 				.getMathematicalModel_Dependencies();
-
-		/**
-		 * The meta object literal for the '<em><b>Theory</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MATHEMATICAL_MODEL__THEORY = eINSTANCE
-				.getMathematicalModel_Theory();
-
-		/**
-		 * The meta object literal for the '<em><b>Mathematical Expression</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION = eINSTANCE
-				.getMathematicalModel_MathematicalExpression();
 
 		/**
 		 * The meta object literal for the '{@link scrm.knowledge.impl.NumericalMethodImpl <em>Numerical Method</em>}' class.
@@ -1061,13 +1435,13 @@ public interface KnowledgePackage extends EPackage {
 				.getNumericalMethod_RealizingRequirement();
 
 		/**
-		 * The meta object literal for the '<em><b>Mathematical Model</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Using Mathematical Model</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NUMERICAL_METHOD__MATHEMATICAL_MODEL = eINSTANCE
-				.getNumericalMethod_MathematicalModel();
+		EReference NUMERICAL_METHOD__USING_MATHEMATICAL_MODEL = eINSTANCE
+				.getNumericalMethod_UsingMathematicalModel();
 
 		/**
 		 * The meta object literal for the '<em><b>Performance</b></em>' reference feature.

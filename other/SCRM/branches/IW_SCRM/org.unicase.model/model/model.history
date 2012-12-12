@@ -2,7 +2,7 @@
 <history:History xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:history="http://www.cs.tum.edu/cope/history/0.1.42">
-  <releases date="2009-06-13T17:13:48.937+0200" label="0">
+  <releases date="2009-06-13T11:13:48.937-0400" label="0">
     <changes xsi:type="history:CompositeChange">
       <changes xsi:type="history:Create" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/">
         <changes xsi:type="history:Set" element="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#/"
@@ -2890,50 +2890,50 @@
             featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//document/LeafSection"
-          referenceName="eStructuralFeatures" element="model.ecore#//document/LeafSection/modelElements">
-        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/modelElements"
+          referenceName="eStructuralFeatures" element="model.ecore#//document/LeafSection/containedElements">
+        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/containedElements"
             featureName="name" dataValue="modelElements"/>
-        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/modelElements"
+        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/containedElements"
             featureName="upperBound" dataValue="-1" oldDataValue="1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/modelElements"
+        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/containedElements"
             featureName="containment" dataValue="true" oldDataValue="false"/>
-        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/modelElements"
+        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/containedElements"
             featureName="eType" referenceValue="model.ecore#//UnicaseModelElement"/>
-        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/modelElements"
+        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/containedElements"
             featureName="eOpposite" referenceValue="model.ecore#//UnicaseModelElement/leafSection"/>
         <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/leafSection"
-            featureName="eOpposite" referenceValue="model.ecore#//document/LeafSection/modelElements"/>
-        <changes xsi:type="history:Add" element="model.ecore#//document/LeafSection/modelElements"
+            featureName="eOpposite" referenceValue="model.ecore#//document/LeafSection/containedElements"/>
+        <changes xsi:type="history:Add" element="model.ecore#//document/LeafSection/containedElements"
             featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
-      <changes xsi:type="history:Create" target="model.ecore#//document/LeafSection/modelElements"
-          referenceName="eAnnotations" element="model.ecore#//document/LeafSection/modelElements/%org.unicase.ui.meeditor%">
-        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/modelElements/%org.unicase.ui.meeditor%"
+      <changes xsi:type="history:Create" target="model.ecore#//document/LeafSection/containedElements"
+          referenceName="eAnnotations" element="model.ecore#//document/LeafSection/containedElements/%org.unicase.ui.meeditor%">
+        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/containedElements/%org.unicase.ui.meeditor%"
             featureName="source" dataValue="org.unicase.ui.meeditor"/>
       </changes>
-      <changes xsi:type="history:Create" target="model.ecore#//document/LeafSection/modelElements/%org.unicase.ui.meeditor%"
-          referenceName="details" element="model.ecore#//document/LeafSection/modelElements/%org.unicase.ui.meeditor%/@details.0">
-        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/modelElements/%org.unicase.ui.meeditor%/@details.0"
+      <changes xsi:type="history:Create" target="model.ecore#//document/LeafSection/containedElements/%org.unicase.ui.meeditor%"
+          referenceName="details" element="model.ecore#//document/LeafSection/containedElements/%org.unicase.ui.meeditor%/@details.0">
+        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/containedElements/%org.unicase.ui.meeditor%/@details.0"
             featureName="key" dataValue="priority"/>
-        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/modelElements/%org.unicase.ui.meeditor%/@details.0"
+        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/containedElements/%org.unicase.ui.meeditor%/@details.0"
             featureName="value" dataValue="20.0"/>
       </changes>
-      <changes xsi:type="history:Create" target="model.ecore#//document/LeafSection/modelElements/%org.unicase.ui.meeditor%"
-          referenceName="details" element="model.ecore#//document/LeafSection/modelElements/%org.unicase.ui.meeditor%/@details.1">
-        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/modelElements/%org.unicase.ui.meeditor%/@details.1"
+      <changes xsi:type="history:Create" target="model.ecore#//document/LeafSection/containedElements/%org.unicase.ui.meeditor%"
+          referenceName="details" element="model.ecore#//document/LeafSection/containedElements/%org.unicase.ui.meeditor%/@details.1">
+        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/containedElements/%org.unicase.ui.meeditor%/@details.1"
             featureName="key" dataValue="position"/>
-        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/modelElements/%org.unicase.ui.meeditor%/@details.1"
+        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/containedElements/%org.unicase.ui.meeditor%/@details.1"
             featureName="value" dataValue="right"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//document/LeafSection"
-          referenceName="eStructuralFeatures" element="model.ecore#//document/LeafSection/referencedModelElements">
-        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedModelElements"
+          referenceName="eStructuralFeatures" element="model.ecore#//document/LeafSection/referencedElements">
+        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedElements"
             featureName="name" dataValue="referencedModelElements"/>
-        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedModelElements"
+        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedElements"
             featureName="upperBound" dataValue="-1" oldDataValue="1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedModelElements"
+        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedElements"
             featureName="eType" referenceValue="model.ecore#//UnicaseModelElement"/>
-        <changes xsi:type="history:Add" element="model.ecore#//document/LeafSection/referencedModelElements"
+        <changes xsi:type="history:Add" element="model.ecore#//document/LeafSection/referencedElements"
             featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement"
@@ -2945,8 +2945,8 @@
         <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/incomingDocumentReferences"
             featureName="eType" referenceValue="model.ecore#//document/LeafSection"/>
         <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/incomingDocumentReferences"
-            featureName="eOpposite" referenceValue="model.ecore#//document/LeafSection/referencedModelElements"/>
-        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedModelElements"
+            featureName="eOpposite" referenceValue="model.ecore#//document/LeafSection/referencedElements"/>
+        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedElements"
             featureName="eOpposite" referenceValue="model.ecore#//UnicaseModelElement/incomingDocumentReferences"/>
         <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement/incomingDocumentReferences"
             featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
@@ -2970,23 +2970,23 @@
         <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/incomingDocumentReferences/%org.unicase.ui.meeditor%/@details.1"
             featureName="value" dataValue="right"/>
       </changes>
-      <changes xsi:type="history:Create" target="model.ecore#//document/LeafSection/referencedModelElements"
-          referenceName="eAnnotations" element="model.ecore#//document/LeafSection/referencedModelElements/%org.unicase.ui.meeditor%">
-        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedModelElements/%org.unicase.ui.meeditor%"
+      <changes xsi:type="history:Create" target="model.ecore#//document/LeafSection/referencedElements"
+          referenceName="eAnnotations" element="model.ecore#//document/LeafSection/referencedElements/%org.unicase.ui.meeditor%">
+        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedElements/%org.unicase.ui.meeditor%"
             featureName="source" dataValue="org.unicase.ui.meeditor"/>
       </changes>
-      <changes xsi:type="history:Create" target="model.ecore#//document/LeafSection/referencedModelElements/%org.unicase.ui.meeditor%"
-          referenceName="details" element="model.ecore#//document/LeafSection/referencedModelElements/%org.unicase.ui.meeditor%/@details.0">
-        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedModelElements/%org.unicase.ui.meeditor%/@details.0"
+      <changes xsi:type="history:Create" target="model.ecore#//document/LeafSection/referencedElements/%org.unicase.ui.meeditor%"
+          referenceName="details" element="model.ecore#//document/LeafSection/referencedElements/%org.unicase.ui.meeditor%/@details.0">
+        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedElements/%org.unicase.ui.meeditor%/@details.0"
             featureName="key" dataValue="priority"/>
-        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedModelElements/%org.unicase.ui.meeditor%/@details.0"
+        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedElements/%org.unicase.ui.meeditor%/@details.0"
             featureName="value" dataValue="21.0"/>
       </changes>
-      <changes xsi:type="history:Create" target="model.ecore#//document/LeafSection/referencedModelElements/%org.unicase.ui.meeditor%"
-          referenceName="details" element="model.ecore#//document/LeafSection/referencedModelElements/%org.unicase.ui.meeditor%/@details.1">
-        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedModelElements/%org.unicase.ui.meeditor%/@details.1"
+      <changes xsi:type="history:Create" target="model.ecore#//document/LeafSection/referencedElements/%org.unicase.ui.meeditor%"
+          referenceName="details" element="model.ecore#//document/LeafSection/referencedElements/%org.unicase.ui.meeditor%/@details.1">
+        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedElements/%org.unicase.ui.meeditor%/@details.1"
             featureName="key" dataValue="position"/>
-        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedModelElements/%org.unicase.ui.meeditor%/@details.1"
+        <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedElements/%org.unicase.ui.meeditor%/@details.1"
             featureName="value" dataValue="right"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//document" referenceName="eClassifiers"
@@ -6406,9 +6406,9 @@
           featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/leafSection"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
-      <changes xsi:type="history:Remove" element="model.ecore#//document/LeafSection/modelElements"
+      <changes xsi:type="history:Remove" element="model.ecore#//document/LeafSection/containedElements"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
-      <changes xsi:type="history:Remove" element="model.ecore#//document/LeafSection/referencedModelElements"
+      <changes xsi:type="history:Remove" element="model.ecore#//document/LeafSection/referencedElements"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//UnicaseModelElement/incomingDocumentReferences"
           featureName="eKeys" referenceValue="#//@releases.0/@changes.4/@element/identifier"/>
@@ -6765,9 +6765,9 @@
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="#//@releases.9/@changes.7/@element/Dependency/target"
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <changes xsi:type="history:Add" element="model.ecore#//document/LeafSection/modelElements"
+      <changes xsi:type="history:Add" element="model.ecore#//document/LeafSection/containedElements"
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <changes xsi:type="history:Add" element="model.ecore#//document/LeafSection/referencedModelElements"
+      <changes xsi:type="history:Add" element="model.ecore#//document/LeafSection/referencedElements"
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Add" element="model.ecore#//document/CompositeSection/subsections"
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
@@ -6959,7 +6959,7 @@
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
     </changes>
   </releases>
-  <releases date="2009-06-15T16:43:42.953+0200" label="1 (0.3.25.internal)">
+  <releases date="2009-06-15T10:43:42.953-0400" label="1 (0.3.25.internal)">
     <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachment"
         referenceName="eStructuralFeatures" element="#//@releases.8/@changes.3/@changes.0/@element">
       <changes xsi:type="history:Set" element="#//@releases.8/@changes.3/@changes.0/@element"
@@ -6970,7 +6970,7 @@
     <changes xsi:type="history:Add" element="model.ecore#//rationale/Comment" featureName="eSuperTypes"
         referenceValue="#//@releases.5/@changes.32/@changes.0/@element"/>
   </releases>
-  <releases date="2009-06-15T16:43:42.953+0200" label="2">
+  <releases date="2009-06-15T10:43:42.953-0400" label="2">
     <changes xsi:type="history:MigrationChange" migration="import org.eclipse.emf.ecore.*&#xA;&#xA;// change migration&#xA;getElementById = { id ->&#xA;&#x9;def element = model.UnicaseModelElement.allInstances.find{e -> id.equals(e.identifier)} &#xA;&#x9;if(element == null) {&#xA;&#x9;&#x9;println &quot;id &quot; + id + &quot; not found&quot;&#xA;&#x9;}&#xA;&#x9;return element&#xA;}&#xA;&#xA;isFeatureChange = { operation, EStructuralFeature feature ->&#xA;&#x9;if(feature.name.equals(operation.featureName)) {&#xA;&#x9;&#x9;def id = operation.modelElementId.id&#xA;&#x9;&#x9;def element = getElementById(id)&#xA;&#x9;&#x9;if(element == null || element.instanceOf(feature.eContainingClass)) {&#xA;&#x9;&#x9;&#x9;return true&#xA;&#x9;&#x9;}&#xA;&#x9;}&#xA;&#x9;return false&#xA;}&#xA;&#xA;for(operation in esmodel.versioning.operations.AttributeOperation.allInstances) {&#xA;&#x9;if(isFeatureChange(operation, model.bug.BugReport.Status)) {&#xA;&#x9;&#x9;if(operation.newValue.literal == model.bug.BugStatus.CLOSED.literal) {&#xA;&#x9;&#x9;&#x9;operation.featureName = &quot;done&quot;&#xA;&#x9;&#x9;&#x9;operation.oldValue = Boolean.FALSE&#xA;&#x9;&#x9;&#x9;operation.newValue = Boolean.TRUE&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;else if(operation.oldValue.literal == model.bug.BugStatus.CLOSED.literal) {&#xA;&#x9;&#x9;&#x9;operation.featureName = &quot;done&quot;&#xA;&#x9;&#x9;&#x9;operation.oldValue = Boolean.TRUE&#xA;&#x9;&#x9;&#x9;operation.newValue = Boolean.FALSE&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;else {&#xA;&#x9;&#x9;&#x9;operation.delete()&#xA;&#x9;&#x9;}&#xA;&#x9;}&#xA;}&#xA;&#xA;// metamodel adaptation&#xA;statusAttribute = model.bug.BugReport.Status&#xA;&#xA;newAttribute(model.bug.BugReport, &quot;done&quot;, emf.EBoolean, 0, 1, null)&#xA;statusAttribute.delete()&#xA;&#xA;// model migration&#xA;for(report in model.bug.BugReport.allInstances) {&#xA;&#x9;def status = report.unset(statusAttribute)&#xA;&#x9;if(status == model.bug.BugStatus.CLOSED) {&#xA;&#x9;&#x9;report.done = true&#xA;&#x9;}&#xA;&#x9;else {&#xA;&#x9;&#x9;report.done = false&#xA;&#x9;}&#xA;}">
       <changes xsi:type="history:Delete" target="model.ecore#//bug/BugReport" referenceName="eStructuralFeatures">
         <element xsi:type="ecore:EAttribute" name="Status" eType="#//@releases.2/@changes.1/@element"/>
@@ -7015,7 +7015,7 @@
       </element>
     </changes>
   </releases>
-  <releases date="2009-09-22T19:44:49.578+0200" label="3">
+  <releases date="2009-09-22T13:44:49.578-0400" label="3">
     <changes xsi:type="history:Create" target="model.ecore#//rationale" referenceName="eClassifiers"
         element="model.ecore#//rationale/AudioComment">
       <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment"
@@ -7436,10 +7436,10 @@
           featureName="name" dataValue="participatingActors" oldDataValue="participatingActor"/>
     </changes>
   </releases>
-  <releases date="2009-12-03T17:44:59.421+0100" label="4">
+  <releases date="2009-12-03T11:44:59.421-0500" label="4">
     <changes xsi:type="history:MigrationChange" migration="import org.eclipse.emf.ecore.*&#xA;&#xA;/**&#xA; * Converts the rich text string as generated by the MERichTextContol to HTML.&#xA; * &#xA; * @param richText the input string&#xA; * @return the converted HTML text&#xA; */&#xA;public static String getHTMLFromRichText(String text) {&#xA;&#x9;text = text.replaceAll(&quot;\n&quot;, &quot;&quot;);&#xA;&#x9;text = text.replaceAll(&quot;&lt;br>&quot;, &quot;\n&quot;);&#xA;&#x9;text = text.replaceAll(&quot;&lt;br\\/>&quot;, &quot;\n&quot;);&#xA;&#x9;text = text.replaceAll(&quot;&lt;li>&lt;P[^>]*>&quot;, &quot;\n  \u2022 &quot;);&#xA;&#x9;text = text.replaceAll(&quot;&lt;P[^>]*>&quot;, &quot;\n&quot;);&#xA;&#x9;text = text.replaceAll(&quot;&lt;[^&lt;]*>&quot;, &quot;&quot;);&#xA;&#x9;text = text.replaceAll(&quot;\\&amp;nbsp;&quot;, &quot; &quot;);&#xA;&#x9;return text;&#xA;}&#xA;&#xA;//change migration&#xA;getElementById = { id ->&#xA;&#x9;def element = model.UnicaseModelElement.allInstances.find{e -> id.equals(e.identifier)} &#xA;&#x9;if(element == null) {&#xA;&#x9;&#x9;println &quot;id &quot; + id + &quot; not found&quot;&#xA;&#x9;}&#xA;&#x9;return element&#xA;}&#xA;&#xA;isFeatureChange = { operation, EStructuralFeature feature ->&#xA;&#x9;if(feature.name.equals(operation.featureName)) {&#xA;&#x9;&#x9;def id = operation.modelElementId.id&#xA;&#x9;&#x9;def element = getElementById(id)&#xA;&#x9;&#x9;if(element == null || element.instanceOf(feature.eContainingClass)) {&#xA;&#x9;&#x9;&#x9;return true&#xA;&#x9;&#x9;}&#xA;&#x9;}&#xA;&#x9;return false&#xA;}&#xA;&#xA;for(operation in esmodel.versioning.operations.AttributeOperation.allInstances) {&#xA;&#x9;if(isFeatureChange(operation, model.UnicaseModelElement.description)) {&#xA;&#x9;&#x9;if(operation.oldValue != null) {&#xA;&#x9;&#x9;&#x9;operation.oldValue = getHTMLFromRichText(operation.oldValue)&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;if(operation.newValue != null) {&#xA;&#x9;&#x9;&#x9;operation.newValue = getHTMLFromRichText(operation.newValue)&#xA;&#x9;&#x9;}&#xA;&#x9;}&#xA;}&#xA;&#xA;// model migration&#xA;for(m in model.UnicaseModelElement.allInstances) {&#xA;&#x9;if(m.description != null) {&#xA;&#x9;&#x9;m.description = getHTMLFromRichText(m.description)&#xA;&#x9;}&#xA;}"/>
   </releases>
-  <releases date="2009-12-17T18:13:23.984+0100" label="5 (0.3.45.internal)">
+  <releases date="2009-12-17T12:13:23.984-0500" label="5 (0.3.45.internal)">
     <changes xsi:type="history:Set" element="#//@releases.9/@changes.8/@element" featureName="nsPrefix"
         dataValue="org.unicase.model.change" oldDataValue="org.unicase.model.rationale"/>
     <changes xsi:type="history:Set" element="#//@releases.9/@changes.7/@element/MethodArgument/signature"
@@ -7866,7 +7866,7 @@
     <changes xsi:type="history:Add" element="model.ecore#//rationale/Comment" featureName="eSuperTypes"
         referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//NonDomainElement"/>
   </releases>
-  <releases date="2010-03-28T11:49:07.828+0200" label="">
+  <releases date="2010-03-28T05:49:07.828-0400" label="">
     <changes xsi:type="history:OperationChange">
       <changes xsi:type="history:Create" target="#//@releases.7/@changes.9/@element"
           referenceName="eClassifiers" element="#//@releases.7/@changes.9/@element/ClassDiagram">
@@ -8009,7 +8009,7 @@
       </operation>
     </changes>
   </releases>
-  <releases date="2010-09-11T14:08:11.687+0200" label="">
+  <releases date="2010-09-11T08:08:11.687-0400" label="">
     <changes xsi:type="history:Create" target="model.ecore#//attachment/UrlAttachment/url"
         referenceName="eAnnotations" element="model.ecore#//attachment/UrlAttachment/url/%org.unicase.ui.meeditor%">
       <changes xsi:type="history:Set" element="model.ecore#//attachment/UrlAttachment/url/%org.unicase.ui.meeditor%"
@@ -8126,9 +8126,9 @@
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="#//@releases.9/@changes.7/@element/Enumeration/attributes"
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <changes xsi:type="history:Remove" element="model.ecore#//document/LeafSection/modelElements"
+      <changes xsi:type="history:Remove" element="model.ecore#//document/LeafSection/containedElements"
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
-      <changes xsi:type="history:Remove" element="model.ecore#//document/LeafSection/referencedModelElements"
+      <changes xsi:type="history:Remove" element="model.ecore#//document/LeafSection/referencedElements"
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
       <changes xsi:type="history:Remove" element="model.ecore#//document/CompositeSection/subsections"
           featureName="eKeys" referenceValue="platform:/plugin/org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
@@ -8501,7 +8501,7 @@
       </changes>
     </changes>
   </releases>
-  <releases date="2011-04-26T16:01:23.721+0200" label="">
+  <releases date="2011-04-26T10:01:23.721-0400" label="">
     <changes xsi:type="history:MigrationChange" migration="for(attachment in model.attachment.FileAttachment.allInstances) {&#xA;&#x9;&#xA;&#x9;def FILE_NAME_DELIMITER = &quot;_&quot;;&#xA;&#x9;&#xA;&#x9;//&#x9;protection against double migration&#xA;&#x9;if(attachment.fileID.contains(FILE_NAME_DELIMITER)){&#xA;&#x9;&#x9;throw new RuntimeException(&quot;Already migrated&quot;)&#xA;&#x9;}&#xA;&#x9;&#xA;&#x9;String meId = attachment.uuid;&#xA;&#x9;String version = attachment.fileID;&#xA;&#x9;String fileName = attachment.fileName;&#xA;&#x9;&#xA;&#x9;String newId = meId + FILE_NAME_DELIMITER + version + FILE_NAME_DELIMITER + fileName;&#xA;&#x9;&#xA;&#x9;attachment.fileID = newId;&#xA;}&#xA;&#xA;"/>
     <changes xsi:type="history:OperationChange">
       <changes xsi:type="history:Delete" target="model.ecore#//attachment/FileAttachment"
@@ -8676,15 +8676,15 @@
     </changes>
   </releases>
   <releases>
-    <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/modelElements"
+    <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/containedElements"
         featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EObject"
         oldReferenceValue="model.ecore#//UnicaseModelElement"/>
-    <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedModelElements"
+    <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedElements"
         featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EObject"
         oldReferenceValue="model.ecore#//UnicaseModelElement"/>
     <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/leafSection"
-        featureName="eOpposite" oldReferenceValue="model.ecore#//document/LeafSection/modelElements"/>
-    <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/modelElements"
+        featureName="eOpposite" oldReferenceValue="model.ecore#//document/LeafSection/containedElements"/>
+    <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/containedElements"
         featureName="eOpposite" oldReferenceValue="model.ecore#//UnicaseModelElement/leafSection"/>
     <changes xsi:type="history:Delete" target="model.ecore#/" referenceName="eSubpackages">
       <changes xsi:type="history:Set" featureName="eOpposite" oldReferenceValue="#//@releases.9/@changes.4/@element/UseCase/identifiedClasses"/>
@@ -9650,5 +9650,13 @@
         </eClassifiers>
       </element>
     </changes>
+    <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/containedElements"
+        featureName="name" dataValue="containedElements" oldDataValue="modelElements"/>
+    <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/referencedElements"
+        featureName="name" dataValue="referencedElements" oldDataValue="referencedModelElements"/>
+    <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/containedElements/%org.unicase.ui.meeditor%/@details.0"
+        featureName="value" dataValue="22" oldDataValue="20.0"/>
+    <changes xsi:type="history:Set" element="model.ecore#//document/LeafSection/containedElements/%org.unicase.ui.meeditor%/@details.0"
+        featureName="value" dataValue="20" oldDataValue="22"/>
   </releases>
 </history:History>

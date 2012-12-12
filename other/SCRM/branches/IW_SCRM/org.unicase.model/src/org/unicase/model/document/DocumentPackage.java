@@ -268,22 +268,22 @@ public interface DocumentPackage extends EPackage {
 	int LEAF_SECTION__PARENT = SECTION__PARENT;
 
 	/**
-	 * The feature id for the '<em><b>Model Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The feature id for the '<em><b>Contained Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEAF_SECTION__MODEL_ELEMENTS = SECTION_FEATURE_COUNT + 0;
+	int LEAF_SECTION__CONTAINED_ELEMENTS = SECTION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Referenced Model Elements</b></em>' reference list.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The feature id for the '<em><b>Referenced Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEAF_SECTION__REFERENCED_MODEL_ELEMENTS = SECTION_FEATURE_COUNT + 1;
+	int LEAF_SECTION__REFERENCED_ELEMENTS = SECTION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Leaf Section</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
@@ -426,25 +426,26 @@ public interface DocumentPackage extends EPackage {
 	EClass getLeafSection();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.model.document.LeafSection#getModelElements <em>Model Elements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.unicase.model.document.LeafSection#getContainedElements <em>Contained Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Model Elements</em>'.
-	 * @see org.unicase.model.document.LeafSection#getModelElements()
+	 * @return the meta object for the containment reference list '<em>Contained Elements</em>'.
+	 * @see org.unicase.model.document.LeafSection#getContainedElements()
 	 * @see #getLeafSection()
 	 * @generated
 	 */
-	EReference getLeafSection_ModelElements();
+	EReference getLeafSection_ContainedElements();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.document.LeafSection#getReferencedModelElements <em>Referenced Model Elements</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Referenced Model Elements</em>'.
-	 * @see org.unicase.model.document.LeafSection#getReferencedModelElements()
+	 * Returns the meta object for the reference list '{@link org.unicase.model.document.LeafSection#getReferencedElements <em>Referenced Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Referenced Elements</em>'.
+	 * @see org.unicase.model.document.LeafSection#getReferencedElements()
 	 * @see #getLeafSection()
 	 * @generated
 	 */
-	EReference getLeafSection_ReferencedModelElements();
+	EReference getLeafSection_ReferencedElements();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.document.CompositeSection <em>Composite Section</em>}'.
@@ -515,19 +516,19 @@ public interface DocumentPackage extends EPackage {
 		 */
 		EClass LEAF_SECTION = eINSTANCE.getLeafSection();
 		/**
-		 * The meta object literal for the '<em><b>Model Elements</b></em>' containment reference list feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Contained Elements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LEAF_SECTION__MODEL_ELEMENTS = eINSTANCE.getLeafSection_ModelElements();
+		EReference LEAF_SECTION__CONTAINED_ELEMENTS = eINSTANCE.getLeafSection_ContainedElements();
 		/**
-		 * The meta object literal for the '<em><b>Referenced Model Elements</b></em>' reference list feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Referenced Elements</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LEAF_SECTION__REFERENCED_MODEL_ELEMENTS = eINSTANCE.getLeafSection_ReferencedModelElements();
+		EReference LEAF_SECTION__REFERENCED_ELEMENTS = eINSTANCE.getLeafSection_ReferencedElements();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.document.impl.CompositeSectionImpl <em>Composite Section</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->

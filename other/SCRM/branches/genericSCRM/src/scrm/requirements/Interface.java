@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link scrm.requirements.Interface#getRequiringFeatures <em>Requiring Features</em>}</li>
  *   <li>{@link scrm.requirements.Interface#getProvidingData <em>Providing Data</em>}</li>
  *   <li>{@link scrm.requirements.Interface#getRequiringData <em>Requiring Data</em>}</li>
- *   <li>{@link scrm.requirements.Interface#getProvidingRequirements <em>Providing Requirements</em>}</li>
- *   <li>{@link scrm.requirements.Interface#getRequiringRequirements <em>Requiring Requirements</em>}</li>
+ *   <li>{@link scrm.requirements.Interface#getDetailsOfProvidingFunctionsAndProperties <em>Details Of Providing Functions And Properties</em>}</li>
+ *   <li>{@link scrm.requirements.Interface#getDetailsOfRequiringFunctionsAndProperties <em>Details Of Requiring Functions And Properties</em>}</li>
  * </ul>
  * </p>
  *
@@ -115,39 +115,39 @@ public interface Interface extends IRequirement {
 	EList<DataDefinition> getRequiringData();
 
 	/**
-	 * Returns the value of the '<em><b>Providing Requirements</b></em>' reference list.
+	 * Returns the value of the '<em><b>Details Of Providing Functions And Properties</b></em>' reference list.
 	 * The list contents are of type {@link scrm.requirements.Requirement}.
 	 * It is bidirectional and its opposite is '{@link scrm.requirements.Requirement#getProvidedInterface <em>Provided Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Providing Requirements</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Details Of Providing Functions And Properties</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Providing Requirements</em>' reference list.
-	 * @see scrm.requirements.RequirementsPackage#getInterface_ProvidingRequirements()
+	 * @return the value of the '<em>Details Of Providing Functions And Properties</em>' reference list.
+	 * @see scrm.requirements.RequirementsPackage#getInterface_DetailsOfProvidingFunctionsAndProperties()
 	 * @see scrm.requirements.Requirement#getProvidedInterface
 	 * @model opposite="providedInterface"
 	 * @generated
 	 */
-	EList<Requirement> getProvidingRequirements();
+	EList<Requirement> getDetailsOfProvidingFunctionsAndProperties();
 
 	/**
-	 * Returns the value of the '<em><b>Requiring Requirements</b></em>' reference list.
+	 * Returns the value of the '<em><b>Details Of Requiring Functions And Properties</b></em>' reference list.
 	 * The list contents are of type {@link scrm.requirements.Requirement}.
 	 * It is bidirectional and its opposite is '{@link scrm.requirements.Requirement#getRequiredInterface <em>Required Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Requiring Requirements</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Details Of Requiring Functions And Properties</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Requiring Requirements</em>' reference list.
-	 * @see scrm.requirements.RequirementsPackage#getInterface_RequiringRequirements()
+	 * @return the value of the '<em>Details Of Requiring Functions And Properties</em>' reference list.
+	 * @see scrm.requirements.RequirementsPackage#getInterface_DetailsOfRequiringFunctionsAndProperties()
 	 * @see scrm.requirements.Requirement#getRequiredInterface
 	 * @model opposite="requiredInterface"
 	 * @generated
 	 */
-	EList<Requirement> getRequiringRequirements();
+	EList<Requirement> getDetailsOfRequiringFunctionsAndProperties();
 
 } // Interface

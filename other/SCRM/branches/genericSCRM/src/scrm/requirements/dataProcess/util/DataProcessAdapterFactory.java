@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.model.UnicaseModelElement;
 
 import scrm.SCRMModelElement;
 import scrm.SCRMSpace;
@@ -105,6 +106,11 @@ public class DataProcessAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseDataProcessSpace(DataProcessSpace object) {
 			return createDataProcessSpaceAdapter();
+		}
+
+		@Override
+		public Adapter caseUnicaseModelElement(UnicaseModelElement object) {
+			return createUnicaseModelElementAdapter();
 		}
 
 		@Override
@@ -227,6 +233,20 @@ public class DataProcessAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDataProcessSpaceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.UnicaseModelElement <em>Unicase Model Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.UnicaseModelElement
+	 * @generated
+	 */
+	public Adapter createUnicaseModelElementAdapter() {
 		return null;
 	}
 

@@ -11,22 +11,16 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
-import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.model.provider.UnicaseModelElementItemProvider;
 
 import scrm.SCRMModelElement;
-import scrm.ScrmPackage;
 
 /**
  * This is the item provider adapter for a {@link scrm.SCRMModelElement} object.
@@ -34,9 +28,10 @@ import scrm.ScrmPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SCRMModelElementItemProvider extends ItemProviderAdapter implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class SCRMModelElementItemProvider extends
+		UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
+		IStructuredItemContentProvider, ITreeItemContentProvider,
+		IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -58,49 +53,8 @@ public class SCRMModelElementItemProvider extends ItemProviderAdapter implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
-			addDescriptionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_SCRMModelElement_name_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_SCRMModelElement_name_feature",
-						"_UI_SCRMModelElement_type"),
-				ScrmPackage.Literals.SCRM_MODEL_ELEMENT__NAME, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Description feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_SCRMModelElement_description_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_SCRMModelElement_description_feature",
-						"_UI_SCRMModelElement_type"),
-				ScrmPackage.Literals.SCRM_MODEL_ELEMENT__DESCRIPTION, true,
-				true, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
 	}
 
 	/**
@@ -125,14 +79,6 @@ public class SCRMModelElementItemProvider extends ItemProviderAdapter implements
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(SCRMModelElement.class)) {
-		case ScrmPackage.SCRM_MODEL_ELEMENT__NAME:
-		case ScrmPackage.SCRM_MODEL_ELEMENT__DESCRIPTION:
-			fireNotifyChanged(new ViewerNotification(notification,
-					notification.getNotifier(), false, true));
-			return;
-		}
 		super.notifyChanged(notification);
 	}
 
