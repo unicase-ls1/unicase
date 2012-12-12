@@ -69,7 +69,7 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 				new UnicaseCommand() {
 					@Override
 					protected void doRun() {
-						leafSection.getModelElements().add(newMEInstance);
+						leafSection.getContainedElements().add(newMEInstance);
 					}
 				}.run(true);
 

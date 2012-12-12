@@ -8,18 +8,14 @@ package scrm.requirements.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.model.UnicaseModelElement;
 
 import scrm.SCRMModelElement;
-
 import scrm.SCRMSpace;
-import scrm.requirements.*;
 import scrm.requirements.Constraint;
 import scrm.requirements.DataDefinition;
-import scrm.requirements.DataFlow;
 import scrm.requirements.Feature;
 import scrm.requirements.Hardware;
 import scrm.requirements.IRequirement;
@@ -137,13 +133,13 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseDataFlow(DataFlow object) {
-			return createDataFlowAdapter();
+		public Adapter caseDataDefinition(DataDefinition object) {
+			return createDataDefinitionAdapter();
 		}
 
 		@Override
-		public Adapter caseDataDefinition(DataDefinition object) {
-			return createDataDefinitionAdapter();
+		public Adapter caseUnicaseModelElement(UnicaseModelElement object) {
+			return createUnicaseModelElementAdapter();
 		}
 
 		@Override
@@ -302,20 +298,6 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link scrm.requirements.DataFlow <em>Data Flow</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see scrm.requirements.DataFlow
-	 * @generated
-	 */
-	public Adapter createDataFlowAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link scrm.requirements.DataDefinition <em>Data Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -326,6 +308,20 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDataDefinitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.UnicaseModelElement <em>Unicase Model Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.model.UnicaseModelElement
+	 * @generated
+	 */
+	public Adapter createUnicaseModelElementAdapter() {
 		return null;
 	}
 

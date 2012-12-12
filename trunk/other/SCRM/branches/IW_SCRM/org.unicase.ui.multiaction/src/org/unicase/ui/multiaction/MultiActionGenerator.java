@@ -132,7 +132,7 @@ public final class MultiActionGenerator {
 		if (parentPackage instanceof Project) {
 			project.addModelElement(result);
 		} else if (parentPackage instanceof LeafSection) {
-			((LeafSection) parentPackage).getModelElements().add(result);
+			((LeafSection) parentPackage).getContainedElements().add(result);
 		} else if (parentPackage instanceof WorkPackage) {
 			((WorkPackage) parentPackage).getContainedWorkItems().add(result);
 		}

@@ -7,7 +7,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
-import org.unicase.metamodel.Project;
 
 import scrm.SCRMDiagram;
 import scrm.SCRMModelElement;

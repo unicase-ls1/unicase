@@ -210,7 +210,7 @@ public class IssueOption extends CustomConflictOption {
 			throw new IllegalStateException("Couldn't add modelelement to project.");
 		}
 		if (eContainer instanceof LeafSection) {
-			((LeafSection) eContainer).getModelElements().add(modelElement);
+			((LeafSection) eContainer).getContainedElements().add(modelElement);
 		} else if (eContainer instanceof Project) {
 			((Project) eContainer).getModelElements().add(modelElement);
 		} else {

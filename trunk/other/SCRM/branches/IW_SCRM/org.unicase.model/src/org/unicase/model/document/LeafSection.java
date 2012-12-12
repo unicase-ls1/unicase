@@ -14,8 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.model.document.LeafSection#getModelElements <em>Model Elements</em>}</li>
- *   <li>{@link org.unicase.model.document.LeafSection#getReferencedModelElements <em>Referenced Model Elements</em>}</li>
+ *   <li>{@link org.unicase.model.document.LeafSection#getContainedElements <em>Contained Elements</em>}</li>
+ *   <li>{@link org.unicase.model.document.LeafSection#getReferencedElements <em>Referenced Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,36 +25,36 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface LeafSection extends Section {
 	/**
-	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Contained Elements</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Model Elements</em>' containment reference list isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Contained Elements</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Model Elements</em>' containment reference list.
-	 * @see org.unicase.model.document.DocumentPackage#getLeafSection_ModelElements()
+	 * @return the value of the '<em>Contained Elements</em>' containment reference list.
+	 * @see org.unicase.model.document.DocumentPackage#getLeafSection_ContainedElements()
 	 * @model containment="true" resolveProxies="true"
-	 *        annotation="org.unicase.ui.meeditor priority='20.0' position='right'"
+	 *        annotation="org.unicase.ui.meeditor priority='20' position='right'"
 	 * @generated
 	 */
-	EList<EObject> getModelElements();
+	EList<EObject> getContainedElements();
 
 	/**
-	 * Returns the value of the '<em><b>Referenced Model Elements</b></em>' reference list.
+	 * Returns the value of the '<em><b>Referenced Elements</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Referenced Model Elements</em>' reference list isn't clear, there really should be
-	 * more of a description here...
+	 * If the meaning of the '<em>Referenced Elements</em>' reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Referenced Model Elements</em>' reference list.
-	 * @see org.unicase.model.document.DocumentPackage#getLeafSection_ReferencedModelElements()
+	 * @return the value of the '<em>Referenced Elements</em>' reference list.
+	 * @see org.unicase.model.document.DocumentPackage#getLeafSection_ReferencedElements()
 	 * @model annotation="org.unicase.ui.meeditor priority='21.0' position='right'"
 	 * @generated
 	 */
-	EList<EObject> getReferencedModelElements();
+	EList<EObject> getReferencedElements();
 
 } // LeafSection

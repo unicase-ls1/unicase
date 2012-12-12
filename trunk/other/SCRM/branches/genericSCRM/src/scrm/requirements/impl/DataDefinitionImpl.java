@@ -31,7 +31,6 @@ import scrm.requirements.RequirementsPackage;
  *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getDefinedRequirement <em>Defined Requirement</em>}</li>
  *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getAccuracy <em>Accuracy</em>}</li>
  *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getRange <em>Range</em>}</li>
- *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getDataType <em>Data Type</em>}</li>
  *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getFormat <em>Format</em>}</li>
  *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getProvidedInterface <em>Provided Interface</em>}</li>
  *   <li>{@link scrm.requirements.impl.DataDefinitionImpl#getRequiredInterface <em>Required Interface</em>}</li>
@@ -91,26 +90,6 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements
 	 * @ordered
 	 */
 	protected String range = RANGE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getDataType() <em>Data Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDataType()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DATA_TYPE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDataType() <em>Data Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDataType()
-	 * @generated
-	 * @ordered
-	 */
-	protected String dataType = DATA_TYPE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getFormat() <em>Format</em>}' attribute.
@@ -304,11 +283,11 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements
 			NotificationChain msgs = null;
 			if (definedRequirement != null)
 				msgs = ((InternalEObject) definedRequirement).eInverseRemove(
-						this, RequirementsPackage.REQUIREMENT__DEFINING_DATA,
+						this, RequirementsPackage.REQUIREMENT__HANDLING_DATA,
 						Requirement.class, msgs);
 			if (newDefinedRequirement != null)
 				msgs = ((InternalEObject) newDefinedRequirement).eInverseAdd(
-						this, RequirementsPackage.REQUIREMENT__DEFINING_DATA,
+						this, RequirementsPackage.REQUIREMENT__HANDLING_DATA,
 						Requirement.class, msgs);
 			msgs = basicSetDefinedRequirement(newDefinedRequirement, msgs);
 			if (msgs != null)
@@ -546,29 +525,6 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDataType() {
-		return dataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDataType(String newDataType) {
-		String oldDataType = dataType;
-		dataType = newDataType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					RequirementsPackage.DATA_DEFINITION__DATA_TYPE,
-					oldDataType, dataType));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
@@ -581,7 +537,7 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements
 		case RequirementsPackage.DATA_DEFINITION__DEFINED_REQUIREMENT:
 			if (definedRequirement != null)
 				msgs = ((InternalEObject) definedRequirement).eInverseRemove(
-						this, RequirementsPackage.REQUIREMENT__DEFINING_DATA,
+						this, RequirementsPackage.REQUIREMENT__HANDLING_DATA,
 						Requirement.class, msgs);
 			return basicSetDefinedRequirement((Requirement) otherEnd, msgs);
 		case RequirementsPackage.DATA_DEFINITION__PROVIDED_INTERFACE:
@@ -660,8 +616,6 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements
 			return getAccuracy();
 		case RequirementsPackage.DATA_DEFINITION__RANGE:
 			return getRange();
-		case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
-			return getDataType();
 		case RequirementsPackage.DATA_DEFINITION__FORMAT:
 			return getFormat();
 		case RequirementsPackage.DATA_DEFINITION__PROVIDED_INTERFACE:
@@ -696,9 +650,6 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements
 		case RequirementsPackage.DATA_DEFINITION__RANGE:
 			setRange((String) newValue);
 			return;
-		case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
-			setDataType((String) newValue);
-			return;
 		case RequirementsPackage.DATA_DEFINITION__FORMAT:
 			setFormat((String) newValue);
 			return;
@@ -732,9 +683,6 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements
 		case RequirementsPackage.DATA_DEFINITION__RANGE:
 			setRange(RANGE_EDEFAULT);
 			return;
-		case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
-			setDataType(DATA_TYPE_EDEFAULT);
-			return;
 		case RequirementsPackage.DATA_DEFINITION__FORMAT:
 			setFormat(FORMAT_EDEFAULT);
 			return;
@@ -766,9 +714,6 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements
 		case RequirementsPackage.DATA_DEFINITION__RANGE:
 			return RANGE_EDEFAULT == null ? range != null : !RANGE_EDEFAULT
 					.equals(range);
-		case RequirementsPackage.DATA_DEFINITION__DATA_TYPE:
-			return DATA_TYPE_EDEFAULT == null ? dataType != null
-					: !DATA_TYPE_EDEFAULT.equals(dataType);
 		case RequirementsPackage.DATA_DEFINITION__FORMAT:
 			return FORMAT_EDEFAULT == null ? format != null : !FORMAT_EDEFAULT
 					.equals(format);
@@ -795,8 +740,6 @@ public class DataDefinitionImpl extends SCRMModelElementImpl implements
 		result.append(accuracy);
 		result.append(", range: ");
 		result.append(range);
-		result.append(", dataType: ");
-		result.append(dataType);
 		result.append(", format: ");
 		result.append(format);
 		result.append(')');

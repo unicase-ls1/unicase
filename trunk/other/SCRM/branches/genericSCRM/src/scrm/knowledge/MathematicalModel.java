@@ -19,10 +19,8 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link scrm.knowledge.MathematicalModel#getRepresentedProblem <em>Represented Problem</em>}</li>
  *   <li>{@link scrm.knowledge.MathematicalModel#getRefinements <em>Refinements</em>}</li>
  *   <li>{@link scrm.knowledge.MathematicalModel#getRefinedModel <em>Refined Model</em>}</li>
- *   <li>{@link scrm.knowledge.MathematicalModel#getNumericalMethods <em>Numerical Methods</em>}</li>
+ *   <li>{@link scrm.knowledge.MathematicalModel#getUsedinNumericalMethods <em>Usedin Numerical Methods</em>}</li>
  *   <li>{@link scrm.knowledge.MathematicalModel#getDependencies <em>Dependencies</em>}</li>
- *   <li>{@link scrm.knowledge.MathematicalModel#getTheory <em>Theory</em>}</li>
- *   <li>{@link scrm.knowledge.MathematicalModel#getMathematicalExpression <em>Mathematical Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -109,23 +107,23 @@ public interface MathematicalModel extends ScientificKnowledge {
 	void setRefinedModel(MathematicalModel value);
 
 	/**
-	 * Returns the value of the '<em><b>Numerical Methods</b></em>' reference list.
+	 * Returns the value of the '<em><b>Usedin Numerical Methods</b></em>' reference list.
 	 * The list contents are of type {@link scrm.knowledge.NumericalMethod}.
-	 * It is bidirectional and its opposite is '{@link scrm.knowledge.NumericalMethod#getMathematicalModel <em>Mathematical Model</em>}'.
+	 * It is bidirectional and its opposite is '{@link scrm.knowledge.NumericalMethod#getUsingMathematicalModel <em>Using Mathematical Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Numerical Methods</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Usedin Numerical Methods</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Numerical Methods</em>' reference list.
-	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_NumericalMethods()
-	 * @see scrm.knowledge.NumericalMethod#getMathematicalModel
-	 * @model opposite="mathematicalModel"
+	 * @return the value of the '<em>Usedin Numerical Methods</em>' reference list.
+	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_UsedinNumericalMethods()
+	 * @see scrm.knowledge.NumericalMethod#getUsingMathematicalModel
+	 * @model opposite="usingMathematicalModel"
 	 *        annotation="org.unicase.ui.meeditor position='right' priority='10'"
 	 * @generated
 	 */
-	EList<NumericalMethod> getNumericalMethods();
+	EList<NumericalMethod> getUsedinNumericalMethods();
 
 	/**
 	 * Returns the value of the '<em><b>Dependencies</b></em>' reference list.
@@ -145,57 +143,5 @@ public interface MathematicalModel extends ScientificKnowledge {
 	 * @generated
 	 */
 	EList<Assumption> getDependencies();
-
-	/**
-	 * Returns the value of the '<em><b>Theory</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Theory</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Theory</em>' attribute.
-	 * @see #setTheory(String)
-	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_Theory()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='5'"
-	 * @generated
-	 */
-	String getTheory();
-
-	/**
-	 * Sets the value of the '{@link scrm.knowledge.MathematicalModel#getTheory <em>Theory</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Theory</em>' attribute.
-	 * @see #getTheory()
-	 * @generated
-	 */
-	void setTheory(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Mathematical Expression</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Mathematical Expression</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Mathematical Expression</em>' attribute.
-	 * @see #setMathematicalExpression(String)
-	 * @see scrm.knowledge.KnowledgePackage#getMathematicalModel_MathematicalExpression()
-	 * @model annotation="org.unicase.ui.meeditor position='left' priority='7'"
-	 * @generated
-	 */
-	String getMathematicalExpression();
-
-	/**
-	 * Sets the value of the '{@link scrm.knowledge.MathematicalModel#getMathematicalExpression <em>Mathematical Expression</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Mathematical Expression</em>' attribute.
-	 * @see #getMathematicalExpression()
-	 * @generated
-	 */
-	void setMathematicalExpression(String value);
 
 } // MathematicalModel

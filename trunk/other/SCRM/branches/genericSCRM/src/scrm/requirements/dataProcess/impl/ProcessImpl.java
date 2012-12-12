@@ -8,20 +8,13 @@ package scrm.requirements.dataProcess.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
-
-import scrm.requirements.DataFlow;
-import scrm.requirements.RequirementsPackage;
 
 import scrm.requirements.dataProcess.DataProcessPackage;
 import scrm.requirements.dataProcess.DataProcessSpace;
-
 import scrm.requirements.dataProcess.ErrorHandling;
 import scrm.requirements.dataProcess.StatusMonitoring;
 import scrm.requirements.impl.RequirementImpl;
@@ -33,7 +26,6 @@ import scrm.requirements.impl.RequirementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link scrm.requirements.dataProcess.impl.ProcessImpl#getDataFlow <em>Data Flow</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.impl.ProcessImpl#getPredecessor <em>Predecessor</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.impl.ProcessImpl#getSuccessor <em>Successor</em>}</li>
  *   <li>{@link scrm.requirements.dataProcess.impl.ProcessImpl#getContainingDataProcessSpace <em>Containing Data Process Space</em>}</li>
@@ -46,16 +38,6 @@ import scrm.requirements.impl.RequirementImpl;
  */
 public class ProcessImpl extends RequirementImpl implements
 		scrm.requirements.dataProcess.Process {
-	/**
-	 * The cached value of the '{@link #getDataFlow() <em>Data Flow</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDataFlow()
-	 * @generated
-	 * @ordered
-	 */
-	protected DataFlow dataFlow;
-
 	/**
 	 * The cached value of the '{@link #getPredecessor() <em>Predecessor</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -493,90 +475,10 @@ public class ProcessImpl extends RequirementImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataFlow getDataFlow() {
-		if (dataFlow != null && dataFlow.eIsProxy()) {
-			InternalEObject oldDataFlow = (InternalEObject) dataFlow;
-			dataFlow = (DataFlow) eResolveProxy(oldDataFlow);
-			if (dataFlow != oldDataFlow) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							DataProcessPackage.PROCESS__DATA_FLOW, oldDataFlow,
-							dataFlow));
-			}
-		}
-		return dataFlow;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DataFlow basicGetDataFlow() {
-		return dataFlow;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDataFlow(DataFlow newDataFlow,
-			NotificationChain msgs) {
-		DataFlow oldDataFlow = dataFlow;
-		dataFlow = newDataFlow;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this,
-					Notification.SET, DataProcessPackage.PROCESS__DATA_FLOW,
-					oldDataFlow, newDataFlow);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDataFlow(DataFlow newDataFlow) {
-		if (newDataFlow != dataFlow) {
-			NotificationChain msgs = null;
-			if (dataFlow != null)
-				msgs = ((InternalEObject) dataFlow).eInverseRemove(this,
-						RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS,
-						DataFlow.class, msgs);
-			if (newDataFlow != null)
-				msgs = ((InternalEObject) newDataFlow).eInverseAdd(this,
-						RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS,
-						DataFlow.class, msgs);
-			msgs = basicSetDataFlow(newDataFlow, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					DataProcessPackage.PROCESS__DATA_FLOW, newDataFlow,
-					newDataFlow));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case DataProcessPackage.PROCESS__DATA_FLOW:
-			if (dataFlow != null)
-				msgs = ((InternalEObject) dataFlow).eInverseRemove(this,
-						RequirementsPackage.DATA_FLOW__SPECIFIED_PROCESS,
-						DataFlow.class, msgs);
-			return basicSetDataFlow((DataFlow) otherEnd, msgs);
 		case DataProcessPackage.PROCESS__PREDECESSOR:
 			if (predecessor != null)
 				msgs = ((InternalEObject) predecessor).eInverseRemove(this,
@@ -623,8 +525,6 @@ public class ProcessImpl extends RequirementImpl implements
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case DataProcessPackage.PROCESS__DATA_FLOW:
-			return basicSetDataFlow(null, msgs);
 		case DataProcessPackage.PROCESS__PREDECESSOR:
 			return basicSetPredecessor(null, msgs);
 		case DataProcessPackage.PROCESS__SUCCESSOR:
@@ -666,10 +566,6 @@ public class ProcessImpl extends RequirementImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case DataProcessPackage.PROCESS__DATA_FLOW:
-			if (resolve)
-				return getDataFlow();
-			return basicGetDataFlow();
 		case DataProcessPackage.PROCESS__PREDECESSOR:
 			if (resolve)
 				return getPredecessor();
@@ -702,9 +598,6 @@ public class ProcessImpl extends RequirementImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case DataProcessPackage.PROCESS__DATA_FLOW:
-			setDataFlow((DataFlow) newValue);
-			return;
 		case DataProcessPackage.PROCESS__PREDECESSOR:
 			setPredecessor((scrm.requirements.dataProcess.Process) newValue);
 			return;
@@ -732,9 +625,6 @@ public class ProcessImpl extends RequirementImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case DataProcessPackage.PROCESS__DATA_FLOW:
-			setDataFlow((DataFlow) null);
-			return;
 		case DataProcessPackage.PROCESS__PREDECESSOR:
 			setPredecessor((scrm.requirements.dataProcess.Process) null);
 			return;
@@ -762,8 +652,6 @@ public class ProcessImpl extends RequirementImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case DataProcessPackage.PROCESS__DATA_FLOW:
-			return dataFlow != null;
 		case DataProcessPackage.PROCESS__PREDECESSOR:
 			return predecessor != null;
 		case DataProcessPackage.PROCESS__SUCCESSOR:

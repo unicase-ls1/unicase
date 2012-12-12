@@ -22,7 +22,7 @@ import scrm.requirements.Requirement;
  *   <li>{@link scrm.knowledge.NumericalMethod#getSolvedProblem <em>Solved Problem</em>}</li>
  *   <li>{@link scrm.knowledge.NumericalMethod#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link scrm.knowledge.NumericalMethod#getRealizingRequirement <em>Realizing Requirement</em>}</li>
- *   <li>{@link scrm.knowledge.NumericalMethod#getMathematicalModel <em>Mathematical Model</em>}</li>
+ *   <li>{@link scrm.knowledge.NumericalMethod#getUsingMathematicalModel <em>Using Mathematical Model</em>}</li>
  *   <li>{@link scrm.knowledge.NumericalMethod#getPerformance <em>Performance</em>}</li>
  *   <li>{@link scrm.knowledge.NumericalMethod#getTheory <em>Theory</em>}</li>
  *   <li>{@link scrm.knowledge.NumericalMethod#getAlgorithm <em>Algorithm</em>}</li>
@@ -112,33 +112,33 @@ public interface NumericalMethod extends ScientificKnowledge {
 	void setRealizingRequirement(Requirement value);
 
 	/**
-	 * Returns the value of the '<em><b>Mathematical Model</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link scrm.knowledge.MathematicalModel#getNumericalMethods <em>Numerical Methods</em>}'.
+	 * Returns the value of the '<em><b>Using Mathematical Model</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link scrm.knowledge.MathematicalModel#getUsedinNumericalMethods <em>Usedin Numerical Methods</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Mathematical Model</em>' reference isn't clear,
+	 * If the meaning of the '<em>Using Mathematical Model</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Mathematical Model</em>' reference.
-	 * @see #setMathematicalModel(MathematicalModel)
-	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_MathematicalModel()
-	 * @see scrm.knowledge.MathematicalModel#getNumericalMethods
-	 * @model opposite="numericalMethods"
+	 * @return the value of the '<em>Using Mathematical Model</em>' reference.
+	 * @see #setUsingMathematicalModel(MathematicalModel)
+	 * @see scrm.knowledge.KnowledgePackage#getNumericalMethod_UsingMathematicalModel()
+	 * @see scrm.knowledge.MathematicalModel#getUsedinNumericalMethods
+	 * @model opposite="usedinNumericalMethods"
 	 *        annotation="org.unicase.ui.meeditor position='left' priority='20'"
 	 * @generated
 	 */
-	MathematicalModel getMathematicalModel();
+	MathematicalModel getUsingMathematicalModel();
 
 	/**
-	 * Sets the value of the '{@link scrm.knowledge.NumericalMethod#getMathematicalModel <em>Mathematical Model</em>}' reference.
+	 * Sets the value of the '{@link scrm.knowledge.NumericalMethod#getUsingMathematicalModel <em>Using Mathematical Model</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Mathematical Model</em>' reference.
-	 * @see #getMathematicalModel()
+	 * @param value the new value of the '<em>Using Mathematical Model</em>' reference.
+	 * @see #getUsingMathematicalModel()
 	 * @generated
 	 */
-	void setMathematicalModel(MathematicalModel value);
+	void setUsingMathematicalModel(MathematicalModel value);
 
 	/**
 	 * Returns the value of the '<em><b>Performance</b></em>' reference.

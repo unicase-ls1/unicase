@@ -11,11 +11,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -27,7 +24,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import scrm.provider.SCRMModelElementItemProvider;
 import scrm.provider.ScrmEditPlugin;
-
 import scrm.requirements.Feature;
 import scrm.requirements.RequirementsFactory;
 import scrm.requirements.RequirementsPackage;
@@ -66,7 +62,6 @@ public class FeatureItemProvider extends SCRMModelElementItemProvider implements
 			addContainingRequirementSpacePropertyDescriptor(object);
 			addDetailedRequirementsPropertyDescriptor(object);
 			addSubFeaturesPropertyDescriptor(object);
-			addSuperFeaturePropertyDescriptor(object);
 			addConstraintsPropertyDescriptor(object);
 			addDependenciesPropertyDescriptor(object);
 			addRequiredInterfacesPropertyDescriptor(object);
@@ -136,26 +131,6 @@ public class FeatureItemProvider extends SCRMModelElementItemProvider implements
 						"_UI_Feature_subFeatures_feature", "_UI_Feature_type"),
 				RequirementsPackage.Literals.FEATURE__SUB_FEATURES, true,
 				false, false, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Super Feature feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSuperFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Feature_superFeature_feature"),
-						getString("_UI_PropertyDescriptor_description",
-								"_UI_Feature_superFeature_feature",
-								"_UI_Feature_type"),
-						RequirementsPackage.Literals.FEATURE__SUPER_FEATURE,
-						true, false, false, null, null, null));
 	}
 
 	/**

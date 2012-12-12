@@ -79,7 +79,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 				new UnicaseCommand() {
 					@Override
 					protected void doRun() {
-						((LeafSection) selectedME).getModelElements().add(newMEInstance);
+						((LeafSection) selectedME).getContainedElements().add(newMEInstance);
 
 					}
 				}.run(true);

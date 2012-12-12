@@ -157,18 +157,20 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLeafSection_ModelElements() {
+	public EReference getLeafSection_ContainedElements() {
 		return (EReference) leafSectionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLeafSection_ReferencedModelElements() {
+	public EReference getLeafSection_ReferencedElements() {
 		return (EReference) leafSectionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -231,8 +233,8 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 
 		// Create classes and their features
 		leafSectionEClass = createEClass(LEAF_SECTION);
-		createEReference(leafSectionEClass, LEAF_SECTION__MODEL_ELEMENTS);
-		createEReference(leafSectionEClass, LEAF_SECTION__REFERENCED_MODEL_ELEMENTS);
+		createEReference(leafSectionEClass, LEAF_SECTION__CONTAINED_ELEMENTS);
+		createEReference(leafSectionEClass, LEAF_SECTION__REFERENCED_ELEMENTS);
 
 		compositeSectionEClass = createEClass(COMPOSITE_SECTION);
 		createEReference(compositeSectionEClass, COMPOSITE_SECTION__SUBSECTIONS);
@@ -278,12 +280,12 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 		// Initialize classes and features; add operations and parameters
 		initEClass(leafSectionEClass, LeafSection.class, "LeafSection", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLeafSection_ModelElements(), ecorePackage.getEObject(), null, "modelElements", null, 0, -1,
-			LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getLeafSection_ContainedElements(), ecorePackage.getEObject(), null, "containedElements", null,
+			0, -1, LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLeafSection_ReferencedModelElements(), ecorePackage.getEObject(), null,
-			"referencedModelElements", null, 0, -1, LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLeafSection_ReferencedElements(), ecorePackage.getEObject(), null, "referencedElements",
+			null, 0, -1, LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositeSectionEClass, CompositeSection.class, "CompositeSection", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -308,8 +310,9 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 	 */
 	protected void createOrgAnnotations() {
 		String source = "org.unicase.ui.meeditor";
-		addAnnotation(getLeafSection_ModelElements(), source, new String[] { "priority", "20.0", "position", "right" });
-		addAnnotation(getLeafSection_ReferencedModelElements(), source, new String[] { "priority", "21.0", "position",
+		addAnnotation(getLeafSection_ContainedElements(), source,
+			new String[] { "priority", "20", "position", "right" });
+		addAnnotation(getLeafSection_ReferencedElements(), source, new String[] { "priority", "21.0", "position",
 			"right" });
 		addAnnotation(getCompositeSection_Subsections(), source,
 			new String[] { "priority", "20.0", "position", "right" });

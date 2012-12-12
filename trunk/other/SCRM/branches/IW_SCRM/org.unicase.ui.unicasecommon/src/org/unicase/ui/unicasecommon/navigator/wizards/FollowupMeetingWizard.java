@@ -128,7 +128,7 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 				CompositeOperationHandle operationHandle = projectSpace.beginCompositeOperation();
 				followupMeeting.setName(namePage.getMeetingName());
 				followupMeeting.setDescription(namePage.getMeetingDescription());
-				leafSection.getModelElements().add(followupMeeting);
+				leafSection.getContainedElements().add(followupMeeting);
 				followupMeeting.setFacilitator(getSelectedMeeting().getFacilitator());
 				followupMeeting.setLocation(getSelectedMeeting().getLocation());
 				followupMeeting.getParticipants().addAll(getSelectedMeeting().getParticipants());
@@ -138,9 +138,9 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 				final List<WorkItem> statusItems = itemCarryPage.getStatusWorkItems();
 				addMeetingStatusItems(followupMeeting, statusItems);
 				try {
-					operationHandle.end("Create follow-up meeting", "Created follow-up meeting "
-						+ followupMeeting.getName() + " from " + selectedMeeting.getName() + ".", ModelUtil.getProject(
-						followupMeeting).getModelElementId(followupMeeting));
+					operationHandle.end("Create follow-up meeting",
+						"Created follow-up meeting " + followupMeeting.getName() + " from " + selectedMeeting.getName()
+							+ ".", ModelUtil.getProject(followupMeeting).getModelElementId(followupMeeting));
 				} catch (InvalidHandleException e) {
 					WorkspaceUtil.logException("Composite Operation failed!", e);
 				}

@@ -10,14 +10,12 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.model.UnicaseModelElement;
 
 import scrm.SCRMModelElement;
-
 import scrm.SCRMSpace;
-import scrm.requirements.*;
 import scrm.requirements.Constraint;
 import scrm.requirements.DataDefinition;
-import scrm.requirements.DataFlow;
 import scrm.requirements.Feature;
 import scrm.requirements.Hardware;
 import scrm.requirements.IRequirement;
@@ -106,6 +104,8 @@ public class RequirementsSwitch<T> {
 			if (result == null)
 				result = caseSCRMModelElement(iRequirement);
 			if (result == null)
+				result = caseUnicaseModelElement(iRequirement);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -117,6 +117,8 @@ public class RequirementsSwitch<T> {
 			if (result == null)
 				result = caseSCRMModelElement(interface_);
 			if (result == null)
+				result = caseUnicaseModelElement(interface_);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -127,6 +129,8 @@ public class RequirementsSwitch<T> {
 				result = caseIRequirement(requirement);
 			if (result == null)
 				result = caseSCRMModelElement(requirement);
+			if (result == null)
+				result = caseUnicaseModelElement(requirement);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -141,6 +145,8 @@ public class RequirementsSwitch<T> {
 			if (result == null)
 				result = caseSCRMModelElement(requirementSpace);
 			if (result == null)
+				result = caseUnicaseModelElement(requirementSpace);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -151,6 +157,8 @@ public class RequirementsSwitch<T> {
 				result = caseIRequirement(feature);
 			if (result == null)
 				result = caseSCRMModelElement(feature);
+			if (result == null)
+				result = caseUnicaseModelElement(feature);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -163,6 +171,8 @@ public class RequirementsSwitch<T> {
 			if (result == null)
 				result = caseSCRMModelElement(hardware);
 			if (result == null)
+				result = caseUnicaseModelElement(hardware);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -173,6 +183,8 @@ public class RequirementsSwitch<T> {
 				result = caseIRequirement(constraint);
 			if (result == null)
 				result = caseSCRMModelElement(constraint);
+			if (result == null)
+				result = caseUnicaseModelElement(constraint);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -187,6 +199,8 @@ public class RequirementsSwitch<T> {
 			if (result == null)
 				result = caseSCRMModelElement(userInterface);
 			if (result == null)
+				result = caseUnicaseModelElement(userInterface);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -199,6 +213,8 @@ public class RequirementsSwitch<T> {
 				result = caseIRequirement(softwareInterface);
 			if (result == null)
 				result = caseSCRMModelElement(softwareInterface);
+			if (result == null)
+				result = caseUnicaseModelElement(softwareInterface);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -213,16 +229,7 @@ public class RequirementsSwitch<T> {
 			if (result == null)
 				result = caseSCRMModelElement(performance);
 			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case RequirementsPackage.DATA_FLOW: {
-			DataFlow dataFlow = (DataFlow) theEObject;
-			T result = caseDataFlow(dataFlow);
-			if (result == null)
-				result = caseIRequirement(dataFlow);
-			if (result == null)
-				result = caseSCRMModelElement(dataFlow);
+				result = caseUnicaseModelElement(performance);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -234,6 +241,8 @@ public class RequirementsSwitch<T> {
 				result = caseIRequirement(dataDefinition);
 			if (result == null)
 				result = caseSCRMModelElement(dataDefinition);
+			if (result == null)
+				result = caseUnicaseModelElement(dataDefinition);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -379,21 +388,6 @@ public class RequirementsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Data Flow</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Data Flow</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDataFlow(DataFlow object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Data Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -405,6 +399,21 @@ public class RequirementsSwitch<T> {
 	 * @generated
 	 */
 	public T caseDataDefinition(DataDefinition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnicaseModelElement(UnicaseModelElement object) {
 		return null;
 	}
 

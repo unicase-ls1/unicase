@@ -9,12 +9,16 @@ package scrm.knowledge.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import scrm.knowledge.*;
+import scrm.knowledge.Assumption;
+import scrm.knowledge.KnowledgeFactory;
+import scrm.knowledge.KnowledgePackage;
+import scrm.knowledge.KnowledgeSpace;
+import scrm.knowledge.MathematicalModel;
+import scrm.knowledge.NumericalMethod;
+import scrm.knowledge.ScientificProblem;
 
 /**
  * <!-- begin-user-doc -->

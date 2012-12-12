@@ -54,7 +54,7 @@ public class AddAnnotationHandler extends AbstractHandler {
 		@Override
 		protected void doRun() {
 			if (i == 1) {
-				((LeafSection) object).getModelElements().add(result);
+				((LeafSection) object).getContainedElements().add(result);
 			} else if (i == 2) {
 
 				EObject parent = ((EObject) object).eContainer();

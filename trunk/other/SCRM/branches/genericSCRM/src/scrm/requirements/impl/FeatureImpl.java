@@ -40,7 +40,7 @@ import scrm.requirements.RequirementsPackage;
  *   <li>{@link scrm.requirements.impl.FeatureImpl#getContainingRequirementSpace <em>Containing Requirement Space</em>}</li>
  *   <li>{@link scrm.requirements.impl.FeatureImpl#getDetailedRequirements <em>Detailed Requirements</em>}</li>
  *   <li>{@link scrm.requirements.impl.FeatureImpl#getSubFeatures <em>Sub Features</em>}</li>
- *   <li>{@link scrm.requirements.impl.FeatureImpl#getSuperFeature <em>Super Feature</em>}</li>
+ *   <li>{@link scrm.requirements.impl.FeatureImpl#getParentFeature <em>Parent Feature</em>}</li>
  *   <li>{@link scrm.requirements.impl.FeatureImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link scrm.requirements.impl.FeatureImpl#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link scrm.requirements.impl.FeatureImpl#getRequiredInterfaces <em>Required Interfaces</em>}</li>
@@ -417,7 +417,7 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 			subFeatures = new EObjectContainmentWithInverseEList.Resolving<Feature>(
 					Feature.class, this,
 					RequirementsPackage.FEATURE__SUB_FEATURES,
-					RequirementsPackage.FEATURE__SUPER_FEATURE);
+					RequirementsPackage.FEATURE__PARENT_FEATURE);
 		}
 		return subFeatures;
 	}
@@ -427,8 +427,8 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature getSuperFeature() {
-		if (eContainerFeatureID() != RequirementsPackage.FEATURE__SUPER_FEATURE)
+	public Feature getParentFeature() {
+		if (eContainerFeatureID() != RequirementsPackage.FEATURE__PARENT_FEATURE)
 			return null;
 		return (Feature) eContainer();
 	}
@@ -438,8 +438,8 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Feature basicGetSuperFeature() {
-		if (eContainerFeatureID() != RequirementsPackage.FEATURE__SUPER_FEATURE)
+	public Feature basicGetParentFeature() {
+		if (eContainerFeatureID() != RequirementsPackage.FEATURE__PARENT_FEATURE)
 			return null;
 		return (Feature) eInternalContainer();
 	}
@@ -449,10 +449,10 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSuperFeature(Feature newSuperFeature,
+	public NotificationChain basicSetParentFeature(Feature newParentFeature,
 			NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newSuperFeature,
-				RequirementsPackage.FEATURE__SUPER_FEATURE, msgs);
+		msgs = eBasicSetContainer((InternalEObject) newParentFeature,
+				RequirementsPackage.FEATURE__PARENT_FEATURE, msgs);
 		return msgs;
 	}
 
@@ -461,26 +461,26 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSuperFeature(Feature newSuperFeature) {
-		if (newSuperFeature != eInternalContainer()
-				|| (eContainerFeatureID() != RequirementsPackage.FEATURE__SUPER_FEATURE && newSuperFeature != null)) {
-			if (EcoreUtil.isAncestor(this, newSuperFeature))
+	public void setParentFeature(Feature newParentFeature) {
+		if (newParentFeature != eInternalContainer()
+				|| (eContainerFeatureID() != RequirementsPackage.FEATURE__PARENT_FEATURE && newParentFeature != null)) {
+			if (EcoreUtil.isAncestor(this, newParentFeature))
 				throw new IllegalArgumentException(
 						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if (newSuperFeature != null)
-				msgs = ((InternalEObject) newSuperFeature).eInverseAdd(this,
+			if (newParentFeature != null)
+				msgs = ((InternalEObject) newParentFeature).eInverseAdd(this,
 						RequirementsPackage.FEATURE__SUB_FEATURES,
 						Feature.class, msgs);
-			msgs = basicSetSuperFeature(newSuperFeature, msgs);
+			msgs = basicSetParentFeature(newParentFeature, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-					RequirementsPackage.FEATURE__SUPER_FEATURE,
-					newSuperFeature, newSuperFeature));
+					RequirementsPackage.FEATURE__PARENT_FEATURE,
+					newParentFeature, newParentFeature));
 	}
 
 	/**
@@ -564,10 +564,10 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 		case RequirementsPackage.FEATURE__SUB_FEATURES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSubFeatures())
 					.basicAdd(otherEnd, msgs);
-		case RequirementsPackage.FEATURE__SUPER_FEATURE:
+		case RequirementsPackage.FEATURE__PARENT_FEATURE:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetSuperFeature((Feature) otherEnd, msgs);
+			return basicSetParentFeature((Feature) otherEnd, msgs);
 		case RequirementsPackage.FEATURE__CONSTRAINTS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getConstraints())
 					.basicAdd(otherEnd, msgs);
@@ -622,8 +622,8 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 		case RequirementsPackage.FEATURE__SUB_FEATURES:
 			return ((InternalEList<?>) getSubFeatures()).basicRemove(otherEnd,
 					msgs);
-		case RequirementsPackage.FEATURE__SUPER_FEATURE:
-			return basicSetSuperFeature(null, msgs);
+		case RequirementsPackage.FEATURE__PARENT_FEATURE:
+			return basicSetParentFeature(null, msgs);
 		case RequirementsPackage.FEATURE__CONSTRAINTS:
 			return ((InternalEList<?>) getConstraints()).basicRemove(otherEnd,
 					msgs);
@@ -669,7 +669,7 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 							this,
 							RequirementsPackage.REQUIREMENT_SPACE__CONTAINED_INFORMATIONOF_REQUIREMENTS,
 							RequirementSpace.class, msgs);
-		case RequirementsPackage.FEATURE__SUPER_FEATURE:
+		case RequirementsPackage.FEATURE__PARENT_FEATURE:
 			return eInternalContainer().eInverseRemove(this,
 					RequirementsPackage.FEATURE__SUB_FEATURES, Feature.class,
 					msgs);
@@ -693,10 +693,10 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 			return getDetailedRequirements();
 		case RequirementsPackage.FEATURE__SUB_FEATURES:
 			return getSubFeatures();
-		case RequirementsPackage.FEATURE__SUPER_FEATURE:
+		case RequirementsPackage.FEATURE__PARENT_FEATURE:
 			if (resolve)
-				return getSuperFeature();
-			return basicGetSuperFeature();
+				return getParentFeature();
+			return basicGetParentFeature();
 		case RequirementsPackage.FEATURE__CONSTRAINTS:
 			return getConstraints();
 		case RequirementsPackage.FEATURE__DEPENDENCIES:
@@ -742,8 +742,8 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 			getSubFeatures().clear();
 			getSubFeatures().addAll((Collection<? extends Feature>) newValue);
 			return;
-		case RequirementsPackage.FEATURE__SUPER_FEATURE:
-			setSuperFeature((Feature) newValue);
+		case RequirementsPackage.FEATURE__PARENT_FEATURE:
+			setParentFeature((Feature) newValue);
 			return;
 		case RequirementsPackage.FEATURE__CONSTRAINTS:
 			getConstraints().clear();
@@ -808,8 +808,8 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 		case RequirementsPackage.FEATURE__SUB_FEATURES:
 			getSubFeatures().clear();
 			return;
-		case RequirementsPackage.FEATURE__SUPER_FEATURE:
-			setSuperFeature((Feature) null);
+		case RequirementsPackage.FEATURE__PARENT_FEATURE:
+			setParentFeature((Feature) null);
 			return;
 		case RequirementsPackage.FEATURE__CONSTRAINTS:
 			getConstraints().clear();
@@ -857,8 +857,8 @@ public class FeatureImpl extends SCRMModelElementImpl implements Feature {
 					&& !detailedRequirements.isEmpty();
 		case RequirementsPackage.FEATURE__SUB_FEATURES:
 			return subFeatures != null && !subFeatures.isEmpty();
-		case RequirementsPackage.FEATURE__SUPER_FEATURE:
-			return basicGetSuperFeature() != null;
+		case RequirementsPackage.FEATURE__PARENT_FEATURE:
+			return basicGetParentFeature() != null;
 		case RequirementsPackage.FEATURE__CONSTRAINTS:
 			return constraints != null && !constraints.isEmpty();
 		case RequirementsPackage.FEATURE__DEPENDENCIES:

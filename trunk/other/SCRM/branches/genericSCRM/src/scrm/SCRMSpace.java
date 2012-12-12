@@ -8,9 +8,6 @@ package scrm;
 
 import org.eclipse.emf.common.util.EList;
 
-import scrm.knowledge.ScientificKnowledge;
-import scrm.lists.SCRMSpaceContainedModelElementsList;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>SCRM Space</b></em>'.

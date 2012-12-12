@@ -29,8 +29,8 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getParent <em>Parent</em>}</li>
- *   <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getModelElements <em>Model Elements</em>}</li>
- *   <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getReferencedModelElements <em>Referenced Model Elements</em>}</li>
+ *   <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getContainedElements <em>Contained Elements</em>}</li>
+ *   <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getReferencedElements <em>Referenced Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,22 +38,23 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
  */
 public class LeafSectionImpl extends UnicaseModelElementImpl implements LeafSection {
 	/**
-	 * The cached value of the '{@link #getModelElements() <em>Model Elements</em>}' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #getModelElements()
+	 * The cached value of the '{@link #getContainedElements() <em>Contained Elements</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getContainedElements()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<EObject> modelElements;
+	protected EList<EObject> containedElements;
 	/**
-	 * The cached value of the '{@link #getReferencedModelElements() <em>Referenced Model Elements</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getReferencedModelElements()
+	 * The cached value of the '{@link #getReferencedElements() <em>Referenced Elements</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferencedElements()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<EObject> referencedModelElements;
+	protected EList<EObject> referencedElements;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -125,27 +126,29 @@ public class LeafSectionImpl extends UnicaseModelElementImpl implements LeafSect
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<EObject> getModelElements() {
-		if (modelElements == null) {
-			modelElements = new EObjectContainmentEList.Resolving<EObject>(EObject.class, this,
-				DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS);
+	public EList<EObject> getContainedElements() {
+		if (containedElements == null) {
+			containedElements = new EObjectContainmentEList.Resolving<EObject>(EObject.class, this,
+				DocumentPackage.LEAF_SECTION__CONTAINED_ELEMENTS);
 		}
-		return modelElements;
+		return containedElements;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<EObject> getReferencedModelElements() {
-		if (referencedModelElements == null) {
-			referencedModelElements = new EObjectResolvingEList<EObject>(EObject.class, this,
-				DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS);
+	public EList<EObject> getReferencedElements() {
+		if (referencedElements == null) {
+			referencedElements = new EObjectResolvingEList<EObject>(EObject.class, this,
+				DocumentPackage.LEAF_SECTION__REFERENCED_ELEMENTS);
 		}
-		return referencedModelElements;
+		return referencedElements;
 	}
 
 	/**
@@ -173,8 +176,8 @@ public class LeafSectionImpl extends UnicaseModelElementImpl implements LeafSect
 		switch (featureID) {
 		case DocumentPackage.LEAF_SECTION__PARENT:
 			return basicSetParent(null, msgs);
-		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
-			return ((InternalEList<?>) getModelElements()).basicRemove(otherEnd, msgs);
+		case DocumentPackage.LEAF_SECTION__CONTAINED_ELEMENTS:
+			return ((InternalEList<?>) getContainedElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -204,10 +207,10 @@ public class LeafSectionImpl extends UnicaseModelElementImpl implements LeafSect
 			if (resolve)
 				return getParent();
 			return basicGetParent();
-		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
-			return getModelElements();
-		case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
-			return getReferencedModelElements();
+		case DocumentPackage.LEAF_SECTION__CONTAINED_ELEMENTS:
+			return getContainedElements();
+		case DocumentPackage.LEAF_SECTION__REFERENCED_ELEMENTS:
+			return getReferencedElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -223,13 +226,13 @@ public class LeafSectionImpl extends UnicaseModelElementImpl implements LeafSect
 		case DocumentPackage.LEAF_SECTION__PARENT:
 			setParent((CompositeSection) newValue);
 			return;
-		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
-			getModelElements().clear();
-			getModelElements().addAll((Collection<? extends EObject>) newValue);
+		case DocumentPackage.LEAF_SECTION__CONTAINED_ELEMENTS:
+			getContainedElements().clear();
+			getContainedElements().addAll((Collection<? extends EObject>) newValue);
 			return;
-		case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
-			getReferencedModelElements().clear();
-			getReferencedModelElements().addAll((Collection<? extends EObject>) newValue);
+		case DocumentPackage.LEAF_SECTION__REFERENCED_ELEMENTS:
+			getReferencedElements().clear();
+			getReferencedElements().addAll((Collection<? extends EObject>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -245,11 +248,11 @@ public class LeafSectionImpl extends UnicaseModelElementImpl implements LeafSect
 		case DocumentPackage.LEAF_SECTION__PARENT:
 			setParent((CompositeSection) null);
 			return;
-		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
-			getModelElements().clear();
+		case DocumentPackage.LEAF_SECTION__CONTAINED_ELEMENTS:
+			getContainedElements().clear();
 			return;
-		case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
-			getReferencedModelElements().clear();
+		case DocumentPackage.LEAF_SECTION__REFERENCED_ELEMENTS:
+			getReferencedElements().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -264,10 +267,10 @@ public class LeafSectionImpl extends UnicaseModelElementImpl implements LeafSect
 		switch (featureID) {
 		case DocumentPackage.LEAF_SECTION__PARENT:
 			return basicGetParent() != null;
-		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
-			return modelElements != null && !modelElements.isEmpty();
-		case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
-			return referencedModelElements != null && !referencedModelElements.isEmpty();
+		case DocumentPackage.LEAF_SECTION__CONTAINED_ELEMENTS:
+			return containedElements != null && !containedElements.isEmpty();
+		case DocumentPackage.LEAF_SECTION__REFERENCED_ELEMENTS:
+			return referencedElements != null && !referencedElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

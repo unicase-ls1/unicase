@@ -20,7 +20,7 @@ import scrm.knowledge.ScientificProblem;
  * <ul>
  *   <li>{@link scrm.requirements.Feature#getDetailedRequirements <em>Detailed Requirements</em>}</li>
  *   <li>{@link scrm.requirements.Feature#getSubFeatures <em>Sub Features</em>}</li>
- *   <li>{@link scrm.requirements.Feature#getSuperFeature <em>Super Feature</em>}</li>
+ *   <li>{@link scrm.requirements.Feature#getParentFeature <em>Parent Feature</em>}</li>
  *   <li>{@link scrm.requirements.Feature#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link scrm.requirements.Feature#getDependencies <em>Dependencies</em>}</li>
  *   <li>{@link scrm.requirements.Feature#getRequiredInterfaces <em>Required Interfaces</em>}</li>
@@ -90,7 +90,7 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_RequiredInterfaces()
 	 * @see scrm.requirements.Interface#getRequiringFeatures
 	 * @model opposite="requiringFeatures"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='20'"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='26'"
 	 * @generated
 	 */
 	EList<Interface> getRequiredInterfaces();
@@ -109,7 +109,7 @@ public interface Feature extends IRequirement {
 	 * @see scrm.requirements.RequirementsPackage#getFeature_ProvidedInterfaces()
 	 * @see scrm.requirements.Interface#getProvidingFeature
 	 * @model opposite="providingFeature" containment="true" resolveProxies="true"
-	 *        annotation="org.unicase.ui.meeditor position='right' priority='25'"
+	 *        annotation="org.unicase.ui.meeditor position='left' priority='27'"
 	 * @generated
 	 */
 	EList<Interface> getProvidedInterfaces();
@@ -165,7 +165,7 @@ public interface Feature extends IRequirement {
 	/**
 	 * Returns the value of the '<em><b>Sub Features</b></em>' containment reference list.
 	 * The list contents are of type {@link scrm.requirements.Feature}.
-	 * It is bidirectional and its opposite is '{@link scrm.requirements.Feature#getSuperFeature <em>Super Feature</em>}'.
+	 * It is bidirectional and its opposite is '{@link scrm.requirements.Feature#getParentFeature <em>Parent Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Sub Features</em>' containment reference list isn't clear,
@@ -174,41 +174,41 @@ public interface Feature extends IRequirement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sub Features</em>' containment reference list.
 	 * @see scrm.requirements.RequirementsPackage#getFeature_SubFeatures()
-	 * @see scrm.requirements.Feature#getSuperFeature
-	 * @model opposite="superFeature" containment="true" resolveProxies="true"
+	 * @see scrm.requirements.Feature#getParentFeature
+	 * @model opposite="parentFeature" containment="true" resolveProxies="true"
 	 *        annotation="org.unicase.ui.meeditor position='right' priority='7'"
 	 * @generated
 	 */
 	EList<Feature> getSubFeatures();
 
 	/**
-	 * Returns the value of the '<em><b>Super Feature</b></em>' container reference.
+	 * Returns the value of the '<em><b>Parent Feature</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link scrm.requirements.Feature#getSubFeatures <em>Sub Features</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Super Feature</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Parent Feature</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Super Feature</em>' container reference.
-	 * @see #setSuperFeature(Feature)
-	 * @see scrm.requirements.RequirementsPackage#getFeature_SuperFeature()
+	 * @return the value of the '<em>Parent Feature</em>' container reference.
+	 * @see #setParentFeature(Feature)
+	 * @see scrm.requirements.RequirementsPackage#getFeature_ParentFeature()
 	 * @see scrm.requirements.Feature#getSubFeatures
 	 * @model opposite="subFeatures" transient="false"
 	 *        annotation="org.unicase.ui.meeditor position='left' priority='15'"
 	 * @generated
 	 */
-	Feature getSuperFeature();
+	Feature getParentFeature();
 
 	/**
-	 * Sets the value of the '{@link scrm.requirements.Feature#getSuperFeature <em>Super Feature</em>}' container reference.
+	 * Sets the value of the '{@link scrm.requirements.Feature#getParentFeature <em>Parent Feature</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Super Feature</em>' container reference.
-	 * @see #getSuperFeature()
+	 * @param value the new value of the '<em>Parent Feature</em>' container reference.
+	 * @see #getParentFeature()
 	 * @generated
 	 */
-	void setSuperFeature(Feature value);
+	void setParentFeature(Feature value);
 
 	/**
 	 * Returns the value of the '<em><b>Required Features</b></em>' reference list.

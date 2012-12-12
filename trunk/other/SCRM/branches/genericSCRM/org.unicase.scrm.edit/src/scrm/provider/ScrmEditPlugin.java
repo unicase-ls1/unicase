@@ -7,12 +7,11 @@
 package scrm.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-
 import org.eclipse.gmf.runtime.notation.NotationEditPlugin;
+import org.unicase.metamodel.provider.MetamodelEditPlugin;
+import org.unicase.model.provider.ModelEditPlugin;
 
 /**
  * This is the central singleton for the Scrm edit plugin.
@@ -45,6 +44,7 @@ public final class ScrmEditPlugin extends EMFPlugin {
 	 */
 	public ScrmEditPlugin() {
 		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
+				MetamodelEditPlugin.INSTANCE, ModelEditPlugin.INSTANCE,
 				NotationEditPlugin.INSTANCE, });
 	}
 

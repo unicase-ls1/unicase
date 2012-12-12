@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.model.UnicaseModelElement;
 
 import scrm.SCRMModelElement;
 import scrm.SCRMSpace;
@@ -103,6 +104,8 @@ public class DataProcessSwitch<T> {
 			if (result == null)
 				result = caseSCRMModelElement(process);
 			if (result == null)
+				result = caseUnicaseModelElement(process);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -117,6 +120,8 @@ public class DataProcessSwitch<T> {
 				result = caseIRequirement(inputDataReading);
 			if (result == null)
 				result = caseSCRMModelElement(inputDataReading);
+			if (result == null)
+				result = caseUnicaseModelElement(inputDataReading);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -133,6 +138,8 @@ public class DataProcessSwitch<T> {
 			if (result == null)
 				result = caseSCRMModelElement(resultsOutput);
 			if (result == null)
+				result = caseUnicaseModelElement(resultsOutput);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -147,6 +154,8 @@ public class DataProcessSwitch<T> {
 				result = caseIRequirement(errorHandling);
 			if (result == null)
 				result = caseSCRMModelElement(errorHandling);
+			if (result == null)
+				result = caseUnicaseModelElement(errorHandling);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -163,6 +172,8 @@ public class DataProcessSwitch<T> {
 			if (result == null)
 				result = caseSCRMModelElement(statusMonitoring);
 			if (result == null)
+				result = caseUnicaseModelElement(statusMonitoring);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -175,6 +186,8 @@ public class DataProcessSwitch<T> {
 				result = caseProcess(dataProcessSpace);
 			if (result == null)
 				result = caseRequirement(dataProcessSpace);
+			if (result == null)
+				result = caseUnicaseModelElement(dataProcessSpace);
 			if (result == null)
 				result = caseIRequirement(dataProcessSpace);
 			if (result == null)
@@ -275,6 +288,21 @@ public class DataProcessSwitch<T> {
 	 * @generated
 	 */
 	public T caseDataProcessSpace(DataProcessSpace object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnicaseModelElement(UnicaseModelElement object) {
 		return null;
 	}
 

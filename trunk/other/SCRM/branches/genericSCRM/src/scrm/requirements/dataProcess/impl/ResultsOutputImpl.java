@@ -7,6 +7,7 @@
 package scrm.requirements.dataProcess.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import scrm.requirements.dataProcess.DataProcessPackage;
 import scrm.requirements.dataProcess.ResultsOutput;
 

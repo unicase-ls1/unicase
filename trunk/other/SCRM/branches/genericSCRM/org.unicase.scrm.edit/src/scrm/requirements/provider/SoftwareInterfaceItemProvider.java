@@ -11,7 +11,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -63,9 +62,9 @@ public class SoftwareInterfaceItemProvider extends SCRMModelElementItemProvider
 			addRequiringFeaturesPropertyDescriptor(object);
 			addProvidingDataPropertyDescriptor(object);
 			addRequiringDataPropertyDescriptor(object);
-			addProvidingRequirementsPropertyDescriptor(object);
-			addRequiringRequirementsPropertyDescriptor(object);
-			addDataTypesPropertyDescriptor(object);
+			addDetailsOfProvidingFunctionsAndPropertiesPropertyDescriptor(object);
+			addDetailsOfRequiringFunctionsAndPropertiesPropertyDescriptor(object);
+			addVersionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -168,61 +167,67 @@ public class SoftwareInterfaceItemProvider extends SCRMModelElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Providing Requirements feature.
+	 * This adds a property descriptor for the Details Of Providing Functions And Properties feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addProvidingRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Interface_providingRequirements_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Interface_providingRequirements_feature",
-						"_UI_Interface_type"),
-				RequirementsPackage.Literals.INTERFACE__PROVIDING_REQUIREMENTS,
-				true, false, true, null, null, null));
+	protected void addDetailsOfProvidingFunctionsAndPropertiesPropertyDescriptor(
+			Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_Interface_detailsOfProvidingFunctionsAndProperties_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_Interface_detailsOfProvidingFunctionsAndProperties_feature",
+								"_UI_Interface_type"),
+						RequirementsPackage.Literals.INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES,
+						true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Requiring Requirements feature.
+	 * This adds a property descriptor for the Details Of Requiring Functions And Properties feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRequiringRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Interface_requiringRequirements_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Interface_requiringRequirements_feature",
-						"_UI_Interface_type"),
-				RequirementsPackage.Literals.INTERFACE__REQUIRING_REQUIREMENTS,
-				true, false, true, null, null, null));
+	protected void addDetailsOfRequiringFunctionsAndPropertiesPropertyDescriptor(
+			Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_Interface_detailsOfRequiringFunctionsAndProperties_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_Interface_detailsOfRequiringFunctionsAndProperties_feature",
+								"_UI_Interface_type"),
+						RequirementsPackage.Literals.INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES,
+						true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Data Types feature.
+	 * This adds a property descriptor for the Version feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDataTypesPropertyDescriptor(Object object) {
+	protected void addVersionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
 						.getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_SoftwareInterface_dataTypes_feature"),
+				getString("_UI_SoftwareInterface_version_feature"),
 				getString("_UI_PropertyDescriptor_description",
-						"_UI_SoftwareInterface_dataTypes_feature",
+						"_UI_SoftwareInterface_version_feature",
 						"_UI_SoftwareInterface_type"),
-				RequirementsPackage.Literals.SOFTWARE_INTERFACE__DATA_TYPES,
-				true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null, null));
+				RequirementsPackage.Literals.SOFTWARE_INTERFACE__VERSION, true,
+				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
@@ -260,7 +265,7 @@ public class SoftwareInterfaceItemProvider extends SCRMModelElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SoftwareInterface.class)) {
-		case RequirementsPackage.SOFTWARE_INTERFACE__DATA_TYPES:
+		case RequirementsPackage.SOFTWARE_INTERFACE__VERSION:
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), false, true));
 			return;

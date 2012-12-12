@@ -101,9 +101,9 @@
     <nestedGenPackages prefix="Document" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//document">
       <genClasses ecoreClass="model.ecore#//document/LeafSection">
-        <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//document/LeafSection/modelElements"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//document/LeafSection/containedElements"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//document/LeafSection/referencedModelElements"/>
+            ecoreFeature="ecore:EReference model.ecore#//document/LeafSection/referencedElements"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//document/CompositeSection">
         <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//document/CompositeSection/subsections"/>

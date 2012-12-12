@@ -259,15 +259,15 @@
   </eSubpackages>
   <eSubpackages name="document" nsURI="http://unicase.org/model/document" nsPrefix="org.unicase.model.document">
     <eClassifiers xsi:type="ecore:EClass" name="LeafSection" eSuperTypes="#//document/Section">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" upperBound="-1"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="containedElements" upperBound="-1"
           eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true">
         <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="priority" value="20.0"/>
+          <details key="priority" value="20"/>
           <details key="position" value="right"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="referencedModelElements"
-          upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElements" upperBound="-1"
+          eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="21.0"/>
           <details key="position" value="right"/>

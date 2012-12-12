@@ -11,11 +11,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -23,13 +20,11 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import scrm.knowledge.KnowledgeFactory;
 import scrm.knowledge.KnowledgePackage;
 import scrm.knowledge.MathematicalModel;
-
 import scrm.provider.SCRMModelElementItemProvider;
 import scrm.provider.ScrmEditPlugin;
 
@@ -67,10 +62,8 @@ public class MathematicalModelItemProvider extends SCRMModelElementItemProvider
 			addRepresentedProblemPropertyDescriptor(object);
 			addRefinementsPropertyDescriptor(object);
 			addRefinedModelPropertyDescriptor(object);
-			addNumericalMethodsPropertyDescriptor(object);
+			addUsedinNumericalMethodsPropertyDescriptor(object);
 			addDependenciesPropertyDescriptor(object);
-			addTheoryPropertyDescriptor(object);
-			addMathematicalExpressionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -156,23 +149,23 @@ public class MathematicalModelItemProvider extends SCRMModelElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Numerical Methods feature.
+	 * This adds a property descriptor for the Usedin Numerical Methods feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNumericalMethodsPropertyDescriptor(Object object) {
+	protected void addUsedinNumericalMethodsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 				.add(createItemPropertyDescriptor(
 						((ComposeableAdapterFactory) adapterFactory)
 								.getRootAdapterFactory(),
 						getResourceLocator(),
-						getString("_UI_MathematicalModel_numericalMethods_feature"),
+						getString("_UI_MathematicalModel_usedinNumericalMethods_feature"),
 						getString(
 								"_UI_PropertyDescriptor_description",
-								"_UI_MathematicalModel_numericalMethods_feature",
+								"_UI_MathematicalModel_usedinNumericalMethods_feature",
 								"_UI_MathematicalModel_type"),
-						KnowledgePackage.Literals.MATHEMATICAL_MODEL__NUMERICAL_METHODS,
+						KnowledgePackage.Literals.MATHEMATICAL_MODEL__USEDIN_NUMERICAL_METHODS,
 						true, false, true, null, null, null));
 	}
 
@@ -193,48 +186,6 @@ public class MathematicalModelItemProvider extends SCRMModelElementItemProvider
 						"_UI_MathematicalModel_type"),
 				KnowledgePackage.Literals.MATHEMATICAL_MODEL__DEPENDENCIES,
 				true, false, true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Theory feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTheoryPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_MathematicalModel_theory_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_MathematicalModel_theory_feature",
-						"_UI_MathematicalModel_type"),
-				KnowledgePackage.Literals.MATHEMATICAL_MODEL__THEORY, true,
-				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Mathematical Expression feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addMathematicalExpressionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_MathematicalModel_mathematicalExpression_feature"),
-						getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_MathematicalModel_mathematicalExpression_feature",
-								"_UI_MathematicalModel_type"),
-						KnowledgePackage.Literals.MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION,
-						true, false, false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -304,11 +255,6 @@ public class MathematicalModelItemProvider extends SCRMModelElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(MathematicalModel.class)) {
-		case KnowledgePackage.MATHEMATICAL_MODEL__THEORY:
-		case KnowledgePackage.MATHEMATICAL_MODEL__MATHEMATICAL_EXPRESSION:
-			fireNotifyChanged(new ViewerNotification(notification,
-					notification.getNotifier(), false, true));
-			return;
 		case KnowledgePackage.MATHEMATICAL_MODEL__REFINEMENTS:
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), true, false));

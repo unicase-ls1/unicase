@@ -11,7 +11,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -24,7 +23,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import scrm.provider.SCRMModelElementItemProvider;
 import scrm.provider.ScrmEditPlugin;
 import scrm.requirements.RequirementsPackage;
-import scrm.requirements.UserInterface;
 
 /**
  * This is the item provider adapter for a {@link scrm.requirements.UserInterface} object.
@@ -61,8 +59,8 @@ public class UserInterfaceItemProvider extends SCRMModelElementItemProvider
 			addRequiringFeaturesPropertyDescriptor(object);
 			addProvidingDataPropertyDescriptor(object);
 			addRequiringDataPropertyDescriptor(object);
-			addProvidingRequirementsPropertyDescriptor(object);
-			addRequiringRequirementsPropertyDescriptor(object);
+			addDetailsOfProvidingFunctionsAndPropertiesPropertyDescriptor(object);
+			addDetailsOfRequiringFunctionsAndPropertiesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -165,41 +163,47 @@ public class UserInterfaceItemProvider extends SCRMModelElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Providing Requirements feature.
+	 * This adds a property descriptor for the Details Of Providing Functions And Properties feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addProvidingRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Interface_providingRequirements_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Interface_providingRequirements_feature",
-						"_UI_Interface_type"),
-				RequirementsPackage.Literals.INTERFACE__PROVIDING_REQUIREMENTS,
-				true, false, true, null, null, null));
+	protected void addDetailsOfProvidingFunctionsAndPropertiesPropertyDescriptor(
+			Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_Interface_detailsOfProvidingFunctionsAndProperties_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_Interface_detailsOfProvidingFunctionsAndProperties_feature",
+								"_UI_Interface_type"),
+						RequirementsPackage.Literals.INTERFACE__DETAILS_OF_PROVIDING_FUNCTIONS_AND_PROPERTIES,
+						true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Requiring Requirements feature.
+	 * This adds a property descriptor for the Details Of Requiring Functions And Properties feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRequiringRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Interface_requiringRequirements_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Interface_requiringRequirements_feature",
-						"_UI_Interface_type"),
-				RequirementsPackage.Literals.INTERFACE__REQUIRING_REQUIREMENTS,
-				true, false, true, null, null, null));
+	protected void addDetailsOfRequiringFunctionsAndPropertiesPropertyDescriptor(
+			Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_Interface_detailsOfRequiringFunctionsAndProperties_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_Interface_detailsOfRequiringFunctionsAndProperties_feature",
+								"_UI_Interface_type"),
+						RequirementsPackage.Literals.INTERFACE__DETAILS_OF_REQUIRING_FUNCTIONS_AND_PROPERTIES,
+						true, false, true, null, null, null));
 	}
 
 	/**

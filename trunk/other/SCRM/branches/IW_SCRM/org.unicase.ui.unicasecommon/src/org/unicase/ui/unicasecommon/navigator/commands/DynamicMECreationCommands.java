@@ -116,7 +116,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 		// create a map of (EClass, EClassCount)
 		Map<Object, Countable> meCounts = new HashMap<Object, Countable>();
 
-		for (EObject me : leafSection.getModelElements()) {
+		for (EObject me : leafSection.getContainedElements()) {
 			Object key = null;
 
 			// Same for diagrams and other model elements.
