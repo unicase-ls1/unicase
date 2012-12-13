@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.unicase.trace.feature_1.0.7.jar" id="org.unicase.trace.feature" version="1.0.7">
+   <feature url="features/org.unicase.trace.feature_1.0.8.jar" id="org.unicase.trace.feature" version="1.0.8">
       <category name="unicase"/>
    </feature>
    <category-def name="unicase" label="UNICASE Trace"/>
