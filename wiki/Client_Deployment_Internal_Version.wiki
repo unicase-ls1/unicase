@@ -1,8 +1,6 @@
 =Client deployment=
 To deploy a new version please proceed as following:
 
-*Important Note: Do release with Ganymede, do NOT release with Galileo. Otherwise, installation/update in Ganymede will not work.
-
 *Step 1:* 
 
 Before starting the release send an email to the developer mailing list to announce that you are creating a release from a specific branch so no one can commit on the branch until further notice. Check out all the plug-ins in the branch you would like to construct the release from. Make sure that all the plug-ins are checked out directly for example: in org.unicase.developer you should check out *!UnicaseFeature* and *!UnicaseUpdateSite* directly.
@@ -72,18 +70,16 @@ Press Finish to export the deployable feature.
 
 *Step 7:*
 
-The update site should be tested locally on four different instances of eclipse:
- * New eclipse instances of Galileo, that doesn’t have UNICASE installed in.
- * New eclipse instances of Ganymede, that doesn’t have UNICASE installed in.
- * Eclipse instances of Galileo, which has UNICASE installed in.
- * Eclipse instances of Ganymede, which has UNICASE installed in.
+The update site should be tested locally on different instances of eclipse (preferably in different Eclipse releases like Helios, Indigo, ...):
+ * New eclipse instances that don’t have UNICASE installed
+ * Eclipse instances, which have UNICASE installed
 In each instance of eclipse do the following:
 Open your update manager in eclipse and add the site {{{file://<path-to-your-workspace>/<name-of-your-update-site-project>}}} or use add site -> local and navigate to your update site directory. Your categories and features should now appear in your update manager and you can install them.
 
 [http://unicase.googlecode.com/files/updatesitetesting.png]
 <br>
 
-After successfully testing the update site , you can then check in the update site to :
+After successfully testing the update site, you can then check in the update site to :
 http://unicase.googlecode.com/svn/updatesite/internal/ for final deployment using any SVN explorer utility. 
 <br>
 
