@@ -1,7 +1,5 @@
 =Client deployment=
-To deploy a new version please proceed as following:
-
-*Important Note: Do release with Ganymede, do NOT release with Galileo. Otherwise, installation/update in Ganymede will not work.
+To deploy a new version please proceed as follows:
 
 *Step 1:* 
 
@@ -72,18 +70,18 @@ Press Finish to export the deployable feature.
 
 *Step 7:*
 
-The update site should be tested locally on four different instances of eclipse:
- * New eclipse instances of Galileo, that doesn’t have UNICASE installed in.
- * New eclipse instances of Ganymede, that doesn’t have UNICASE installed in.
- * Eclipse instances of Galileo, which has UNICASE installed in.
- * Eclipse instances of Ganymede, which has UNICASE installed in.
+The update site should be tested locally on different instances of eclipse (preferably in different Eclipse releases like Helios, Indigo, ...):
+ * New eclipse instances that don’t have UNICASE installed
+ * Eclipse instances, which have UNICASE installed
 In each instance of eclipse do the following:
 Open your update manager in eclipse and add the site {{{file://<path-to-your-workspace>/<name-of-your-update-site-project>}}} or use add site -> local and navigate to your update site directory. Your categories and features should now appear in your update manager and you can install them.
 
 [http://unicase.googlecode.com/files/updatesitetesting.png]
 
-After successfully testing the update site , you can then easily copy it to:
-http://wwwbruegge.in.tum.de/static/unicase for final deployment.
+After successfully testing the update site, you can then copy it to 
+  * http://code.google.com/p/unicase/wiki/UNICASEClientDownloads and
+  * https://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/50f86/Downloads.html
+for final deployment.
 
  * *Important Note:*
 Before copying the newly deployed feature to the server for final deployment, make sure to acquire a backup of the previously deployed feature in order not lose any data.   
