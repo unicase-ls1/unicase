@@ -1,7 +1,7 @@
 To export for multiple platforms, you have to have the delta pack installed as described [http://code.google.com/p/unicase/wiki/Commandline_Product here] in steps 1 and 2.
 <br>
 <br>
-         1. Open emfstore.product in the org.unicase.emfstore plug-in.
+         1. Open emfstore.product in the /svn/trunk/deployment/org.unicase.emfstore plug-in.
 <br>
 <br>
 <img src="http://unicase.googlecode.com/files/0cc44.png" height="600" width="800"/>
