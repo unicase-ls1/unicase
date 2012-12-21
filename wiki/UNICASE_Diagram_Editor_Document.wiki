@@ -77,7 +77,7 @@ In order to tell the ECP Navigator to make use of this {{{ModelElementOpener}}},
 <extension
       point="org.eclipse.emf.ecp.common.modelelementopener">
    <ModelElementOpener
-         class="MyPackage.diagram.MyDiagramOpener"
+         class="myPackagePath.diagram.MyDiagramOpener"
          name="org.unicase.ui.mydiagram.diagram.ModelElementOpener1">
    </ModelElementOpener>
 </extension>
