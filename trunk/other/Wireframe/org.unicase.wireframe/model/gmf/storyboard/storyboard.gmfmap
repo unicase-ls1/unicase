@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmfmap:Mapping xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmfmap="http://www.eclipse.org/gmf/2008/mappings"
+    xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
+  <nodes>
+    <containmentFeature
+        href="../../../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"/>
+    <childrenFeature
+        href="../../../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/elements"/>
+    <ownedChild
+        relatedDiagrams="//@diagram">
+      <domainMetaElement
+          href="../../wireframe.ecore#//Panel"/>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="storyboard.gmftool#//@palette/@tools.0"/>
+      <diagramNode
+          href="../wireframe.gmfgraph#PanelNode"/>
+    </ownedChild>
+  </nodes>
+  <diagram>
+    <diagramCanvas
+        href="../wireframe.gmfgraph#StoryboardCanvas"/>
+    <domainModel
+        href="../../wireframe.ecore#/"/>
+    <domainMetaElement
+        href="../../wireframe.ecore#//Storyboard"/>
+    <palette
+        href="storyboard.gmftool#//@palette"/>
+  </diagram>
+</gmfmap:Mapping>

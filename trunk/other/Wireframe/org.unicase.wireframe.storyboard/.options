@@ -1,0 +1,7 @@
+# Tracing options for the org.unicase.wireframe.storyboard plug-in
+
+# Common issues
+org.unicase.wireframe.storyboard/debug=false
+
+# Visual IDs
+org.unicase.wireframe.storyboard/debug/visualID=false
