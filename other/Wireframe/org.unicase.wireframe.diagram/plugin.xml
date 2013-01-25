@@ -217,7 +217,7 @@
       <viewProvider class="org.unicase.wireframe.diagram.providers.WireframeViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Wireframe"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2003,2004,2005,2006,2007,2008"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2003,2004,2005,2006,2007,2008,3001,3002,3003,3004,3005"/>
       </viewProvider>
    </extension>
 
@@ -229,16 +229,16 @@
             <method name="getType()" value="Wireframe"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2003,2004,2005,2006,2007,2008"/>
+            <method name="getType()" value="2003,2004,2005,2006,2007,2008,3001,3002,3003,3004,3005"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value=""/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5003,5001,5004,5002,5006"/>
+            <method name="getType()" value="5003,5001,5004,5002,5006,5007,5008,5009,5010"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value=""/>
+            <method name="getType()" value="7001"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -248,14 +248,19 @@
       <?gmfgen generated="true"?>
       <modelingAssistantProvider class="org.unicase.wireframe.diagram.providers.WireframeModelingAssistantProvider">
          <Priority name="Lowest"/>
-         <object class="org.unicase.wireframe.diagram.edit.parts.PanelEditPart" id="Panel_1000"/>
+         <object class="org.unicase.wireframe.diagram.edit.parts.PanelEditPart" id="Panel_45"/>
          <object class="org.unicase.wireframe.diagram.edit.parts.WindowEditPart" id="Window_2003"/>
          <object class="org.unicase.wireframe.diagram.edit.parts.LabelEditPart" id="Label_2004"/>
          <object class="org.unicase.wireframe.diagram.edit.parts.TextFieldEditPart" id="TextField_2005"/>
          <object class="org.unicase.wireframe.diagram.edit.parts.ButtonEditPart" id="Button_2006"/>
          <object class="org.unicase.wireframe.diagram.edit.parts.TextEditPart" id="Text_2007"/>
          <object class="org.unicase.wireframe.diagram.edit.parts.ImageEditPart" id="Image_2008"/>
-         <context elements="Panel_1000,Window_2003,Label_2004,TextField_2005,Button_2006,Text_2007,Image_2008,"/>
+         <object class="org.unicase.wireframe.diagram.edit.parts.Button2EditPart" id="Button_3001"/>
+         <object class="org.unicase.wireframe.diagram.edit.parts.Image2EditPart" id="Image_3002"/>
+         <object class="org.unicase.wireframe.diagram.edit.parts.Label2EditPart" id="Label_3003"/>
+         <object class="org.unicase.wireframe.diagram.edit.parts.Text2EditPart" id="Text_3004"/>
+         <object class="org.unicase.wireframe.diagram.edit.parts.TextField2EditPart" id="TextField_3005"/>
+         <context elements="Panel_45,Window_2003,Label_2004,TextField_2005,Button_2006,Text_2007,Image_2008,Button_3001,Image_3002,Label_3003,Text_3004,TextField_3005"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -270,12 +275,12 @@
       <?gmfgen generated="true"?>
       <metamodel nsURI="http://unicase.org/model/wireframe">
          <metamodelType
-               id="org.unicase.wireframe.diagram.Panel_1000"
-               name="%metatype.name.Panel_1000"
+               id="org.unicase.wireframe.diagram.Panel_45"
+               name="%metatype.name.Panel_45"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Panel"
                edithelper="org.unicase.wireframe.diagram.edit.helpers.PanelEditHelper">
-            <param name="semanticHint" value="1000"/>
+            <param name="semanticHint" value="45"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/wireframe">
@@ -289,53 +294,98 @@
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/wireframe">
-         <metamodelType
+         <specializationType
                id="org.unicase.wireframe.diagram.Label_2004"
                name="%metatype.name.Label_2004"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Label"
-               edithelper="org.unicase.wireframe.diagram.edit.helpers.LabelEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.wireframe.diagram.Label_3003"/>
             <param name="semanticHint" value="2004"/>
-         </metamodelType>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/wireframe">
-         <metamodelType
+         <specializationType
                id="org.unicase.wireframe.diagram.TextField_2005"
                name="%metatype.name.TextField_2005"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="TextField"
-               edithelper="org.unicase.wireframe.diagram.edit.helpers.TextFieldEditHelper">
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.wireframe.diagram.TextField_3005"/>
             <param name="semanticHint" value="2005"/>
-         </metamodelType>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/wireframe">
+         <specializationType
+               id="org.unicase.wireframe.diagram.Button_2006"
+               name="%metatype.name.Button_2006"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.wireframe.diagram.Button_3001"/>
+            <param name="semanticHint" value="2006"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/wireframe">
+         <specializationType
+               id="org.unicase.wireframe.diagram.Text_2007"
+               name="%metatype.name.Text_2007"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.wireframe.diagram.Text_3004"/>
+            <param name="semanticHint" value="2007"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/wireframe">
+         <specializationType
+               id="org.unicase.wireframe.diagram.Image_2008"
+               name="%metatype.name.Image_2008"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.unicase.wireframe.diagram.Image_3002"/>
+            <param name="semanticHint" value="2008"/>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/wireframe">
          <metamodelType
-               id="org.unicase.wireframe.diagram.Button_2006"
-               name="%metatype.name.Button_2006"
+               id="org.unicase.wireframe.diagram.Button_3001"
+               name="%metatype.name.Button_3001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Button"
                edithelper="org.unicase.wireframe.diagram.edit.helpers.ButtonEditHelper">
-            <param name="semanticHint" value="2006"/>
+            <param name="semanticHint" value="3001"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/wireframe">
          <metamodelType
-               id="org.unicase.wireframe.diagram.Text_2007"
-               name="%metatype.name.Text_2007"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Text"
-               edithelper="org.unicase.wireframe.diagram.edit.helpers.TextEditHelper">
-            <param name="semanticHint" value="2007"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://unicase.org/model/wireframe">
-         <metamodelType
-               id="org.unicase.wireframe.diagram.Image_2008"
-               name="%metatype.name.Image_2008"
+               id="org.unicase.wireframe.diagram.Image_3002"
+               name="%metatype.name.Image_3002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Image"
                edithelper="org.unicase.wireframe.diagram.edit.helpers.ImageEditHelper">
-            <param name="semanticHint" value="2008"/>
+            <param name="semanticHint" value="3002"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/wireframe">
+         <metamodelType
+               id="org.unicase.wireframe.diagram.Label_3003"
+               name="%metatype.name.Label_3003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Label"
+               edithelper="org.unicase.wireframe.diagram.edit.helpers.LabelEditHelper">
+            <param name="semanticHint" value="3003"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/wireframe">
+         <metamodelType
+               id="org.unicase.wireframe.diagram.Text_3004"
+               name="%metatype.name.Text_3004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Text"
+               edithelper="org.unicase.wireframe.diagram.edit.helpers.TextEditHelper">
+            <param name="semanticHint" value="3004"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/wireframe">
+         <metamodelType
+               id="org.unicase.wireframe.diagram.TextField_3005"
+               name="%metatype.name.TextField_3005"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="TextField"
+               edithelper="org.unicase.wireframe.diagram.edit.helpers.TextFieldEditHelper">
+            <param name="semanticHint" value="3005"/>
          </metamodelType>
       </metamodel>
    </extension>
@@ -350,13 +400,18 @@
          </enablement>
       </clientContext> 
       <binding context="org.unicase.wireframe.diagram.TypeContext">
-         <elementType ref="org.unicase.wireframe.diagram.Panel_1000"/>
+         <elementType ref="org.unicase.wireframe.diagram.Panel_45"/>
          <elementType ref="org.unicase.wireframe.diagram.Window_2003"/>
          <elementType ref="org.unicase.wireframe.diagram.Label_2004"/>
          <elementType ref="org.unicase.wireframe.diagram.TextField_2005"/>
          <elementType ref="org.unicase.wireframe.diagram.Button_2006"/>
          <elementType ref="org.unicase.wireframe.diagram.Text_2007"/>
          <elementType ref="org.unicase.wireframe.diagram.Image_2008"/>
+         <elementType ref="org.unicase.wireframe.diagram.Button_3001"/>
+         <elementType ref="org.unicase.wireframe.diagram.Image_3002"/>
+         <elementType ref="org.unicase.wireframe.diagram.Label_3003"/>
+         <elementType ref="org.unicase.wireframe.diagram.Text_3004"/>
+         <elementType ref="org.unicase.wireframe.diagram.TextField_3005"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -498,18 +553,6 @@
       </menuContribution>
       <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=">
       </menuContribution -->
-      <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
-         <command commandId="org.unicase.wireframe.diagram.LoadResourceAction">
-            <visibleWhen>
-               <and>
-                  <with variable="activePartId"><equals value="org.unicase.wireframe.diagram.part.WireframeDiagramEditorID"/></with>
-                  <with variable="selection"><iterate ifEmpty="false"> 
-                     <instanceof value="org.unicase.wireframe.diagram.edit.parts.PanelEditPart"/>
-                  </iterate></with>
-               </and>
-            </visibleWhen>
-         </command>
-      </menuContribution>
    </extension>
       
    <extension
@@ -526,18 +569,9 @@
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>
-<extension point="org.eclipse.ui.commands" id="menu-commands">
-      <?gmfgen generated="true"?>
-      <category id="org.unicase.wireframe.diagram.part.WireframeDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
-      <command id="org.unicase.wireframe.diagram.LoadResourceAction"
-         name="Load Resource"
-         categoryId="org.unicase.wireframe.diagram.part.WireframeDiagramEditorID"
-         defaultHandler="org.unicase.wireframe.diagram.part.LoadResourceAction"/>
-   </extension>
 
-<extension point="org.eclipse.ui.handlers" id="menu-handlers">
-      <?gmfgen generated="true"?>
-   </extension>
+
+
 
 
 

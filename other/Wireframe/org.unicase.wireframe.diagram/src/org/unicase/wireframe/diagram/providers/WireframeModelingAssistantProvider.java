@@ -21,6 +21,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.wireframe.diagram.edit.parts.PanelEditPart;
+import org.unicase.wireframe.diagram.edit.parts.WindowEditPart;
+import org.unicase.wireframe.diagram.edit.parts.WindowWindowWidgetCompartmentEditPart;
 import org.unicase.wireframe.diagram.part.Messages;
 import org.unicase.wireframe.diagram.part.WireframeDiagramEditorPlugin;
 
@@ -42,6 +44,15 @@ public class WireframeModelingAssistantProvider extends ModelingAssistantProvide
 			types.add(WireframeElementTypes.Button_2006);
 			types.add(WireframeElementTypes.Text_2007);
 			types.add(WireframeElementTypes.Image_2008);
+			return types;
+		}
+		if (editPart instanceof WindowWindowWidgetCompartmentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(5);
+			types.add(WireframeElementTypes.Button_3001);
+			types.add(WireframeElementTypes.Image_3002);
+			types.add(WireframeElementTypes.Label_3003);
+			types.add(WireframeElementTypes.Text_3004);
+			types.add(WireframeElementTypes.TextField_3005);
 			return types;
 		}
 		return Collections.EMPTY_LIST;

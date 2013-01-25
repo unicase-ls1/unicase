@@ -95,8 +95,6 @@ public class WireframeFactoryImpl extends EFactoryImpl implements WireframeFacto
 		switch (eDataType.getClassifierID()) {
 		case WireframePackage.BUTTON_STYLE:
 			return createButtonStyleFromString(eDataType, initialValue);
-		case WireframePackage.IMAGE_URI:
-			return createImageURIFromString(eDataType, initialValue);
 		default:
 			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -111,8 +109,6 @@ public class WireframeFactoryImpl extends EFactoryImpl implements WireframeFacto
 		switch (eDataType.getClassifierID()) {
 		case WireframePackage.BUTTON_STYLE:
 			return convertButtonStyleToString(eDataType, instanceValue);
-		case WireframePackage.IMAGE_URI:
-			return convertImageURIToString(eDataType, instanceValue);
 		default:
 			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -208,22 +204,6 @@ public class WireframeFactoryImpl extends EFactoryImpl implements WireframeFacto
 	 */
 	public String convertButtonStyleToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public URI createImageURIFromString(EDataType eDataType, String initialValue) {
-		return (URI) super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertImageURIToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

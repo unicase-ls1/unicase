@@ -64,7 +64,7 @@ public class PanelCanonicalEditPolicy extends CanonicalEditPolicy {
 		View viewObject = (View) getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
 		List<WireframeNodeDescriptor> childDescriptors = WireframeDiagramUpdater
-			.getPanel_1000SemanticChildren(viewObject);
+			.getPanel_45SemanticChildren(viewObject);
 		for (WireframeNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
@@ -104,7 +104,7 @@ public class PanelCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
 		List<WireframeNodeDescriptor> childDescriptors = WireframeDiagramUpdater
-			.getPanel_1000SemanticChildren((View) getHost().getModel());
+			.getPanel_45SemanticChildren((View) getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
 		LinkedList<View> knownViewChildren = new LinkedList<View>();

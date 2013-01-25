@@ -23,7 +23,7 @@ public class PanelItemSemanticEditPolicy extends WireframeBaseItemSemanticEditPo
 	 * @generated
 	 */
 	public PanelItemSemanticEditPolicy() {
-		super(WireframeElementTypes.Panel_1000);
+		super(WireframeElementTypes.Panel_45);
 	}
 
 	/**

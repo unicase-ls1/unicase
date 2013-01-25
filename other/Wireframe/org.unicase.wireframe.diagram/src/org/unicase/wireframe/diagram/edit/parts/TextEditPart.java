@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
+import org.unicase.wireframe.diagram.edit.policies.OpenDiagramEditPolicy;
 import org.unicase.wireframe.diagram.edit.policies.TextItemSemanticEditPolicy;
 import org.unicase.wireframe.diagram.part.WireframeVisualIDRegistry;
 
@@ -58,6 +59,7 @@ public class TextEditPart extends ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new TextItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
 		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -154,7 +156,7 @@ public class TextEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(50, 20);
 		return result;
 	}
 
@@ -256,24 +258,23 @@ public class TextEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		public TextDescriptor() {
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(100), getMapMode().DPtoLP(200)));
+			this.setOutline(false);
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(50), getMapMode().DPtoLP(20)));
 			createContents();
 		}
 
 		/**
-		 * @generated NOT: removed outline
+		 * @generated NOT
 		 */
 		private void createContents() {
 
 			fText_text = new WrappingLabel();
 
 			fText_text.setText("My text.");
+			// custom code: enabled text wrap
 			fText_text.setTextWrap(true);
 
 			this.add(fText_text);
-
-			// custom code: no outline for text
-			this.setOutline(false);
 
 		}
 

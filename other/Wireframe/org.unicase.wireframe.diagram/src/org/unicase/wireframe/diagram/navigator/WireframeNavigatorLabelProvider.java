@@ -17,15 +17,24 @@ import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
 import org.unicase.wireframe.Button;
 import org.unicase.wireframe.Panel;
+import org.unicase.wireframe.diagram.edit.parts.Button2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.ButtonEditPart;
+import org.unicase.wireframe.diagram.edit.parts.Image2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.ImageEditPart;
+import org.unicase.wireframe.diagram.edit.parts.ImageText2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.ImageTextEditPart;
+import org.unicase.wireframe.diagram.edit.parts.Label2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.LabelEditPart;
+import org.unicase.wireframe.diagram.edit.parts.LabelText2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.LabelTextEditPart;
 import org.unicase.wireframe.diagram.edit.parts.PanelEditPart;
+import org.unicase.wireframe.diagram.edit.parts.Text2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.TextEditPart;
+import org.unicase.wireframe.diagram.edit.parts.TextField2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.TextFieldEditPart;
+import org.unicase.wireframe.diagram.edit.parts.TextFieldText2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.TextFieldTextEditPart;
+import org.unicase.wireframe.diagram.edit.parts.TextText2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.TextTextEditPart;
 import org.unicase.wireframe.diagram.edit.parts.WindowEditPart;
 import org.unicase.wireframe.diagram.edit.parts.WindowTextEditPart;
@@ -89,7 +98,7 @@ public class WireframeNavigatorLabelProvider extends LabelProvider implements IC
 		switch (WireframeVisualIDRegistry.getVisualID(view)) {
 		case PanelEditPart.VISUAL_ID:
 			return getImage(
-				"Navigator?Diagram?http://unicase.org/model/wireframe?Panel", WireframeElementTypes.Panel_1000); //$NON-NLS-1$
+				"Navigator?Diagram?http://unicase.org/model/wireframe?Panel", WireframeElementTypes.Panel_45); //$NON-NLS-1$
 		case WindowEditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?TopLevelNode?http://unicase.org/model/wireframe?Window", WireframeElementTypes.Window_2003); //$NON-NLS-1$
@@ -108,6 +117,18 @@ public class WireframeNavigatorLabelProvider extends LabelProvider implements IC
 		case ImageEditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?TopLevelNode?http://unicase.org/model/wireframe?Image", WireframeElementTypes.Image_2008); //$NON-NLS-1$
+		case Button2EditPart.VISUAL_ID:
+			return getImage(
+				"Navigator?Node?http://unicase.org/model/wireframe?Button", WireframeElementTypes.Button_3001); //$NON-NLS-1$
+		case Image2EditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://unicase.org/model/wireframe?Image", WireframeElementTypes.Image_3002); //$NON-NLS-1$
+		case Label2EditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://unicase.org/model/wireframe?Label", WireframeElementTypes.Label_3003); //$NON-NLS-1$
+		case Text2EditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://unicase.org/model/wireframe?Text", WireframeElementTypes.Text_3004); //$NON-NLS-1$
+		case TextField2EditPart.VISUAL_ID:
+			return getImage(
+				"Navigator?Node?http://unicase.org/model/wireframe?TextField", WireframeElementTypes.TextField_3005); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -159,7 +180,7 @@ public class WireframeNavigatorLabelProvider extends LabelProvider implements IC
 		}
 		switch (WireframeVisualIDRegistry.getVisualID(view)) {
 		case PanelEditPart.VISUAL_ID:
-			return getPanel_1000Text(view);
+			return getPanel_45Text(view);
 		case WindowEditPart.VISUAL_ID:
 			return getWindow_2003Text(view);
 		case LabelEditPart.VISUAL_ID:
@@ -172,6 +193,16 @@ public class WireframeNavigatorLabelProvider extends LabelProvider implements IC
 			return getText_2007Text(view);
 		case ImageEditPart.VISUAL_ID:
 			return getImage_2008Text(view);
+		case Button2EditPart.VISUAL_ID:
+			return getButton_3001Text(view);
+		case Image2EditPart.VISUAL_ID:
+			return getImage_3002Text(view);
+		case Label2EditPart.VISUAL_ID:
+			return getLabel_3003Text(view);
+		case Text2EditPart.VISUAL_ID:
+			return getText_3004Text(view);
+		case TextField2EditPart.VISUAL_ID:
+			return getTextField_3005Text(view);
 		}
 		return getUnknownElementText(view);
 	}
@@ -179,12 +210,12 @@ public class WireframeNavigatorLabelProvider extends LabelProvider implements IC
 	/**
 	 * @generated
 	 */
-	private String getPanel_1000Text(View view) {
+	private String getPanel_45Text(View view) {
 		Panel domainModelElement = (Panel) view.getElement();
 		if (domainModelElement != null) {
 			return domainModelElement.getName();
 		} else {
-			WireframeDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 1000); //$NON-NLS-1$
+			WireframeDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 45); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -278,6 +309,83 @@ public class WireframeNavigatorLabelProvider extends LabelProvider implements IC
 				ParserOptions.NONE.intValue());
 		} else {
 			WireframeDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5006); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getButton_3001Text(View view) {
+		Button domainModelElement = (Button) view.getElement();
+		if (domainModelElement != null) {
+			return domainModelElement.getName();
+		} else {
+			WireframeDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 3001); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getImage_3002Text(View view) {
+		IParser parser = WireframeParserProvider.getParser(WireframeElementTypes.Image_3002,
+			view.getElement() != null ? view.getElement() : view,
+			WireframeVisualIDRegistry.getType(ImageText2EditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			WireframeDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5007); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getLabel_3003Text(View view) {
+		IParser parser = WireframeParserProvider.getParser(WireframeElementTypes.Label_3003,
+			view.getElement() != null ? view.getElement() : view,
+			WireframeVisualIDRegistry.getType(LabelText2EditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			WireframeDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5008); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getText_3004Text(View view) {
+		IParser parser = WireframeParserProvider.getParser(WireframeElementTypes.Text_3004,
+			view.getElement() != null ? view.getElement() : view,
+			WireframeVisualIDRegistry.getType(TextText2EditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			WireframeDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5009); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getTextField_3005Text(View view) {
+		IParser parser = WireframeParserProvider.getParser(WireframeElementTypes.TextField_3005,
+			view.getElement() != null ? view.getElement() : view,
+			WireframeVisualIDRegistry.getType(TextFieldText2EditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			WireframeDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5010); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

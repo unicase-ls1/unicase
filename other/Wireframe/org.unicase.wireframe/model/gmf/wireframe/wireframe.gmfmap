@@ -28,6 +28,51 @@
           href="wireframe.gmftool#//@palette/@tools.0/@tools.0"/>
       <diagramNode
           href="wireframe.gmfgraph#WindowNode"/>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.3/@ownedChild">
+        <containmentFeature
+            href="../../wireframe.ecore#//Window/widgets"/>
+        <childrenFeature
+            href="../../wireframe.ecore#//Window/widgets"/>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.5/@ownedChild">
+        <containmentFeature
+            href="../../wireframe.ecore#//Window/widgets"/>
+        <childrenFeature
+            href="../../wireframe.ecore#//Window/widgets"/>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.1/@ownedChild">
+        <containmentFeature
+            href="../../wireframe.ecore#//Window/widgets"/>
+        <childrenFeature
+            href="../../wireframe.ecore#//Window/widgets"/>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.4/@ownedChild">
+        <containmentFeature
+            href="../../wireframe.ecore#//Window/widgets"/>
+        <childrenFeature
+            href="../../wireframe.ecore#//Window/widgets"/>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.2/@ownedChild">
+        <containmentFeature
+            href="../../wireframe.ecore#//Window/widgets"/>
+        <childrenFeature
+            href="../../wireframe.ecore#//Window/widgets"/>
+      </children>
+      <compartments
+          children="//@nodes.0/@ownedChild/@children.0 //@nodes.0/@ownedChild/@children.1 //@nodes.0/@ownedChild/@children.4 //@nodes.0/@ownedChild/@children.3 //@nodes.0/@ownedChild/@children.2">
+        <compartment
+            href="wireframe.gmfgraph#WindowWidgetCompartment"/>
+      </compartments>
     </ownedChild>
   </nodes>
   <nodes>

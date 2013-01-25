@@ -1,5 +1,7 @@
 package org.unicase.wireframe.diagram.edit.parts;
 
+import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.FlowLayout;
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
@@ -14,24 +16,26 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.draw2d.ui.render.figures.ScalableImageFigure;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.edit.policies.reparent.CreationEditPolicyWithCustomReparent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.wireframe.Window;
+import org.unicase.wireframe.diagram.edit.policies.OpenDiagramEditPolicy;
 import org.unicase.wireframe.diagram.edit.policies.WindowItemSemanticEditPolicy;
 import org.unicase.wireframe.diagram.part.WireframeVisualIDRegistry;
-import org.unicase.wireframe.diagram.util.EditPartImageUtil;
+import org.unicase.wireframe.diagram.providers.WireframeElementTypes;
 
 /**
  * @generated
@@ -67,8 +71,8 @@ public class WindowEditPart extends ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new WindowItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that
-		// would let children add reasonable editpolicies
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -119,6 +123,12 @@ public class WindowEditPart extends ShapeNodeEditPart {
 			((WindowTextEditPart) childEditPart).setLabel(getPrimaryShape().getWindow_text());
 			return true;
 		}
+		if (childEditPart instanceof WindowWindowWidgetCompartmentEditPart) {
+			IFigure pane = getPrimaryShape().getWindow_widgets();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.add(((WindowWindowWidgetCompartmentEditPart) childEditPart).getFigure());
+			return true;
+		}
 		return false;
 	}
 
@@ -127,6 +137,11 @@ public class WindowEditPart extends ShapeNodeEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof WindowTextEditPart) {
+			return true;
+		}
+		if (childEditPart instanceof WindowWindowWidgetCompartmentEditPart) {
+			IFigure pane = getPrimaryShape().getWindow_widgets();
+			pane.remove(((WindowWindowWidgetCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -156,6 +171,9 @@ public class WindowEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+		if (editPart instanceof WindowWindowWidgetCompartmentEditPart) {
+			return getPrimaryShape().getWindow_widgets();
+		}
 		return getContentPane();
 	}
 
@@ -163,7 +181,7 @@ public class WindowEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(453, 280);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(400, 200);
 		return result;
 	}
 
@@ -261,7 +279,10 @@ public class WindowEditPart extends ShapeNodeEditPart {
 		 */
 		private WrappingLabel fWindow_text;
 
-		private ScalableImageFigure windowImageFigure;
+		/**
+		 * @generated
+		 */
+		private RectangleFigure fWindow_widgets;
 
 		/**
 		 * @generated
@@ -273,15 +294,34 @@ public class WindowEditPart extends ShapeNodeEditPart {
 			layoutThis.makeColumnsEqualWidth = true;
 			this.setLayoutManager(layoutThis);
 
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(453), getMapMode().DPtoLP(280)));
-			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(901), getMapMode().DPtoLP(530)));
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(400), getMapMode().DPtoLP(200)));
 			createContents();
 		}
 
 		/**
-		 * @generated NOT: added image, removed outline
+		 * @generated
 		 */
 		private void createContents() {
+
+			RectangleFigure windowTopBar0 = new RectangleFigure();
+
+			windowTopBar0.setOutline(false);
+			windowTopBar0.setBackgroundColor(ColorConstants.lightGray);
+
+			GridData constraintWindowTopBar0 = new GridData();
+			constraintWindowTopBar0.verticalAlignment = GridData.BEGINNING;
+			constraintWindowTopBar0.horizontalAlignment = GridData.FILL;
+			constraintWindowTopBar0.horizontalIndent = 0;
+			constraintWindowTopBar0.horizontalSpan = 1;
+			constraintWindowTopBar0.verticalSpan = 1;
+			constraintWindowTopBar0.grabExcessHorizontalSpace = true;
+			constraintWindowTopBar0.grabExcessVerticalSpace = false;
+			this.add(windowTopBar0, constraintWindowTopBar0);
+
+			GridLayout layoutWindowTopBar0 = new GridLayout();
+			layoutWindowTopBar0.numColumns = 4;
+			layoutWindowTopBar0.makeColumnsEqualWidth = false;
+			windowTopBar0.setLayoutManager(layoutWindowTopBar0);
 
 			fWindow_text = new WrappingLabel();
 
@@ -290,36 +330,43 @@ public class WindowEditPart extends ShapeNodeEditPart {
 			fWindow_text.setFont(FWINDOW_TEXT_FONT);
 
 			GridData constraintFWindow_text = new GridData();
-			constraintFWindow_text.verticalAlignment = GridData.BEGINNING;
-			constraintFWindow_text.horizontalAlignment = GridData.CENTER;
+			constraintFWindow_text.verticalAlignment = GridData.FILL;
+			constraintFWindow_text.horizontalAlignment = GridData.FILL;
 			constraintFWindow_text.horizontalIndent = 0;
 			constraintFWindow_text.horizontalSpan = 1;
 			constraintFWindow_text.verticalSpan = 1;
 			constraintFWindow_text.grabExcessHorizontalSpace = false;
 			constraintFWindow_text.grabExcessVerticalSpace = false;
-			this.add(fWindow_text, constraintFWindow_text);
+			windowTopBar0.add(fWindow_text, constraintFWindow_text);
 
-			// custom code: added image, removed outline
-			Object adapter = getAdapter(Window.class);
-			if (adapter != null && adapter instanceof Window) {
-				Image image = EditPartImageUtil.getWindowImage((Window) adapter);
-				if (image != null) {
-					windowImageFigure = new ScalableImageFigure(image);
-					windowImageFigure.setPreferredImageSize(450, 250);
+			RectangleFigure window_CloseButton1 = new RectangleFigure();
 
-					GridData constraintWindowImageFigure0 = new GridData();
-					constraintWindowImageFigure0.verticalAlignment = GridData.END;
-					constraintWindowImageFigure0.horizontalAlignment = GridData.CENTER;
-					constraintWindowImageFigure0.horizontalIndent = 0;
-					constraintWindowImageFigure0.horizontalSpan = 1;
-					constraintWindowImageFigure0.verticalSpan = 1;
-					constraintWindowImageFigure0.grabExcessHorizontalSpace = true;
-					constraintWindowImageFigure0.grabExcessVerticalSpace = true;
-					this.add(windowImageFigure, constraintWindowImageFigure0);
-				}
-			}
+			window_CloseButton1.setBackgroundColor(ColorConstants.darkGray);
 
-			this.setOutline(false);
+			GridData constraintWindow_CloseButton1 = new GridData();
+			constraintWindow_CloseButton1.verticalAlignment = GridData.FILL;
+			constraintWindow_CloseButton1.horizontalAlignment = GridData.BEGINNING;
+			constraintWindow_CloseButton1.horizontalIndent = 0;
+			constraintWindow_CloseButton1.horizontalSpan = 1;
+			constraintWindow_CloseButton1.verticalSpan = 1;
+			constraintWindow_CloseButton1.grabExcessHorizontalSpace = false;
+			constraintWindow_CloseButton1.grabExcessVerticalSpace = false;
+			windowTopBar0.add(window_CloseButton1, constraintWindow_CloseButton1);
+
+			fWindow_widgets = new RectangleFigure();
+
+			fWindow_widgets.setOutline(false);
+
+			GridData constraintFWindow_widgets = new GridData();
+			constraintFWindow_widgets.verticalAlignment = GridData.FILL;
+			constraintFWindow_widgets.horizontalAlignment = GridData.FILL;
+			constraintFWindow_widgets.horizontalIndent = 0;
+			constraintFWindow_widgets.horizontalSpan = 1;
+			constraintFWindow_widgets.verticalSpan = 1;
+			constraintFWindow_widgets.grabExcessHorizontalSpace = true;
+			constraintFWindow_widgets.grabExcessVerticalSpace = true;
+			this.add(fWindow_widgets, constraintFWindow_widgets);
+
 		}
 
 		/**
@@ -327,6 +374,13 @@ public class WindowEditPart extends ShapeNodeEditPart {
 		 */
 		public WrappingLabel getWindow_text() {
 			return fWindow_text;
+		}
+
+		/**
+		 * @generated
+		 */
+		public RectangleFigure getWindow_widgets() {
+			return fWindow_widgets;
 		}
 
 	}

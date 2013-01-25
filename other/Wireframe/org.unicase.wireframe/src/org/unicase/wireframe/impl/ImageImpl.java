@@ -18,7 +18,7 @@ import org.unicase.wireframe.WireframePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.wireframe.impl.ImageImpl#getUri <em>Uri</em>}</li>
+ *   <li>{@link org.unicase.wireframe.impl.ImageImpl#getImageURL <em>Image URL</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,23 +26,24 @@ import org.unicase.wireframe.WireframePackage;
  */
 public class ImageImpl extends WidgetImpl implements Image {
 	/**
-	 * The default value of the '{@link #getUri() <em>Uri</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @see #getUri()
+	 * The default value of the '{@link #getImageURL() <em>Image URL</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getImageURL()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final URI URI_EDEFAULT = null;
+	protected static final String IMAGE_URL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getUri() <em>Uri</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getUri()
+	 * The cached value of the '{@link #getImageURL() <em>Image URL</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getImageURL()
 	 * @generated
 	 * @ordered
 	 */
-	protected URI uri = URI_EDEFAULT;
+	protected String imageURL = IMAGE_URL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -62,22 +63,25 @@ public class ImageImpl extends WidgetImpl implements Image {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public URI getUri() {
-		return uri;
+	public String getImageURL() {
+		return imageURL;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUri(URI newUri) {
-		URI oldUri = uri;
-		uri = newUri;
+	public void setImageURL(String newImageURL) {
+		String oldImageURL = imageURL;
+		imageURL = newImageURL;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WireframePackage.IMAGE__URI, oldUri, uri));
+			eNotify(new ENotificationImpl(this, Notification.SET, WireframePackage.IMAGE__IMAGE_URL, oldImageURL,
+				imageURL));
 	}
 
 	/**
@@ -87,8 +91,8 @@ public class ImageImpl extends WidgetImpl implements Image {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case WireframePackage.IMAGE__URI:
-			return getUri();
+		case WireframePackage.IMAGE__IMAGE_URL:
+			return getImageURL();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -100,8 +104,8 @@ public class ImageImpl extends WidgetImpl implements Image {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case WireframePackage.IMAGE__URI:
-			setUri((URI) newValue);
+		case WireframePackage.IMAGE__IMAGE_URL:
+			setImageURL((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -114,8 +118,8 @@ public class ImageImpl extends WidgetImpl implements Image {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case WireframePackage.IMAGE__URI:
-			setUri(URI_EDEFAULT);
+		case WireframePackage.IMAGE__IMAGE_URL:
+			setImageURL(IMAGE_URL_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -128,8 +132,8 @@ public class ImageImpl extends WidgetImpl implements Image {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case WireframePackage.IMAGE__URI:
-			return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
+		case WireframePackage.IMAGE__IMAGE_URL:
+			return IMAGE_URL_EDEFAULT == null ? imageURL != null : !IMAGE_URL_EDEFAULT.equals(imageURL);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -144,8 +148,8 @@ public class ImageImpl extends WidgetImpl implements Image {
 			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (uri: ");
-		result.append(uri);
+		result.append(" (imageURL: ");
+		result.append(imageURL);
 		result.append(')');
 		return result.toString();
 	}

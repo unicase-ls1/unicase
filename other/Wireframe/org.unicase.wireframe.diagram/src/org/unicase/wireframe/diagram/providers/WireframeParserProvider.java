@@ -13,9 +13,13 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.wireframe.WireframePackage;
+import org.unicase.wireframe.diagram.edit.parts.ImageText2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.ImageTextEditPart;
+import org.unicase.wireframe.diagram.edit.parts.LabelText2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.LabelTextEditPart;
+import org.unicase.wireframe.diagram.edit.parts.TextFieldText2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.TextFieldTextEditPart;
+import org.unicase.wireframe.diagram.edit.parts.TextText2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.TextTextEditPart;
 import org.unicase.wireframe.diagram.edit.parts.WindowTextEditPart;
 import org.unicase.wireframe.diagram.parsers.MessageFormatParser;
@@ -129,6 +133,86 @@ public class WireframeParserProvider extends AbstractProvider implements IParser
 	/**
 	 * @generated
 	 */
+	private IParser imageText_5007Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getImageText_5007Parser() {
+		if (imageText_5007Parser == null) {
+			EAttribute[] features = new EAttribute[] { WireframePackage.eINSTANCE.getWidget_Text() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			imageText_5007Parser = parser;
+		}
+		return imageText_5007Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser labelText_5008Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getLabelText_5008Parser() {
+		if (labelText_5008Parser == null) {
+			EAttribute[] features = new EAttribute[] { WireframePackage.eINSTANCE.getWidget_Text() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			labelText_5008Parser = parser;
+		}
+		return labelText_5008Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser textText_5009Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTextText_5009Parser() {
+		if (textText_5009Parser == null) {
+			EAttribute[] features = new EAttribute[] { WireframePackage.eINSTANCE.getWidget_Text() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			textText_5009Parser = parser;
+		}
+		return textText_5009Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser textFieldText_5010Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTextFieldText_5010Parser() {
+		if (textFieldText_5010Parser == null) {
+			EAttribute[] features = new EAttribute[] { WireframePackage.eINSTANCE.getWidget_Text() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			textFieldText_5010Parser = parser;
+		}
+		return textFieldText_5010Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case WindowTextEditPart.VISUAL_ID:
@@ -141,6 +225,14 @@ public class WireframeParserProvider extends AbstractProvider implements IParser
 			return getTextText_5002Parser();
 		case ImageTextEditPart.VISUAL_ID:
 			return getImageText_5006Parser();
+		case ImageText2EditPart.VISUAL_ID:
+			return getImageText_5007Parser();
+		case LabelText2EditPart.VISUAL_ID:
+			return getLabelText_5008Parser();
+		case TextText2EditPart.VISUAL_ID:
+			return getTextText_5009Parser();
+		case TextFieldText2EditPart.VISUAL_ID:
+			return getTextFieldText_5010Parser();
 		}
 		return null;
 	}

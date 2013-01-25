@@ -1,5 +1,6 @@
 package org.unicase.wireframe.diagram.part;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -58,10 +59,13 @@ public class WireframePaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createLabel2CreationTool() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(WireframeElementTypes.Label_3003);
+		types.add(WireframeElementTypes.Label_2004);
 		NodeToolEntry entry = new NodeToolEntry(Messages.Label2CreationTool_title, Messages.Label2CreationTool_desc,
-			Collections.singletonList(WireframeElementTypes.Label_2004));
+			types);
 		entry.setId("createLabel2CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(WireframeElementTypes.getImageDescriptor(WireframeElementTypes.Label_2004));
+		entry.setSmallIcon(WireframeElementTypes.getImageDescriptor(WireframeElementTypes.Label_3003));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -70,10 +74,13 @@ public class WireframePaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createTextField3CreationTool() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(WireframeElementTypes.TextField_3005);
+		types.add(WireframeElementTypes.TextField_2005);
 		NodeToolEntry entry = new NodeToolEntry(Messages.TextField3CreationTool_title,
-			Messages.TextField3CreationTool_desc, Collections.singletonList(WireframeElementTypes.TextField_2005));
+			Messages.TextField3CreationTool_desc, types);
 		entry.setId("createTextField3CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(WireframeElementTypes.getImageDescriptor(WireframeElementTypes.TextField_2005));
+		entry.setSmallIcon(WireframeElementTypes.getImageDescriptor(WireframeElementTypes.TextField_3005));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -82,10 +89,13 @@ public class WireframePaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createButton4CreationTool() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(WireframeElementTypes.Button_3001);
+		types.add(WireframeElementTypes.Button_2006);
 		NodeToolEntry entry = new NodeToolEntry(Messages.Button4CreationTool_title, Messages.Button4CreationTool_desc,
-			Collections.singletonList(WireframeElementTypes.Button_2006));
+			types);
 		entry.setId("createButton4CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(WireframeElementTypes.getImageDescriptor(WireframeElementTypes.Button_2006));
+		entry.setSmallIcon(WireframeElementTypes.getImageDescriptor(WireframeElementTypes.Button_3001));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -94,10 +104,13 @@ public class WireframePaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createText5CreationTool() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(WireframeElementTypes.Text_3004);
+		types.add(WireframeElementTypes.Text_2007);
 		NodeToolEntry entry = new NodeToolEntry(Messages.Text5CreationTool_title, Messages.Text5CreationTool_desc,
-			Collections.singletonList(WireframeElementTypes.Text_2007));
+			types);
 		entry.setId("createText5CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(WireframeElementTypes.getImageDescriptor(WireframeElementTypes.Text_2007));
+		entry.setSmallIcon(WireframeElementTypes.getImageDescriptor(WireframeElementTypes.Text_3004));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -106,10 +119,13 @@ public class WireframePaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createImage6CreationTool() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(WireframeElementTypes.Image_3002);
+		types.add(WireframeElementTypes.Image_2008);
 		NodeToolEntry entry = new NodeToolEntry(Messages.Image6CreationTool_title, Messages.Image6CreationTool_desc,
-			Collections.singletonList(WireframeElementTypes.Image_2008));
+			types);
 		entry.setId("createImage6CreationTool"); //$NON-NLS-1$
-		entry.setSmallIcon(WireframeElementTypes.getImageDescriptor(WireframeElementTypes.Image_2008));
+		entry.setSmallIcon(WireframeElementTypes.getImageDescriptor(WireframeElementTypes.Image_3002));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

@@ -50,23 +50,24 @@ public class ImageItemProvider extends WidgetItemProvider implements IEditingDom
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addUriPropertyDescriptor(object);
+			addImageURLPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Uri feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Image URL feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addUriPropertyDescriptor(Object object) {
+	protected void addImageURLPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_Image_uri_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_Image_uri_feature", "_UI_Image_type"),
-			WireframePackage.Literals.IMAGE__URI, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-			null));
+			getString("_UI_Image_imageURL_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Image_imageURL_feature", "_UI_Image_type"),
+			WireframePackage.Literals.IMAGE__IMAGE_URL, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+			null, null));
 	}
 
 	/**
@@ -103,7 +104,7 @@ public class ImageItemProvider extends WidgetItemProvider implements IEditingDom
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Image.class)) {
-		case WireframePackage.IMAGE__URI:
+		case WireframePackage.IMAGE__IMAGE_URL:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}

@@ -728,12 +728,21 @@ public interface WireframePackage extends EPackage {
 	int WINDOW__HAS_MINIMIZE = WIDGET_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Widgets</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WINDOW__WIDGETS = WIDGET_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Window</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WINDOW_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 3;
+	int WINDOW_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.wireframe.impl.LabelImpl <em>Label</em>}' class. <!--
@@ -1532,12 +1541,13 @@ public interface WireframePackage extends EPackage {
 	int IMAGE__PANEL = WIDGET__PANEL;
 
 	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Image URL</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE__URI = WIDGET_FEATURE_COUNT + 0;
+	int IMAGE__IMAGE_URL = WIDGET_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Image</em>' class.
@@ -1556,15 +1566,6 @@ public interface WireframePackage extends EPackage {
 	 * @generated
 	 */
 	int BUTTON_STYLE = 9;
-
-	/**
-	 * The meta object id for the '<em>Image URI</em>' data type.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see org.eclipse.emf.common.util.URI
-	 * @see org.unicase.wireframe.impl.WireframePackageImpl#getImageURI()
-	 * @generated
-	 */
-	int IMAGE_URI = 10;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.wireframe.Storyboard <em>Storyboard</em>}'. <!--
@@ -1765,6 +1766,17 @@ public interface WireframePackage extends EPackage {
 	EAttribute getWindow_HasMinimize();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.wireframe.Window#getWidgets <em>Widgets</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Widgets</em>'.
+	 * @see org.unicase.wireframe.Window#getWidgets()
+	 * @see #getWindow()
+	 * @generated
+	 */
+	EReference getWindow_Widgets();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.wireframe.Label <em>Label</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1826,15 +1838,15 @@ public interface WireframePackage extends EPackage {
 	EClass getImage();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.wireframe.Image#getUri <em>Uri</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the attribute '<em>Uri</em>'.
-	 * @see org.unicase.wireframe.Image#getUri()
+	 * Returns the meta object for the attribute '{@link org.unicase.wireframe.Image#getImageURL <em>Image URL</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Image URL</em>'.
+	 * @see org.unicase.wireframe.Image#getImageURL()
 	 * @see #getImage()
 	 * @generated
 	 */
-	EAttribute getImage_Uri();
+	EAttribute getImage_ImageURL();
 
 	/**
 	 * Returns the meta object for enum '{@link org.unicase.wireframe.ButtonStyle <em>Button Style</em>}'. <!--
@@ -1845,17 +1857,6 @@ public interface WireframePackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getButtonStyle();
-
-	/**
-	 * Returns the meta object for data type '{@link org.eclipse.emf.common.util.URI <em>Image URI</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for data type '<em>Image URI</em>'.
-	 * @see org.eclipse.emf.common.util.URI
-	 * @model instanceClass="org.eclipse.emf.common.util.URI"
-	 * @generated
-	 */
-	EDataType getImageURI();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2037,6 +2038,14 @@ public interface WireframePackage extends EPackage {
 		EAttribute WINDOW__HAS_MINIMIZE = eINSTANCE.getWindow_HasMinimize();
 
 		/**
+		 * The meta object literal for the '<em><b>Widgets</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WINDOW__WIDGETS = eINSTANCE.getWindow_Widgets();
+
+		/**
 		 * The meta object literal for the '{@link org.unicase.wireframe.impl.LabelImpl <em>Label</em>}' class. <!--
 		 * begin-user-doc --> <!-- end-user-doc -->
 		 * 
@@ -2094,12 +2103,12 @@ public interface WireframePackage extends EPackage {
 		EClass IMAGE = eINSTANCE.getImage();
 
 		/**
-		 * The meta object literal for the '<em><b>Uri</b></em>' attribute feature.
-		 * <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
+		 * The meta object literal for the '<em><b>Image URL</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute IMAGE__URI = eINSTANCE.getImage_Uri();
+		EAttribute IMAGE__IMAGE_URL = eINSTANCE.getImage_ImageURL();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.wireframe.ButtonStyle <em>Button Style</em>}' enum. <!--
@@ -2110,15 +2119,6 @@ public interface WireframePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum BUTTON_STYLE = eINSTANCE.getButtonStyle();
-
-		/**
-		 * The meta object literal for the '<em>Image URI</em>' data type.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * @see org.eclipse.emf.common.util.URI
-		 * @see org.unicase.wireframe.impl.WireframePackageImpl#getImageURI()
-		 * @generated
-		 */
-		EDataType IMAGE_URI = eINSTANCE.getImageURI();
 
 	}
 

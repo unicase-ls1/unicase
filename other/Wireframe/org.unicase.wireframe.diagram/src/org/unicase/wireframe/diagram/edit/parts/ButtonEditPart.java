@@ -7,6 +7,8 @@ import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -24,10 +26,11 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.wireframe.Button;
+import org.unicase.wireframe.WireframePackage;
 import org.unicase.wireframe.diagram.edit.policies.ButtonItemSemanticEditPolicy;
+import org.unicase.wireframe.diagram.edit.policies.OpenDiagramEditPolicy;
 import org.unicase.wireframe.diagram.util.EditPartImageUtil;
 
 /**
@@ -64,8 +67,9 @@ public class ButtonEditPart extends ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ButtonItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that
-		// would let children add reasonable editpolicies
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
+		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -198,6 +202,8 @@ public class ButtonEditPart extends ShapeNodeEditPart {
 		 */
 		private WrappingLabel fButton_text;
 
+		private ScalableImageFigure buttonImageFigure0;
+
 		/**
 		 * @generated
 		 */
@@ -208,12 +214,13 @@ public class ButtonEditPart extends ShapeNodeEditPart {
 			layoutThis.makeColumnsEqualWidth = false;
 			this.setLayoutManager(layoutThis);
 
+			this.setOutline(false);
 			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(36), getMapMode().DPtoLP(36)));
 			createContents();
 		}
 
 		/**
-		 * @generated NOT: added image and removed outline
+		 * @generated NOT: added image
 		 */
 		private void createContents() {
 
@@ -226,10 +233,8 @@ public class ButtonEditPart extends ShapeNodeEditPart {
 			// custom code: added custom image for button
 			Object adapter = getAdapter(Button.class);
 			if (adapter instanceof Button) {
-				Image image = EditPartImageUtil.getButtonImage((Button) adapter);
-				ScalableImageFigure buttonImageFigure0 = new ScalableImageFigure(image);
-
-				GridData constraintButtonImageFigure0 = new GridData();
+				final Button button = (Button) adapter;
+				final GridData constraintButtonImageFigure0 = new GridData();
 				constraintButtonImageFigure0.verticalAlignment = GridData.CENTER;
 				constraintButtonImageFigure0.horizontalAlignment = GridData.CENTER;
 				constraintButtonImageFigure0.horizontalIndent = 0;
@@ -237,11 +242,30 @@ public class ButtonEditPart extends ShapeNodeEditPart {
 				constraintButtonImageFigure0.verticalSpan = 1;
 				constraintButtonImageFigure0.grabExcessHorizontalSpace = true;
 				constraintButtonImageFigure0.grabExcessVerticalSpace = true;
+				buttonImageFigure0 = new ScalableImageFigure(EditPartImageUtil.getButtonImage(button));
+				buttonImageFigure0.setPreferredImageSize(36, 36);
 				this.add(buttonImageFigure0, constraintButtonImageFigure0);
-			}
 
-			// custom code: no outline for button
-			this.setOutline(false);
+				button.eAdapters().add(new AdapterImpl() {
+
+					public void notifyChanged(Notification notification) {
+						if (WireframePackage.eINSTANCE.getButton_Style().equals(notification.getFeature())) {
+							// remove old figures
+							ButtonDescriptor.this.remove(buttonImageFigure0);
+							// add figures
+							buttonImageFigure0 = new ScalableImageFigure(EditPartImageUtil.getButtonImage(button));
+							buttonImageFigure0.setPreferredImageSize(36, 36);
+							ButtonDescriptor.this.add(buttonImageFigure0, constraintButtonImageFigure0);
+						}
+					}
+
+					public boolean isAdapterForType(Object type) {
+						return type instanceof Button;
+					}
+
+				});
+
+			}
 
 		}
 

@@ -25,6 +25,7 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.wireframe.diagram.edit.policies.LabelItemSemanticEditPolicy;
+import org.unicase.wireframe.diagram.edit.policies.OpenDiagramEditPolicy;
 import org.unicase.wireframe.diagram.part.WireframeVisualIDRegistry;
 
 /**
@@ -61,6 +62,7 @@ public class LabelEditPart extends ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new LabelItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
 		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -157,7 +159,7 @@ public class LabelEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(100, 30);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(60, 20);
 		return result;
 	}
 
@@ -259,24 +261,25 @@ public class LabelEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		public LabelDescriptor() {
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(100), getMapMode().DPtoLP(30)));
+			this.setOutline(false);
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(60), getMapMode().DPtoLP(20)));
 			createContents();
 		}
 
 		/**
-		 * @generated NOT: removed outline
+		 * @generated NOT
 		 */
 		private void createContents() {
 
 			fLabel_text = new WrappingLabel();
 
 			fLabel_text.setText("My Label");
+			// custom code: enabled text wrap
+			fLabel_text.setTextWrap(true);
 
 			fLabel_text.setFont(FLABEL_TEXT_FONT);
 
 			this.add(fLabel_text);
-			// custom code: no outline for labels
-			this.setOutline(false);
 
 		}
 
