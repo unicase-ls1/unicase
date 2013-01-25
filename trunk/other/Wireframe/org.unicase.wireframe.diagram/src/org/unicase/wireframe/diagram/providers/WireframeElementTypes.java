@@ -16,11 +16,16 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.wireframe.WireframePackage;
+import org.unicase.wireframe.diagram.edit.parts.Button2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.ButtonEditPart;
+import org.unicase.wireframe.diagram.edit.parts.Image2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.ImageEditPart;
+import org.unicase.wireframe.diagram.edit.parts.Label2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.LabelEditPart;
 import org.unicase.wireframe.diagram.edit.parts.PanelEditPart;
+import org.unicase.wireframe.diagram.edit.parts.Text2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.TextEditPart;
+import org.unicase.wireframe.diagram.edit.parts.TextField2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.TextFieldEditPart;
 import org.unicase.wireframe.diagram.edit.parts.WindowEditPart;
 import org.unicase.wireframe.diagram.part.WireframeDiagramEditorPlugin;
@@ -54,7 +59,7 @@ public class WireframeElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Panel_1000 = getElementType("org.unicase.wireframe.diagram.Panel_1000"); //$NON-NLS-1$
+	public static final IElementType Panel_45 = getElementType("org.unicase.wireframe.diagram.Panel_45"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -85,6 +90,31 @@ public class WireframeElementTypes {
 	 * @generated
 	 */
 	public static final IElementType Image_2008 = getElementType("org.unicase.wireframe.diagram.Image_2008"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Button_3001 = getElementType("org.unicase.wireframe.diagram.Button_3001"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Image_3002 = getElementType("org.unicase.wireframe.diagram.Image_3002"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Label_3003 = getElementType("org.unicase.wireframe.diagram.Label_3003"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Text_3004 = getElementType("org.unicase.wireframe.diagram.Text_3004"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType TextField_3005 = getElementType("org.unicase.wireframe.diagram.TextField_3005"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -193,7 +223,7 @@ public class WireframeElementTypes {
 		if (elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
 
-			elements.put(Panel_1000, WireframePackage.eINSTANCE.getPanel());
+			elements.put(Panel_45, WireframePackage.eINSTANCE.getPanel());
 
 			elements.put(Window_2003, WireframePackage.eINSTANCE.getWindow());
 
@@ -206,6 +236,16 @@ public class WireframeElementTypes {
 			elements.put(Text_2007, WireframePackage.eINSTANCE.getText());
 
 			elements.put(Image_2008, WireframePackage.eINSTANCE.getImage());
+
+			elements.put(Button_3001, WireframePackage.eINSTANCE.getButton());
+
+			elements.put(Image_3002, WireframePackage.eINSTANCE.getImage());
+
+			elements.put(Label_3003, WireframePackage.eINSTANCE.getLabel());
+
+			elements.put(Text_3004, WireframePackage.eINSTANCE.getText());
+
+			elements.put(TextField_3005, WireframePackage.eINSTANCE.getTextField());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -223,13 +263,18 @@ public class WireframeElementTypes {
 	public static boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
-			KNOWN_ELEMENT_TYPES.add(Panel_1000);
+			KNOWN_ELEMENT_TYPES.add(Panel_45);
 			KNOWN_ELEMENT_TYPES.add(Window_2003);
 			KNOWN_ELEMENT_TYPES.add(Label_2004);
 			KNOWN_ELEMENT_TYPES.add(TextField_2005);
 			KNOWN_ELEMENT_TYPES.add(Button_2006);
 			KNOWN_ELEMENT_TYPES.add(Text_2007);
 			KNOWN_ELEMENT_TYPES.add(Image_2008);
+			KNOWN_ELEMENT_TYPES.add(Button_3001);
+			KNOWN_ELEMENT_TYPES.add(Image_3002);
+			KNOWN_ELEMENT_TYPES.add(Label_3003);
+			KNOWN_ELEMENT_TYPES.add(Text_3004);
+			KNOWN_ELEMENT_TYPES.add(TextField_3005);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -240,7 +285,7 @@ public class WireframeElementTypes {
 	public static IElementType getElementType(int visualID) {
 		switch (visualID) {
 		case PanelEditPart.VISUAL_ID:
-			return Panel_1000;
+			return Panel_45;
 		case WindowEditPart.VISUAL_ID:
 			return Window_2003;
 		case LabelEditPart.VISUAL_ID:
@@ -253,6 +298,16 @@ public class WireframeElementTypes {
 			return Text_2007;
 		case ImageEditPart.VISUAL_ID:
 			return Image_2008;
+		case Button2EditPart.VISUAL_ID:
+			return Button_3001;
+		case Image2EditPart.VISUAL_ID:
+			return Image_3002;
+		case Label2EditPart.VISUAL_ID:
+			return Label_3003;
+		case Text2EditPart.VISUAL_ID:
+			return Text_3004;
+		case TextField2EditPart.VISUAL_ID:
+			return TextField_3005;
 		}
 		return null;
 	}

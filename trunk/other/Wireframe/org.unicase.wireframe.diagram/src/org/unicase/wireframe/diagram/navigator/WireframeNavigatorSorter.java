@@ -11,7 +11,7 @@ public class WireframeNavigatorSorter extends ViewerSorter {
 	/**
 	 * @generated
 	 */
-	private static final int GROUP_CATEGORY = 2010;
+	private static final int GROUP_CATEGORY = 7003;
 
 	/**
 	 * @generated

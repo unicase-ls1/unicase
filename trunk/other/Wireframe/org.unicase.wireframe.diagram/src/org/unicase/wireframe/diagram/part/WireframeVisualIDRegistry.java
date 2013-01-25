@@ -8,18 +8,28 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
 import org.unicase.wireframe.Panel;
 import org.unicase.wireframe.WireframePackage;
+import org.unicase.wireframe.diagram.edit.parts.Button2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.ButtonEditPart;
+import org.unicase.wireframe.diagram.edit.parts.Image2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.ImageEditPart;
+import org.unicase.wireframe.diagram.edit.parts.ImageText2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.ImageTextEditPart;
+import org.unicase.wireframe.diagram.edit.parts.Label2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.LabelEditPart;
+import org.unicase.wireframe.diagram.edit.parts.LabelText2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.LabelTextEditPart;
 import org.unicase.wireframe.diagram.edit.parts.PanelEditPart;
+import org.unicase.wireframe.diagram.edit.parts.Text2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.TextEditPart;
+import org.unicase.wireframe.diagram.edit.parts.TextField2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.TextFieldEditPart;
+import org.unicase.wireframe.diagram.edit.parts.TextFieldText2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.TextFieldTextEditPart;
+import org.unicase.wireframe.diagram.edit.parts.TextText2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.TextTextEditPart;
 import org.unicase.wireframe.diagram.edit.parts.WindowEditPart;
 import org.unicase.wireframe.diagram.edit.parts.WindowTextEditPart;
+import org.unicase.wireframe.diagram.edit.parts.WindowWindowWidgetCompartmentEditPart;
 
 /**
  * This registry is used to determine which type of visual object should be created for the corresponding Diagram, Node,
@@ -142,6 +152,23 @@ public class WireframeVisualIDRegistry {
 				return ImageEditPart.VISUAL_ID;
 			}
 			break;
+		case WindowWindowWidgetCompartmentEditPart.VISUAL_ID:
+			if (WireframePackage.eINSTANCE.getButton().isSuperTypeOf(domainElement.eClass())) {
+				return Button2EditPart.VISUAL_ID;
+			}
+			if (WireframePackage.eINSTANCE.getImage().isSuperTypeOf(domainElement.eClass())) {
+				return Image2EditPart.VISUAL_ID;
+			}
+			if (WireframePackage.eINSTANCE.getLabel().isSuperTypeOf(domainElement.eClass())) {
+				return Label2EditPart.VISUAL_ID;
+			}
+			if (WireframePackage.eINSTANCE.getText().isSuperTypeOf(domainElement.eClass())) {
+				return Text2EditPart.VISUAL_ID;
+			}
+			if (WireframePackage.eINSTANCE.getTextField().isSuperTypeOf(domainElement.eClass())) {
+				return TextField2EditPart.VISUAL_ID;
+			}
+			break;
 		}
 		return -1;
 	}
@@ -190,6 +217,9 @@ public class WireframeVisualIDRegistry {
 			if (WindowTextEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (WindowWindowWidgetCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case LabelEditPart.VISUAL_ID:
 			if (LabelTextEditPart.VISUAL_ID == nodeVisualID) {
@@ -208,6 +238,43 @@ public class WireframeVisualIDRegistry {
 			break;
 		case ImageEditPart.VISUAL_ID:
 			if (ImageTextEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case Image2EditPart.VISUAL_ID:
+			if (ImageText2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case Label2EditPart.VISUAL_ID:
+			if (LabelText2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case Text2EditPart.VISUAL_ID:
+			if (TextText2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case TextField2EditPart.VISUAL_ID:
+			if (TextFieldText2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case WindowWindowWidgetCompartmentEditPart.VISUAL_ID:
+			if (Button2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Image2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Label2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (Text2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (TextField2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -250,6 +317,12 @@ public class WireframeVisualIDRegistry {
 	 * @generated
 	 */
 	public static boolean isCompartmentVisualID(int visualID) {
+		switch (visualID) {
+		case WindowWindowWidgetCompartmentEditPart.VISUAL_ID:
+			return true;
+		default:
+			break;
+		}
 		return false;
 	}
 
@@ -260,12 +333,16 @@ public class WireframeVisualIDRegistry {
 		switch (visualID) {
 		case PanelEditPart.VISUAL_ID:
 			return false;
-		case WindowEditPart.VISUAL_ID:
 		case LabelEditPart.VISUAL_ID:
 		case TextFieldEditPart.VISUAL_ID:
 		case ButtonEditPart.VISUAL_ID:
 		case TextEditPart.VISUAL_ID:
 		case ImageEditPart.VISUAL_ID:
+		case Button2EditPart.VISUAL_ID:
+		case Image2EditPart.VISUAL_ID:
+		case Label2EditPart.VISUAL_ID:
+		case Text2EditPart.VISUAL_ID:
+		case TextField2EditPart.VISUAL_ID:
 			return true;
 		default:
 			break;

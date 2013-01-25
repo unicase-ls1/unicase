@@ -12,48 +12,79 @@
           name="WindowFigure">
         <layout
             xsi:type="gmfgraph:GridLayout"/>
-        <maximumSize
-            dx="901"
-            dy="530"/>
         <preferredSize
-            dx="453"
-            dy="280"/>
+            dx="400"
+            dy="200"/>
         <children
-            xsi:type="gmfgraph:Label"
-            name="Window_text"
-            text="My Window">
+            xsi:type="gmfgraph:Rectangle"
+            name="WindowTopBar"
+            outline="false">
           <layoutData
               xsi:type="gmfgraph:GridLayoutData"
-              verticalAlignment="BEGINNING"/>
-          <font
-              xsi:type="gmfgraph:BasicFont"
-              faceName="Arial"
-              height="10"
-              style="BOLD"/>
+              grabExcessHorizontalSpace="true"
+              verticalAlignment="BEGINNING"
+              horizontalAlignment="FILL"/>
+          <layout
+              xsi:type="gmfgraph:GridLayout"
+              numColumns="4"
+              equalWidth="false"/>
+          <backgroundColor
+              xsi:type="gmfgraph:ConstantColor"
+              value="lightGray"/>
+          <children
+              xsi:type="gmfgraph:Label"
+              name="Window_text"
+              text="My Window">
+            <layoutData
+                xsi:type="gmfgraph:GridLayoutData"
+                verticalAlignment="FILL"
+                horizontalAlignment="FILL"/>
+            <font
+                xsi:type="gmfgraph:BasicFont"
+                faceName="Arial"
+                height="10"
+                style="BOLD"/>
+          </children>
+          <children
+              xsi:type="gmfgraph:Rectangle"
+              name="Window_CloseButton">
+            <layoutData
+                xsi:type="gmfgraph:GridLayoutData"
+                verticalAlignment="FILL"
+                horizontalAlignment="BEGINNING"/>
+            <backgroundColor
+                xsi:type="gmfgraph:ConstantColor"
+                value="darkGray"/>
+          </children>
         </children>
         <children
-            xsi:type="gmfgraph:CustomFigure"
-            name="WindowImageFigure"
-            qualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.render.figures.ScalableImageFigure">
+            xsi:type="gmfgraph:Rectangle"
+            name="WindowWidgetContainer"
+            outline="false">
           <layoutData
               xsi:type="gmfgraph:GridLayoutData"
               grabExcessHorizontalSpace="true"
               grabExcessVerticalSpace="true"
-              verticalAlignment="END"/>
+              verticalAlignment="FILL"
+              horizontalAlignment="FILL"/>
         </children>
       </actualFigure>
       <accessors
           accessor="getWindow_text"
-          figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+          figure="//@figures.0/@descriptors.0/@actualFigure/@children.0/@children.0"/>
+      <accessors
+          accessor="getWindow_widgets"
+          figure="//@figures.0/@descriptors.0/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="LabelDescriptor">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          name="LabelFigure">
+          name="LabelFigure"
+          outline="false">
         <preferredSize
-            dx="100"
-            dy="30"/>
+            dx="60"
+            dy="20"/>
         <children
             xsi:type="gmfgraph:Label"
             name="Label_text"
@@ -75,8 +106,8 @@
           xsi:type="gmfgraph:Rectangle"
           name="TextFieldsFigure">
         <preferredSize
-            dx="150"
-            dy="100"/>
+            dx="70"
+            dy="20"/>
         <children
             xsi:type="gmfgraph:Label"
             name="TextField_text"
@@ -90,7 +121,8 @@
         name="ButtonDescriptor">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          name="ButtonFigure">
+          name="ButtonFigure"
+          outline="false">
         <layout
             xsi:type="gmfgraph:GridLayout"
             equalWidth="false"/>
@@ -125,10 +157,11 @@
         name="TextDescriptor">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          name="TextFigure">
+          name="TextFigure"
+          outline="false">
         <minimumSize
-            dx="100"
-            dy="200"/>
+            dx="50"
+            dy="20"/>
         <children
             xsi:type="gmfgraph:Label"
             name="Text_text"
@@ -142,12 +175,13 @@
         name="ImageDescriptor">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          name="ImageFigure">
+          name="ImageFigure"
+          outline="false">
         <layout
             xsi:type="gmfgraph:GridLayout"/>
         <preferredSize
-            dx="303"
-            dy="250"/>
+            dx="150"
+            dy="125"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ImageImageFigure"
@@ -195,6 +229,10 @@
   <nodes
       name="ImageNode"
       figure="ImageDescriptor"/>
+  <compartments
+      name="WindowWidgetCompartment"
+      figure="WindowDescriptor"
+      accessor="//@figures.0/@descriptors.0/@accessors.1"/>
   <labels
       name="WindowNode_text"
       figure="WindowDescriptor"

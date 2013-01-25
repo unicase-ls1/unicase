@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.diagram.DiagramPackage;
@@ -93,12 +94,6 @@ public class WireframePackageImpl extends EPackageImpl implements WireframePacka
 	 * @generated
 	 */
 	private EEnum buttonStyleEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EDataType imageURIEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -315,6 +310,15 @@ public class WireframePackageImpl extends EPackageImpl implements WireframePacka
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getWindow_Widgets() {
+		return (EReference) windowEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -363,10 +367,11 @@ public class WireframePackageImpl extends EPackageImpl implements WireframePacka
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getImage_Uri() {
+	public EAttribute getImage_ImageURL() {
 		return (EAttribute) imageEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -376,14 +381,6 @@ public class WireframePackageImpl extends EPackageImpl implements WireframePacka
 	 */
 	public EEnum getButtonStyle() {
 		return buttonStyleEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EDataType getImageURI() {
-		return imageURIEDataType;
 	}
 
 	/**
@@ -434,6 +431,7 @@ public class WireframePackageImpl extends EPackageImpl implements WireframePacka
 		createEAttribute(windowEClass, WINDOW__HAS_CLOSE);
 		createEAttribute(windowEClass, WINDOW__HAS_MAXIMIZE);
 		createEAttribute(windowEClass, WINDOW__HAS_MINIMIZE);
+		createEReference(windowEClass, WINDOW__WIDGETS);
 
 		labelEClass = createEClass(LABEL);
 
@@ -445,13 +443,10 @@ public class WireframePackageImpl extends EPackageImpl implements WireframePacka
 		textEClass = createEClass(TEXT);
 
 		imageEClass = createEClass(IMAGE);
-		createEAttribute(imageEClass, IMAGE__URI);
+		createEAttribute(imageEClass, IMAGE__IMAGE_URL);
 
 		// Create enums
 		buttonStyleEEnum = createEEnum(BUTTON_STYLE);
-
-		// Create data types
-		imageURIEDataType = createEDataType(IMAGE_URI);
 	}
 
 	/**
@@ -480,6 +475,7 @@ public class WireframePackageImpl extends EPackageImpl implements WireframePacka
 		DiagramPackage theDiagramPackage = (DiagramPackage) EPackage.Registry.INSTANCE
 			.getEPackage(DiagramPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -539,6 +535,9 @@ public class WireframePackageImpl extends EPackageImpl implements WireframePacka
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWindow_HasMinimize(), ecorePackage.getEBoolean(), "hasMinimize", null, 0, 1, Window.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWindow_Widgets(), this.getWidget(), null, "widgets", null, 0, -1, Window.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
 		initEClass(labelEClass, Label.class, "Label", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -552,17 +551,14 @@ public class WireframePackageImpl extends EPackageImpl implements WireframePacka
 		initEClass(textEClass, Text.class, "Text", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(imageEClass, Image.class, "Image", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getImage_Uri(), this.getImageURI(), "uri", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE,
-			IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_ImageURL(), theEcorePackage.getEString(), "imageURL", null, 0, 1, Image.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(buttonStyleEEnum, ButtonStyle.class, "ButtonStyle");
 		addEEnumLiteral(buttonStyleEEnum, ButtonStyle.POINT_LEFT);
 		addEEnumLiteral(buttonStyleEEnum, ButtonStyle.SQUARE);
 		addEEnumLiteral(buttonStyleEEnum, ButtonStyle.POINT_RIGHT);
-
-		// Initialize data types
-		initEDataType(imageURIEDataType, URI.class, "ImageURI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

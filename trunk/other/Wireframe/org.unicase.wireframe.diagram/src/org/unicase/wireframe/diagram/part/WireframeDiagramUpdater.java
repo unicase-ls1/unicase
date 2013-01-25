@@ -9,13 +9,20 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.unicase.wireframe.Panel;
 import org.unicase.wireframe.Widget;
+import org.unicase.wireframe.Window;
+import org.unicase.wireframe.diagram.edit.parts.Button2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.ButtonEditPart;
+import org.unicase.wireframe.diagram.edit.parts.Image2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.ImageEditPart;
+import org.unicase.wireframe.diagram.edit.parts.Label2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.LabelEditPart;
 import org.unicase.wireframe.diagram.edit.parts.PanelEditPart;
+import org.unicase.wireframe.diagram.edit.parts.Text2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.TextEditPart;
+import org.unicase.wireframe.diagram.edit.parts.TextField2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.TextFieldEditPart;
 import org.unicase.wireframe.diagram.edit.parts.WindowEditPart;
+import org.unicase.wireframe.diagram.edit.parts.WindowWindowWidgetCompartmentEditPart;
 
 /**
  * @generated
@@ -28,7 +35,9 @@ public class WireframeDiagramUpdater {
 	public static List<WireframeNodeDescriptor> getSemanticChildren(View view) {
 		switch (WireframeVisualIDRegistry.getVisualID(view)) {
 		case PanelEditPart.VISUAL_ID:
-			return getPanel_1000SemanticChildren(view);
+			return getPanel_45SemanticChildren(view);
+		case WindowWindowWidgetCompartmentEditPart.VISUAL_ID:
+			return getWindowWindowWidgetCompartment_7001SemanticChildren(view);
 		}
 		return Collections.emptyList();
 	}
@@ -36,7 +45,7 @@ public class WireframeDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<WireframeNodeDescriptor> getPanel_1000SemanticChildren(View view) {
+	public static List<WireframeNodeDescriptor> getPanel_45SemanticChildren(View view) {
 		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
@@ -76,10 +85,50 @@ public class WireframeDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<WireframeNodeDescriptor> getWindowWindowWidgetCompartment_7001SemanticChildren(View view) {
+		if (false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		Window modelElement = (Window) containerView.getElement();
+		LinkedList<WireframeNodeDescriptor> result = new LinkedList<WireframeNodeDescriptor>();
+		for (Iterator<?> it = modelElement.getWidgets().iterator(); it.hasNext();) {
+			Widget childElement = (Widget) it.next();
+			int visualID = WireframeVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (visualID == Button2EditPart.VISUAL_ID) {
+				result.add(new WireframeNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == Image2EditPart.VISUAL_ID) {
+				result.add(new WireframeNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == Label2EditPart.VISUAL_ID) {
+				result.add(new WireframeNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == Text2EditPart.VISUAL_ID) {
+				result.add(new WireframeNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == TextField2EditPart.VISUAL_ID) {
+				result.add(new WireframeNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<WireframeLinkDescriptor> getContainedLinks(View view) {
 		switch (WireframeVisualIDRegistry.getVisualID(view)) {
 		case PanelEditPart.VISUAL_ID:
-			return getPanel_1000ContainedLinks(view);
+			return getPanel_45ContainedLinks(view);
 		case WindowEditPart.VISUAL_ID:
 			return getWindow_2003ContainedLinks(view);
 		case LabelEditPart.VISUAL_ID:
@@ -92,6 +141,16 @@ public class WireframeDiagramUpdater {
 			return getText_2007ContainedLinks(view);
 		case ImageEditPart.VISUAL_ID:
 			return getImage_2008ContainedLinks(view);
+		case Button2EditPart.VISUAL_ID:
+			return getButton_3001ContainedLinks(view);
+		case Image2EditPart.VISUAL_ID:
+			return getImage_3002ContainedLinks(view);
+		case Label2EditPart.VISUAL_ID:
+			return getLabel_3003ContainedLinks(view);
+		case Text2EditPart.VISUAL_ID:
+			return getText_3004ContainedLinks(view);
+		case TextField2EditPart.VISUAL_ID:
+			return getTextField_3005ContainedLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -113,6 +172,16 @@ public class WireframeDiagramUpdater {
 			return getText_2007IncomingLinks(view);
 		case ImageEditPart.VISUAL_ID:
 			return getImage_2008IncomingLinks(view);
+		case Button2EditPart.VISUAL_ID:
+			return getButton_3001IncomingLinks(view);
+		case Image2EditPart.VISUAL_ID:
+			return getImage_3002IncomingLinks(view);
+		case Label2EditPart.VISUAL_ID:
+			return getLabel_3003IncomingLinks(view);
+		case Text2EditPart.VISUAL_ID:
+			return getText_3004IncomingLinks(view);
+		case TextField2EditPart.VISUAL_ID:
+			return getTextField_3005IncomingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -134,6 +203,16 @@ public class WireframeDiagramUpdater {
 			return getText_2007OutgoingLinks(view);
 		case ImageEditPart.VISUAL_ID:
 			return getImage_2008OutgoingLinks(view);
+		case Button2EditPart.VISUAL_ID:
+			return getButton_3001OutgoingLinks(view);
+		case Image2EditPart.VISUAL_ID:
+			return getImage_3002OutgoingLinks(view);
+		case Label2EditPart.VISUAL_ID:
+			return getLabel_3003OutgoingLinks(view);
+		case Text2EditPart.VISUAL_ID:
+			return getText_3004OutgoingLinks(view);
+		case TextField2EditPart.VISUAL_ID:
+			return getTextField_3005OutgoingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -141,7 +220,7 @@ public class WireframeDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<WireframeLinkDescriptor> getPanel_1000ContainedLinks(View view) {
+	public static List<WireframeLinkDescriptor> getPanel_45ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
@@ -190,6 +269,41 @@ public class WireframeDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<WireframeLinkDescriptor> getButton_3001ContainedLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<WireframeLinkDescriptor> getImage_3002ContainedLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<WireframeLinkDescriptor> getLabel_3003ContainedLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<WireframeLinkDescriptor> getText_3004ContainedLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<WireframeLinkDescriptor> getTextField_3005ContainedLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<WireframeLinkDescriptor> getWindow_2003IncomingLinks(View view) {
 		return Collections.emptyList();
 	}
@@ -232,6 +346,41 @@ public class WireframeDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<WireframeLinkDescriptor> getButton_3001IncomingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<WireframeLinkDescriptor> getImage_3002IncomingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<WireframeLinkDescriptor> getLabel_3003IncomingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<WireframeLinkDescriptor> getText_3004IncomingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<WireframeLinkDescriptor> getTextField_3005IncomingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<WireframeLinkDescriptor> getWindow_2003OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
@@ -268,6 +417,41 @@ public class WireframeDiagramUpdater {
 	 * @generated
 	 */
 	public static List<WireframeLinkDescriptor> getImage_2008OutgoingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<WireframeLinkDescriptor> getButton_3001OutgoingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<WireframeLinkDescriptor> getImage_3002OutgoingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<WireframeLinkDescriptor> getLabel_3003OutgoingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<WireframeLinkDescriptor> getText_3004OutgoingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<WireframeLinkDescriptor> getTextField_3005OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
 

@@ -56,6 +56,36 @@ public class WireframeEditPartFactory implements EditPartFactory {
 
 			case ImageTextEditPart.VISUAL_ID:
 				return new ImageTextEditPart(view);
+
+			case Button2EditPart.VISUAL_ID:
+				return new Button2EditPart(view);
+
+			case Image2EditPart.VISUAL_ID:
+				return new Image2EditPart(view);
+
+			case ImageText2EditPart.VISUAL_ID:
+				return new ImageText2EditPart(view);
+
+			case Label2EditPart.VISUAL_ID:
+				return new Label2EditPart(view);
+
+			case LabelText2EditPart.VISUAL_ID:
+				return new LabelText2EditPart(view);
+
+			case Text2EditPart.VISUAL_ID:
+				return new Text2EditPart(view);
+
+			case TextText2EditPart.VISUAL_ID:
+				return new TextText2EditPart(view);
+
+			case TextField2EditPart.VISUAL_ID:
+				return new TextField2EditPart(view);
+
+			case TextFieldText2EditPart.VISUAL_ID:
+				return new TextFieldText2EditPart(view);
+
+			case WindowWindowWidgetCompartmentEditPart.VISUAL_ID:
+				return new WindowWindowWidgetCompartmentEditPart(view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

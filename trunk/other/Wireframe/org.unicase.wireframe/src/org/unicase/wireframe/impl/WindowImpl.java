@@ -6,9 +6,16 @@
  */
 package org.unicase.wireframe.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.unicase.wireframe.Widget;
 import org.unicase.wireframe.Window;
 import org.unicase.wireframe.WireframePackage;
 
@@ -20,6 +27,7 @@ import org.unicase.wireframe.WireframePackage;
  *   <li>{@link org.unicase.wireframe.impl.WindowImpl#isHasClose <em>Has Close</em>}</li>
  *   <li>{@link org.unicase.wireframe.impl.WindowImpl#isHasMaximize <em>Has Maximize</em>}</li>
  *   <li>{@link org.unicase.wireframe.impl.WindowImpl#isHasMinimize <em>Has Minimize</em>}</li>
+ *   <li>{@link org.unicase.wireframe.impl.WindowImpl#getWidgets <em>Widgets</em>}</li>
  * </ul>
  * </p>
  *
@@ -85,6 +93,16 @@ public class WindowImpl extends WidgetImpl implements Window {
 	 * @ordered
 	 */
 	protected boolean hasMinimize = HAS_MINIMIZE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getWidgets() <em>Widgets</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWidgets()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Widget> widgets;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -164,6 +182,33 @@ public class WindowImpl extends WidgetImpl implements Window {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Widget> getWidgets() {
+		if (widgets == null) {
+			widgets = new EObjectContainmentEList.Resolving<Widget>(Widget.class, this,
+				WireframePackage.WINDOW__WIDGETS);
+		}
+		return widgets;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case WireframePackage.WINDOW__WIDGETS:
+			return ((InternalEList<?>) getWidgets()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -176,6 +221,8 @@ public class WindowImpl extends WidgetImpl implements Window {
 			return isHasMaximize();
 		case WireframePackage.WINDOW__HAS_MINIMIZE:
 			return isHasMinimize();
+		case WireframePackage.WINDOW__WIDGETS:
+			return getWidgets();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -184,6 +231,7 @@ public class WindowImpl extends WidgetImpl implements Window {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -195,6 +243,10 @@ public class WindowImpl extends WidgetImpl implements Window {
 			return;
 		case WireframePackage.WINDOW__HAS_MINIMIZE:
 			setHasMinimize((Boolean) newValue);
+			return;
+		case WireframePackage.WINDOW__WIDGETS:
+			getWidgets().clear();
+			getWidgets().addAll((Collection<? extends Widget>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -216,6 +268,9 @@ public class WindowImpl extends WidgetImpl implements Window {
 		case WireframePackage.WINDOW__HAS_MINIMIZE:
 			setHasMinimize(HAS_MINIMIZE_EDEFAULT);
 			return;
+		case WireframePackage.WINDOW__WIDGETS:
+			getWidgets().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -233,6 +288,8 @@ public class WindowImpl extends WidgetImpl implements Window {
 			return hasMaximize != HAS_MAXIMIZE_EDEFAULT;
 		case WireframePackage.WINDOW__HAS_MINIMIZE:
 			return hasMinimize != HAS_MINIMIZE_EDEFAULT;
+		case WireframePackage.WINDOW__WIDGETS:
+			return widgets != null && !widgets.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

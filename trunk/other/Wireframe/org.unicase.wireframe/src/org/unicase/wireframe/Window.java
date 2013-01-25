@@ -6,6 +6,8 @@
  */
 package org.unicase.wireframe;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Window</b></em>'. <!-- end-user-doc -->
  *
@@ -15,6 +17,7 @@ package org.unicase.wireframe;
  *   <li>{@link org.unicase.wireframe.Window#isHasClose <em>Has Close</em>}</li>
  *   <li>{@link org.unicase.wireframe.Window#isHasMaximize <em>Has Maximize</em>}</li>
  *   <li>{@link org.unicase.wireframe.Window#isHasMinimize <em>Has Minimize</em>}</li>
+ *   <li>{@link org.unicase.wireframe.Window#getWidgets <em>Widgets</em>}</li>
  * </ul>
  * </p>
  *
@@ -100,5 +103,21 @@ public interface Window extends Widget {
 	 * @generated
 	 */
 	void setHasMinimize(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Widgets</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.wireframe.Widget}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Widgets</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Widgets</em>' containment reference list.
+	 * @see org.unicase.wireframe.WireframePackage#getWindow_Widgets()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	EList<Widget> getWidgets();
 
 } // Window

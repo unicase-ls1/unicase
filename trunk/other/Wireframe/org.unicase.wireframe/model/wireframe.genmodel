@@ -15,7 +15,6 @@
       <genEnumLiterals ecoreEnumLiteral="wireframe.ecore#//ButtonStyle/Square"/>
       <genEnumLiterals ecoreEnumLiteral="wireframe.ecore#//ButtonStyle/PointRight"/>
     </genEnums>
-    <genDataTypes ecoreDataType="wireframe.ecore#//ImageURI"/>
     <genClasses ecoreClass="wireframe.ecore#//Storyboard">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference wireframe.ecore#//Storyboard/panels"/>
     </genClasses>
@@ -38,6 +37,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute wireframe.ecore#//Window/hasClose"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute wireframe.ecore#//Window/hasMaximize"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute wireframe.ecore#//Window/hasMinimize"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference wireframe.ecore#//Window/widgets"/>
     </genClasses>
     <genClasses ecoreClass="wireframe.ecore#//Label"/>
     <genClasses ecoreClass="wireframe.ecore#//TextField"/>
@@ -46,7 +46,7 @@
     </genClasses>
     <genClasses ecoreClass="wireframe.ecore#//Text"/>
     <genClasses ecoreClass="wireframe.ecore#//Image">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute wireframe.ecore#//Image/uri"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute wireframe.ecore#//Image/imageURL"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -16,18 +16,25 @@ import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.emf.core.GMFEditingDomainFactory;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonContentProvider;
+import org.unicase.wireframe.diagram.edit.parts.Button2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.ButtonEditPart;
+import org.unicase.wireframe.diagram.edit.parts.Image2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.ImageEditPart;
+import org.unicase.wireframe.diagram.edit.parts.Label2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.LabelEditPart;
 import org.unicase.wireframe.diagram.edit.parts.PanelEditPart;
+import org.unicase.wireframe.diagram.edit.parts.Text2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.TextEditPart;
+import org.unicase.wireframe.diagram.edit.parts.TextField2EditPart;
 import org.unicase.wireframe.diagram.edit.parts.TextFieldEditPart;
 import org.unicase.wireframe.diagram.edit.parts.WindowEditPart;
+import org.unicase.wireframe.diagram.edit.parts.WindowWindowWidgetCompartmentEditPart;
 import org.unicase.wireframe.diagram.part.WireframeVisualIDRegistry;
 
 /**
@@ -231,6 +238,38 @@ public class WireframeNavigatorContentProvider implements ICommonContentProvider
 			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
 			connectedViews = getChildrenByType(Collections.singleton(sv),
 				WireframeVisualIDRegistry.getType(ImageEditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+			return result.toArray();
+		}
+
+		case WindowEditPart.VISUAL_ID: {
+			LinkedList<WireframeAbstractNavigatorItem> result = new LinkedList<WireframeAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			Collection<View> connectedViews;
+			connectedViews = getChildrenByType(Collections.singleton(sv),
+				WireframeVisualIDRegistry.getType(WindowWindowWidgetCompartmentEditPart.VISUAL_ID));
+			connectedViews = getChildrenByType(connectedViews,
+				WireframeVisualIDRegistry.getType(Button2EditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+			connectedViews = getChildrenByType(Collections.singleton(sv),
+				WireframeVisualIDRegistry.getType(WindowWindowWidgetCompartmentEditPart.VISUAL_ID));
+			connectedViews = getChildrenByType(connectedViews,
+				WireframeVisualIDRegistry.getType(Image2EditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+			connectedViews = getChildrenByType(Collections.singleton(sv),
+				WireframeVisualIDRegistry.getType(WindowWindowWidgetCompartmentEditPart.VISUAL_ID));
+			connectedViews = getChildrenByType(connectedViews,
+				WireframeVisualIDRegistry.getType(Label2EditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+			connectedViews = getChildrenByType(Collections.singleton(sv),
+				WireframeVisualIDRegistry.getType(WindowWindowWidgetCompartmentEditPart.VISUAL_ID));
+			connectedViews = getChildrenByType(connectedViews,
+				WireframeVisualIDRegistry.getType(Text2EditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+			connectedViews = getChildrenByType(Collections.singleton(sv),
+				WireframeVisualIDRegistry.getType(WindowWindowWidgetCompartmentEditPart.VISUAL_ID));
+			connectedViews = getChildrenByType(connectedViews,
+				WireframeVisualIDRegistry.getType(TextField2EditPart.VISUAL_ID));
 			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
 			return result.toArray();
 		}
