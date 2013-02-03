@@ -2,7 +2,7 @@
 <gmfgen:GenEditorGenerator xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" packageNamePrefix="org.unicase.wireframe.storyboard"
+    xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" packageNamePrefix="org.unicase.uiModeling.storyboard"
     modelID="Storyboard"
     diagramFileExtension="storyboard_diagram"
     domainFileExtension="storyboard"
@@ -52,7 +52,7 @@
         xsi:type="gmfgen:FigureViewmap"
         figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
     <domainDiagramElement
-        href="../../wireframe.genmodel#//wireframe/Storyboard"/>
+        href="../../uiModeling.genmodel#//uiModeling/Storyboard"/>
     <topLevelNodes
         visualID="2001"
         editPartClassName="PanelEditPart"
@@ -73,7 +73,7 @@
           xsi:type="gmfgen:OpenDiagramBehaviour"/>
       <modelFacet>
         <metaClass
-            href="../../wireframe.genmodel#//wireframe/Panel"/>
+            href="../../uiModeling.genmodel#//uiModeling/Panel"/>
         <containmentMetaFeature
             href="../../../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
         <childMetaFeature
@@ -94,33 +94,33 @@
     </palette>
     <preferencePages
         xsi:type="gmfgen:GenStandardPreferencePage"
-        iD="org.unicase.wireframe.diagram.general"
+        iD="org.unicase.uiModeling.diagram.general"
         name="Storyboard Diagram">
       <children
           xsi:type="gmfgen:GenStandardPreferencePage"
-          iD="org.unicase.wireframe.diagram.appearance"
+          iD="org.unicase.uiModeling.diagram.appearance"
           name="Appearance"
           kind="Appearance"/>
       <children
           xsi:type="gmfgen:GenStandardPreferencePage"
-          iD="org.unicase.wireframe.diagram.connections"
+          iD="org.unicase.uiModeling.diagram.connections"
           name="Connections"
           kind="Connections"/>
       <children
           xsi:type="gmfgen:GenStandardPreferencePage"
-          iD="org.unicase.wireframe.diagram.printing"
+          iD="org.unicase.uiModeling.diagram.printing"
           name="Printing"
           kind="Printing"/>
       <children
           xsi:type="gmfgen:GenStandardPreferencePage"
-          iD="org.unicase.wireframe.diagram.rulersAndGrid"
+          iD="org.unicase.uiModeling.diagram.rulersAndGrid"
           name="Rulers And Grid"
           kind="RulersAndGrid"/>
     </preferencePages>
   </diagram>
   <plugin
-      iD="org.unicase.wireframe.storyboard"
-      name="Wireframe Storyboard Plugin"
+      iD="org.unicase.uiModeling.storyboard"
+      name="UiModeling Storyboard Plugin"
       provider="unicase.org"
       activatorClassName="StoryboardDiagramEditorPlugin">
     <requiredPlugins>org.eclipse.gmf.tooling.runtime</requiredPlugins>
@@ -175,5 +175,5 @@
     </tabs>
   </propertySheet>
   <domainGenModel
-      href="../../wireframe.genmodel#/"/>
+      href="../../uiModeling.genmodel#/"/>
 </gmfgen:GenEditorGenerator>

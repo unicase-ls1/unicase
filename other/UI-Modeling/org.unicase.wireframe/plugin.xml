@@ -12,9 +12,9 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://unicase.org/model/wireframe"
-            class="org.unicase.wireframe.WireframePackage"
-            genModel="model/wireframe.genmodel"/>
+            uri="http://unicase.org/model/uiModeling"
+            class="org.unicase.uiModeling.UiModelingPackage"
+            genModel="model/uiModeling.genmodel"/>
    </extension>
 
 </plugin>
