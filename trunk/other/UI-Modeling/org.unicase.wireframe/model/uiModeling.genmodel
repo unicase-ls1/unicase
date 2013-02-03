@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="&lt;copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).&#xD;&#xA;All rights reserved. This program and the accompanying materials are made available under the terms of&#xD;&#xA;the Eclipse Public License v1.0 which accompanies this distribution,&#xD;&#xA;and is available at http://www.eclipse.org/legal/epl-v10.html &lt;/copyright>"
+    modelDirectory="/org.unicase.uiModeling/src" modelPluginID="org.unicase.uiModeling"
+    modelName="UiModeling" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.emfstore.common.model/model/common.genmodel#//model ../../org.unicase.diagram/model/diagram.genmodel#//diagram platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.unicase.model/model/model.genmodel#//model platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation platform:/plugin/org.eclipse.emf.emfstore.server.model/model/server.genmodel#//model">
+  <foreignModel>uiModeling.ecore</foreignModel>
+  <genPackages prefix="UiModeling" basePackage="org.unicase" disposableProviderFactory="true"
+      ecorePackage="uiModeling.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="uiModeling.ecore#//ButtonStyle">
+      <genEnumLiterals ecoreEnumLiteral="uiModeling.ecore#//ButtonStyle/PointLeft"/>
+      <genEnumLiterals ecoreEnumLiteral="uiModeling.ecore#//ButtonStyle/Square"/>
+      <genEnumLiterals ecoreEnumLiteral="uiModeling.ecore#//ButtonStyle/PointRight"/>
+    </genEnums>
+    <genClasses ecoreClass="uiModeling.ecore#//Storyboard">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uiModeling.ecore#//Storyboard/panels"/>
+    </genClasses>
+    <genClasses ecoreClass="uiModeling.ecore#//Panel">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference uiModeling.ecore#//Panel/storyboard"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Panel/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Panel/y"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uiModeling.ecore#//Panel/widgets"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="uiModeling.ecore#//Widget">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Widget/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Widget/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Widget/y"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Widget/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Widget/height"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Widget/text"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference uiModeling.ecore#//Widget/panel"/>
+    </genClasses>
+    <genClasses ecoreClass="uiModeling.ecore#//Window">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Window/hasClose"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Window/hasMaximize"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Window/hasMinimize"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uiModeling.ecore#//Window/widgets"/>
+    </genClasses>
+    <genClasses ecoreClass="uiModeling.ecore#//Label"/>
+    <genClasses ecoreClass="uiModeling.ecore#//TextField"/>
+    <genClasses ecoreClass="uiModeling.ecore#//Button">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Button/style"/>
+    </genClasses>
+    <genClasses ecoreClass="uiModeling.ecore#//Text"/>
+    <genClasses ecoreClass="uiModeling.ecore#//Image">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Image/imageURL"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,15 +1,15 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.unicase.wireframe.diagram; singleton:=true
+Bundle-SymbolicName: org.unicase.uiModeling.diagram; singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: org.unicase.wireframe.diagram.part.WireframeDiagramEditorPlugin
+Bundle-Activator: org.unicase.uiModeling.diagram.part.UiModelingDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.unicase.wireframe.diagram.edit.parts,
- org.unicase.wireframe.diagram.part,
- org.unicase.wireframe.diagram.providers
+Export-Package: org.unicase.uiModeling.diagram.edit.parts,
+ org.unicase.uiModeling.diagram.part,
+ org.unicase.uiModeling.diagram.providers
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.core.expressions,
@@ -33,8 +33,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide,
  org.eclipse.gmf.tooling.runtime;visibility:=reexport,
  org.eclipse.draw2d;visibility:=reexport,
- org.unicase.wireframe;visibility:=reexport,
- org.unicase.wireframe.edit;visibility:=reexport,
+ org.unicase.uiModeling;visibility:=reexport,
+ org.unicase.uiModeling.edit;visibility:=reexport,
  org.eclipse.emf.emfstore.common.model;visibility:=reexport,
  org.eclipse.emf.emfstore.common.model.edit;visibility:=reexport,
  org.unicase.diagram;visibility:=reexport,

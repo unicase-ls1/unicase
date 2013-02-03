@@ -12,21 +12,21 @@
     <ownedChild
         relatedDiagrams="//@diagram">
       <domainMetaElement
-          href="../../wireframe.ecore#//Panel"/>
+          href="../../uiModeling.ecore#//Panel"/>
       <tool
           xsi:type="gmftool:CreationTool"
           href="storyboard.gmftool#//@palette/@tools.0"/>
       <diagramNode
-          href="../wireframe.gmfgraph#PanelNode"/>
+          href="storyboard.gmfgraph#PanelNode"/>
     </ownedChild>
   </nodes>
   <diagram>
     <diagramCanvas
-        href="../wireframe.gmfgraph#StoryboardCanvas"/>
+        href="storyboard.gmfgraph#StoryboardCanvas"/>
     <domainModel
-        href="../../wireframe.ecore#/"/>
+        href="../../uiModeling.ecore#/"/>
     <domainMetaElement
-        href="../../wireframe.ecore#//Storyboard"/>
+        href="../../uiModeling.ecore#//Storyboard"/>
     <palette
         href="storyboard.gmftool#//@palette"/>
   </diagram>

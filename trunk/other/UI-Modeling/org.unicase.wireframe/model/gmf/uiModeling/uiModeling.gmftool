@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmftool:ToolRegistry xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
+  <palette
+      title="UiModelingPalette"
+      description="Palette for creating uiModeling elements.">
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="UiModelingTools"
+        description="These tools can be used to create a uiModeling diagram.">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Window"
+          description="Tool for creating a window."/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Label"
+          description="Tool for creating a label."/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="TextField"
+          description="Tool for creating a text field."/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Button"
+          description="Tool for creating a button."/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Text"
+          description="Tool for creating text."/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Image"
+          description="Tool for creating an image."/>
+    </tools>
+  </palette>
+</gmftool:ToolRegistry>

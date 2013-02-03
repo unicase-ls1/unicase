@@ -1,7 +1,7 @@
-# Tracing options for the org.unicase.wireframe.diagram plug-in
+# Tracing options for the org.unicase.uiModeling.diagram plug-in
 
 # Common issues
-org.unicase.wireframe.diagram/debug=false
+org.unicase.uiModeling.diagram/debug=false
 
 # Visual IDs
-org.unicase.wireframe.diagram/debug/visualID=false
+org.unicase.uiModeling.diagram/debug/visualID=false
