@@ -28,7 +28,11 @@
   </nodeTraces>
   <nodeTraces
       visualID="2006"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/uiModeling' and _eClass_.name = 'Button') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/uiModeling' and _eClass_.name = 'Panel') and _containmentMF_.name = 'widgets')"/>
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/uiModeling' and _eClass_.name = 'Button') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/uiModeling' and _eClass_.name = 'Panel') and _containmentMF_.name = 'widgets')">
+    <nodeLabelTraces
+        visualID="5012"
+        queryText="true"/>
+  </nodeTraces>
   <nodeTraces
       visualID="2007"
       queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/uiModeling' and _eClass_.name = 'Text') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/uiModeling' and _eClass_.name = 'Panel') and _containmentMF_.name = 'widgets')">
@@ -45,7 +49,11 @@
   </nodeTraces>
   <childNodeTraces
       visualID="3001"
-      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/uiModeling' and _eClass_.name = 'Button') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/uiModeling' and _eClass_.name = 'Window') and _containmentMF_.name = 'widgets')"/>
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/uiModeling' and _eClass_.name = 'Button') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/uiModeling' and _eClass_.name = 'Window') and _containmentMF_.name = 'widgets')">
+    <nodeLabelTraces
+        visualID="5011"
+        queryText="true"/>
+  </childNodeTraces>
   <childNodeTraces
       visualID="3002"
       queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/uiModeling' and _eClass_.name = 'Image') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/uiModeling' and _eClass_.name = 'Window') and _containmentMF_.name = 'widgets')">

@@ -12,19 +12,14 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.unicase.uiModeling.UiModelingFactory;
 import org.unicase.uiModeling.UiModelingPackage;
 import org.unicase.uiModeling.Window;
@@ -64,77 +59,8 @@ public class WindowItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addHasClosePropertyDescriptor(object);
-			addHasMaximizePropertyDescriptor(object);
-			addHasMinimizePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Has Close feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addHasClosePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Window_hasClose_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Window_hasClose_feature", "_UI_Window_type"),
-				 UiModelingPackage.Literals.WINDOW__HAS_CLOSE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Has Maximize feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addHasMaximizePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Window_hasMaximize_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Window_hasMaximize_feature", "_UI_Window_type"),
-				 UiModelingPackage.Literals.WINDOW__HAS_MAXIMIZE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Has Minimize feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addHasMinimizePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Window_hasMinimize_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Window_hasMinimize_feature", "_UI_Window_type"),
-				 UiModelingPackage.Literals.WINDOW__HAS_MINIMIZE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -204,11 +130,6 @@ public class WindowItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Window.class)) {
-			case UiModelingPackage.WINDOW__HAS_CLOSE:
-			case UiModelingPackage.WINDOW__HAS_MAXIMIZE:
-			case UiModelingPackage.WINDOW__HAS_MINIMIZE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
 			case UiModelingPackage.WINDOW__WIDGETS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -256,6 +177,26 @@ public class WindowItemProvider
 			(createChildParameter
 				(UiModelingPackage.Literals.WINDOW__WIDGETS,
 				 UiModelingFactory.eINSTANCE.createImage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UiModelingPackage.Literals.WINDOW__WIDGETS,
+				 UiModelingFactory.eINSTANCE.createRadioGroup()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UiModelingPackage.Literals.WINDOW__WIDGETS,
+				 UiModelingFactory.eINSTANCE.createCheckboxGroup()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UiModelingPackage.Literals.WINDOW__WIDGETS,
+				 UiModelingFactory.eINSTANCE.createDropdownList()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UiModelingPackage.Literals.WINDOW__WIDGETS,
+				 UiModelingFactory.eINSTANCE.createImageButton()));
 	}
 
 }

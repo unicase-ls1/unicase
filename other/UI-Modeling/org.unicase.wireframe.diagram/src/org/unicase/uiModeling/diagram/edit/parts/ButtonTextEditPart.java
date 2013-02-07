@@ -43,10 +43,6 @@ import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
-import org.unicase.uiModeling.diagram.edit.policies.UiModelingTextSelectionEditPolicy;
-import org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry;
-import org.unicase.uiModeling.diagram.providers.UiModelingElementTypes;
-import org.unicase.uiModeling.diagram.providers.UiModelingParserProvider;
 
 /**
  * @generated
@@ -56,7 +52,7 @@ public class ButtonTextEditPart extends CompartmentEditPart implements ITextAwar
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5005;
+	public static final int VISUAL_ID = 5012;
 
 	/**
 	 * @generated
@@ -95,9 +91,11 @@ public class ButtonTextEditPart extends CompartmentEditPart implements ITextAwar
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UiModelingTextSelectionEditPolicy());
+		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE,
+			new org.unicase.uiModeling.diagram.edit.policies.UiModelingTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new PanelEditPart.NodeLabelDragPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
+			new org.unicase.uiModeling.diagram.edit.parts.PanelEditPart.NodeLabelDragPolicy());
 	}
 
 	/**
@@ -286,8 +284,9 @@ public class ButtonTextEditPart extends CompartmentEditPart implements ITextAwar
 	 */
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UiModelingParserProvider.getParser(UiModelingElementTypes.Button_2006, getParserElement(),
-				UiModelingVisualIDRegistry
+			parser = org.unicase.uiModeling.diagram.providers.UiModelingParserProvider.getParser(
+				org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.Button_2006, getParserElement(),
+				org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
 					.getType(org.unicase.uiModeling.diagram.edit.parts.ButtonTextEditPart.VISUAL_ID));
 		}
 		return parser;
@@ -298,7 +297,8 @@ public class ButtonTextEditPart extends CompartmentEditPart implements ITextAwar
 	 */
 	protected DirectEditManager getManager() {
 		if (manager == null) {
-			setManager(new TextDirectEditManager2(this, null, UiModelingEditPartFactory.getTextCellEditorLocator(this)));
+			setManager(new TextDirectEditManager2(this, null,
+				org.unicase.uiModeling.diagram.edit.parts.UiModelingEditPartFactory.getTextCellEditorLocator(this)));
 		}
 		return manager;
 	}
@@ -332,7 +332,7 @@ public class ButtonTextEditPart extends CompartmentEditPart implements ITextAwar
 	private void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
-		} else //
+		} else // 
 		if (getManager() instanceof TextDirectEditManager2) {
 			((TextDirectEditManager2) getManager()).show(initialCharacter);
 		} else //

@@ -50,6 +50,9 @@ public class UiModelingEditPartFactory implements EditPartFactory {
 			case org.unicase.uiModeling.diagram.edit.parts.ButtonEditPart.VISUAL_ID:
 				return new org.unicase.uiModeling.diagram.edit.parts.ButtonEditPart(view);
 
+			case org.unicase.uiModeling.diagram.edit.parts.ButtonTextEditPart.VISUAL_ID:
+				return new org.unicase.uiModeling.diagram.edit.parts.ButtonTextEditPart(view);
+
 			case org.unicase.uiModeling.diagram.edit.parts.TextEditPart.VISUAL_ID:
 				return new org.unicase.uiModeling.diagram.edit.parts.TextEditPart(view);
 
@@ -64,6 +67,9 @@ public class UiModelingEditPartFactory implements EditPartFactory {
 
 			case org.unicase.uiModeling.diagram.edit.parts.Button2EditPart.VISUAL_ID:
 				return new org.unicase.uiModeling.diagram.edit.parts.Button2EditPart(view);
+
+			case org.unicase.uiModeling.diagram.edit.parts.ButtonText2EditPart.VISUAL_ID:
+				return new org.unicase.uiModeling.diagram.edit.parts.ButtonText2EditPart(view);
 
 			case org.unicase.uiModeling.diagram.edit.parts.Image2EditPart.VISUAL_ID:
 				return new org.unicase.uiModeling.diagram.edit.parts.Image2EditPart(view);

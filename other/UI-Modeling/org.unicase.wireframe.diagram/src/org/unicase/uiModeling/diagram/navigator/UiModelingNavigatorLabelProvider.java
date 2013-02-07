@@ -268,12 +268,17 @@ public class UiModelingNavigatorLabelProvider extends LabelProvider implements I
 	 * @generated
 	 */
 	private String getButton_2006Text(View view) {
-		org.unicase.uiModeling.Button domainModelElement = (org.unicase.uiModeling.Button) view.getElement();
-		if (domainModelElement != null) {
-			return domainModelElement.getName();
+		IParser parser = org.unicase.uiModeling.diagram.providers.UiModelingParserProvider.getParser(
+			org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.Button_2006,
+			view.getElement() != null ? view.getElement() : view,
+			org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
+				.getType(org.unicase.uiModeling.diagram.edit.parts.ButtonTextEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
 		} else {
 			org.unicase.uiModeling.diagram.part.UiModelingDiagramEditorPlugin.getInstance().logError(
-				"No domain element for view with visualID = " + 2006); //$NON-NLS-1$
+				"Parser was not found for label " + 5012); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -320,12 +325,17 @@ public class UiModelingNavigatorLabelProvider extends LabelProvider implements I
 	 * @generated
 	 */
 	private String getButton_3001Text(View view) {
-		org.unicase.uiModeling.Button domainModelElement = (org.unicase.uiModeling.Button) view.getElement();
-		if (domainModelElement != null) {
-			return domainModelElement.getName();
+		IParser parser = org.unicase.uiModeling.diagram.providers.UiModelingParserProvider.getParser(
+			org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.Button_3001,
+			view.getElement() != null ? view.getElement() : view,
+			org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
+				.getType(org.unicase.uiModeling.diagram.edit.parts.ButtonText2EditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
 		} else {
 			org.unicase.uiModeling.diagram.part.UiModelingDiagramEditorPlugin.getInstance().logError(
-				"No domain element for view with visualID = " + 3001); //$NON-NLS-1$
+				"Parser was not found for label " + 5011); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.model.diagram.DiagramPackage;
+import org.unicase.uiModeling.UiModelingPackage;
 
 /**
  * @generated
@@ -50,7 +50,7 @@ public class StoryboardCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	protected EStructuralFeature getFeatureToSynchronize() {
-		return DiagramPackage.eINSTANCE.getMEDiagram_NewElements();
+		return UiModelingPackage.eINSTANCE.getStoryboard_Panels();
 	}
 
 	/**
@@ -103,14 +103,18 @@ public class StoryboardCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 		// alternative to #cleanCanonicalSemanticChildren(getViewChildren(), semanticChildren)
 		//
-		// iteration happens over list of desired semantic elements, trying to find best matching View, while original CEP
-		// iterates views, potentially losing view (size/bounds) information - i.e. if there are few views to reference same EObject, only last one 
-		// to answer isOrphaned == true will be used for the domain element representation, see #cleanCanonicalSemanticChildren()
+		// iteration happens over list of desired semantic elements, trying to find best matching View, while original
+		// CEP
+		// iterates views, potentially losing view (size/bounds) information - i.e. if there are few views to reference
+		// same EObject, only last one
+		// to answer isOrphaned == true will be used for the domain element representation, see
+		// #cleanCanonicalSemanticChildren()
 		for (Iterator<org.unicase.uiModeling.storyboard.part.StoryboardNodeDescriptor> descriptorsIterator = childDescriptors
 			.iterator(); descriptorsIterator.hasNext();) {
 			org.unicase.uiModeling.storyboard.part.StoryboardNodeDescriptor next = descriptorsIterator.next();
 			String hint = org.unicase.uiModeling.storyboard.part.StoryboardVisualIDRegistry.getType(next.getVisualID());
-			LinkedList<View> perfectMatch = new LinkedList<View>(); // both semanticElement and hint match that of NodeDescriptor
+			LinkedList<View> perfectMatch = new LinkedList<View>(); // both semanticElement and hint match that of
+																	// NodeDescriptor
 			for (View childView : getViewChildren()) {
 				EObject semanticElement = childView.getElement();
 				if (next.getModelElement().equals(semanticElement)) {
@@ -128,7 +132,8 @@ public class StoryboardCanonicalEditPolicy extends CanonicalEditPolicy {
 				knownViewChildren.remove(perfectMatch.getFirst());
 			}
 		}
-		// those left in knownViewChildren are subject to removal - they are our diagram elements we didn't find match to,
+		// those left in knownViewChildren are subject to removal - they are our diagram elements we didn't find match
+		// to,
 		// or those we have potential matches to, and thus need to be recreated, preserving size/location information.
 		orphaned.addAll(knownViewChildren);
 		//

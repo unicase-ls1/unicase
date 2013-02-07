@@ -8,7 +8,6 @@ package org.unicase.uiModeling;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.unicase.model.ModelPackage;
@@ -398,13 +397,31 @@ public interface UiModelingPackage extends EPackage {
 	int PANEL__Y = DiagramPackage.ME_DIAGRAM_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PANEL__WIDTH = DiagramPackage.ME_DIAGRAM_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PANEL__HEIGHT = DiagramPackage.ME_DIAGRAM_FEATURE_COUNT + 4;
+
+	/**
 	 * The feature id for the '<em><b>Widgets</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PANEL__WIDGETS = DiagramPackage.ME_DIAGRAM_FEATURE_COUNT + 3;
+	int PANEL__WIDGETS = DiagramPackage.ME_DIAGRAM_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Panel</em>' class.
@@ -413,7 +430,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PANEL_FEATURE_COUNT = DiagramPackage.ME_DIAGRAM_FEATURE_COUNT + 4;
+	int PANEL_FEATURE_COUNT = DiagramPackage.ME_DIAGRAM_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.uiModeling.impl.WidgetImpl <em>Widget</em>}' class.
@@ -516,22 +533,13 @@ public interface UiModelingPackage extends EPackage {
 	int WIDGET__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WIDGET__ID = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>X</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WIDGET__X = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int WIDGET__X = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Y</b></em>' attribute.
@@ -540,7 +548,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WIDGET__Y = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int WIDGET__Y = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Width</b></em>' attribute.
@@ -549,7 +557,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WIDGET__WIDTH = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int WIDGET__WIDTH = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
@@ -558,7 +566,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WIDGET__HEIGHT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int WIDGET__HEIGHT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Text</b></em>' attribute.
@@ -567,7 +575,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WIDGET__TEXT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int WIDGET__TEXT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Panel</b></em>' container reference.
@@ -576,7 +584,34 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WIDGET__PANEL = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 6;
+	int WIDGET__PANEL = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Positioning Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET__POSITIONING_ENABLED = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Sizing Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET__SIZING_ENABLED = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Layout Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET__LAYOUT_ENABLED = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>Widget</em>' class.
@@ -585,7 +620,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WIDGET_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 7;
+	int WIDGET_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.uiModeling.impl.WindowImpl <em>Window</em>}' class.
@@ -688,15 +723,6 @@ public interface UiModelingPackage extends EPackage {
 	int WINDOW__CREATOR = WIDGET__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WINDOW__ID = WIDGET__ID;
-
-	/**
 	 * The feature id for the '<em><b>X</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -751,31 +777,31 @@ public interface UiModelingPackage extends EPackage {
 	int WINDOW__PANEL = WIDGET__PANEL;
 
 	/**
-	 * The feature id for the '<em><b>Has Close</b></em>' attribute.
+	 * The feature id for the '<em><b>Positioning Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WINDOW__HAS_CLOSE = WIDGET_FEATURE_COUNT + 0;
+	int WINDOW__POSITIONING_ENABLED = WIDGET__POSITIONING_ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Has Maximize</b></em>' attribute.
+	 * The feature id for the '<em><b>Sizing Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WINDOW__HAS_MAXIMIZE = WIDGET_FEATURE_COUNT + 1;
+	int WINDOW__SIZING_ENABLED = WIDGET__SIZING_ENABLED;
 
 	/**
-	 * The feature id for the '<em><b>Has Minimize</b></em>' attribute.
+	 * The feature id for the '<em><b>Layout Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WINDOW__HAS_MINIMIZE = WIDGET_FEATURE_COUNT + 2;
+	int WINDOW__LAYOUT_ENABLED = WIDGET__LAYOUT_ENABLED;
 
 	/**
 	 * The feature id for the '<em><b>Widgets</b></em>' containment reference list.
@@ -784,7 +810,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WINDOW__WIDGETS = WIDGET_FEATURE_COUNT + 3;
+	int WINDOW__WIDGETS = WIDGET_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Window</em>' class.
@@ -793,7 +819,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WINDOW_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 4;
+	int WINDOW_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.uiModeling.impl.LabelImpl <em>Label</em>}' class.
@@ -896,15 +922,6 @@ public interface UiModelingPackage extends EPackage {
 	int LABEL__CREATOR = WIDGET__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LABEL__ID = WIDGET__ID;
-
-	/**
 	 * The feature id for the '<em><b>X</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -957,6 +974,33 @@ public interface UiModelingPackage extends EPackage {
 	 * @ordered
 	 */
 	int LABEL__PANEL = WIDGET__PANEL;
+
+	/**
+	 * The feature id for the '<em><b>Positioning Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LABEL__POSITIONING_ENABLED = WIDGET__POSITIONING_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Sizing Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LABEL__SIZING_ENABLED = WIDGET__SIZING_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Layout Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LABEL__LAYOUT_ENABLED = WIDGET__LAYOUT_ENABLED;
 
 	/**
 	 * The number of structural features of the '<em>Label</em>' class.
@@ -1068,15 +1112,6 @@ public interface UiModelingPackage extends EPackage {
 	int TEXT_FIELD__CREATOR = WIDGET__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_FIELD__ID = WIDGET__ID;
-
-	/**
 	 * The feature id for the '<em><b>X</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1129,6 +1164,33 @@ public interface UiModelingPackage extends EPackage {
 	 * @ordered
 	 */
 	int TEXT_FIELD__PANEL = WIDGET__PANEL;
+
+	/**
+	 * The feature id for the '<em><b>Positioning Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_FIELD__POSITIONING_ENABLED = WIDGET__POSITIONING_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Sizing Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_FIELD__SIZING_ENABLED = WIDGET__SIZING_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Layout Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_FIELD__LAYOUT_ENABLED = WIDGET__LAYOUT_ENABLED;
 
 	/**
 	 * The number of structural features of the '<em>Text Field</em>' class.
@@ -1240,15 +1302,6 @@ public interface UiModelingPackage extends EPackage {
 	int BUTTON__CREATOR = WIDGET__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BUTTON__ID = WIDGET__ID;
-
-	/**
 	 * The feature id for the '<em><b>X</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1303,13 +1356,31 @@ public interface UiModelingPackage extends EPackage {
 	int BUTTON__PANEL = WIDGET__PANEL;
 
 	/**
-	 * The feature id for the '<em><b>Style</b></em>' attribute.
+	 * The feature id for the '<em><b>Positioning Enabled</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUTTON__STYLE = WIDGET_FEATURE_COUNT + 0;
+	int BUTTON__POSITIONING_ENABLED = WIDGET__POSITIONING_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Sizing Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUTTON__SIZING_ENABLED = WIDGET__SIZING_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Layout Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUTTON__LAYOUT_ENABLED = WIDGET__LAYOUT_ENABLED;
 
 	/**
 	 * The number of structural features of the '<em>Button</em>' class.
@@ -1318,7 +1389,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUTTON_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 1;
+	int BUTTON_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.uiModeling.impl.TextImpl <em>Text</em>}' class.
@@ -1421,15 +1492,6 @@ public interface UiModelingPackage extends EPackage {
 	int TEXT__CREATOR = WIDGET__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT__ID = WIDGET__ID;
-
-	/**
 	 * The feature id for the '<em><b>X</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1482,6 +1544,33 @@ public interface UiModelingPackage extends EPackage {
 	 * @ordered
 	 */
 	int TEXT__PANEL = WIDGET__PANEL;
+
+	/**
+	 * The feature id for the '<em><b>Positioning Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT__POSITIONING_ENABLED = WIDGET__POSITIONING_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Sizing Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT__SIZING_ENABLED = WIDGET__SIZING_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Layout Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT__LAYOUT_ENABLED = WIDGET__LAYOUT_ENABLED;
 
 	/**
 	 * The number of structural features of the '<em>Text</em>' class.
@@ -1593,15 +1682,6 @@ public interface UiModelingPackage extends EPackage {
 	int IMAGE__CREATOR = WIDGET__CREATOR;
 
 	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMAGE__ID = WIDGET__ID;
-
-	/**
 	 * The feature id for the '<em><b>X</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1656,6 +1736,33 @@ public interface UiModelingPackage extends EPackage {
 	int IMAGE__PANEL = WIDGET__PANEL;
 
 	/**
+	 * The feature id for the '<em><b>Positioning Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__POSITIONING_ENABLED = WIDGET__POSITIONING_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Sizing Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__SIZING_ENABLED = WIDGET__SIZING_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Layout Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__LAYOUT_ENABLED = WIDGET__LAYOUT_ENABLED;
+
+	/**
 	 * The feature id for the '<em><b>Image URL</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1674,15 +1781,1181 @@ public interface UiModelingPackage extends EPackage {
 	int IMAGE_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.uiModeling.ButtonStyle <em>Button Style</em>}' enum.
+	 * The meta object id for the '{@link org.unicase.uiModeling.impl.RadioGroupImpl <em>Radio Group</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.unicase.uiModeling.ButtonStyle
-	 * @see org.unicase.uiModeling.impl.UiModelingPackageImpl#getButtonStyle()
+	 * @see org.unicase.uiModeling.impl.RadioGroupImpl
+	 * @see org.unicase.uiModeling.impl.UiModelingPackageImpl#getRadioGroup()
 	 * @generated
 	 */
-	int BUTTON_STYLE = 9;
+	int RADIO_GROUP = 9;
 
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP__NAME = WIDGET__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP__DESCRIPTION = WIDGET__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP__ANNOTATIONS = WIDGET__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP__ATTACHMENTS = WIDGET__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP__INCOMING_DOCUMENT_REFERENCES = WIDGET__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP__STATE = WIDGET__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP__APPLIED_STEREOTYPE_INSTANCES = WIDGET__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP__COMMENTS = WIDGET__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP__CREATION_DATE = WIDGET__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP__CREATOR = WIDGET__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP__X = WIDGET__X;
+
+	/**
+	 * The feature id for the '<em><b>Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP__Y = WIDGET__Y;
+
+	/**
+	 * The feature id for the '<em><b>Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP__WIDTH = WIDGET__WIDTH;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP__HEIGHT = WIDGET__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP__TEXT = WIDGET__TEXT;
+
+	/**
+	 * The feature id for the '<em><b>Panel</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP__PANEL = WIDGET__PANEL;
+
+	/**
+	 * The feature id for the '<em><b>Positioning Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP__POSITIONING_ENABLED = WIDGET__POSITIONING_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Sizing Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP__SIZING_ENABLED = WIDGET__SIZING_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Layout Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP__LAYOUT_ENABLED = WIDGET__LAYOUT_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Selected Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP__SELECTED_INDEX = WIDGET_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Buttons</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP__BUTTONS = WIDGET_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Radio Group</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_GROUP_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.uiModeling.impl.RadioButtonImpl <em>Radio Button</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.uiModeling.impl.RadioButtonImpl
+	 * @see org.unicase.uiModeling.impl.UiModelingPackageImpl#getRadioButton()
+	 * @generated
+	 */
+	int RADIO_BUTTON = 10;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTON__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTON__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTON__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTON__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTON__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTON__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTON__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTON__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTON__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTON__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTON__TEXT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Group</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTON__GROUP = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Radio Button</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RADIO_BUTTON_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.uiModeling.impl.CheckboxGroupImpl <em>Checkbox Group</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.uiModeling.impl.CheckboxGroupImpl
+	 * @see org.unicase.uiModeling.impl.UiModelingPackageImpl#getCheckboxGroup()
+	 * @generated
+	 */
+	int CHECKBOX_GROUP = 11;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_GROUP__NAME = WIDGET__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_GROUP__DESCRIPTION = WIDGET__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_GROUP__ANNOTATIONS = WIDGET__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_GROUP__ATTACHMENTS = WIDGET__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_GROUP__INCOMING_DOCUMENT_REFERENCES = WIDGET__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_GROUP__STATE = WIDGET__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_GROUP__APPLIED_STEREOTYPE_INSTANCES = WIDGET__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_GROUP__COMMENTS = WIDGET__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_GROUP__CREATION_DATE = WIDGET__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_GROUP__CREATOR = WIDGET__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_GROUP__X = WIDGET__X;
+
+	/**
+	 * The feature id for the '<em><b>Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_GROUP__Y = WIDGET__Y;
+
+	/**
+	 * The feature id for the '<em><b>Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_GROUP__WIDTH = WIDGET__WIDTH;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_GROUP__HEIGHT = WIDGET__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_GROUP__TEXT = WIDGET__TEXT;
+
+	/**
+	 * The feature id for the '<em><b>Panel</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_GROUP__PANEL = WIDGET__PANEL;
+
+	/**
+	 * The feature id for the '<em><b>Positioning Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_GROUP__POSITIONING_ENABLED = WIDGET__POSITIONING_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Sizing Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_GROUP__SIZING_ENABLED = WIDGET__SIZING_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Layout Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_GROUP__LAYOUT_ENABLED = WIDGET__LAYOUT_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Boxes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_GROUP__BOXES = WIDGET_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Checkbox Group</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_GROUP_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.uiModeling.impl.CheckboxImpl <em>Checkbox</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.uiModeling.impl.CheckboxImpl
+	 * @see org.unicase.uiModeling.impl.UiModelingPackageImpl#getCheckbox()
+	 * @generated
+	 */
+	int CHECKBOX = 12;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Group</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX__GROUP = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Checkbox</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKBOX_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.uiModeling.impl.DropdownListImpl <em>Dropdown List</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.uiModeling.impl.DropdownListImpl
+	 * @see org.unicase.uiModeling.impl.UiModelingPackageImpl#getDropdownList()
+	 * @generated
+	 */
+	int DROPDOWN_LIST = 13;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__NAME = WIDGET__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__DESCRIPTION = WIDGET__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__ANNOTATIONS = WIDGET__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__ATTACHMENTS = WIDGET__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__INCOMING_DOCUMENT_REFERENCES = WIDGET__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__STATE = WIDGET__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__APPLIED_STEREOTYPE_INSTANCES = WIDGET__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__COMMENTS = WIDGET__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__CREATION_DATE = WIDGET__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__CREATOR = WIDGET__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__X = WIDGET__X;
+
+	/**
+	 * The feature id for the '<em><b>Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__Y = WIDGET__Y;
+
+	/**
+	 * The feature id for the '<em><b>Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__WIDTH = WIDGET__WIDTH;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__HEIGHT = WIDGET__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__TEXT = WIDGET__TEXT;
+
+	/**
+	 * The feature id for the '<em><b>Panel</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__PANEL = WIDGET__PANEL;
+
+	/**
+	 * The feature id for the '<em><b>Positioning Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__POSITIONING_ENABLED = WIDGET__POSITIONING_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Sizing Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__SIZING_ENABLED = WIDGET__SIZING_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Layout Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__LAYOUT_ENABLED = WIDGET__LAYOUT_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Selected Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__SELECTED_INDEX = WIDGET_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Items</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__ITEMS = WIDGET_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Dropdown List</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.uiModeling.impl.DropdownItemImpl <em>Dropdown Item</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.uiModeling.impl.DropdownItemImpl
+	 * @see org.unicase.uiModeling.impl.UiModelingPackageImpl#getDropdownItem()
+	 * @generated
+	 */
+	int DROPDOWN_ITEM = 14;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_ITEM__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_ITEM__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_ITEM__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_ITEM__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_ITEM__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_ITEM__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_ITEM__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_ITEM__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_ITEM__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_ITEM__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>List</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_ITEM__LIST = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Dropdown Item</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_ITEM_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.uiModeling.impl.ImageButtonImpl <em>Image Button</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.uiModeling.impl.ImageButtonImpl
+	 * @see org.unicase.uiModeling.impl.UiModelingPackageImpl#getImageButton()
+	 * @generated
+	 */
+	int IMAGE_BUTTON = 15;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BUTTON__NAME = BUTTON__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BUTTON__DESCRIPTION = BUTTON__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BUTTON__ANNOTATIONS = BUTTON__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BUTTON__ATTACHMENTS = BUTTON__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BUTTON__INCOMING_DOCUMENT_REFERENCES = BUTTON__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BUTTON__STATE = BUTTON__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BUTTON__APPLIED_STEREOTYPE_INSTANCES = BUTTON__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BUTTON__COMMENTS = BUTTON__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BUTTON__CREATION_DATE = BUTTON__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BUTTON__CREATOR = BUTTON__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BUTTON__X = BUTTON__X;
+
+	/**
+	 * The feature id for the '<em><b>Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BUTTON__Y = BUTTON__Y;
+
+	/**
+	 * The feature id for the '<em><b>Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BUTTON__WIDTH = BUTTON__WIDTH;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BUTTON__HEIGHT = BUTTON__HEIGHT;
+
+	/**
+	 * The feature id for the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BUTTON__TEXT = BUTTON__TEXT;
+
+	/**
+	 * The feature id for the '<em><b>Panel</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BUTTON__PANEL = BUTTON__PANEL;
+
+	/**
+	 * The feature id for the '<em><b>Positioning Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BUTTON__POSITIONING_ENABLED = BUTTON__POSITIONING_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Sizing Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BUTTON__SIZING_ENABLED = BUTTON__SIZING_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Layout Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BUTTON__LAYOUT_ENABLED = BUTTON__LAYOUT_ENABLED;
+
+	/**
+	 * The feature id for the '<em><b>Image URL</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BUTTON__IMAGE_URL = BUTTON_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Image Button</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE_BUTTON_FEATURE_COUNT = BUTTON_FEATURE_COUNT + 1;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.uiModeling.Storyboard <em>Storyboard</em>}'.
@@ -1749,6 +3022,28 @@ public interface UiModelingPackage extends EPackage {
 	EAttribute getPanel_Y();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.uiModeling.Panel#getWidth <em>Width</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Width</em>'.
+	 * @see org.unicase.uiModeling.Panel#getWidth()
+	 * @see #getPanel()
+	 * @generated
+	 */
+	EAttribute getPanel_Width();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.uiModeling.Panel#getHeight <em>Height</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Height</em>'.
+	 * @see org.unicase.uiModeling.Panel#getHeight()
+	 * @see #getPanel()
+	 * @generated
+	 */
+	EAttribute getPanel_Height();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.unicase.uiModeling.Panel#getWidgets <em>Widgets</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1768,17 +3063,6 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getWidget();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.uiModeling.Widget#getId <em>Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see org.unicase.uiModeling.Widget#getId()
-	 * @see #getWidget()
-	 * @generated
-	 */
-	EAttribute getWidget_Id();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.uiModeling.Widget#getX <em>X</em>}'.
@@ -1847,6 +3131,39 @@ public interface UiModelingPackage extends EPackage {
 	EReference getWidget_Panel();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.uiModeling.Widget#isPositioningEnabled <em>Positioning Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Positioning Enabled</em>'.
+	 * @see org.unicase.uiModeling.Widget#isPositioningEnabled()
+	 * @see #getWidget()
+	 * @generated
+	 */
+	EAttribute getWidget_PositioningEnabled();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.uiModeling.Widget#isSizingEnabled <em>Sizing Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Sizing Enabled</em>'.
+	 * @see org.unicase.uiModeling.Widget#isSizingEnabled()
+	 * @see #getWidget()
+	 * @generated
+	 */
+	EAttribute getWidget_SizingEnabled();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.uiModeling.Widget#isLayoutEnabled <em>Layout Enabled</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Layout Enabled</em>'.
+	 * @see org.unicase.uiModeling.Widget#isLayoutEnabled()
+	 * @see #getWidget()
+	 * @generated
+	 */
+	EAttribute getWidget_LayoutEnabled();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.uiModeling.Window <em>Window</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1855,39 +3172,6 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getWindow();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.uiModeling.Window#isHasClose <em>Has Close</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Has Close</em>'.
-	 * @see org.unicase.uiModeling.Window#isHasClose()
-	 * @see #getWindow()
-	 * @generated
-	 */
-	EAttribute getWindow_HasClose();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.uiModeling.Window#isHasMaximize <em>Has Maximize</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Has Maximize</em>'.
-	 * @see org.unicase.uiModeling.Window#isHasMaximize()
-	 * @see #getWindow()
-	 * @generated
-	 */
-	EAttribute getWindow_HasMaximize();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.uiModeling.Window#isHasMinimize <em>Has Minimize</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Has Minimize</em>'.
-	 * @see org.unicase.uiModeling.Window#isHasMinimize()
-	 * @see #getWindow()
-	 * @generated
-	 */
-	EAttribute getWindow_HasMinimize();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.unicase.uiModeling.Window#getWidgets <em>Widgets</em>}'.
@@ -1931,17 +3215,6 @@ public interface UiModelingPackage extends EPackage {
 	EClass getButton();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.uiModeling.Button#getStyle <em>Style</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Style</em>'.
-	 * @see org.unicase.uiModeling.Button#getStyle()
-	 * @see #getButton()
-	 * @generated
-	 */
-	EAttribute getButton_Style();
-
-	/**
 	 * Returns the meta object for class '{@link org.unicase.uiModeling.Text <em>Text</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1973,14 +3246,184 @@ public interface UiModelingPackage extends EPackage {
 	EAttribute getImage_ImageURL();
 
 	/**
-	 * Returns the meta object for enum '{@link org.unicase.uiModeling.ButtonStyle <em>Button Style</em>}'.
+	 * Returns the meta object for class '{@link org.unicase.uiModeling.RadioGroup <em>Radio Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Button Style</em>'.
-	 * @see org.unicase.uiModeling.ButtonStyle
+	 * @return the meta object for class '<em>Radio Group</em>'.
+	 * @see org.unicase.uiModeling.RadioGroup
 	 * @generated
 	 */
-	EEnum getButtonStyle();
+	EClass getRadioGroup();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.uiModeling.RadioGroup#getSelectedIndex <em>Selected Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Selected Index</em>'.
+	 * @see org.unicase.uiModeling.RadioGroup#getSelectedIndex()
+	 * @see #getRadioGroup()
+	 * @generated
+	 */
+	EAttribute getRadioGroup_SelectedIndex();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.uiModeling.RadioGroup#getButtons <em>Buttons</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Buttons</em>'.
+	 * @see org.unicase.uiModeling.RadioGroup#getButtons()
+	 * @see #getRadioGroup()
+	 * @generated
+	 */
+	EReference getRadioGroup_Buttons();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.uiModeling.RadioButton <em>Radio Button</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Radio Button</em>'.
+	 * @see org.unicase.uiModeling.RadioButton
+	 * @generated
+	 */
+	EClass getRadioButton();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.uiModeling.RadioButton#getText <em>Text</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Text</em>'.
+	 * @see org.unicase.uiModeling.RadioButton#getText()
+	 * @see #getRadioButton()
+	 * @generated
+	 */
+	EAttribute getRadioButton_Text();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.unicase.uiModeling.RadioButton#getGroup <em>Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Group</em>'.
+	 * @see org.unicase.uiModeling.RadioButton#getGroup()
+	 * @see #getRadioButton()
+	 * @generated
+	 */
+	EReference getRadioButton_Group();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.uiModeling.CheckboxGroup <em>Checkbox Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Checkbox Group</em>'.
+	 * @see org.unicase.uiModeling.CheckboxGroup
+	 * @generated
+	 */
+	EClass getCheckboxGroup();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.uiModeling.CheckboxGroup#getBoxes <em>Boxes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Boxes</em>'.
+	 * @see org.unicase.uiModeling.CheckboxGroup#getBoxes()
+	 * @see #getCheckboxGroup()
+	 * @generated
+	 */
+	EReference getCheckboxGroup_Boxes();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.uiModeling.Checkbox <em>Checkbox</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Checkbox</em>'.
+	 * @see org.unicase.uiModeling.Checkbox
+	 * @generated
+	 */
+	EClass getCheckbox();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.unicase.uiModeling.Checkbox#getGroup <em>Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Group</em>'.
+	 * @see org.unicase.uiModeling.Checkbox#getGroup()
+	 * @see #getCheckbox()
+	 * @generated
+	 */
+	EReference getCheckbox_Group();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.uiModeling.DropdownList <em>Dropdown List</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Dropdown List</em>'.
+	 * @see org.unicase.uiModeling.DropdownList
+	 * @generated
+	 */
+	EClass getDropdownList();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.uiModeling.DropdownList#getSelectedIndex <em>Selected Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Selected Index</em>'.
+	 * @see org.unicase.uiModeling.DropdownList#getSelectedIndex()
+	 * @see #getDropdownList()
+	 * @generated
+	 */
+	EAttribute getDropdownList_SelectedIndex();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.uiModeling.DropdownList#getItems <em>Items</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Items</em>'.
+	 * @see org.unicase.uiModeling.DropdownList#getItems()
+	 * @see #getDropdownList()
+	 * @generated
+	 */
+	EReference getDropdownList_Items();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.uiModeling.DropdownItem <em>Dropdown Item</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Dropdown Item</em>'.
+	 * @see org.unicase.uiModeling.DropdownItem
+	 * @generated
+	 */
+	EClass getDropdownItem();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.unicase.uiModeling.DropdownItem#getList <em>List</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>List</em>'.
+	 * @see org.unicase.uiModeling.DropdownItem#getList()
+	 * @see #getDropdownItem()
+	 * @generated
+	 */
+	EReference getDropdownItem_List();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.uiModeling.ImageButton <em>Image Button</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Image Button</em>'.
+	 * @see org.unicase.uiModeling.ImageButton
+	 * @generated
+	 */
+	EClass getImageButton();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.uiModeling.ImageButton#getImageURL <em>Image URL</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Image URL</em>'.
+	 * @see org.unicase.uiModeling.ImageButton#getImageURL()
+	 * @see #getImageButton()
+	 * @generated
+	 */
+	EAttribute getImageButton_ImageURL();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2057,6 +3500,22 @@ public interface UiModelingPackage extends EPackage {
 		EAttribute PANEL__Y = eINSTANCE.getPanel_Y();
 
 		/**
+		 * The meta object literal for the '<em><b>Width</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PANEL__WIDTH = eINSTANCE.getPanel_Width();
+
+		/**
+		 * The meta object literal for the '<em><b>Height</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PANEL__HEIGHT = eINSTANCE.getPanel_Height();
+
+		/**
 		 * The meta object literal for the '<em><b>Widgets</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2073,14 +3532,6 @@ public interface UiModelingPackage extends EPackage {
 		 * @generated
 		 */
 		EClass WIDGET = eINSTANCE.getWidget();
-
-		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute WIDGET__ID = eINSTANCE.getWidget_Id();
 
 		/**
 		 * The meta object literal for the '<em><b>X</b></em>' attribute feature.
@@ -2131,6 +3582,30 @@ public interface UiModelingPackage extends EPackage {
 		EReference WIDGET__PANEL = eINSTANCE.getWidget_Panel();
 
 		/**
+		 * The meta object literal for the '<em><b>Positioning Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute WIDGET__POSITIONING_ENABLED = eINSTANCE.getWidget_PositioningEnabled();
+
+		/**
+		 * The meta object literal for the '<em><b>Sizing Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute WIDGET__SIZING_ENABLED = eINSTANCE.getWidget_SizingEnabled();
+
+		/**
+		 * The meta object literal for the '<em><b>Layout Enabled</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute WIDGET__LAYOUT_ENABLED = eINSTANCE.getWidget_LayoutEnabled();
+
+		/**
 		 * The meta object literal for the '{@link org.unicase.uiModeling.impl.WindowImpl <em>Window</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2139,30 +3614,6 @@ public interface UiModelingPackage extends EPackage {
 		 * @generated
 		 */
 		EClass WINDOW = eINSTANCE.getWindow();
-
-		/**
-		 * The meta object literal for the '<em><b>Has Close</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute WINDOW__HAS_CLOSE = eINSTANCE.getWindow_HasClose();
-
-		/**
-		 * The meta object literal for the '<em><b>Has Maximize</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute WINDOW__HAS_MAXIMIZE = eINSTANCE.getWindow_HasMaximize();
-
-		/**
-		 * The meta object literal for the '<em><b>Has Minimize</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute WINDOW__HAS_MINIMIZE = eINSTANCE.getWindow_HasMinimize();
 
 		/**
 		 * The meta object literal for the '<em><b>Widgets</b></em>' containment reference list feature.
@@ -2203,14 +3654,6 @@ public interface UiModelingPackage extends EPackage {
 		EClass BUTTON = eINSTANCE.getButton();
 
 		/**
-		 * The meta object literal for the '<em><b>Style</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BUTTON__STYLE = eINSTANCE.getButton_Style();
-
-		/**
 		 * The meta object literal for the '{@link org.unicase.uiModeling.impl.TextImpl <em>Text</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2239,14 +3682,154 @@ public interface UiModelingPackage extends EPackage {
 		EAttribute IMAGE__IMAGE_URL = eINSTANCE.getImage_ImageURL();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.uiModeling.ButtonStyle <em>Button Style</em>}' enum.
+		 * The meta object literal for the '{@link org.unicase.uiModeling.impl.RadioGroupImpl <em>Radio Group</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.unicase.uiModeling.ButtonStyle
-		 * @see org.unicase.uiModeling.impl.UiModelingPackageImpl#getButtonStyle()
+		 * @see org.unicase.uiModeling.impl.RadioGroupImpl
+		 * @see org.unicase.uiModeling.impl.UiModelingPackageImpl#getRadioGroup()
 		 * @generated
 		 */
-		EEnum BUTTON_STYLE = eINSTANCE.getButtonStyle();
+		EClass RADIO_GROUP = eINSTANCE.getRadioGroup();
+
+		/**
+		 * The meta object literal for the '<em><b>Selected Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RADIO_GROUP__SELECTED_INDEX = eINSTANCE.getRadioGroup_SelectedIndex();
+
+		/**
+		 * The meta object literal for the '<em><b>Buttons</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RADIO_GROUP__BUTTONS = eINSTANCE.getRadioGroup_Buttons();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.uiModeling.impl.RadioButtonImpl <em>Radio Button</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.uiModeling.impl.RadioButtonImpl
+		 * @see org.unicase.uiModeling.impl.UiModelingPackageImpl#getRadioButton()
+		 * @generated
+		 */
+		EClass RADIO_BUTTON = eINSTANCE.getRadioButton();
+
+		/**
+		 * The meta object literal for the '<em><b>Text</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RADIO_BUTTON__TEXT = eINSTANCE.getRadioButton_Text();
+
+		/**
+		 * The meta object literal for the '<em><b>Group</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference RADIO_BUTTON__GROUP = eINSTANCE.getRadioButton_Group();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.uiModeling.impl.CheckboxGroupImpl <em>Checkbox Group</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.uiModeling.impl.CheckboxGroupImpl
+		 * @see org.unicase.uiModeling.impl.UiModelingPackageImpl#getCheckboxGroup()
+		 * @generated
+		 */
+		EClass CHECKBOX_GROUP = eINSTANCE.getCheckboxGroup();
+
+		/**
+		 * The meta object literal for the '<em><b>Boxes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHECKBOX_GROUP__BOXES = eINSTANCE.getCheckboxGroup_Boxes();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.uiModeling.impl.CheckboxImpl <em>Checkbox</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.uiModeling.impl.CheckboxImpl
+		 * @see org.unicase.uiModeling.impl.UiModelingPackageImpl#getCheckbox()
+		 * @generated
+		 */
+		EClass CHECKBOX = eINSTANCE.getCheckbox();
+
+		/**
+		 * The meta object literal for the '<em><b>Group</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHECKBOX__GROUP = eINSTANCE.getCheckbox_Group();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.uiModeling.impl.DropdownListImpl <em>Dropdown List</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.uiModeling.impl.DropdownListImpl
+		 * @see org.unicase.uiModeling.impl.UiModelingPackageImpl#getDropdownList()
+		 * @generated
+		 */
+		EClass DROPDOWN_LIST = eINSTANCE.getDropdownList();
+
+		/**
+		 * The meta object literal for the '<em><b>Selected Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DROPDOWN_LIST__SELECTED_INDEX = eINSTANCE.getDropdownList_SelectedIndex();
+
+		/**
+		 * The meta object literal for the '<em><b>Items</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DROPDOWN_LIST__ITEMS = eINSTANCE.getDropdownList_Items();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.uiModeling.impl.DropdownItemImpl <em>Dropdown Item</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.uiModeling.impl.DropdownItemImpl
+		 * @see org.unicase.uiModeling.impl.UiModelingPackageImpl#getDropdownItem()
+		 * @generated
+		 */
+		EClass DROPDOWN_ITEM = eINSTANCE.getDropdownItem();
+
+		/**
+		 * The meta object literal for the '<em><b>List</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DROPDOWN_ITEM__LIST = eINSTANCE.getDropdownItem_List();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.uiModeling.impl.ImageButtonImpl <em>Image Button</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.uiModeling.impl.ImageButtonImpl
+		 * @see org.unicase.uiModeling.impl.UiModelingPackageImpl#getImageButton()
+		 * @generated
+		 */
+		EClass IMAGE_BUTTON = eINSTANCE.getImageButton();
+
+		/**
+		 * The meta object literal for the '<em><b>Image URL</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMAGE_BUTTON__IMAGE_URL = eINSTANCE.getImageButton_ImageURL();
 
 	}
 

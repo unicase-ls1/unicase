@@ -45,17 +45,6 @@
                 height="10"
                 style="BOLD"/>
           </children>
-          <children
-              xsi:type="gmfgraph:Rectangle"
-              name="Window_CloseButton">
-            <layoutData
-                xsi:type="gmfgraph:GridLayoutData"
-                verticalAlignment="FILL"
-                horizontalAlignment="BEGINNING"/>
-            <backgroundColor
-                xsi:type="gmfgraph:ConstantColor"
-                value="darkGray"/>
-          </children>
         </children>
         <children
             xsi:type="gmfgraph:Rectangle"
@@ -126,9 +115,18 @@
         <layout
             xsi:type="gmfgraph:GridLayout"
             equalWidth="false"/>
+        <backgroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="lightGray"/>
         <preferredSize
             dx="36"
             dy="36"/>
+        <border
+            xsi:type="gmfgraph:LineBorder">
+          <color
+              xsi:type="gmfgraph:ConstantColor"
+              value="black"/>
+        </border>
         <children
             xsi:type="gmfgraph:Label"
             name="Button_text"
@@ -138,15 +136,6 @@
               faceName="Arial"
               height="10"
               style="BOLD"/>
-        </children>
-        <children
-            xsi:type="gmfgraph:CustomFigure"
-            name="ButtonImageFigure"
-            qualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.render.figures.ScalableImageFigure">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              grabExcessVerticalSpace="true"/>
         </children>
       </actualFigure>
       <accessors

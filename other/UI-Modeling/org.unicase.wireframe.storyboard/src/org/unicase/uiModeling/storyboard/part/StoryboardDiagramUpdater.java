@@ -41,7 +41,7 @@ public class StoryboardDiagramUpdater {
 		}
 		org.unicase.uiModeling.Storyboard modelElement = (org.unicase.uiModeling.Storyboard) view.getElement();
 		LinkedList<org.unicase.uiModeling.storyboard.part.StoryboardNodeDescriptor> result = new LinkedList<org.unicase.uiModeling.storyboard.part.StoryboardNodeDescriptor>();
-		for (Iterator<?> it = modelElement.getElements().iterator(); it.hasNext();) {
+		for (Iterator<?> it = modelElement.getPanels().iterator(); it.hasNext();) {
 			UnicaseModelElement childElement = (UnicaseModelElement) it.next();
 			int visualID = org.unicase.uiModeling.storyboard.part.StoryboardVisualIDRegistry.getNodeVisualID(view,
 				childElement);

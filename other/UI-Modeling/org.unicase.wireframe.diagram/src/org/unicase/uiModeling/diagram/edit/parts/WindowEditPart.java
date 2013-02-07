@@ -334,20 +334,6 @@ public class WindowEditPart extends ShapeNodeEditPart {
 			constraintFWindow_text.grabExcessVerticalSpace = false;
 			windowTopBar0.add(fWindow_text, constraintFWindow_text);
 
-			RectangleFigure window_CloseButton1 = new RectangleFigure();
-
-			window_CloseButton1.setBackgroundColor(ColorConstants.darkGray);
-
-			GridData constraintWindow_CloseButton1 = new GridData();
-			constraintWindow_CloseButton1.verticalAlignment = GridData.FILL;
-			constraintWindow_CloseButton1.horizontalAlignment = GridData.BEGINNING;
-			constraintWindow_CloseButton1.horizontalIndent = 0;
-			constraintWindow_CloseButton1.horizontalSpan = 1;
-			constraintWindow_CloseButton1.verticalSpan = 1;
-			constraintWindow_CloseButton1.grabExcessHorizontalSpace = false;
-			constraintWindow_CloseButton1.grabExcessVerticalSpace = false;
-			windowTopBar0.add(window_CloseButton1, constraintWindow_CloseButton1);
-
 			fWindow_widgets = new RectangleFigure();
 
 			fWindow_widgets.setOutline(false);

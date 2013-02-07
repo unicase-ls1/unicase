@@ -93,6 +93,28 @@ public class UiModelingParserProvider extends AbstractProvider implements IParse
 	/**
 	 * @generated
 	 */
+	private IParser buttonText_5012Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getButtonText_5012Parser() {
+		if (buttonText_5012Parser == null) {
+			EAttribute[] features = new EAttribute[] { org.unicase.uiModeling.UiModelingPackage.eINSTANCE
+				.getWidget_Text() };
+			org.unicase.uiModeling.diagram.parsers.MessageFormatParser parser = new org.unicase.uiModeling.diagram.parsers.MessageFormatParser(
+				features);
+			parser.setViewPattern("{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			buttonText_5012Parser = parser;
+		}
+		return buttonText_5012Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser textText_5002Parser;
 
 	/**
@@ -132,6 +154,28 @@ public class UiModelingParserProvider extends AbstractProvider implements IParse
 			imageText_5006Parser = parser;
 		}
 		return imageText_5006Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser buttonText_5011Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getButtonText_5011Parser() {
+		if (buttonText_5011Parser == null) {
+			EAttribute[] features = new EAttribute[] { org.unicase.uiModeling.UiModelingPackage.eINSTANCE
+				.getWidget_Text() };
+			org.unicase.uiModeling.diagram.parsers.MessageFormatParser parser = new org.unicase.uiModeling.diagram.parsers.MessageFormatParser(
+				features);
+			parser.setViewPattern("{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			buttonText_5011Parser = parser;
+		}
+		return buttonText_5011Parser;
 	}
 
 	/**
@@ -233,10 +277,14 @@ public class UiModelingParserProvider extends AbstractProvider implements IParse
 			return getLabelText_5001Parser();
 		case org.unicase.uiModeling.diagram.edit.parts.TextFieldTextEditPart.VISUAL_ID:
 			return getTextFieldText_5004Parser();
+		case org.unicase.uiModeling.diagram.edit.parts.ButtonTextEditPart.VISUAL_ID:
+			return getButtonText_5012Parser();
 		case org.unicase.uiModeling.diagram.edit.parts.TextTextEditPart.VISUAL_ID:
 			return getTextText_5002Parser();
 		case org.unicase.uiModeling.diagram.edit.parts.ImageTextEditPart.VISUAL_ID:
 			return getImageText_5006Parser();
+		case org.unicase.uiModeling.diagram.edit.parts.ButtonText2EditPart.VISUAL_ID:
+			return getButtonText_5011Parser();
 		case org.unicase.uiModeling.diagram.edit.parts.ImageText2EditPart.VISUAL_ID:
 			return getImageText_5007Parser();
 		case org.unicase.uiModeling.diagram.edit.parts.LabelText2EditPart.VISUAL_ID:

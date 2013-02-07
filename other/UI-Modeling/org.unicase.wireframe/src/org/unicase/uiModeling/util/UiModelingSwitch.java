@@ -13,9 +13,16 @@ import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.uiModeling.Button;
+import org.unicase.uiModeling.Checkbox;
+import org.unicase.uiModeling.CheckboxGroup;
+import org.unicase.uiModeling.DropdownItem;
+import org.unicase.uiModeling.DropdownList;
 import org.unicase.uiModeling.Image;
+import org.unicase.uiModeling.ImageButton;
 import org.unicase.uiModeling.Label;
 import org.unicase.uiModeling.Panel;
+import org.unicase.uiModeling.RadioButton;
+import org.unicase.uiModeling.RadioGroup;
 import org.unicase.uiModeling.Storyboard;
 import org.unicase.uiModeling.Text;
 import org.unicase.uiModeling.TextField;
@@ -150,6 +157,60 @@ public class UiModelingSwitch<T> extends Switch<T> {
 				T result = caseImage(image);
 				if (result == null) result = caseWidget(image);
 				if (result == null) result = caseUnicaseModelElement(image);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UiModelingPackage.RADIO_GROUP: {
+				RadioGroup radioGroup = (RadioGroup)theEObject;
+				T result = caseRadioGroup(radioGroup);
+				if (result == null) result = caseWidget(radioGroup);
+				if (result == null) result = caseUnicaseModelElement(radioGroup);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UiModelingPackage.RADIO_BUTTON: {
+				RadioButton radioButton = (RadioButton)theEObject;
+				T result = caseRadioButton(radioButton);
+				if (result == null) result = caseUnicaseModelElement(radioButton);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UiModelingPackage.CHECKBOX_GROUP: {
+				CheckboxGroup checkboxGroup = (CheckboxGroup)theEObject;
+				T result = caseCheckboxGroup(checkboxGroup);
+				if (result == null) result = caseWidget(checkboxGroup);
+				if (result == null) result = caseUnicaseModelElement(checkboxGroup);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UiModelingPackage.CHECKBOX: {
+				Checkbox checkbox = (Checkbox)theEObject;
+				T result = caseCheckbox(checkbox);
+				if (result == null) result = caseUnicaseModelElement(checkbox);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UiModelingPackage.DROPDOWN_LIST: {
+				DropdownList dropdownList = (DropdownList)theEObject;
+				T result = caseDropdownList(dropdownList);
+				if (result == null) result = caseWidget(dropdownList);
+				if (result == null) result = caseUnicaseModelElement(dropdownList);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UiModelingPackage.DROPDOWN_ITEM: {
+				DropdownItem dropdownItem = (DropdownItem)theEObject;
+				T result = caseDropdownItem(dropdownItem);
+				if (result == null) result = caseUnicaseModelElement(dropdownItem);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UiModelingPackage.IMAGE_BUTTON: {
+				ImageButton imageButton = (ImageButton)theEObject;
+				T result = caseImageButton(imageButton);
+				if (result == null) result = caseButton(imageButton);
+				if (result == null) result = caseWidget(imageButton);
+				if (result == null) result = caseUnicaseModelElement(imageButton);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -289,6 +350,111 @@ public class UiModelingSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseImage(Image object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Radio Group</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Radio Group</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRadioGroup(RadioGroup object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Radio Button</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Radio Button</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRadioButton(RadioButton object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Checkbox Group</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Checkbox Group</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCheckboxGroup(CheckboxGroup object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Checkbox</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Checkbox</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCheckbox(Checkbox object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dropdown List</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dropdown List</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDropdownList(DropdownList object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Dropdown Item</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Dropdown Item</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDropdownItem(DropdownItem object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Image Button</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Image Button</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseImageButton(ImageButton object) {
 		return null;
 	}
 

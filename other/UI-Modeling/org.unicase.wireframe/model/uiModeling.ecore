@@ -12,12 +12,12 @@
         eOpposite="#//Storyboard/panels"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="widgets" upperBound="-1"
         eType="#//Widget" containment="true" eOpposite="#//Widget/panel"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Widget" abstract="true" eSuperTypes="../../org.unicase.model/model/model.ecore#//UnicaseModelElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"
-        derived="true" iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -25,26 +25,51 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="panel" eType="#//Panel"
         eOpposite="#//Panel/widgets"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="positioningEnabled" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sizingEnabled" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="layoutEnabled" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Window" eSuperTypes="#//Widget">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasClose" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasMaximize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasMinimize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="widgets" upperBound="-1"
         eType="#//Widget" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Label" eSuperTypes="#//Widget"/>
   <eClassifiers xsi:type="ecore:EClass" name="TextField" eSuperTypes="#//Widget"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Button" eSuperTypes="#//Widget">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="style" eType="#//ButtonStyle"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ButtonStyle">
-    <eLiterals name="PointLeft" literal="Point Left"/>
-    <eLiterals name="Square" value="1" literal="Square"/>
-    <eLiterals name="PointRight" value="2" literal="Point Right"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Button" eSuperTypes="#//Widget"/>
   <eClassifiers xsi:type="ecore:EClass" name="Text" eSuperTypes="#//Widget"/>
   <eClassifiers xsi:type="ecore:EClass" name="Image" eSuperTypes="#//Widget">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageURL" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RadioGroup" eSuperTypes="#//Widget">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="selectedIndex" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
+        defaultValueLiteral="-1"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="buttons" upperBound="-1"
+        eType="#//RadioButton" containment="true" eOpposite="#//RadioButton/group"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RadioButton" eSuperTypes="../../org.unicase.model/model/model.ecore#//UnicaseModelElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="group" eType="#//RadioGroup"
+        eOpposite="#//RadioGroup/buttons"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CheckboxGroup" eSuperTypes="#//Widget">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boxes" upperBound="-1"
+        eType="#//Checkbox" containment="true" eOpposite="#//Checkbox/group"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Checkbox" eSuperTypes="../../org.unicase.model/model/model.ecore#//UnicaseModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="group" eType="#//CheckboxGroup"
+        eOpposite="#//CheckboxGroup/boxes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DropdownList" eSuperTypes="#//Widget">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="selectedIndex" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
+        defaultValueLiteral="-1"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="items" upperBound="-1"
+        eType="#//DropdownItem" containment="true" eOpposite="#//DropdownItem/list"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DropdownItem" eSuperTypes="../../org.unicase.model/model/model.ecore#//UnicaseModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="list" eType="#//DropdownList"
+        eOpposite="#//DropdownList/items"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImageButton" eSuperTypes="#//Button">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageURL" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

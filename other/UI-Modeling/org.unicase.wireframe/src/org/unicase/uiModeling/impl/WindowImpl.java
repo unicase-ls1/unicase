@@ -8,12 +8,10 @@ package org.unicase.uiModeling.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.uiModeling.UiModelingPackage;
@@ -25,9 +23,6 @@ import org.unicase.uiModeling.Window;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.uiModeling.impl.WindowImpl#isHasClose <em>Has Close</em>}</li>
- *   <li>{@link org.unicase.uiModeling.impl.WindowImpl#isHasMaximize <em>Has Maximize</em>}</li>
- *   <li>{@link org.unicase.uiModeling.impl.WindowImpl#isHasMinimize <em>Has Minimize</em>}</li>
  *   <li>{@link org.unicase.uiModeling.impl.WindowImpl#getWidgets <em>Widgets</em>}</li>
  * </ul>
  * </p>
@@ -35,66 +30,6 @@ import org.unicase.uiModeling.Window;
  * @generated
  */
 public class WindowImpl extends WidgetImpl implements Window {
-	/**
-	 * The default value of the '{@link #isHasClose() <em>Has Close</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @see #isHasClose()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean HAS_CLOSE_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isHasClose() <em>Has Close</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @see #isHasClose()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean hasClose = HAS_CLOSE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isHasMaximize() <em>Has Maximize</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @see #isHasMaximize()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean HAS_MAXIMIZE_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isHasMaximize() <em>Has Maximize</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @see #isHasMaximize()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean hasMaximize = HAS_MAXIMIZE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isHasMinimize() <em>Has Minimize</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @see #isHasMinimize()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean HAS_MINIMIZE_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isHasMinimize() <em>Has Minimize</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @see #isHasMinimize()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean hasMinimize = HAS_MINIMIZE_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getWidgets() <em>Widgets</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -120,63 +55,6 @@ public class WindowImpl extends WidgetImpl implements Window {
 	@Override
 	protected EClass eStaticClass() {
 		return UiModelingPackage.Literals.WINDOW;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isHasClose() {
-		return hasClose;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setHasClose(boolean newHasClose) {
-		boolean oldHasClose = hasClose;
-		hasClose = newHasClose;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.WINDOW__HAS_CLOSE, oldHasClose, hasClose));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isHasMaximize() {
-		return hasMaximize;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setHasMaximize(boolean newHasMaximize) {
-		boolean oldHasMaximize = hasMaximize;
-		hasMaximize = newHasMaximize;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.WINDOW__HAS_MAXIMIZE, oldHasMaximize, hasMaximize));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isHasMinimize() {
-		return hasMinimize;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setHasMinimize(boolean newHasMinimize) {
-		boolean oldHasMinimize = hasMinimize;
-		hasMinimize = newHasMinimize;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.WINDOW__HAS_MINIMIZE, oldHasMinimize, hasMinimize));
 	}
 
 	/**
@@ -212,12 +90,6 @@ public class WindowImpl extends WidgetImpl implements Window {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UiModelingPackage.WINDOW__HAS_CLOSE:
-				return isHasClose();
-			case UiModelingPackage.WINDOW__HAS_MAXIMIZE:
-				return isHasMaximize();
-			case UiModelingPackage.WINDOW__HAS_MINIMIZE:
-				return isHasMinimize();
 			case UiModelingPackage.WINDOW__WIDGETS:
 				return getWidgets();
 		}
@@ -232,15 +104,6 @@ public class WindowImpl extends WidgetImpl implements Window {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UiModelingPackage.WINDOW__HAS_CLOSE:
-				setHasClose((Boolean)newValue);
-				return;
-			case UiModelingPackage.WINDOW__HAS_MAXIMIZE:
-				setHasMaximize((Boolean)newValue);
-				return;
-			case UiModelingPackage.WINDOW__HAS_MINIMIZE:
-				setHasMinimize((Boolean)newValue);
-				return;
 			case UiModelingPackage.WINDOW__WIDGETS:
 				getWidgets().clear();
 				getWidgets().addAll((Collection<? extends Widget>)newValue);
@@ -256,15 +119,6 @@ public class WindowImpl extends WidgetImpl implements Window {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UiModelingPackage.WINDOW__HAS_CLOSE:
-				setHasClose(HAS_CLOSE_EDEFAULT);
-				return;
-			case UiModelingPackage.WINDOW__HAS_MAXIMIZE:
-				setHasMaximize(HAS_MAXIMIZE_EDEFAULT);
-				return;
-			case UiModelingPackage.WINDOW__HAS_MINIMIZE:
-				setHasMinimize(HAS_MINIMIZE_EDEFAULT);
-				return;
 			case UiModelingPackage.WINDOW__WIDGETS:
 				getWidgets().clear();
 				return;
@@ -279,35 +133,10 @@ public class WindowImpl extends WidgetImpl implements Window {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UiModelingPackage.WINDOW__HAS_CLOSE:
-				return hasClose != HAS_CLOSE_EDEFAULT;
-			case UiModelingPackage.WINDOW__HAS_MAXIMIZE:
-				return hasMaximize != HAS_MAXIMIZE_EDEFAULT;
-			case UiModelingPackage.WINDOW__HAS_MINIMIZE:
-				return hasMinimize != HAS_MINIMIZE_EDEFAULT;
 			case UiModelingPackage.WINDOW__WIDGETS:
 				return widgets != null && !widgets.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (hasClose: ");
-		result.append(hasClose);
-		result.append(", hasMaximize: ");
-		result.append(hasMaximize);
-		result.append(", hasMinimize: ");
-		result.append(hasMinimize);
-		result.append(')');
-		return result.toString();
 	}
 
 } // WindowImpl

@@ -8,11 +8,6 @@
   <foreignModel>uiModeling.ecore</foreignModel>
   <genPackages prefix="UiModeling" basePackage="org.unicase" disposableProviderFactory="true"
       ecorePackage="uiModeling.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="uiModeling.ecore#//ButtonStyle">
-      <genEnumLiterals ecoreEnumLiteral="uiModeling.ecore#//ButtonStyle/PointLeft"/>
-      <genEnumLiterals ecoreEnumLiteral="uiModeling.ecore#//ButtonStyle/Square"/>
-      <genEnumLiterals ecoreEnumLiteral="uiModeling.ecore#//ButtonStyle/PointRight"/>
-    </genEnums>
     <genClasses ecoreClass="uiModeling.ecore#//Storyboard">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uiModeling.ecore#//Storyboard/panels"/>
     </genClasses>
@@ -20,31 +15,54 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference uiModeling.ecore#//Panel/storyboard"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Panel/x"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Panel/y"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Panel/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Panel/height"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uiModeling.ecore#//Panel/widgets"/>
     </genClasses>
     <genClasses image="false" ecoreClass="uiModeling.ecore#//Widget">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Widget/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Widget/x"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Widget/y"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Widget/width"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Widget/height"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Widget/text"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference uiModeling.ecore#//Widget/panel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Widget/positioningEnabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Widget/sizingEnabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Widget/layoutEnabled"/>
     </genClasses>
     <genClasses ecoreClass="uiModeling.ecore#//Window">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Window/hasClose"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Window/hasMaximize"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Window/hasMinimize"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uiModeling.ecore#//Window/widgets"/>
     </genClasses>
     <genClasses ecoreClass="uiModeling.ecore#//Label"/>
     <genClasses ecoreClass="uiModeling.ecore#//TextField"/>
-    <genClasses ecoreClass="uiModeling.ecore#//Button">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Button/style"/>
-    </genClasses>
+    <genClasses ecoreClass="uiModeling.ecore#//Button"/>
     <genClasses ecoreClass="uiModeling.ecore#//Text"/>
     <genClasses ecoreClass="uiModeling.ecore#//Image">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Image/imageURL"/>
+    </genClasses>
+    <genClasses ecoreClass="uiModeling.ecore#//RadioGroup">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//RadioGroup/selectedIndex"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uiModeling.ecore#//RadioGroup/buttons"/>
+    </genClasses>
+    <genClasses ecoreClass="uiModeling.ecore#//RadioButton">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//RadioButton/text"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference uiModeling.ecore#//RadioButton/group"/>
+    </genClasses>
+    <genClasses ecoreClass="uiModeling.ecore#//CheckboxGroup">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uiModeling.ecore#//CheckboxGroup/boxes"/>
+    </genClasses>
+    <genClasses ecoreClass="uiModeling.ecore#//Checkbox">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference uiModeling.ecore#//Checkbox/group"/>
+    </genClasses>
+    <genClasses ecoreClass="uiModeling.ecore#//DropdownList">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//DropdownList/selectedIndex"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uiModeling.ecore#//DropdownList/items"/>
+    </genClasses>
+    <genClasses ecoreClass="uiModeling.ecore#//DropdownItem">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference uiModeling.ecore#//DropdownItem/list"/>
+    </genClasses>
+    <genClasses ecoreClass="uiModeling.ecore#//ImageButton">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//ImageButton/imageURL"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

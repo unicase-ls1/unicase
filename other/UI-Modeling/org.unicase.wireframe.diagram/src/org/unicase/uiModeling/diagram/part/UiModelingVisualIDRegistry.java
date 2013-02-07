@@ -216,6 +216,11 @@ public class UiModelingVisualIDRegistry {
 				return true;
 			}
 			break;
+		case org.unicase.uiModeling.diagram.edit.parts.ButtonEditPart.VISUAL_ID:
+			if (org.unicase.uiModeling.diagram.edit.parts.ButtonTextEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case org.unicase.uiModeling.diagram.edit.parts.TextEditPart.VISUAL_ID:
 			if (org.unicase.uiModeling.diagram.edit.parts.TextTextEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -223,6 +228,11 @@ public class UiModelingVisualIDRegistry {
 			break;
 		case org.unicase.uiModeling.diagram.edit.parts.ImageEditPart.VISUAL_ID:
 			if (org.unicase.uiModeling.diagram.edit.parts.ImageTextEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case org.unicase.uiModeling.diagram.edit.parts.Button2EditPart.VISUAL_ID:
+			if (org.unicase.uiModeling.diagram.edit.parts.ButtonText2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
