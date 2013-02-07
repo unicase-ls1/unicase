@@ -13,7 +13,6 @@ import org.eclipse.jface.viewers.BaseLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.graphics.Image;
-import org.unicase.uiModeling.diagram.navigator.UiModelingNavigatorGroup;
 
 /**
  * @generated
@@ -25,8 +24,8 @@ public class UiModelingSheetLabelProvider extends BaseLabelProvider implements I
 	 */
 	public String getText(Object element) {
 		element = unwrap(element);
-		if (element instanceof UiModelingNavigatorGroup) {
-			return ((UiModelingNavigatorGroup) element).getGroupName();
+		if (element instanceof org.unicase.uiModeling.diagram.navigator.UiModelingNavigatorGroup) {
+			return ((org.unicase.uiModeling.diagram.navigator.UiModelingNavigatorGroup) element).getGroupName();
 		}
 		IElementType etype = getElementType(getView(element));
 		return etype == null ? "" : etype.getDisplayName();

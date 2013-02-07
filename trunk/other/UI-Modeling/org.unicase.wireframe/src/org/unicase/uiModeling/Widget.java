@@ -14,13 +14,15 @@ import org.unicase.model.UnicaseModelElement;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.uiModeling.Widget#getId <em>Id</em>}</li>
  *   <li>{@link org.unicase.uiModeling.Widget#getX <em>X</em>}</li>
  *   <li>{@link org.unicase.uiModeling.Widget#getY <em>Y</em>}</li>
  *   <li>{@link org.unicase.uiModeling.Widget#getWidth <em>Width</em>}</li>
  *   <li>{@link org.unicase.uiModeling.Widget#getHeight <em>Height</em>}</li>
  *   <li>{@link org.unicase.uiModeling.Widget#getText <em>Text</em>}</li>
  *   <li>{@link org.unicase.uiModeling.Widget#getPanel <em>Panel</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.Widget#isPositioningEnabled <em>Positioning Enabled</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.Widget#isSizingEnabled <em>Sizing Enabled</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.Widget#isLayoutEnabled <em>Layout Enabled</em>}</li>
  * </ul>
  * </p>
  *
@@ -29,31 +31,6 @@ import org.unicase.model.UnicaseModelElement;
  * @generated
  */
 public interface Widget extends UnicaseModelElement {
-	/**
-	 * Returns the value of the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Id</em>' attribute isn't clear, there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Id</em>' attribute.
-	 * @see #setId(long)
-	 * @see org.unicase.uiModeling.UiModelingPackage#getWidget_Id()
-	 * @model id="true" derived="true"
-	 * @generated
-	 */
-	long getId();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.uiModeling.Widget#getId <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Id</em>' attribute.
-	 * @see #getId()
-	 * @generated
-	 */
-	void setId(long value);
-
 	/**
 	 * Returns the value of the '<em><b>X</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -208,5 +185,83 @@ public interface Widget extends UnicaseModelElement {
 	 * @generated
 	 */
 	void setPanel(Panel value);
+
+	/**
+	 * Returns the value of the '<em><b>Positioning Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Positioning Enabled</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Positioning Enabled</em>' attribute.
+	 * @see #setPositioningEnabled(boolean)
+	 * @see org.unicase.uiModeling.UiModelingPackage#getWidget_PositioningEnabled()
+	 * @model
+	 * @generated
+	 */
+	boolean isPositioningEnabled();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.uiModeling.Widget#isPositioningEnabled <em>Positioning Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Positioning Enabled</em>' attribute.
+	 * @see #isPositioningEnabled()
+	 * @generated
+	 */
+	void setPositioningEnabled(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Sizing Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sizing Enabled</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sizing Enabled</em>' attribute.
+	 * @see #setSizingEnabled(boolean)
+	 * @see org.unicase.uiModeling.UiModelingPackage#getWidget_SizingEnabled()
+	 * @model
+	 * @generated
+	 */
+	boolean isSizingEnabled();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.uiModeling.Widget#isSizingEnabled <em>Sizing Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Sizing Enabled</em>' attribute.
+	 * @see #isSizingEnabled()
+	 * @generated
+	 */
+	void setSizingEnabled(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Layout Enabled</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Layout Enabled</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Layout Enabled</em>' attribute.
+	 * @see #setLayoutEnabled(boolean)
+	 * @see org.unicase.uiModeling.UiModelingPackage#getWidget_LayoutEnabled()
+	 * @model
+	 * @generated
+	 */
+	boolean isLayoutEnabled();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.uiModeling.Widget#isLayoutEnabled <em>Layout Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Layout Enabled</em>' attribute.
+	 * @see #isLayoutEnabled()
+	 * @generated
+	 */
+	void setLayoutEnabled(boolean value);
 
 } // Widget

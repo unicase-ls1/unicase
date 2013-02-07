@@ -12,7 +12,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -24,7 +23,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.unicase.uiModeling.util.UiModelingAdapterFactory;
 
 /**
@@ -260,6 +258,167 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.uiModeling.RadioGroup} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RadioGroupItemProvider radioGroupItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.uiModeling.RadioGroup}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRadioGroupAdapter() {
+		if (radioGroupItemProvider == null) {
+			radioGroupItemProvider = new RadioGroupItemProvider(this);
+		}
+
+		return radioGroupItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.uiModeling.RadioButton} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RadioButtonItemProvider radioButtonItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.uiModeling.RadioButton}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRadioButtonAdapter() {
+		if (radioButtonItemProvider == null) {
+			radioButtonItemProvider = new RadioButtonItemProvider(this);
+		}
+
+		return radioButtonItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.uiModeling.CheckboxGroup} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CheckboxGroupItemProvider checkboxGroupItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.uiModeling.CheckboxGroup}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCheckboxGroupAdapter() {
+		if (checkboxGroupItemProvider == null) {
+			checkboxGroupItemProvider = new CheckboxGroupItemProvider(this);
+		}
+
+		return checkboxGroupItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.uiModeling.Checkbox} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CheckboxItemProvider checkboxItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.uiModeling.Checkbox}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCheckboxAdapter() {
+		if (checkboxItemProvider == null) {
+			checkboxItemProvider = new CheckboxItemProvider(this);
+		}
+
+		return checkboxItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.uiModeling.DropdownList} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DropdownListItemProvider dropdownListItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.uiModeling.DropdownList}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDropdownListAdapter() {
+		if (dropdownListItemProvider == null) {
+			dropdownListItemProvider = new DropdownListItemProvider(this);
+		}
+
+		return dropdownListItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.uiModeling.DropdownItem} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DropdownItemItemProvider dropdownItemItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.uiModeling.DropdownItem}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDropdownItemAdapter() {
+		if (dropdownItemItemProvider == null) {
+			dropdownItemItemProvider = new DropdownItemItemProvider(this);
+		}
+
+		return dropdownItemItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.uiModeling.ImageButton} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ImageButtonItemProvider imageButtonItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.uiModeling.ImageButton}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createImageButtonAdapter() {
+		if (imageButtonItemProvider == null) {
+			imageButtonItemProvider = new ImageButtonItemProvider(this);
+		}
+
+		return imageButtonItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -366,6 +525,13 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 		if (buttonItemProvider != null) buttonItemProvider.dispose();
 		if (textItemProvider != null) textItemProvider.dispose();
 		if (imageItemProvider != null) imageItemProvider.dispose();
+		if (radioGroupItemProvider != null) radioGroupItemProvider.dispose();
+		if (radioButtonItemProvider != null) radioButtonItemProvider.dispose();
+		if (checkboxGroupItemProvider != null) checkboxGroupItemProvider.dispose();
+		if (checkboxItemProvider != null) checkboxItemProvider.dispose();
+		if (dropdownListItemProvider != null) dropdownListItemProvider.dispose();
+		if (dropdownItemItemProvider != null) dropdownItemItemProvider.dispose();
+		if (imageButtonItemProvider != null) imageButtonItemProvider.dispose();
 	}
 
 }

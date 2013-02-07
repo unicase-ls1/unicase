@@ -7,19 +7,12 @@
 package org.unicase.uiModeling.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-
 import org.eclipse.emf.emfstore.common.model.provider.CommonEditPlugin;
-
 import org.eclipse.emf.emfstore.server.model.provider.ServerEditPlugin;
-
 import org.eclipse.gmf.runtime.notation.NotationEditPlugin;
-
 import org.unicase.model.diagram.provider.DiagramEditPlugin;
-
 import org.unicase.model.provider.ModelEditPlugin;
 
 /**

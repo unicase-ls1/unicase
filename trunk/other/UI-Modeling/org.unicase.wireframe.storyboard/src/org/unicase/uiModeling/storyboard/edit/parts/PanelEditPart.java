@@ -67,7 +67,8 @@ public class PanelEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
 			new org.unicase.uiModeling.storyboard.edit.policies.OpenDiagramEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
+		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -114,7 +115,7 @@ public class PanelEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(300, 200);
 		return result;
 	}
 
@@ -135,14 +136,14 @@ public class PanelEditPart extends ShapeNodeEditPart {
 		if (adapter instanceof Panel) {
 			Diagram diagram = ((Panel) adapter).getGmfdiagram();
 			if (diagram != null) {
-				Image image = PanelPreviewImageUtil.getImage(diagram, new PreferencesHint(
-					"org.unicase.uiModeling.diagram"));
-				ScalableImageFigure imageFig = new ScalableImageFigure(image) {
-					public void dispose() {
-
-					}
-				};
-				figure.add(imageFig);
+				try {
+					Image image = PanelPreviewImageUtil.getImage(diagram, new PreferencesHint(
+						"org.unicase.uiModeling.diagram"));
+					ScalableImageFigure imageFig = new ScalableImageFigure(image);
+					figure.add(imageFig);
+				} catch (IllegalArgumentException e) {
+					// do nothing: panel diagram is empty or corrupted
+				}
 			}
 		}
 		return figure;

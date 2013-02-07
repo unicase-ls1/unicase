@@ -17,8 +17,8 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.model.diagram.MEDiagram;
 import org.unicase.uiModeling.Panel;
+import org.unicase.uiModeling.Storyboard;
 import org.unicase.uiModeling.UiModelingFactory;
 
 /**
@@ -60,10 +60,8 @@ public class PanelCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		Panel newElement = UiModelingFactory.eINSTANCE.createPanel();
 
-		MEDiagram owner = (MEDiagram) getElementToEdit();
-		owner.getNewElements().add(newElement);
-		MEDiagram childHolder = (MEDiagram) getElementToEdit();
-		childHolder.getElements().add(newElement);
+		Storyboard owner = (Storyboard) getElementToEdit();
+		owner.getPanels().add(newElement);
 
 		doConfigure(newElement, monitor, info);
 

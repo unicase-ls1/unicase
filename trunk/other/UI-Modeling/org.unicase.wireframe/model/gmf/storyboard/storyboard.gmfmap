@@ -6,9 +6,9 @@
     xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
   <nodes>
     <containmentFeature
-        href="../../../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/newElements"/>
+        href="../../uiModeling.ecore#//Storyboard/panels"/>
     <childrenFeature
-        href="../../../../org.unicase.diagram/model/diagram.ecore#//MEDiagram/elements"/>
+        href="../../uiModeling.ecore#//Storyboard/panels"/>
     <ownedChild
         relatedDiagrams="//@diagram">
       <domainMetaElement

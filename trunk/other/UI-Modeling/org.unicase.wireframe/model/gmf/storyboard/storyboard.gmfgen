@@ -12,41 +12,17 @@
       editPartClassName="StoryboardEditPart"
       itemSemanticEditPolicyClassName="StoryboardItemSemanticEditPolicy"
       canonicalEditPolicyClassName="StoryboardCanonicalEditPolicy"
-      elementTypesClassName="StoryboardElementTypes"
-      notationViewProviderClassName="StoryboardViewProvider"
-      editPartProviderClassName="StoryboardEditPartProvider"
-      modelingAssistantProviderClassName="StoryboardModelingAssistantProvider"
-      iconProviderClassName="StoryboardIconProvider"
       iconProviderPriority="Low"
-      reorientConnectionViewCommandClassName="StoryboardReorientConnectionViewCommand"
-      baseEditHelperClassName="StoryboardBaseEditHelper"
-      editPartFactoryClassName="StoryboardEditPartFactory"
-      baseExternalNodeLabelEditPartClassName="StoryboardExtNodeLabelEditPart"
-      baseItemSemanticEditPolicyClassName="StoryboardBaseItemSemanticEditPolicy"
-      textSelectionEditPolicyClassName="StoryboardTextSelectionEditPolicy"
-      textNonResizableEditPolicyClassName="StoryboardTextNonResizableEditPolicy"
-      creationWizardClassName="StoryboardCreationWizard"
-      creationWizardPageClassName="StoryboardCreationWizardPage"
       creationWizardIconPath="icons/obj16/StoryboardDiagramFile.gif"
-      diagramEditorUtilClassName="StoryboardDiagramEditorUtil"
-      documentProviderClassName="StoryboardDocumentProvider"
-      newDiagramFileWizardClassName="StoryboardNewDiagramFileWizard"
-      diagramContentInitializerClassName="StoryboardDiagramContentInitializer"
-      matchingStrategyClassName="StoryboardMatchingStrategy"
-      visualIDRegistryClassName="StoryboardVisualIDRegistry"
-      elementChooserClassName="StoryboardElementChooserDialog"
-      shortcutsDecoratorProviderClassName="StoryboardShortcutsDecoratorProvider"
-      createShortcutDecorationsCommandClassName="StoryboardCreateShortcutDecorationsCommand"
-      shortcutPropertyTesterClassName="StoryboardShortcutPropertyTester"
       validationProviderClassName="StoryboardValidationProvider"
       validationProviderPriority="Low"
-      markerNavigationProviderClassName="StoryboardMarkerNavigationProvider"
       metricProviderClassName="StoryboardMetricProvider"
       validationDecoratorProviderClassName="StoryboardValidationDecoratorProvider">
     <diagramRunTimeClass
         href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
     <elementType
         xsi:type="gmfgen:MetamodelType"
+        displayName="Storyboard"
         editHelperClassName="StoryboardEditHelper"/>
     <viewmap
         xsi:type="gmfgen:FigureViewmap"
@@ -54,10 +30,9 @@
     <domainDiagramElement
         href="../../uiModeling.genmodel#//uiModeling/Storyboard"/>
     <topLevelNodes
-        visualID="2001"
+        visualID="2002"
         editPartClassName="PanelEditPart"
         itemSemanticEditPolicyClassName="PanelItemSemanticEditPolicy"
-        notationViewFactoryClassName="PanelViewFactory"
         canonicalEditPolicyClassName="PanelCanonicalEditPolicy"
         graphicalNodeEditPolicyClassName="PanelGraphicalNodeEditPolicy"
         createCommandClassName="PanelCreateCommand">
@@ -67,21 +42,26 @@
           xsi:type="gmfgen:MetamodelType"
           editHelperClassName="PanelEditHelper"/>
       <viewmap
-          xsi:type="gmfgen:FigureViewmap"
-          figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="PanelDescriptor"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class PanelDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public PanelDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(300)&#xA;, getMapMode().DPtoLP(200)&#xA;));&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <attributes
+            xsi:type="gmfgen:DefaultSizeAttributes"
+            width="300"
+            height="200"/>
+      </viewmap>
       <behaviour
           xsi:type="gmfgen:OpenDiagramBehaviour"/>
       <modelFacet>
         <metaClass
             href="../../uiModeling.genmodel#//uiModeling/Panel"/>
         <containmentMetaFeature
-            href="../../../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/newElements"/>
+            href="../../uiModeling.genmodel#//uiModeling/Storyboard/panels"/>
         <childMetaFeature
-            href="../../../../org.unicase.diagram/model/diagram.genmodel#//diagram/MEDiagram/elements"/>
+            href="../../uiModeling.genmodel#//uiModeling/Storyboard/panels"/>
       </modelFacet>
     </topLevelNodes>
-    <palette
-        factoryClassName="StoryboardPaletteFactory">
+    <palette>
       <groups
           title="Default"
           description="Holds top-level non-container tools">
@@ -127,7 +107,6 @@
     <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
   </plugin>
   <editor
-      actionBarContributorClassName="StoryboardDiagramActionBarContributor"
       className="StoryboardDiagramEditor"/>
   <navigator
       domainContentProviderClassName="StoryboardDomainNavigatorContentProvider"
@@ -148,11 +127,7 @@
         parent="//@diagram"
         child="//@diagram/@topLevelNodes.0"/>
   </navigator>
-  <diagramUpdater
-      diagramUpdaterClassName="StoryboardDiagramUpdater"
-      nodeDescriptorClassName="StoryboardNodeDescriptor"
-      linkDescriptorClassName="StoryboardLinkDescriptor"
-      updateCommandClassName="StoryboardDiagramUpdateCommand"/>
+  <diagramUpdater/>
   <propertySheet
       labelProviderClassName="StoryboardSheetLabelProvider">
     <tabs

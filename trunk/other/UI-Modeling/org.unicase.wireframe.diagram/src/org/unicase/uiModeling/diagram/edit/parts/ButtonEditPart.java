@@ -1,14 +1,13 @@
 package org.unicase.uiModeling.diagram.edit.parts;
 
-import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -16,10 +15,11 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.draw2d.ui.render.figures.ScalableImageFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
@@ -27,9 +27,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.uiModeling.Button;
-import org.unicase.uiModeling.UiModelingPackage;
-import org.unicase.uiModeling.diagram.util.EditPartImageUtil;
 
 /**
  * @generated
@@ -66,7 +63,8 @@ public class ButtonEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 			new org.unicase.uiModeling.diagram.edit.policies.ButtonItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
+		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -112,6 +110,55 @@ public class ButtonEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof org.unicase.uiModeling.diagram.edit.parts.ButtonTextEditPart) {
+			((org.unicase.uiModeling.diagram.edit.parts.ButtonTextEditPart) childEditPart).setLabel(getPrimaryShape()
+				.getButton_text());
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof org.unicase.uiModeling.diagram.edit.parts.ButtonTextEditPart) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if (addFixedChild(childEditPart)) {
+			return;
+		}
+		super.addChildVisual(childEditPart, -1);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeChildVisual(EditPart childEditPart) {
+		if (removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+		return getContentPane();
+	}
+
+	/**
+	 * @generated
+	 */
 	protected NodeFigure createNodePlate() {
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(36, 36);
 		return result;
@@ -140,6 +187,11 @@ public class ButtonEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
+		if (nodeShape.getLayoutManager() == null) {
+			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
+			layout.setSpacing(5);
+			nodeShape.setLayoutManager(layout);
+		}
 		return nodeShape; // use nodeShape itself as contentPane
 	}
 
@@ -192,14 +244,20 @@ public class ButtonEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	public EditPart getPrimaryChildEditPart() {
+		return getChildBySemanticHint(org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
+			.getType(org.unicase.uiModeling.diagram.edit.parts.ButtonTextEditPart.VISUAL_ID));
+	}
+
+	/**
+	 * @generated
+	 */
 	public class ButtonDescriptor extends RectangleFigure {
 
 		/**
 		 * @generated
 		 */
 		private WrappingLabel fButton_text;
-
-		private ScalableImageFigure buttonImageFigure0;
 
 		/**
 		 * @generated
@@ -212,12 +270,14 @@ public class ButtonEditPart extends ShapeNodeEditPart {
 			this.setLayoutManager(layoutThis);
 
 			this.setOutline(false);
+			this.setBorder(new LineBorder(ColorConstants.black));
+			this.setBackgroundColor(ColorConstants.lightGray);
 			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(36), getMapMode().DPtoLP(36)));
 			createContents();
 		}
 
 		/**
-		 * @generated NOT: added image
+		 * @generated
 		 */
 		private void createContents() {
 
@@ -227,42 +287,7 @@ public class ButtonEditPart extends ShapeNodeEditPart {
 
 			fButton_text.setFont(FBUTTON_TEXT_FONT);
 
-			// custom code: added custom image for button
-			Object adapter = getAdapter(Button.class);
-			if (adapter instanceof Button) {
-				final Button button = (Button) adapter;
-				final GridData constraintButtonImageFigure0 = new GridData();
-				constraintButtonImageFigure0.verticalAlignment = GridData.CENTER;
-				constraintButtonImageFigure0.horizontalAlignment = GridData.CENTER;
-				constraintButtonImageFigure0.horizontalIndent = 0;
-				constraintButtonImageFigure0.horizontalSpan = 1;
-				constraintButtonImageFigure0.verticalSpan = 1;
-				constraintButtonImageFigure0.grabExcessHorizontalSpace = true;
-				constraintButtonImageFigure0.grabExcessVerticalSpace = true;
-				buttonImageFigure0 = new ScalableImageFigure(EditPartImageUtil.getButtonImage(button));
-				buttonImageFigure0.setPreferredImageSize(36, 36);
-				this.add(buttonImageFigure0, constraintButtonImageFigure0);
-
-				button.eAdapters().add(new AdapterImpl() {
-
-					public void notifyChanged(Notification notification) {
-						if (UiModelingPackage.eINSTANCE.getButton_Style().equals(notification.getFeature())) {
-							// remove old figures
-							ButtonDescriptor.this.remove(buttonImageFigure0);
-							// add figures
-							buttonImageFigure0 = new ScalableImageFigure(EditPartImageUtil.getButtonImage(button));
-							buttonImageFigure0.setPreferredImageSize(36, 36);
-							ButtonDescriptor.this.add(buttonImageFigure0, constraintButtonImageFigure0);
-						}
-					}
-
-					public boolean isAdapterForType(Object type) {
-						return type instanceof Button;
-					}
-
-				});
-
-			}
+			this.add(fButton_text);
 
 		}
 

@@ -12,9 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -24,9 +22,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.unicase.model.provider.UnicaseModelElementItemProvider;
-
 import org.unicase.uiModeling.UiModelingPackage;
 import org.unicase.uiModeling.Widget;
 
@@ -65,36 +61,16 @@ public class WidgetItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIdPropertyDescriptor(object);
 			addXPropertyDescriptor(object);
 			addYPropertyDescriptor(object);
 			addWidthPropertyDescriptor(object);
 			addHeightPropertyDescriptor(object);
 			addTextPropertyDescriptor(object);
+			addPositioningEnabledPropertyDescriptor(object);
+			addSizingEnabledPropertyDescriptor(object);
+			addLayoutEnabledPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Id feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Widget_id_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Widget_id_feature", "_UI_Widget_type"),
-				 UiModelingPackage.Literals.WIDGET__ID,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -208,6 +184,72 @@ public class WidgetItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Positioning Enabled feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPositioningEnabledPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Widget_positioningEnabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Widget_positioningEnabled_feature", "_UI_Widget_type"),
+				 UiModelingPackage.Literals.WIDGET__POSITIONING_ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Sizing Enabled feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSizingEnabledPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Widget_sizingEnabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Widget_sizingEnabled_feature", "_UI_Widget_type"),
+				 UiModelingPackage.Literals.WIDGET__SIZING_ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Layout Enabled feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addLayoutEnabledPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Widget_layoutEnabled_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Widget_layoutEnabled_feature", "_UI_Widget_type"),
+				 UiModelingPackage.Literals.WIDGET__LAYOUT_ENABLED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -233,12 +275,14 @@ public class WidgetItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Widget.class)) {
-			case UiModelingPackage.WIDGET__ID:
 			case UiModelingPackage.WIDGET__X:
 			case UiModelingPackage.WIDGET__Y:
 			case UiModelingPackage.WIDGET__WIDTH:
 			case UiModelingPackage.WIDGET__HEIGHT:
 			case UiModelingPackage.WIDGET__TEXT:
+			case UiModelingPackage.WIDGET__POSITIONING_ENABLED:
+			case UiModelingPackage.WIDGET__SIZING_ENABLED:
+			case UiModelingPackage.WIDGET__LAYOUT_ENABLED:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

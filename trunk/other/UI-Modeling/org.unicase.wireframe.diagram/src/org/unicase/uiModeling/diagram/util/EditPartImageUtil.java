@@ -6,6 +6,7 @@ import java.net.URL;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.uiModeling.Button;
+import org.unicase.uiModeling.ImageButton;
 
 /**
  * This utility class provides access to all images required by the edit parts.
@@ -13,10 +14,6 @@ import org.unicase.uiModeling.Button;
  * @author mharut
  */
 public final class EditPartImageUtil {
-
-	private static Image BUTTON_LEFT_IMAGE;
-	private static Image BUTTON_RIGHT_IMAGE;
-	private static Image BUTTON_SQUARE_IMAGE;
 
 	private static Image ERROR_IMAGE;
 
@@ -41,43 +38,22 @@ public final class EditPartImageUtil {
 	}
 
 	/**
-	 * Retrieves an SWT {@link Image} for a {@link Button} element, based on the value returned by
+	 * Retrieves an SWT {@link Image} for a {@link ImageButton} element, based on the value returned by
 	 * {@link Button#getStyle()}.
 	 * 
-	 * @param button the {@link Button} to get the {@link Image} for
+	 * @param button the {@link ImageButton} to get the {@link Image} for
 	 * @return the proper SWT image
 	 */
-	public static Image getButtonImage(Button button) {
-		switch (button.getStyle()) {
-		case POINT_LEFT:
-			return getButtonLeftImage();
-		case POINT_RIGHT:
-			return getButtonRightImage();
-		case SQUARE:
-		default:
-			return getButtonSquareImage();
+	public static Image getButtonImage(ImageButton button) {
+		String imageURL = button.getImageURL();
+		if (imageURL == null || imageURL.length() == 0) {
+			return getLocalImage("image.png");
 		}
-	}
-
-	private static Image getButtonLeftImage() {
-		if (BUTTON_LEFT_IMAGE == null) {
-			BUTTON_LEFT_IMAGE = getLocalImage("button_left.png");
+		try {
+			return getImage(new URL(imageURL));
+		} catch (MalformedURLException e) {
+			return getErrorImage();
 		}
-		return BUTTON_LEFT_IMAGE;
-	}
-
-	private static Image getButtonRightImage() {
-		if (BUTTON_RIGHT_IMAGE == null) {
-			BUTTON_RIGHT_IMAGE = getLocalImage("button_right.png");
-		}
-		return BUTTON_RIGHT_IMAGE;
-	}
-
-	private static Image getButtonSquareImage() {
-		if (BUTTON_SQUARE_IMAGE == null) {
-			BUTTON_SQUARE_IMAGE = getLocalImage("button_square.png");
-		}
-		return BUTTON_SQUARE_IMAGE;
 	}
 
 	/**
@@ -92,14 +68,14 @@ public final class EditPartImageUtil {
 		try {
 			return getImage(new URL(imageURL));
 		} catch (MalformedURLException e) {
-			return null;
+			return getErrorImage();
 		}
 	}
 
 	/**
 	 * @return an error SWT {@link Image} used to indicate something went wrong
 	 */
-	public static org.eclipse.swt.graphics.Image getErrorImage() {
+	public static Image getErrorImage() {
 		if (ERROR_IMAGE == null) {
 			ERROR_IMAGE = getLocalImage("error.png");
 		}

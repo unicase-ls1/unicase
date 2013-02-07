@@ -22,37 +22,21 @@ import org.unicase.uiModeling.Widget;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.uiModeling.impl.WidgetImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.unicase.uiModeling.impl.WidgetImpl#getX <em>X</em>}</li>
  *   <li>{@link org.unicase.uiModeling.impl.WidgetImpl#getY <em>Y</em>}</li>
  *   <li>{@link org.unicase.uiModeling.impl.WidgetImpl#getWidth <em>Width</em>}</li>
  *   <li>{@link org.unicase.uiModeling.impl.WidgetImpl#getHeight <em>Height</em>}</li>
  *   <li>{@link org.unicase.uiModeling.impl.WidgetImpl#getText <em>Text</em>}</li>
  *   <li>{@link org.unicase.uiModeling.impl.WidgetImpl#getPanel <em>Panel</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.WidgetImpl#isPositioningEnabled <em>Positioning Enabled</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.WidgetImpl#isSizingEnabled <em>Sizing Enabled</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.WidgetImpl#isLayoutEnabled <em>Layout Enabled</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widget {
-	/**
-	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getId()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final long ID_EDEFAULT = 0L;
-
-	/**
-	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getId()
-	 * @generated
-	 * @ordered
-	 */
-	protected long id = ID_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getX() <em>X</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -150,6 +134,66 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 	protected String text = TEXT_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #isPositioningEnabled() <em>Positioning Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPositioningEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean POSITIONING_ENABLED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isPositioningEnabled() <em>Positioning Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPositioningEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean positioningEnabled = POSITIONING_ENABLED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isSizingEnabled() <em>Sizing Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSizingEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SIZING_ENABLED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isSizingEnabled() <em>Sizing Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSizingEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean sizingEnabled = SIZING_ENABLED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isLayoutEnabled() <em>Layout Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isLayoutEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean LAYOUT_ENABLED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isLayoutEnabled() <em>Layout Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isLayoutEnabled()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean layoutEnabled = LAYOUT_ENABLED_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -164,25 +208,6 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 	@Override
 	protected EClass eStaticClass() {
 		return UiModelingPackage.Literals.WIDGET;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public long getId() {
-		return id;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setId(long newId) {
-		long oldId = id;
-		id = newId;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.WIDGET__ID, oldId, id));
 	}
 
 	/**
@@ -319,6 +344,69 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isPositioningEnabled() {
+		return positioningEnabled;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPositioningEnabled(boolean newPositioningEnabled) {
+		boolean oldPositioningEnabled = positioningEnabled;
+		positioningEnabled = newPositioningEnabled;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.WIDGET__POSITIONING_ENABLED, oldPositioningEnabled, positioningEnabled));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSizingEnabled() {
+		return sizingEnabled;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSizingEnabled(boolean newSizingEnabled) {
+		boolean oldSizingEnabled = sizingEnabled;
+		sizingEnabled = newSizingEnabled;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.WIDGET__SIZING_ENABLED, oldSizingEnabled, sizingEnabled));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isLayoutEnabled() {
+		return layoutEnabled;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLayoutEnabled(boolean newLayoutEnabled) {
+		boolean oldLayoutEnabled = layoutEnabled;
+		layoutEnabled = newLayoutEnabled;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.WIDGET__LAYOUT_ENABLED, oldLayoutEnabled, layoutEnabled));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -366,8 +454,6 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UiModelingPackage.WIDGET__ID:
-				return getId();
 			case UiModelingPackage.WIDGET__X:
 				return getX();
 			case UiModelingPackage.WIDGET__Y:
@@ -380,6 +466,12 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 				return getText();
 			case UiModelingPackage.WIDGET__PANEL:
 				return getPanel();
+			case UiModelingPackage.WIDGET__POSITIONING_ENABLED:
+				return isPositioningEnabled();
+			case UiModelingPackage.WIDGET__SIZING_ENABLED:
+				return isSizingEnabled();
+			case UiModelingPackage.WIDGET__LAYOUT_ENABLED:
+				return isLayoutEnabled();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -391,9 +483,6 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UiModelingPackage.WIDGET__ID:
-				setId((Long)newValue);
-				return;
 			case UiModelingPackage.WIDGET__X:
 				setX((Integer)newValue);
 				return;
@@ -412,6 +501,15 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 			case UiModelingPackage.WIDGET__PANEL:
 				setPanel((Panel)newValue);
 				return;
+			case UiModelingPackage.WIDGET__POSITIONING_ENABLED:
+				setPositioningEnabled((Boolean)newValue);
+				return;
+			case UiModelingPackage.WIDGET__SIZING_ENABLED:
+				setSizingEnabled((Boolean)newValue);
+				return;
+			case UiModelingPackage.WIDGET__LAYOUT_ENABLED:
+				setLayoutEnabled((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -423,9 +521,6 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UiModelingPackage.WIDGET__ID:
-				setId(ID_EDEFAULT);
-				return;
 			case UiModelingPackage.WIDGET__X:
 				setX(X_EDEFAULT);
 				return;
@@ -444,6 +539,15 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 			case UiModelingPackage.WIDGET__PANEL:
 				setPanel((Panel)null);
 				return;
+			case UiModelingPackage.WIDGET__POSITIONING_ENABLED:
+				setPositioningEnabled(POSITIONING_ENABLED_EDEFAULT);
+				return;
+			case UiModelingPackage.WIDGET__SIZING_ENABLED:
+				setSizingEnabled(SIZING_ENABLED_EDEFAULT);
+				return;
+			case UiModelingPackage.WIDGET__LAYOUT_ENABLED:
+				setLayoutEnabled(LAYOUT_ENABLED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -455,8 +559,6 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UiModelingPackage.WIDGET__ID:
-				return id != ID_EDEFAULT;
 			case UiModelingPackage.WIDGET__X:
 				return x != X_EDEFAULT;
 			case UiModelingPackage.WIDGET__Y:
@@ -469,6 +571,12 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 				return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
 			case UiModelingPackage.WIDGET__PANEL:
 				return getPanel() != null;
+			case UiModelingPackage.WIDGET__POSITIONING_ENABLED:
+				return positioningEnabled != POSITIONING_ENABLED_EDEFAULT;
+			case UiModelingPackage.WIDGET__SIZING_ENABLED:
+				return sizingEnabled != SIZING_ENABLED_EDEFAULT;
+			case UiModelingPackage.WIDGET__LAYOUT_ENABLED:
+				return layoutEnabled != LAYOUT_ENABLED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -482,9 +590,7 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (id: ");
-		result.append(id);
-		result.append(", x: ");
+		result.append(" (x: ");
 		result.append(x);
 		result.append(", y: ");
 		result.append(y);
@@ -494,6 +600,12 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 		result.append(height);
 		result.append(", text: ");
 		result.append(text);
+		result.append(", positioningEnabled: ");
+		result.append(positioningEnabled);
+		result.append(", sizingEnabled: ");
+		result.append(sizingEnabled);
+		result.append(", layoutEnabled: ");
+		result.append(layoutEnabled);
 		result.append(')');
 		return result.toString();
 	}

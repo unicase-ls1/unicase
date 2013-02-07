@@ -9,7 +9,11 @@
         name="PanelDescriptor">
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
-          name="PanelFigure"/>
+          name="PanelFigure">
+        <preferredSize
+            dx="300"
+            dy="200"/>
+      </actualFigure>
     </descriptors>
   </figures>
   <nodes

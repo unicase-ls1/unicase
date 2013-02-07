@@ -70,9 +70,10 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 	 */
 	protected boolean provides(CreateViewForKindOperation op) {
 		/*
-		 * if (op.getViewKind() == Node.class) return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(),
-		 * op.getSemanticHint()) != null; if (op.getViewKind() == Edge.class) return
-		 * getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		 if (op.getViewKind() == Node.class)
+		 return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		 if (op.getViewKind() == Edge.class)
+		 return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
 		 */
 		return true;
 	}
@@ -264,7 +265,7 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -289,31 +290,10 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 		Node label5003 = createLabel(node,
 			org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
 				.getType(org.unicase.uiModeling.diagram.edit.parts.WindowTextEditPart.VISUAL_ID));
-		Node compartment7001 = createCompartment(node,
+		createCompartment(node,
 			org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
 				.getType(org.unicase.uiModeling.diagram.edit.parts.WindowWindowWidgetCompartmentEditPart.VISUAL_ID),
 			false, false, false, false);
-		compartment7001.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-
-		org.eclipse.swt.graphics.RGB lineRGB1 = PreferenceConverter.getColor(prefStore,
-			IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(compartment7001, NotationPackage.eINSTANCE.getLineStyle_LineColor(),
-			FigureUtilities.RGBToInteger(lineRGB1));
-		FontStyle compartment7001FontStyle = (FontStyle) compartment7001.getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (compartment7001FontStyle != null) {
-			FontData fontData = PreferenceConverter.getFontData(prefStore, IPreferenceConstants.PREF_DEFAULT_FONT);
-			compartment7001FontStyle.setFontName(fontData.getName());
-			compartment7001FontStyle.setFontHeight(fontData.getHeight());
-			compartment7001FontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
-			compartment7001FontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(prefStore,
-				IPreferenceConstants.PREF_FONT_COLOR);
-			compartment7001FontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
-		}
-		org.eclipse.swt.graphics.RGB fillRGB1 = PreferenceConverter.getColor(prefStore,
-			IPreferenceConstants.PREF_FILL_COLOR);
-		ViewUtil.setStructuralFeatureValue(compartment7001, NotationPackage.eINSTANCE.getFillStyle_FillColor(),
-			FigureUtilities.RGBToInteger(fillRGB1));
 		return node;
 	}
 
@@ -329,7 +309,7 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -369,7 +349,7 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -402,14 +382,17 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 	 */
 	public Node createButton_2006(EObject domainElement, View containerView, int index, boolean persisted,
 		PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
 			.getType(org.unicase.uiModeling.diagram.edit.parts.ButtonEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -427,10 +410,9 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 				IPreferenceConstants.PREF_FONT_COLOR);
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
-		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(prefStore,
-			IPreferenceConstants.PREF_FILL_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE.getFillStyle_FillColor(),
-			FigureUtilities.RGBToInteger(fillRGB));
+		Node label5012 = createLabel(node,
+			org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
+				.getType(org.unicase.uiModeling.diagram.edit.parts.ButtonTextEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -446,7 +428,7 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -486,7 +468,7 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -519,13 +501,16 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 	 */
 	public Node createButton_3001(EObject domainElement, View containerView, int index, boolean persisted,
 		PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.getStyles().add(NotationFactory.eINSTANCE.createDescriptionStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
+		node.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
 			.getType(org.unicase.uiModeling.diagram.edit.parts.Button2EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -543,10 +528,9 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 				IPreferenceConstants.PREF_FONT_COLOR);
 			nodeFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
-		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(prefStore,
-			IPreferenceConstants.PREF_FILL_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE.getFillStyle_FillColor(),
-			FigureUtilities.RGBToInteger(fillRGB));
+		Node label5011 = createLabel(node,
+			org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
+				.getType(org.unicase.uiModeling.diagram.edit.parts.ButtonText2EditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -561,7 +545,7 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 			.getType(org.unicase.uiModeling.diagram.edit.parts.Image2EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -600,7 +584,7 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 			.getType(org.unicase.uiModeling.diagram.edit.parts.Label2EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -639,7 +623,7 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 			.getType(org.unicase.uiModeling.diagram.edit.parts.Text2EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -678,7 +662,7 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 			.getType(org.unicase.uiModeling.diagram.edit.parts.TextField2EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
+		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -735,9 +719,9 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 	 */
 	private Node createCompartment(View owner, String hint, boolean canCollapse, boolean hasTitle, boolean canSort,
 		boolean canFilter) {
-		// SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
-		// rv.setShowTitle(showTitle);
-		// rv.setCollapsed(isCollapsed);
+		//SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
+		//rv.setShowTitle(showTitle);
+		//rv.setCollapsed(isCollapsed);
 		Node rv;
 		if (canCollapse) {
 			rv = NotationFactory.eINSTANCE.createBasicCompartment();

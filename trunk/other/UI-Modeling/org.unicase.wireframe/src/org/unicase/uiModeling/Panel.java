@@ -18,6 +18,8 @@ import org.unicase.model.diagram.MEDiagram;
  *   <li>{@link org.unicase.uiModeling.Panel#getStoryboard <em>Storyboard</em>}</li>
  *   <li>{@link org.unicase.uiModeling.Panel#getX <em>X</em>}</li>
  *   <li>{@link org.unicase.uiModeling.Panel#getY <em>Y</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.Panel#getWidth <em>Width</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.Panel#getHeight <em>Height</em>}</li>
  *   <li>{@link org.unicase.uiModeling.Panel#getWidgets <em>Widgets</em>}</li>
  * </ul>
  * </p>
@@ -103,6 +105,58 @@ public interface Panel extends MEDiagram {
 	 * @generated
 	 */
 	void setY(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Width</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Width</em>' attribute.
+	 * @see #setWidth(int)
+	 * @see org.unicase.uiModeling.UiModelingPackage#getPanel_Width()
+	 * @model
+	 * @generated
+	 */
+	int getWidth();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.uiModeling.Panel#getWidth <em>Width</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Width</em>' attribute.
+	 * @see #getWidth()
+	 * @generated
+	 */
+	void setWidth(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Height</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Height</em>' attribute.
+	 * @see #setHeight(int)
+	 * @see org.unicase.uiModeling.UiModelingPackage#getPanel_Height()
+	 * @model
+	 * @generated
+	 */
+	int getHeight();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.uiModeling.Panel#getHeight <em>Height</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Height</em>' attribute.
+	 * @see #getHeight()
+	 * @generated
+	 */
+	void setHeight(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Widgets</b></em>' containment reference list.

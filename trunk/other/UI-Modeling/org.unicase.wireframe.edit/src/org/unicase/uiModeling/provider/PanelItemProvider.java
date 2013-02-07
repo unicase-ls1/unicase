@@ -12,11 +12,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -26,9 +23,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.unicase.model.diagram.provider.MEDiagramItemProvider;
-
 import org.unicase.uiModeling.Panel;
 import org.unicase.uiModeling.UiModelingFactory;
 import org.unicase.uiModeling.UiModelingPackage;
@@ -70,6 +65,8 @@ public class PanelItemProvider
 
 			addXPropertyDescriptor(object);
 			addYPropertyDescriptor(object);
+			addWidthPropertyDescriptor(object);
+			addHeightPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -110,6 +107,50 @@ public class PanelItemProvider
 				 getString("_UI_Panel_y_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Panel_y_feature", "_UI_Panel_type"),
 				 UiModelingPackage.Literals.PANEL__Y,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Width feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addWidthPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Panel_width_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Panel_width_feature", "_UI_Panel_type"),
+				 UiModelingPackage.Literals.PANEL__WIDTH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Height feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addHeightPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Panel_height_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Panel_height_feature", "_UI_Panel_type"),
+				 UiModelingPackage.Literals.PANEL__HEIGHT,
 				 true,
 				 false,
 				 false,
@@ -187,6 +228,8 @@ public class PanelItemProvider
 		switch (notification.getFeatureID(Panel.class)) {
 			case UiModelingPackage.PANEL__X:
 			case UiModelingPackage.PANEL__Y:
+			case UiModelingPackage.PANEL__WIDTH:
+			case UiModelingPackage.PANEL__HEIGHT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case UiModelingPackage.PANEL__WIDGETS:
@@ -236,6 +279,26 @@ public class PanelItemProvider
 			(createChildParameter
 				(UiModelingPackage.Literals.PANEL__WIDGETS,
 				 UiModelingFactory.eINSTANCE.createImage()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UiModelingPackage.Literals.PANEL__WIDGETS,
+				 UiModelingFactory.eINSTANCE.createRadioGroup()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UiModelingPackage.Literals.PANEL__WIDGETS,
+				 UiModelingFactory.eINSTANCE.createCheckboxGroup()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UiModelingPackage.Literals.PANEL__WIDGETS,
+				 UiModelingFactory.eINSTANCE.createDropdownList()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(UiModelingPackage.Literals.PANEL__WIDGETS,
+				 UiModelingFactory.eINSTANCE.createImageButton()));
 	}
 
 	/**

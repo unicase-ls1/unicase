@@ -98,6 +98,69 @@ public interface UiModelingFactory extends EFactory {
 	Image createImage();
 
 	/**
+	 * Returns a new object of class '<em>Radio Group</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Radio Group</em>'.
+	 * @generated
+	 */
+	RadioGroup createRadioGroup();
+
+	/**
+	 * Returns a new object of class '<em>Radio Button</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Radio Button</em>'.
+	 * @generated
+	 */
+	RadioButton createRadioButton();
+
+	/**
+	 * Returns a new object of class '<em>Checkbox Group</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Checkbox Group</em>'.
+	 * @generated
+	 */
+	CheckboxGroup createCheckboxGroup();
+
+	/**
+	 * Returns a new object of class '<em>Checkbox</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Checkbox</em>'.
+	 * @generated
+	 */
+	Checkbox createCheckbox();
+
+	/**
+	 * Returns a new object of class '<em>Dropdown List</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Dropdown List</em>'.
+	 * @generated
+	 */
+	DropdownList createDropdownList();
+
+	/**
+	 * Returns a new object of class '<em>Dropdown Item</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Dropdown Item</em>'.
+	 * @generated
+	 */
+	DropdownItem createDropdownItem();
+
+	/**
+	 * Returns a new object of class '<em>Image Button</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Image Button</em>'.
+	 * @generated
+	 */
+	ImageButton createImageButton();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -136,6 +136,16 @@
         relatedDiagrams="//@diagram">
       <domainMetaElement
           href="../../uiModeling.ecore#//Button"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="{0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="uiModeling.gmfgraph#ButtonNode_text"/>
+        <features
+            href="../../uiModeling.ecore#//Widget/text"/>
+      </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
           href="uiModeling.gmftool#//@palette/@tools.0/@tools.3"/>

@@ -14,9 +14,16 @@ import org.unicase.model.Attachment;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.uiModeling.Button;
+import org.unicase.uiModeling.Checkbox;
+import org.unicase.uiModeling.CheckboxGroup;
+import org.unicase.uiModeling.DropdownItem;
+import org.unicase.uiModeling.DropdownList;
 import org.unicase.uiModeling.Image;
+import org.unicase.uiModeling.ImageButton;
 import org.unicase.uiModeling.Label;
 import org.unicase.uiModeling.Panel;
+import org.unicase.uiModeling.RadioButton;
+import org.unicase.uiModeling.RadioGroup;
 import org.unicase.uiModeling.Storyboard;
 import org.unicase.uiModeling.Text;
 import org.unicase.uiModeling.TextField;
@@ -115,6 +122,34 @@ public class UiModelingAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseImage(Image object) {
 				return createImageAdapter();
+			}
+			@Override
+			public Adapter caseRadioGroup(RadioGroup object) {
+				return createRadioGroupAdapter();
+			}
+			@Override
+			public Adapter caseRadioButton(RadioButton object) {
+				return createRadioButtonAdapter();
+			}
+			@Override
+			public Adapter caseCheckboxGroup(CheckboxGroup object) {
+				return createCheckboxGroupAdapter();
+			}
+			@Override
+			public Adapter caseCheckbox(Checkbox object) {
+				return createCheckboxAdapter();
+			}
+			@Override
+			public Adapter caseDropdownList(DropdownList object) {
+				return createDropdownListAdapter();
+			}
+			@Override
+			public Adapter caseDropdownItem(DropdownItem object) {
+				return createDropdownItemAdapter();
+			}
+			@Override
+			public Adapter caseImageButton(ImageButton object) {
+				return createImageButtonAdapter();
 			}
 			@Override
 			public Adapter caseUnicaseModelElement(UnicaseModelElement object) {
@@ -271,6 +306,104 @@ public class UiModelingAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createImageAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.uiModeling.RadioGroup <em>Radio Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.uiModeling.RadioGroup
+	 * @generated
+	 */
+	public Adapter createRadioGroupAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.uiModeling.RadioButton <em>Radio Button</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.uiModeling.RadioButton
+	 * @generated
+	 */
+	public Adapter createRadioButtonAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.uiModeling.CheckboxGroup <em>Checkbox Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.uiModeling.CheckboxGroup
+	 * @generated
+	 */
+	public Adapter createCheckboxGroupAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.uiModeling.Checkbox <em>Checkbox</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.uiModeling.Checkbox
+	 * @generated
+	 */
+	public Adapter createCheckboxAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.uiModeling.DropdownList <em>Dropdown List</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.uiModeling.DropdownList
+	 * @generated
+	 */
+	public Adapter createDropdownListAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.uiModeling.DropdownItem <em>Dropdown Item</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.uiModeling.DropdownItem
+	 * @generated
+	 */
+	public Adapter createDropdownItemAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.uiModeling.ImageButton <em>Image Button</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.uiModeling.ImageButton
+	 * @generated
+	 */
+	public Adapter createImageButtonAdapter() {
 		return null;
 	}
 

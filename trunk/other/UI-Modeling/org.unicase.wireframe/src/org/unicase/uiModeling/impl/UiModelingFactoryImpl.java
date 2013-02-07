@@ -7,16 +7,21 @@
 package org.unicase.uiModeling.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.unicase.uiModeling.Button;
-import org.unicase.uiModeling.ButtonStyle;
+import org.unicase.uiModeling.Checkbox;
+import org.unicase.uiModeling.CheckboxGroup;
+import org.unicase.uiModeling.DropdownItem;
+import org.unicase.uiModeling.DropdownList;
 import org.unicase.uiModeling.Image;
+import org.unicase.uiModeling.ImageButton;
 import org.unicase.uiModeling.Label;
 import org.unicase.uiModeling.Panel;
+import org.unicase.uiModeling.RadioButton;
+import org.unicase.uiModeling.RadioGroup;
 import org.unicase.uiModeling.Storyboard;
 import org.unicase.uiModeling.Text;
 import org.unicase.uiModeling.TextField;
@@ -76,38 +81,15 @@ public class UiModelingFactoryImpl extends EFactoryImpl implements UiModelingFac
 			case UiModelingPackage.BUTTON: return createButton();
 			case UiModelingPackage.TEXT: return createText();
 			case UiModelingPackage.IMAGE: return createImage();
+			case UiModelingPackage.RADIO_GROUP: return createRadioGroup();
+			case UiModelingPackage.RADIO_BUTTON: return createRadioButton();
+			case UiModelingPackage.CHECKBOX_GROUP: return createCheckboxGroup();
+			case UiModelingPackage.CHECKBOX: return createCheckbox();
+			case UiModelingPackage.DROPDOWN_LIST: return createDropdownList();
+			case UiModelingPackage.DROPDOWN_ITEM: return createDropdownItem();
+			case UiModelingPackage.IMAGE_BUTTON: return createImageButton();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case UiModelingPackage.BUTTON_STYLE:
-				return createButtonStyleFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case UiModelingPackage.BUTTON_STYLE:
-				return convertButtonStyleToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -196,10 +178,9 @@ public class UiModelingFactoryImpl extends EFactoryImpl implements UiModelingFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ButtonStyle createButtonStyleFromString(EDataType eDataType, String initialValue) {
-		ButtonStyle result = ButtonStyle.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
+	public RadioGroup createRadioGroup() {
+		RadioGroupImpl radioGroup = new RadioGroupImpl();
+		return radioGroup;
 	}
 
 	/**
@@ -207,8 +188,59 @@ public class UiModelingFactoryImpl extends EFactoryImpl implements UiModelingFac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertButtonStyleToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
+	public RadioButton createRadioButton() {
+		RadioButtonImpl radioButton = new RadioButtonImpl();
+		return radioButton;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CheckboxGroup createCheckboxGroup() {
+		CheckboxGroupImpl checkboxGroup = new CheckboxGroupImpl();
+		return checkboxGroup;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Checkbox createCheckbox() {
+		CheckboxImpl checkbox = new CheckboxImpl();
+		return checkbox;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DropdownList createDropdownList() {
+		DropdownListImpl dropdownList = new DropdownListImpl();
+		return dropdownList;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DropdownItem createDropdownItem() {
+		DropdownItemImpl dropdownItem = new DropdownItemImpl();
+		return dropdownItem;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ImageButton createImageButton() {
+		ImageButtonImpl imageButton = new ImageButtonImpl();
+		return imageButton;
 	}
 
 	/**

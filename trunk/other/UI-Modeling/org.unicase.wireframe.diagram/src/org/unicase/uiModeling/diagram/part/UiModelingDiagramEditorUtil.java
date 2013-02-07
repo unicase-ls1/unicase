@@ -54,7 +54,6 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
-import org.unicase.uiModeling.diagram.part.UiModelingDiagramEditorUtil.LazyElement2ViewMap;
 
 /**
  * @generated
