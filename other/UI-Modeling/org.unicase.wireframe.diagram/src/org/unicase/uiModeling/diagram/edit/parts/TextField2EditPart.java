@@ -23,10 +23,13 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
+import org.unicase.uiModeling.diagram.UiModelingAdapter;
+import org.unicase.uiModeling.diagram.util.UiModelingDiagramUtil;
 
 /**
  * @generated
@@ -63,7 +66,8 @@ public class TextField2EditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 			new org.unicase.uiModeling.diagram.edit.policies.TextField2ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
+		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -156,11 +160,13 @@ public class TextField2EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT: added customized size
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(70, 20);
-		return result;
+		// begin custom code
+		Dimension size = UiModelingDiagramUtil.getSize(this);
+		return new DefaultSizeNodeFigure(size.width, size.height);
+		// end of custom code
 	}
 
 	/**
@@ -259,23 +265,30 @@ public class TextField2EditPart extends ShapeNodeEditPart {
 		private WrappingLabel fTextField_text;
 
 		/**
-		 * @generated
+		 * @generated NOT: added customized size
 		 */
 		public TextFieldDescriptor() {
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(70), getMapMode().DPtoLP(20)));
+			// begin custom code
+			IMapMode mapMode = getMapMode();
+			Dimension size = UiModelingDiagramUtil.getSize(TextField2EditPart.this);
+			this.setPreferredSize(new Dimension(mapMode.DPtoLP(size.width), mapMode.DPtoLP(size.height)));
+			// end of custom code
 			createContents();
 		}
 
 		/**
-		 * @generated NOT
+		 * @generated NOT: added adapter to capture size changes
 		 */
 		private void createContents() {
 
 			fTextField_text = new WrappingLabel();
 
 			fTextField_text.setText("My TextField");
-			// custom code: enabled text wrap
+
+			// begin custom code
 			fTextField_text.setTextWrap(true);
+			new UiModelingAdapter(TextField2EditPart.this).adapt();
+			// end of custom code
 
 			this.add(fTextField_text);
 

@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
@@ -27,6 +28,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
+import org.unicase.uiModeling.diagram.UiModelingAdapter;
+import org.unicase.uiModeling.diagram.util.UiModelingDiagramUtil;
 
 /**
  * @generated
@@ -63,7 +66,8 @@ public class WindowEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 			new org.unicase.uiModeling.diagram.edit.policies.WindowItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
+		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -117,7 +121,7 @@ public class WindowEditPart extends ShapeNodeEditPart {
 		}
 		if (childEditPart instanceof org.unicase.uiModeling.diagram.edit.parts.WindowWindowWidgetCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getWindow_widgets();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((org.unicase.uiModeling.diagram.edit.parts.WindowWindowWidgetCompartmentEditPart) childEditPart)
 				.getFigure());
 			return true;
@@ -172,11 +176,13 @@ public class WindowEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT: added customized size
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(400, 200);
-		return result;
+		// begin custom code
+		Dimension size = UiModelingDiagramUtil.getSize(this);
+		return new DefaultSizeNodeFigure(size.width, size.height);
+		// end of custom code
 	}
 
 	/**
@@ -280,7 +286,7 @@ public class WindowEditPart extends ShapeNodeEditPart {
 		private RectangleFigure fWindow_widgets;
 
 		/**
-		 * @generated
+		 * @generated NOT: added customized size
 		 */
 		public WindowDescriptor() {
 
@@ -289,12 +295,16 @@ public class WindowEditPart extends ShapeNodeEditPart {
 			layoutThis.makeColumnsEqualWidth = true;
 			this.setLayoutManager(layoutThis);
 
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(400), getMapMode().DPtoLP(200)));
+			// begin custom code
+			IMapMode mapMode = getMapMode();
+			Dimension size = UiModelingDiagramUtil.getSize(WindowEditPart.this);
+			this.setPreferredSize(new Dimension(mapMode.DPtoLP(size.width), mapMode.DPtoLP(size.height)));
+			// end of custom code
 			createContents();
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT: added adapter to capture size changes
 		 */
 		private void createContents() {
 
@@ -347,6 +357,10 @@ public class WindowEditPart extends ShapeNodeEditPart {
 			constraintFWindow_widgets.grabExcessHorizontalSpace = true;
 			constraintFWindow_widgets.grabExcessVerticalSpace = true;
 			this.add(fWindow_widgets, constraintFWindow_widgets);
+
+			// begin custom code
+			new UiModelingAdapter(WindowEditPart.this).adapt();
+			// end of custom code
 
 		}
 

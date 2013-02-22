@@ -14,7 +14,6 @@ import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -27,6 +26,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.draw2d.ui.render.figures.ScalableImageFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -37,7 +37,8 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.uiModeling.Image;
 import org.unicase.uiModeling.UiModelingPackage;
-import org.unicase.uiModeling.diagram.util.EditPartImageUtil;
+import org.unicase.uiModeling.diagram.UiModelingAdapter;
+import org.unicase.uiModeling.diagram.util.UiModelingDiagramUtil;
 
 /**
  * @generated
@@ -74,7 +75,8 @@ public class Image2EditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 			new org.unicase.uiModeling.diagram.edit.policies.Image2ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
+		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -167,11 +169,13 @@ public class Image2EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT: added customized size
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(150, 125);
-		return result;
+		// begin custom code
+		Dimension size = UiModelingDiagramUtil.getSize(this);
+		// end of custom code
+		return new DefaultSizeNodeFigure(size.width, size.height);
 	}
 
 	/**
@@ -272,7 +276,7 @@ public class Image2EditPart extends ShapeNodeEditPart {
 		private ScalableImageFigure imageImageFigure0;
 
 		/**
-		 * @generated
+		 * @generated NOT: added customized size
 		 */
 		public ImageDescriptor() {
 
@@ -282,7 +286,13 @@ public class Image2EditPart extends ShapeNodeEditPart {
 			this.setLayoutManager(layoutThis);
 
 			this.setOutline(false);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(150), getMapMode().DPtoLP(125)));
+
+			// begin custom code
+			IMapMode mapMode = getMapMode();
+			Dimension size = UiModelingDiagramUtil.getSize(Image2EditPart.this);
+			this.setPreferredSize(new Dimension(mapMode.DPtoLP(size.width), mapMode.DPtoLP(size.height)));
+			// end of custom code
+
 			createContents();
 		}
 
@@ -309,27 +319,24 @@ public class Image2EditPart extends ShapeNodeEditPart {
 				imageImageFigure0.setPreferredImageSize(150, 100);
 				this.add(imageImageFigure0, constraintImageImageFigure0);
 
-				image.eAdapters().add(new AdapterImpl() {
+				new UiModelingAdapter(Image2EditPart.this) {
 
 					public void notifyChanged(Notification notification) {
+						super.notifyChanged(notification);
 						if (UiModelingPackage.eINSTANCE.getImage_ImageURL().equals(notification.getFeature())) {
 							// remove old figures
 							ImageDescriptor.this.remove(imageImageFigure0);
 							ImageDescriptor.this.remove(fImage_text);
 							// add figures
 							imageImageFigure0 = new ScalableImageFigure(getSwtImage(image));
-							imageImageFigure0.setPreferredImageSize(150, 100);
+							Dimension size = getPreferredSize();
+							imageImageFigure0.setPreferredImageSize(size.width - 10, size.height - 20);
 							ImageDescriptor.this.add(imageImageFigure0, constraintImageImageFigure0);
 							ImageDescriptor.this.add(fImage_text);
-
 						}
 					}
 
-					public boolean isAdapterForType(Object type) {
-						return type instanceof Image;
-					}
-
-				});
+				}.adapt();
 
 			}
 
@@ -354,9 +361,9 @@ public class Image2EditPart extends ShapeNodeEditPart {
 		}
 
 		private org.eclipse.swt.graphics.Image getSwtImage(Image image) {
-			org.eclipse.swt.graphics.Image swtImage = EditPartImageUtil.getImageImage(image);
+			org.eclipse.swt.graphics.Image swtImage = UiModelingDiagramUtil.getImageImage(image);
 			if (swtImage == null) {
-				swtImage = EditPartImageUtil.getErrorImage();
+				swtImage = UiModelingDiagramUtil.getErrorImage();
 			}
 			return swtImage;
 		}

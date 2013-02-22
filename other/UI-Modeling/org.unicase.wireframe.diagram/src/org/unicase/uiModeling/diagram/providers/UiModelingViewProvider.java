@@ -70,10 +70,9 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 	 */
 	protected boolean provides(CreateViewForKindOperation op) {
 		/*
-		 if (op.getViewKind() == Node.class)
-		 return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
-		 if (op.getViewKind() == Edge.class)
-		 return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		 * if (op.getViewKind() == Node.class) return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(),
+		 * op.getSemanticHint()) != null; if (op.getViewKind() == Edge.class) return
+		 * getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
 		 */
 		return true;
 	}
@@ -265,7 +264,7 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -309,7 +308,7 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -349,7 +348,7 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -392,7 +391,7 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -428,7 +427,7 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -468,7 +467,7 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -510,7 +509,7 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 			.getType(org.unicase.uiModeling.diagram.edit.parts.Button2EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -545,7 +544,7 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 			.getType(org.unicase.uiModeling.diagram.edit.parts.Image2EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -584,7 +583,7 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 			.getType(org.unicase.uiModeling.diagram.edit.parts.Label2EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -623,7 +622,7 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 			.getType(org.unicase.uiModeling.diagram.edit.parts.Text2EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -662,7 +661,7 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 			.getType(org.unicase.uiModeling.diagram.edit.parts.TextField2EditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(prefStore,
@@ -719,9 +718,9 @@ public class UiModelingViewProvider extends AbstractProvider implements IViewPro
 	 */
 	private Node createCompartment(View owner, String hint, boolean canCollapse, boolean hasTitle, boolean canSort,
 		boolean canFilter) {
-		//SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
-		//rv.setShowTitle(showTitle);
-		//rv.setCollapsed(isCollapsed);
+		// SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
+		// rv.setShowTitle(showTitle);
+		// rv.setCollapsed(isCollapsed);
 		Node rv;
 		if (canCollapse) {
 			rv = NotationFactory.eINSTANCE.createBasicCompartment();

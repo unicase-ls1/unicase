@@ -8,8 +8,7 @@ package org.unicase.uiModeling;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Label</b></em>'. <!-- end-user-doc -->
- *
- *
+ * 
  * @see org.unicase.uiModeling.UiModelingPackage#getLabel()
  * @model
  * @generated

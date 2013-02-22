@@ -12,9 +12,6 @@
           name="WindowFigure">
         <layout
             xsi:type="gmfgraph:GridLayout"/>
-        <preferredSize
-            dx="400"
-            dy="200"/>
         <children
             xsi:type="gmfgraph:Rectangle"
             name="WindowTopBar"
@@ -71,9 +68,6 @@
           xsi:type="gmfgraph:Rectangle"
           name="LabelFigure"
           outline="false">
-        <preferredSize
-            dx="60"
-            dy="20"/>
         <children
             xsi:type="gmfgraph:Label"
             name="Label_text"
@@ -94,9 +88,6 @@
       <actualFigure
           xsi:type="gmfgraph:Rectangle"
           name="TextFieldsFigure">
-        <preferredSize
-            dx="70"
-            dy="20"/>
         <children
             xsi:type="gmfgraph:Label"
             name="TextField_text"
@@ -118,9 +109,6 @@
         <backgroundColor
             xsi:type="gmfgraph:ConstantColor"
             value="lightGray"/>
-        <preferredSize
-            dx="36"
-            dy="36"/>
         <border
             xsi:type="gmfgraph:LineBorder">
           <color
@@ -148,9 +136,6 @@
           xsi:type="gmfgraph:Rectangle"
           name="TextFigure"
           outline="false">
-        <minimumSize
-            dx="50"
-            dy="20"/>
         <children
             xsi:type="gmfgraph:Label"
             name="Text_text"
@@ -168,9 +153,6 @@
           outline="false">
         <layout
             xsi:type="gmfgraph:GridLayout"/>
-        <preferredSize
-            dx="150"
-            dy="125"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ImageImageFigure"

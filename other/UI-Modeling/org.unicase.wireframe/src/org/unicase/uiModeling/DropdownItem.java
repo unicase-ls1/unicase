@@ -9,31 +9,28 @@ package org.unicase.uiModeling;
 import org.unicase.model.UnicaseModelElement;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Dropdown Item</b></em>'.
- * <!-- end-user-doc -->
- *
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Dropdown Item</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.uiModeling.DropdownItem#getList <em>List</em>}</li>
+ * <li>{@link org.unicase.uiModeling.DropdownItem#getList <em>List</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.uiModeling.UiModelingPackage#getDropdownItem()
  * @model
  * @generated
  */
 public interface DropdownItem extends UnicaseModelElement {
 	/**
-	 * Returns the value of the '<em><b>List</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.uiModeling.DropdownList#getItems <em>Items</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>List</b></em>' container reference. It is bidirectional and its opposite is '
+	 * {@link org.unicase.uiModeling.DropdownList#getItems <em>Items</em>}'. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>List</em>' container reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>List</em>' container reference isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>List</em>' container reference.
 	 * @see #setList(DropdownList)
 	 * @see org.unicase.uiModeling.UiModelingPackage#getDropdownItem_List()
@@ -45,8 +42,8 @@ public interface DropdownItem extends UnicaseModelElement {
 
 	/**
 	 * Sets the value of the '{@link org.unicase.uiModeling.DropdownItem#getList <em>List</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>List</em>' container reference.
 	 * @see #getList()
 	 * @generated

@@ -9,31 +9,28 @@ package org.unicase.uiModeling;
 import org.unicase.model.UnicaseModelElement;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Checkbox</b></em>'.
- * <!-- end-user-doc -->
- *
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Checkbox</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.uiModeling.Checkbox#getGroup <em>Group</em>}</li>
+ * <li>{@link org.unicase.uiModeling.Checkbox#getGroup <em>Group</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.uiModeling.UiModelingPackage#getCheckbox()
  * @model
  * @generated
  */
 public interface Checkbox extends UnicaseModelElement {
 	/**
-	 * Returns the value of the '<em><b>Group</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.uiModeling.CheckboxGroup#getBoxes <em>Boxes</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Group</b></em>' container reference. It is bidirectional and its opposite is '
+	 * {@link org.unicase.uiModeling.CheckboxGroup#getBoxes <em>Boxes</em>}'. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Group</em>' container reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Group</em>' container reference isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Group</em>' container reference.
 	 * @see #setGroup(CheckboxGroup)
 	 * @see org.unicase.uiModeling.UiModelingPackage#getCheckbox_Group()
@@ -44,9 +41,9 @@ public interface Checkbox extends UnicaseModelElement {
 	CheckboxGroup getGroup();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.uiModeling.Checkbox#getGroup <em>Group</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.uiModeling.Checkbox#getGroup <em>Group</em>}' container reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Group</em>' container reference.
 	 * @see #getGroup()
 	 * @generated

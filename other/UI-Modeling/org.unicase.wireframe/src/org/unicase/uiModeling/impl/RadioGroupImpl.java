@@ -21,24 +21,22 @@ import org.unicase.uiModeling.RadioGroup;
 import org.unicase.uiModeling.UiModelingPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Radio Group</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Radio Group</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.uiModeling.impl.RadioGroupImpl#getSelectedIndex <em>Selected Index</em>}</li>
- *   <li>{@link org.unicase.uiModeling.impl.RadioGroupImpl#getButtons <em>Buttons</em>}</li>
+ * <li>{@link org.unicase.uiModeling.impl.RadioGroupImpl#getSelectedIndex <em>Selected Index</em>}</li>
+ * <li>{@link org.unicase.uiModeling.impl.RadioGroupImpl#getButtons <em>Buttons</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class RadioGroupImpl extends WidgetImpl implements RadioGroup {
 	/**
-	 * The default value of the '{@link #getSelectedIndex() <em>Selected Index</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getSelectedIndex() <em>Selected Index</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSelectedIndex()
 	 * @generated
 	 * @ordered
@@ -46,9 +44,9 @@ public class RadioGroupImpl extends WidgetImpl implements RadioGroup {
 	protected static final int SELECTED_INDEX_EDEFAULT = -1;
 
 	/**
-	 * The cached value of the '{@link #getSelectedIndex() <em>Selected Index</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSelectedIndex() <em>Selected Index</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSelectedIndex()
 	 * @generated
 	 * @ordered
@@ -56,9 +54,9 @@ public class RadioGroupImpl extends WidgetImpl implements RadioGroup {
 	protected int selectedIndex = SELECTED_INDEX_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getButtons() <em>Buttons</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getButtons() <em>Buttons</em>}' containment reference list. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getButtons()
 	 * @generated
 	 * @ordered
@@ -66,8 +64,8 @@ public class RadioGroupImpl extends WidgetImpl implements RadioGroup {
 	protected EList<RadioButton> buttons;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected RadioGroupImpl() {
@@ -75,8 +73,8 @@ public class RadioGroupImpl extends WidgetImpl implements RadioGroup {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -85,8 +83,8 @@ public class RadioGroupImpl extends WidgetImpl implements RadioGroup {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getSelectedIndex() {
@@ -94,136 +92,139 @@ public class RadioGroupImpl extends WidgetImpl implements RadioGroup {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSelectedIndex(int newSelectedIndex) {
 		int oldSelectedIndex = selectedIndex;
 		selectedIndex = newSelectedIndex;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.RADIO_GROUP__SELECTED_INDEX, oldSelectedIndex, selectedIndex));
+			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.RADIO_GROUP__SELECTED_INDEX,
+				oldSelectedIndex, selectedIndex));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<RadioButton> getButtons() {
 		if (buttons == null) {
-			buttons = new EObjectContainmentWithInverseEList<RadioButton>(RadioButton.class, this, UiModelingPackage.RADIO_GROUP__BUTTONS, UiModelingPackage.RADIO_BUTTON__GROUP);
+			buttons = new EObjectContainmentWithInverseEList<RadioButton>(RadioButton.class, this,
+				UiModelingPackage.RADIO_GROUP__BUTTONS, UiModelingPackage.RADIO_BUTTON__GROUP);
 		}
 		return buttons;
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case UiModelingPackage.RADIO_GROUP__BUTTONS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getButtons()).basicAdd(otherEnd, msgs);
+		case UiModelingPackage.RADIO_GROUP__BUTTONS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getButtons()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case UiModelingPackage.RADIO_GROUP__BUTTONS:
-				return ((InternalEList<?>)getButtons()).basicRemove(otherEnd, msgs);
+		case UiModelingPackage.RADIO_GROUP__BUTTONS:
+			return ((InternalEList<?>) getButtons()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UiModelingPackage.RADIO_GROUP__SELECTED_INDEX:
-				return getSelectedIndex();
-			case UiModelingPackage.RADIO_GROUP__BUTTONS:
-				return getButtons();
+		case UiModelingPackage.RADIO_GROUP__SELECTED_INDEX:
+			return getSelectedIndex();
+		case UiModelingPackage.RADIO_GROUP__BUTTONS:
+			return getButtons();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UiModelingPackage.RADIO_GROUP__SELECTED_INDEX:
-				setSelectedIndex((Integer)newValue);
-				return;
-			case UiModelingPackage.RADIO_GROUP__BUTTONS:
-				getButtons().clear();
-				getButtons().addAll((Collection<? extends RadioButton>)newValue);
-				return;
+		case UiModelingPackage.RADIO_GROUP__SELECTED_INDEX:
+			setSelectedIndex((Integer) newValue);
+			return;
+		case UiModelingPackage.RADIO_GROUP__BUTTONS:
+			getButtons().clear();
+			getButtons().addAll((Collection<? extends RadioButton>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UiModelingPackage.RADIO_GROUP__SELECTED_INDEX:
-				setSelectedIndex(SELECTED_INDEX_EDEFAULT);
-				return;
-			case UiModelingPackage.RADIO_GROUP__BUTTONS:
-				getButtons().clear();
-				return;
+		case UiModelingPackage.RADIO_GROUP__SELECTED_INDEX:
+			setSelectedIndex(SELECTED_INDEX_EDEFAULT);
+			return;
+		case UiModelingPackage.RADIO_GROUP__BUTTONS:
+			getButtons().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UiModelingPackage.RADIO_GROUP__SELECTED_INDEX:
-				return selectedIndex != SELECTED_INDEX_EDEFAULT;
-			case UiModelingPackage.RADIO_GROUP__BUTTONS:
-				return buttons != null && !buttons.isEmpty();
+		case UiModelingPackage.RADIO_GROUP__SELECTED_INDEX:
+			return selectedIndex != SELECTED_INDEX_EDEFAULT;
+		case UiModelingPackage.RADIO_GROUP__BUTTONS:
+			return buttons != null && !buttons.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy())
+			return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (selectedIndex: ");
@@ -232,4 +233,4 @@ public class RadioGroupImpl extends WidgetImpl implements RadioGroup {
 		return result.toString();
 	}
 
-} //RadioGroupImpl
+} // RadioGroupImpl

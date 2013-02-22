@@ -45,6 +45,7 @@ public class UiModelingBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Extended request data key to hold editpart visual id.
+	 * 
 	 * @generated
 	 */
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
@@ -62,11 +63,9 @@ public class UiModelingBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	/**
-	 * Extended request data key to hold editpart visual id.
-	 * Add visual id of edited editpart to extended data of the request
-	 * so command switch can decide what kind of diagram element is being edited.
-	 * It is done in those cases when it's not possible to deduce diagram
-	 * element kind from domain element.
+	 * Extended request data key to hold editpart visual id. Add visual id of edited editpart to extended data of the
+	 * request so command switch can decide what kind of diagram element is being edited. It is done in those cases when
+	 * it's not possible to deduce diagram element kind from domain element.
 	 * 
 	 * @generated
 	 */
@@ -84,6 +83,7 @@ public class UiModelingBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns visual id from request parameters.
+	 * 
 	 * @generated
 	 */
 	protected int getVisualID(IEditCommandRequest request) {
@@ -261,6 +261,7 @@ public class UiModelingBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns editing domain from the host edit part.
+	 * 
 	 * @generated
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
@@ -269,6 +270,7 @@ public class UiModelingBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Clean all shortcuts to the host element from the same diagram
+	 * 
 	 * @generated
 	 */
 	protected void addDestroyShortcutsCommand(ICompositeCommand cmd, View view) {

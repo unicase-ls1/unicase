@@ -6,7 +6,6 @@
  */
 package org.unicase.uiModeling.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -23,23 +22,16 @@ import org.unicase.model.provider.UnicaseModelElementItemProvider;
 import org.unicase.uiModeling.Checkbox;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.uiModeling.Checkbox} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.uiModeling.Checkbox} object. <!-- begin-user-doc --> <!--
+ * end-user-doc -->
+ * 
  * @generated
  */
-public class CheckboxItemProvider
-	extends UnicaseModelElementItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class CheckboxItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public CheckboxItemProvider(AdapterFactory adapterFactory) {
@@ -47,9 +39,8 @@ public class CheckboxItemProvider
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -62,9 +53,8 @@ public class CheckboxItemProvider
 	}
 
 	/**
-	 * This returns Checkbox.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns Checkbox.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,24 +63,22 @@ public class CheckboxItemProvider
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Checkbox)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Checkbox_type") :
-			getString("_UI_Checkbox_type") + " " + label;
+		String label = ((Checkbox) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_Checkbox_type") : getString("_UI_Checkbox_type")
+			+ " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,10 +88,9 @@ public class CheckboxItemProvider
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -112,9 +99,8 @@ public class CheckboxItemProvider
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

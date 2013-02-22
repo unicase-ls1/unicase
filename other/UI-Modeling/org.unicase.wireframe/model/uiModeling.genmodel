@@ -18,6 +18,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Panel/width"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Panel/height"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uiModeling.ecore#//Panel/widgets"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Panel/positioningEnabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Panel/sizingEnabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Panel/layoutEnabled"/>
     </genClasses>
     <genClasses image="false" ecoreClass="uiModeling.ecore#//Widget">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Widget/x"/>
@@ -26,9 +29,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Widget/height"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Widget/text"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference uiModeling.ecore#//Widget/panel"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Widget/positioningEnabled"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Widget/sizingEnabled"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute uiModeling.ecore#//Widget/layoutEnabled"/>
     </genClasses>
     <genClasses ecoreClass="uiModeling.ecore#//Window">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference uiModeling.ecore#//Window/widgets"/>

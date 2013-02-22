@@ -6,30 +6,28 @@
  */
 package org.unicase.uiModeling;
 
-
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Image</b></em>'. <!-- end-user-doc -->
- *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.uiModeling.Image#getImageURL <em>Image URL</em>}</li>
+ * <li>{@link org.unicase.uiModeling.Image#getImageURL <em>Image URL</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.uiModeling.UiModelingPackage#getImage()
  * @model
  * @generated
  */
 public interface Image extends Widget {
 	/**
-	 * Returns the value of the '<em><b>Image URL</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Image URL</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Image URL</em>' attribute isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Image URL</em>' attribute isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Image URL</em>' attribute.
 	 * @see #setImageURL(String)
 	 * @see org.unicase.uiModeling.UiModelingPackage#getImage_ImageURL()
@@ -39,9 +37,9 @@ public interface Image extends Widget {
 	String getImageURL();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.uiModeling.Image#getImageURL <em>Image URL</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.uiModeling.Image#getImageURL <em>Image URL</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Image URL</em>' attribute.
 	 * @see #getImageURL()
 	 * @generated
