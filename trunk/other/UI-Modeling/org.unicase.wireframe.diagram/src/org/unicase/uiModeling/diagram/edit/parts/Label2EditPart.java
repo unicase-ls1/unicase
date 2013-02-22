@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
@@ -30,6 +31,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
+import org.unicase.uiModeling.diagram.UiModelingAdapter;
+import org.unicase.uiModeling.diagram.util.UiModelingDiagramUtil;
 
 /**
  * @generated
@@ -66,7 +69,8 @@ public class Label2EditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 			new org.unicase.uiModeling.diagram.edit.policies.Label2ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
+		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -159,11 +163,13 @@ public class Label2EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT: added customized size
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(60, 20);
-		return result;
+		// begin custom code
+		Dimension size = UiModelingDiagramUtil.getSize(this);
+		return new DefaultSizeNodeFigure(size.width, size.height);
+		// end of custom code
 	}
 
 	/**
@@ -262,26 +268,35 @@ public class Label2EditPart extends ShapeNodeEditPart {
 		private WrappingLabel fLabel_text;
 
 		/**
-		 * @generated
+		 * @generated NOT: added customized size
 		 */
 		public LabelDescriptor() {
 			this.setOutline(false);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(60), getMapMode().DPtoLP(20)));
+
+			// begin custom code
+			IMapMode mapMode = getMapMode();
+			Dimension size = UiModelingDiagramUtil.getSize(Label2EditPart.this);
+			this.setPreferredSize(new Dimension(mapMode.DPtoLP(size.width), mapMode.DPtoLP(size.height)));
+			// end of custom code
+
 			createContents();
 		}
 
 		/**
-		 * @generated NOT: enabled text wrap
+		 * @generated NOT: added custom code to capture size changes
 		 */
 		private void createContents() {
 
 			fLabel_text = new WrappingLabel();
 
 			fLabel_text.setText("My Label");
-			// custom code: enabled text wrap
-			fLabel_text.setTextWrap(true);
 
 			fLabel_text.setFont(FLABEL_TEXT_FONT);
+
+			// begin custom code
+			fLabel_text.setTextWrap(true);
+			new UiModelingAdapter(Label2EditPart.this).adapt();
+			// end of custom code
 
 			this.add(fLabel_text);
 

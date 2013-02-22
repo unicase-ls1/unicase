@@ -14,12 +14,13 @@ import org.unicase.uiModeling.UiModelingPackage;
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Button</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class ButtonImpl extends WidgetImpl implements Button {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ButtonImpl() {
@@ -28,6 +29,7 @@ public class ButtonImpl extends WidgetImpl implements Button {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -8,6 +8,7 @@ import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -20,6 +21,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
@@ -27,6 +29,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
+import org.unicase.uiModeling.diagram.UiModelingAdapter;
+import org.unicase.uiModeling.diagram.util.UiModelingDiagramUtil;
 
 /**
  * @generated
@@ -47,6 +51,11 @@ public class ButtonEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure primaryShape;
+
+	/**
+	 * The location of this edit part's figure.
+	 */
+	private Point location;
 
 	/**
 	 * @generated
@@ -157,11 +166,13 @@ public class ButtonEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT: added customized size
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(36, 36);
-		return result;
+		// begin custom code
+		Dimension size = UiModelingDiagramUtil.getSize(this);
+		return new DefaultSizeNodeFigure(size.width, size.height);
+		// end of custom code
 	}
 
 	/**
@@ -174,6 +185,9 @@ public class ButtonEditPart extends ShapeNodeEditPart {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
 		IFigure shape = createNodeShape();
+		if (location != null) {
+			shape.setLocation(location);
+		}
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
@@ -260,10 +274,9 @@ public class ButtonEditPart extends ShapeNodeEditPart {
 		private WrappingLabel fButton_text;
 
 		/**
-		 * @generated
+		 * @generated NOT: added customized size
 		 */
 		public ButtonDescriptor() {
-
 			GridLayout layoutThis = new GridLayout();
 			layoutThis.numColumns = 1;
 			layoutThis.makeColumnsEqualWidth = false;
@@ -272,12 +285,19 @@ public class ButtonEditPart extends ShapeNodeEditPart {
 			this.setOutline(false);
 			this.setBorder(new LineBorder(ColorConstants.black));
 			this.setBackgroundColor(ColorConstants.lightGray);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(36), getMapMode().DPtoLP(36)));
+
+			// begin custom code
+			IMapMode mapMode = getMapMode();
+			Dimension size = UiModelingDiagramUtil.getSize(ButtonEditPart.this);
+			this.setPreferredSize(new Dimension(mapMode.DPtoLP(size.width), mapMode.DPtoLP(size.height)));
+
+			// end of custom code
+
 			createContents();
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT: added adapter to capture size changes
 		 */
 		private void createContents() {
 
@@ -286,6 +306,13 @@ public class ButtonEditPart extends ShapeNodeEditPart {
 			fButton_text.setText("My Button");
 
 			fButton_text.setFont(FBUTTON_TEXT_FONT);
+
+			// begin custom code
+			fButton_text.setTextWrap(true);
+
+			ButtonEditPart editPart = ButtonEditPart.this;
+			new UiModelingAdapter(editPart).adapt();
+			// end of custom code
 
 			this.add(fButton_text);
 

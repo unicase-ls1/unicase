@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
@@ -33,6 +34,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
+import org.unicase.uiModeling.diagram.UiModelingAdapter;
+import org.unicase.uiModeling.diagram.util.UiModelingDiagramUtil;
 
 /**
  * @generated
@@ -163,11 +166,13 @@ public class Button2EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT: added customized size
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(36, 36);
-		return result;
+		// begin custom code
+		Dimension size = UiModelingDiagramUtil.getSize(this);
+		// end of custom code
+		return new DefaultSizeNodeFigure(size.width, size.height);
 	}
 
 	/**
@@ -266,7 +271,7 @@ public class Button2EditPart extends ShapeNodeEditPart {
 		private WrappingLabel fButton_text;
 
 		/**
-		 * @generated
+		 * @generated NOT: added customized size
 		 */
 		public ButtonDescriptor() {
 
@@ -278,12 +283,18 @@ public class Button2EditPart extends ShapeNodeEditPart {
 			this.setOutline(false);
 			this.setBorder(new LineBorder(ColorConstants.black));
 			this.setBackgroundColor(ColorConstants.lightGray);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(36), getMapMode().DPtoLP(36)));
+
+			// begin custom code
+			IMapMode mapMode = getMapMode();
+			Dimension size = UiModelingDiagramUtil.getSize(Button2EditPart.this);
+			this.setPreferredSize(new Dimension(mapMode.DPtoLP(size.width), mapMode.DPtoLP(size.height)));
+			// end of custom code
+
 			createContents();
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT: added adapter to capture size changes
 		 */
 		private void createContents() {
 
@@ -292,6 +303,12 @@ public class Button2EditPart extends ShapeNodeEditPart {
 			fButton_text.setText("My Button");
 
 			fButton_text.setFont(FBUTTON_TEXT_FONT);
+
+			// begin custom code
+			fButton_text.setTextWrap(true);
+
+			new UiModelingAdapter(Button2EditPart.this).adapt();
+			// end of custom code
 
 			this.add(fButton_text);
 

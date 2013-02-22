@@ -14,6 +14,9 @@ import org.unicase.uiModeling.diagram.part.UiModelingDiagramEditor;
  */
 public class UiModelingOpener extends DiagramOpener implements ModelElementOpener {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public int canOpen(EObject modelElement) {
 		if (modelElement instanceof Panel) {
 			return 1;
@@ -21,6 +24,9 @@ public class UiModelingOpener extends DiagramOpener implements ModelElementOpene
 		return DONOTOPEN;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void openModelElement(EObject modelElement) {
 		if (modelElement instanceof Panel) {
 			super.openDiagram((Panel) modelElement, UiModelingDiagramEditor.ID);

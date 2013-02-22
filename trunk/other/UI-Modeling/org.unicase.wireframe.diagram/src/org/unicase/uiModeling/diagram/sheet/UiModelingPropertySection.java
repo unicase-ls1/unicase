@@ -59,6 +59,7 @@ public class UiModelingPropertySection extends AdvancedPropertySection implement
 
 	/**
 	 * Modify/unwrap selection.
+	 * 
 	 * @generated
 	 */
 	protected Object transformSelection(Object selected) {

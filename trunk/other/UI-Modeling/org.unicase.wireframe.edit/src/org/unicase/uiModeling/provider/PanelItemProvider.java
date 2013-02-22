@@ -6,7 +6,6 @@
  */
 package org.unicase.uiModeling.provider;
 
-
 import java.util.Collection;
 import java.util.List;
 
@@ -29,23 +28,16 @@ import org.unicase.uiModeling.UiModelingFactory;
 import org.unicase.uiModeling.UiModelingPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.uiModeling.Panel} object.
- * <!-- begin-user-doc -->
- * <!-- end-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.uiModeling.Panel} object. <!-- begin-user-doc --> <!--
+ * end-user-doc -->
+ * 
  * @generated
  */
-public class PanelItemProvider
-	extends MEDiagramItemProvider
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class PanelItemProvider extends MEDiagramItemProvider implements IEditingDomainItemProvider,
+	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PanelItemProvider(AdapterFactory adapterFactory) {
@@ -53,9 +45,8 @@ public class PanelItemProvider
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,104 +58,118 @@ public class PanelItemProvider
 			addYPropertyDescriptor(object);
 			addWidthPropertyDescriptor(object);
 			addHeightPropertyDescriptor(object);
+			addPositioningEnabledPropertyDescriptor(object);
+			addSizingEnabledPropertyDescriptor(object);
+			addLayoutEnabledPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the X feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the X feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addXPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Panel_x_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Panel_x_feature", "_UI_Panel_type"),
-				 UiModelingPackage.Literals.PANEL__X,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Panel_x_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Panel_x_feature", "_UI_Panel_type"),
+			UiModelingPackage.Literals.PANEL__X, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null,
+			null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Y feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Y feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addYPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Panel_y_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Panel_y_feature", "_UI_Panel_type"),
-				 UiModelingPackage.Literals.PANEL__Y,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Panel_y_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Panel_y_feature", "_UI_Panel_type"),
+			UiModelingPackage.Literals.PANEL__Y, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null,
+			null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Width feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Width feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addWidthPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Panel_width_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Panel_width_feature", "_UI_Panel_type"),
-				 UiModelingPackage.Literals.PANEL__WIDTH,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Panel_width_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Panel_width_feature", "_UI_Panel_type"),
+			UiModelingPackage.Literals.PANEL__WIDTH, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+			null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Height feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds a property descriptor for the Height feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addHeightPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Panel_height_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Panel_height_feature", "_UI_Panel_type"),
-				 UiModelingPackage.Literals.PANEL__HEIGHT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Panel_height_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Panel_height_feature", "_UI_Panel_type"),
+			UiModelingPackage.Literals.PANEL__HEIGHT, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+			null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Positioning Enabled feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 */
+	protected void addPositioningEnabledPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Panel_positioningEnabled_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Panel_positioningEnabled_feature", "_UI_Panel_type"),
+			UiModelingPackage.Literals.PANEL__POSITIONING_ENABLED, true, false, false,
+			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Sizing Enabled feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addSizingEnabledPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Panel_sizingEnabled_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Panel_sizingEnabled_feature", "_UI_Panel_type"),
+			UiModelingPackage.Literals.PANEL__SIZING_ENABLED, true, false, false,
+			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Layout Enabled feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addLayoutEnabledPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Panel_layoutEnabled_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Panel_layoutEnabled_feature", "_UI_Panel_type"),
+			UiModelingPackage.Literals.PANEL__LAYOUT_ENABLED, true, false, false,
+			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -177,8 +182,8 @@ public class PanelItemProvider
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -190,9 +195,8 @@ public class PanelItemProvider
 	}
 
 	/**
-	 * This returns Panel.gif.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns Panel.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -201,24 +205,22 @@ public class PanelItemProvider
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Panel)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Panel_type") :
-			getString("_UI_Panel_type") + " " + label;
+		String label = ((Panel) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_Panel_type") : getString("_UI_Panel_type") + " "
+			+ label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached
-	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -226,85 +228,66 @@ public class PanelItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Panel.class)) {
-			case UiModelingPackage.PANEL__X:
-			case UiModelingPackage.PANEL__Y:
-			case UiModelingPackage.PANEL__WIDTH:
-			case UiModelingPackage.PANEL__HEIGHT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case UiModelingPackage.PANEL__WIDGETS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case UiModelingPackage.PANEL__X:
+		case UiModelingPackage.PANEL__Y:
+		case UiModelingPackage.PANEL__WIDTH:
+		case UiModelingPackage.PANEL__HEIGHT:
+		case UiModelingPackage.PANEL__POSITIONING_ENABLED:
+		case UiModelingPackage.PANEL__SIZING_ENABLED:
+		case UiModelingPackage.PANEL__LAYOUT_ENABLED:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case UiModelingPackage.PANEL__WIDGETS:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(UiModelingPackage.Literals.PANEL__WIDGETS,
-				 UiModelingFactory.eINSTANCE.createWindow()));
+		newChildDescriptors.add(createChildParameter(UiModelingPackage.Literals.PANEL__WIDGETS,
+			UiModelingFactory.eINSTANCE.createWindow()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(UiModelingPackage.Literals.PANEL__WIDGETS,
-				 UiModelingFactory.eINSTANCE.createLabel()));
+		newChildDescriptors.add(createChildParameter(UiModelingPackage.Literals.PANEL__WIDGETS,
+			UiModelingFactory.eINSTANCE.createLabel()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(UiModelingPackage.Literals.PANEL__WIDGETS,
-				 UiModelingFactory.eINSTANCE.createTextField()));
+		newChildDescriptors.add(createChildParameter(UiModelingPackage.Literals.PANEL__WIDGETS,
+			UiModelingFactory.eINSTANCE.createTextField()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(UiModelingPackage.Literals.PANEL__WIDGETS,
-				 UiModelingFactory.eINSTANCE.createButton()));
+		newChildDescriptors.add(createChildParameter(UiModelingPackage.Literals.PANEL__WIDGETS,
+			UiModelingFactory.eINSTANCE.createButton()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(UiModelingPackage.Literals.PANEL__WIDGETS,
-				 UiModelingFactory.eINSTANCE.createText()));
+		newChildDescriptors.add(createChildParameter(UiModelingPackage.Literals.PANEL__WIDGETS,
+			UiModelingFactory.eINSTANCE.createText()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(UiModelingPackage.Literals.PANEL__WIDGETS,
-				 UiModelingFactory.eINSTANCE.createImage()));
+		newChildDescriptors.add(createChildParameter(UiModelingPackage.Literals.PANEL__WIDGETS,
+			UiModelingFactory.eINSTANCE.createImage()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(UiModelingPackage.Literals.PANEL__WIDGETS,
-				 UiModelingFactory.eINSTANCE.createRadioGroup()));
+		newChildDescriptors.add(createChildParameter(UiModelingPackage.Literals.PANEL__WIDGETS,
+			UiModelingFactory.eINSTANCE.createRadioGroup()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(UiModelingPackage.Literals.PANEL__WIDGETS,
-				 UiModelingFactory.eINSTANCE.createCheckboxGroup()));
+		newChildDescriptors.add(createChildParameter(UiModelingPackage.Literals.PANEL__WIDGETS,
+			UiModelingFactory.eINSTANCE.createCheckboxGroup()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(UiModelingPackage.Literals.PANEL__WIDGETS,
-				 UiModelingFactory.eINSTANCE.createDropdownList()));
+		newChildDescriptors.add(createChildParameter(UiModelingPackage.Literals.PANEL__WIDGETS,
+			UiModelingFactory.eINSTANCE.createDropdownList()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(UiModelingPackage.Literals.PANEL__WIDGETS,
-				 UiModelingFactory.eINSTANCE.createImageButton()));
+		newChildDescriptors.add(createChildParameter(UiModelingPackage.Literals.PANEL__WIDGETS,
+			UiModelingFactory.eINSTANCE.createImageButton()));
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

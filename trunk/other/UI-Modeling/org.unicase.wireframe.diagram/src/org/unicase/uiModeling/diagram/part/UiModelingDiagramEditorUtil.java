@@ -147,6 +147,7 @@ public class UiModelingDiagramEditorUtil {
 
 	/**
 	 * This method should be called within a workspace modify operation since it creates resources.
+	 * 
 	 * @generated
 	 */
 	public static Resource createDiagram(URI diagramURI, URI modelURI, IProgressMonitor progressMonitor) {
@@ -199,9 +200,8 @@ public class UiModelingDiagramEditorUtil {
 	}
 
 	/**
-	 * Create a new instance of domain element associated with canvas.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Create a new instance of domain element associated with canvas. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static org.unicase.uiModeling.Panel createInitialModel() {
@@ -209,9 +209,8 @@ public class UiModelingDiagramEditorUtil {
 	}
 
 	/**
-	 * Store model element in the resource.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Store model element in the resource. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static void attachModelToResource(org.unicase.uiModeling.Panel model, Resource resource) {
@@ -304,6 +303,7 @@ public class UiModelingDiagramEditorUtil {
 
 	/**
 	 * XXX This is quite suspicious code (especially editPartTmpHolder) and likely to be removed soon
+	 * 
 	 * @generated
 	 */
 	public static class LazyElement2ViewMap {
@@ -379,6 +379,6 @@ public class UiModelingDiagramEditorUtil {
 			}
 			return complete;
 		}
-	} //LazyElement2ViewMap	
+	} // LazyElement2ViewMap
 
 }
