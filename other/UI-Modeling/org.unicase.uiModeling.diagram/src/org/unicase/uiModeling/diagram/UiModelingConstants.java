@@ -1,11 +1,13 @@
 package org.unicase.uiModeling.diagram;
 
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.emf.ecore.EAttribute;
 import org.unicase.uiModeling.Button;
 import org.unicase.uiModeling.Image;
 import org.unicase.uiModeling.Label;
 import org.unicase.uiModeling.Text;
 import org.unicase.uiModeling.TextField;
+import org.unicase.uiModeling.UiModelingPackage;
 import org.unicase.uiModeling.Window;
 
 /**
@@ -50,5 +52,30 @@ public final class UiModelingConstants {
 	 * Default size for {@link Window} elements in UI Modeling diagrams.
 	 */
 	public static final Dimension WINDOW_SIZE = new Dimension(400, 200);
+
+	/**
+	 * The attribute specifying whether or not positioning is enabled for a UI Modeling diagram.
+	 */
+	public static final EAttribute POSITIONING_ENABLED = UiModelingPackage.eINSTANCE.getPanel_PositioningEnabled();
+	/**
+	 * The attribute specifying whether or not automatic sizing is enabled for a UI Modeling diagram.
+	 */
+	public static final EAttribute SIZING_ENABLED = UiModelingPackage.eINSTANCE.getPanel_SizingEnabled();
+	/**
+	 * The attribute specifying a widget's width.
+	 */
+	public static final EAttribute WIDGET_WIDTH = UiModelingPackage.eINSTANCE.getWidget_Width();
+	/**
+	 * The attribute specifying a widget's height.
+	 */
+	public static final EAttribute WIDGET_HEIGHT = UiModelingPackage.eINSTANCE.getWidget_Height();
+	/**
+	 * The attribute specifying a widget's X-coordinate.
+	 */
+	public static final EAttribute WIDGET_X = UiModelingPackage.eINSTANCE.getWidget_X();
+	/**
+	 * The attribute specifying a widget's Y-coordinate.
+	 */
+	public static final EAttribute WIDGET_Y = UiModelingPackage.eINSTANCE.getWidget_Y();
 
 }

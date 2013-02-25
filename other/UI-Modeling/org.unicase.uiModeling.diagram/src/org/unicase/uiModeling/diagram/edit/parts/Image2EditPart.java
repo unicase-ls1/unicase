@@ -13,6 +13,7 @@ import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -26,7 +27,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.draw2d.ui.render.figures.ScalableImageFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -35,9 +35,9 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
+import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 import org.unicase.uiModeling.Image;
 import org.unicase.uiModeling.UiModelingPackage;
-import org.unicase.uiModeling.diagram.UiModelingAdapter;
 import org.unicase.uiModeling.diagram.util.UiModelingDiagramUtil;
 
 /**
@@ -59,6 +59,16 @@ public class Image2EditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure primaryShape;
+
+	/**
+	 * The location of this edit part's figure.
+	 */
+	private Point location;
+
+	/**
+	 * The size of this edit part's figure.
+	 */
+	private Dimension size;
 
 	/**
 	 * @generated
@@ -103,6 +113,45 @@ public class Image2EditPart extends ShapeNodeEditPart {
 			}
 		};
 		return lep;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	protected void handleNotificationEvent(Notification notification) {
+		super.handleNotificationEvent(notification);
+		Object notifier = notification.getNotifier();
+
+		// only change layout if this element or the diagram element changed
+		if (EditPartUtility.getElement(this) == notifier || getDiagramView() == notifier) {
+
+			boolean changed = false;
+			Point newLocation = UiModelingDiagramUtil.getLocation(notification, this);
+			if (newLocation != null) {
+				location = newLocation;
+				changed = true;
+			}
+			Dimension newSize = UiModelingDiagramUtil.getSize(notification, this);
+			if (newSize != null) {
+				size = newSize;
+				changed = true;
+			}
+
+			// only update layout if either size or location have changed
+			if (changed) {
+				UiModelingDiagramUtil.updateLayout(size, location, this);
+				if (primaryShape instanceof ImageDescriptor) {
+					((ImageDescriptor) primaryShape).updateImage();
+				}
+			}
+		}
+
+		if (UiModelingPackage.eINSTANCE.getImage_ImageURL().equals(notification.getFeature())) {
+			if (primaryShape instanceof ImageDescriptor) {
+				((ImageDescriptor) primaryShape).updateImage();
+			}
+		}
+
 	}
 
 	/**
@@ -169,13 +218,10 @@ public class Image2EditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated NOT: added customized size
+	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		// begin custom code
-		Dimension size = UiModelingDiagramUtil.getSize(this);
-		// end of custom code
-		return new DefaultSizeNodeFigure(size.width, size.height);
+		return new DefaultSizeNodeFigure(40, 40);
 	}
 
 	/**
@@ -275,8 +321,10 @@ public class Image2EditPart extends ShapeNodeEditPart {
 
 		private ScalableImageFigure imageImageFigure0;
 
+		private GridData constraintImageImageFigure0;
+
 		/**
-		 * @generated NOT: added customized size
+		 * @generated
 		 */
 		public ImageDescriptor() {
 
@@ -286,12 +334,6 @@ public class Image2EditPart extends ShapeNodeEditPart {
 			this.setLayoutManager(layoutThis);
 
 			this.setOutline(false);
-
-			// begin custom code
-			IMapMode mapMode = getMapMode();
-			Dimension size = UiModelingDiagramUtil.getSize(Image2EditPart.this);
-			this.setPreferredSize(new Dimension(mapMode.DPtoLP(size.width), mapMode.DPtoLP(size.height)));
-			// end of custom code
 
 			createContents();
 		}
@@ -306,7 +348,7 @@ public class Image2EditPart extends ShapeNodeEditPart {
 			if (adapter != null && adapter instanceof Image) {
 				final Image image = (Image) adapter;
 
-				final GridData constraintImageImageFigure0 = new GridData();
+				constraintImageImageFigure0 = new GridData();
 				constraintImageImageFigure0.verticalAlignment = GridData.BEGINNING;
 				constraintImageImageFigure0.horizontalAlignment = GridData.CENTER;
 				constraintImageImageFigure0.horizontalIndent = 0;
@@ -318,26 +360,6 @@ public class Image2EditPart extends ShapeNodeEditPart {
 				imageImageFigure0 = new ScalableImageFigure(getSwtImage(image));
 				imageImageFigure0.setPreferredImageSize(150, 100);
 				this.add(imageImageFigure0, constraintImageImageFigure0);
-
-				new UiModelingAdapter(Image2EditPart.this) {
-
-					public void notifyChanged(Notification notification) {
-						super.notifyChanged(notification);
-						if (UiModelingPackage.eINSTANCE.getImage_ImageURL().equals(notification.getFeature())) {
-							// remove old figures
-							ImageDescriptor.this.remove(imageImageFigure0);
-							ImageDescriptor.this.remove(fImage_text);
-							// add figures
-							imageImageFigure0 = new ScalableImageFigure(getSwtImage(image));
-							Dimension size = getPreferredSize();
-							imageImageFigure0.setPreferredImageSize(size.width - 10, size.height - 20);
-							ImageDescriptor.this.add(imageImageFigure0, constraintImageImageFigure0);
-							ImageDescriptor.this.add(fImage_text);
-						}
-					}
-
-				}.adapt();
-
 			}
 
 			fImage_text = new WrappingLabel();
@@ -373,6 +395,21 @@ public class Image2EditPart extends ShapeNodeEditPart {
 		 */
 		public WrappingLabel getImage_text() {
 			return fImage_text;
+		}
+
+		public void updateImage() {
+			Object adapter = getAdapter(Image.class);
+			if (adapter != null && adapter instanceof Image) {
+				final Image image = (Image) adapter;
+				// remove old figures
+				remove(fImage_text);
+				remove(imageImageFigure0);
+				// add figures
+				imageImageFigure0 = new ScalableImageFigure(getSwtImage(image));
+				imageImageFigure0.setPreferredImageSize(size.width - 10, size.height - 20);
+				ImageDescriptor.this.add(imageImageFigure0, constraintImageImageFigure0);
+				ImageDescriptor.this.add(fImage_text);
+			}
 		}
 
 	}

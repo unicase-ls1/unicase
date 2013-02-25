@@ -5,9 +5,14 @@ import java.net.URL;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.Size;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
@@ -20,6 +25,7 @@ import org.unicase.uiModeling.TextField;
 import org.unicase.uiModeling.Widget;
 import org.unicase.uiModeling.Window;
 import org.unicase.uiModeling.diagram.UiModelingConstants;
+import org.unicase.uiModeling.diagram.edit.commands.SetConstraintCommand;
 
 /**
  * This utility class provides access to all images required by the edit parts.
@@ -200,6 +206,91 @@ public final class UiModelingDiagramUtil {
 			}
 		}
 		return editPart.getLocation();
+	}
+
+	/**
+	 * Retrieves the new size for an edit part based on a notification.
+	 * 
+	 * @param notification the notification used to compute the new size
+	 * @param editPart the edit part to retrieve the size for
+	 * @return the new size of <code>editPart</code> if an update is required,<br />
+	 *         <b>null</b> otherwise
+	 * @see #requiresUpdate(Notification, EAttribute, EAttribute, EAttribute)
+	 */
+	public static Dimension getSize(Notification notification, ShapeNodeEditPart editPart) {
+		Dimension result;
+		if (requiresUpdate(notification, UiModelingConstants.SIZING_ENABLED, UiModelingConstants.WIDGET_WIDTH,
+			UiModelingConstants.WIDGET_HEIGHT)) {
+			result = UiModelingDiagramUtil.getSize(editPart);
+		} else {
+			result = null;
+		}
+		return result;
+	}
+
+	/**
+	 * Retrieves the new location for an edit part based on a notification.
+	 * 
+	 * @param notification the notification used to compute the new size
+	 * @param editPart the edit part to retrieve the size for
+	 * @return the new size of <code>editPart</code> if an update is required,<br />
+	 *         <b>null</b> otherwise
+	 * @see #requiresUpdate(Notification, EAttribute, EAttribute, EAttribute)
+	 */
+	public static Point getLocation(Notification notification, ShapeNodeEditPart editPart) {
+		Point result;
+		if (requiresUpdate(notification, UiModelingConstants.POSITIONING_ENABLED, UiModelingConstants.WIDGET_X,
+			UiModelingConstants.WIDGET_Y)) {
+			result = UiModelingDiagramUtil.getLocation(editPart);
+		} else {
+			result = null;
+		}
+		return result;
+	}
+
+	/**
+	 * Checks whether an update for the layout of this edit part is required or not.
+	 * 
+	 * @param notification the notification that initially notified this adapter
+	 * @param boolAttribute the boolean attribute to check for notification changes
+	 * @param firstFeature first feature to check for changes
+	 * @param secondFeature second feature to check for changes
+	 * @return whether the layout of this edit part needs to be updated or not
+	 */
+	private static boolean requiresUpdate(Notification notification, EAttribute boolAttribute, EAttribute firstFeature,
+		EAttribute secondFeature) {
+		Object feature = notification.getFeature();
+		EObject notifier = (EObject) notification.getNotifier();
+		if (boolAttribute.equals(feature) && notification.getNewBooleanValue() == true) {
+			return true;
+		}
+		if ((firstFeature.equals(feature) || secondFeature.equals(feature)) && notifier.eIsSet(firstFeature)
+			&& notifier.eIsSet(secondFeature)) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Updates the layout of this edit part based on {@link #size} and {@link #location}.
+	 */
+	public static void updateLayout(Dimension size, Point location, final ShapeNodeEditPart editPart) {
+		if (size == null) {
+			size = UiModelingDiagramUtil.getSize(editPart);
+		}
+		if (location == null) {
+			location = UiModelingDiagramUtil.getLocation(editPart);
+		}
+		View view = editPart.getNotationView();
+
+		final ICommandProxy command = new ICommandProxy(new SetConstraintCommand(view, location, size));
+		if (command.canExecute()) {
+			new Thread() {
+				public void run() {
+					editPart.getDiagramEditDomain().getDiagramCommandStack().execute(command);
+				}
+			}.start();
+		}
 	}
 
 }
