@@ -8,6 +8,8 @@ import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -20,7 +22,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
@@ -28,7 +29,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.uiModeling.diagram.UiModelingAdapter;
+import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 import org.unicase.uiModeling.diagram.util.UiModelingDiagramUtil;
 
 /**
@@ -50,6 +51,16 @@ public class WindowEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure primaryShape;
+
+	/**
+	 * The location of this edit part's figure.
+	 */
+	private Point location;
+
+	/**
+	 * The size of this edit part's figure.
+	 */
+	private Dimension size;
 
 	/**
 	 * @generated
@@ -94,6 +105,36 @@ public class WindowEditPart extends ShapeNodeEditPart {
 			}
 		};
 		return lep;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	protected void handleNotificationEvent(Notification notification) {
+		super.handleNotificationEvent(notification);
+		Object notifier = notification.getNotifier();
+
+		// only change layout if this element or the diagram element changed
+		if (EditPartUtility.getElement(this) == notifier || getDiagramView() == notifier) {
+
+			boolean changed = false;
+			Point newLocation = UiModelingDiagramUtil.getLocation(notification, this);
+			if (newLocation != null) {
+				location = newLocation;
+				changed = true;
+			}
+			Dimension newSize = UiModelingDiagramUtil.getSize(notification, this);
+			if (newSize != null) {
+				size = newSize;
+				changed = true;
+			}
+
+			// only update layout if either size or location have changed
+			if (changed) {
+				UiModelingDiagramUtil.updateLayout(size, location, this);
+			}
+		}
+
 	}
 
 	/**
@@ -176,13 +217,10 @@ public class WindowEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated NOT: added customized size
+	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		// begin custom code
-		Dimension size = UiModelingDiagramUtil.getSize(this);
-		return new DefaultSizeNodeFigure(size.width, size.height);
-		// end of custom code
+		return new DefaultSizeNodeFigure(40, 40);
 	}
 
 	/**
@@ -286,7 +324,7 @@ public class WindowEditPart extends ShapeNodeEditPart {
 		private RectangleFigure fWindow_widgets;
 
 		/**
-		 * @generated NOT: added customized size
+		 * @generated
 		 */
 		public WindowDescriptor() {
 
@@ -295,16 +333,11 @@ public class WindowEditPart extends ShapeNodeEditPart {
 			layoutThis.makeColumnsEqualWidth = true;
 			this.setLayoutManager(layoutThis);
 
-			// begin custom code
-			IMapMode mapMode = getMapMode();
-			Dimension size = UiModelingDiagramUtil.getSize(WindowEditPart.this);
-			this.setPreferredSize(new Dimension(mapMode.DPtoLP(size.width), mapMode.DPtoLP(size.height)));
-			// end of custom code
 			createContents();
 		}
 
 		/**
-		 * @generated NOT: added adapter to capture size changes
+		 * @generated
 		 */
 		private void createContents() {
 
@@ -357,11 +390,6 @@ public class WindowEditPart extends ShapeNodeEditPart {
 			constraintFWindow_widgets.grabExcessHorizontalSpace = true;
 			constraintFWindow_widgets.grabExcessVerticalSpace = true;
 			this.add(fWindow_widgets, constraintFWindow_widgets);
-
-			// begin custom code
-			new UiModelingAdapter(WindowEditPart.this).adapt();
-			// end of custom code
-
 		}
 
 		/**
