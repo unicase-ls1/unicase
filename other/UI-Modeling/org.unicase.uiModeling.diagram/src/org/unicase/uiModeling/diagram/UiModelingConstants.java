@@ -2,6 +2,7 @@ package org.unicase.uiModeling.diagram;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.uiModeling.Button;
 import org.unicase.uiModeling.Image;
 import org.unicase.uiModeling.Label;
@@ -23,6 +24,9 @@ public final class UiModelingConstants {
 	private UiModelingConstants() {
 		// nothing to do
 	}
+
+	private static final NotationPackage notation = NotationPackage.eINSTANCE;
+	private static final UiModelingPackage uiModeling = UiModelingPackage.eINSTANCE;
 
 	/**
 	 * Default size for general elements in UI Modeling diagrams whose size can't be determined properly.
@@ -56,26 +60,31 @@ public final class UiModelingConstants {
 	/**
 	 * The attribute specifying whether or not positioning is enabled for a UI Modeling diagram.
 	 */
-	public static final EAttribute POSITIONING_ENABLED = UiModelingPackage.eINSTANCE.getPanel_PositioningEnabled();
+	public static final EAttribute POSITIONING_ENABLED = uiModeling.getPanel_PositioningEnabled();
 	/**
 	 * The attribute specifying whether or not automatic sizing is enabled for a UI Modeling diagram.
 	 */
-	public static final EAttribute SIZING_ENABLED = UiModelingPackage.eINSTANCE.getPanel_SizingEnabled();
+	public static final EAttribute SIZING_ENABLED = uiModeling.getPanel_SizingEnabled();
 	/**
 	 * The attribute specifying a widget's width.
 	 */
-	public static final EAttribute WIDGET_WIDTH = UiModelingPackage.eINSTANCE.getWidget_Width();
+	public static final EAttribute WIDGET_WIDTH = uiModeling.getWidget_Width();
 	/**
 	 * The attribute specifying a widget's height.
 	 */
-	public static final EAttribute WIDGET_HEIGHT = UiModelingPackage.eINSTANCE.getWidget_Height();
+	public static final EAttribute WIDGET_HEIGHT = uiModeling.getWidget_Height();
 	/**
 	 * The attribute specifying a widget's X-coordinate.
 	 */
-	public static final EAttribute WIDGET_X = UiModelingPackage.eINSTANCE.getWidget_X();
+	public static final EAttribute WIDGET_X = uiModeling.getWidget_X();
 	/**
 	 * The attribute specifying a widget's Y-coordinate.
 	 */
-	public static final EAttribute WIDGET_Y = UiModelingPackage.eINSTANCE.getWidget_Y();
+	public static final EAttribute WIDGET_Y = uiModeling.getWidget_Y();
+
+	public static final EAttribute NOTATION_X = notation.getLocation_X();
+	public static final EAttribute NOTATION_Y = notation.getLocation_Y();
+	public static final EAttribute NOTATION_WIDTH = notation.getSize_Width();
+	public static final EAttribute NOTATION_HEIGHT = notation.getSize_Height();
 
 }
