@@ -32,31 +32,30 @@ import org.unicase.uiModeling.Window;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class UiModelingFactoryImpl extends EFactoryImpl implements UiModelingFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static UiModelingFactory init() {
 		try {
-			UiModelingFactory theUiModelingFactory = (UiModelingFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/model/uiModeling");
+			UiModelingFactory theUiModelingFactory = (UiModelingFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/model/uiModeling"); 
 			if (theUiModelingFactory != null) {
 				return theUiModelingFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new UiModelingFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public UiModelingFactoryImpl() {
@@ -65,50 +64,33 @@ public class UiModelingFactoryImpl extends EFactoryImpl implements UiModelingFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case UiModelingPackage.STORYBOARD:
-			return createStoryboard();
-		case UiModelingPackage.PANEL:
-			return createPanel();
-		case UiModelingPackage.WINDOW:
-			return createWindow();
-		case UiModelingPackage.LABEL:
-			return createLabel();
-		case UiModelingPackage.TEXT_FIELD:
-			return createTextField();
-		case UiModelingPackage.BUTTON:
-			return createButton();
-		case UiModelingPackage.TEXT:
-			return createText();
-		case UiModelingPackage.IMAGE:
-			return createImage();
-		case UiModelingPackage.RADIO_GROUP:
-			return createRadioGroup();
-		case UiModelingPackage.RADIO_BUTTON:
-			return createRadioButton();
-		case UiModelingPackage.CHECKBOX_GROUP:
-			return createCheckboxGroup();
-		case UiModelingPackage.CHECKBOX:
-			return createCheckbox();
-		case UiModelingPackage.DROPDOWN_LIST:
-			return createDropdownList();
-		case UiModelingPackage.DROPDOWN_ITEM:
-			return createDropdownItem();
-		case UiModelingPackage.IMAGE_BUTTON:
-			return createImageButton();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			case UiModelingPackage.STORYBOARD: return createStoryboard();
+			case UiModelingPackage.PANEL: return createPanel();
+			case UiModelingPackage.WINDOW: return createWindow();
+			case UiModelingPackage.LABEL: return createLabel();
+			case UiModelingPackage.TEXT_FIELD: return createTextField();
+			case UiModelingPackage.BUTTON: return createButton();
+			case UiModelingPackage.TEXT: return createText();
+			case UiModelingPackage.IMAGE: return createImage();
+			case UiModelingPackage.RADIO_GROUP: return createRadioGroup();
+			case UiModelingPackage.RADIO_BUTTON: return createRadioButton();
+			case UiModelingPackage.CHECKBOX_GROUP: return createCheckboxGroup();
+			case UiModelingPackage.CHECKBOX: return createCheckbox();
+			case UiModelingPackage.DROPDOWN_LIST: return createDropdownList();
+			case UiModelingPackage.DROPDOWN_ITEM: return createDropdownItem();
+			case UiModelingPackage.IMAGE_BUTTON: return createImageButton();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Storyboard createStoryboard() {
@@ -118,7 +100,6 @@ public class UiModelingFactoryImpl extends EFactoryImpl implements UiModelingFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Panel createPanel() {
@@ -128,7 +109,6 @@ public class UiModelingFactoryImpl extends EFactoryImpl implements UiModelingFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Window createWindow() {
@@ -138,7 +118,6 @@ public class UiModelingFactoryImpl extends EFactoryImpl implements UiModelingFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Label createLabel() {
@@ -148,7 +127,6 @@ public class UiModelingFactoryImpl extends EFactoryImpl implements UiModelingFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TextField createTextField() {
@@ -158,7 +136,6 @@ public class UiModelingFactoryImpl extends EFactoryImpl implements UiModelingFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Button createButton() {
@@ -168,7 +145,6 @@ public class UiModelingFactoryImpl extends EFactoryImpl implements UiModelingFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Text createText() {
@@ -178,7 +154,6 @@ public class UiModelingFactoryImpl extends EFactoryImpl implements UiModelingFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Image createImage() {
@@ -188,7 +163,6 @@ public class UiModelingFactoryImpl extends EFactoryImpl implements UiModelingFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RadioGroup createRadioGroup() {
@@ -198,7 +172,6 @@ public class UiModelingFactoryImpl extends EFactoryImpl implements UiModelingFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RadioButton createRadioButton() {
@@ -208,7 +181,6 @@ public class UiModelingFactoryImpl extends EFactoryImpl implements UiModelingFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CheckboxGroup createCheckboxGroup() {
@@ -218,7 +190,6 @@ public class UiModelingFactoryImpl extends EFactoryImpl implements UiModelingFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Checkbox createCheckbox() {
@@ -228,7 +199,6 @@ public class UiModelingFactoryImpl extends EFactoryImpl implements UiModelingFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DropdownList createDropdownList() {
@@ -238,7 +208,6 @@ public class UiModelingFactoryImpl extends EFactoryImpl implements UiModelingFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DropdownItem createDropdownItem() {
@@ -248,7 +217,6 @@ public class UiModelingFactoryImpl extends EFactoryImpl implements UiModelingFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ImageButton createImageButton() {
@@ -258,16 +226,14 @@ public class UiModelingFactoryImpl extends EFactoryImpl implements UiModelingFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UiModelingPackage getUiModelingPackage() {
-		return (UiModelingPackage) getEPackage();
+		return (UiModelingPackage)getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

@@ -28,6 +28,10 @@ public class UiModelingDiagramUpdater {
 			return getPanel_45SemanticChildren(view);
 		case org.unicase.uiModeling.diagram.edit.parts.WindowWindowWidgetCompartmentEditPart.VISUAL_ID:
 			return getWindowWindowWidgetCompartment_7001SemanticChildren(view);
+		case org.unicase.uiModeling.diagram.edit.parts.RadioGroupRadioButtonsCompartmentEditPart.VISUAL_ID:
+			return getRadioGroupRadioButtonsCompartment_7002SemanticChildren(view);
+		case org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupCheckboxesCompartmentEditPart.VISUAL_ID:
+			return getCheckboxGroupCheckboxesCompartment_7003SemanticChildren(view);
 		}
 		return Collections.emptyList();
 	}
@@ -67,6 +71,14 @@ public class UiModelingDiagramUpdater {
 				continue;
 			}
 			if (visualID == org.unicase.uiModeling.diagram.edit.parts.ImageEditPart.VISUAL_ID) {
+				result.add(new org.unicase.uiModeling.diagram.part.UiModelingNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == org.unicase.uiModeling.diagram.edit.parts.RadioGroupEditPart.VISUAL_ID) {
+				result.add(new org.unicase.uiModeling.diagram.part.UiModelingNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (visualID == org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupEditPart.VISUAL_ID) {
 				result.add(new org.unicase.uiModeling.diagram.part.UiModelingNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -119,6 +131,59 @@ public class UiModelingDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<org.unicase.uiModeling.diagram.part.UiModelingNodeDescriptor> getRadioGroupRadioButtonsCompartment_7002SemanticChildren(
+		View view) {
+		if (false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		org.unicase.uiModeling.RadioGroup modelElement = (org.unicase.uiModeling.RadioGroup) containerView.getElement();
+		LinkedList<org.unicase.uiModeling.diagram.part.UiModelingNodeDescriptor> result = new LinkedList<org.unicase.uiModeling.diagram.part.UiModelingNodeDescriptor>();
+		for (Iterator<?> it = modelElement.getButtons().iterator(); it.hasNext();) {
+			org.unicase.uiModeling.RadioButton childElement = (org.unicase.uiModeling.RadioButton) it.next();
+			int visualID = org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry.getNodeVisualID(view,
+				childElement);
+			if (visualID == org.unicase.uiModeling.diagram.edit.parts.RadioButtonEditPart.VISUAL_ID) {
+				result.add(new org.unicase.uiModeling.diagram.part.UiModelingNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<org.unicase.uiModeling.diagram.part.UiModelingNodeDescriptor> getCheckboxGroupCheckboxesCompartment_7003SemanticChildren(
+		View view) {
+		if (false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		org.unicase.uiModeling.CheckboxGroup modelElement = (org.unicase.uiModeling.CheckboxGroup) containerView
+			.getElement();
+		LinkedList<org.unicase.uiModeling.diagram.part.UiModelingNodeDescriptor> result = new LinkedList<org.unicase.uiModeling.diagram.part.UiModelingNodeDescriptor>();
+		for (Iterator<?> it = modelElement.getBoxes().iterator(); it.hasNext();) {
+			org.unicase.uiModeling.Checkbox childElement = (org.unicase.uiModeling.Checkbox) it.next();
+			int visualID = org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry.getNodeVisualID(view,
+				childElement);
+			if (visualID == org.unicase.uiModeling.diagram.edit.parts.CheckboxEditPart.VISUAL_ID) {
+				result.add(new org.unicase.uiModeling.diagram.part.UiModelingNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<org.unicase.uiModeling.diagram.part.UiModelingLinkDescriptor> getContainedLinks(View view) {
 		switch (org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry.getVisualID(view)) {
 		case org.unicase.uiModeling.diagram.edit.parts.PanelEditPart.VISUAL_ID:
@@ -135,6 +200,10 @@ public class UiModelingDiagramUpdater {
 			return getText_2007ContainedLinks(view);
 		case org.unicase.uiModeling.diagram.edit.parts.ImageEditPart.VISUAL_ID:
 			return getImage_2008ContainedLinks(view);
+		case org.unicase.uiModeling.diagram.edit.parts.RadioGroupEditPart.VISUAL_ID:
+			return getRadioGroup_2009ContainedLinks(view);
+		case org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupEditPart.VISUAL_ID:
+			return getCheckboxGroup_2010ContainedLinks(view);
 		case org.unicase.uiModeling.diagram.edit.parts.Button2EditPart.VISUAL_ID:
 			return getButton_3001ContainedLinks(view);
 		case org.unicase.uiModeling.diagram.edit.parts.Image2EditPart.VISUAL_ID:
@@ -145,6 +214,10 @@ public class UiModelingDiagramUpdater {
 			return getText_3004ContainedLinks(view);
 		case org.unicase.uiModeling.diagram.edit.parts.TextField2EditPart.VISUAL_ID:
 			return getTextField_3005ContainedLinks(view);
+		case org.unicase.uiModeling.diagram.edit.parts.RadioButtonEditPart.VISUAL_ID:
+			return getRadioButton_3006ContainedLinks(view);
+		case org.unicase.uiModeling.diagram.edit.parts.CheckboxEditPart.VISUAL_ID:
+			return getCheckbox_3007ContainedLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -166,6 +239,10 @@ public class UiModelingDiagramUpdater {
 			return getText_2007IncomingLinks(view);
 		case org.unicase.uiModeling.diagram.edit.parts.ImageEditPart.VISUAL_ID:
 			return getImage_2008IncomingLinks(view);
+		case org.unicase.uiModeling.diagram.edit.parts.RadioGroupEditPart.VISUAL_ID:
+			return getRadioGroup_2009IncomingLinks(view);
+		case org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupEditPart.VISUAL_ID:
+			return getCheckboxGroup_2010IncomingLinks(view);
 		case org.unicase.uiModeling.diagram.edit.parts.Button2EditPart.VISUAL_ID:
 			return getButton_3001IncomingLinks(view);
 		case org.unicase.uiModeling.diagram.edit.parts.Image2EditPart.VISUAL_ID:
@@ -176,6 +253,10 @@ public class UiModelingDiagramUpdater {
 			return getText_3004IncomingLinks(view);
 		case org.unicase.uiModeling.diagram.edit.parts.TextField2EditPart.VISUAL_ID:
 			return getTextField_3005IncomingLinks(view);
+		case org.unicase.uiModeling.diagram.edit.parts.RadioButtonEditPart.VISUAL_ID:
+			return getRadioButton_3006IncomingLinks(view);
+		case org.unicase.uiModeling.diagram.edit.parts.CheckboxEditPart.VISUAL_ID:
+			return getCheckbox_3007IncomingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -197,6 +278,10 @@ public class UiModelingDiagramUpdater {
 			return getText_2007OutgoingLinks(view);
 		case org.unicase.uiModeling.diagram.edit.parts.ImageEditPart.VISUAL_ID:
 			return getImage_2008OutgoingLinks(view);
+		case org.unicase.uiModeling.diagram.edit.parts.RadioGroupEditPart.VISUAL_ID:
+			return getRadioGroup_2009OutgoingLinks(view);
+		case org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupEditPart.VISUAL_ID:
+			return getCheckboxGroup_2010OutgoingLinks(view);
 		case org.unicase.uiModeling.diagram.edit.parts.Button2EditPart.VISUAL_ID:
 			return getButton_3001OutgoingLinks(view);
 		case org.unicase.uiModeling.diagram.edit.parts.Image2EditPart.VISUAL_ID:
@@ -207,6 +292,10 @@ public class UiModelingDiagramUpdater {
 			return getText_3004OutgoingLinks(view);
 		case org.unicase.uiModeling.diagram.edit.parts.TextField2EditPart.VISUAL_ID:
 			return getTextField_3005OutgoingLinks(view);
+		case org.unicase.uiModeling.diagram.edit.parts.RadioButtonEditPart.VISUAL_ID:
+			return getRadioButton_3006OutgoingLinks(view);
+		case org.unicase.uiModeling.diagram.edit.parts.CheckboxEditPart.VISUAL_ID:
+			return getCheckbox_3007OutgoingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -269,6 +358,22 @@ public class UiModelingDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<org.unicase.uiModeling.diagram.part.UiModelingLinkDescriptor> getRadioGroup_2009ContainedLinks(
+		View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<org.unicase.uiModeling.diagram.part.UiModelingLinkDescriptor> getCheckboxGroup_2010ContainedLinks(
+		View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<org.unicase.uiModeling.diagram.part.UiModelingLinkDescriptor> getButton_3001ContainedLinks(
 		View view) {
 		return Collections.emptyList();
@@ -302,6 +407,22 @@ public class UiModelingDiagramUpdater {
 	 * @generated
 	 */
 	public static List<org.unicase.uiModeling.diagram.part.UiModelingLinkDescriptor> getTextField_3005ContainedLinks(
+		View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<org.unicase.uiModeling.diagram.part.UiModelingLinkDescriptor> getRadioButton_3006ContainedLinks(
+		View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<org.unicase.uiModeling.diagram.part.UiModelingLinkDescriptor> getCheckbox_3007ContainedLinks(
 		View view) {
 		return Collections.emptyList();
 	}
@@ -356,6 +477,22 @@ public class UiModelingDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<org.unicase.uiModeling.diagram.part.UiModelingLinkDescriptor> getRadioGroup_2009IncomingLinks(
+		View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<org.unicase.uiModeling.diagram.part.UiModelingLinkDescriptor> getCheckboxGroup_2010IncomingLinks(
+		View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<org.unicase.uiModeling.diagram.part.UiModelingLinkDescriptor> getButton_3001IncomingLinks(
 		View view) {
 		return Collections.emptyList();
@@ -388,6 +525,22 @@ public class UiModelingDiagramUpdater {
 	 * @generated
 	 */
 	public static List<org.unicase.uiModeling.diagram.part.UiModelingLinkDescriptor> getTextField_3005IncomingLinks(
+		View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<org.unicase.uiModeling.diagram.part.UiModelingLinkDescriptor> getRadioButton_3006IncomingLinks(
+		View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<org.unicase.uiModeling.diagram.part.UiModelingLinkDescriptor> getCheckbox_3007IncomingLinks(
 		View view) {
 		return Collections.emptyList();
 	}
@@ -442,6 +595,22 @@ public class UiModelingDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<org.unicase.uiModeling.diagram.part.UiModelingLinkDescriptor> getRadioGroup_2009OutgoingLinks(
+		View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<org.unicase.uiModeling.diagram.part.UiModelingLinkDescriptor> getCheckboxGroup_2010OutgoingLinks(
+		View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<org.unicase.uiModeling.diagram.part.UiModelingLinkDescriptor> getButton_3001OutgoingLinks(
 		View view) {
 		return Collections.emptyList();
@@ -474,6 +643,22 @@ public class UiModelingDiagramUpdater {
 	 * @generated
 	 */
 	public static List<org.unicase.uiModeling.diagram.part.UiModelingLinkDescriptor> getTextField_3005OutgoingLinks(
+		View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<org.unicase.uiModeling.diagram.part.UiModelingLinkDescriptor> getRadioButton_3006OutgoingLinks(
+		View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<org.unicase.uiModeling.diagram.part.UiModelingLinkDescriptor> getCheckbox_3007OutgoingLinks(
 		View view) {
 		return Collections.emptyList();
 	}

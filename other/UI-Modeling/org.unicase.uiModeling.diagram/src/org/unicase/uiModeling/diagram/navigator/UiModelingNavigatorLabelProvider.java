@@ -98,6 +98,12 @@ public class UiModelingNavigatorLabelProvider extends LabelProvider implements I
 		case org.unicase.uiModeling.diagram.edit.parts.ImageEditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?TopLevelNode?http://unicase.org/model/uiModeling?Image", org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.Image_2008); //$NON-NLS-1$
+		case org.unicase.uiModeling.diagram.edit.parts.RadioGroupEditPart.VISUAL_ID:
+			return getImage(
+				"Navigator?TopLevelNode?http://unicase.org/model/uiModeling?RadioGroup", org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.RadioGroup_2009); //$NON-NLS-1$
+		case org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupEditPart.VISUAL_ID:
+			return getImage(
+				"Navigator?TopLevelNode?http://unicase.org/model/uiModeling?CheckboxGroup", org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.CheckboxGroup_2010); //$NON-NLS-1$
 		case org.unicase.uiModeling.diagram.edit.parts.Button2EditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?Node?http://unicase.org/model/uiModeling?Button", org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.Button_3001); //$NON-NLS-1$
@@ -113,6 +119,12 @@ public class UiModelingNavigatorLabelProvider extends LabelProvider implements I
 		case org.unicase.uiModeling.diagram.edit.parts.TextField2EditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?Node?http://unicase.org/model/uiModeling?TextField", org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.TextField_3005); //$NON-NLS-1$
+		case org.unicase.uiModeling.diagram.edit.parts.RadioButtonEditPart.VISUAL_ID:
+			return getImage(
+				"Navigator?Node?http://unicase.org/model/uiModeling?RadioButton", org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.RadioButton_3006); //$NON-NLS-1$
+		case org.unicase.uiModeling.diagram.edit.parts.CheckboxEditPart.VISUAL_ID:
+			return getImage(
+				"Navigator?Node?http://unicase.org/model/uiModeling?Checkbox", org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.Checkbox_3007); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -179,6 +191,10 @@ public class UiModelingNavigatorLabelProvider extends LabelProvider implements I
 			return getText_2007Text(view);
 		case org.unicase.uiModeling.diagram.edit.parts.ImageEditPart.VISUAL_ID:
 			return getImage_2008Text(view);
+		case org.unicase.uiModeling.diagram.edit.parts.RadioGroupEditPart.VISUAL_ID:
+			return getRadioGroup_2009Text(view);
+		case org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupEditPart.VISUAL_ID:
+			return getCheckboxGroup_2010Text(view);
 		case org.unicase.uiModeling.diagram.edit.parts.Button2EditPart.VISUAL_ID:
 			return getButton_3001Text(view);
 		case org.unicase.uiModeling.diagram.edit.parts.Image2EditPart.VISUAL_ID:
@@ -189,6 +205,10 @@ public class UiModelingNavigatorLabelProvider extends LabelProvider implements I
 			return getText_3004Text(view);
 		case org.unicase.uiModeling.diagram.edit.parts.TextField2EditPart.VISUAL_ID:
 			return getTextField_3005Text(view);
+		case org.unicase.uiModeling.diagram.edit.parts.RadioButtonEditPart.VISUAL_ID:
+			return getRadioButton_3006Text(view);
+		case org.unicase.uiModeling.diagram.edit.parts.CheckboxEditPart.VISUAL_ID:
+			return getCheckbox_3007Text(view);
 		}
 		return getUnknownElementText(view);
 	}
@@ -324,6 +344,44 @@ public class UiModelingNavigatorLabelProvider extends LabelProvider implements I
 	/**
 	 * @generated
 	 */
+	private String getRadioGroup_2009Text(View view) {
+		IParser parser = org.unicase.uiModeling.diagram.providers.UiModelingParserProvider.getParser(
+			org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.RadioGroup_2009,
+			view.getElement() != null ? view.getElement() : view,
+			org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
+				.getType(org.unicase.uiModeling.diagram.edit.parts.RadioGroupTextEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			org.unicase.uiModeling.diagram.part.UiModelingDiagramEditorPlugin.getInstance().logError(
+				"Parser was not found for label " + 5014); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getCheckboxGroup_2010Text(View view) {
+		IParser parser = org.unicase.uiModeling.diagram.providers.UiModelingParserProvider.getParser(
+			org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.CheckboxGroup_2010,
+			view.getElement() != null ? view.getElement() : view,
+			org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
+				.getType(org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupTextEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			org.unicase.uiModeling.diagram.part.UiModelingDiagramEditorPlugin.getInstance().logError(
+				"Parser was not found for label " + 5015); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	private String getButton_3001Text(View view) {
 		IParser parser = org.unicase.uiModeling.diagram.providers.UiModelingParserProvider.getParser(
 			org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.Button_3001,
@@ -412,6 +470,44 @@ public class UiModelingNavigatorLabelProvider extends LabelProvider implements I
 		} else {
 			org.unicase.uiModeling.diagram.part.UiModelingDiagramEditorPlugin.getInstance().logError(
 				"Parser was not found for label " + 5010); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getRadioButton_3006Text(View view) {
+		IParser parser = org.unicase.uiModeling.diagram.providers.UiModelingParserProvider.getParser(
+			org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.RadioButton_3006,
+			view.getElement() != null ? view.getElement() : view,
+			org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
+				.getType(org.unicase.uiModeling.diagram.edit.parts.RadioButtonTextEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			org.unicase.uiModeling.diagram.part.UiModelingDiagramEditorPlugin.getInstance().logError(
+				"Parser was not found for label " + 5013); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getCheckbox_3007Text(View view) {
+		IParser parser = org.unicase.uiModeling.diagram.providers.UiModelingParserProvider.getParser(
+			org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.Checkbox_3007,
+			view.getElement() != null ? view.getElement() : view,
+			org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
+				.getType(org.unicase.uiModeling.diagram.edit.parts.CheckboxTextEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			org.unicase.uiModeling.diagram.part.UiModelingDiagramEditorPlugin.getInstance().logError(
+				"Parser was not found for label " + 5016); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

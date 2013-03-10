@@ -23,17 +23,17 @@ import org.unicase.uiModeling.UiModelingPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.uiModeling.impl.CheckboxGroupImpl#getBoxes <em>Boxes</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.CheckboxGroupImpl#getBoxes <em>Boxes</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class CheckboxGroupImpl extends WidgetImpl implements CheckboxGroup {
 	/**
-	 * The cached value of the '{@link #getBoxes() <em>Boxes</em>}' containment reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getBoxes() <em>Boxes</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getBoxes()
 	 * @generated
 	 * @ordered
@@ -42,7 +42,6 @@ public class CheckboxGroupImpl extends WidgetImpl implements CheckboxGroup {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CheckboxGroupImpl() {
@@ -51,7 +50,6 @@ public class CheckboxGroupImpl extends WidgetImpl implements CheckboxGroup {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -61,102 +59,94 @@ public class CheckboxGroupImpl extends WidgetImpl implements CheckboxGroup {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Checkbox> getBoxes() {
 		if (boxes == null) {
-			boxes = new EObjectContainmentWithInverseEList<Checkbox>(Checkbox.class, this,
-				UiModelingPackage.CHECKBOX_GROUP__BOXES, UiModelingPackage.CHECKBOX__GROUP);
+			boxes = new EObjectContainmentWithInverseEList<Checkbox>(Checkbox.class, this, UiModelingPackage.CHECKBOX_GROUP__BOXES, UiModelingPackage.CHECKBOX__GROUP);
 		}
 		return boxes;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case UiModelingPackage.CHECKBOX_GROUP__BOXES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getBoxes()).basicAdd(otherEnd, msgs);
+			case UiModelingPackage.CHECKBOX_GROUP__BOXES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getBoxes()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case UiModelingPackage.CHECKBOX_GROUP__BOXES:
-			return ((InternalEList<?>) getBoxes()).basicRemove(otherEnd, msgs);
+			case UiModelingPackage.CHECKBOX_GROUP__BOXES:
+				return ((InternalEList<?>)getBoxes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case UiModelingPackage.CHECKBOX_GROUP__BOXES:
-			return getBoxes();
+			case UiModelingPackage.CHECKBOX_GROUP__BOXES:
+				return getBoxes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case UiModelingPackage.CHECKBOX_GROUP__BOXES:
-			getBoxes().clear();
-			getBoxes().addAll((Collection<? extends Checkbox>) newValue);
-			return;
+			case UiModelingPackage.CHECKBOX_GROUP__BOXES:
+				getBoxes().clear();
+				getBoxes().addAll((Collection<? extends Checkbox>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case UiModelingPackage.CHECKBOX_GROUP__BOXES:
-			getBoxes().clear();
-			return;
+			case UiModelingPackage.CHECKBOX_GROUP__BOXES:
+				getBoxes().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case UiModelingPackage.CHECKBOX_GROUP__BOXES:
-			return boxes != null && !boxes.isEmpty();
+			case UiModelingPackage.CHECKBOX_GROUP__BOXES:
+				return boxes != null && !boxes.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -15,12 +15,14 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
+import org.unicase.uiModeling.diagram.util.UiModelingDiagramUtil;
 
 /**
  * @generated
@@ -79,6 +81,16 @@ public class UiModelingElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType RadioGroup_2009 = getElementType("org.unicase.uiModeling.diagram.RadioGroup_2009"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType CheckboxGroup_2010 = getElementType("org.unicase.uiModeling.diagram.CheckboxGroup_2010"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Button_3001 = getElementType("org.unicase.uiModeling.diagram.Button_3001"); //$NON-NLS-1$
 	/**
 	 * @generated
@@ -96,6 +108,16 @@ public class UiModelingElementTypes {
 	 * @generated
 	 */
 	public static final IElementType TextField_3005 = getElementType("org.unicase.uiModeling.diagram.TextField_3005"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType RadioButton_3006 = getElementType("org.unicase.uiModeling.diagram.RadioButton_3006"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Checkbox_3007 = getElementType("org.unicase.uiModeling.diagram.Checkbox_3007"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -140,6 +162,39 @@ public class UiModelingElementTypes {
 	}
 
 	/**
+	 * @generated NOT: use {@link EObject}s instead of {@link ENamedElement}s to support custom images for radio buttons
+	 *            and checkboxes
+	 */
+	private static ImageDescriptor getProvidedImageDescriptor(EObject element) {
+		if (element instanceof EStructuralFeature) {
+			EStructuralFeature feature = ((EStructuralFeature) element);
+			EClass eContainingClass = feature.getEContainingClass();
+			EClassifier eType = feature.getEType();
+			if (eContainingClass != null && !eContainingClass.isAbstract()) {
+				element = eContainingClass;
+			} else if (eType instanceof EClass && !((EClass) eType).isAbstract()) {
+				element = eType;
+			}
+		}
+		if (element instanceof EClass) {
+			EClass eClass = (EClass) element;
+			if (!eClass.isAbstract()) {
+				return org.unicase.uiModeling.diagram.part.UiModelingDiagramEditorPlugin.getInstance()
+					.getItemImageDescriptor(eClass.getEPackage().getEFactoryInstance().create(eClass));
+			}
+		}
+		return org.unicase.uiModeling.diagram.part.UiModelingDiagramEditorPlugin.getInstance().getItemImageDescriptor(
+			element);
+	}
+
+	/**
+	 * @generated NOT: customized keys for radio buttons and checkboxes
+	 */
+	private static String getImageRegistryKey(EObject element) {
+		return UiModelingDiagramUtil.getImageKey(element);
+	}
+
+	/**
 	 * @generated
 	 */
 	public static ImageDescriptor getImageDescriptor(ENamedElement element) {
@@ -163,6 +218,24 @@ public class UiModelingElementTypes {
 		Image image = getImageRegistry().get(key);
 		if (image == null) {
 			ImageDescriptor imageDescriptor = getProvidedImageDescriptor(element);
+			if (imageDescriptor == null) {
+				imageDescriptor = ImageDescriptor.getMissingImageDescriptor();
+			}
+			getImageRegistry().put(key, imageDescriptor);
+			image = getImageRegistry().get(key);
+		}
+		return image;
+	}
+
+	/**
+	 * @generated NOT: use {@link EObject}s instead of {@link ENamedElement}s to support custom images for radio buttons
+	 *            and checkboxes
+	 */
+	public static Image getImage(EObject parserElement) {
+		String key = getImageRegistryKey(parserElement);
+		Image image = getImageRegistry().get(key);
+		if (image == null) {
+			ImageDescriptor imageDescriptor = getProvidedImageDescriptor(parserElement);
 			if (imageDescriptor == null) {
 				imageDescriptor = ImageDescriptor.getMissingImageDescriptor();
 			}
@@ -218,6 +291,10 @@ public class UiModelingElementTypes {
 
 			elements.put(Image_2008, org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getImage());
 
+			elements.put(RadioGroup_2009, org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getRadioGroup());
+
+			elements.put(CheckboxGroup_2010, org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getCheckboxGroup());
+
 			elements.put(Button_3001, org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getButton());
 
 			elements.put(Image_3002, org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getImage());
@@ -227,6 +304,10 @@ public class UiModelingElementTypes {
 			elements.put(Text_3004, org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getText());
 
 			elements.put(TextField_3005, org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getTextField());
+
+			elements.put(RadioButton_3006, org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getRadioButton());
+
+			elements.put(Checkbox_3007, org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getCheckbox());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -251,11 +332,15 @@ public class UiModelingElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Button_2006);
 			KNOWN_ELEMENT_TYPES.add(Text_2007);
 			KNOWN_ELEMENT_TYPES.add(Image_2008);
+			KNOWN_ELEMENT_TYPES.add(RadioGroup_2009);
+			KNOWN_ELEMENT_TYPES.add(CheckboxGroup_2010);
 			KNOWN_ELEMENT_TYPES.add(Button_3001);
 			KNOWN_ELEMENT_TYPES.add(Image_3002);
 			KNOWN_ELEMENT_TYPES.add(Label_3003);
 			KNOWN_ELEMENT_TYPES.add(Text_3004);
 			KNOWN_ELEMENT_TYPES.add(TextField_3005);
+			KNOWN_ELEMENT_TYPES.add(RadioButton_3006);
+			KNOWN_ELEMENT_TYPES.add(Checkbox_3007);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -279,6 +364,10 @@ public class UiModelingElementTypes {
 			return Text_2007;
 		case org.unicase.uiModeling.diagram.edit.parts.ImageEditPart.VISUAL_ID:
 			return Image_2008;
+		case org.unicase.uiModeling.diagram.edit.parts.RadioGroupEditPart.VISUAL_ID:
+			return RadioGroup_2009;
+		case org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupEditPart.VISUAL_ID:
+			return CheckboxGroup_2010;
 		case org.unicase.uiModeling.diagram.edit.parts.Button2EditPart.VISUAL_ID:
 			return Button_3001;
 		case org.unicase.uiModeling.diagram.edit.parts.Image2EditPart.VISUAL_ID:
@@ -289,6 +378,10 @@ public class UiModelingElementTypes {
 			return Text_3004;
 		case org.unicase.uiModeling.diagram.edit.parts.TextField2EditPart.VISUAL_ID:
 			return TextField_3005;
+		case org.unicase.uiModeling.diagram.edit.parts.RadioButtonEditPart.VISUAL_ID:
+			return RadioButton_3006;
+		case org.unicase.uiModeling.diagram.edit.parts.CheckboxEditPart.VISUAL_ID:
+			return Checkbox_3007;
 		}
 		return null;
 	}

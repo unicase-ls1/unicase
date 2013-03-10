@@ -8,12 +8,25 @@
       description="Palette for creating uiModeling elements.">
     <tools
         xsi:type="gmftool:ToolGroup"
-        title="UiModelingTools"
-        description="These tools can be used to create a uiModeling diagram.">
+        title="Basic"
+        description="These tools can be used to create a uiModeling diagram."
+        collapsible="true">
       <tools
           xsi:type="gmftool:CreationTool"
           title="Window"
           description="Tool for creating a window."/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Image"
+          description="Tool for creating an image."/>
+    </tools>
+    <tools
+        xsi:type="gmftool:PaletteSeparator"/>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="TextTools"
+        description="These tools allow to create text elements for a UI Model."
+        collapsible="true">
       <tools
           xsi:type="gmftool:CreationTool"
           title="Label"
@@ -24,16 +37,36 @@
           description="Tool for creating a text field."/>
       <tools
           xsi:type="gmftool:CreationTool"
+          title="Text"
+          description="Tool for creating text."/>
+    </tools>
+    <tools
+        xsi:type="gmftool:PaletteSeparator"/>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="Buttons"
+        description="These tools can be used to create button elements."
+        collapsible="true">
+      <tools
+          xsi:type="gmftool:CreationTool"
           title="Button"
           description="Tool for creating a button."/>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Text"
-          description="Tool for creating text."/>
+          title="RadioGroup"
+          description="Tool for creation a radio group."/>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Image"
-          description="Tool for creating an image."/>
+          title="RadioButton"
+          description="Tool to create a radio button."/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="CheckboxGroup"
+          description="Tool to create a checkbox group."/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Checkbox"
+          description="Tool to create a checkbox."/>
     </tools>
   </palette>
 </gmftool:ToolRegistry>

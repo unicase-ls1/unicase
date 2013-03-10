@@ -3,6 +3,7 @@ package org.unicase.uiModeling.diagram.util;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
@@ -13,8 +14,12 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 import org.unicase.uiModeling.Button;
+import org.unicase.uiModeling.Checkbox;
 import org.unicase.uiModeling.ImageButton;
 import org.unicase.uiModeling.Panel;
+import org.unicase.uiModeling.RadioButton;
+import org.unicase.uiModeling.RadioGroup;
+import org.unicase.uiModeling.diagram.UiModelingConstants;
 import org.unicase.uiModeling.diagram.edit.commands.SetConstraintCommand;
 
 /**
@@ -154,5 +159,30 @@ public final class UiModelingDiagramUtil {
 			return ((Panel) container).isSizingEnabled();
 		}
 		return false;
+	}
+
+	public static String getImageKey(EObject element) {
+		if (element instanceof RadioButton) {
+			RadioButton button = (RadioButton) element;
+			RadioGroup group = button.getGroup();
+			if (group != null) {
+				RadioButton selectedButton = group.getSelectedItem();
+				if (button == selectedButton) {
+					return UiModelingConstants.RADIO_CHECKED_KEY;
+				} else {
+					return UiModelingConstants.RADIO_UNCHECKED_KEY;
+				}
+			}
+		} else if (element instanceof Checkbox) {
+			if (((Checkbox) element).isChecked()) {
+				return UiModelingConstants.CHECKBOX_CHECKED_KEY;
+			} else {
+				return UiModelingConstants.CHECKBOX_UNCHECKED_KEY;
+			}
+		}
+		if (element instanceof ENamedElement) {
+			return ((ENamedElement) element).getName();
+		}
+		return UiModelingConstants.ERROR_KEY;
 	}
 }

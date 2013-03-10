@@ -243,12 +243,42 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String UiModelingTools1Group_title;
+	public static String Default1Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String UiModelingTools1Group_desc;
+	public static String Default1Group_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Basic2Group_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Basic2Group_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String TextTools3Group_title;
+
+	/**
+	 * @generated
+	 */
+	public static String TextTools3Group_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Buttons4Group_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Buttons4Group_desc;
 
 	/**
 	 * @generated
@@ -263,57 +293,107 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Label2CreationTool_title;
+	public static String Image2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Label2CreationTool_desc;
+	public static String Image2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String TextField3CreationTool_title;
+	public static String Label1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String TextField3CreationTool_desc;
+	public static String Label1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Button4CreationTool_title;
+	public static String TextField2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Button4CreationTool_desc;
+	public static String TextField2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Text5CreationTool_title;
+	public static String Text3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Text5CreationTool_desc;
+	public static String Text3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Image6CreationTool_title;
+	public static String Button1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Image6CreationTool_desc;
+	public static String Button1CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String RadioGroup2CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String RadioGroup2CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String RadioButton3CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String RadioButton3CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String CheckboxGroup4CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String CheckboxGroup4CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Checkbox5CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Checkbox5CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
 	public static String WindowWindowWidgetCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String RadioGroupRadioButtonsCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String CheckboxGroupCheckboxesCompartmentEditPart_title;
 
 	/**
 	 * @generated

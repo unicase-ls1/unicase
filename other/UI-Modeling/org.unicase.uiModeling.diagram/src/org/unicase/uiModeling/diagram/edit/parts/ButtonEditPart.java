@@ -87,8 +87,7 @@ public class ButtonEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 			new org.unicase.uiModeling.diagram.edit.policies.ButtonItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
-		// editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -267,7 +266,8 @@ public class ButtonEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		return new DefaultSizeNodeFigure(40, 40);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(36, 36);
+		return result;
 	}
 
 	/**
@@ -369,15 +369,15 @@ public class ButtonEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		public ButtonDescriptor() {
+
 			GridLayout layoutThis = new GridLayout();
 			layoutThis.numColumns = 1;
 			layoutThis.makeColumnsEqualWidth = false;
 			this.setLayoutManager(layoutThis);
 
 			this.setOutline(false);
-			this.setBorder(new LineBorder(ColorConstants.black));
 			this.setBackgroundColor(ColorConstants.lightGray);
-
+			this.setBorder(new LineBorder(ColorConstants.black, getMapMode().DPtoLP(1)));
 			createContents();
 		}
 

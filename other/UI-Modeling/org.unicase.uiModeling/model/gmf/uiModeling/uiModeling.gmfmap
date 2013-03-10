@@ -96,7 +96,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="uiModeling.gmftool#//@palette/@tools.0/@tools.1"/>
+          href="uiModeling.gmftool#//@palette/@tools.2/@tools.0"/>
       <diagramNode
           href="uiModeling.gmfgraph#LabelNode"/>
     </ownedChild>
@@ -122,7 +122,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="uiModeling.gmftool#//@palette/@tools.0/@tools.2"/>
+          href="uiModeling.gmftool#//@palette/@tools.2/@tools.1"/>
       <diagramNode
           href="uiModeling.gmfgraph#TextFieldNode"/>
     </ownedChild>
@@ -148,7 +148,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="uiModeling.gmftool#//@palette/@tools.0/@tools.3"/>
+          href="uiModeling.gmftool#//@palette/@tools.4/@tools.0"/>
       <diagramNode
           href="uiModeling.gmfgraph#ButtonNode"/>
     </ownedChild>
@@ -174,7 +174,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="uiModeling.gmftool#//@palette/@tools.0/@tools.4"/>
+          href="uiModeling.gmftool#//@palette/@tools.2/@tools.2"/>
       <diagramNode
           href="uiModeling.gmfgraph#TextNode"/>
     </ownedChild>
@@ -200,9 +200,127 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="uiModeling.gmftool#//@palette/@tools.0/@tools.5"/>
+          href="uiModeling.gmftool#//@palette/@tools.0/@tools.1"/>
       <diagramNode
           href="uiModeling.gmfgraph#ImageNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="../../uiModeling.ecore#//Panel/widgets"/>
+    <childrenFeature
+        href="../../uiModeling.ecore#//Panel/widgets"/>
+    <ownedChild
+        relatedDiagrams="//@diagram">
+      <domainMetaElement
+          href="../../uiModeling.ecore#//RadioGroup"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="{0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="uiModeling.gmfgraph#RadioGroupNode_text"/>
+        <features
+            href="../../uiModeling.ecore#//Widget/text"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="uiModeling.gmftool#//@palette/@tools.4/@tools.1"/>
+      <diagramNode
+          href="uiModeling.gmfgraph#RadioGroupNode"/>
+      <children
+          compartment="//@nodes.6/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.6/@ownedChild/@children.0/@ownedChild">
+        <containmentFeature
+            href="../../uiModeling.ecore#//RadioGroup/buttons"/>
+        <childrenFeature
+            href="../../uiModeling.ecore#//RadioGroup/buttons"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../uiModeling.ecore#//RadioButton"/>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping"
+              viewPattern="{0}"
+              editorPattern="{0}"
+              editPattern="{0}">
+            <diagramLabel
+                href="uiModeling.gmfgraph#RadioButtonNode_text"/>
+            <features
+                href="../../uiModeling.ecore#//RadioButton/text"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="uiModeling.gmftool#//@palette/@tools.4/@tools.2"/>
+          <diagramNode
+              href="uiModeling.gmfgraph#RadioButtonNode"/>
+        </ownedChild>
+      </children>
+      <compartments
+          children="//@nodes.6/@ownedChild/@children.0">
+        <compartment
+            href="uiModeling.gmfgraph#RadioButtonsCompartment"/>
+      </compartments>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="../../uiModeling.ecore#//Panel/widgets"/>
+    <childrenFeature
+        href="../../uiModeling.ecore#//Panel/widgets"/>
+    <ownedChild
+        relatedDiagrams="//@diagram">
+      <domainMetaElement
+          href="../../uiModeling.ecore#//CheckboxGroup"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          viewPattern="{0}"
+          editorPattern="{0}"
+          editPattern="{0}">
+        <diagramLabel
+            href="uiModeling.gmfgraph#CheckboxGroupNode_text"/>
+        <features
+            href="../../uiModeling.ecore#//Widget/text"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="uiModeling.gmftool#//@palette/@tools.4/@tools.3"/>
+      <diagramNode
+          href="uiModeling.gmfgraph#CheckboxGroupNode"/>
+      <children
+          compartment="//@nodes.7/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.7/@ownedChild/@children.0/@ownedChild">
+        <containmentFeature
+            href="../../uiModeling.ecore#//CheckboxGroup/boxes"/>
+        <childrenFeature
+            href="../../uiModeling.ecore#//CheckboxGroup/boxes"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../uiModeling.ecore#//Checkbox"/>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping"
+              viewPattern="{0}"
+              editorPattern="{0}"
+              editPattern="{0}">
+            <diagramLabel
+                href="uiModeling.gmfgraph#CheckboxNode_text"/>
+            <features
+                href="../../uiModeling.ecore#//Checkbox/text"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="uiModeling.gmftool#//@palette/@tools.4/@tools.4"/>
+          <diagramNode
+              href="uiModeling.gmfgraph#CheckboxNode"/>
+        </ownedChild>
+      </children>
+      <compartments
+          children="//@nodes.7/@ownedChild/@children.0">
+        <compartment
+            href="uiModeling.gmfgraph#CheckboxesCompartment"/>
+      </compartments>
     </ownedChild>
   </nodes>
   <diagram>

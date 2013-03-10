@@ -12,14 +12,18 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.provider.UnicaseModelElementItemProvider;
 import org.unicase.uiModeling.Checkbox;
+import org.unicase.uiModeling.UiModelingPackage;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.uiModeling.Checkbox} object. <!-- begin-user-doc --> <!--
@@ -48,17 +52,53 @@ public class CheckboxItemProvider extends UnicaseModelElementItemProvider implem
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addTextPropertyDescriptor(object);
+			addCheckedPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This returns Checkbox.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Text feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
+	protected void addTextPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Checkbox_text_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Checkbox_text_feature", "_UI_Checkbox_type"),
+			UiModelingPackage.Literals.CHECKBOX__TEXT, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+			null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Checked feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addCheckedPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_Checkbox_checked_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Checkbox_checked_feature", "_UI_Checkbox_type"),
+			UiModelingPackage.Literals.CHECKBOX__CHECKED, true, false, false,
+			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This returns an image for checkboxes, depending on whether they are selected or not.
+	 * 
+	 * @generated NOT
+	 */
 	@Override
 	public Object getImage(Object object) {
+		if (object instanceof Checkbox) {
+			Checkbox checkbox = (Checkbox) object;
+			if (checkbox.isChecked()) {
+				return overlayImage(object, getResourceLocator().getImage("full/obj16/CheckboxChecked"));
+			}
+		}
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/Checkbox"));
 	}
 
@@ -84,6 +124,13 @@ public class CheckboxItemProvider extends UnicaseModelElementItemProvider implem
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(Checkbox.class)) {
+		case UiModelingPackage.CHECKBOX__TEXT:
+		case UiModelingPackage.CHECKBOX__CHECKED:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		}
 		super.notifyChanged(notification);
 	}
 
