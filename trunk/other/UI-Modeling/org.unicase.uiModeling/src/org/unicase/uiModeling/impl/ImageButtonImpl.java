@@ -17,17 +17,17 @@ import org.unicase.uiModeling.UiModelingPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.uiModeling.impl.ImageButtonImpl#getImageURL <em>Image URL</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.ImageButtonImpl#getImageURL <em>Image URL</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ImageButtonImpl extends ButtonImpl implements ImageButton {
 	/**
-	 * The default value of the '{@link #getImageURL() <em>Image URL</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getImageURL() <em>Image URL</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getImageURL()
 	 * @generated
 	 * @ordered
@@ -35,9 +35,9 @@ public class ImageButtonImpl extends ButtonImpl implements ImageButton {
 	protected static final String IMAGE_URL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getImageURL() <em>Image URL</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getImageURL() <em>Image URL</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getImageURL()
 	 * @generated
 	 * @ordered
@@ -46,7 +46,6 @@ public class ImageButtonImpl extends ButtonImpl implements ImageButton {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ImageButtonImpl() {
@@ -55,7 +54,6 @@ public class ImageButtonImpl extends ButtonImpl implements ImageButton {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,7 +63,6 @@ public class ImageButtonImpl extends ButtonImpl implements ImageButton {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getImageURL() {
@@ -74,84 +71,76 @@ public class ImageButtonImpl extends ButtonImpl implements ImageButton {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setImageURL(String newImageURL) {
 		String oldImageURL = imageURL;
 		imageURL = newImageURL;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.IMAGE_BUTTON__IMAGE_URL,
-				oldImageURL, imageURL));
+			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.IMAGE_BUTTON__IMAGE_URL, oldImageURL, imageURL));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case UiModelingPackage.IMAGE_BUTTON__IMAGE_URL:
-			return getImageURL();
+			case UiModelingPackage.IMAGE_BUTTON__IMAGE_URL:
+				return getImageURL();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case UiModelingPackage.IMAGE_BUTTON__IMAGE_URL:
-			setImageURL((String) newValue);
-			return;
+			case UiModelingPackage.IMAGE_BUTTON__IMAGE_URL:
+				setImageURL((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case UiModelingPackage.IMAGE_BUTTON__IMAGE_URL:
-			setImageURL(IMAGE_URL_EDEFAULT);
-			return;
+			case UiModelingPackage.IMAGE_BUTTON__IMAGE_URL:
+				setImageURL(IMAGE_URL_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case UiModelingPackage.IMAGE_BUTTON__IMAGE_URL:
-			return IMAGE_URL_EDEFAULT == null ? imageURL != null : !IMAGE_URL_EDEFAULT.equals(imageURL);
+			case UiModelingPackage.IMAGE_BUTTON__IMAGE_URL:
+				return IMAGE_URL_EDEFAULT == null ? imageURL != null : !IMAGE_URL_EDEFAULT.equals(imageURL);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (imageURL: ");

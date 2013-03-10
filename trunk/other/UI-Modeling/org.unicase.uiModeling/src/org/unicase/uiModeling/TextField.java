@@ -8,7 +8,8 @@ package org.unicase.uiModeling;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Text Field</b></em>'. <!-- end-user-doc -->
- * 
+ *
+ *
  * @see org.unicase.uiModeling.UiModelingPackage#getTextField()
  * @model
  * @generated

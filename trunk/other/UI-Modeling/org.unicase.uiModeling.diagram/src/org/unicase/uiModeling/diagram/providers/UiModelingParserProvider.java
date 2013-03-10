@@ -159,6 +159,50 @@ public class UiModelingParserProvider extends AbstractProvider implements IParse
 	/**
 	 * @generated
 	 */
+	private IParser radioGroupText_5014Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getRadioGroupText_5014Parser() {
+		if (radioGroupText_5014Parser == null) {
+			EAttribute[] features = new EAttribute[] { org.unicase.uiModeling.UiModelingPackage.eINSTANCE
+				.getWidget_Text() };
+			org.unicase.uiModeling.diagram.parsers.MessageFormatParser parser = new org.unicase.uiModeling.diagram.parsers.MessageFormatParser(
+				features);
+			parser.setViewPattern("{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			radioGroupText_5014Parser = parser;
+		}
+		return radioGroupText_5014Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser checkboxGroupText_5015Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getCheckboxGroupText_5015Parser() {
+		if (checkboxGroupText_5015Parser == null) {
+			EAttribute[] features = new EAttribute[] { org.unicase.uiModeling.UiModelingPackage.eINSTANCE
+				.getWidget_Text() };
+			org.unicase.uiModeling.diagram.parsers.MessageFormatParser parser = new org.unicase.uiModeling.diagram.parsers.MessageFormatParser(
+				features);
+			parser.setViewPattern("{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			checkboxGroupText_5015Parser = parser;
+		}
+		return checkboxGroupText_5015Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser buttonText_5011Parser;
 
 	/**
@@ -269,6 +313,50 @@ public class UiModelingParserProvider extends AbstractProvider implements IParse
 	/**
 	 * @generated
 	 */
+	private IParser radioButtonText_5013Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getRadioButtonText_5013Parser() {
+		if (radioButtonText_5013Parser == null) {
+			EAttribute[] features = new EAttribute[] { org.unicase.uiModeling.UiModelingPackage.eINSTANCE
+				.getRadioButton_Text() };
+			org.unicase.uiModeling.diagram.parsers.MessageFormatParser parser = new org.unicase.uiModeling.diagram.parsers.MessageFormatParser(
+				features);
+			parser.setViewPattern("{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			radioButtonText_5013Parser = parser;
+		}
+		return radioButtonText_5013Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser checkboxText_5016Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getCheckboxText_5016Parser() {
+		if (checkboxText_5016Parser == null) {
+			EAttribute[] features = new EAttribute[] { org.unicase.uiModeling.UiModelingPackage.eINSTANCE
+				.getCheckbox_Text() };
+			org.unicase.uiModeling.diagram.parsers.MessageFormatParser parser = new org.unicase.uiModeling.diagram.parsers.MessageFormatParser(
+				features);
+			parser.setViewPattern("{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			checkboxText_5016Parser = parser;
+		}
+		return checkboxText_5016Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case org.unicase.uiModeling.diagram.edit.parts.WindowTextEditPart.VISUAL_ID:
@@ -283,6 +371,10 @@ public class UiModelingParserProvider extends AbstractProvider implements IParse
 			return getTextText_5002Parser();
 		case org.unicase.uiModeling.diagram.edit.parts.ImageTextEditPart.VISUAL_ID:
 			return getImageText_5006Parser();
+		case org.unicase.uiModeling.diagram.edit.parts.RadioGroupTextEditPart.VISUAL_ID:
+			return getRadioGroupText_5014Parser();
+		case org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupTextEditPart.VISUAL_ID:
+			return getCheckboxGroupText_5015Parser();
 		case org.unicase.uiModeling.diagram.edit.parts.ButtonText2EditPart.VISUAL_ID:
 			return getButtonText_5011Parser();
 		case org.unicase.uiModeling.diagram.edit.parts.ImageText2EditPart.VISUAL_ID:
@@ -293,6 +385,10 @@ public class UiModelingParserProvider extends AbstractProvider implements IParse
 			return getTextText_5009Parser();
 		case org.unicase.uiModeling.diagram.edit.parts.TextFieldText2EditPart.VISUAL_ID:
 			return getTextFieldText_5010Parser();
+		case org.unicase.uiModeling.diagram.edit.parts.RadioButtonTextEditPart.VISUAL_ID:
+			return getRadioButtonText_5013Parser();
+		case org.unicase.uiModeling.diagram.edit.parts.CheckboxTextEditPart.VISUAL_ID:
+			return getCheckboxText_5016Parser();
 		}
 		return null;
 	}

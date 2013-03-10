@@ -22,21 +22,21 @@ import org.unicase.uiModeling.Widget;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.uiModeling.impl.WidgetImpl#getX <em>X</em>}</li>
- * <li>{@link org.unicase.uiModeling.impl.WidgetImpl#getY <em>Y</em>}</li>
- * <li>{@link org.unicase.uiModeling.impl.WidgetImpl#getWidth <em>Width</em>}</li>
- * <li>{@link org.unicase.uiModeling.impl.WidgetImpl#getHeight <em>Height</em>}</li>
- * <li>{@link org.unicase.uiModeling.impl.WidgetImpl#getText <em>Text</em>}</li>
- * <li>{@link org.unicase.uiModeling.impl.WidgetImpl#getPanel <em>Panel</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.WidgetImpl#getX <em>X</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.WidgetImpl#getY <em>Y</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.WidgetImpl#getWidth <em>Width</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.WidgetImpl#getHeight <em>Height</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.WidgetImpl#getText <em>Text</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.WidgetImpl#getPanel <em>Panel</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widget {
 	/**
-	 * The default value of the '{@link #getX() <em>X</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getX() <em>X</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getX()
 	 * @generated
 	 * @ordered
@@ -44,8 +44,8 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 	protected static final int X_EDEFAULT = -1;
 
 	/**
-	 * The cached value of the '{@link #getX() <em>X</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getX() <em>X</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getX()
 	 * @generated
 	 * @ordered
@@ -53,8 +53,8 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 	protected int x = X_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getY() <em>Y</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getY() <em>Y</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getY()
 	 * @generated
 	 * @ordered
@@ -62,8 +62,8 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 	protected static final int Y_EDEFAULT = -1;
 
 	/**
-	 * The cached value of the '{@link #getY() <em>Y</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getY() <em>Y</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getY()
 	 * @generated
 	 * @ordered
@@ -71,9 +71,9 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 	protected int y = Y_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getWidth()
 	 * @generated
 	 * @ordered
@@ -91,9 +91,9 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 	protected int width = WIDTH_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getHeight() <em>Height</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getHeight() <em>Height</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getHeight()
 	 * @generated
 	 * @ordered
@@ -101,9 +101,9 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 	protected static final int HEIGHT_EDEFAULT = -1;
 
 	/**
-	 * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getHeight()
 	 * @generated
 	 * @ordered
@@ -132,7 +132,6 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected WidgetImpl() {
@@ -141,7 +140,6 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -151,7 +149,6 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getX() {
@@ -160,7 +157,6 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setX(int newX) {
@@ -172,7 +168,6 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getY() {
@@ -181,7 +176,6 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setY(int newY) {
@@ -193,7 +187,6 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getWidth() {
@@ -202,7 +195,6 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setWidth(int newWidth) {
@@ -214,7 +206,6 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getHeight() {
@@ -223,7 +214,6 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setHeight(int newHeight) {
@@ -235,7 +225,6 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getText() {
@@ -244,7 +233,6 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setText(String newText) {
@@ -256,209 +244,194 @@ public abstract class WidgetImpl extends UnicaseModelElementImpl implements Widg
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Panel getPanel() {
-		if (eContainerFeatureID() != UiModelingPackage.WIDGET__PANEL)
-			return null;
-		return (Panel) eContainer();
+		if (eContainerFeatureID() != UiModelingPackage.WIDGET__PANEL) return null;
+		return (Panel)eContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetPanel(Panel newPanel, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newPanel, UiModelingPackage.WIDGET__PANEL, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newPanel, UiModelingPackage.WIDGET__PANEL, msgs);
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPanel(Panel newPanel) {
-		if (newPanel != eInternalContainer()
-			|| (eContainerFeatureID() != UiModelingPackage.WIDGET__PANEL && newPanel != null)) {
+		if (newPanel != eInternalContainer() || (eContainerFeatureID() != UiModelingPackage.WIDGET__PANEL && newPanel != null)) {
 			if (EcoreUtil.isAncestor(this, newPanel))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newPanel != null)
-				msgs = ((InternalEObject) newPanel).eInverseAdd(this, UiModelingPackage.PANEL__WIDGETS, Panel.class,
-					msgs);
+				msgs = ((InternalEObject)newPanel).eInverseAdd(this, UiModelingPackage.PANEL__WIDGETS, Panel.class, msgs);
 			msgs = basicSetPanel(newPanel, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.WIDGET__PANEL, newPanel, newPanel));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case UiModelingPackage.WIDGET__PANEL:
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetPanel((Panel) otherEnd, msgs);
+			case UiModelingPackage.WIDGET__PANEL:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetPanel((Panel)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case UiModelingPackage.WIDGET__PANEL:
-			return basicSetPanel(null, msgs);
+			case UiModelingPackage.WIDGET__PANEL:
+				return basicSetPanel(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-		case UiModelingPackage.WIDGET__PANEL:
-			return eInternalContainer().eInverseRemove(this, UiModelingPackage.PANEL__WIDGETS, Panel.class, msgs);
+			case UiModelingPackage.WIDGET__PANEL:
+				return eInternalContainer().eInverseRemove(this, UiModelingPackage.PANEL__WIDGETS, Panel.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case UiModelingPackage.WIDGET__X:
-			return getX();
-		case UiModelingPackage.WIDGET__Y:
-			return getY();
-		case UiModelingPackage.WIDGET__WIDTH:
-			return getWidth();
-		case UiModelingPackage.WIDGET__HEIGHT:
-			return getHeight();
-		case UiModelingPackage.WIDGET__TEXT:
-			return getText();
-		case UiModelingPackage.WIDGET__PANEL:
-			return getPanel();
+			case UiModelingPackage.WIDGET__X:
+				return getX();
+			case UiModelingPackage.WIDGET__Y:
+				return getY();
+			case UiModelingPackage.WIDGET__WIDTH:
+				return getWidth();
+			case UiModelingPackage.WIDGET__HEIGHT:
+				return getHeight();
+			case UiModelingPackage.WIDGET__TEXT:
+				return getText();
+			case UiModelingPackage.WIDGET__PANEL:
+				return getPanel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case UiModelingPackage.WIDGET__X:
-			setX((Integer) newValue);
-			return;
-		case UiModelingPackage.WIDGET__Y:
-			setY((Integer) newValue);
-			return;
-		case UiModelingPackage.WIDGET__WIDTH:
-			setWidth((Integer) newValue);
-			return;
-		case UiModelingPackage.WIDGET__HEIGHT:
-			setHeight((Integer) newValue);
-			return;
-		case UiModelingPackage.WIDGET__TEXT:
-			setText((String) newValue);
-			return;
-		case UiModelingPackage.WIDGET__PANEL:
-			setPanel((Panel) newValue);
-			return;
+			case UiModelingPackage.WIDGET__X:
+				setX((Integer)newValue);
+				return;
+			case UiModelingPackage.WIDGET__Y:
+				setY((Integer)newValue);
+				return;
+			case UiModelingPackage.WIDGET__WIDTH:
+				setWidth((Integer)newValue);
+				return;
+			case UiModelingPackage.WIDGET__HEIGHT:
+				setHeight((Integer)newValue);
+				return;
+			case UiModelingPackage.WIDGET__TEXT:
+				setText((String)newValue);
+				return;
+			case UiModelingPackage.WIDGET__PANEL:
+				setPanel((Panel)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case UiModelingPackage.WIDGET__X:
-			setX(X_EDEFAULT);
-			return;
-		case UiModelingPackage.WIDGET__Y:
-			setY(Y_EDEFAULT);
-			return;
-		case UiModelingPackage.WIDGET__WIDTH:
-			setWidth(WIDTH_EDEFAULT);
-			return;
-		case UiModelingPackage.WIDGET__HEIGHT:
-			setHeight(HEIGHT_EDEFAULT);
-			return;
-		case UiModelingPackage.WIDGET__TEXT:
-			setText(TEXT_EDEFAULT);
-			return;
-		case UiModelingPackage.WIDGET__PANEL:
-			setPanel((Panel) null);
-			return;
+			case UiModelingPackage.WIDGET__X:
+				setX(X_EDEFAULT);
+				return;
+			case UiModelingPackage.WIDGET__Y:
+				setY(Y_EDEFAULT);
+				return;
+			case UiModelingPackage.WIDGET__WIDTH:
+				setWidth(WIDTH_EDEFAULT);
+				return;
+			case UiModelingPackage.WIDGET__HEIGHT:
+				setHeight(HEIGHT_EDEFAULT);
+				return;
+			case UiModelingPackage.WIDGET__TEXT:
+				setText(TEXT_EDEFAULT);
+				return;
+			case UiModelingPackage.WIDGET__PANEL:
+				setPanel((Panel)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case UiModelingPackage.WIDGET__X:
-			return x != X_EDEFAULT;
-		case UiModelingPackage.WIDGET__Y:
-			return y != Y_EDEFAULT;
-		case UiModelingPackage.WIDGET__WIDTH:
-			return width != WIDTH_EDEFAULT;
-		case UiModelingPackage.WIDGET__HEIGHT:
-			return height != HEIGHT_EDEFAULT;
-		case UiModelingPackage.WIDGET__TEXT:
-			return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
-		case UiModelingPackage.WIDGET__PANEL:
-			return getPanel() != null;
+			case UiModelingPackage.WIDGET__X:
+				return x != X_EDEFAULT;
+			case UiModelingPackage.WIDGET__Y:
+				return y != Y_EDEFAULT;
+			case UiModelingPackage.WIDGET__WIDTH:
+				return width != WIDTH_EDEFAULT;
+			case UiModelingPackage.WIDGET__HEIGHT:
+				return height != HEIGHT_EDEFAULT;
+			case UiModelingPackage.WIDGET__TEXT:
+				return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
+			case UiModelingPackage.WIDGET__PANEL:
+				return getPanel() != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (x: ");

@@ -22,16 +22,15 @@ import org.unicase.uiModeling.UiModelingPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.uiModeling.impl.DropdownItemImpl#getList <em>List</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.DropdownItemImpl#getList <em>List</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class DropdownItemImpl extends UnicaseModelElementImpl implements DropdownItem {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DropdownItemImpl() {
@@ -40,7 +39,6 @@ public class DropdownItemImpl extends UnicaseModelElementImpl implements Dropdow
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -50,148 +48,133 @@ public class DropdownItemImpl extends UnicaseModelElementImpl implements Dropdow
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DropdownList getList() {
-		if (eContainerFeatureID() != UiModelingPackage.DROPDOWN_ITEM__LIST)
-			return null;
-		return (DropdownList) eContainer();
+		if (eContainerFeatureID() != UiModelingPackage.DROPDOWN_ITEM__LIST) return null;
+		return (DropdownList)eContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetList(DropdownList newList, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newList, UiModelingPackage.DROPDOWN_ITEM__LIST, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newList, UiModelingPackage.DROPDOWN_ITEM__LIST, msgs);
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setList(DropdownList newList) {
-		if (newList != eInternalContainer()
-			|| (eContainerFeatureID() != UiModelingPackage.DROPDOWN_ITEM__LIST && newList != null)) {
+		if (newList != eInternalContainer() || (eContainerFeatureID() != UiModelingPackage.DROPDOWN_ITEM__LIST && newList != null)) {
 			if (EcoreUtil.isAncestor(this, newList))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newList != null)
-				msgs = ((InternalEObject) newList).eInverseAdd(this, UiModelingPackage.DROPDOWN_LIST__ITEMS,
-					DropdownList.class, msgs);
+				msgs = ((InternalEObject)newList).eInverseAdd(this, UiModelingPackage.DROPDOWN_LIST__ITEMS, DropdownList.class, msgs);
 			msgs = basicSetList(newList, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.DROPDOWN_ITEM__LIST, newList,
-				newList));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.DROPDOWN_ITEM__LIST, newList, newList));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case UiModelingPackage.DROPDOWN_ITEM__LIST:
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetList((DropdownList) otherEnd, msgs);
+			case UiModelingPackage.DROPDOWN_ITEM__LIST:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetList((DropdownList)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case UiModelingPackage.DROPDOWN_ITEM__LIST:
-			return basicSetList(null, msgs);
+			case UiModelingPackage.DROPDOWN_ITEM__LIST:
+				return basicSetList(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-		case UiModelingPackage.DROPDOWN_ITEM__LIST:
-			return eInternalContainer().eInverseRemove(this, UiModelingPackage.DROPDOWN_LIST__ITEMS,
-				DropdownList.class, msgs);
+			case UiModelingPackage.DROPDOWN_ITEM__LIST:
+				return eInternalContainer().eInverseRemove(this, UiModelingPackage.DROPDOWN_LIST__ITEMS, DropdownList.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case UiModelingPackage.DROPDOWN_ITEM__LIST:
-			return getList();
+			case UiModelingPackage.DROPDOWN_ITEM__LIST:
+				return getList();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case UiModelingPackage.DROPDOWN_ITEM__LIST:
-			setList((DropdownList) newValue);
-			return;
+			case UiModelingPackage.DROPDOWN_ITEM__LIST:
+				setList((DropdownList)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case UiModelingPackage.DROPDOWN_ITEM__LIST:
-			setList((DropdownList) null);
-			return;
+			case UiModelingPackage.DROPDOWN_ITEM__LIST:
+				setList((DropdownList)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case UiModelingPackage.DROPDOWN_ITEM__LIST:
-			return getList() != null;
+			case UiModelingPackage.DROPDOWN_ITEM__LIST:
+				return getList() != null;
 		}
 		return super.eIsSet(featureID);
 	}

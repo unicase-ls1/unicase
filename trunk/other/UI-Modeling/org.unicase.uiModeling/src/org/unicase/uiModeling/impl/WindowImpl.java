@@ -23,17 +23,17 @@ import org.unicase.uiModeling.Window;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.uiModeling.impl.WindowImpl#getWidgets <em>Widgets</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.WindowImpl#getWidgets <em>Widgets</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class WindowImpl extends WidgetImpl implements Window {
 	/**
-	 * The cached value of the '{@link #getWidgets() <em>Widgets</em>}' containment reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getWidgets() <em>Widgets</em>}' containment reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getWidgets()
 	 * @generated
 	 * @ordered
@@ -42,7 +42,6 @@ public class WindowImpl extends WidgetImpl implements Window {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected WindowImpl() {
@@ -51,7 +50,6 @@ public class WindowImpl extends WidgetImpl implements Window {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -61,7 +59,6 @@ public class WindowImpl extends WidgetImpl implements Window {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Widget> getWidgets() {
@@ -73,74 +70,69 @@ public class WindowImpl extends WidgetImpl implements Window {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case UiModelingPackage.WINDOW__WIDGETS:
-			return ((InternalEList<?>) getWidgets()).basicRemove(otherEnd, msgs);
+			case UiModelingPackage.WINDOW__WIDGETS:
+				return ((InternalEList<?>)getWidgets()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case UiModelingPackage.WINDOW__WIDGETS:
-			return getWidgets();
+			case UiModelingPackage.WINDOW__WIDGETS:
+				return getWidgets();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case UiModelingPackage.WINDOW__WIDGETS:
-			getWidgets().clear();
-			getWidgets().addAll((Collection<? extends Widget>) newValue);
-			return;
+			case UiModelingPackage.WINDOW__WIDGETS:
+				getWidgets().clear();
+				getWidgets().addAll((Collection<? extends Widget>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case UiModelingPackage.WINDOW__WIDGETS:
-			getWidgets().clear();
-			return;
+			case UiModelingPackage.WINDOW__WIDGETS:
+				getWidgets().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case UiModelingPackage.WINDOW__WIDGETS:
-			return widgets != null && !widgets.isEmpty();
+			case UiModelingPackage.WINDOW__WIDGETS:
+				return widgets != null && !widgets.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

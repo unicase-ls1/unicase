@@ -239,6 +239,14 @@ public class UiModelingNavigatorContentProvider implements ICommonContentProvide
 				org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
 					.getType(org.unicase.uiModeling.diagram.edit.parts.ImageEditPart.VISUAL_ID));
 			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+			connectedViews = getChildrenByType(Collections.singleton(sv),
+				org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
+					.getType(org.unicase.uiModeling.diagram.edit.parts.RadioGroupEditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+			connectedViews = getChildrenByType(Collections.singleton(sv),
+				org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
+					.getType(org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupEditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
 			return result.toArray();
 		}
 
@@ -280,6 +288,36 @@ public class UiModelingNavigatorContentProvider implements ICommonContentProvide
 			connectedViews = getChildrenByType(connectedViews,
 				org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
 					.getType(org.unicase.uiModeling.diagram.edit.parts.TextField2EditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+			return result.toArray();
+		}
+
+		case org.unicase.uiModeling.diagram.edit.parts.RadioGroupEditPart.VISUAL_ID: {
+			LinkedList<org.unicase.uiModeling.diagram.navigator.UiModelingAbstractNavigatorItem> result = new LinkedList<org.unicase.uiModeling.diagram.navigator.UiModelingAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			Collection<View> connectedViews;
+			connectedViews = getChildrenByType(
+				Collections.singleton(sv),
+				org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
+					.getType(org.unicase.uiModeling.diagram.edit.parts.RadioGroupRadioButtonsCompartmentEditPart.VISUAL_ID));
+			connectedViews = getChildrenByType(connectedViews,
+				org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
+					.getType(org.unicase.uiModeling.diagram.edit.parts.RadioButtonEditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+			return result.toArray();
+		}
+
+		case org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupEditPart.VISUAL_ID: {
+			LinkedList<org.unicase.uiModeling.diagram.navigator.UiModelingAbstractNavigatorItem> result = new LinkedList<org.unicase.uiModeling.diagram.navigator.UiModelingAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			Collection<View> connectedViews;
+			connectedViews = getChildrenByType(
+				Collections.singleton(sv),
+				org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
+					.getType(org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupCheckboxesCompartmentEditPart.VISUAL_ID));
+			connectedViews = getChildrenByType(connectedViews,
+				org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
+					.getType(org.unicase.uiModeling.diagram.edit.parts.CheckboxEditPart.VISUAL_ID));
 			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
 			return result.toArray();
 		}

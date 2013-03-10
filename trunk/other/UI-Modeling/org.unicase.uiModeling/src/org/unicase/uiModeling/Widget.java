@@ -10,18 +10,19 @@ import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Widget</b></em>'. <!-- end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.uiModeling.Widget#getX <em>X</em>}</li>
- * <li>{@link org.unicase.uiModeling.Widget#getY <em>Y</em>}</li>
- * <li>{@link org.unicase.uiModeling.Widget#getWidth <em>Width</em>}</li>
- * <li>{@link org.unicase.uiModeling.Widget#getHeight <em>Height</em>}</li>
- * <li>{@link org.unicase.uiModeling.Widget#getText <em>Text</em>}</li>
- * <li>{@link org.unicase.uiModeling.Widget#getPanel <em>Panel</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.Widget#getX <em>X</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.Widget#getY <em>Y</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.Widget#getWidth <em>Width</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.Widget#getHeight <em>Height</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.Widget#getText <em>Text</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.Widget#getPanel <em>Panel</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.uiModeling.UiModelingPackage#getWidget()
  * @model abstract="true"
  * @generated
@@ -44,9 +45,9 @@ public interface Widget extends UnicaseModelElement {
 	int getX();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.uiModeling.Widget#getX <em>X</em>}' attribute. <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.unicase.uiModeling.Widget#getX <em>X</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>X</em>' attribute.
 	 * @see #getX()
 	 * @generated
@@ -70,9 +71,9 @@ public interface Widget extends UnicaseModelElement {
 	int getY();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.uiModeling.Widget#getY <em>Y</em>}' attribute. <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.unicase.uiModeling.Widget#getY <em>Y</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Y</em>' attribute.
 	 * @see #getY()
 	 * @generated
@@ -134,12 +135,12 @@ public interface Widget extends UnicaseModelElement {
 	void setHeight(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Text</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Text</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Text</em>' attribute.
 	 * @see #setText(String)
 	 * @see org.unicase.uiModeling.UiModelingPackage#getWidget_Text()
@@ -159,14 +160,14 @@ public interface Widget extends UnicaseModelElement {
 	void setText(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Panel</b></em>' container reference. It is bidirectional and its opposite is '
-	 * {@link org.unicase.uiModeling.Panel#getWidgets <em>Widgets</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Panel</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.uiModeling.Panel#getWidgets <em>Widgets</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Panel</em>' container reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Panel</em>' container reference.
 	 * @see #setPanel(Panel)
 	 * @see org.unicase.uiModeling.UiModelingPackage#getWidget_Panel()

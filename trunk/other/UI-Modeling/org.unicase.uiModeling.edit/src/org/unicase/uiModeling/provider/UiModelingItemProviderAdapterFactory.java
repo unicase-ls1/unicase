@@ -36,17 +36,17 @@ import org.unicase.uiModeling.util.UiModelingAdapterFactory;
 public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFactory implements
 	ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
-	 * This keeps track of the root adapter factory that delegates to this adapter factory. <!-- begin-user-doc --> <!--
+	 * This keeps track of the root adapter factory that delegates to this adapter factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
 
 	/**
-	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}. <!-- begin-user-doc --> <!--
+	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -60,8 +60,8 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
-	 * This constructs an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public UiModelingItemProviderAdapterFactory() {
@@ -81,9 +81,9 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 	protected StoryboardItemProvider storyboardItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.uiModeling.Storyboard}. <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.uiModeling.Storyboard}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -104,8 +104,8 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 	protected PanelItemProvider panelItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.uiModeling.Panel}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This creates an adapter for a {@link org.unicase.uiModeling.Panel}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -149,8 +149,8 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 	protected LabelItemProvider labelItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.uiModeling.Label}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This creates an adapter for a {@link org.unicase.uiModeling.Label}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -217,8 +217,8 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 	protected TextItemProvider textItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.uiModeling.Text}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This creates an adapter for a {@link org.unicase.uiModeling.Text}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -239,8 +239,8 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 	protected ImageItemProvider imageItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.uiModeling.Image}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This creates an adapter for a {@link org.unicase.uiModeling.Image}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -261,9 +261,9 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 	protected RadioGroupItemProvider radioGroupItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.uiModeling.RadioGroup}. <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.uiModeling.RadioGroup}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -284,9 +284,9 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 	protected RadioButtonItemProvider radioButtonItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.uiModeling.RadioButton}. <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.uiModeling.RadioButton}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -307,9 +307,9 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 	protected CheckboxGroupItemProvider checkboxGroupItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.uiModeling.CheckboxGroup}. <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.uiModeling.CheckboxGroup}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -353,9 +353,9 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 	protected DropdownListItemProvider dropdownListItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.uiModeling.DropdownList}. <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.uiModeling.DropdownList}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -376,9 +376,9 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 	protected DropdownItemItemProvider dropdownItemItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.uiModeling.DropdownItem}. <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.uiModeling.DropdownItem}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -399,9 +399,9 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 	protected ImageButtonItemProvider imageButtonItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.uiModeling.ImageButton}. <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.uiModeling.ImageButton}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -414,8 +414,8 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 	}
 
 	/**
-	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the root adapter factory that contains this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -423,8 +423,8 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 	}
 
 	/**
-	 * This sets the composed adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This sets the composed adapter factory that contains this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -433,7 +433,6 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -442,9 +441,9 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 	}
 
 	/**
-	 * This implementation substitutes the factory itself as the key for the adapter. <!-- begin-user-doc --> <!--
+	 * This implementation substitutes the factory itself as the key for the adapter.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -454,14 +453,13 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -470,8 +468,8 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 	}
 
 	/**
-	 * This adds a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a listener.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -479,8 +477,8 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 	}
 
 	/**
-	 * This removes a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This removes a listener.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -488,9 +486,9 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 	}
 
 	/**
-	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}. <!-- begin-user-doc --> <!--
+	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void fireNotifyChanged(Notification notification) {
@@ -502,41 +500,26 @@ public class UiModelingItemProviderAdapterFactory extends UiModelingAdapterFacto
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This disposes all of the item providers created by this factory. 
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void dispose() {
-		if (storyboardItemProvider != null)
-			storyboardItemProvider.dispose();
-		if (panelItemProvider != null)
-			panelItemProvider.dispose();
-		if (windowItemProvider != null)
-			windowItemProvider.dispose();
-		if (labelItemProvider != null)
-			labelItemProvider.dispose();
-		if (textFieldItemProvider != null)
-			textFieldItemProvider.dispose();
-		if (buttonItemProvider != null)
-			buttonItemProvider.dispose();
-		if (textItemProvider != null)
-			textItemProvider.dispose();
-		if (imageItemProvider != null)
-			imageItemProvider.dispose();
-		if (radioGroupItemProvider != null)
-			radioGroupItemProvider.dispose();
-		if (radioButtonItemProvider != null)
-			radioButtonItemProvider.dispose();
-		if (checkboxGroupItemProvider != null)
-			checkboxGroupItemProvider.dispose();
-		if (checkboxItemProvider != null)
-			checkboxItemProvider.dispose();
-		if (dropdownListItemProvider != null)
-			dropdownListItemProvider.dispose();
-		if (dropdownItemItemProvider != null)
-			dropdownItemItemProvider.dispose();
-		if (imageButtonItemProvider != null)
-			imageButtonItemProvider.dispose();
+		if (storyboardItemProvider != null) storyboardItemProvider.dispose();
+		if (panelItemProvider != null) panelItemProvider.dispose();
+		if (windowItemProvider != null) windowItemProvider.dispose();
+		if (labelItemProvider != null) labelItemProvider.dispose();
+		if (textFieldItemProvider != null) textFieldItemProvider.dispose();
+		if (buttonItemProvider != null) buttonItemProvider.dispose();
+		if (textItemProvider != null) textItemProvider.dispose();
+		if (imageItemProvider != null) imageItemProvider.dispose();
+		if (radioGroupItemProvider != null) radioGroupItemProvider.dispose();
+		if (radioButtonItemProvider != null) radioButtonItemProvider.dispose();
+		if (checkboxGroupItemProvider != null) checkboxGroupItemProvider.dispose();
+		if (checkboxItemProvider != null) checkboxItemProvider.dispose();
+		if (dropdownListItemProvider != null) dropdownListItemProvider.dispose();
+		if (dropdownItemItemProvider != null) dropdownItemItemProvider.dispose();
+		if (imageButtonItemProvider != null) imageButtonItemProvider.dispose();
 	}
 
 }

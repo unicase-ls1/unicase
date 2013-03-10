@@ -24,16 +24,16 @@ import org.unicase.uiModeling.UiModelingPackage;
 import org.unicase.uiModeling.Window;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.uiModeling.Window} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.uiModeling.Window} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class WindowItemProvider extends WidgetItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public WindowItemProvider(AdapterFactory adapterFactory) {
@@ -41,8 +41,8 @@ public class WindowItemProvider extends WidgetItemProvider implements IEditingDo
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -57,9 +57,9 @@ public class WindowItemProvider extends WidgetItemProvider implements IEditingDo
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,7 +73,6 @@ public class WindowItemProvider extends WidgetItemProvider implements IEditingDo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -85,8 +84,8 @@ public class WindowItemProvider extends WidgetItemProvider implements IEditingDo
 	}
 
 	/**
-	 * This returns Window.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Window.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -95,15 +94,16 @@ public class WindowItemProvider extends WidgetItemProvider implements IEditingDo
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Window) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Window_type") : getString("_UI_Window_type") + " "
-			+ label;
+		String label = ((Window)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Window_type") :
+			getString("_UI_Window_type") + " " + label;
 	}
 
 	/**
@@ -118,52 +118,72 @@ public class WindowItemProvider extends WidgetItemProvider implements IEditingDo
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Window.class)) {
-		case UiModelingPackage.WINDOW__WIDGETS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case UiModelingPackage.WINDOW__WIDGETS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(UiModelingPackage.Literals.WINDOW__WIDGETS,
-			UiModelingFactory.eINSTANCE.createWindow()));
+		newChildDescriptors.add
+			(createChildParameter
+				(UiModelingPackage.Literals.WINDOW__WIDGETS,
+				 UiModelingFactory.eINSTANCE.createWindow()));
 
-		newChildDescriptors.add(createChildParameter(UiModelingPackage.Literals.WINDOW__WIDGETS,
-			UiModelingFactory.eINSTANCE.createLabel()));
+		newChildDescriptors.add
+			(createChildParameter
+				(UiModelingPackage.Literals.WINDOW__WIDGETS,
+				 UiModelingFactory.eINSTANCE.createLabel()));
 
-		newChildDescriptors.add(createChildParameter(UiModelingPackage.Literals.WINDOW__WIDGETS,
-			UiModelingFactory.eINSTANCE.createTextField()));
+		newChildDescriptors.add
+			(createChildParameter
+				(UiModelingPackage.Literals.WINDOW__WIDGETS,
+				 UiModelingFactory.eINSTANCE.createTextField()));
 
-		newChildDescriptors.add(createChildParameter(UiModelingPackage.Literals.WINDOW__WIDGETS,
-			UiModelingFactory.eINSTANCE.createButton()));
+		newChildDescriptors.add
+			(createChildParameter
+				(UiModelingPackage.Literals.WINDOW__WIDGETS,
+				 UiModelingFactory.eINSTANCE.createButton()));
 
-		newChildDescriptors.add(createChildParameter(UiModelingPackage.Literals.WINDOW__WIDGETS,
-			UiModelingFactory.eINSTANCE.createText()));
+		newChildDescriptors.add
+			(createChildParameter
+				(UiModelingPackage.Literals.WINDOW__WIDGETS,
+				 UiModelingFactory.eINSTANCE.createText()));
 
-		newChildDescriptors.add(createChildParameter(UiModelingPackage.Literals.WINDOW__WIDGETS,
-			UiModelingFactory.eINSTANCE.createImage()));
+		newChildDescriptors.add
+			(createChildParameter
+				(UiModelingPackage.Literals.WINDOW__WIDGETS,
+				 UiModelingFactory.eINSTANCE.createImage()));
 
-		newChildDescriptors.add(createChildParameter(UiModelingPackage.Literals.WINDOW__WIDGETS,
-			UiModelingFactory.eINSTANCE.createRadioGroup()));
+		newChildDescriptors.add
+			(createChildParameter
+				(UiModelingPackage.Literals.WINDOW__WIDGETS,
+				 UiModelingFactory.eINSTANCE.createRadioGroup()));
 
-		newChildDescriptors.add(createChildParameter(UiModelingPackage.Literals.WINDOW__WIDGETS,
-			UiModelingFactory.eINSTANCE.createCheckboxGroup()));
+		newChildDescriptors.add
+			(createChildParameter
+				(UiModelingPackage.Literals.WINDOW__WIDGETS,
+				 UiModelingFactory.eINSTANCE.createCheckboxGroup()));
 
-		newChildDescriptors.add(createChildParameter(UiModelingPackage.Literals.WINDOW__WIDGETS,
-			UiModelingFactory.eINSTANCE.createDropdownList()));
+		newChildDescriptors.add
+			(createChildParameter
+				(UiModelingPackage.Literals.WINDOW__WIDGETS,
+				 UiModelingFactory.eINSTANCE.createDropdownList()));
 
-		newChildDescriptors.add(createChildParameter(UiModelingPackage.Literals.WINDOW__WIDGETS,
-			UiModelingFactory.eINSTANCE.createImageButton()));
+		newChildDescriptors.add
+			(createChildParameter
+				(UiModelingPackage.Literals.WINDOW__WIDGETS,
+				 UiModelingFactory.eINSTANCE.createImageButton()));
 	}
 
 }

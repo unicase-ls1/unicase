@@ -87,4 +87,10 @@ public final class UiModelingConstants {
 	public static final EAttribute NOTATION_WIDTH = notation.getSize_Width();
 	public static final EAttribute NOTATION_HEIGHT = notation.getSize_Height();
 
+	public static final String RADIO_UNCHECKED_KEY = "RadioUnchecked";
+	public static final String RADIO_CHECKED_KEY = "RadioChecked";
+	public static final String CHECKBOX_UNCHECKED_KEY = "CheckboxUnchecked";
+	public static final String CHECKBOX_CHECKED_KEY = "CheckboxChecked";
+	public static final String ERROR_KEY = "NO_KEY";
+
 }

@@ -42,6 +42,12 @@ public class PanelItemSemanticEditPolicy extends
 		if (org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.Image_2008 == req.getElementType()) {
 			return getGEFWrapper(new org.unicase.uiModeling.diagram.edit.commands.ImageCreateCommand(req));
 		}
+		if (org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.RadioGroup_2009 == req.getElementType()) {
+			return getGEFWrapper(new org.unicase.uiModeling.diagram.edit.commands.RadioGroupCreateCommand(req));
+		}
+		if (org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.CheckboxGroup_2010 == req.getElementType()) {
+			return getGEFWrapper(new org.unicase.uiModeling.diagram.edit.commands.CheckboxGroupCreateCommand(req));
+		}
 		return super.getCreateCommand(req);
 	}
 

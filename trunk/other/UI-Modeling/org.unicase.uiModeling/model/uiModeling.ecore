@@ -48,10 +48,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageURL" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RadioGroup" eSuperTypes="#//Widget">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="selectedIndex" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
-        defaultValueLiteral="-1"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="buttons" upperBound="-1"
         eType="#//RadioButton" containment="true" eOpposite="#//RadioButton/group"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="selectedItem" eType="#//RadioButton"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RadioButton" eSuperTypes="../../org.unicase.model/model/model.ecore#//UnicaseModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
@@ -65,6 +64,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="Checkbox" eSuperTypes="../../org.unicase.model/model/model.ecore#//UnicaseModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="group" eType="#//CheckboxGroup"
         eOpposite="#//CheckboxGroup/boxes"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="checked" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+        defaultValueLiteral=""/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DropdownList" eSuperTypes="#//Widget">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="selectedIndex" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"

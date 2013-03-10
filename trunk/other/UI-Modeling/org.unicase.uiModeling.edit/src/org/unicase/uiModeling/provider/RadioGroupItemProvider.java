@@ -19,23 +19,22 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.uiModeling.RadioGroup;
 import org.unicase.uiModeling.UiModelingFactory;
 import org.unicase.uiModeling.UiModelingPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.uiModeling.RadioGroup} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.uiModeling.RadioGroup} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class RadioGroupItemProvider extends WidgetItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public RadioGroupItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +42,8 @@ public class RadioGroupItemProvider extends WidgetItemProvider implements IEditi
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -52,32 +51,38 @@ public class RadioGroupItemProvider extends WidgetItemProvider implements IEditi
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSelectedIndexPropertyDescriptor(object);
+			addSelectedItemPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Selected Index feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Selected Item feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSelectedIndexPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_RadioGroup_selectedIndex_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_RadioGroup_selectedIndex_feature",
-				"_UI_RadioGroup_type"), UiModelingPackage.Literals.RADIO_GROUP__SELECTED_INDEX, true, false, false,
-			ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
+	protected void addSelectedItemPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_RadioGroup_selectedItem_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_RadioGroup_selectedItem_feature", "_UI_RadioGroup_type"),
+				 UiModelingPackage.Literals.RADIO_GROUP__SELECTED_ITEM,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -91,7 +96,6 @@ public class RadioGroupItemProvider extends WidgetItemProvider implements IEditi
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -103,8 +107,8 @@ public class RadioGroupItemProvider extends WidgetItemProvider implements IEditi
 	}
 
 	/**
-	 * This returns RadioGroup.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns RadioGroup.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -113,15 +117,16 @@ public class RadioGroupItemProvider extends WidgetItemProvider implements IEditi
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((RadioGroup) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_RadioGroup_type")
-			: getString("_UI_RadioGroup_type") + " " + label;
+		String label = ((RadioGroup)object).getName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_RadioGroup_type") :
+			getString("_UI_RadioGroup_type") + " " + label;
 	}
 
 	/**
@@ -136,28 +141,27 @@ public class RadioGroupItemProvider extends WidgetItemProvider implements IEditi
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(RadioGroup.class)) {
-		case UiModelingPackage.RADIO_GROUP__SELECTED_INDEX:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case UiModelingPackage.RADIO_GROUP__BUTTONS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+			case UiModelingPackage.RADIO_GROUP__BUTTONS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(UiModelingPackage.Literals.RADIO_GROUP__BUTTONS,
-			UiModelingFactory.eINSTANCE.createRadioButton()));
+		newChildDescriptors.add
+			(createChildParameter
+				(UiModelingPackage.Literals.RADIO_GROUP__BUTTONS,
+				 UiModelingFactory.eINSTANCE.createRadioButton()));
 	}
 
 }

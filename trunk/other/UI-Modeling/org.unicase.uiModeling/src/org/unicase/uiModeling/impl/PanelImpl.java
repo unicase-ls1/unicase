@@ -28,24 +28,24 @@ import org.unicase.uiModeling.Widget;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.uiModeling.impl.PanelImpl#getStoryboard <em>Storyboard</em>}</li>
- * <li>{@link org.unicase.uiModeling.impl.PanelImpl#getX <em>X</em>}</li>
- * <li>{@link org.unicase.uiModeling.impl.PanelImpl#getY <em>Y</em>}</li>
- * <li>{@link org.unicase.uiModeling.impl.PanelImpl#getWidth <em>Width</em>}</li>
- * <li>{@link org.unicase.uiModeling.impl.PanelImpl#getHeight <em>Height</em>}</li>
- * <li>{@link org.unicase.uiModeling.impl.PanelImpl#getWidgets <em>Widgets</em>}</li>
- * <li>{@link org.unicase.uiModeling.impl.PanelImpl#isPositioningEnabled <em>Positioning Enabled</em>}</li>
- * <li>{@link org.unicase.uiModeling.impl.PanelImpl#isSizingEnabled <em>Sizing Enabled</em>}</li>
- * <li>{@link org.unicase.uiModeling.impl.PanelImpl#isLayoutEnabled <em>Layout Enabled</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.PanelImpl#getStoryboard <em>Storyboard</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.PanelImpl#getX <em>X</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.PanelImpl#getY <em>Y</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.PanelImpl#getWidth <em>Width</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.PanelImpl#getHeight <em>Height</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.PanelImpl#getWidgets <em>Widgets</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.PanelImpl#isPositioningEnabled <em>Positioning Enabled</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.PanelImpl#isSizingEnabled <em>Sizing Enabled</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.PanelImpl#isLayoutEnabled <em>Layout Enabled</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class PanelImpl extends MEDiagramImpl implements Panel {
 	/**
-	 * The default value of the '{@link #getX() <em>X</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getX() <em>X</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getX()
 	 * @generated
 	 * @ordered
@@ -53,8 +53,8 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 	protected static final int X_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getX() <em>X</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getX() <em>X</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getX()
 	 * @generated
 	 * @ordered
@@ -62,8 +62,8 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 	protected int x = X_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getY() <em>Y</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getY() <em>Y</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getY()
 	 * @generated
 	 * @ordered
@@ -71,8 +71,8 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 	protected static final int Y_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getY() <em>Y</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getY() <em>Y</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getY()
 	 * @generated
 	 * @ordered
@@ -80,9 +80,9 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 	protected int y = Y_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getWidth() <em>Width</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getWidth()
 	 * @generated
 	 * @ordered
@@ -100,9 +100,9 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 	protected int width = WIDTH_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getHeight() <em>Height</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getHeight() <em>Height</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getHeight()
 	 * @generated
 	 * @ordered
@@ -110,9 +110,9 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 	protected static final int HEIGHT_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getHeight()
 	 * @generated
 	 * @ordered
@@ -120,9 +120,9 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 	protected int height = HEIGHT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getWidgets() <em>Widgets</em>}' containment reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getWidgets() <em>Widgets</em>}' containment reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getWidgets()
 	 * @generated
 	 * @ordered
@@ -150,9 +150,9 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 	protected boolean positioningEnabled = POSITIONING_ENABLED_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isSizingEnabled() <em>Sizing Enabled</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #isSizingEnabled() <em>Sizing Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isSizingEnabled()
 	 * @generated
 	 * @ordered
@@ -160,9 +160,9 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 	protected static final boolean SIZING_ENABLED_EDEFAULT = true;
 
 	/**
-	 * The cached value of the '{@link #isSizingEnabled() <em>Sizing Enabled</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isSizingEnabled() <em>Sizing Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isSizingEnabled()
 	 * @generated
 	 * @ordered
@@ -170,9 +170,9 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 	protected boolean sizingEnabled = SIZING_ENABLED_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isLayoutEnabled() <em>Layout Enabled</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #isLayoutEnabled() <em>Layout Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isLayoutEnabled()
 	 * @generated
 	 * @ordered
@@ -180,9 +180,9 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 	protected static final boolean LAYOUT_ENABLED_EDEFAULT = true;
 
 	/**
-	 * The cached value of the '{@link #isLayoutEnabled() <em>Layout Enabled</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #isLayoutEnabled() <em>Layout Enabled</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isLayoutEnabled()
 	 * @generated
 	 * @ordered
@@ -191,7 +191,6 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PanelImpl() {
@@ -200,7 +199,6 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -210,52 +208,44 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Storyboard getStoryboard() {
-		if (eContainerFeatureID() != UiModelingPackage.PANEL__STORYBOARD)
-			return null;
-		return (Storyboard) eContainer();
+		if (eContainerFeatureID() != UiModelingPackage.PANEL__STORYBOARD) return null;
+		return (Storyboard)eContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetStoryboard(Storyboard newStoryboard, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newStoryboard, UiModelingPackage.PANEL__STORYBOARD, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newStoryboard, UiModelingPackage.PANEL__STORYBOARD, msgs);
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setStoryboard(Storyboard newStoryboard) {
-		if (newStoryboard != eInternalContainer()
-			|| (eContainerFeatureID() != UiModelingPackage.PANEL__STORYBOARD && newStoryboard != null)) {
+		if (newStoryboard != eInternalContainer() || (eContainerFeatureID() != UiModelingPackage.PANEL__STORYBOARD && newStoryboard != null)) {
 			if (EcoreUtil.isAncestor(this, newStoryboard))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newStoryboard != null)
-				msgs = ((InternalEObject) newStoryboard).eInverseAdd(this, UiModelingPackage.STORYBOARD__PANELS,
-					Storyboard.class, msgs);
+				msgs = ((InternalEObject)newStoryboard).eInverseAdd(this, UiModelingPackage.STORYBOARD__PANELS, Storyboard.class, msgs);
 			msgs = basicSetStoryboard(newStoryboard, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.PANEL__STORYBOARD, newStoryboard,
-				newStoryboard));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.PANEL__STORYBOARD, newStoryboard, newStoryboard));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getX() {
@@ -264,7 +254,6 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setX(int newX) {
@@ -276,7 +265,6 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getY() {
@@ -285,7 +273,6 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setY(int newY) {
@@ -297,7 +284,6 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getWidth() {
@@ -306,7 +292,6 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setWidth(int newWidth) {
@@ -318,7 +303,6 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getHeight() {
@@ -327,7 +311,6 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setHeight(int newHeight) {
@@ -339,20 +322,17 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Widget> getWidgets() {
 		if (widgets == null) {
-			widgets = new EObjectContainmentWithInverseEList<Widget>(Widget.class, this,
-				UiModelingPackage.PANEL__WIDGETS, UiModelingPackage.WIDGET__PANEL);
+			widgets = new EObjectContainmentWithInverseEList<Widget>(Widget.class, this, UiModelingPackage.PANEL__WIDGETS, UiModelingPackage.WIDGET__PANEL);
 		}
 		return widgets;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isPositioningEnabled() {
@@ -361,20 +341,17 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPositioningEnabled(boolean newPositioningEnabled) {
 		boolean oldPositioningEnabled = positioningEnabled;
 		positioningEnabled = newPositioningEnabled;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.PANEL__POSITIONING_ENABLED,
-				oldPositioningEnabled, positioningEnabled));
+			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.PANEL__POSITIONING_ENABLED, oldPositioningEnabled, positioningEnabled));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSizingEnabled() {
@@ -383,20 +360,17 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSizingEnabled(boolean newSizingEnabled) {
 		boolean oldSizingEnabled = sizingEnabled;
 		sizingEnabled = newSizingEnabled;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.PANEL__SIZING_ENABLED,
-				oldSizingEnabled, sizingEnabled));
+			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.PANEL__SIZING_ENABLED, oldSizingEnabled, sizingEnabled));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isLayoutEnabled() {
@@ -405,216 +379,204 @@ public class PanelImpl extends MEDiagramImpl implements Panel {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLayoutEnabled(boolean newLayoutEnabled) {
 		boolean oldLayoutEnabled = layoutEnabled;
 		layoutEnabled = newLayoutEnabled;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.PANEL__LAYOUT_ENABLED,
-				oldLayoutEnabled, layoutEnabled));
+			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.PANEL__LAYOUT_ENABLED, oldLayoutEnabled, layoutEnabled));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case UiModelingPackage.PANEL__STORYBOARD:
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetStoryboard((Storyboard) otherEnd, msgs);
-		case UiModelingPackage.PANEL__WIDGETS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getWidgets()).basicAdd(otherEnd, msgs);
+			case UiModelingPackage.PANEL__STORYBOARD:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetStoryboard((Storyboard)otherEnd, msgs);
+			case UiModelingPackage.PANEL__WIDGETS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getWidgets()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case UiModelingPackage.PANEL__STORYBOARD:
-			return basicSetStoryboard(null, msgs);
-		case UiModelingPackage.PANEL__WIDGETS:
-			return ((InternalEList<?>) getWidgets()).basicRemove(otherEnd, msgs);
+			case UiModelingPackage.PANEL__STORYBOARD:
+				return basicSetStoryboard(null, msgs);
+			case UiModelingPackage.PANEL__WIDGETS:
+				return ((InternalEList<?>)getWidgets()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-		case UiModelingPackage.PANEL__STORYBOARD:
-			return eInternalContainer().eInverseRemove(this, UiModelingPackage.STORYBOARD__PANELS, Storyboard.class,
-				msgs);
+			case UiModelingPackage.PANEL__STORYBOARD:
+				return eInternalContainer().eInverseRemove(this, UiModelingPackage.STORYBOARD__PANELS, Storyboard.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case UiModelingPackage.PANEL__STORYBOARD:
-			return getStoryboard();
-		case UiModelingPackage.PANEL__X:
-			return getX();
-		case UiModelingPackage.PANEL__Y:
-			return getY();
-		case UiModelingPackage.PANEL__WIDTH:
-			return getWidth();
-		case UiModelingPackage.PANEL__HEIGHT:
-			return getHeight();
-		case UiModelingPackage.PANEL__WIDGETS:
-			return getWidgets();
-		case UiModelingPackage.PANEL__POSITIONING_ENABLED:
-			return isPositioningEnabled();
-		case UiModelingPackage.PANEL__SIZING_ENABLED:
-			return isSizingEnabled();
-		case UiModelingPackage.PANEL__LAYOUT_ENABLED:
-			return isLayoutEnabled();
+			case UiModelingPackage.PANEL__STORYBOARD:
+				return getStoryboard();
+			case UiModelingPackage.PANEL__X:
+				return getX();
+			case UiModelingPackage.PANEL__Y:
+				return getY();
+			case UiModelingPackage.PANEL__WIDTH:
+				return getWidth();
+			case UiModelingPackage.PANEL__HEIGHT:
+				return getHeight();
+			case UiModelingPackage.PANEL__WIDGETS:
+				return getWidgets();
+			case UiModelingPackage.PANEL__POSITIONING_ENABLED:
+				return isPositioningEnabled();
+			case UiModelingPackage.PANEL__SIZING_ENABLED:
+				return isSizingEnabled();
+			case UiModelingPackage.PANEL__LAYOUT_ENABLED:
+				return isLayoutEnabled();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case UiModelingPackage.PANEL__STORYBOARD:
-			setStoryboard((Storyboard) newValue);
-			return;
-		case UiModelingPackage.PANEL__X:
-			setX((Integer) newValue);
-			return;
-		case UiModelingPackage.PANEL__Y:
-			setY((Integer) newValue);
-			return;
-		case UiModelingPackage.PANEL__WIDTH:
-			setWidth((Integer) newValue);
-			return;
-		case UiModelingPackage.PANEL__HEIGHT:
-			setHeight((Integer) newValue);
-			return;
-		case UiModelingPackage.PANEL__WIDGETS:
-			getWidgets().clear();
-			getWidgets().addAll((Collection<? extends Widget>) newValue);
-			return;
-		case UiModelingPackage.PANEL__POSITIONING_ENABLED:
-			setPositioningEnabled((Boolean) newValue);
-			return;
-		case UiModelingPackage.PANEL__SIZING_ENABLED:
-			setSizingEnabled((Boolean) newValue);
-			return;
-		case UiModelingPackage.PANEL__LAYOUT_ENABLED:
-			setLayoutEnabled((Boolean) newValue);
-			return;
+			case UiModelingPackage.PANEL__STORYBOARD:
+				setStoryboard((Storyboard)newValue);
+				return;
+			case UiModelingPackage.PANEL__X:
+				setX((Integer)newValue);
+				return;
+			case UiModelingPackage.PANEL__Y:
+				setY((Integer)newValue);
+				return;
+			case UiModelingPackage.PANEL__WIDTH:
+				setWidth((Integer)newValue);
+				return;
+			case UiModelingPackage.PANEL__HEIGHT:
+				setHeight((Integer)newValue);
+				return;
+			case UiModelingPackage.PANEL__WIDGETS:
+				getWidgets().clear();
+				getWidgets().addAll((Collection<? extends Widget>)newValue);
+				return;
+			case UiModelingPackage.PANEL__POSITIONING_ENABLED:
+				setPositioningEnabled((Boolean)newValue);
+				return;
+			case UiModelingPackage.PANEL__SIZING_ENABLED:
+				setSizingEnabled((Boolean)newValue);
+				return;
+			case UiModelingPackage.PANEL__LAYOUT_ENABLED:
+				setLayoutEnabled((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case UiModelingPackage.PANEL__STORYBOARD:
-			setStoryboard((Storyboard) null);
-			return;
-		case UiModelingPackage.PANEL__X:
-			setX(X_EDEFAULT);
-			return;
-		case UiModelingPackage.PANEL__Y:
-			setY(Y_EDEFAULT);
-			return;
-		case UiModelingPackage.PANEL__WIDTH:
-			setWidth(WIDTH_EDEFAULT);
-			return;
-		case UiModelingPackage.PANEL__HEIGHT:
-			setHeight(HEIGHT_EDEFAULT);
-			return;
-		case UiModelingPackage.PANEL__WIDGETS:
-			getWidgets().clear();
-			return;
-		case UiModelingPackage.PANEL__POSITIONING_ENABLED:
-			setPositioningEnabled(POSITIONING_ENABLED_EDEFAULT);
-			return;
-		case UiModelingPackage.PANEL__SIZING_ENABLED:
-			setSizingEnabled(SIZING_ENABLED_EDEFAULT);
-			return;
-		case UiModelingPackage.PANEL__LAYOUT_ENABLED:
-			setLayoutEnabled(LAYOUT_ENABLED_EDEFAULT);
-			return;
+			case UiModelingPackage.PANEL__STORYBOARD:
+				setStoryboard((Storyboard)null);
+				return;
+			case UiModelingPackage.PANEL__X:
+				setX(X_EDEFAULT);
+				return;
+			case UiModelingPackage.PANEL__Y:
+				setY(Y_EDEFAULT);
+				return;
+			case UiModelingPackage.PANEL__WIDTH:
+				setWidth(WIDTH_EDEFAULT);
+				return;
+			case UiModelingPackage.PANEL__HEIGHT:
+				setHeight(HEIGHT_EDEFAULT);
+				return;
+			case UiModelingPackage.PANEL__WIDGETS:
+				getWidgets().clear();
+				return;
+			case UiModelingPackage.PANEL__POSITIONING_ENABLED:
+				setPositioningEnabled(POSITIONING_ENABLED_EDEFAULT);
+				return;
+			case UiModelingPackage.PANEL__SIZING_ENABLED:
+				setSizingEnabled(SIZING_ENABLED_EDEFAULT);
+				return;
+			case UiModelingPackage.PANEL__LAYOUT_ENABLED:
+				setLayoutEnabled(LAYOUT_ENABLED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case UiModelingPackage.PANEL__STORYBOARD:
-			return getStoryboard() != null;
-		case UiModelingPackage.PANEL__X:
-			return x != X_EDEFAULT;
-		case UiModelingPackage.PANEL__Y:
-			return y != Y_EDEFAULT;
-		case UiModelingPackage.PANEL__WIDTH:
-			return width != WIDTH_EDEFAULT;
-		case UiModelingPackage.PANEL__HEIGHT:
-			return height != HEIGHT_EDEFAULT;
-		case UiModelingPackage.PANEL__WIDGETS:
-			return widgets != null && !widgets.isEmpty();
-		case UiModelingPackage.PANEL__POSITIONING_ENABLED:
-			return positioningEnabled != POSITIONING_ENABLED_EDEFAULT;
-		case UiModelingPackage.PANEL__SIZING_ENABLED:
-			return sizingEnabled != SIZING_ENABLED_EDEFAULT;
-		case UiModelingPackage.PANEL__LAYOUT_ENABLED:
-			return layoutEnabled != LAYOUT_ENABLED_EDEFAULT;
+			case UiModelingPackage.PANEL__STORYBOARD:
+				return getStoryboard() != null;
+			case UiModelingPackage.PANEL__X:
+				return x != X_EDEFAULT;
+			case UiModelingPackage.PANEL__Y:
+				return y != Y_EDEFAULT;
+			case UiModelingPackage.PANEL__WIDTH:
+				return width != WIDTH_EDEFAULT;
+			case UiModelingPackage.PANEL__HEIGHT:
+				return height != HEIGHT_EDEFAULT;
+			case UiModelingPackage.PANEL__WIDGETS:
+				return widgets != null && !widgets.isEmpty();
+			case UiModelingPackage.PANEL__POSITIONING_ENABLED:
+				return positioningEnabled != POSITIONING_ENABLED_EDEFAULT;
+			case UiModelingPackage.PANEL__SIZING_ENABLED:
+				return sizingEnabled != SIZING_ENABLED_EDEFAULT;
+			case UiModelingPackage.PANEL__LAYOUT_ENABLED:
+				return layoutEnabled != LAYOUT_ENABLED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (x: ");

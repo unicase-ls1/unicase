@@ -14,13 +14,12 @@ import org.unicase.uiModeling.UiModelingPackage;
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Label</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class LabelImpl extends WidgetImpl implements Label {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected LabelImpl() {
@@ -29,7 +28,6 @@ public class LabelImpl extends WidgetImpl implements Label {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
