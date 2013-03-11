@@ -404,10 +404,11 @@ public class UiModelingPackageImpl extends EPackageImpl implements UiModelingPac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getImage_ImageURL() {
+	public EAttribute getImage_ImageUrl() {
 		return (EAttribute)imageEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -522,15 +523,16 @@ public class UiModelingPackageImpl extends EPackageImpl implements UiModelingPac
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDropdownList_SelectedIndex() {
-		return (EAttribute)dropdownListEClass.getEStructuralFeatures().get(0);
+	public EReference getDropdownList_Items() {
+		return (EReference)dropdownListEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDropdownList_Items() {
+	public EReference getDropdownList_SelectedItem() {
 		return (EReference)dropdownListEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -551,6 +553,15 @@ public class UiModelingPackageImpl extends EPackageImpl implements UiModelingPac
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDropdownItem_Text() {
+		return (EAttribute)dropdownItemEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -559,10 +570,11 @@ public class UiModelingPackageImpl extends EPackageImpl implements UiModelingPac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getImageButton_ImageURL() {
+	public EAttribute getImageButton_ImageUrl() {
 		return (EAttribute)imageButtonEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -644,11 +656,12 @@ public class UiModelingPackageImpl extends EPackageImpl implements UiModelingPac
 		createEAttribute(checkboxEClass, CHECKBOX__CHECKED);
 
 		dropdownListEClass = createEClass(DROPDOWN_LIST);
-		createEAttribute(dropdownListEClass, DROPDOWN_LIST__SELECTED_INDEX);
 		createEReference(dropdownListEClass, DROPDOWN_LIST__ITEMS);
+		createEReference(dropdownListEClass, DROPDOWN_LIST__SELECTED_ITEM);
 
 		dropdownItemEClass = createEClass(DROPDOWN_ITEM);
 		createEReference(dropdownItemEClass, DROPDOWN_ITEM__LIST);
+		createEAttribute(dropdownItemEClass, DROPDOWN_ITEM__TEXT);
 
 		imageButtonEClass = createEClass(IMAGE_BUTTON);
 		createEAttribute(imageButtonEClass, IMAGE_BUTTON__IMAGE_URL);
@@ -700,7 +713,7 @@ public class UiModelingPackageImpl extends EPackageImpl implements UiModelingPac
 		checkboxEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
 		dropdownListEClass.getESuperTypes().add(this.getWidget());
 		dropdownItemEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
-		imageButtonEClass.getESuperTypes().add(this.getButton());
+		imageButtonEClass.getESuperTypes().add(this.getWidget());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(storyboardEClass, Storyboard.class, "Storyboard", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -737,7 +750,7 @@ public class UiModelingPackageImpl extends EPackageImpl implements UiModelingPac
 		initEClass(textEClass, Text.class, "Text", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(imageEClass, Image.class, "Image", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getImage_ImageURL(), theEcorePackage.getEString(), "imageURL", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_ImageUrl(), theEcorePackage.getEString(), "imageUrl", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(radioGroupEClass, RadioGroup.class, "RadioGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRadioGroup_Buttons(), this.getRadioButton(), this.getRadioButton_Group(), "buttons", null, 0, -1, RadioGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -756,14 +769,15 @@ public class UiModelingPackageImpl extends EPackageImpl implements UiModelingPac
 		initEAttribute(getCheckbox_Checked(), theEcorePackage.getEBoolean(), "checked", "", 0, 1, Checkbox.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dropdownListEClass, DropdownList.class, "DropdownList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDropdownList_SelectedIndex(), theEcorePackage.getEInt(), "selectedIndex", "-1", 0, 1, DropdownList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDropdownList_Items(), this.getDropdownItem(), this.getDropdownItem_List(), "items", null, 0, -1, DropdownList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDropdownList_SelectedItem(), this.getDropdownItem(), null, "selectedItem", null, 0, 1, DropdownList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dropdownItemEClass, DropdownItem.class, "DropdownItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDropdownItem_List(), this.getDropdownList(), this.getDropdownList_Items(), "list", null, 0, 1, DropdownItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDropdownItem_Text(), theEcorePackage.getEString(), "text", null, 0, 1, DropdownItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageButtonEClass, ImageButton.class, "ImageButton", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getImageButton_ImageURL(), theEcorePackage.getEString(), "imageURL", null, 0, 1, ImageButton.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImageButton_ImageUrl(), theEcorePackage.getEString(), "imageUrl", null, 0, 1, ImageButton.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

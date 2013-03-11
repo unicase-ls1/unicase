@@ -142,6 +142,14 @@ public class UiModelingVisualIDRegistry {
 				domainElement.eClass())) {
 				return org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupEditPart.VISUAL_ID;
 			}
+			if (org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getDropdownList().isSuperTypeOf(
+				domainElement.eClass())) {
+				return org.unicase.uiModeling.diagram.edit.parts.DropdownListEditPart.VISUAL_ID;
+			}
+			if (org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getImageButton().isSuperTypeOf(
+				domainElement.eClass())) {
+				return org.unicase.uiModeling.diagram.edit.parts.ImageButtonEditPart.VISUAL_ID;
+			}
 			break;
 		case org.unicase.uiModeling.diagram.edit.parts.WindowWindowWidgetCompartmentEditPart.VISUAL_ID:
 			if (org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getButton().isSuperTypeOf(domainElement.eClass())) {
@@ -169,6 +177,12 @@ public class UiModelingVisualIDRegistry {
 		case org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupCheckboxesCompartmentEditPart.VISUAL_ID:
 			if (org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getCheckbox().isSuperTypeOf(domainElement.eClass())) {
 				return org.unicase.uiModeling.diagram.edit.parts.CheckboxEditPart.VISUAL_ID;
+			}
+			break;
+		case org.unicase.uiModeling.diagram.edit.parts.DropdownListDropdownItemsCompartmentEditPart.VISUAL_ID:
+			if (org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getDropdownItem().isSuperTypeOf(
+				domainElement.eClass())) {
+				return org.unicase.uiModeling.diagram.edit.parts.DropdownItemEditPart.VISUAL_ID;
 			}
 			break;
 		}
@@ -221,6 +235,12 @@ public class UiModelingVisualIDRegistry {
 			if (org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (org.unicase.uiModeling.diagram.edit.parts.DropdownListEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (org.unicase.uiModeling.diagram.edit.parts.ImageButtonEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case org.unicase.uiModeling.diagram.edit.parts.WindowEditPart.VISUAL_ID:
 			if (org.unicase.uiModeling.diagram.edit.parts.WindowTextEditPart.VISUAL_ID == nodeVisualID) {
@@ -271,6 +291,14 @@ public class UiModelingVisualIDRegistry {
 				return true;
 			}
 			break;
+		case org.unicase.uiModeling.diagram.edit.parts.DropdownListEditPart.VISUAL_ID:
+			if (org.unicase.uiModeling.diagram.edit.parts.WrappingLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (org.unicase.uiModeling.diagram.edit.parts.DropdownListDropdownItemsCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case org.unicase.uiModeling.diagram.edit.parts.Button2EditPart.VISUAL_ID:
 			if (org.unicase.uiModeling.diagram.edit.parts.ButtonText2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -306,6 +334,11 @@ public class UiModelingVisualIDRegistry {
 				return true;
 			}
 			break;
+		case org.unicase.uiModeling.diagram.edit.parts.DropdownItemEditPart.VISUAL_ID:
+			if (org.unicase.uiModeling.diagram.edit.parts.DropdownItemTextEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case org.unicase.uiModeling.diagram.edit.parts.WindowWindowWidgetCompartmentEditPart.VISUAL_ID:
 			if (org.unicase.uiModeling.diagram.edit.parts.Button2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -330,6 +363,11 @@ public class UiModelingVisualIDRegistry {
 			break;
 		case org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupCheckboxesCompartmentEditPart.VISUAL_ID:
 			if (org.unicase.uiModeling.diagram.edit.parts.CheckboxEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case org.unicase.uiModeling.diagram.edit.parts.DropdownListDropdownItemsCompartmentEditPart.VISUAL_ID:
+			if (org.unicase.uiModeling.diagram.edit.parts.DropdownItemEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -361,7 +399,7 @@ public class UiModelingVisualIDRegistry {
 	 */
 	public static boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
 		if (candidate == -1) {
-			//unrecognized id is always bad
+			// unrecognized id is always bad
 			return false;
 		}
 		int basic = getNodeVisualID(containerView, domainElement);
@@ -376,6 +414,7 @@ public class UiModelingVisualIDRegistry {
 		case org.unicase.uiModeling.diagram.edit.parts.WindowWindowWidgetCompartmentEditPart.VISUAL_ID:
 		case org.unicase.uiModeling.diagram.edit.parts.RadioGroupRadioButtonsCompartmentEditPart.VISUAL_ID:
 		case org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupCheckboxesCompartmentEditPart.VISUAL_ID:
+		case org.unicase.uiModeling.diagram.edit.parts.DropdownListDropdownItemsCompartmentEditPart.VISUAL_ID:
 			return true;
 		default:
 			break;
@@ -395,6 +434,7 @@ public class UiModelingVisualIDRegistry {
 		case org.unicase.uiModeling.diagram.edit.parts.ButtonEditPart.VISUAL_ID:
 		case org.unicase.uiModeling.diagram.edit.parts.TextEditPart.VISUAL_ID:
 		case org.unicase.uiModeling.diagram.edit.parts.ImageEditPart.VISUAL_ID:
+		case org.unicase.uiModeling.diagram.edit.parts.ImageButtonEditPart.VISUAL_ID:
 		case org.unicase.uiModeling.diagram.edit.parts.Button2EditPart.VISUAL_ID:
 		case org.unicase.uiModeling.diagram.edit.parts.Image2EditPart.VISUAL_ID:
 		case org.unicase.uiModeling.diagram.edit.parts.Label2EditPart.VISUAL_ID:
@@ -402,6 +442,7 @@ public class UiModelingVisualIDRegistry {
 		case org.unicase.uiModeling.diagram.edit.parts.TextField2EditPart.VISUAL_ID:
 		case org.unicase.uiModeling.diagram.edit.parts.RadioButtonEditPart.VISUAL_ID:
 		case org.unicase.uiModeling.diagram.edit.parts.CheckboxEditPart.VISUAL_ID:
+		case org.unicase.uiModeling.diagram.edit.parts.DropdownItemEditPart.VISUAL_ID:
 			return true;
 		default:
 			break;

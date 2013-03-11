@@ -29,7 +29,7 @@ import org.unicase.uiModeling.UiModelingPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ImageButtonItemProvider extends ButtonItemProvider implements IEditingDomainItemProvider,
+public class ImageButtonItemProvider extends WidgetItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -50,23 +50,24 @@ public class ImageButtonItemProvider extends ButtonItemProvider implements IEdit
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addImageURLPropertyDescriptor(object);
+			addImageUrlPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Image URL feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Image Url feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addImageURLPropertyDescriptor(Object object) {
+	protected void addImageUrlPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ImageButton_imageURL_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ImageButton_imageURL_feature", "_UI_ImageButton_type"),
+				 getString("_UI_ImageButton_imageUrl_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ImageButton_imageUrl_feature", "_UI_ImageButton_type"),
 				 UiModelingPackage.Literals.IMAGE_BUTTON__IMAGE_URL,
 				 true,
 				 false,

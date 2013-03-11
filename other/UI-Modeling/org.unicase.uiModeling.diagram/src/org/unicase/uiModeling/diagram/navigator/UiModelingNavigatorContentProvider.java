@@ -247,6 +247,14 @@ public class UiModelingNavigatorContentProvider implements ICommonContentProvide
 				org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
 					.getType(org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupEditPart.VISUAL_ID));
 			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+			connectedViews = getChildrenByType(Collections.singleton(sv),
+				org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
+					.getType(org.unicase.uiModeling.diagram.edit.parts.DropdownListEditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+			connectedViews = getChildrenByType(Collections.singleton(sv),
+				org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
+					.getType(org.unicase.uiModeling.diagram.edit.parts.ImageButtonEditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
 			return result.toArray();
 		}
 
@@ -318,6 +326,21 @@ public class UiModelingNavigatorContentProvider implements ICommonContentProvide
 			connectedViews = getChildrenByType(connectedViews,
 				org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
 					.getType(org.unicase.uiModeling.diagram.edit.parts.CheckboxEditPart.VISUAL_ID));
+			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+			return result.toArray();
+		}
+
+		case org.unicase.uiModeling.diagram.edit.parts.DropdownListEditPart.VISUAL_ID: {
+			LinkedList<org.unicase.uiModeling.diagram.navigator.UiModelingAbstractNavigatorItem> result = new LinkedList<org.unicase.uiModeling.diagram.navigator.UiModelingAbstractNavigatorItem>();
+			Node sv = (Node) view;
+			Collection<View> connectedViews;
+			connectedViews = getChildrenByType(
+				Collections.singleton(sv),
+				org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
+					.getType(org.unicase.uiModeling.diagram.edit.parts.DropdownListDropdownItemsCompartmentEditPart.VISUAL_ID));
+			connectedViews = getChildrenByType(connectedViews,
+				org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
+					.getType(org.unicase.uiModeling.diagram.edit.parts.DropdownItemEditPart.VISUAL_ID));
 			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
 			return result.toArray();
 		}

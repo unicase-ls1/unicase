@@ -217,7 +217,7 @@
       <viewProvider class="org.unicase.uiModeling.diagram.providers.UiModelingViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="UiModeling"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2003,2004,2005,2006,2007,2008,2009,2010,3001,3002,3003,3004,3005,3006,3007"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,3001,3002,3003,3004,3005,3006,3007,3008"/>
       </viewProvider>
    </extension>
 
@@ -229,16 +229,16 @@
             <method name="getType()" value="UiModeling"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2003,2004,2005,2006,2007,2008,2009,2010,3001,3002,3003,3004,3005,3006,3007"/>
+            <method name="getType()" value="2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,3001,3002,3003,3004,3005,3006,3007,3008"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value=""/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5003,5001,5004,5012,5002,5006,5014,5015,5011,5007,5008,5009,5010,5013,5016"/>
+            <method name="getType()" value="5003,5001,5004,5012,5002,5006,5014,5015,5018,5011,5007,5008,5009,5010,5013,5016,5017"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="7001,7002,7003"/>
+            <method name="getType()" value="7001,7002,7003,7004"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -257,6 +257,8 @@
          <object class="org.unicase.uiModeling.diagram.edit.parts.ImageEditPart" id="Image_2008"/>
          <object class="org.unicase.uiModeling.diagram.edit.parts.RadioGroupEditPart" id="RadioGroup_2009"/>
          <object class="org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupEditPart" id="CheckboxGroup_2010"/>
+         <object class="org.unicase.uiModeling.diagram.edit.parts.DropdownListEditPart" id="DropdownList_2011"/>
+         <object class="org.unicase.uiModeling.diagram.edit.parts.ImageButtonEditPart" id="ImageButton_2012"/>
          <object class="org.unicase.uiModeling.diagram.edit.parts.Button2EditPart" id="Button_3001"/>
          <object class="org.unicase.uiModeling.diagram.edit.parts.Image2EditPart" id="Image_3002"/>
          <object class="org.unicase.uiModeling.diagram.edit.parts.Label2EditPart" id="Label_3003"/>
@@ -264,7 +266,8 @@
          <object class="org.unicase.uiModeling.diagram.edit.parts.TextField2EditPart" id="TextField_3005"/>
          <object class="org.unicase.uiModeling.diagram.edit.parts.RadioButtonEditPart" id="RadioButton_3006"/>
          <object class="org.unicase.uiModeling.diagram.edit.parts.CheckboxEditPart" id="Checkbox_3007"/>
-         <context elements="Panel_45,Window_2003,Label_2004,TextField_2005,Button_2006,Text_2007,Image_2008,RadioGroup_2009,CheckboxGroup_2010,Button_3001,Image_3002,Label_3003,Text_3004,TextField_3005,RadioButton_3006,Checkbox_3007"/>
+         <object class="org.unicase.uiModeling.diagram.edit.parts.DropdownItemEditPart" id="DropdownItem_3008"/>
+         <context elements="Panel_45,Window_2003,Label_2004,TextField_2005,Button_2006,Text_2007,Image_2008,RadioGroup_2009,CheckboxGroup_2010,DropdownList_2011,ImageButton_2012,Button_3001,Image_3002,Label_3003,Text_3004,TextField_3005,RadioButton_3006,Checkbox_3007,DropdownItem_3008"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -364,6 +367,26 @@
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/uiModeling">
          <metamodelType
+               id="org.unicase.uiModeling.diagram.DropdownList_2011"
+               name="%metatype.name.DropdownList_2011"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="DropdownList"
+               edithelper="org.unicase.uiModeling.diagram.edit.helpers.DropdownListEditHelper">
+            <param name="semanticHint" value="2011"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/uiModeling">
+         <metamodelType
+               id="org.unicase.uiModeling.diagram.ImageButton_2012"
+               name="%metatype.name.ImageButton_2012"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ImageButton"
+               edithelper="org.unicase.uiModeling.diagram.edit.helpers.ImageButtonEditHelper">
+            <param name="semanticHint" value="2012"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/uiModeling">
+         <metamodelType
                id="org.unicase.uiModeling.diagram.Button_3001"
                name="%metatype.name.Button_3001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
@@ -432,6 +455,16 @@
             <param name="semanticHint" value="3007"/>
          </metamodelType>
       </metamodel>
+      <metamodel nsURI="http://unicase.org/model/uiModeling">
+         <metamodelType
+               id="org.unicase.uiModeling.diagram.DropdownItem_3008"
+               name="%metatype.name.DropdownItem_3008"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="DropdownItem"
+               edithelper="org.unicase.uiModeling.diagram.edit.helpers.DropdownItemEditHelper">
+            <param name="semanticHint" value="3008"/>
+         </metamodelType>
+      </metamodel>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
@@ -453,6 +486,8 @@
          <elementType ref="org.unicase.uiModeling.diagram.Image_2008"/>
          <elementType ref="org.unicase.uiModeling.diagram.RadioGroup_2009"/>
          <elementType ref="org.unicase.uiModeling.diagram.CheckboxGroup_2010"/>
+         <elementType ref="org.unicase.uiModeling.diagram.DropdownList_2011"/>
+         <elementType ref="org.unicase.uiModeling.diagram.ImageButton_2012"/>
          <elementType ref="org.unicase.uiModeling.diagram.Button_3001"/>
          <elementType ref="org.unicase.uiModeling.diagram.Image_3002"/>
          <elementType ref="org.unicase.uiModeling.diagram.Label_3003"/>
@@ -460,6 +495,7 @@
          <elementType ref="org.unicase.uiModeling.diagram.TextField_3005"/>
          <elementType ref="org.unicase.uiModeling.diagram.RadioButton_3006"/>
          <elementType ref="org.unicase.uiModeling.diagram.Checkbox_3007"/>
+         <elementType ref="org.unicase.uiModeling.diagram.DropdownItem_3008"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>

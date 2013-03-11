@@ -89,7 +89,10 @@ public class ImageEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 			new org.unicase.uiModeling.diagram.edit.policies.ImageItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
+			new org.unicase.uiModeling.diagram.edit.policies.OpenDiagramEditPolicy());
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
+		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -218,7 +221,7 @@ public class ImageEditPart extends ShapeNodeEditPart {
 			((ImageDescriptor) primaryShape).updateImage();
 		}
 
-		if (UiModelingPackage.eINSTANCE.getImage_ImageURL().equals(notification.getFeature())) {
+		if (UiModelingPackage.eINSTANCE.getImage_ImageUrl().equals(notification.getFeature())) {
 			if (primaryShape instanceof ImageDescriptor) {
 				((ImageDescriptor) primaryShape).updateImage();
 			}
@@ -429,7 +432,7 @@ public class ImageEditPart extends ShapeNodeEditPart {
 				constraintImageImageFigure0.grabExcessHorizontalSpace = true;
 				constraintImageImageFigure0.grabExcessVerticalSpace = true;
 
-				imageImageFigure0 = new ScalableImageFigure(getSwtImage(image));
+				imageImageFigure0 = new ScalableImageFigure(UiModelingDiagramUtil.getImage(image));
 				imageImageFigure0.setPreferredImageSize(150, 100);
 				this.add(imageImageFigure0, constraintImageImageFigure0);
 
@@ -454,14 +457,6 @@ public class ImageEditPart extends ShapeNodeEditPart {
 			this.add(fImage_text, constraintFImage_text);
 		}
 
-		private org.eclipse.swt.graphics.Image getSwtImage(Image image) {
-			org.eclipse.swt.graphics.Image swtImage = UiModelingDiagramUtil.getImageImage(image);
-			if (swtImage == null) {
-				swtImage = UiModelingDiagramUtil.getErrorImage();
-			}
-			return swtImage;
-		}
-
 		/**
 		 * @generated
 		 */
@@ -477,13 +472,12 @@ public class ImageEditPart extends ShapeNodeEditPart {
 				remove(fImage_text);
 				remove(imageImageFigure0);
 				// add figures
-				imageImageFigure0 = new ScalableImageFigure(getSwtImage(image));
+				imageImageFigure0 = new ScalableImageFigure(UiModelingDiagramUtil.getImage(image));
 				imageImageFigure0.setPreferredImageSize(width - 10, height - 20);
 				ImageDescriptor.this.add(imageImageFigure0, constraintImageImageFigure0);
 				ImageDescriptor.this.add(fImage_text);
 			}
 		}
-
 	}
 
 	/**

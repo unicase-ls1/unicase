@@ -91,6 +91,16 @@ public class UiModelingElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType DropdownList_2011 = getElementType("org.unicase.uiModeling.diagram.DropdownList_2011"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ImageButton_2012 = getElementType("org.unicase.uiModeling.diagram.ImageButton_2012"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Button_3001 = getElementType("org.unicase.uiModeling.diagram.Button_3001"); //$NON-NLS-1$
 	/**
 	 * @generated
@@ -118,6 +128,11 @@ public class UiModelingElementTypes {
 	 * @generated
 	 */
 	public static final IElementType Checkbox_3007 = getElementType("org.unicase.uiModeling.diagram.Checkbox_3007"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType DropdownItem_3008 = getElementType("org.unicase.uiModeling.diagram.DropdownItem_3008"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -295,6 +310,10 @@ public class UiModelingElementTypes {
 
 			elements.put(CheckboxGroup_2010, org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getCheckboxGroup());
 
+			elements.put(DropdownList_2011, org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getDropdownList());
+
+			elements.put(ImageButton_2012, org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getImageButton());
+
 			elements.put(Button_3001, org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getButton());
 
 			elements.put(Image_3002, org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getImage());
@@ -308,6 +327,8 @@ public class UiModelingElementTypes {
 			elements.put(RadioButton_3006, org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getRadioButton());
 
 			elements.put(Checkbox_3007, org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getCheckbox());
+
+			elements.put(DropdownItem_3008, org.unicase.uiModeling.UiModelingPackage.eINSTANCE.getDropdownItem());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -334,6 +355,8 @@ public class UiModelingElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Image_2008);
 			KNOWN_ELEMENT_TYPES.add(RadioGroup_2009);
 			KNOWN_ELEMENT_TYPES.add(CheckboxGroup_2010);
+			KNOWN_ELEMENT_TYPES.add(DropdownList_2011);
+			KNOWN_ELEMENT_TYPES.add(ImageButton_2012);
 			KNOWN_ELEMENT_TYPES.add(Button_3001);
 			KNOWN_ELEMENT_TYPES.add(Image_3002);
 			KNOWN_ELEMENT_TYPES.add(Label_3003);
@@ -341,6 +364,7 @@ public class UiModelingElementTypes {
 			KNOWN_ELEMENT_TYPES.add(TextField_3005);
 			KNOWN_ELEMENT_TYPES.add(RadioButton_3006);
 			KNOWN_ELEMENT_TYPES.add(Checkbox_3007);
+			KNOWN_ELEMENT_TYPES.add(DropdownItem_3008);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -368,6 +392,10 @@ public class UiModelingElementTypes {
 			return RadioGroup_2009;
 		case org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupEditPart.VISUAL_ID:
 			return CheckboxGroup_2010;
+		case org.unicase.uiModeling.diagram.edit.parts.DropdownListEditPart.VISUAL_ID:
+			return DropdownList_2011;
+		case org.unicase.uiModeling.diagram.edit.parts.ImageButtonEditPart.VISUAL_ID:
+			return ImageButton_2012;
 		case org.unicase.uiModeling.diagram.edit.parts.Button2EditPart.VISUAL_ID:
 			return Button_3001;
 		case org.unicase.uiModeling.diagram.edit.parts.Image2EditPart.VISUAL_ID:
@@ -382,6 +410,8 @@ public class UiModelingElementTypes {
 			return RadioButton_3006;
 		case org.unicase.uiModeling.diagram.edit.parts.CheckboxEditPart.VISUAL_ID:
 			return Checkbox_3007;
+		case org.unicase.uiModeling.diagram.edit.parts.DropdownItemEditPart.VISUAL_ID:
+			return DropdownItem_3008;
 		}
 		return null;
 	}

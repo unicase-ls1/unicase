@@ -17,7 +17,7 @@ import org.unicase.uiModeling.UiModelingPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.uiModeling.impl.ImageImpl#getImageURL <em>Image URL</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.ImageImpl#getImageUrl <em>Image Url</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,24 +25,24 @@ import org.unicase.uiModeling.UiModelingPackage;
  */
 public class ImageImpl extends WidgetImpl implements Image {
 	/**
-	 * The default value of the '{@link #getImageURL() <em>Image URL</em>}' attribute.
+	 * The default value of the '{@link #getImageUrl() <em>Image Url</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @see #getImageURL()
+	 * @see #getImageUrl()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String IMAGE_URL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getImageURL() <em>Image URL</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @see #getImageURL()
+	 * The cached value of the '{@link #getImageUrl() <em>Image Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getImageUrl()
 	 * @generated
 	 * @ordered
 	 */
-	protected String imageURL = IMAGE_URL_EDEFAULT;
+	protected String imageUrl = IMAGE_URL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -62,22 +62,24 @@ public class ImageImpl extends WidgetImpl implements Image {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getImageURL() {
-		return imageURL;
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImageURL(String newImageURL) {
-		String oldImageURL = imageURL;
-		imageURL = newImageURL;
+	public void setImageUrl(String newImageUrl) {
+		String oldImageUrl = imageUrl;
+		imageUrl = newImageUrl;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.IMAGE__IMAGE_URL, oldImageURL, imageURL));
+			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.IMAGE__IMAGE_URL, oldImageUrl, imageUrl));
 	}
 
 	/**
@@ -88,7 +90,7 @@ public class ImageImpl extends WidgetImpl implements Image {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case UiModelingPackage.IMAGE__IMAGE_URL:
-				return getImageURL();
+				return getImageUrl();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -101,7 +103,7 @@ public class ImageImpl extends WidgetImpl implements Image {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case UiModelingPackage.IMAGE__IMAGE_URL:
-				setImageURL((String)newValue);
+				setImageUrl((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -115,7 +117,7 @@ public class ImageImpl extends WidgetImpl implements Image {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case UiModelingPackage.IMAGE__IMAGE_URL:
-				setImageURL(IMAGE_URL_EDEFAULT);
+				setImageUrl(IMAGE_URL_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -129,7 +131,7 @@ public class ImageImpl extends WidgetImpl implements Image {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case UiModelingPackage.IMAGE__IMAGE_URL:
-				return IMAGE_URL_EDEFAULT == null ? imageURL != null : !IMAGE_URL_EDEFAULT.equals(imageURL);
+				return IMAGE_URL_EDEFAULT == null ? imageUrl != null : !IMAGE_URL_EDEFAULT.equals(imageUrl);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -143,8 +145,8 @@ public class ImageImpl extends WidgetImpl implements Image {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (imageURL: ");
-		result.append(imageURL);
+		result.append(" (imageUrl: ");
+		result.append(imageUrl);
 		result.append(')');
 		return result.toString();
 	}

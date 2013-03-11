@@ -14,8 +14,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.uiModeling.DropdownList#getSelectedIndex <em>Selected Index</em>}</li>
  *   <li>{@link org.unicase.uiModeling.DropdownList#getItems <em>Items</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.DropdownList#getSelectedItem <em>Selected Item</em>}</li>
  * </ul>
  * </p>
  *
@@ -24,32 +24,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface DropdownList extends Widget {
-	/**
-	 * Returns the value of the '<em><b>Selected Index</b></em>' attribute. The default value is <code>"-1"</code>. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Selected Index</em>' attribute isn't clear, there really should be more of a
-	 * description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Selected Index</em>' attribute.
-	 * @see #setSelectedIndex(int)
-	 * @see org.unicase.uiModeling.UiModelingPackage#getDropdownList_SelectedIndex()
-	 * @model default="-1"
-	 * @generated
-	 */
-	int getSelectedIndex();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.uiModeling.DropdownList#getSelectedIndex <em>Selected Index</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Selected Index</em>' attribute.
-	 * @see #getSelectedIndex()
-	 * @generated
-	 */
-	void setSelectedIndex(int value);
-
 	/**
 	 * Returns the value of the '<em><b>Items</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.uiModeling.DropdownItem}.
@@ -67,5 +41,31 @@ public interface DropdownList extends Widget {
 	 * @generated
 	 */
 	EList<DropdownItem> getItems();
+
+	/**
+	 * Returns the value of the '<em><b>Selected Item</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Selected Item</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Selected Item</em>' reference.
+	 * @see #setSelectedItem(DropdownItem)
+	 * @see org.unicase.uiModeling.UiModelingPackage#getDropdownList_SelectedItem()
+	 * @model
+	 * @generated
+	 */
+	DropdownItem getSelectedItem();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.uiModeling.DropdownList#getSelectedItem <em>Selected Item</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Selected Item</em>' reference.
+	 * @see #getSelectedItem()
+	 * @generated
+	 */
+	void setSelectedItem(DropdownItem value);
 
 } // DropdownList

@@ -25,34 +25,14 @@ import org.unicase.uiModeling.UiModelingPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.uiModeling.impl.DropdownListImpl#getSelectedIndex <em>Selected Index</em>}</li>
  *   <li>{@link org.unicase.uiModeling.impl.DropdownListImpl#getItems <em>Items</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.DropdownListImpl#getSelectedItem <em>Selected Item</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class DropdownListImpl extends WidgetImpl implements DropdownList {
-	/**
-	 * The default value of the '{@link #getSelectedIndex() <em>Selected Index</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSelectedIndex()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int SELECTED_INDEX_EDEFAULT = -1;
-
-	/**
-	 * The cached value of the '{@link #getSelectedIndex() <em>Selected Index</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSelectedIndex()
-	 * @generated
-	 * @ordered
-	 */
-	protected int selectedIndex = SELECTED_INDEX_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getItems() <em>Items</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -62,6 +42,16 @@ public class DropdownListImpl extends WidgetImpl implements DropdownList {
 	 * @ordered
 	 */
 	protected EList<DropdownItem> items;
+
+	/**
+	 * The cached value of the '{@link #getSelectedItem() <em>Selected Item</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSelectedItem()
+	 * @generated
+	 * @ordered
+	 */
+	protected DropdownItem selectedItem;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -84,30 +74,49 @@ public class DropdownListImpl extends WidgetImpl implements DropdownList {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getSelectedIndex() {
-		return selectedIndex;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSelectedIndex(int newSelectedIndex) {
-		int oldSelectedIndex = selectedIndex;
-		selectedIndex = newSelectedIndex;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.DROPDOWN_LIST__SELECTED_INDEX, oldSelectedIndex, selectedIndex));
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<DropdownItem> getItems() {
 		if (items == null) {
 			items = new EObjectContainmentWithInverseEList<DropdownItem>(DropdownItem.class, this, UiModelingPackage.DROPDOWN_LIST__ITEMS, UiModelingPackage.DROPDOWN_ITEM__LIST);
 		}
 		return items;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DropdownItem getSelectedItem() {
+		if (selectedItem != null && selectedItem.eIsProxy()) {
+			InternalEObject oldSelectedItem = (InternalEObject)selectedItem;
+			selectedItem = (DropdownItem)eResolveProxy(oldSelectedItem);
+			if (selectedItem != oldSelectedItem) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UiModelingPackage.DROPDOWN_LIST__SELECTED_ITEM, oldSelectedItem, selectedItem));
+			}
+		}
+		return selectedItem;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DropdownItem basicGetSelectedItem() {
+		return selectedItem;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSelectedItem(DropdownItem newSelectedItem) {
+		DropdownItem oldSelectedItem = selectedItem;
+		selectedItem = newSelectedItem;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.DROPDOWN_LIST__SELECTED_ITEM, oldSelectedItem, selectedItem));
 	}
 
 	/**
@@ -144,10 +153,11 @@ public class DropdownListImpl extends WidgetImpl implements DropdownList {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UiModelingPackage.DROPDOWN_LIST__SELECTED_INDEX:
-				return getSelectedIndex();
 			case UiModelingPackage.DROPDOWN_LIST__ITEMS:
 				return getItems();
+			case UiModelingPackage.DROPDOWN_LIST__SELECTED_ITEM:
+				if (resolve) return getSelectedItem();
+				return basicGetSelectedItem();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -160,12 +170,12 @@ public class DropdownListImpl extends WidgetImpl implements DropdownList {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UiModelingPackage.DROPDOWN_LIST__SELECTED_INDEX:
-				setSelectedIndex((Integer)newValue);
-				return;
 			case UiModelingPackage.DROPDOWN_LIST__ITEMS:
 				getItems().clear();
 				getItems().addAll((Collection<? extends DropdownItem>)newValue);
+				return;
+			case UiModelingPackage.DROPDOWN_LIST__SELECTED_ITEM:
+				setSelectedItem((DropdownItem)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -178,11 +188,11 @@ public class DropdownListImpl extends WidgetImpl implements DropdownList {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UiModelingPackage.DROPDOWN_LIST__SELECTED_INDEX:
-				setSelectedIndex(SELECTED_INDEX_EDEFAULT);
-				return;
 			case UiModelingPackage.DROPDOWN_LIST__ITEMS:
 				getItems().clear();
+				return;
+			case UiModelingPackage.DROPDOWN_LIST__SELECTED_ITEM:
+				setSelectedItem((DropdownItem)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -195,27 +205,12 @@ public class DropdownListImpl extends WidgetImpl implements DropdownList {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UiModelingPackage.DROPDOWN_LIST__SELECTED_INDEX:
-				return selectedIndex != SELECTED_INDEX_EDEFAULT;
 			case UiModelingPackage.DROPDOWN_LIST__ITEMS:
 				return items != null && !items.isEmpty();
+			case UiModelingPackage.DROPDOWN_LIST__SELECTED_ITEM:
+				return selectedItem != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (selectedIndex: ");
-		result.append(selectedIndex);
-		result.append(')');
-		return result.toString();
 	}
 
 } // DropdownListImpl

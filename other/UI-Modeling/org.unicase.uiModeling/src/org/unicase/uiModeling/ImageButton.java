@@ -12,7 +12,7 @@ package org.unicase.uiModeling;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.uiModeling.ImageButton#getImageURL <em>Image URL</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.ImageButton#getImageUrl <em>Image Url</em>}</li>
  * </ul>
  * </p>
  *
@@ -20,31 +20,31 @@ package org.unicase.uiModeling;
  * @model
  * @generated
  */
-public interface ImageButton extends Button {
+public interface ImageButton extends Widget {
 	/**
-	 * Returns the value of the '<em><b>Image URL</b></em>' attribute.
+	 * Returns the value of the '<em><b>Image Url</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Image URL</em>' attribute isn't clear, there really should be more of a description
-	 * here...
+	 * If the meaning of the '<em>Image Url</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Image URL</em>' attribute.
-	 * @see #setImageURL(String)
-	 * @see org.unicase.uiModeling.UiModelingPackage#getImageButton_ImageURL()
+	 * @return the value of the '<em>Image Url</em>' attribute.
+	 * @see #setImageUrl(String)
+	 * @see org.unicase.uiModeling.UiModelingPackage#getImageButton_ImageUrl()
 	 * @model
 	 * @generated
 	 */
-	String getImageURL();
+	String getImageUrl();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.uiModeling.ImageButton#getImageURL <em>Image URL</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value the new value of the '<em>Image URL</em>' attribute.
-	 * @see #getImageURL()
+	 * Sets the value of the '{@link org.unicase.uiModeling.ImageButton#getImageUrl <em>Image Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Image Url</em>' attribute.
+	 * @see #getImageUrl()
 	 * @generated
 	 */
-	void setImageURL(String value);
+	void setImageUrl(String value);
 
 } // ImageButton

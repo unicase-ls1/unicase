@@ -253,12 +253,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Basic2Group_title;
+	public static String Windowelements2Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Basic2Group_desc;
+	public static String Windowelements2Group_desc;
 
 	/**
 	 * @generated
@@ -273,12 +273,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Buttons4Group_title;
+	public static String FormElements4Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Buttons4Group_desc;
+	public static String FormElements4Group_desc;
 
 	/**
 	 * @generated
@@ -299,6 +299,26 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String Image2CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Button3CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Button3CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String ImageButton4CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ImageButton4CreationTool_desc;
 
 	/**
 	 * @generated
@@ -333,52 +353,62 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Button1CreationTool_title;
+	public static String RadioGroup1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Button1CreationTool_desc;
+	public static String RadioGroup1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String RadioGroup2CreationTool_title;
+	public static String RadioButton2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String RadioGroup2CreationTool_desc;
+	public static String RadioButton2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String RadioButton3CreationTool_title;
+	public static String CheckboxGroup3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String RadioButton3CreationTool_desc;
+	public static String CheckboxGroup3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String CheckboxGroup4CreationTool_title;
+	public static String Checkbox4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String CheckboxGroup4CreationTool_desc;
+	public static String Checkbox4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Checkbox5CreationTool_title;
+	public static String DropdownList5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Checkbox5CreationTool_desc;
+	public static String DropdownList5CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String DropdownItem6CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String DropdownItem6CreationTool_desc;
 
 	/**
 	 * @generated
@@ -394,6 +424,11 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String CheckboxGroupCheckboxesCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String DropdownListDropdownItemsCompartmentEditPart_title;
 
 	/**
 	 * @generated

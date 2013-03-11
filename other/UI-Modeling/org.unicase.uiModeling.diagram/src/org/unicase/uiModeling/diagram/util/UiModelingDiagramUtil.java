@@ -75,12 +75,12 @@ public final class UiModelingDiagramUtil {
 	 * @return the proper SWT image
 	 */
 	public static Image getButtonImage(ImageButton button) {
-		String imageURL = button.getImageURL();
-		if (imageURL == null || imageURL.length() == 0) {
+		String imageUrl = button.getImageUrl();
+		if (imageUrl == null || imageUrl.length() == 0) {
 			return getLocalImage("image.png");
 		}
 		try {
-			return getImage(new URL(imageURL));
+			return getImage(new URL(imageUrl));
 		} catch (MalformedURLException e) {
 			return getErrorImage();
 		}
@@ -91,12 +91,12 @@ public final class UiModelingDiagramUtil {
 	 * @return the SWT {@link Image} for the {@link org.unicase.uiModeling.Image} node
 	 */
 	public static Image getImageImage(org.unicase.uiModeling.Image image) {
-		String imageURL = image.getImageURL();
-		if (imageURL == null || imageURL.length() == 0) {
+		String imageUrl = image.getImageUrl();
+		if (imageUrl == null || imageUrl.length() == 0) {
 			return getLocalImage("image.png");
 		}
 		try {
-			return getImage(new URL(imageURL));
+			return getImage(new URL(imageUrl));
 		} catch (MalformedURLException e) {
 			return getErrorImage();
 		}
@@ -184,5 +184,18 @@ public final class UiModelingDiagramUtil {
 			return ((ENamedElement) element).getName();
 		}
 		return UiModelingConstants.ERROR_KEY;
+	}
+
+	public static Image getImage(EObject eObject) {
+		Image image = null;
+		if (eObject instanceof org.unicase.uiModeling.Image) {
+			image = getImageImage((org.unicase.uiModeling.Image) eObject);
+		} else if (eObject instanceof ImageButton) {
+			image = getButtonImage((ImageButton) eObject);
+		}
+		if (image == null) {
+			image = getErrorImage();
+		}
+		return image;
 	}
 }

@@ -273,10 +273,85 @@
           accessor="getCheckbox_text"
           figure="//@figures.0/@descriptors.9/@actualFigure/@children.0"/>
     </descriptors>
+    <descriptors
+        name="DropdownListDescriptor">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="DropdownListFigure">
+        <layout
+            xsi:type="gmfgraph:GridLayout"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="DropdownList_text"
+            text="&lt;Please select>">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"
+              grabExcessHorizontalSpace="true"
+              verticalAlignment="BEGINNING"
+              horizontalAlignment="FILL"/>
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              height="10"
+              style="BOLD"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Rectangle"
+            name="DropdownItemContainer"
+            outline="false">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"
+              grabExcessHorizontalSpace="true"
+              grabExcessVerticalSpace="true"
+              verticalAlignment="FILL"
+              horizontalAlignment="FILL"/>
+        </children>
+      </actualFigure>
+      <accessors
+          accessor="getDropdownList_text"
+          figure="//@figures.0/@descriptors.10/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getDropdownList_items"
+          figure="//@figures.0/@descriptors.10/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors
+        name="DropdownItemDescriptor">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="DropdownItemFigure"
+          outline="false">
+        <preferredSize
+            dx="115"
+            dy="20"/>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="DropdownItem_text"
+            text="My DropdownItem"/>
+      </actualFigure>
+      <accessors
+          accessor="getDropdownItem_text"
+          figure="//@figures.0/@descriptors.11/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="ImageButtonDescriptor">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="ImageImageFigure"
+          qualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.render.figures.ScalableImageFigure">
+        <layoutData
+            xsi:type="gmfgraph:GridLayoutData"
+            grabExcessHorizontalSpace="true"
+            grabExcessVerticalSpace="true"
+            verticalAlignment="BEGINNING"/>
+        <border
+            xsi:type="gmfgraph:LineBorder">
+          <color
+              xsi:type="gmfgraph:ConstantColor"
+              value="black"/>
+        </border>
+      </actualFigure>
+    </descriptors>
   </figures>
-  <nodes
-      name="CheckboxNode"
-      figure="CheckboxDescriptor"/>
   <nodes
       name="WindowNode"
       figure="WindowDescriptor"/>
@@ -304,6 +379,18 @@
   <nodes
       name="CheckboxGroupNode"
       figure="CheckboxGroupDescriptor"/>
+  <nodes
+      name="CheckboxNode"
+      figure="CheckboxDescriptor"/>
+  <nodes
+      name="DropdownListNode"
+      figure="DropdownListDescriptor"/>
+  <nodes
+      name="DropdownItemNode"
+      figure="DropdownItemDescriptor"/>
+  <nodes
+      name="ImageButtonNode"
+      figure="ImageButtonDescriptor"/>
   <compartments
       name="WindowWidgetCompartment"
       figure="WindowDescriptor"
@@ -316,6 +403,10 @@
       name="CheckboxesCompartment"
       figure="CheckboxGroupDescriptor"
       accessor="//@figures.0/@descriptors.8/@accessors.1"/>
+  <compartments
+      name="DropdownItemsCompartment"
+      figure="DropdownListDescriptor"
+      accessor="//@figures.0/@descriptors.10/@accessors.1"/>
   <labels
       name="WindowNode_text"
       figure="WindowDescriptor"
@@ -364,4 +455,14 @@
       name="CheckboxNode_text"
       figure="CheckboxDescriptor"
       accessor="//@figures.0/@descriptors.9/@accessors.0"/>
+  <labels
+      name="DropdownListNode_text"
+      figure="DropdownListDescriptor"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.10/@accessors.0"/>
+  <labels
+      name="DropdownItemNode_text"
+      figure="DropdownItemDescriptor"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.11/@accessors.0"/>
 </gmfgraph:Canvas>

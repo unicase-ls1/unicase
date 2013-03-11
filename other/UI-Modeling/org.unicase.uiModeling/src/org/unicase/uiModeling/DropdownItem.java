@@ -15,6 +15,7 @@ import org.unicase.model.UnicaseModelElement;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.uiModeling.DropdownItem#getList <em>List</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.DropdownItem#getText <em>Text</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,5 +50,31 @@ public interface DropdownItem extends UnicaseModelElement {
 	 * @generated
 	 */
 	void setList(DropdownList value);
+
+	/**
+	 * Returns the value of the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Text</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Text</em>' attribute.
+	 * @see #setText(String)
+	 * @see org.unicase.uiModeling.UiModelingPackage#getDropdownItem_Text()
+	 * @model
+	 * @generated
+	 */
+	String getText();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.uiModeling.DropdownItem#getText <em>Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Text</em>' attribute.
+	 * @see #getText()
+	 * @generated
+	 */
+	void setText(String value);
 
 } // DropdownItem

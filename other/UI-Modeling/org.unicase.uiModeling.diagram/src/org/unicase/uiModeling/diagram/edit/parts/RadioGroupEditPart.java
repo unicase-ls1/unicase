@@ -70,6 +70,8 @@ public class RadioGroupEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 			new org.unicase.uiModeling.diagram.edit.policies.RadioGroupItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
+			new org.unicase.uiModeling.diagram.edit.policies.OpenDiagramEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
 		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -322,7 +324,7 @@ public class RadioGroupEditPart extends ShapeNodeEditPart {
 
 			fRadioGroup_text = new WrappingLabel();
 
-			fRadioGroup_text.setText("MyRadioGroup");
+			fRadioGroup_text.setText("My RadioGroup");
 
 			GridData constraintFRadioGroup_text = new GridData();
 			constraintFRadioGroup_text.verticalAlignment = GridData.BEGINNING;

@@ -50,23 +50,24 @@ public class ImageItemProvider extends WidgetItemProvider implements IEditingDom
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addImageURLPropertyDescriptor(object);
+			addImageUrlPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Image URL feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Image Url feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addImageURLPropertyDescriptor(Object object) {
+	protected void addImageUrlPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Image_imageURL_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Image_imageURL_feature", "_UI_Image_type"),
+				 getString("_UI_Image_imageUrl_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Image_imageUrl_feature", "_UI_Image_type"),
 				 UiModelingPackage.Literals.IMAGE__IMAGE_URL,
 				 true,
 				 false,
