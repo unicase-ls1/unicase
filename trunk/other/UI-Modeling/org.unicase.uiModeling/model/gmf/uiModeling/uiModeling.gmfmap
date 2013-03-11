@@ -148,7 +148,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="uiModeling.gmftool#//@palette/@tools.4/@tools.0"/>
+          href="uiModeling.gmftool#//@palette/@tools.0/@tools.2"/>
       <diagramNode
           href="uiModeling.gmfgraph#ButtonNode"/>
     </ownedChild>
@@ -226,7 +226,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="uiModeling.gmftool#//@palette/@tools.4/@tools.1"/>
+          href="uiModeling.gmftool#//@palette/@tools.4/@tools.0"/>
       <diagramNode
           href="uiModeling.gmfgraph#RadioGroupNode"/>
       <children
@@ -252,7 +252,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="uiModeling.gmftool#//@palette/@tools.4/@tools.2"/>
+              href="uiModeling.gmftool#//@palette/@tools.4/@tools.1"/>
           <diagramNode
               href="uiModeling.gmfgraph#RadioButtonNode"/>
         </ownedChild>
@@ -285,7 +285,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="uiModeling.gmftool#//@palette/@tools.4/@tools.3"/>
+          href="uiModeling.gmftool#//@palette/@tools.4/@tools.2"/>
       <diagramNode
           href="uiModeling.gmfgraph#CheckboxGroupNode"/>
       <children
@@ -311,7 +311,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="uiModeling.gmftool#//@palette/@tools.4/@tools.4"/>
+              href="uiModeling.gmftool#//@palette/@tools.4/@tools.3"/>
           <diagramNode
               href="uiModeling.gmfgraph#CheckboxNode"/>
         </ownedChild>
@@ -321,6 +321,76 @@
         <compartment
             href="uiModeling.gmfgraph#CheckboxesCompartment"/>
       </compartments>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="../../uiModeling.ecore#//Panel/widgets"/>
+    <childrenFeature
+        href="../../uiModeling.ecore#//Panel/widgets"/>
+    <ownedChild
+        relatedDiagrams="//@diagram">
+      <domainMetaElement
+          href="../../uiModeling.ecore#//DropdownList"/>
+      <labelMappings
+          readOnly="true">
+        <diagramLabel
+            href="uiModeling.gmfgraph#DropdownListNode_text"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="uiModeling.gmftool#//@palette/@tools.4/@tools.4"/>
+      <diagramNode
+          href="uiModeling.gmfgraph#DropdownListNode"/>
+      <children
+          compartment="//@nodes.8/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.8/@ownedChild/@children.0/@ownedChild">
+        <containmentFeature
+            href="../../uiModeling.ecore#//DropdownList/items"/>
+        <childrenFeature
+            href="../../uiModeling.ecore#//DropdownList/items"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../uiModeling.ecore#//DropdownItem"/>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping"
+              viewPattern="{0}"
+              editorPattern="{0}"
+              editPattern="{0}">
+            <diagramLabel
+                href="uiModeling.gmfgraph#DropdownItemNode_text"/>
+            <features
+                href="../../uiModeling.ecore#//DropdownItem/text"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="uiModeling.gmftool#//@palette/@tools.4/@tools.5"/>
+          <diagramNode
+              href="uiModeling.gmfgraph#DropdownItemNode"/>
+        </ownedChild>
+      </children>
+      <compartments
+          children="//@nodes.8/@ownedChild/@children.0">
+        <compartment
+            href="uiModeling.gmfgraph#DropdownItemsCompartment"/>
+      </compartments>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="../../uiModeling.ecore#//Panel/widgets"/>
+    <childrenFeature
+        href="../../uiModeling.ecore#//Panel/widgets"/>
+    <ownedChild
+        relatedDiagrams="//@diagram">
+      <domainMetaElement
+          href="../../uiModeling.ecore#//ImageButton"/>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="uiModeling.gmftool#//@palette/@tools.0/@tools.3"/>
+      <diagramNode
+          href="uiModeling.gmfgraph#ImageButtonNode"/>
     </ownedChild>
   </nodes>
   <diagram>

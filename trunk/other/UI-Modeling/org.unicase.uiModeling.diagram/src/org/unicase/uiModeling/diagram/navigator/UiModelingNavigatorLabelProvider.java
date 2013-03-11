@@ -104,6 +104,12 @@ public class UiModelingNavigatorLabelProvider extends LabelProvider implements I
 		case org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupEditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?TopLevelNode?http://unicase.org/model/uiModeling?CheckboxGroup", org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.CheckboxGroup_2010); //$NON-NLS-1$
+		case org.unicase.uiModeling.diagram.edit.parts.DropdownListEditPart.VISUAL_ID:
+			return getImage(
+				"Navigator?TopLevelNode?http://unicase.org/model/uiModeling?DropdownList", org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.DropdownList_2011); //$NON-NLS-1$
+		case org.unicase.uiModeling.diagram.edit.parts.ImageButtonEditPart.VISUAL_ID:
+			return getImage(
+				"Navigator?TopLevelNode?http://unicase.org/model/uiModeling?ImageButton", org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.ImageButton_2012); //$NON-NLS-1$
 		case org.unicase.uiModeling.diagram.edit.parts.Button2EditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?Node?http://unicase.org/model/uiModeling?Button", org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.Button_3001); //$NON-NLS-1$
@@ -125,6 +131,9 @@ public class UiModelingNavigatorLabelProvider extends LabelProvider implements I
 		case org.unicase.uiModeling.diagram.edit.parts.CheckboxEditPart.VISUAL_ID:
 			return getImage(
 				"Navigator?Node?http://unicase.org/model/uiModeling?Checkbox", org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.Checkbox_3007); //$NON-NLS-1$
+		case org.unicase.uiModeling.diagram.edit.parts.DropdownItemEditPart.VISUAL_ID:
+			return getImage(
+				"Navigator?Node?http://unicase.org/model/uiModeling?DropdownItem", org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.DropdownItem_3008); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -195,6 +204,10 @@ public class UiModelingNavigatorLabelProvider extends LabelProvider implements I
 			return getRadioGroup_2009Text(view);
 		case org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupEditPart.VISUAL_ID:
 			return getCheckboxGroup_2010Text(view);
+		case org.unicase.uiModeling.diagram.edit.parts.DropdownListEditPart.VISUAL_ID:
+			return getDropdownList_2011Text(view);
+		case org.unicase.uiModeling.diagram.edit.parts.ImageButtonEditPart.VISUAL_ID:
+			return getImageButton_2012Text(view);
 		case org.unicase.uiModeling.diagram.edit.parts.Button2EditPart.VISUAL_ID:
 			return getButton_3001Text(view);
 		case org.unicase.uiModeling.diagram.edit.parts.Image2EditPart.VISUAL_ID:
@@ -209,6 +222,8 @@ public class UiModelingNavigatorLabelProvider extends LabelProvider implements I
 			return getRadioButton_3006Text(view);
 		case org.unicase.uiModeling.diagram.edit.parts.CheckboxEditPart.VISUAL_ID:
 			return getCheckbox_3007Text(view);
+		case org.unicase.uiModeling.diagram.edit.parts.DropdownItemEditPart.VISUAL_ID:
+			return getDropdownItem_3008Text(view);
 		}
 		return getUnknownElementText(view);
 	}
@@ -382,6 +397,39 @@ public class UiModelingNavigatorLabelProvider extends LabelProvider implements I
 	/**
 	 * @generated
 	 */
+	private String getDropdownList_2011Text(View view) {
+		IParser parser = org.unicase.uiModeling.diagram.providers.UiModelingParserProvider.getParser(
+			org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.DropdownList_2011,
+			view.getElement() != null ? view.getElement() : view,
+			org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
+				.getType(org.unicase.uiModeling.diagram.edit.parts.WrappingLabelEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			org.unicase.uiModeling.diagram.part.UiModelingDiagramEditorPlugin.getInstance().logError(
+				"Parser was not found for label " + 5018); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getImageButton_2012Text(View view) {
+		org.unicase.uiModeling.ImageButton domainModelElement = (org.unicase.uiModeling.ImageButton) view.getElement();
+		if (domainModelElement != null) {
+			return domainModelElement.getName();
+		} else {
+			org.unicase.uiModeling.diagram.part.UiModelingDiagramEditorPlugin.getInstance().logError(
+				"No domain element for view with visualID = " + 2012); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	private String getButton_3001Text(View view) {
 		IParser parser = org.unicase.uiModeling.diagram.providers.UiModelingParserProvider.getParser(
 			org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.Button_3001,
@@ -508,6 +556,25 @@ public class UiModelingNavigatorLabelProvider extends LabelProvider implements I
 		} else {
 			org.unicase.uiModeling.diagram.part.UiModelingDiagramEditorPlugin.getInstance().logError(
 				"Parser was not found for label " + 5016); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getDropdownItem_3008Text(View view) {
+		IParser parser = org.unicase.uiModeling.diagram.providers.UiModelingParserProvider.getParser(
+			org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.DropdownItem_3008,
+			view.getElement() != null ? view.getElement() : view,
+			org.unicase.uiModeling.diagram.part.UiModelingVisualIDRegistry
+				.getType(org.unicase.uiModeling.diagram.edit.parts.DropdownItemTextEditPart.VISUAL_ID));
+		if (parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view),
+				ParserOptions.NONE.intValue());
+		} else {
+			org.unicase.uiModeling.diagram.part.UiModelingDiagramEditorPlugin.getInstance().logError(
+				"Parser was not found for label " + 5017); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

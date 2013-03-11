@@ -48,6 +48,12 @@ public class PanelItemSemanticEditPolicy extends
 		if (org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.CheckboxGroup_2010 == req.getElementType()) {
 			return getGEFWrapper(new org.unicase.uiModeling.diagram.edit.commands.CheckboxGroupCreateCommand(req));
 		}
+		if (org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.DropdownList_2011 == req.getElementType()) {
+			return getGEFWrapper(new org.unicase.uiModeling.diagram.edit.commands.DropdownListCreateCommand(req));
+		}
+		if (org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.ImageButton_2012 == req.getElementType()) {
+			return getGEFWrapper(new org.unicase.uiModeling.diagram.edit.commands.ImageButtonCreateCommand(req));
+		}
 		return super.getCreateCommand(req);
 	}
 

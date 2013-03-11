@@ -332,7 +332,7 @@ public class TextTextEditPart extends CompartmentEditPart implements ITextAwareE
 	private void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
-		} else // 
+		} else //
 		if (getManager() instanceof TextDirectEditManager2) {
 			((TextDirectEditManager2) getManager()).show(initialCharacter);
 		} else //

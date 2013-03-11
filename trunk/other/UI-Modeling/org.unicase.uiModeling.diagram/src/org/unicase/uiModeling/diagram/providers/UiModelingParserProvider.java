@@ -357,6 +357,28 @@ public class UiModelingParserProvider extends AbstractProvider implements IParse
 	/**
 	 * @generated
 	 */
+	private IParser dropdownItemText_5017Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDropdownItemText_5017Parser() {
+		if (dropdownItemText_5017Parser == null) {
+			EAttribute[] features = new EAttribute[] { org.unicase.uiModeling.UiModelingPackage.eINSTANCE
+				.getDropdownItem_Text() };
+			org.unicase.uiModeling.diagram.parsers.MessageFormatParser parser = new org.unicase.uiModeling.diagram.parsers.MessageFormatParser(
+				features);
+			parser.setViewPattern("{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			dropdownItemText_5017Parser = parser;
+		}
+		return dropdownItemText_5017Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case org.unicase.uiModeling.diagram.edit.parts.WindowTextEditPart.VISUAL_ID:
@@ -389,6 +411,8 @@ public class UiModelingParserProvider extends AbstractProvider implements IParse
 			return getRadioButtonText_5013Parser();
 		case org.unicase.uiModeling.diagram.edit.parts.CheckboxTextEditPart.VISUAL_ID:
 			return getCheckboxText_5016Parser();
+		case org.unicase.uiModeling.diagram.edit.parts.DropdownItemTextEditPart.VISUAL_ID:
+			return getDropdownItemText_5017Parser();
 		}
 		return null;
 	}

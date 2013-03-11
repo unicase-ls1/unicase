@@ -1492,7 +1492,7 @@ public interface UiModelingPackage extends EPackage {
 	int IMAGE__PANEL = WIDGET__PANEL;
 
 	/**
-	 * The feature id for the '<em><b>Image URL</b></em>' attribute.
+	 * The feature id for the '<em><b>Image Url</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2228,21 +2228,22 @@ public interface UiModelingPackage extends EPackage {
 	int DROPDOWN_LIST__PANEL = WIDGET__PANEL;
 
 	/**
-	 * The feature id for the '<em><b>Selected Index</b></em>' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DROPDOWN_LIST__SELECTED_INDEX = WIDGET_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Items</b></em>' containment reference list.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DROPDOWN_LIST__ITEMS = WIDGET_FEATURE_COUNT + 1;
+	int DROPDOWN_LIST__ITEMS = WIDGET_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Selected Item</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_LIST__SELECTED_ITEM = WIDGET_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Dropdown List</em>' class.
@@ -2356,13 +2357,22 @@ public interface UiModelingPackage extends EPackage {
 	int DROPDOWN_ITEM__LIST = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DROPDOWN_ITEM__TEXT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Dropdown Item</em>' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DROPDOWN_ITEM_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int DROPDOWN_ITEM_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.uiModeling.impl.ImageButtonImpl <em>Image Button</em>}' class.
@@ -2379,7 +2389,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BUTTON__NAME = BUTTON__NAME;
+	int IMAGE_BUTTON__NAME = WIDGET__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -2387,7 +2397,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BUTTON__DESCRIPTION = BUTTON__DESCRIPTION;
+	int IMAGE_BUTTON__DESCRIPTION = WIDGET__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -2396,7 +2406,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BUTTON__ANNOTATIONS = BUTTON__ANNOTATIONS;
+	int IMAGE_BUTTON__ANNOTATIONS = WIDGET__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -2405,7 +2415,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BUTTON__ATTACHMENTS = BUTTON__ATTACHMENTS;
+	int IMAGE_BUTTON__ATTACHMENTS = WIDGET__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -2414,7 +2424,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BUTTON__INCOMING_DOCUMENT_REFERENCES = BUTTON__INCOMING_DOCUMENT_REFERENCES;
+	int IMAGE_BUTTON__INCOMING_DOCUMENT_REFERENCES = WIDGET__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -2422,7 +2432,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BUTTON__STATE = BUTTON__STATE;
+	int IMAGE_BUTTON__STATE = WIDGET__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -2431,7 +2441,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BUTTON__APPLIED_STEREOTYPE_INSTANCES = BUTTON__APPLIED_STEREOTYPE_INSTANCES;
+	int IMAGE_BUTTON__APPLIED_STEREOTYPE_INSTANCES = WIDGET__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -2440,7 +2450,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BUTTON__COMMENTS = BUTTON__COMMENTS;
+	int IMAGE_BUTTON__COMMENTS = WIDGET__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
@@ -2448,7 +2458,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BUTTON__CREATION_DATE = BUTTON__CREATION_DATE;
+	int IMAGE_BUTTON__CREATION_DATE = WIDGET__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute.
@@ -2456,7 +2466,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BUTTON__CREATOR = BUTTON__CREATOR;
+	int IMAGE_BUTTON__CREATOR = WIDGET__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>X</b></em>' attribute.
@@ -2464,7 +2474,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BUTTON__X = BUTTON__X;
+	int IMAGE_BUTTON__X = WIDGET__X;
 
 	/**
 	 * The feature id for the '<em><b>Y</b></em>' attribute.
@@ -2472,7 +2482,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BUTTON__Y = BUTTON__Y;
+	int IMAGE_BUTTON__Y = WIDGET__Y;
 
 	/**
 	 * The feature id for the '<em><b>Width</b></em>' attribute.
@@ -2480,7 +2490,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BUTTON__WIDTH = BUTTON__WIDTH;
+	int IMAGE_BUTTON__WIDTH = WIDGET__WIDTH;
 
 	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
@@ -2488,7 +2498,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BUTTON__HEIGHT = BUTTON__HEIGHT;
+	int IMAGE_BUTTON__HEIGHT = WIDGET__HEIGHT;
 
 	/**
 	 * The feature id for the '<em><b>Text</b></em>' attribute.
@@ -2496,7 +2506,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BUTTON__TEXT = BUTTON__TEXT;
+	int IMAGE_BUTTON__TEXT = WIDGET__TEXT;
 
 	/**
 	 * The feature id for the '<em><b>Panel</b></em>' container reference.
@@ -2504,15 +2514,15 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BUTTON__PANEL = BUTTON__PANEL;
+	int IMAGE_BUTTON__PANEL = WIDGET__PANEL;
 
 	/**
-	 * The feature id for the '<em><b>Image URL</b></em>' attribute.
+	 * The feature id for the '<em><b>Image Url</b></em>' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BUTTON__IMAGE_URL = BUTTON_FEATURE_COUNT + 0;
+	int IMAGE_BUTTON__IMAGE_URL = WIDGET_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Image Button</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
@@ -2521,7 +2531,7 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_BUTTON_FEATURE_COUNT = BUTTON_FEATURE_COUNT + 1;
+	int IMAGE_BUTTON_FEATURE_COUNT = WIDGET_FEATURE_COUNT + 1;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.uiModeling.Storyboard <em>Storyboard</em>}'. <!--
@@ -2793,14 +2803,15 @@ public interface UiModelingPackage extends EPackage {
 	EClass getImage();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.uiModeling.Image#getImageURL <em>Image URL</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Image URL</em>'.
-	 * @see org.unicase.uiModeling.Image#getImageURL()
+	 * Returns the meta object for the attribute '{@link org.unicase.uiModeling.Image#getImageUrl <em>Image Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Image Url</em>'.
+	 * @see org.unicase.uiModeling.Image#getImageUrl()
 	 * @see #getImage()
 	 * @generated
 	 */
-	EAttribute getImage_ImageURL();
+	EAttribute getImage_ImageUrl();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.uiModeling.RadioGroup <em>Radio Group</em>}'. <!--
@@ -2936,16 +2947,6 @@ public interface UiModelingPackage extends EPackage {
 	EClass getDropdownList();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.uiModeling.DropdownList#getSelectedIndex <em>Selected Index</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Selected Index</em>'.
-	 * @see org.unicase.uiModeling.DropdownList#getSelectedIndex()
-	 * @see #getDropdownList()
-	 * @generated
-	 */
-	EAttribute getDropdownList_SelectedIndex();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link org.unicase.uiModeling.DropdownList#getItems <em>Items</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Items</em>'.
@@ -2954,6 +2955,17 @@ public interface UiModelingPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDropdownList_Items();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.uiModeling.DropdownList#getSelectedItem <em>Selected Item</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Selected Item</em>'.
+	 * @see org.unicase.uiModeling.DropdownList#getSelectedItem()
+	 * @see #getDropdownList()
+	 * @generated
+	 */
+	EReference getDropdownList_SelectedItem();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.uiModeling.DropdownItem <em>Dropdown Item</em>}'. <!--
@@ -2976,6 +2988,17 @@ public interface UiModelingPackage extends EPackage {
 	EReference getDropdownItem_List();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.uiModeling.DropdownItem#getText <em>Text</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Text</em>'.
+	 * @see org.unicase.uiModeling.DropdownItem#getText()
+	 * @see #getDropdownItem()
+	 * @generated
+	 */
+	EAttribute getDropdownItem_Text();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.uiModeling.ImageButton <em>Image Button</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -2986,14 +3009,15 @@ public interface UiModelingPackage extends EPackage {
 	EClass getImageButton();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.uiModeling.ImageButton#getImageURL <em>Image URL</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Image URL</em>'.
-	 * @see org.unicase.uiModeling.ImageButton#getImageURL()
+	 * Returns the meta object for the attribute '{@link org.unicase.uiModeling.ImageButton#getImageUrl <em>Image Url</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Image Url</em>'.
+	 * @see org.unicase.uiModeling.ImageButton#getImageUrl()
 	 * @see #getImageButton()
 	 * @generated
 	 */
-	EAttribute getImageButton_ImageURL();
+	EAttribute getImageButton_ImageUrl();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -3240,12 +3264,12 @@ public interface UiModelingPackage extends EPackage {
 		EClass IMAGE = eINSTANCE.getImage();
 
 		/**
-		 * The meta object literal for the '<em><b>Image URL</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Image Url</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * @generated
 		 */
-		EAttribute IMAGE__IMAGE_URL = eINSTANCE.getImage_ImageURL();
+		EAttribute IMAGE__IMAGE_URL = eINSTANCE.getImage_ImageUrl();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.uiModeling.impl.RadioGroupImpl <em>Radio Group</em>}' class.
@@ -3357,20 +3381,20 @@ public interface UiModelingPackage extends EPackage {
 		EClass DROPDOWN_LIST = eINSTANCE.getDropdownList();
 
 		/**
-		 * The meta object literal for the '<em><b>Selected Index</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DROPDOWN_LIST__SELECTED_INDEX = eINSTANCE.getDropdownList_SelectedIndex();
-
-		/**
 		 * The meta object literal for the '<em><b>Items</b></em>' containment reference list feature. <!--
 		 * begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EReference DROPDOWN_LIST__ITEMS = eINSTANCE.getDropdownList_Items();
+
+		/**
+		 * The meta object literal for the '<em><b>Selected Item</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DROPDOWN_LIST__SELECTED_ITEM = eINSTANCE.getDropdownList_SelectedItem();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.uiModeling.impl.DropdownItemImpl <em>Dropdown Item</em>}' class.
@@ -3390,6 +3414,14 @@ public interface UiModelingPackage extends EPackage {
 		EReference DROPDOWN_ITEM__LIST = eINSTANCE.getDropdownItem_List();
 
 		/**
+		 * The meta object literal for the '<em><b>Text</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DROPDOWN_ITEM__TEXT = eINSTANCE.getDropdownItem_Text();
+
+		/**
 		 * The meta object literal for the '{@link org.unicase.uiModeling.impl.ImageButtonImpl <em>Image Button</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.uiModeling.impl.ImageButtonImpl
@@ -3399,12 +3431,12 @@ public interface UiModelingPackage extends EPackage {
 		EClass IMAGE_BUTTON = eINSTANCE.getImageButton();
 
 		/**
-		 * The meta object literal for the '<em><b>Image URL</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Image Url</b></em>' attribute feature.
 		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * @generated
 		 */
-		EAttribute IMAGE_BUTTON__IMAGE_URL = eINSTANCE.getImageButton_ImageURL();
+		EAttribute IMAGE_BUTTON__IMAGE_URL = eINSTANCE.getImageButton_ImageUrl();
 
 	}
 

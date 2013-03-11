@@ -47,6 +47,8 @@
             width="36"
             height="36"/>
       </viewmap>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"/>
       <modelFacet>
         <metaClass
             href="../../uiModeling.genmodel#//uiModeling/Button"/>
@@ -104,6 +106,8 @@
             width="150"
             height="125"/>
       </viewmap>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"/>
       <modelFacet>
         <metaClass
             href="../../uiModeling.genmodel#//uiModeling/Image"/>
@@ -161,6 +165,8 @@
             width="60"
             height="20"/>
       </viewmap>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"/>
       <modelFacet>
         <metaClass
             href="../../uiModeling.genmodel#//uiModeling/Label"/>
@@ -213,6 +219,8 @@
           xsi:type="gmfgen:InnerClassViewmap"
           className="TextDescriptor"
           classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class TextDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fText_text; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public TextDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setOutline(false);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fText_text = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fText_text.setText(&quot;My text.&quot;);&#xA;&#xA;this.add(fText_text);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getText_text() {&#xA;&#x9;&#x9;return fText_text;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"/>
       <modelFacet>
         <metaClass
             href="../../uiModeling.genmodel#//uiModeling/Text"/>
@@ -266,6 +274,8 @@
             width="70"
             height="20"/>
       </viewmap>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"/>
       <modelFacet>
         <metaClass
             href="../../uiModeling.genmodel#//uiModeling/TextField"/>
@@ -319,6 +329,8 @@
             width="110"
             height="20"/>
       </viewmap>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"/>
       <modelFacet>
         <metaClass
             href="../../uiModeling.genmodel#//uiModeling/RadioButton"/>
@@ -377,6 +389,8 @@
             width="95"
             height="20"/>
       </viewmap>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"/>
       <modelFacet>
         <metaClass
             href="../../uiModeling.genmodel#//uiModeling/Checkbox"/>
@@ -408,6 +422,61 @@
         </modelFacet>
       </labels>
     </childNodes>
+    <childNodes
+        visualID="3008"
+        editPartClassName="DropdownItemEditPart"
+        itemSemanticEditPolicyClassName="DropdownItemItemSemanticEditPolicy"
+        notationViewFactoryClassName="DropdownItemViewFactory"
+        canonicalEditPolicyClassName="DropdownItemCanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="DropdownItemGraphicalNodeEditPolicy"
+        createCommandClassName="DropdownItemCreateCommand"
+        containers="//@diagram/@compartments.3">
+      <diagramRunTimeClass
+          href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="DropdownItemEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="DropdownItemDescriptor"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DropdownItemDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fDropdownItem_text; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DropdownItemDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setOutline(false);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(115)&#xA;, getMapMode().DPtoLP(20)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fDropdownItem_text = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fDropdownItem_text.setText(&quot;My DropdownItem&quot;);&#xA;&#xA;this.add(fDropdownItem_text);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getDropdownItem_text() {&#xA;&#x9;&#x9;return fDropdownItem_text;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <attributes
+            xsi:type="gmfgen:DefaultSizeAttributes"
+            width="115"
+            height="20"/>
+      </viewmap>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"/>
+      <modelFacet>
+        <metaClass
+            href="../../uiModeling.genmodel#//uiModeling/DropdownItem"/>
+        <containmentMetaFeature
+            href="../../uiModeling.genmodel#//uiModeling/DropdownList/items"/>
+        <childMetaFeature
+            href="../../uiModeling.genmodel#//uiModeling/DropdownList/items"/>
+      </modelFacet>
+      <labels
+          visualID="5017"
+          editPartClassName="DropdownItemTextEditPart"
+          itemSemanticEditPolicyClassName="DropdownItemTextItemSemanticEditPolicy"
+          notationViewFactoryClassName="DropdownItemTextViewFactory">
+        <diagramRunTimeClass
+            href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getDropdownItem_text"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            parser="//@labelParsers/@implementations.0"
+            viewPattern="{0}"
+            editorPattern="{0}"
+            editPattern="{0}">
+          <metaFeatures
+              href="../../uiModeling.genmodel#//uiModeling/DropdownItem/text"/>
+        </modelFacet>
+      </labels>
+    </childNodes>
     <topLevelNodes
         visualID="2003"
         editPartClassName="WindowEditPart"
@@ -431,6 +500,8 @@
             width="400"
             height="200"/>
       </viewmap>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"/>
       <modelFacet>
         <metaClass
             href="../../uiModeling.genmodel#//uiModeling/Window"/>
@@ -487,6 +558,8 @@
             width="60"
             height="20"/>
       </viewmap>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"/>
       <modelFacet>
         <metaClass
             href="../../uiModeling.genmodel#//uiModeling/Label"/>
@@ -543,6 +616,8 @@
             width="70"
             height="20"/>
       </viewmap>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"/>
       <modelFacet>
         <metaClass
             href="../../uiModeling.genmodel#//uiModeling/TextField"/>
@@ -598,6 +673,8 @@
             width="36"
             height="36"/>
       </viewmap>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"/>
       <modelFacet>
         <metaClass
             href="../../uiModeling.genmodel#//uiModeling/Button"/>
@@ -649,6 +726,8 @@
           xsi:type="gmfgen:InnerClassViewmap"
           className="TextDescriptor"
           classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class TextDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fText_text; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public TextDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setOutline(false);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fText_text = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fText_text.setText(&quot;My text.&quot;);&#xA;&#xA;this.add(fText_text);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getText_text() {&#xA;&#x9;&#x9;return fText_text;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"/>
       <modelFacet>
         <metaClass
             href="../../uiModeling.genmodel#//uiModeling/Text"/>
@@ -701,6 +780,8 @@
             width="150"
             height="125"/>
       </viewmap>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"/>
       <modelFacet>
         <metaClass
             href="../../uiModeling.genmodel#//uiModeling/Image"/>
@@ -753,6 +834,8 @@
           xsi:type="gmfgen:InnerClassViewmap"
           className="RadioGroupDescriptor"
           classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class RadioGroupDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fRadioGroup_text; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fRadioGroup_buttons; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public RadioGroupDescriptor() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = true;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fRadioGroup_text = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fRadioGroup_text.setText(&quot;My RadioGroup&quot;);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFRadioGroup_text = new org.eclipse.draw2d.GridData();&#xA;constraintFRadioGroup_text.verticalAlignment = org.eclipse.draw2d.GridData.BEGINNING;&#xA;constraintFRadioGroup_text.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFRadioGroup_text.horizontalIndent = 0;&#xA;constraintFRadioGroup_text.horizontalSpan = 1;&#xA;constraintFRadioGroup_text.verticalSpan = 1;&#xA;constraintFRadioGroup_text.grabExcessHorizontalSpace = true;&#xA;constraintFRadioGroup_text.grabExcessVerticalSpace = false;&#xA;this.add(fRadioGroup_text, constraintFRadioGroup_text);&#xA;&#xA;&#xA;&#xA;&#xA;fRadioGroup_buttons = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;fRadioGroup_buttons.setOutline(false);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFRadioGroup_buttons = new org.eclipse.draw2d.GridData();&#xA;constraintFRadioGroup_buttons.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFRadioGroup_buttons.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFRadioGroup_buttons.horizontalIndent = 0;&#xA;constraintFRadioGroup_buttons.horizontalSpan = 1;&#xA;constraintFRadioGroup_buttons.verticalSpan = 1;&#xA;constraintFRadioGroup_buttons.grabExcessHorizontalSpace = true;&#xA;constraintFRadioGroup_buttons.grabExcessVerticalSpace = true;&#xA;this.add(fRadioGroup_buttons, constraintFRadioGroup_buttons);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getRadioGroup_text() {&#xA;&#x9;&#x9;return fRadioGroup_text;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getRadioGroup_buttons() {&#xA;&#x9;&#x9;return fRadioGroup_buttons;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"/>
       <modelFacet>
         <metaClass
             href="../../uiModeling.genmodel#//uiModeling/RadioGroup"/>
@@ -805,6 +888,8 @@
           xsi:type="gmfgen:InnerClassViewmap"
           className="CheckboxGroupDescriptor"
           classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CheckboxGroupDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCheckboxGroup_text; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fCheckboxGroup_buttons; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CheckboxGroupDescriptor() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = true;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCheckboxGroup_text = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fCheckboxGroup_text.setText(&quot;My CheckboxGroup&quot;);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFCheckboxGroup_text = new org.eclipse.draw2d.GridData();&#xA;constraintFCheckboxGroup_text.verticalAlignment = org.eclipse.draw2d.GridData.BEGINNING;&#xA;constraintFCheckboxGroup_text.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFCheckboxGroup_text.horizontalIndent = 0;&#xA;constraintFCheckboxGroup_text.horizontalSpan = 1;&#xA;constraintFCheckboxGroup_text.verticalSpan = 1;&#xA;constraintFCheckboxGroup_text.grabExcessHorizontalSpace = true;&#xA;constraintFCheckboxGroup_text.grabExcessVerticalSpace = false;&#xA;this.add(fCheckboxGroup_text, constraintFCheckboxGroup_text);&#xA;&#xA;&#xA;&#xA;&#xA;fCheckboxGroup_buttons = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;fCheckboxGroup_buttons.setOutline(false);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFCheckboxGroup_buttons = new org.eclipse.draw2d.GridData();&#xA;constraintFCheckboxGroup_buttons.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFCheckboxGroup_buttons.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFCheckboxGroup_buttons.horizontalIndent = 0;&#xA;constraintFCheckboxGroup_buttons.horizontalSpan = 1;&#xA;constraintFCheckboxGroup_buttons.verticalSpan = 1;&#xA;constraintFCheckboxGroup_buttons.grabExcessHorizontalSpace = true;&#xA;constraintFCheckboxGroup_buttons.grabExcessVerticalSpace = true;&#xA;this.add(fCheckboxGroup_buttons, constraintFCheckboxGroup_buttons);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCheckboxGroup_text() {&#xA;&#x9;&#x9;return fCheckboxGroup_text;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getCheckboxGroup_buttons() {&#xA;&#x9;&#x9;return fCheckboxGroup_buttons;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"/>
       <modelFacet>
         <metaClass
             href="../../uiModeling.genmodel#//uiModeling/CheckboxGroup"/>
@@ -834,6 +919,82 @@
               href="../../uiModeling.genmodel#//uiModeling/Widget/text"/>
         </modelFacet>
       </labels>
+    </topLevelNodes>
+    <topLevelNodes
+        visualID="2011"
+        editPartClassName="DropdownListEditPart"
+        itemSemanticEditPolicyClassName="DropdownListItemSemanticEditPolicy"
+        notationViewFactoryClassName="DropdownListViewFactory"
+        canonicalEditPolicyClassName="DropdownListCanonicalEditPolicy"
+        compartments="//@diagram/@compartments.3"
+        graphicalNodeEditPolicyClassName="DropdownListGraphicalNodeEditPolicy"
+        createCommandClassName="DropdownListCreateCommand">
+      <diagramRunTimeClass
+          href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="DropdownListEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="DropdownListDescriptor"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DropdownListDescriptor extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fDropdownList_text; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fDropdownList_items; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DropdownListDescriptor() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = true;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fDropdownList_text = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fDropdownList_text.setText(&quot;&lt;Please select>&quot;);&#xA;&#xA;fDropdownList_text.setFont(FDROPDOWNLIST_TEXT_FONT);&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFDropdownList_text = new org.eclipse.draw2d.GridData();&#xA;constraintFDropdownList_text.verticalAlignment = org.eclipse.draw2d.GridData.BEGINNING;&#xA;constraintFDropdownList_text.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFDropdownList_text.horizontalIndent = 0;&#xA;constraintFDropdownList_text.horizontalSpan = 1;&#xA;constraintFDropdownList_text.verticalSpan = 1;&#xA;constraintFDropdownList_text.grabExcessHorizontalSpace = true;&#xA;constraintFDropdownList_text.grabExcessVerticalSpace = false;&#xA;this.add(fDropdownList_text, constraintFDropdownList_text);&#xA;&#xA;&#xA;&#xA;&#xA;fDropdownList_items = new org.eclipse.draw2d.RectangleFigure();&#xA;&#xA;fDropdownList_items.setOutline(false);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFDropdownList_items = new org.eclipse.draw2d.GridData();&#xA;constraintFDropdownList_items.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFDropdownList_items.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFDropdownList_items.horizontalIndent = 0;&#xA;constraintFDropdownList_items.horizontalSpan = 1;&#xA;constraintFDropdownList_items.verticalSpan = 1;&#xA;constraintFDropdownList_items.grabExcessHorizontalSpace = true;&#xA;constraintFDropdownList_items.grabExcessVerticalSpace = true;&#xA;this.add(fDropdownList_items, constraintFDropdownList_items);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getDropdownList_text() {&#xA;&#x9;&#x9;return fDropdownList_text;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getDropdownList_items() {&#xA;&#x9;&#x9;return fDropdownList_items;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FDROPDOWNLIST_TEXT_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;"/>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"/>
+      <modelFacet>
+        <metaClass
+            href="../../uiModeling.genmodel#//uiModeling/DropdownList"/>
+        <containmentMetaFeature
+            href="../../uiModeling.genmodel#//uiModeling/Panel/widgets"/>
+        <childMetaFeature
+            href="../../uiModeling.genmodel#//uiModeling/Panel/widgets"/>
+      </modelFacet>
+      <labels
+          visualID="5018"
+          editPartClassName="WrappingLabelEditPart"
+          itemSemanticEditPolicyClassName="WrappingLabelItemSemanticEditPolicy"
+          notationViewFactoryClassName="DropdownListLabelViewFactory"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:ParentAssignedViewmap"
+            getterName="getDropdownList_text"
+            figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedFont="true"/>
+        </viewmap>
+        <modelFacet
+            parser="//@labelParsers/@implementations.1"/>
+      </labels>
+    </topLevelNodes>
+    <topLevelNodes
+        visualID="2012"
+        editPartClassName="ImageButtonEditPart"
+        itemSemanticEditPolicyClassName="ImageButtonItemSemanticEditPolicy"
+        notationViewFactoryClassName="ImageButtonViewFactory"
+        canonicalEditPolicyClassName="ImageButtonCanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="ImageButtonGraphicalNodeEditPolicy"
+        createCommandClassName="ImageButtonCreateCommand">
+      <diagramRunTimeClass
+          href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="ImageButtonEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="ImageButtonDescriptor"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ImageButtonDescriptor extends org.eclipse.gmf.runtime.draw2d.ui.render.figures.ScalableImageFigure {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ImageButtonDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setBorder(new org.eclipse.draw2d.LineBorder(org.eclipse.draw2d.ColorConstants.black, getMapMode().DPtoLP(1)&#xA;));&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <behaviour
+          xsi:type="gmfgen:OpenDiagramBehaviour"/>
+      <modelFacet>
+        <metaClass
+            href="../../uiModeling.genmodel#//uiModeling/ImageButton"/>
+        <containmentMetaFeature
+            href="../../uiModeling.genmodel#//uiModeling/Panel/widgets"/>
+        <childMetaFeature
+            href="../../uiModeling.genmodel#//uiModeling/Panel/widgets"/>
+      </modelFacet>
     </topLevelNodes>
     <compartments
         visualID="7001"
@@ -890,6 +1051,24 @@
           getterName="getCheckboxGroup_buttons"
           figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
     </compartments>
+    <compartments
+        visualID="7004"
+        editPartClassName="DropdownListDropdownItemsCompartmentEditPart"
+        itemSemanticEditPolicyClassName="DropdownListDropdownItemsCompartmentItemSemanticEditPolicy"
+        notationViewFactoryClassName="DropdownListDropdownItemsCompartmentViewFactory"
+        canonicalEditPolicyClassName="DropdownListDropdownItemsCompartmentCanonicalEditPolicy"
+        childNodes="//@diagram/@childNodes.7"
+        title="DropdownItemsCompartment"
+        canCollapse="false"
+        needsTitle="false"
+        node="//@diagram/@topLevelNodes.8">
+      <diagramRunTimeClass
+          href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <viewmap
+          xsi:type="gmfgen:ParentAssignedViewmap"
+          getterName="getDropdownList_items"
+          figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+    </compartments>
     <palette>
       <groups
           title="Default"
@@ -900,8 +1079,8 @@
             xsi:type="gmfgen:Separator"/>
       </groups>
       <groups
-          title="Basic"
-          description="These tools can be used to create a uiModeling diagram."
+          title="Window elements"
+          description="These tools can be used to create window related elements"
           collapse="true">
         <entries
             xsi:type="gmfgen:ToolEntry"
@@ -913,6 +1092,16 @@
             title="Image"
             description="Tool for creating an image."
             genNodes="//@diagram/@childNodes.1 //@diagram/@topLevelNodes.5"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="Button"
+            description="Tool for creating a button."
+            genNodes="//@diagram/@childNodes.0 //@diagram/@topLevelNodes.3"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="ImageButton"
+            description="Tool for creating an image button."
+            genNodes="//@diagram/@topLevelNodes.9"/>
       </groups>
       <groups
           title="TextTools"
@@ -935,34 +1124,39 @@
             genNodes="//@diagram/@childNodes.3 //@diagram/@topLevelNodes.4"/>
       </groups>
       <groups
-          title="Buttons"
-          description="These tools can be used to create button elements."
+          title="Form Elements"
+          description="These tools can be used to create form elements."
           collapse="true">
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="Button"
-            description="Tool for creating a button."
-            genNodes="//@diagram/@childNodes.0 //@diagram/@topLevelNodes.3"/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
             title="RadioGroup"
-            description="Tool for creation a radio group."
+            description="Tool for creating a radio group."
             genNodes="//@diagram/@topLevelNodes.6"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="RadioButton"
-            description="Tool to create a radio button."
+            description="Tool for creating a radio button."
             genNodes="//@diagram/@childNodes.5"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="CheckboxGroup"
-            description="Tool to create a checkbox group."
+            description="Tool for creating a checkbox group."
             genNodes="//@diagram/@topLevelNodes.7"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Checkbox"
-            description="Tool to create a checkbox."
+            description="Tool for creating a checkbox."
             genNodes="//@diagram/@childNodes.6"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="DropdownList"
+            description="Tool for creating a drop down list."
+            genNodes="//@diagram/@topLevelNodes.8"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="DropdownItem"
+            description="Tool for creating a dropdown item."
+            genNodes="//@diagram/@childNodes.7"/>
       </groups>
     </palette>
     <preferencePages
@@ -1046,6 +1240,15 @@
     <childReferences
         parent="//@diagram"
         child="//@diagram/@topLevelNodes.7"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.8"
+        child="//@diagram/@childNodes.7"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@topLevelNodes.8"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@topLevelNodes.9"/>
   </navigator>
   <diagramUpdater/>
   <propertySheet>
@@ -1073,6 +1276,9 @@
       extensibleViaService="true">
     <implementations
         xsi:type="gmfgen:PredefinedParser"
-        uses="//@diagram/@childNodes.0/@labels.0/@modelFacet //@diagram/@childNodes.1/@labels.0/@modelFacet //@diagram/@childNodes.2/@labels.0/@modelFacet //@diagram/@childNodes.3/@labels.0/@modelFacet //@diagram/@childNodes.4/@labels.0/@modelFacet //@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.2/@labels.0/@modelFacet //@diagram/@topLevelNodes.3/@labels.0/@modelFacet //@diagram/@topLevelNodes.4/@labels.0/@modelFacet //@diagram/@topLevelNodes.5/@labels.0/@modelFacet //@diagram/@childNodes.5/@labels.0/@modelFacet //@diagram/@topLevelNodes.6/@labels.0/@modelFacet //@diagram/@childNodes.6/@labels.0/@modelFacet //@diagram/@topLevelNodes.7/@labels.0/@modelFacet"/>
+        uses="//@diagram/@childNodes.0/@labels.0/@modelFacet //@diagram/@childNodes.1/@labels.0/@modelFacet //@diagram/@childNodes.2/@labels.0/@modelFacet //@diagram/@childNodes.3/@labels.0/@modelFacet //@diagram/@childNodes.4/@labels.0/@modelFacet //@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.2/@labels.0/@modelFacet //@diagram/@topLevelNodes.3/@labels.0/@modelFacet //@diagram/@topLevelNodes.4/@labels.0/@modelFacet //@diagram/@topLevelNodes.5/@labels.0/@modelFacet //@diagram/@childNodes.5/@labels.0/@modelFacet //@diagram/@topLevelNodes.6/@labels.0/@modelFacet //@diagram/@childNodes.6/@labels.0/@modelFacet //@diagram/@topLevelNodes.7/@labels.0/@modelFacet //@diagram/@childNodes.7/@labels.0/@modelFacet"/>
+    <implementations
+        xsi:type="gmfgen:ExternalParser"
+        uses="//@diagram/@topLevelNodes.8/@labels.0/@modelFacet"/>
   </labelParsers>
 </gmfgen:GenEditorGenerator>

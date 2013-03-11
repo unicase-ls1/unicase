@@ -52,28 +52,29 @@ public class DropdownListItemProvider extends WidgetItemProvider implements IEdi
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSelectedIndexPropertyDescriptor(object);
+			addSelectedItemPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Selected Index feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Selected Item feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSelectedIndexPropertyDescriptor(Object object) {
+	protected void addSelectedItemPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DropdownList_selectedIndex_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DropdownList_selectedIndex_feature", "_UI_DropdownList_type"),
-				 UiModelingPackage.Literals.DROPDOWN_LIST__SELECTED_INDEX,
+				 getString("_UI_DropdownList_selectedItem_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_DropdownList_selectedItem_feature", "_UI_DropdownList_type"),
+				 UiModelingPackage.Literals.DROPDOWN_LIST__SELECTED_ITEM,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -142,9 +143,6 @@ public class DropdownListItemProvider extends WidgetItemProvider implements IEdi
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(DropdownList.class)) {
-			case UiModelingPackage.DROPDOWN_LIST__SELECTED_INDEX:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
 			case UiModelingPackage.DROPDOWN_LIST__ITEMS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;

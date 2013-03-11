@@ -77,6 +77,15 @@ public class UiModelingEditPartFactory implements EditPartFactory {
 			case org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupTextEditPart.VISUAL_ID:
 				return new org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupTextEditPart(view);
 
+			case org.unicase.uiModeling.diagram.edit.parts.DropdownListEditPart.VISUAL_ID:
+				return new org.unicase.uiModeling.diagram.edit.parts.DropdownListEditPart(view);
+
+			case org.unicase.uiModeling.diagram.edit.parts.WrappingLabelEditPart.VISUAL_ID:
+				return new org.unicase.uiModeling.diagram.edit.parts.WrappingLabelEditPart(view);
+
+			case org.unicase.uiModeling.diagram.edit.parts.ImageButtonEditPart.VISUAL_ID:
+				return new org.unicase.uiModeling.diagram.edit.parts.ImageButtonEditPart(view);
+
 			case org.unicase.uiModeling.diagram.edit.parts.Button2EditPart.VISUAL_ID:
 				return new org.unicase.uiModeling.diagram.edit.parts.Button2EditPart(view);
 
@@ -119,6 +128,12 @@ public class UiModelingEditPartFactory implements EditPartFactory {
 			case org.unicase.uiModeling.diagram.edit.parts.CheckboxTextEditPart.VISUAL_ID:
 				return new org.unicase.uiModeling.diagram.edit.parts.CheckboxTextEditPart(view);
 
+			case org.unicase.uiModeling.diagram.edit.parts.DropdownItemEditPart.VISUAL_ID:
+				return new org.unicase.uiModeling.diagram.edit.parts.DropdownItemEditPart(view);
+
+			case org.unicase.uiModeling.diagram.edit.parts.DropdownItemTextEditPart.VISUAL_ID:
+				return new org.unicase.uiModeling.diagram.edit.parts.DropdownItemTextEditPart(view);
+
 			case org.unicase.uiModeling.diagram.edit.parts.WindowWindowWidgetCompartmentEditPart.VISUAL_ID:
 				return new org.unicase.uiModeling.diagram.edit.parts.WindowWindowWidgetCompartmentEditPart(view);
 
@@ -127,6 +142,9 @@ public class UiModelingEditPartFactory implements EditPartFactory {
 
 			case org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupCheckboxesCompartmentEditPart.VISUAL_ID:
 				return new org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupCheckboxesCompartmentEditPart(view);
+
+			case org.unicase.uiModeling.diagram.edit.parts.DropdownListDropdownItemsCompartmentEditPart.VISUAL_ID:
+				return new org.unicase.uiModeling.diagram.edit.parts.DropdownListDropdownItemsCompartmentEditPart(view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

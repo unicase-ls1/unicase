@@ -45,7 +45,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Button" eSuperTypes="#//Widget"/>
   <eClassifiers xsi:type="ecore:EClass" name="Text" eSuperTypes="#//Widget"/>
   <eClassifiers xsi:type="ecore:EClass" name="Image" eSuperTypes="#//Widget">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageURL" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageUrl" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RadioGroup" eSuperTypes="#//Widget">
     <eStructuralFeatures xsi:type="ecore:EReference" name="buttons" upperBound="-1"
@@ -69,16 +69,16 @@
         defaultValueLiteral=""/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DropdownList" eSuperTypes="#//Widget">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="selectedIndex" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
-        defaultValueLiteral="-1"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="items" upperBound="-1"
         eType="#//DropdownItem" containment="true" eOpposite="#//DropdownItem/list"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="selectedItem" eType="#//DropdownItem"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DropdownItem" eSuperTypes="../../org.unicase.model/model/model.ecore#//UnicaseModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="list" eType="#//DropdownList"
         eOpposite="#//DropdownList/items"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ImageButton" eSuperTypes="#//Button">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageURL" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ImageButton" eSuperTypes="#//Widget">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageUrl" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

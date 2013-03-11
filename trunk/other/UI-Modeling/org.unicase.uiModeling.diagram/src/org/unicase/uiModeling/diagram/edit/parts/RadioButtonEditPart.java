@@ -63,7 +63,10 @@ public class RadioButtonEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 			new org.unicase.uiModeling.diagram.edit.policies.RadioButtonItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
+			new org.unicase.uiModeling.diagram.edit.policies.OpenDiagramEditPolicy());
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
+		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -274,7 +277,7 @@ public class RadioButtonEditPart extends ShapeNodeEditPart {
 
 			fRadioButton_text = new WrappingLabel();
 
-			fRadioButton_text.setText("MyRadioButton");
+			fRadioButton_text.setText("My RadioButton");
 
 			this.add(fRadioButton_text);
 

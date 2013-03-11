@@ -200,7 +200,6 @@ public class UiModelingSwitch<T> extends Switch<T> {
 			case UiModelingPackage.IMAGE_BUTTON: {
 				ImageButton imageButton = (ImageButton)theEObject;
 				T result = caseImageButton(imageButton);
-				if (result == null) result = caseButton(imageButton);
 				if (result == null) result = caseWidget(imageButton);
 				if (result == null) result = caseUnicaseModelElement(imageButton);
 				if (result == null) result = defaultCase(theEObject);

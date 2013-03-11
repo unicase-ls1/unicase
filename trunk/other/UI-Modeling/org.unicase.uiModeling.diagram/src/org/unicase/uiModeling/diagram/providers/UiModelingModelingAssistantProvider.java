@@ -38,7 +38,7 @@ public class UiModelingModelingAssistantProvider extends ModelingAssistantProvid
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof org.unicase.uiModeling.diagram.edit.parts.PanelEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(8);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(10);
 			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.Window_2003);
 			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.Label_2004);
 			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.TextField_2005);
@@ -47,6 +47,8 @@ public class UiModelingModelingAssistantProvider extends ModelingAssistantProvid
 			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.Image_2008);
 			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.RadioGroup_2009);
 			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.CheckboxGroup_2010);
+			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.DropdownList_2011);
+			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.ImageButton_2012);
 			return types;
 		}
 		if (editPart instanceof org.unicase.uiModeling.diagram.edit.parts.RadioGroupEditPart) {
@@ -57,6 +59,11 @@ public class UiModelingModelingAssistantProvider extends ModelingAssistantProvid
 		if (editPart instanceof org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
 			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.Checkbox_3007);
+			return types;
+		}
+		if (editPart instanceof org.unicase.uiModeling.diagram.edit.parts.DropdownListEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.DropdownItem_3008);
 			return types;
 		}
 		if (editPart instanceof org.unicase.uiModeling.diagram.edit.parts.WindowWindowWidgetCompartmentEditPart) {

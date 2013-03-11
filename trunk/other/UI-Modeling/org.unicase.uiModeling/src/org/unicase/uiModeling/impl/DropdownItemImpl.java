@@ -23,12 +23,32 @@ import org.unicase.uiModeling.UiModelingPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.uiModeling.impl.DropdownItemImpl#getList <em>List</em>}</li>
+ *   <li>{@link org.unicase.uiModeling.impl.DropdownItemImpl#getText <em>Text</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class DropdownItemImpl extends UnicaseModelElementImpl implements DropdownItem {
+	/**
+	 * The default value of the '{@link #getText() <em>Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getText()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TEXT_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getText() <em>Text</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getText()
+	 * @generated
+	 * @ordered
+	 */
+	protected String text = TEXT_EDEFAULT;
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -85,6 +105,27 @@ public class DropdownItemImpl extends UnicaseModelElementImpl implements Dropdow
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getText() {
+		return text;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setText(String newText) {
+		String oldText = text;
+		text = newText;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UiModelingPackage.DROPDOWN_ITEM__TEXT, oldText, text));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -134,6 +175,8 @@ public class DropdownItemImpl extends UnicaseModelElementImpl implements Dropdow
 		switch (featureID) {
 			case UiModelingPackage.DROPDOWN_ITEM__LIST:
 				return getList();
+			case UiModelingPackage.DROPDOWN_ITEM__TEXT:
+				return getText();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -147,6 +190,9 @@ public class DropdownItemImpl extends UnicaseModelElementImpl implements Dropdow
 		switch (featureID) {
 			case UiModelingPackage.DROPDOWN_ITEM__LIST:
 				setList((DropdownList)newValue);
+				return;
+			case UiModelingPackage.DROPDOWN_ITEM__TEXT:
+				setText((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -162,6 +208,9 @@ public class DropdownItemImpl extends UnicaseModelElementImpl implements Dropdow
 			case UiModelingPackage.DROPDOWN_ITEM__LIST:
 				setList((DropdownList)null);
 				return;
+			case UiModelingPackage.DROPDOWN_ITEM__TEXT:
+				setText(TEXT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -175,8 +224,26 @@ public class DropdownItemImpl extends UnicaseModelElementImpl implements Dropdow
 		switch (featureID) {
 			case UiModelingPackage.DROPDOWN_ITEM__LIST:
 				return getList() != null;
+			case UiModelingPackage.DROPDOWN_ITEM__TEXT:
+				return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (text: ");
+		result.append(text);
+		result.append(')');
+		return result.toString();
 	}
 
 } // DropdownItemImpl
