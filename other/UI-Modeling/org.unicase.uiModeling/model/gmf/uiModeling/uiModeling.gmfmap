@@ -68,8 +68,40 @@
         <childrenFeature
             href="../../uiModeling.ecore#//Window/widgets"/>
       </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.6/@ownedChild">
+        <containmentFeature
+            href="../../uiModeling.ecore#//Window/widgets"/>
+        <childrenFeature
+            href="../../uiModeling.ecore#//Window/widgets"/>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.7/@ownedChild">
+        <containmentFeature
+            href="../../uiModeling.ecore#//Window/widgets"/>
+        <childrenFeature
+            href="../../uiModeling.ecore#//Window/widgets"/>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.8/@ownedChild">
+        <containmentFeature
+            href="../../uiModeling.ecore#//Window/widgets"/>
+        <childrenFeature
+            href="../../uiModeling.ecore#//Window/widgets"/>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.9/@ownedChild">
+        <containmentFeature
+            href="../../uiModeling.ecore#//Window/widgets"/>
+        <childrenFeature
+            href="../../uiModeling.ecore#//Window/widgets"/>
+      </children>
       <compartments
-          children="//@nodes.0/@ownedChild/@children.0 //@nodes.0/@ownedChild/@children.1 //@nodes.0/@ownedChild/@children.4 //@nodes.0/@ownedChild/@children.3 //@nodes.0/@ownedChild/@children.2">
+          children="//@nodes.0/@ownedChild/@children.0 //@nodes.0/@ownedChild/@children.1 //@nodes.0/@ownedChild/@children.4 //@nodes.0/@ownedChild/@children.3 //@nodes.0/@ownedChild/@children.2 //@nodes.0/@ownedChild/@children.5 //@nodes.0/@ownedChild/@children.6 //@nodes.0/@ownedChild/@children.7 //@nodes.0/@ownedChild/@children.8">
         <compartment
             href="uiModeling.gmfgraph#WindowWidgetCompartment"/>
       </compartments>

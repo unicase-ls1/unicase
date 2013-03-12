@@ -313,6 +313,28 @@ public class UiModelingParserProvider extends AbstractProvider implements IParse
 	/**
 	 * @generated
 	 */
+	private IParser radioGroupText_5019Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getRadioGroupText_5019Parser() {
+		if (radioGroupText_5019Parser == null) {
+			EAttribute[] features = new EAttribute[] { org.unicase.uiModeling.UiModelingPackage.eINSTANCE
+				.getWidget_Text() };
+			org.unicase.uiModeling.diagram.parsers.MessageFormatParser parser = new org.unicase.uiModeling.diagram.parsers.MessageFormatParser(
+				features);
+			parser.setViewPattern("{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			radioGroupText_5019Parser = parser;
+		}
+		return radioGroupText_5019Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser radioButtonText_5013Parser;
 
 	/**
@@ -330,6 +352,28 @@ public class UiModelingParserProvider extends AbstractProvider implements IParse
 			radioButtonText_5013Parser = parser;
 		}
 		return radioButtonText_5013Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser checkboxGroupText_5020Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getCheckboxGroupText_5020Parser() {
+		if (checkboxGroupText_5020Parser == null) {
+			EAttribute[] features = new EAttribute[] { org.unicase.uiModeling.UiModelingPackage.eINSTANCE
+				.getWidget_Text() };
+			org.unicase.uiModeling.diagram.parsers.MessageFormatParser parser = new org.unicase.uiModeling.diagram.parsers.MessageFormatParser(
+				features);
+			parser.setViewPattern("{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("{0}"); //$NON-NLS-1$
+			parser.setEditPattern("{0}"); //$NON-NLS-1$
+			checkboxGroupText_5020Parser = parser;
+		}
+		return checkboxGroupText_5020Parser;
 	}
 
 	/**
@@ -407,8 +451,12 @@ public class UiModelingParserProvider extends AbstractProvider implements IParse
 			return getTextText_5009Parser();
 		case org.unicase.uiModeling.diagram.edit.parts.TextFieldText2EditPart.VISUAL_ID:
 			return getTextFieldText_5010Parser();
+		case org.unicase.uiModeling.diagram.edit.parts.RadioGroupText2EditPart.VISUAL_ID:
+			return getRadioGroupText_5019Parser();
 		case org.unicase.uiModeling.diagram.edit.parts.RadioButtonTextEditPart.VISUAL_ID:
 			return getRadioButtonText_5013Parser();
+		case org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupText2EditPart.VISUAL_ID:
+			return getCheckboxGroupText_5020Parser();
 		case org.unicase.uiModeling.diagram.edit.parts.CheckboxTextEditPart.VISUAL_ID:
 			return getCheckboxText_5016Parser();
 		case org.unicase.uiModeling.diagram.edit.parts.DropdownItemTextEditPart.VISUAL_ID:

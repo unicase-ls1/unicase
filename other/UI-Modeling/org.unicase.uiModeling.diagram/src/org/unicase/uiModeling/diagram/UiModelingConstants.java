@@ -25,7 +25,13 @@ public final class UiModelingConstants {
 		// nothing to do
 	}
 
+	/**
+	 * The notation package used to identify GMF features.
+	 */
 	private static final NotationPackage notation = NotationPackage.eINSTANCE;
+	/**
+	 * The notation package used to identify UI Modeling features.
+	 */
 	private static final UiModelingPackage uiModeling = UiModelingPackage.eINSTANCE;
 
 	/**
@@ -82,15 +88,44 @@ public final class UiModelingConstants {
 	 */
 	public static final EAttribute WIDGET_Y = uiModeling.getWidget_Y();
 
+	/**
+	 * Feature specifying the X-coordinate of a GMF element.
+	 */
 	public static final EAttribute NOTATION_X = notation.getLocation_X();
+	/**
+	 * Feature specifying the Y-coordinate of a GMF element.
+	 */
 	public static final EAttribute NOTATION_Y = notation.getLocation_Y();
+	/**
+	 * Feature specifying the width of a GMF element.
+	 */
 	public static final EAttribute NOTATION_WIDTH = notation.getSize_Width();
+	/**
+	 * Feature specifying the height of a GMF element.
+	 */
 	public static final EAttribute NOTATION_HEIGHT = notation.getSize_Height();
 
+	public static final EAttribute IMAGE_BUTTON_URL = uiModeling.getImageButton_ImageUrl();
+
+	/**
+	 * Key of unchecked radio buttons in the image registry.
+	 */
 	public static final String RADIO_UNCHECKED_KEY = "RadioUnchecked";
+	/**
+	 * Key of checked radio buttons in the image registry.
+	 */
 	public static final String RADIO_CHECKED_KEY = "RadioChecked";
+	/**
+	 * Key of unchecked checkboxes in the image registry.
+	 */
 	public static final String CHECKBOX_UNCHECKED_KEY = "CheckboxUnchecked";
+	/**
+	 * Key of checked checkboxes in the image registry.
+	 */
 	public static final String CHECKBOX_CHECKED_KEY = "CheckboxChecked";
-	public static final String ERROR_KEY = "NO_KEY";
+	/**
+	 * Key to identify errors in the image registry.
+	 */
+	public static final String ERROR_KEY = "ERROR";
 
 }

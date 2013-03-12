@@ -10,13 +10,34 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
 
-public class SetConstraintCommand extends AbstractTransactionalCommand {
+/**
+ * This command sets a constraint for a view in a GMF diagram.
+ * 
+ * @author mharut
+ */
+public class SetFeatureCommand extends AbstractTransactionalCommand {
 
+	/**
+	 * The view to set the feature for.
+	 */
 	private View view;
+	/**
+	 * The feature to set.
+	 */
 	private EStructuralFeature feature;
+	/**
+	 * The value to set the feature to.
+	 */
 	private Object value;
 
-	public SetConstraintCommand(View view, EStructuralFeature feature, Object value) {
+	/**
+	 * Initializes this command by specifying the view to adjust, the feature to set and its new value.
+	 * 
+	 * @param view the view to set the feature for
+	 * @param feature the feature to set
+	 * @param value the value to set the feature to
+	 */
+	public SetFeatureCommand(View view, EStructuralFeature feature, Object value) {
 		super(TransactionUtil.getEditingDomain(view), "Set View Constraints", null);
 		this.view = view;
 		this.feature = feature;

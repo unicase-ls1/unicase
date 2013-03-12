@@ -1,7 +1,10 @@
 package org.unicase.uiModeling.diagram.util;
 
+import java.io.ByteArrayOutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
@@ -9,9 +12,14 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
+import org.eclipse.gmf.runtime.draw2d.ui.render.factory.RenderedImageFactory;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.ImageData;
+import org.eclipse.swt.graphics.ImageLoader;
 import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 import org.unicase.uiModeling.Button;
 import org.unicase.uiModeling.Checkbox;
@@ -20,7 +28,7 @@ import org.unicase.uiModeling.Panel;
 import org.unicase.uiModeling.RadioButton;
 import org.unicase.uiModeling.RadioGroup;
 import org.unicase.uiModeling.diagram.UiModelingConstants;
-import org.unicase.uiModeling.diagram.edit.commands.SetConstraintCommand;
+import org.unicase.uiModeling.diagram.edit.commands.SetFeatureCommand;
 
 /**
  * This utility class provides access to all images required by the edit parts.
@@ -32,7 +40,7 @@ public final class UiModelingDiagramUtil {
 	/**
 	 * Image to display an error has occurred.
 	 */
-	private static Image ERROR_IMAGE;
+	private static Map<String, Image> imageRegistry = new HashMap<String, Image>();
 
 	/**
 	 * Private constructor. All methods should be accessed in a static way.
@@ -48,8 +56,10 @@ public final class UiModelingDiagramUtil {
 	 * @return the image specified by <code>name</code>
 	 */
 	private static Image getLocalImage(String name) {
-		return ImageDescriptor.createFromURL(UiModelingDiagramUtil.class.getResource("/icons/figures/" + name))
-			.createImage();
+		URL url = UiModelingDiagramUtil.class.getResource("/icons/figures/" + name);
+		Image image = ImageDescriptor.createFromURL(url).createImage();
+		imageRegistry.put(url.toString(), image);
+		return image;
 	}
 
 	/**
@@ -61,7 +71,9 @@ public final class UiModelingDiagramUtil {
 	 */
 	private static Image getImage(URL url) {
 		try {
-			return ImageDescriptor.createFromURL(url).createImage();
+			Image image = ImageDescriptor.createFromURL(url).createImage();
+			imageRegistry.put(url.toString(), image);
+			return image;
 		} catch (Exception e) {
 			return null;
 		}
@@ -106,20 +118,49 @@ public final class UiModelingDiagramUtil {
 	 * @return an error SWT {@link Image} used to indicate an error has occurred
 	 */
 	public static Image getErrorImage() {
-		if (ERROR_IMAGE == null) {
-			ERROR_IMAGE = getLocalImage("error.png");
-		}
-		return ERROR_IMAGE;
+		return getLocalImage("error.png");
 	}
 
 	/**
-	 * Updates the layout of this edit part based on {@link #size} and {@link #location}.
+	 * Retrieves an image for an {@link EObject} based on its type.
+	 * 
+	 * @param eObject the object to get the image for
+	 * @return the proper image of <code>eObject</code> if any exists,<br />
+	 *         {@link #ERROR_IMAGE} otherwise.
+	 */
+	public static RenderedImage getImage(EObject eObject) {
+		Image image = null;
+		if (eObject instanceof org.unicase.uiModeling.Image) {
+			image = getImageImage((org.unicase.uiModeling.Image) eObject);
+		} else if (eObject instanceof ImageButton) {
+			image = getButtonImage((ImageButton) eObject);
+		}
+		if (image == null) {
+			image = getErrorImage();
+		}
+
+		// load the image and return a rendered instance
+		ImageLoader imageLoader = new ImageLoader();
+		ByteArrayOutputStream byteOS = new ByteArrayOutputStream();
+		imageLoader.data = new ImageData[] { image.getImageData() };
+		imageLoader.logicalScreenHeight = image.getBounds().width;
+		imageLoader.logicalScreenHeight = image.getBounds().height;
+		imageLoader.save(byteOS, SWT.IMAGE_BMP);
+		return RenderedImageFactory.getInstance(byteOS.toByteArray());
+	}
+
+	/**
+	 * Sets a feature of an edit part's view.
+	 * 
+	 * @param editPart the edit part to retrieve the view from
+	 * @param feature the view's feature to set
+	 * @param value the value to set the feature to
 	 */
 	public static void setViewFeature(final ShapeNodeEditPart editPart, final EStructuralFeature feature,
 		final Object value) {
 		View view = editPart.getNotationView();
 
-		final ICommandProxy command = new ICommandProxy(new SetConstraintCommand(view, feature, value));
+		final ICommandProxy command = new ICommandProxy(new SetFeatureCommand(view, feature, value));
 		if (command.canExecute()) {
 			new Thread() {
 				public void run() {
@@ -129,8 +170,15 @@ public final class UiModelingDiagramUtil {
 		}
 	}
 
+	/**
+	 * Sets a feature of an edit part's element.
+	 * 
+	 * @param editPart the edit part to retrieve the element from
+	 * @param feature the element's feature to set
+	 * @param value the value to set the feature to
+	 */
 	public static void setElementFeature(final ShapeNodeEditPart editPart, final EStructuralFeature feature,
-		final Object newValue) {
+		final Object value) {
 		final EObject element = EditPartUtility.getElement(editPart);
 		new Thread() {
 			public void run() {
@@ -138,30 +186,59 @@ public final class UiModelingDiagramUtil {
 
 					@Override
 					protected void doRun() {
-						element.eSet(feature, newValue);
+						element.eSet(feature, value);
 					}
 				}.run(true);
 			}
 		}.start();
 	}
 
+	/**
+	 * Checks whether positioning is enabled for an element based on its containing {@link Panel}.
+	 * 
+	 * @param element the element to check
+	 * @return <b>true</b> if positioning is enabled by the element's panel,<br />
+	 *         <b>false</b> otherwise
+	 */
 	public static boolean isPositioningEnabled(EObject element) {
 		EObject container = element.eContainer();
-		if (container != null && container instanceof Panel) {
-			return ((Panel) container).isPositioningEnabled();
+		while (container != null) {
+			if (container instanceof Panel) {
+				return ((Panel) container).isPositioningEnabled();
+			}
+			container = container.eContainer();
 		}
 		return false;
 	}
 
+	/**
+	 * Checks whether sizing is enabled for an element based on its containing {@link Panel}.
+	 * 
+	 * @param element the element to check
+	 * @return <b>true</b> if sizing is enabled by the element's panel,<br />
+	 *         <b>false</b> otherwise
+	 */
 	public static boolean isSizingEnabled(EObject element) {
 		EObject container = element.eContainer();
-		if (container != null && container instanceof Panel) {
-			return ((Panel) container).isSizingEnabled();
+		while (container != null) {
+			if (container instanceof Panel) {
+				return ((Panel) container).isSizingEnabled();
+			}
+			container = container.eContainer();
 		}
 		return false;
 	}
 
+	/**
+	 * Retrieves the key in the image registry for an {@link EObject}.
+	 * 
+	 * @param element the element to ket the image key for
+	 * @return the key of <code>element</code> in the image registry as a string
+	 */
 	public static String getImageKey(EObject element) {
+		if (element == null) {
+			return UiModelingConstants.ERROR_KEY;
+		}
 		if (element instanceof RadioButton) {
 			RadioButton button = (RadioButton) element;
 			RadioGroup group = button.getGroup();
@@ -183,19 +260,7 @@ public final class UiModelingDiagramUtil {
 		if (element instanceof ENamedElement) {
 			return ((ENamedElement) element).getName();
 		}
-		return UiModelingConstants.ERROR_KEY;
+		return getImageKey(element.eClass());
 	}
 
-	public static Image getImage(EObject eObject) {
-		Image image = null;
-		if (eObject instanceof org.unicase.uiModeling.Image) {
-			image = getImageImage((org.unicase.uiModeling.Image) eObject);
-		} else if (eObject instanceof ImageButton) {
-			image = getButtonImage((ImageButton) eObject);
-		}
-		if (image == null) {
-			image = getErrorImage();
-		}
-		return image;
-	}
 }

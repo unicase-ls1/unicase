@@ -51,7 +51,7 @@ public class DropdownListDropdownItemsCompartmentEditPart extends ListCompartmen
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT: added customized border
 	 */
 	public IFigure createFigure() {
 		ResizableCompartmentFigure result = (ResizableCompartmentFigure) super.createFigure();

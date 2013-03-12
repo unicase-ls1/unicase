@@ -89,8 +89,6 @@ public class ImageEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 			new org.unicase.uiModeling.diagram.edit.policies.ImageItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-			new org.unicase.uiModeling.diagram.edit.policies.OpenDiagramEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
 		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -130,7 +128,6 @@ public class ImageEditPart extends ShapeNodeEditPart {
 		Object feature = notification.getFeature();
 		EObject element = EditPartUtility.getElement(this);
 
-		boolean sizeChanged = false;
 		// only change layout if this element or the diagram element changed
 		if (getDiagramView() == notifier) {
 			if (UiModelingConstants.POSITIONING_ENABLED.equals(feature)) {
@@ -142,7 +139,6 @@ public class ImageEditPart extends ShapeNodeEditPart {
 				boolean sizingEnabled = notification.getNewBooleanValue();
 				if (sizingEnabled) {
 					// TODO: set values of edit part to widget OR widget to editpart
-					sizeChanged = true;
 				}
 			}
 		} else if (element == notifier) {
@@ -167,14 +163,12 @@ public class ImageEditPart extends ShapeNodeEditPart {
 					if (width != newValue) {
 						width = newValue;
 						UiModelingDiagramUtil.setViewFeature(this, UiModelingConstants.NOTATION_WIDTH, newValue);
-						sizeChanged = true;
 					}
 				} else if (UiModelingConstants.WIDGET_HEIGHT.equals(feature)) {
 					int newValue = notification.getNewIntValue();
 					if (height != newValue) {
 						height = newValue;
 						UiModelingDiagramUtil.setViewFeature(this, UiModelingConstants.NOTATION_HEIGHT, newValue);
-						sizeChanged = true;
 					}
 				}
 			}
@@ -202,7 +196,6 @@ public class ImageEditPart extends ShapeNodeEditPart {
 							width = newValue;
 						}
 						UiModelingDiagramUtil.setElementFeature(this, UiModelingConstants.WIDGET_WIDTH, newValue);
-						sizeChanged = true;
 					}
 				} else if (UiModelingConstants.NOTATION_HEIGHT.equals(feature)) {
 					int newValue = notification.getNewIntValue();
@@ -211,14 +204,9 @@ public class ImageEditPart extends ShapeNodeEditPart {
 							height = newValue;
 						}
 						UiModelingDiagramUtil.setElementFeature(this, UiModelingConstants.WIDGET_HEIGHT, newValue);
-						sizeChanged = true;
 					}
 				}
 			}
-		}
-
-		if (sizeChanged && (primaryShape instanceof ImageDescriptor)) {
-			((ImageDescriptor) primaryShape).updateImage();
 		}
 
 		if (UiModelingPackage.eINSTANCE.getImage_ImageUrl().equals(notification.getFeature())) {
@@ -424,8 +412,8 @@ public class ImageEditPart extends ShapeNodeEditPart {
 				final Image image = (Image) adapter;
 
 				constraintImageImageFigure0 = new GridData();
-				constraintImageImageFigure0.verticalAlignment = GridData.BEGINNING;
-				constraintImageImageFigure0.horizontalAlignment = GridData.CENTER;
+				constraintImageImageFigure0.verticalAlignment = GridData.FILL;
+				constraintImageImageFigure0.horizontalAlignment = GridData.FILL;
 				constraintImageImageFigure0.horizontalIndent = 0;
 				constraintImageImageFigure0.horizontalSpan = 1;
 				constraintImageImageFigure0.verticalSpan = 1;
@@ -433,9 +421,7 @@ public class ImageEditPart extends ShapeNodeEditPart {
 				constraintImageImageFigure0.grabExcessVerticalSpace = true;
 
 				imageImageFigure0 = new ScalableImageFigure(UiModelingDiagramUtil.getImage(image));
-				imageImageFigure0.setPreferredImageSize(150, 100);
 				this.add(imageImageFigure0, constraintImageImageFigure0);
-
 			}
 
 			fImage_text = new WrappingLabel();
@@ -452,7 +438,7 @@ public class ImageEditPart extends ShapeNodeEditPart {
 			constraintFImage_text.horizontalIndent = 0;
 			constraintFImage_text.horizontalSpan = 1;
 			constraintFImage_text.verticalSpan = 1;
-			constraintFImage_text.grabExcessHorizontalSpace = false;
+			constraintFImage_text.grabExcessHorizontalSpace = true;
 			constraintFImage_text.grabExcessVerticalSpace = false;
 			this.add(fImage_text, constraintFImage_text);
 		}
@@ -468,14 +454,7 @@ public class ImageEditPart extends ShapeNodeEditPart {
 			Object adapter = getAdapter(Image.class);
 			if (adapter != null && adapter instanceof Image) {
 				final Image image = (Image) adapter;
-				// remove old figures
-				remove(fImage_text);
-				remove(imageImageFigure0);
-				// add figures
-				imageImageFigure0 = new ScalableImageFigure(UiModelingDiagramUtil.getImage(image));
-				imageImageFigure0.setPreferredImageSize(width - 10, height - 20);
-				ImageDescriptor.this.add(imageImageFigure0, constraintImageImageFigure0);
-				ImageDescriptor.this.add(fImage_text);
+				imageImageFigure0.setRenderedImage(UiModelingDiagramUtil.getImage(image));
 			}
 		}
 	}

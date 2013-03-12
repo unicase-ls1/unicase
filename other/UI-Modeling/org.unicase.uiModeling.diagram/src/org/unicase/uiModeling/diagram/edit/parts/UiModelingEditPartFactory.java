@@ -116,11 +116,23 @@ public class UiModelingEditPartFactory implements EditPartFactory {
 			case org.unicase.uiModeling.diagram.edit.parts.TextFieldText2EditPart.VISUAL_ID:
 				return new org.unicase.uiModeling.diagram.edit.parts.TextFieldText2EditPart(view);
 
+			case org.unicase.uiModeling.diagram.edit.parts.RadioGroup2EditPart.VISUAL_ID:
+				return new org.unicase.uiModeling.diagram.edit.parts.RadioGroup2EditPart(view);
+
+			case org.unicase.uiModeling.diagram.edit.parts.RadioGroupText2EditPart.VISUAL_ID:
+				return new org.unicase.uiModeling.diagram.edit.parts.RadioGroupText2EditPart(view);
+
 			case org.unicase.uiModeling.diagram.edit.parts.RadioButtonEditPart.VISUAL_ID:
 				return new org.unicase.uiModeling.diagram.edit.parts.RadioButtonEditPart(view);
 
 			case org.unicase.uiModeling.diagram.edit.parts.RadioButtonTextEditPart.VISUAL_ID:
 				return new org.unicase.uiModeling.diagram.edit.parts.RadioButtonTextEditPart(view);
+
+			case org.unicase.uiModeling.diagram.edit.parts.CheckboxGroup2EditPart.VISUAL_ID:
+				return new org.unicase.uiModeling.diagram.edit.parts.CheckboxGroup2EditPart(view);
+
+			case org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupText2EditPart.VISUAL_ID:
+				return new org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupText2EditPart(view);
 
 			case org.unicase.uiModeling.diagram.edit.parts.CheckboxEditPart.VISUAL_ID:
 				return new org.unicase.uiModeling.diagram.edit.parts.CheckboxEditPart(view);
@@ -128,14 +140,32 @@ public class UiModelingEditPartFactory implements EditPartFactory {
 			case org.unicase.uiModeling.diagram.edit.parts.CheckboxTextEditPart.VISUAL_ID:
 				return new org.unicase.uiModeling.diagram.edit.parts.CheckboxTextEditPart(view);
 
+			case org.unicase.uiModeling.diagram.edit.parts.DropdownList2EditPart.VISUAL_ID:
+				return new org.unicase.uiModeling.diagram.edit.parts.DropdownList2EditPart(view);
+
+			case org.unicase.uiModeling.diagram.edit.parts.WrappingLabel2EditPart.VISUAL_ID:
+				return new org.unicase.uiModeling.diagram.edit.parts.WrappingLabel2EditPart(view);
+
 			case org.unicase.uiModeling.diagram.edit.parts.DropdownItemEditPart.VISUAL_ID:
 				return new org.unicase.uiModeling.diagram.edit.parts.DropdownItemEditPart(view);
 
 			case org.unicase.uiModeling.diagram.edit.parts.DropdownItemTextEditPart.VISUAL_ID:
 				return new org.unicase.uiModeling.diagram.edit.parts.DropdownItemTextEditPart(view);
 
+			case org.unicase.uiModeling.diagram.edit.parts.ImageButton2EditPart.VISUAL_ID:
+				return new org.unicase.uiModeling.diagram.edit.parts.ImageButton2EditPart(view);
+
 			case org.unicase.uiModeling.diagram.edit.parts.WindowWindowWidgetCompartmentEditPart.VISUAL_ID:
 				return new org.unicase.uiModeling.diagram.edit.parts.WindowWindowWidgetCompartmentEditPart(view);
+
+			case org.unicase.uiModeling.diagram.edit.parts.RadioGroupRadioButtonsCompartment2EditPart.VISUAL_ID:
+				return new org.unicase.uiModeling.diagram.edit.parts.RadioGroupRadioButtonsCompartment2EditPart(view);
+
+			case org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupCheckboxesCompartment2EditPart.VISUAL_ID:
+				return new org.unicase.uiModeling.diagram.edit.parts.CheckboxGroupCheckboxesCompartment2EditPart(view);
+
+			case org.unicase.uiModeling.diagram.edit.parts.DropdownListDropdownItemsCompartment2EditPart.VISUAL_ID:
+				return new org.unicase.uiModeling.diagram.edit.parts.DropdownListDropdownItemsCompartment2EditPart(view);
 
 			case org.unicase.uiModeling.diagram.edit.parts.RadioGroupRadioButtonsCompartmentEditPart.VISUAL_ID:
 				return new org.unicase.uiModeling.diagram.edit.parts.RadioGroupRadioButtonsCompartmentEditPart(view);

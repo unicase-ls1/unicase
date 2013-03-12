@@ -418,6 +418,21 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String RadioGroupRadioButtonsCompartment2EditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String CheckboxGroupCheckboxesCompartment2EditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String DropdownListDropdownItemsCompartment2EditPart_title;
+
+	/**
+	 * @generated
+	 */
 	public static String RadioGroupRadioButtonsCompartmentEditPart_title;
 
 	/**

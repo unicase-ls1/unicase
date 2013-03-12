@@ -41,6 +41,18 @@ public class WindowWindowWidgetCompartmentItemSemanticEditPolicy extends
 		if (org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.TextField_3005 == req.getElementType()) {
 			return getGEFWrapper(new org.unicase.uiModeling.diagram.edit.commands.TextField2CreateCommand(req));
 		}
+		if (org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.RadioGroup_3009 == req.getElementType()) {
+			return getGEFWrapper(new org.unicase.uiModeling.diagram.edit.commands.RadioGroup2CreateCommand(req));
+		}
+		if (org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.CheckboxGroup_3010 == req.getElementType()) {
+			return getGEFWrapper(new org.unicase.uiModeling.diagram.edit.commands.CheckboxGroup2CreateCommand(req));
+		}
+		if (org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.DropdownList_3011 == req.getElementType()) {
+			return getGEFWrapper(new org.unicase.uiModeling.diagram.edit.commands.DropdownList2CreateCommand(req));
+		}
+		if (org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.ImageButton_3012 == req.getElementType()) {
+			return getGEFWrapper(new org.unicase.uiModeling.diagram.edit.commands.ImageButton2CreateCommand(req));
+		}
 		return super.getCreateCommand(req);
 	}
 

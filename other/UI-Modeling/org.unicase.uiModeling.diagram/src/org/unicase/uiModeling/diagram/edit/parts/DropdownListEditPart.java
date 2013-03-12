@@ -12,6 +12,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -39,6 +40,8 @@ import org.eclipse.swt.widgets.Display;
 import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 import org.unicase.uiModeling.DropdownItem;
 import org.unicase.uiModeling.DropdownList;
+import org.unicase.uiModeling.diagram.UiModelingConstants;
+import org.unicase.uiModeling.diagram.util.UiModelingDiagramUtil;
 
 /**
  * @generated
@@ -61,6 +64,26 @@ public class DropdownListEditPart extends ShapeNodeEditPart {
 	protected IFigure primaryShape;
 
 	/**
+	 * The x-coordinate of this edit part's figure.
+	 */
+	private int x;
+
+	/**
+	 * The y-coordinate of this edit part's figure.
+	 */
+	private int y;
+
+	/**
+	 * The width of this edit part's figure.
+	 */
+	private int width;
+
+	/**
+	 * The height of this edit part's figure.
+	 */
+	private int height;
+
+	/**
 	 * @generated
 	 */
 	public DropdownListEditPart(View view) {
@@ -77,8 +100,6 @@ public class DropdownListEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 			new org.unicase.uiModeling.diagram.edit.policies.DropdownListItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-			new org.unicase.uiModeling.diagram.edit.policies.OpenDiagramEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
 		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -107,6 +128,89 @@ public class DropdownListEditPart extends ShapeNodeEditPart {
 			}
 		};
 		return lep;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	protected void handleNotificationEvent(Notification notification) {
+		super.handleNotificationEvent(notification);
+		Object notifier = notification.getNotifier();
+		Object feature = notification.getFeature();
+		EObject element = EditPartUtility.getElement(this);
+
+		// only change layout if this element or the diagram element changed
+		if (getDiagramView() == notifier) {
+			if (UiModelingConstants.POSITIONING_ENABLED.equals(feature)) {
+				boolean positioningEnabled = notification.getNewBooleanValue();
+				if (positioningEnabled) {
+					// TODO: set values of edit part to widget OR widget to editpart
+				}
+			} else if (UiModelingConstants.SIZING_ENABLED.equals(feature)) {
+				boolean sizingEnabled = notification.getNewBooleanValue();
+				if (sizingEnabled) {
+					// TODO: set values of edit part to widget OR widget to editpart
+				}
+			}
+		} else if (element == notifier) {
+			if (UiModelingDiagramUtil.isPositioningEnabled(element)) {
+				if (UiModelingConstants.WIDGET_X.equals(feature)) {
+					int newValue = notification.getNewIntValue();
+					if (x != newValue) {
+						x = newValue;
+						UiModelingDiagramUtil.setViewFeature(this, UiModelingConstants.NOTATION_X, newValue);
+					}
+				} else if (UiModelingConstants.WIDGET_Y.equals(feature)) {
+					int newValue = notification.getNewIntValue();
+					if (y != newValue) {
+						y = newValue;
+						UiModelingDiagramUtil.setViewFeature(this, UiModelingConstants.NOTATION_Y, newValue);
+					}
+				}
+			}
+			if (UiModelingDiagramUtil.isSizingEnabled(element)) {
+				if (UiModelingConstants.WIDGET_WIDTH.equals(feature)) {
+					int newValue = notification.getNewIntValue();
+					if (width != newValue) {
+						width = newValue;
+						UiModelingDiagramUtil.setViewFeature(this, UiModelingConstants.NOTATION_WIDTH, newValue);
+					}
+				} else if (UiModelingConstants.WIDGET_HEIGHT.equals(feature)) {
+					int newValue = notification.getNewIntValue();
+					if (height != newValue) {
+						height = newValue;
+						UiModelingDiagramUtil.setViewFeature(this, UiModelingConstants.NOTATION_HEIGHT, newValue);
+					}
+				}
+			}
+		} else {
+			if (UiModelingDiagramUtil.isPositioningEnabled(element)) {
+				if (UiModelingConstants.NOTATION_X.equals(feature)) {
+					int newValue = notification.getNewIntValue();
+					if (x != newValue) {
+						UiModelingDiagramUtil.setElementFeature(this, UiModelingConstants.WIDGET_X, newValue);
+					}
+				} else if (UiModelingConstants.NOTATION_Y.equals(feature)) {
+					int newValue = notification.getNewIntValue();
+					if (y != newValue) {
+						UiModelingDiagramUtil.setElementFeature(this, UiModelingConstants.WIDGET_Y, newValue);
+					}
+				}
+			}
+			if (UiModelingDiagramUtil.isSizingEnabled(element)) {
+				if (UiModelingConstants.NOTATION_WIDTH.equals(feature)) {
+					int newValue = notification.getNewIntValue();
+					if (width != newValue) {
+						UiModelingDiagramUtil.setElementFeature(this, UiModelingConstants.WIDGET_WIDTH, newValue);
+					}
+				} else if (UiModelingConstants.NOTATION_HEIGHT.equals(feature)) {
+					int newValue = notification.getNewIntValue();
+					if (height != newValue) {
+						UiModelingDiagramUtil.setElementFeature(this, UiModelingConstants.WIDGET_HEIGHT, newValue);
+					}
+				}
+			}
+		}
 	}
 
 	/**
