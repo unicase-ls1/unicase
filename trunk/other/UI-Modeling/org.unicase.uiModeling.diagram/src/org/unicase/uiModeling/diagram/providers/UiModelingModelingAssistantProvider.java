@@ -66,13 +66,32 @@ public class UiModelingModelingAssistantProvider extends ModelingAssistantProvid
 			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.DropdownItem_3008);
 			return types;
 		}
+		if (editPart instanceof org.unicase.uiModeling.diagram.edit.parts.RadioGroup2EditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.RadioButton_3006);
+			return types;
+		}
+		if (editPart instanceof org.unicase.uiModeling.diagram.edit.parts.CheckboxGroup2EditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.Checkbox_3007);
+			return types;
+		}
+		if (editPart instanceof org.unicase.uiModeling.diagram.edit.parts.DropdownList2EditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.DropdownItem_3008);
+			return types;
+		}
 		if (editPart instanceof org.unicase.uiModeling.diagram.edit.parts.WindowWindowWidgetCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(5);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(9);
 			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.Button_3001);
 			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.Image_3002);
 			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.Label_3003);
 			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.Text_3004);
 			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.TextField_3005);
+			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.RadioGroup_3009);
+			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.CheckboxGroup_3010);
+			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.DropdownList_3011);
+			types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.ImageButton_3012);
 			return types;
 		}
 		return Collections.EMPTY_LIST;

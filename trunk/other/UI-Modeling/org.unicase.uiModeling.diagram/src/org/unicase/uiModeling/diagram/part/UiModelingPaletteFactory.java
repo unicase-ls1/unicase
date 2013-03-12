@@ -152,13 +152,15 @@ public class UiModelingPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createImageButton4CreationTool() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.ImageButton_3012);
+		types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.ImageButton_2012);
 		NodeToolEntry entry = new NodeToolEntry(
 			org.unicase.uiModeling.diagram.part.Messages.ImageButton4CreationTool_title,
-			org.unicase.uiModeling.diagram.part.Messages.ImageButton4CreationTool_desc,
-			Collections.singletonList(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.ImageButton_2012));
+			org.unicase.uiModeling.diagram.part.Messages.ImageButton4CreationTool_desc, types);
 		entry.setId("createImageButton4CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes
-			.getImageDescriptor(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.ImageButton_2012));
+			.getImageDescriptor(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.ImageButton_3012));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -216,13 +218,15 @@ public class UiModelingPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createRadioGroup1CreationTool() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.RadioGroup_3009);
+		types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.RadioGroup_2009);
 		NodeToolEntry entry = new NodeToolEntry(
 			org.unicase.uiModeling.diagram.part.Messages.RadioGroup1CreationTool_title,
-			org.unicase.uiModeling.diagram.part.Messages.RadioGroup1CreationTool_desc,
-			Collections.singletonList(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.RadioGroup_2009));
+			org.unicase.uiModeling.diagram.part.Messages.RadioGroup1CreationTool_desc, types);
 		entry.setId("createRadioGroup1CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes
-			.getImageDescriptor(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.RadioGroup_2009));
+			.getImageDescriptor(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.RadioGroup_3009));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -246,14 +250,15 @@ public class UiModelingPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createCheckboxGroup3CreationTool() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.CheckboxGroup_3010);
+		types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.CheckboxGroup_2010);
 		NodeToolEntry entry = new NodeToolEntry(
 			org.unicase.uiModeling.diagram.part.Messages.CheckboxGroup3CreationTool_title,
-			org.unicase.uiModeling.diagram.part.Messages.CheckboxGroup3CreationTool_desc,
-			Collections
-				.singletonList(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.CheckboxGroup_2010));
+			org.unicase.uiModeling.diagram.part.Messages.CheckboxGroup3CreationTool_desc, types);
 		entry.setId("createCheckboxGroup3CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes
-			.getImageDescriptor(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.CheckboxGroup_2010));
+			.getImageDescriptor(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.CheckboxGroup_3010));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -277,14 +282,15 @@ public class UiModelingPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createDropdownList5CreationTool() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.DropdownList_3011);
+		types.add(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.DropdownList_2011);
 		NodeToolEntry entry = new NodeToolEntry(
 			org.unicase.uiModeling.diagram.part.Messages.DropdownList5CreationTool_title,
-			org.unicase.uiModeling.diagram.part.Messages.DropdownList5CreationTool_desc,
-			Collections
-				.singletonList(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.DropdownList_2011));
+			org.unicase.uiModeling.diagram.part.Messages.DropdownList5CreationTool_desc, types);
 		entry.setId("createDropdownList5CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes
-			.getImageDescriptor(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.DropdownList_2011));
+			.getImageDescriptor(org.unicase.uiModeling.diagram.providers.UiModelingElementTypes.DropdownList_3011));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
