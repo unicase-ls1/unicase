@@ -178,6 +178,15 @@ public class RadioGroup2EditPart extends ShapeNodeEditPart {
 					}
 				}
 			}
+			if (UiModelingConstants.RADIO_GROUP_SELECTED_ITEM.equals(feature)) {
+				for (Object child : getChildren()) {
+					if (child instanceof RadioGroupRadioButtonsCompartment2EditPart) {
+						UiModelingDiagramUtil.updateRadioButtonImage(
+							((RadioGroupRadioButtonsCompartment2EditPart) child).getChildren(),
+							notification.getOldValue(), notification.getNewValue());
+					}
+				}
+			}
 		} else {
 			if (UiModelingDiagramUtil.isPositioningEnabled(element)) {
 				if (UiModelingConstants.NOTATION_X.equals(feature)) {

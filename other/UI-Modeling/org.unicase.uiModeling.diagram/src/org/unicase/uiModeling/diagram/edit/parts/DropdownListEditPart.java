@@ -182,6 +182,13 @@ public class DropdownListEditPart extends ShapeNodeEditPart {
 						UiModelingDiagramUtil.setViewFeature(this, UiModelingConstants.NOTATION_HEIGHT, newValue);
 					}
 				}
+				if (UiModelingConstants.DROPDOWN_LIST_SELECTED_ITEM.equals(feature)) {
+					Object value = notification.getNewValue();
+					if (value instanceof DropdownItem) {
+						DropdownItem item = (DropdownItem) value;
+						getPrimaryShape().fDropdownList_text.setText(item.getText());
+					}
+				}
 			}
 		} else {
 			if (UiModelingDiagramUtil.isPositioningEnabled(element)) {

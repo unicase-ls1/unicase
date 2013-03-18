@@ -2,6 +2,7 @@ package org.unicase.uiModeling.diagram;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.uiModeling.Button;
 import org.unicase.uiModeling.Image;
@@ -64,6 +65,14 @@ public final class UiModelingConstants {
 	public static final Dimension WINDOW_SIZE = new Dimension(400, 200);
 
 	/**
+	 * The attribute specifying whether or not a checkbox is checked.
+	 */
+	public static final EAttribute CHECKBOX_CHECKED = uiModeling.getCheckbox_Checked();
+	/**
+	 * The attribute specifiying the URL of an image button.
+	 */
+	public static final EAttribute IMAGE_BUTTON_URL = uiModeling.getImageButton_ImageUrl();
+	/**
 	 * The attribute specifying whether or not positioning is enabled for a UI Modeling diagram.
 	 */
 	public static final EAttribute POSITIONING_ENABLED = uiModeling.getPanel_PositioningEnabled();
@@ -87,6 +96,10 @@ public final class UiModelingConstants {
 	 * The attribute specifying a widget's Y-coordinate.
 	 */
 	public static final EAttribute WIDGET_Y = uiModeling.getWidget_Y();
+	/**
+	 * The attribute specifying a dropdown item's text.
+	 */
+	public static final EAttribute DROPDOWN_ITEM_TEXT = uiModeling.getDropdownItem_Text();
 
 	/**
 	 * Feature specifying the X-coordinate of a GMF element.
@@ -105,7 +118,14 @@ public final class UiModelingConstants {
 	 */
 	public static final EAttribute NOTATION_HEIGHT = notation.getSize_Height();
 
-	public static final EAttribute IMAGE_BUTTON_URL = uiModeling.getImageButton_ImageUrl();
+	/**
+	 * The reference specifying the selected item of a radio group.
+	 */
+	public static final EReference RADIO_GROUP_SELECTED_ITEM = uiModeling.getRadioGroup_SelectedItem();
+	/**
+	 * The reference specifying the selected item of a dropdown list.
+	 */
+	public static final EReference DROPDOWN_LIST_SELECTED_ITEM = uiModeling.getDropdownList_SelectedItem();
 
 	/**
 	 * Key of unchecked radio buttons in the image registry.

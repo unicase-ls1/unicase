@@ -38,6 +38,8 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
+import org.unicase.uiModeling.DropdownItem;
+import org.unicase.uiModeling.DropdownList;
 import org.unicase.uiModeling.diagram.UiModelingConstants;
 import org.unicase.uiModeling.diagram.util.UiModelingDiagramUtil;
 
@@ -179,6 +181,13 @@ public class DropdownList2EditPart extends ShapeNodeEditPart {
 						height = newValue;
 						UiModelingDiagramUtil.setViewFeature(this, UiModelingConstants.NOTATION_HEIGHT, newValue);
 					}
+				}
+			}
+			if (UiModelingConstants.DROPDOWN_LIST_SELECTED_ITEM.equals(feature)) {
+				Object value = notification.getNewValue();
+				if (value instanceof DropdownItem) {
+					DropdownItem item = (DropdownItem) value;
+					getPrimaryShape().fDropdownList_text.setText(item.getText());
 				}
 			}
 		} else {
@@ -427,13 +436,26 @@ public class DropdownList2EditPart extends ShapeNodeEditPart {
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT: added customized text
 		 */
 		private void createContents() {
 
 			fDropdownList_text = new WrappingLabel();
 
-			fDropdownList_text.setText("<Please select>");
+			// begin of custom code
+			EObject element = EditPartUtility.getElement(DropdownList2EditPart.this);
+			if (element != null && element instanceof DropdownList) {
+				DropdownList list = (DropdownList) element;
+				DropdownItem item = list.getSelectedItem();
+				if (item != null) {
+					fDropdownList_text.setText(item.getText());
+				} else {
+					fDropdownList_text.setText("<Please select>");
+				}
+			} else {
+				fDropdownList_text.setText("<Please select>");
+			}
+			// end of custom code
 
 			fDropdownList_text.setFont(FDROPDOWNLIST_TEXT_FONT);
 
