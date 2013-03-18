@@ -11,6 +11,8 @@ import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -27,6 +29,11 @@ import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
+import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
+import org.unicase.uiModeling.DropdownItem;
+import org.unicase.uiModeling.DropdownList;
+import org.unicase.uiModeling.diagram.UiModelingConstants;
+import org.unicase.uiModeling.diagram.util.UiModelingDiagramUtil;
 
 /**
  * @generated
@@ -63,7 +70,8 @@ public class DropdownItemEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 			new org.unicase.uiModeling.diagram.edit.policies.DropdownItemItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
+		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -90,6 +98,25 @@ public class DropdownItemEditPart extends ShapeNodeEditPart {
 			}
 		};
 		return lep;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	protected void handleNotificationEvent(Notification notification) {
+		super.handleNotificationEvent(notification);
+		Object notifier = notification.getNotifier();
+		Object feature = notification.getFeature();
+		EObject element = EditPartUtility.getElement(this);
+
+		if (UiModelingConstants.DROPDOWN_ITEM_TEXT.equals(feature) && element == notifier) {
+			if (element instanceof DropdownItem) {
+				DropdownList list = ((DropdownItem) element).getList();
+				if (list.getSelectedItem() == element) {
+					UiModelingDiagramUtil.updateDropdownListLabel(this);
+				}
+			}
+		}
 	}
 
 	/**

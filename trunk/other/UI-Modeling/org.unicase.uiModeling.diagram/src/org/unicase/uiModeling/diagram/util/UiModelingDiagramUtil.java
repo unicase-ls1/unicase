@@ -4,14 +4,17 @@ import java.io.ByteArrayOutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
 import org.eclipse.gmf.runtime.draw2d.ui.render.factory.RenderedImageFactory;
 import org.eclipse.gmf.runtime.notation.View;
@@ -23,12 +26,18 @@ import org.eclipse.swt.graphics.ImageLoader;
 import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 import org.unicase.uiModeling.Button;
 import org.unicase.uiModeling.Checkbox;
+import org.unicase.uiModeling.DropdownItem;
 import org.unicase.uiModeling.ImageButton;
 import org.unicase.uiModeling.Panel;
 import org.unicase.uiModeling.RadioButton;
 import org.unicase.uiModeling.RadioGroup;
 import org.unicase.uiModeling.diagram.UiModelingConstants;
 import org.unicase.uiModeling.diagram.edit.commands.SetFeatureCommand;
+import org.unicase.uiModeling.diagram.edit.parts.DropdownItemEditPart;
+import org.unicase.uiModeling.diagram.edit.parts.DropdownList2EditPart;
+import org.unicase.uiModeling.diagram.edit.parts.DropdownListEditPart;
+import org.unicase.uiModeling.diagram.edit.parts.RadioButtonEditPart;
+import org.unicase.uiModeling.diagram.providers.UiModelingElementTypes;
 
 /**
  * This utility class provides access to all images required by the edit parts.
@@ -263,4 +272,50 @@ public final class UiModelingDiagramUtil {
 		return getImageKey(element.eClass());
 	}
 
+	/**
+	 * Updates the images of radio buttons in a radio group within a UI Modeling diagram.
+	 * 
+	 * @param children the list of children of the containing compartment
+	 * @param oldRadio the radio button that was selected before (may be null)
+	 * @param newRadio the radio button that is selected now (may be null);
+	 */
+	@SuppressWarnings("rawtypes")
+	public static void updateRadioButtonImage(List children, Object oldRadio, Object newRadio) {
+		for (Object child : children) {
+			RadioButtonEditPart editPart = (RadioButtonEditPart) child;
+			EObject element = EditPartUtility.getElement(editPart);
+			if (newRadio == element || oldRadio == element) {
+				WrappingLabel label = editPart.getPrimaryShape().getRadioButton_text();
+				if (label != null) {
+					label.setIcon(UiModelingElementTypes.getImage(element));
+				}
+			}
+		}
+	}
+
+	/**
+	 * Updates the label of a dropdown list by setting it to the value of the currently selected item.
+	 * 
+	 * @param editPart the edit part of the currently selected item
+	 */
+	public static void updateDropdownListLabel(DropdownItemEditPart editPart) {
+		EObject element = EditPartUtility.getElement(editPart);
+		if (element != null && element instanceof DropdownItem) {
+			String text = ((DropdownItem) element).getText();
+			EditPart parent = editPart.getParent();
+			while (parent != null) {
+				if (parent instanceof DropdownListEditPart) {
+					WrappingLabel label = ((DropdownListEditPart) parent).getPrimaryShape().getDropdownList_text();
+					label.setText(text);
+					return;
+				}
+				if (parent instanceof DropdownList2EditPart) {
+					WrappingLabel label = ((DropdownList2EditPart) parent).getPrimaryShape().getDropdownList_text();
+					label.setText(text);
+					return;
+				}
+				parent = parent.getParent();
+			}
+		}
+	}
 }
