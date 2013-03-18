@@ -41,7 +41,7 @@ import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 import org.unicase.uiModeling.DropdownItem;
 import org.unicase.uiModeling.DropdownList;
 import org.unicase.uiModeling.diagram.UiModelingConstants;
-import org.unicase.uiModeling.diagram.util.UiModelingDiagramUtil;
+import org.unicase.uiModeling.diagram.UiModelingDiagramUtil;
 
 /**
  * @generated

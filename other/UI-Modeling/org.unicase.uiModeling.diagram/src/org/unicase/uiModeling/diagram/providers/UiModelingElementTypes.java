@@ -22,7 +22,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
-import org.unicase.uiModeling.diagram.util.UiModelingDiagramUtil;
+import org.unicase.uiModeling.diagram.UiModelingDiagramUtil;
 
 /**
  * @generated

@@ -36,7 +36,7 @@ import org.eclipse.gmf.tooling.runtime.edit.policies.reparent.CreationEditPolicy
 import org.eclipse.swt.graphics.Color;
 import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 import org.unicase.uiModeling.diagram.UiModelingConstants;
-import org.unicase.uiModeling.diagram.util.UiModelingDiagramUtil;
+import org.unicase.uiModeling.diagram.UiModelingDiagramUtil;
 
 /**
  * @generated

@@ -18,7 +18,6 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		org.unicase.uiModeling.diagram.preferences.DiagramConnectionsPreferencePage.initDefaults(store);
 		org.unicase.uiModeling.diagram.preferences.DiagramPrintingPreferencePage.initDefaults(store);
 		org.unicase.uiModeling.diagram.preferences.DiagramRulersAndGridPreferencePage.initDefaults(store);
-
 	}
 
 	/**

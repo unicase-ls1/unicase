@@ -1,4 +1,4 @@
-package org.unicase.uiModeling.diagram.util;
+package org.unicase.uiModeling.diagram;
 
 import java.io.ByteArrayOutputStream;
 import java.net.MalformedURLException;
@@ -31,7 +31,6 @@ import org.unicase.uiModeling.ImageButton;
 import org.unicase.uiModeling.Panel;
 import org.unicase.uiModeling.RadioButton;
 import org.unicase.uiModeling.RadioGroup;
-import org.unicase.uiModeling.diagram.UiModelingConstants;
 import org.unicase.uiModeling.diagram.edit.commands.SetFeatureCommand;
 import org.unicase.uiModeling.diagram.edit.parts.DropdownItemEditPart;
 import org.unicase.uiModeling.diagram.edit.parts.DropdownList2EditPart;
