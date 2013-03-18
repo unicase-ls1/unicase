@@ -36,7 +36,7 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 import org.unicase.uiModeling.diagram.UiModelingConstants;
-import org.unicase.uiModeling.diagram.util.UiModelingDiagramUtil;
+import org.unicase.uiModeling.diagram.UiModelingDiagramUtil;
 
 /**
  * @generated
