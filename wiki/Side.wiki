@@ -1,6 +1,5 @@
 Sub-projects:
- * [EMFStoreNavigation EMFStore]
- * [ECPNavigation EMF Client Platform (ECP)]
+
  * [UNICASEClientNavigation UNICASE Client]
    * [UNICASEClient What is the UNICASE client?]
    * [Architecture Architecture]
@@ -8,13 +7,6 @@ Sub-projects:
    * [Video_Tutorials Video Tutorials]
    * [AdditionalPlugins Additional Plugins]
 
-   <wiki:comment>
-   * [ECPGettingStarted Getting Started with the ECP]
-   * [ECPArchitecture Architecture]
-   * [ECPBuild Build and Release]
-   * [ECPDownloads Downloads]
-   * [ECPDocumentation Documentation and Tutorials]
-</wiki:comment>
 
 Step-by-step:
  * [http://code.google.com/p/unicase/wiki/Getting_started_as_developer Getting started as UNICASE Developer]
