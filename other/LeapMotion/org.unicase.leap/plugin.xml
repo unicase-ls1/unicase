@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="org.unicase.leap.leapActions" name="Leap Actions" schema="schema/org.unicase.leap.leapActions.exsd"/>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="org.unicase.leap.LeapPartListener"></startup>
+   </extension>
+</plugin>

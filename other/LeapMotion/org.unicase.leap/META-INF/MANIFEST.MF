@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: UNICASE LeapMotion Adapter
+Bundle-SymbolicName: org.unicase.leap;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: unicase.org
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui;bundle-version="3.7.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: lib/LeapJava.jar,
+ .
+Export-Package: com.leapmotion.leap,
+ org.unicase.leap
