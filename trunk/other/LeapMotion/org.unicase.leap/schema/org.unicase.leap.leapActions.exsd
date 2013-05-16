@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.unicase.leap" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.unicase.leap" id="org.unicase.leap.leapActions" name="Leap Actions"/>
+      </appinfo>
+      <documentation>
+         This extension point can be used to specify actions for the leap motion controller for a certain editor.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="editor"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="action">
+      <annotation>
+         <documentation>
+            An action defined for a leap motion controller for this editor. An action is defined by specifying a gesture type and the handler processing gesture of said type.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="leapHandler" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The ILeapHandler that is responsible for handling LeapMotion input when the specified editor is opened.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.unicase.leap.ILeapActionHandler"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="gestureType" use="required">
+            <annotation>
+               <documentation>
+                  The type of the gesture this action is able to process.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="screenTap">
+                  </enumeration>
+                  <enumeration value="keyTap">
+                  </enumeration>
+                  <enumeration value="swipe">
+                  </enumeration>
+                  <enumeration value="circle">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="editor">
+      <annotation>
+         <documentation>
+            An editor definition. Any actions that should be taken within this editor using the leap motion controller must be defined here. Optionally, mouse movement can be enabled whenever the editor is opened.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="action" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="mouseMover" minOccurs="0" maxOccurs="1"/>
+         </sequence>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The ID of the editor the leap actions are defined for.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="mouseMover">
+      <annotation>
+         <documentation>
+            This element enables mouse movement for the specified editor. Mouse movement can be enabled for fingers, tools or both. In addition, visualization for pointables not used for mouse movement can be enabled.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="fingersEnabled" type="boolean" use="default" value="true">
+            <annotation>
+               <documentation>
+                  If set to true, fingers will be used for mouse movement and, if enabled, visualization.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="toolsEnabled" type="boolean" use="default" value="true">
+            <annotation>
+               <documentation>
+                  If set to true, tools will be used for mouse movement and, if enabled, visualization.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="visualizeAll" type="boolean" use="default" value="true">
+            <annotation>
+               <documentation>
+                  If set to true, any finger and tool not used for mouse movement will be visualized by a cursor-like appearance (that doesn&apos;t have any additional functionality).
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+
+
+
+
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+All rights reserved. This program and the accompanying materials are made available under the terms of
+the Eclipse Public License v1.0 which accompanies this distribution,
+and is available at http://www.eclipse.org/legal/epl-v10.html
+      </documentation>
+   </annotation>
+
+</schema>
