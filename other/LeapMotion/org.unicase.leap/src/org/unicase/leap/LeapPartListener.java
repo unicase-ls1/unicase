@@ -48,7 +48,6 @@ public class LeapPartListener implements IStartup, IPartListener2 {
 	 * Extension point restriction for the circle gesture type.
 	 */
 	private static final String CIRCLE_GESTURE_TYPE = "circle";
-
 	/**
 	 * The leap motion controller responsible for tracking sensor data.
 	 */
@@ -90,8 +89,10 @@ public class LeapPartListener implements IStartup, IPartListener2 {
 
 	@Override
 	public void partActivated(IWorkbenchPartReference partRef) {
-		// TODO Maybe activate leap motion tracking
-
+		LeapInputListener listener = partToListener.get(partRef);
+		if (listener != null) {
+			listener.start();
+		}
 	}
 
 	@Override
@@ -102,17 +103,17 @@ public class LeapPartListener implements IStartup, IPartListener2 {
 
 	@Override
 	public void partClosed(IWorkbenchPartReference partRef) {
-		LeapInputListener listener = partToListener.get(partRef);
-		if (listener != null) {
-			listener.stop();
+		if (partToListener.containsKey(partRef)) {
 			partToListener.remove(partRef);
 		}
 	}
 
 	@Override
 	public void partDeactivated(IWorkbenchPartReference partRef) {
-		// TODO Maybe deactivate leap motion tracking
-
+		LeapInputListener listener = partToListener.get(partRef);
+		if (listener != null) {
+			listener.stop();
+		}
 	}
 
 	@Override
@@ -138,7 +139,7 @@ public class LeapPartListener implements IStartup, IPartListener2 {
 						visualizeAll = Boolean.parseBoolean(mouseMoverExtension.getAttribute("visualizeAll"));
 					}
 					listener = new LeapInputListener(controller, toolsEnabled, fingersEnabled, visualizeAll);
-					listener.start();
+					partToListener.put(partRef, listener);
 				} else {
 					listener = partToListener.get(partRef);
 				}

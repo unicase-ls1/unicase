@@ -111,7 +111,7 @@ public class LeapInputListener extends Listener {
 	 * {@link Thread} used to process {@link Cursor} movement asynchronously whenever new leap motion sensor data has
 	 * been tracked.
 	 */
-	private final Thread moveCursorThread;
+	private Thread moveCursorThread;
 	/**
 	 * The ID of the main {@link Pointable} that is being captured by the leap motion {@link Controller}. This is the
 	 * pointable that was tracked first by the controller and is still valid. Once the main pointable is invalid, it
@@ -139,27 +139,6 @@ public class LeapInputListener extends Listener {
 		this.toolsEnabled = toolsEnabled;
 		this.visualizeAll = visualizeAll;
 		this.helper = new LeapHelper(controller);
-		this.moveCursorThread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				boolean isDefault = true;
-				while (!moveCursorThread.isInterrupted()) {
-					final int id = mainPointableId;
-					if (id >= 0) {
-						if (isDefault) {
-							setCursor(DISABLED_CURSOR);
-							isDefault = false;
-						}
-						Pointable pointable = controller.frame().pointable(id);
-						moveMouseToPointable(pointable);
-					} else if (!isDefault) {
-						setCursor(DEFAULT_CURSOR);
-						isDefault = true;
-					}
-				}
-			}
-
-		});
 	}
 
 	/**
@@ -184,22 +163,25 @@ public class LeapInputListener extends Listener {
 
 	/**
 	 * Starts this listener by adding it to the {@link Controller}. If either {@link Finger} or {@link Tool} tracking is
-	 * enabled, the thread responsible for mouse movement is being started.
+	 * enabled, a new thread responsible for mouse movement is being started.
 	 */
 	public void start() {
 		controller.addListener(this);
 		if (fingersEnabled || toolsEnabled) {
+			moveCursorThread = new Thread(new MouseMoverRunnable());
 			moveCursorThread.start();
 		}
 	}
 
 	/**
 	 * Stops this listener by removing it from the {@link Controller}. If the {@link Thread} responsible for mouse
-	 * movement is still alive, it is being interrupted
+	 * movement is still alive, it is being interrupted. In the process, the cursor is also set back to its default
+	 * value.
 	 */
 	public void stop() {
 		if (moveCursorThread.isAlive()) {
 			moveCursorThread.interrupt();
+			setCursor(DEFAULT_CURSOR);
 		}
 		controller.removeListener(this);
 	}
@@ -371,12 +353,16 @@ public class LeapInputListener extends Listener {
 
 				@Override
 				public void run() {
+					Shell activeShell = display.getActiveShell();
 					Shell shell = new Shell(display, SWT.NO_TRIM | SWT.ON_TOP);
 					shell.setSize(VISUALIZATION_SIZE);
 					shell.setBackgroundImage(VISUALIZATION_IMAGE);
 					shell.setLocation(x, y);
 					pointableToVisual.put(id, shell);
 					shell.open();
+					if (activeShell != null) {
+						activeShell.forceActive(); // ensure the previously activated shell doesn't lose focus
+					}
 				}
 			});
 		} else {
@@ -476,6 +462,34 @@ public class LeapInputListener extends Listener {
 			}
 			circleHandlers.add(handler);
 		}
+	}
+
+	/**
+	 * Runnable that keeps the mouse cursor updated as long as the executing thread has not been interrupted. The mouse
+	 * cursor will be updated based on sensor data received from the leap motion {@link Controller}.
+	 * 
+	 * @author mharut
+	 */
+	private class MouseMoverRunnable implements Runnable {
+		@Override
+		public void run() {
+			boolean isDefault = true;
+			while (!Thread.currentThread().isInterrupted()) {
+				final int id = mainPointableId;
+				if (id >= 0) {
+					if (isDefault) {
+						setCursor(DISABLED_CURSOR);
+						isDefault = false;
+					}
+					Pointable pointable = controller.frame().pointable(id);
+					moveMouseToPointable(pointable);
+				} else if (!isDefault) {
+					setCursor(DEFAULT_CURSOR);
+					isDefault = true;
+				}
+			}
+		}
+
 	}
 
 }
