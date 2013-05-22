@@ -207,13 +207,6 @@ public class LeapInputListener extends Listener {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void onConnect(Controller controller) {
-		setCursor(DISABLED_CURSOR);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 	public void onDisconnect(Controller controller) {
 		setCursor(DEFAULT_CURSOR);
 	}
@@ -223,7 +216,7 @@ public class LeapInputListener extends Listener {
 	 * 
 	 * @param cursor the new {@link Cursor}
 	 */
-	private void setCursor(Cursor cursor) {
+	private void setCursor(final Cursor cursor) {
 		final Display display = Display.getDefault();
 		display.asyncExec(new Runnable() {
 
@@ -231,7 +224,7 @@ public class LeapInputListener extends Listener {
 			public void run() {
 				Shell shell = display.getActiveShell();
 				if (shell != null && !shell.isDisposed()) {
-					shell.setCursor(DISABLED_CURSOR);
+					shell.setCursor(cursor);
 				}
 			}
 		});
@@ -242,14 +235,56 @@ public class LeapInputListener extends Listener {
 	 */
 	public void onFrame(Controller controller) {
 		Frame frame = controller.frame();
+		if (mainPointableId >= 0) {
+			Pointable mainPointable = frame.pointable(mainPointableId);
+			if (!mainPointable.isValid()) {
+				mainPointableId = -1;
+			}
+		}
+		if (toolsEnabled) {
+			processTools(frame);
+		}
 		if (fingersEnabled) {
 			processFingers(frame);
 		}
-		if (toolsEnabled) {
-			// TODO
-		}
 		if (gesturesEnabled) {
 			processGestures(frame);
+		}
+		if (visualizeAll) {
+			Set<Integer> copiedEntries = new HashSet<Integer>(pointableToVisual.keySet());
+			for (Integer id : copiedEntries) {
+				Pointable pointable = frame.pointable(id);
+				if (!pointable.isValid() || id.equals(mainPointableId)) {
+					removeVisualization(id);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Processes tracking data regarding {@link Tool}s for a single {@link Frame}. If no {@link Pointable} is used for
+	 * moving the mouse cursor, the first valid tool will be put as the main pointable responsible for cursor movement.
+	 * If {@link #visualizeAll} is set to true, every other tool will be visualized using a {@link Shell}.
+	 * 
+	 * @param frame the {@link Frame} containing leap motion tracking data
+	 */
+	private void processTools(Frame frame) {
+		if (mainPointableId < 0 || visualizeAll) {
+			for (final Tool tool : frame.tools()) {
+				final int id = tool.id();
+				if (mainPointableId < 0) {
+					mainPointableId = id;
+					if (!visualizeAll) {
+						break;
+					}
+				} else if (id != mainPointableId) {
+					final Vector leapPosition = helper.getTip(tool);
+					final Vector screenPosition = helper.convert(leapPosition, tool);
+					if (screenPosition != null && screenPosition.isValid()) {
+						addVisualization(id, Math.round(screenPosition.getX()), Math.round(screenPosition.getY()));
+					}
+				}
+			}
 		}
 	}
 
@@ -261,19 +296,8 @@ public class LeapInputListener extends Listener {
 	 * @param frame the {@link Frame} containing leap motion tracking data
 	 */
 	private void processFingers(Frame frame) {
-
-		if (mainPointableId >= 0) {
-			Finger finger = frame.finger(mainPointableId);
-			if (!finger.isValid()) {
-				mainPointableId = -1;
-			}
-		}
-
 		if (mainPointableId < 0 || visualizeAll) {
 			for (final Finger finger : frame.fingers()) {
-				if (!finger.isValid()) {
-					System.out.println("INVALID");
-				}
 				final int id = finger.id();
 				if (mainPointableId < 0) {
 					mainPointableId = id;
@@ -286,16 +310,6 @@ public class LeapInputListener extends Listener {
 					if (screenPosition != null && screenPosition.isValid()) {
 						addVisualization(id, Math.round(screenPosition.getX()), Math.round(screenPosition.getY()));
 					}
-				}
-			}
-		}
-
-		if (visualizeAll) {
-			Set<Integer> copiedEntries = new HashSet<Integer>(pointableToVisual.keySet());
-			for (Integer id : copiedEntries) {
-				Finger finger = frame.finger(id);
-				if (!finger.isValid()) {
-					removeVisualization(id);
 				}
 			}
 		}
