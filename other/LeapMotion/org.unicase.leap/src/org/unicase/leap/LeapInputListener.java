@@ -8,6 +8,7 @@ package org.unicase.leap;
 
 import java.awt.AWTException;
 import java.awt.Robot;
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -15,8 +16,7 @@ import java.util.Set;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Cursor;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
@@ -44,28 +44,14 @@ import com.leapmotion.leap.Vector;
 public class LeapInputListener extends Listener {
 
 	/**
-	 * The {@link Image} used for a disabled cursor.
-	 */
-	private static final Image CURSOR_DISABLED_IMAGE = new Image(Display.getDefault(),
-		LeapInputListener.class.getResourceAsStream("red.png"));
-	/**
-	 * The {@link Image} used for a {@link Finger} and {@link Tool} visualizations.
-	 */
-	private static final Image VISUALIZATION_IMAGE = new Image(Display.getDefault(),
-		LeapInputListener.class.getResourceAsStream("blue.png"));
-	/**
-	 * The size of {@link Pointable} visualizations.
-	 */
-	private static final Point VISUALIZATION_SIZE = new Point(22, 21);
-	/**
 	 * The default {@link Cursor} used before the cursor has been changed by this listener.
 	 */
 	private static final Cursor DEFAULT_CURSOR = new Cursor(Display.getDefault(), SWT.CURSOR_ARROW);
 	/**
 	 * A disabled {@link Cursor} which is used to keep track of the current main {@link Pointable}.
 	 */
-	private static final Cursor DISABLED_CURSOR = new Cursor(Display.getDefault(),
-		CURSOR_DISABLED_IMAGE.getImageData(), 10, 10);
+	private static final Cursor DISABLED_CURSOR = new Cursor(Display.getDefault(), new ImageData(
+		LeapInputListener.class.getResourceAsStream("red.png")), 10, 10);
 	/**
 	 * The leap motion {@link Controller} tracking sensor data.
 	 */
@@ -233,12 +219,16 @@ public class LeapInputListener extends Listener {
 			processGestures(frame);
 		}
 		if (visualizeAll) {
-			Set<Integer> copiedEntries = new HashSet<Integer>(pointableToVisual.keySet());
-			for (Integer id : copiedEntries) {
-				Pointable pointable = frame.pointable(id);
-				if (!pointable.isValid() || id.equals(mainPointableId)) {
-					removeVisualization(id);
+			try {
+				Set<Integer> copiedEntries = new HashSet<Integer>(pointableToVisual.keySet());
+				for (Integer id : copiedEntries) {
+					Pointable pointable = frame.pointable(id);
+					if (!pointable.isValid() || id.equals(mainPointableId)) {
+						removeVisualization(id);
+					}
 				}
+			} catch (ConcurrentModificationException e) {
+				// do nothing
 			}
 		}
 	}
@@ -354,10 +344,7 @@ public class LeapInputListener extends Listener {
 				@Override
 				public void run() {
 					Shell activeShell = display.getActiveShell();
-					Shell shell = new Shell(display, SWT.NO_TRIM | SWT.ON_TOP);
-					shell.setSize(VISUALIZATION_SIZE);
-					shell.setBackgroundImage(VISUALIZATION_IMAGE);
-					shell.setLocation(x, y);
+					Shell shell = createVisualization(display, x, y);
 					pointableToVisual.put(id, shell);
 					shell.open();
 					if (activeShell != null) {
@@ -376,6 +363,22 @@ public class LeapInputListener extends Listener {
 				}
 			});
 		}
+	}
+
+	/**
+	 * Creates a new {@link Pointable} visualization by constructing a new {@link Shell} with no trimming
+	 * that is always on top of other shells.
+	 * @param display the {@link Display} to create the visualization for
+	 * @param x the x-coordinate of the location where the visualization should be created
+	 * @param y the y-coordinate of the location where the visualization should be created
+	 * @return the created visualization as a {@link Shell}
+	 */
+	private Shell createVisualization(Display display, int x, int y) {
+		Shell shell = new Shell(display, SWT.NO_TRIM | SWT.ON_TOP);
+		shell.setBackground(display.getSystemColor(SWT.COLOR_BLUE));
+		shell.setSize(18, 18);
+		shell.setLocation(x, y);
+		return shell;
 	}
 
 	/**
