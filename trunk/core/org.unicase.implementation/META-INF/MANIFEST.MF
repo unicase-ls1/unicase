@@ -10,9 +10,7 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.implementation.operations,
  org.unicase.implementation.operations.impl,
  org.unicase.implementation.operations.util
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
- org.unicase.model,
+Require-Bundle: org.unicase.model,
  org.eclipse.emf.emfstore.common.model,
  org.eclipse.emf.emfstore.server.model
 Bundle-ActivationPolicy: lazy
