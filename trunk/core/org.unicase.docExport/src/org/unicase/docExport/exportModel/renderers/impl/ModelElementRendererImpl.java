@@ -60,22 +60,27 @@ import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.LeafSection;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Model Element Renderer</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Model Element Renderer</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl#getRendererOptions <em>Renderer
- * Options</em>}</li>
- * <li>{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl#getTemplate <em>Template</em>}</li>
- * <li>{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl#getAttributeRendererMapping <em>
- * Attribute Renderer Mapping</em>}</li>
+ * <li>
+ * {@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl#getRendererOptions
+ * <em>Renderer Options</em>}</li>
+ * <li>
+ * {@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl#getTemplate
+ * <em>Template</em>}</li>
+ * <li>
+ * {@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl#getAttributeRendererMapping
+ * <em> Attribute Renderer Mapping</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public abstract class ModelElementRendererImpl extends EObjectImpl implements ModelElementRenderer {
+public abstract class ModelElementRendererImpl extends EObjectImpl implements
+		ModelElementRenderer {
 
 	private static final int DESCRIPTION_MIN_SIZE = 500;
 	private static final int SECTION_DESCRIPTION_MARGIN = 10;
@@ -87,11 +92,13 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	private static final double PROPERTIES_TABLE_BORDER_SIZE = 0.8;
 
 	private final AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
-		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+			new ComposedAdapterFactory(
+					ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 	/**
-	 * The cached value of the '{@link #getRendererOptions() <em>Renderer Options</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getRendererOptions()
+	 * <em>Renderer Options</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getRendererOptions()
 	 * @generated
@@ -100,8 +107,8 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	protected EList<RendererOption> rendererOptions;
 
 	/**
-	 * The cached value of the '{@link #getTemplate() <em>Template</em>}' reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getTemplate() <em>Template</em>}'
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getTemplate()
 	 * @generated
@@ -110,8 +117,9 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	protected Template template;
 
 	/**
-	 * The cached value of the '{@link #getAttributeRendererMapping() <em>Attribute Renderer Mapping</em>}' containment
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAttributeRendererMapping()
+	 * <em>Attribute Renderer Mapping</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getAttributeRendererMapping()
 	 * @generated
@@ -145,8 +153,9 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	 */
 	public EList<RendererOption> getRendererOptions() {
 		if (rendererOptions == null) {
-			rendererOptions = new EObjectContainmentEList<RendererOption>(RendererOption.class, this,
-				RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS);
+			rendererOptions = new EObjectContainmentEList<RendererOption>(
+					RendererOption.class, this,
+					RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS);
 		}
 		return rendererOptions;
 	}
@@ -163,7 +172,8 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 			if (template != oldTemplate) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE, oldTemplate, template));
+							RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE,
+							oldTemplate, template));
 			}
 		}
 		return template;
@@ -187,8 +197,9 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 		Template oldTemplate = template;
 		template = newTemplate;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE,
-				oldTemplate, template));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE,
+					oldTemplate, template));
 	}
 
 	/**
@@ -199,8 +210,9 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	public EList<AttributeRendererMapping> getAttributeRendererMapping() {
 		if (attributeRendererMapping == null) {
 			attributeRendererMapping = new EObjectContainmentEList<AttributeRendererMapping>(
-				AttributeRendererMapping.class, this,
-				RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING);
+					AttributeRendererMapping.class,
+					this,
+					RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING);
 		}
 		return attributeRendererMapping;
 	}
@@ -211,12 +223,15 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
-			return ((InternalEList<?>) getRendererOptions()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getRendererOptions()).basicRemove(
+					otherEnd, msgs);
 		case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
-			return ((InternalEList<?>) getAttributeRendererMapping()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getAttributeRendererMapping())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -252,14 +267,16 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 		switch (featureID) {
 		case RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS:
 			getRendererOptions().clear();
-			getRendererOptions().addAll((Collection<? extends RendererOption>) newValue);
+			getRendererOptions().addAll(
+					(Collection<? extends RendererOption>) newValue);
 			return;
 		case RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE:
 			setTemplate((Template) newValue);
 			return;
 		case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
 			getAttributeRendererMapping().clear();
-			getAttributeRendererMapping().addAll((Collection<? extends AttributeRendererMapping>) newValue);
+			getAttributeRendererMapping().addAll(
+					(Collection<? extends AttributeRendererMapping>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -299,7 +316,8 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 		case RenderersPackage.MODEL_ELEMENT_RENDERER__TEMPLATE:
 			return template != null;
 		case RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING:
-			return attributeRendererMapping != null && !attributeRendererMapping.isEmpty();
+			return attributeRendererMapping != null
+					&& !attributeRendererMapping.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -309,19 +327,23 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 		TemplateRegistry.setMeCount(TemplateRegistry.getMeCount() + 1);
 
 		/*
-		 * A ModelElement should not be rendered twice with the default renderer, because a recursive call may appear,
-		 * which will result in a non-terminating algorithm. If this is the first time, the ModelElement is rendred, add
-		 * a reference, so that the ModelElement can be linked.
+		 * A ModelElement should not be rendered twice with the default
+		 * renderer, because a recursive call may appear, which will result in a
+		 * non-terminating algorithm. If this is the first time, the
+		 * ModelElement is rendred, add a reference, so that the ModelElement
+		 * can be linked.
 		 */
 		if (DocumentExport.hasAlreadyBeenRendered(eObject)) {
 			return;
 		}
 
 		DocumentExport.addRenderedModelElement(eObject);
-		ModelElementId modelElementId = ModelUtil.getProject(eObject).getModelElementId(eObject);
+		ModelElementId modelElementId = ModelUtil.getProject(eObject)
+				.getModelElementId(eObject);
 		parent.add(new URef(modelElementId.getId()));
 
-		if (getModelElementDepth(eObject, 1) <= DocumentExport.getRecursionDepth()) {
+		if (getModelElementDepth(eObject, 1) <= DocumentExport
+				.getRecursionDepth()) {
 			doRender(eObject, parent);
 		}
 	}
@@ -337,8 +359,9 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	@SuppressWarnings("unchecked")
 	protected FeatureOrdering orderFeatures(final EObject eObject) {
 		/*
-		 * order the features by the following types: singleProperties: EAttribute and single ERference linked
-		 * multiProperties: EReference, multi containedProperties: single EReference rendered as contained.
+		 * order the features by the following types: singleProperties:
+		 * EAttribute and single ERference linked multiProperties: EReference,
+		 * multi containedProperties: single EReference rendered as contained.
 		 */
 		Vector<IItemPropertyDescriptor> singleProperties = new Vector<IItemPropertyDescriptor>();
 		Vector<IItemPropertyDescriptor> multiProperties = new Vector<IItemPropertyDescriptor>();
@@ -353,14 +376,18 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 				IItemPropertyDescriptor pD1 = (IItemPropertyDescriptor) o1;
 				IItemPropertyDescriptor pD2 = (IItemPropertyDescriptor) o2;
 
-				EStructuralFeature feature1 = (EStructuralFeature) pD1.getFeature(eObject);
-				EStructuralFeature feature2 = (EStructuralFeature) pD2.getFeature(eObject);
+				EStructuralFeature feature1 = (EStructuralFeature) pD1
+						.getFeature(eObject);
+				EStructuralFeature feature2 = (EStructuralFeature) pD2
+						.getFeature(eObject);
 
 				AttributeRenderer renderer1 = getAttributeRendererNotNull(feature1);
-				AttributeOption attributeOption1 = renderer1.getAttributeOption();
+				AttributeOption attributeOption1 = renderer1
+						.getAttributeOption();
 
 				AttributeRenderer renderer2 = getAttributeRendererNotNull(feature2);
-				AttributeOption attributeOption2 = renderer2.getAttributeOption();
+				AttributeOption attributeOption2 = renderer2
+						.getAttributeOption();
 
 				if (attributeOption1 == null || attributeOption2 == null) {
 					return 0;
@@ -379,7 +406,8 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 		});
 
 		for (IItemPropertyDescriptor propertyDescriptor : propertyDescriptors) {
-			EStructuralFeature feature = (EStructuralFeature) propertyDescriptor.getFeature(eObject);
+			EStructuralFeature feature = (EStructuralFeature) propertyDescriptor
+					.getFeature(eObject);
 
 			boolean hide;
 			AttributeRenderer renderer = getAttributeRendererNotNull(feature);
@@ -393,19 +421,27 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 			LayoutOptions layoutOptions = getTemplate().getLayoutOptions();
 
 			/*
-			 * Don't render a feature (attribute) in the following cases: 1) the feature is annotation,
-			 * incomingDocumentReferences or attachments and the layoutOptions say, that they should be hidden. Normally
-			 * these features are not relevant. 2) The feature is called name or description. Those features are always
-			 * rendered in the title and description of the section. 3) The attributeOption hide is set to true 4) The
-			 * content of the feature is empty
+			 * Don't render a feature (attribute) in the following cases: 1) the
+			 * feature is annotation, incomingDocumentReferences or attachments
+			 * and the layoutOptions say, that they should be hidden. Normally
+			 * these features are not relevant. 2) The feature is called name or
+			 * description. Those features are always rendered in the title and
+			 * description of the section. 3) The attributeOption hide is set to
+			 * true 4) The content of the feature is empty
 			 */
-			if ((feature.getName().equals("annotations") && layoutOptions.isHideAnnotations())
-				|| (feature.getName().equals("incomingDocumentReferences") && layoutOptions
-					.isHideIncomingDocumentReferences())
-				|| (feature.getName().equals("attachments") && layoutOptions.isHideAttachments())
-				|| feature.getName().equals("description") || feature.getName().equals("name") || hide
-				|| eObject.eGet(feature) == null // hide features with no content
-				|| (eObject.eGet(feature) instanceof EList && ((EList<Object>) eObject.eGet(feature)).size() < 1)) {
+			if ((feature.getName().equals("annotations") && layoutOptions
+					.isHideAnnotations())
+					|| (feature.getName().equals("incomingDocumentReferences") && layoutOptions
+							.isHideIncomingDocumentReferences())
+					|| (feature.getName().equals("attachments") && layoutOptions
+							.isHideAttachments())
+					|| feature.getName().equals("description")
+					|| feature.getName().equals("name")
+					|| hide
+					|| eObject.eGet(feature) == null // hide features with no
+														// content
+					|| (eObject.eGet(feature) instanceof EList && ((EList<Object>) eObject
+							.eGet(feature)).size() < 1)) {
 				// do nothing! do not render these features
 			} else {
 				// do not show features with special renderers in the table
@@ -413,22 +449,26 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 					specialRendererProperties.add(propertyDescriptor);
 				}
 				// simple EAttributes - String, numbers, boolean etc.
-				else if (feature.eClass().getInstanceClass().equals(EAttribute.class)) {
+				else if (feature.eClass().getInstanceClass()
+						.equals(EAttribute.class)) {
 					singleProperties.add(propertyDescriptor);
 				}
 				// EReference
 				else {
-					ReferenceAttributeOption option = (ReferenceAttributeOption) renderer.getAttributeOption();
+					ReferenceAttributeOption option = (ReferenceAttributeOption) renderer
+							.getAttributeOption();
 					if (option.isContained()) {
 						containedProperties.add(propertyDescriptor);
 					}
 					// Multi references (EList)
 					else if (feature.isMany()) {
-						if (((MultiReferenceAttributeOption) option).getListOption().getListStyle()
-							.equals(ListStyle.TABLE)) {
+						if (((MultiReferenceAttributeOption) option)
+								.getListOption().getListStyle()
+								.equals(ListStyle.TABLE)) {
 							multiProperties.add(propertyDescriptor);
 						} else {
-							multiPropertiesOutsideOfTable.add(propertyDescriptor);
+							multiPropertiesOutsideOfTable
+									.add(propertyDescriptor);
 						}
 					}
 					// a single reference, which is not contained
@@ -450,24 +490,32 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	}
 
 	/**
-	 * The name of the ModelElement is the title of the section. The description will always be rendered, and is
-	 * connected to the section. So there is no page break direktly after the section's title.
+	 * The name of the ModelElement is the title of the section. The description
+	 * will always be rendered, and is connected to the section. So there is no
+	 * page break direktly after the section's title.
 	 * 
-	 * @param modelElement the modelElement which shall be rendered
-	 * @param modelElementSection the section of the ModelElement
+	 * @param modelElement
+	 *            the modelElement which shall be rendered
+	 * @param modelElementSection
+	 *            the section of the ModelElement
 	 */
-	protected void renderTitleAndDescription(UnicaseModelElement modelElement, USection modelElementSection,
-		boolean hideStructuralLines) {
+	protected void renderTitleAndDescription(UnicaseModelElement modelElement,
+			USection modelElementSection, boolean hideStructuralLines) {
 
-		/*
-		 * String modelElementName; if (modelElement.getName() == null || modelElement.getName().equals("") ||
-		 * modelElement.getName().equals("null")) { modelElementName = "(noName)"; } else { modelElementName =
-		 * modelElement.getName(); }
-		 */
+		String modelElementName;
+		if (modelElement.getName() == null || modelElement.getName().equals("")
+				|| modelElement.getName().equals("null")) {
+			modelElementName = "(noName)";
+		} else {
+			modelElementName = modelElement.getName();
+		}
+
+		modelElementSection.setTitle(new UParagraph(modelElementName));
 
 		// ########################## Description ##########################
-		UParagraph description = new UParagraph(DocumentExport.cleanFormatedText(modelElement.getDescription()),
-			getTemplate().getLayoutOptions().getDefaultTextOption());
+		UParagraph description = new UParagraph(
+				DocumentExport.cleanFormatedText(modelElement.getDescription()),
+				getTemplate().getLayoutOptions().getDefaultTextOption());
 		description.getBoxModel().setKeepWithPrevious(true);
 		description.getOption().setTextAlign(TextAlign.JUSTIFY);
 
@@ -481,12 +529,15 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	}
 
 	/**
-	 * Returns a Vector of the propertyDecriptors of a modelElement. Only editable properties are in this Vector.
+	 * Returns a Vector of the propertyDecriptors of a modelElement. Only
+	 * editable properties are in this Vector.
 	 */
-	private Vector<IItemPropertyDescriptor> getPropertyDescriptors(EObject eObject) {
+	private Vector<IItemPropertyDescriptor> getPropertyDescriptors(
+			EObject eObject) {
 		Vector<IItemPropertyDescriptor> ret = new Vector<IItemPropertyDescriptor>();
 
-		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator.getPropertyDescriptors(eObject);
+		List<IItemPropertyDescriptor> propertyDescriptors = adapterFactoryItemDelegator
+				.getPropertyDescriptors(eObject);
 		if (propertyDescriptors != null) {
 			ret.addAll(propertyDescriptors);
 		}
@@ -495,21 +546,25 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	}
 
 	/**
-	 * Structural lines shall be rendered, if any modelElement on the same layer has contained modelElements, or if the
-	 * parent modelElement has structural lines, too.
+	 * Structural lines shall be rendered, if any modelElement on the same layer
+	 * has contained modelElements, or if the parent modelElement has structural
+	 * lines, too.
 	 * 
-	 * @param object the ModelElement, where structural lines shall be rendered
+	 * @param object
+	 *            the ModelElement, where structural lines shall be rendered
 	 * @return true, if structural lines shall be rendered
 	 */
 	protected boolean mayRenderStructuralLine(EObject object) {
-		// if the recursive depth of the Model Element structure is 1, there wonn't be any children.
+		// if the recursive depth of the Model Element structure is 1, there
+		// wonn't be any children.
 		// so there won't be any structural line be needed.
 		if (DocumentExport.getRecursionDepth() == 1) {
 			return false;
 		}
 
-		if (object == null || object.eContainer() == null || object instanceof LeafSection
-			|| object instanceof CompositeSection) {
+		if (object == null || object.eContainer() == null
+				|| object instanceof LeafSection
+				|| object instanceof CompositeSection) {
 			return false;
 		}
 		if (mayRenderStructuralLine(object.eContainer())) {
@@ -517,16 +572,21 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 		}
 
 		for (EObject content : object.eContainer().eContents()) {
-			if (content instanceof UnicaseModelElement && !(content instanceof LeafSection)
-				&& !(content instanceof CompositeSection)) {
+			if (content instanceof UnicaseModelElement
+					&& !(content instanceof LeafSection)
+					&& !(content instanceof CompositeSection)) {
 				FeatureOrdering ordering = orderFeatures(content);
 
-				// check if the special attribute renderer has the hideStructuralLines() option activated
-				// if it is activated, the attribute wont be counted as a contained property
-				// because it is only used to decide whether the structural lines should be drawn or not
+				// check if the special attribute renderer has the
+				// hideStructuralLines() option activated
+				// if it is activated, the attribute wont be counted as a
+				// contained property
+				// because it is only used to decide whether the structural
+				// lines should be drawn or not
 				int containedProperties = 0;
 				for (IItemPropertyDescriptor property : ordering.containedProperties) {
-					EStructuralFeature feature = (EStructuralFeature) property.getFeature(content);
+					EStructuralFeature feature = (EStructuralFeature) property
+							.getFeature(content);
 					AttributeRenderer attributeRenderer = getAttributeRendererNotNull(feature);
 					if (!attributeRenderer.hideStructuralLines()) {
 						containedProperties++;
@@ -542,14 +602,21 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	}
 
 	/**
-	 * @param singleProperties all properties, which have a single value like an EAttribute or a single ERference.
-	 * @param multiProperties all multi EReferences
-	 * @param eObject the modelElement containing the values of the properties
-	 * @param parent the section of the ModelELement
+	 * @param singleProperties
+	 *            all properties, which have a single value like an EAttribute
+	 *            or a single ERference.
+	 * @param multiProperties
+	 *            all multi EReferences
+	 * @param eObject
+	 *            the modelElement containing the values of the properties
+	 * @param parent
+	 *            the section of the ModelELement
 	 */
 	@SuppressWarnings("unchecked")
-	protected void renderPropertiesTable(Vector<IItemPropertyDescriptor> singleProperties,
-		Vector<IItemPropertyDescriptor> multiProperties, EObject eObject, USection parent) {
+	protected void renderPropertiesTable(
+			Vector<IItemPropertyDescriptor> singleProperties,
+			Vector<IItemPropertyDescriptor> multiProperties, EObject eObject,
+			USection parent) {
 
 		if (singleProperties.size() + multiProperties.size() < 1) {
 			return;
@@ -557,41 +624,53 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 
 		UTable table = new UTable(2);
 
-		// count the rows of the table, to decide, if the table should be shown on one page
+		// count the rows of the table, to decide, if the table should be shown
+		// on one page
 		int rowCount = 0;
 		table.setColumnsWidths(new float[] { 30, 70 });
 
 		// ############### Single Properties ########################
 		for (IItemPropertyDescriptor propertyDescriptor : singleProperties) {
-			EStructuralFeature feature = (EStructuralFeature) propertyDescriptor.getFeature(eObject);
+			EStructuralFeature feature = (EStructuralFeature) propertyDescriptor
+					.getFeature(eObject);
 
 			Object obj = eObject.eGet(feature);
 			if (obj != null) {
 				// count the modelElements beeing rendered
-				if (!feature.eClass().getInstanceClass().equals(EAttribute.class)) {
-					TemplateRegistry.setMeCount(TemplateRegistry.getMeCount() + 1);
+				if (!feature.eClass().getInstanceClass()
+						.equals(EAttribute.class)) {
+					TemplateRegistry
+							.setMeCount(TemplateRegistry.getMeCount() + 1);
 				}
 
 				rowCount++;
 
-				UParagraph leftParagraph = new UParagraph(getAttributeName(feature,
-					propertyDescriptor.getDisplayName(eObject)), template.getLayoutOptions().getDefaultTextOption());
+				UParagraph leftParagraph = new UParagraph(getAttributeName(
+						feature, propertyDescriptor.getDisplayName(eObject)),
+						template.getLayoutOptions().getDefaultTextOption());
 				UTableCell tableCellLeft = new UTableCell(leftParagraph);
-				tableCellLeft.getBoxModel().setBorderBottom(PROPERTIES_TABLE_BORDER_SIZE);
+				tableCellLeft.getBoxModel().setBorderBottom(
+						PROPERTIES_TABLE_BORDER_SIZE);
 				tableCellLeft.getBoxModel().setBorderStyle(UBorderStyle.DASHED);
 				table.add(tableCellLeft);
 
 				UTableCell tableCellRight = new UTableCell("");
-				tableCellRight.getBoxModel().setBorderBottom(PROPERTIES_TABLE_BORDER_SIZE);
-				tableCellRight.getBoxModel().setBorderStyle(UBorderStyle.DASHED);
+				tableCellRight.getBoxModel().setBorderBottom(
+						PROPERTIES_TABLE_BORDER_SIZE);
+				tableCellRight.getBoxModel()
+						.setBorderStyle(UBorderStyle.DASHED);
 				table.add(tableCellRight);
 
 				if (eObject.eGet(feature) instanceof EObject) {
-					EObject featureModelElement = (EObject) eObject.eGet(feature);
-					ModelElementId featureModelElementId = ModelUtil.getProject(featureModelElement).getModelElementId(
-						featureModelElement);
-					ULink link = new ULink(getText(featureModelElement), featureModelElementId.getId());
-					link.setOption(template.getLayoutOptions().getDefaultTextOption());
+					EObject featureModelElement = (EObject) eObject
+							.eGet(feature);
+					ModelElementId featureModelElementId = ModelUtil
+							.getProject(featureModelElement).getModelElementId(
+									featureModelElement);
+					ULink link = new ULink(getText(featureModelElement),
+							featureModelElementId.getId());
+					link.setOption(template.getLayoutOptions()
+							.getDefaultTextOption());
 					UParagraph par = new UParagraph("");
 					par.add(link);
 					tableCellRight.setContent(par);
@@ -599,14 +678,17 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 					AttributeRenderer attributeRenderer = getAttributeRendererNotNull(feature);
 					UParagraph attributeContainer = new UParagraph("");
 					tableCellRight.setContent(attributeContainer);
-					attributeRenderer.render(feature, eObject, attributeContainer, template);
+					attributeRenderer.render(feature, eObject,
+							attributeContainer, template);
 				}
 			}
 		}
 
-		// ############################ Multi Properties ###########################
+		// ############################ Multi Properties
+		// ###########################
 		for (IItemPropertyDescriptor propertyDescriptor : multiProperties) {
-			EStructuralFeature feature = (EStructuralFeature) propertyDescriptor.getFeature(eObject);
+			EStructuralFeature feature = (EStructuralFeature) propertyDescriptor
+					.getFeature(eObject);
 			Object attributeValue = eObject.eGet(feature);
 			if (attributeValue instanceof EList) {
 				EList<EObject> objectList = (EList<EObject>) attributeValue;
@@ -615,35 +697,48 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 					UParagraph par = new UParagraph("");
 					for (EObject referencedObject : objectList) {
 						// count the modelElements beeing rendered
-						TemplateRegistry.setMeCount(TemplateRegistry.getMeCount() + 1);
+						TemplateRegistry.setMeCount(TemplateRegistry
+								.getMeCount() + 1);
 						UParagraph entryContainer = new UParagraph("");
 						entryContainer.getBoxModel().setBorderBottom(0.5);
-						entryContainer.getBoxModel().setBorderStyle(UBorderStyle.DOTTED);
+						entryContainer.getBoxModel().setBorderStyle(
+								UBorderStyle.DOTTED);
 						par.add(entryContainer);
-						ModelElementId meId = ModelUtil.getProject(referencedObject)
-							.getModelElementId(referencedObject);
-						ULink entry = new ULink(getText(referencedObject), meId.getId());
-						// register the ModelElement as a link, so that it can be rendered in the
+						ModelElementId meId = ModelUtil.getProject(
+								referencedObject).getModelElementId(
+								referencedObject);
+						ULink entry = new ULink(getText(referencedObject),
+								meId.getId());
+						// register the ModelElement as a link, so that it can
+						// be rendered in the
 						// appendix if wanted and neccessary
 						DocumentExport.addLinkedModelElement(referencedObject);
-						entry.setOption(template.getLayoutOptions().getDefaultTextOption());
+						entry.setOption(template.getLayoutOptions()
+								.getDefaultTextOption());
 						// entry.getBoxModel().setBorderBottom(0.5);
 						// entry.getBoxModel().setBorderStyle(UBorderStyle.DOTTED);
 						entryContainer.add(entry);
 						rowCount++;
 					}
 					// The last row has no border bottom.
-					par.getChildren().get(par.getChildren().size() - 1).getBoxModel().setBorderBottom(0);
+					par.getChildren().get(par.getChildren().size() - 1)
+							.getBoxModel().setBorderBottom(0);
 
-					UTableCell leftTableCell = new UTableCell(getAttributeName(feature,
-						propertyDescriptor.getDisplayName(eObject)), template.getLayoutOptions().getDefaultTextOption());
-					leftTableCell.getBoxModel().setBorderBottom(PROPERTIES_TABLE_BORDER_SIZE);
-					leftTableCell.getBoxModel().setBorderStyle(UBorderStyle.DASHED);
+					UTableCell leftTableCell = new UTableCell(
+							getAttributeName(feature,
+									propertyDescriptor.getDisplayName(eObject)),
+							template.getLayoutOptions().getDefaultTextOption());
+					leftTableCell.getBoxModel().setBorderBottom(
+							PROPERTIES_TABLE_BORDER_SIZE);
+					leftTableCell.getBoxModel().setBorderStyle(
+							UBorderStyle.DASHED);
 					table.add(leftTableCell);
 
 					UTableCell rightTableCell = new UTableCell(par);
-					rightTableCell.getBoxModel().setBorderBottom(PROPERTIES_TABLE_BORDER_SIZE);
-					rightTableCell.getBoxModel().setBorderStyle(UBorderStyle.DASHED);
+					rightTableCell.getBoxModel().setBorderBottom(
+							PROPERTIES_TABLE_BORDER_SIZE);
+					rightTableCell.getBoxModel().setBorderStyle(
+							UBorderStyle.DASHED);
 					table.add(rightTableCell);
 				}
 			}
@@ -660,19 +755,25 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	}
 
 	/**
-	 * Returns the default display name of the attribute. If there is a text in the attribute option different from the
-	 * empty string, it will be used instead of the defaultName.
+	 * Returns the default display name of the attribute. If there is a text in
+	 * the attribute option different from the empty string, it will be used
+	 * instead of the defaultName.
 	 * 
-	 * @param feature the feature of the attribute
-	 * @param defaultName the default name of the feature
+	 * @param feature
+	 *            the feature of the attribute
+	 * @param defaultName
+	 *            the default name of the feature
 	 * @return the name of the feature how it shall appear in the document
 	 */
-	private String getAttributeName(EStructuralFeature feature, String defaultName) {
+	private String getAttributeName(EStructuralFeature feature,
+			String defaultName) {
 		String attributeName;
-		if (getAttributeRendererNotNull(feature).getAttributeOption().getAttributeText().equals("")) {
+		if (getAttributeRendererNotNull(feature).getAttributeOption()
+				.getAttributeText().equals("")) {
 			attributeName = defaultName;
 		} else {
-			attributeName = getAttributeRenderer(feature).getAttributeOption().getAttributeText();
+			attributeName = getAttributeRenderer(feature).getAttributeOption()
+					.getAttributeText();
 		}
 		return attributeName;
 	}
@@ -680,14 +781,17 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	/**
 	 * Returns the depth of the ModelElement in the nested Unicase tree.
 	 * 
-	 * @param modelElement the model element
-	 * @param depth the depth to start with
+	 * @param modelElement
+	 *            the model element
+	 * @param depth
+	 *            the depth to start with
 	 * @return the depth of the modelElement.
 	 */
 	public static int getModelElementDepth(EObject eObject, int depth) {
 		EObject parent = eObject.eContainer();
-		if (parent == null || parent instanceof LeafSection || parent instanceof CompositeSection
-			|| parent instanceof Project) {
+		if (parent == null || parent instanceof LeafSection
+				|| parent instanceof CompositeSection
+				|| parent instanceof Project) {
 			return depth;
 		} else {
 			return getModelElementDepth(parent, depth + 1);
@@ -697,8 +801,11 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	/**
 	 * Renders a modelElement into another element.
 	 * 
-	 * @param eObject the modelElement to render
-	 * @param parent the parent element where the modelElement shall be rendered into.
+	 * @param eObject
+	 *            the modelElement to render
+	 * @param parent
+	 *            the parent element where the modelElement shall be rendered
+	 *            into.
 	 */
 	protected abstract void doRender(EObject eObject, UCompositeSection parent);
 
@@ -718,7 +825,8 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	 * @see #getAttributeRenderer(EStructuralFeature)
 	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRenderer#getAttributeRendererNotNull(org.eclipse.emf.ecore.EStructuralFeature)
 	 */
-	public AttributeRenderer getAttributeRendererNotNull(EStructuralFeature feature) {
+	public AttributeRenderer getAttributeRendererNotNull(
+			EStructuralFeature feature) {
 
 		AttributeRenderer renderer = getAttributeRenderer(feature);
 		if (renderer == null) {
@@ -729,12 +837,15 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	}
 
 	/**
-	 * @param feature the feature of the attribute
-	 * @param renderer the AttributeRenderer to set
+	 * @param feature
+	 *            the feature of the attribute
+	 * @param renderer
+	 *            the AttributeRenderer to set
 	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRenderer#setAttributeRenderer(org.eclipse.emf.ecore.EStructuralFeature,
 	 *      org.unicase.docExport.exportModel.renderers.AttributeRenderer)
 	 */
-	public void setAttributeRenderer(EStructuralFeature feature, AttributeRenderer renderer) {
+	public void setAttributeRenderer(EStructuralFeature feature,
+			AttributeRenderer renderer) {
 		for (AttributeRendererMapping mapping : getAttributeRendererMapping()) {
 			if (mapping.getFeatureName().equals(feature.getName())) {
 				mapping.setAttributeRenderer(renderer);
@@ -742,7 +853,8 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 			}
 		}
 
-		AttributeRendererMapping mapping = RenderersFactory.eINSTANCE.createAttributeRendererMapping();
+		AttributeRendererMapping mapping = RenderersFactory.eINSTANCE
+				.createAttributeRendererMapping();
 		mapping.setFeatureName(feature.getName());
 		mapping.setAttributeRenderer(renderer);
 		getAttributeRendererMapping().add(mapping);
@@ -752,7 +864,8 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	/**
 	 * @see #getAttributeRendererNotNull(EStructuralFeature)
 	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRenderer#removeAttributeRenderer(org.eclipse.emf.ecore.EStructuralFeature)
-	 * @param feature the feature of the attribute
+	 * @param feature
+	 *            the feature of the attribute
 	 */
 	public void removeAttributeRenderer(EStructuralFeature feature) {
 		AttributeRendererMapping mappingToRemove = null;
@@ -775,12 +888,16 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	}
 
 	/**
-	 * @param featureName the name of the feature
-	 * @param modelElement the modelElement where this feature is contained
+	 * @param featureName
+	 *            the name of the feature
+	 * @param modelElement
+	 *            the modelElement where this feature is contained
 	 * @return the EStructuralFeature of the feature of the ModelElement.
 	 */
-	protected EStructuralFeature getFeature(String featureName, UnicaseModelElement modelElement) {
-		for (EStructuralFeature feature : modelElement.eClass().getEAllStructuralFeatures()) {
+	protected EStructuralFeature getFeature(String featureName,
+			UnicaseModelElement modelElement) {
+		for (EStructuralFeature feature : modelElement.eClass()
+				.getEAllStructuralFeatures()) {
 			if (feature.getName().equals(featureName)) {
 				return feature;
 			}
