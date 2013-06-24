@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <description url="http://wwwbruegge.in.tum.de/static/unicase/">
-      Unicase update site
+   <description name="UNICASE update site" url="http://wwwbruegge.in.tum.de/static/unicase/">
+      UNICASE update site
    </description>
-   <feature url="features/org.unicase.client_0.3.24.internal.jar" id="org.unicase.client" version="0.3.24.internal">
-      <category name="unicase"/>
+   <feature url="features/org.unicase.client_0.5.2.1.jar" id="org.unicase.client" version="0.5.2.1">
+      <category name="UNICASE"/>
    </feature>
-   <category-def name="unicase" label="unicase">
+   <category-def name="UNICASE" label="UNICASE">
       <description>
-         unicase CASE Tool
+         Unified CASE Tool.
       </description>
    </category-def>
 </site>
