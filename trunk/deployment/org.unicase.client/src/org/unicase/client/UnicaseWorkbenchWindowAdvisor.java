@@ -16,6 +16,7 @@ import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
 import org.eclipse.equinox.internal.p2.ui.model.ElementUtils;
 import org.eclipse.equinox.internal.p2.ui.model.MetadataRepositoryElement;
+import org.eclipse.equinox.p2.ui.ProvisioningUI;
 
 /**
  * Workbench window advisor for unicase.
@@ -66,7 +67,7 @@ public class UnicaseWorkbenchWindowAdvisor extends WorkbenchWindowAdvisor {
 				"http://unicase.googlecode.com/svn/updatesite/release/0.5.2"), true);
 			final MetadataRepositoryElement papyrusRepository = new MetadataRepositoryElement(null, new URI(
 				"http://unicase.googlecode.com/svn/trunk/other/Papyrus/updatesite/RCP"), true);
-			ElementUtils.updateRepositoryUsingElements(new MetadataRepositoryElement[] { unicaseRepository,
+			ElementUtils.updateRepositoryUsingElements(ProvisioningUI.getDefaultUI(), new MetadataRepositoryElement[] { unicaseRepository,
 				papyrusRepository }, null);
 		} catch (URISyntaxException e) {
 		}
