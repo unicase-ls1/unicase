@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="UNICASE" uid="org.unicase.client.product" id="org.unicase.client.product" application="org.unicase.client.application" version="0.5.2" useFeatures="true" includeLaunchers="true">
+<product name="UNICASE" uid="org.unicase.client.product" id="org.unicase.client.product" application="org.unicase.client.application" version="0.5.2.1" useFeatures="true" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/org.unicase.client/about.png"/>
@@ -41,6 +41,7 @@ http://www.unicase.org
             winLargeLow="/org.unicase.client/icons/alt_window_48_8.bmp"/>
       </win>
    </launcher>
+
 
    <vm>
    </vm>
@@ -121,7 +122,7 @@ This Agreement is governed by the laws of the State of New York and the intellec
          </text>
    </license>
 
-   <plugins>
+   <!--plugins>
       <plugin id="com.ibm.icu"/>
       <plugin id="lpg.runtime.java"/>
       <plugin id="org.apache.batik.bridge"/>
@@ -322,10 +323,10 @@ This Agreement is governed by the laws of the State of New York and the intellec
       <plugin id="org.w3c.dom.events"/>
       <plugin id="org.w3c.dom.smil"/>
       <plugin id="org.w3c.dom.svg"/>
-   </plugins>
+   </plugins-->
 
    <features>
-      <feature id="org.unicase.client" version="0.5.2"/>
+      <feature id="org.unicase.client" version="0.5.2.1"/>
       <feature id="org.eclipse.rcp" version="3.7.2.v20120120-1424-9DB5FmnFq5JCf1UA38R-kz0S0272"/>
       <feature id="org.eclipse.equinox.p2.user.ui" version="2.1.2.R37x_v20110815-1155-6-Bk8pYWZz0qUTX5I15GZWwbXkrl"/>
    </features>
