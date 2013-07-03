@@ -5,6 +5,6 @@
    <extension
          point="org.eclipse.ui.startup">
       <startup
-            class="org.unicase.leap.LeapPartListener"></startup>
+            class="org.unicase.leap.listener.LeapPartListener"></startup>
    </extension>
 </plugin>

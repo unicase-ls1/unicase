@@ -47,45 +47,6 @@
       </complexType>
    </element>
 
-   <element name="action">
-      <annotation>
-         <documentation>
-            An action defined for a leap motion controller for this editor. An action is defined by specifying a gesture type and the handler processing gesture of said type.
-         </documentation>
-      </annotation>
-      <complexType>
-         <attribute name="leapHandler" type="string" use="required">
-            <annotation>
-               <documentation>
-                  The ILeapHandler that is responsible for handling LeapMotion input when the specified editor is opened.
-               </documentation>
-               <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.unicase.leap.ILeapActionHandler"/>
-               </appinfo>
-            </annotation>
-         </attribute>
-         <attribute name="gestureType" use="required">
-            <annotation>
-               <documentation>
-                  The type of the gesture this action is able to process.
-               </documentation>
-            </annotation>
-            <simpleType>
-               <restriction base="string">
-                  <enumeration value="screenTap">
-                  </enumeration>
-                  <enumeration value="keyTap">
-                  </enumeration>
-                  <enumeration value="swipe">
-                  </enumeration>
-                  <enumeration value="circle">
-                  </enumeration>
-               </restriction>
-            </simpleType>
-         </attribute>
-      </complexType>
-   </element>
-
    <element name="editor">
       <annotation>
          <documentation>
@@ -102,6 +63,33 @@
                <documentation>
                   The ID of the editor the leap actions are defined for.
                </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="action">
+      <annotation>
+         <documentation>
+            An action defined for a leap motion controller for this editor. An action is defined by specifying a gesture type and the handler processing gesture of said type.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <choice minOccurs="1" maxOccurs="unbounded">
+               <element ref="gesture"/>
+               <element ref="keystroke"/>
+               <element ref="mouseclick"/>
+            </choice>
+         </sequence>
+         <attribute name="leapHandler" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The ILeapHandler that is responsible for handling LeapMotion input when the specified editor is opened.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.unicase.leap.action.ILeapActionHandler"/>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>
@@ -132,6 +120,159 @@
             <annotation>
                <documentation>
                   If set to true, any finger and tool not used for mouse movement will be visualized by a cursor-like appearance (that doesn&apos;t have any additional functionality).
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="gesture">
+      <annotation>
+         <documentation>
+            Gesture that can be processed by the leap motion controller.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="gestureType" use="required">
+            <annotation>
+               <documentation>
+                  The type of the gesture the corresponding action is able to process.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="screenTap">
+                  </enumeration>
+                  <enumeration value="keyTap">
+                  </enumeration>
+                  <enumeration value="swipe">
+                  </enumeration>
+                  <enumeration value="circle">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="enabledInput" use="default" value="fingers+tools">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="fingers">
+                  </enumeration>
+                  <enumeration value="tools">
+                  </enumeration>
+                  <enumeration value="fingers+tools">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="timeout" type="string" use="default" value="0">
+            <annotation>
+               <documentation>
+                  The timespan in milliseconds that can pass before a timeout occurs. If set to a negative value or zero, there will be no timeout.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="keystroke">
+      <complexType>
+         <attribute name="key" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="CTRL">
+                  </enumeration>
+                  <enumeration value="ALT">
+                  </enumeration>
+                  <enumeration value="SHIFT">
+                  </enumeration>
+                  <enumeration value="CAPS_LOCK">
+                  </enumeration>
+                  <enumeration value="SPACE">
+                  </enumeration>
+                  <enumeration value="ENTER">
+                  </enumeration>
+                  <enumeration value="ESC">
+                  </enumeration>
+                  <enumeration value="BREAK">
+                  </enumeration>
+                  <enumeration value="INS">
+                  </enumeration>
+                  <enumeration value="DEL">
+                  </enumeration>
+                  <enumeration value="HOME">
+                  </enumeration>
+                  <enumeration value="PG_UP">
+                  </enumeration>
+                  <enumeration value="PG_DOWN">
+                  </enumeration>
+                  <enumeration value="ARROW_UP">
+                  </enumeration>
+                  <enumeration value="ARROW_DOWN">
+                  </enumeration>
+                  <enumeration value="ARROW_LEFT">
+                  </enumeration>
+                  <enumeration value="ARROW_RIGHT">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="hold" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  Flag to indicate whether the key should be held down to execute the action or not.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="timeout" type="string" use="default" value="0">
+            <annotation>
+               <documentation>
+                  The timespan in milliseconds that can pass before a timeout occurs. If set to a negative value or zero, there will be no timeout.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="mouseclick">
+      <complexType>
+         <attribute name="button" use="required">
+            <annotation>
+               <documentation>
+                  The mouse button that
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="button1">
+                  </enumeration>
+                  <enumeration value="button2">
+                  </enumeration>
+                  <enumeration value="button3">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="doubleClick" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  Whether the user has to perform a double click with the specified mouse button, in order to activate this action.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="timeout" type="string" use="default" value="0">
+            <annotation>
+               <documentation>
+                  The timespan in milliseconds that can pass before a timeout occurs. If set to a negative value or zero, there will be no timeout.
                </documentation>
             </annotation>
          </attribute>

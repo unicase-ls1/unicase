@@ -10,4 +10,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ClassPath: lib/LeapJava.jar,
  .
 Export-Package: com.leapmotion.leap,
- org.unicase.leap
+ org.unicase.leap.action,
+ org.unicase.leap.events,
+ org.unicase.leap.input,
+ org.unicase.leap.listener

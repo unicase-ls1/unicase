@@ -4,7 +4,7 @@
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.leap;
+package org.unicase.leap.listener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,8 +18,13 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.leap.action.ILeapActionHandler;
+import org.unicase.leap.input.ActionInput;
+import org.unicase.leap.input.InputProcessor;
+import org.unicase.leap.input.InputUtil;
 
 import com.leapmotion.leap.Controller;
+import com.leapmotion.leap.Gesture.Type;
 
 /**
  * A Eclipse UI startup listener implementation as well as a listener for Workbench Part actions. On startup, this
@@ -33,22 +38,6 @@ import com.leapmotion.leap.Controller;
 public class LeapPartListener implements IStartup, IPartListener2 {
 
 	/**
-	 * Extension point restriction for the screen tap gesture type.
-	 */
-	private static final String SCREEN_TAP_GESTURE_TYPE = "screenTap";
-	/**
-	 * Extension point restriction for the key tap gesture type.
-	 */
-	private static final String KEY_TAP_GESTURE_TYPE = "keyTap";
-	/**
-	 * Extension point restriction for the swipe gesture type.
-	 */
-	private static final String SWIPE_GESTURE_TYPE = "swipe";
-	/**
-	 * Extension point restriction for the circle gesture type.
-	 */
-	private static final String CIRCLE_GESTURE_TYPE = "circle";
-	/**
 	 * The leap motion controller responsible for tracking sensor data.
 	 */
 	private Controller controller;
@@ -61,6 +50,11 @@ public class LeapPartListener implements IStartup, IPartListener2 {
 	@Override
 	public void earlyStartup() {
 		controller = new Controller();
+		// TODO: maybe find a better place to put this, so only necessary gestures are enabled
+		controller.enableGesture(Type.TYPE_CIRCLE);
+		controller.enableGesture(Type.TYPE_KEY_TAP);
+		controller.enableGesture(Type.TYPE_SCREEN_TAP);
+		controller.enableGesture(Type.TYPE_SWIPE);
 
 		IWorkbenchPage page = null;
 		IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
@@ -83,13 +77,14 @@ public class LeapPartListener implements IStartup, IPartListener2 {
 		}
 
 		if (page != null) {
+			// if this fails, all specified extensions will fail
 			page.addPartListener(this);
 		}
 	}
 
 	@Override
 	public void partActivated(IWorkbenchPartReference partRef) {
-		LeapInputListener listener = partToListener.get(partRef);
+		final LeapInputListener listener = partToListener.get(partRef);
 		if (listener != null) {
 			listener.start();
 		}
@@ -128,17 +123,7 @@ public class LeapPartListener implements IStartup, IPartListener2 {
 				LeapInputListener listener;
 				// check if a listener has been created for this part already
 				if (partToListener.get(partRef) == null) {
-					boolean toolsEnabled = false;
-					boolean fingersEnabled = false;
-					boolean visualizeAll = false;
-					IConfigurationElement[] mouseMoverExtensions = extension.getChildren("mouseMover");
-					if (mouseMoverExtensions.length == 1) { // only one mouseMover element may exist
-						IConfigurationElement mouseMoverExtension = mouseMoverExtensions[0];
-						toolsEnabled = Boolean.parseBoolean(mouseMoverExtension.getAttribute("toolsEnabled"));
-						fingersEnabled = Boolean.parseBoolean(mouseMoverExtension.getAttribute("fingersEnabled"));
-						visualizeAll = Boolean.parseBoolean(mouseMoverExtension.getAttribute("visualizeAll"));
-					}
-					listener = new LeapInputListener(controller, toolsEnabled, fingersEnabled, visualizeAll);
+					listener = parseEditorElement(extension);
 					partToListener.put(partRef, listener);
 				} else {
 					listener = partToListener.get(partRef);
@@ -146,29 +131,70 @@ public class LeapPartListener implements IStartup, IPartListener2 {
 
 				// fetch action extension elements
 				IConfigurationElement[] actionExtensions = extension.getChildren("action");
-				if (actionExtensions.length > 0) {
-					for (IConfigurationElement actionExtension : actionExtensions) {
-						try {
-							// try to create leap action handlers and to add them to the input listener
-							ILeapActionHandler handler = (ILeapActionHandler) actionExtension
-								.createExecutableExtension("leapHandler");
-							String gestureType = actionExtension.getAttribute("gestureType");
-							if (SCREEN_TAP_GESTURE_TYPE.equals(gestureType)) {
-								listener.addScreenTapHandler(handler);
-							} else if (KEY_TAP_GESTURE_TYPE.equals(gestureType)) {
-								listener.addKeyTapHandler(handler);
-							} else if (SWIPE_GESTURE_TYPE.equals(gestureType)) {
-								listener.addSwipeHandler(handler);
-							} else if (CIRCLE_GESTURE_TYPE.equals(gestureType)) {
-								listener.addCircleHandler(handler);
-							}
-						} catch (CoreException e) {
-							e.printStackTrace();
-						}
+				for (IConfigurationElement actionExtension : actionExtensions) {
+					InputProcessor inputProcessor = parseActionElement(partRef, actionExtension);
+					if (inputProcessor != null) {
+						listener.addInputProcessor(inputProcessor);
 					}
 				}
 			}
 		}
+	}
+
+	/**
+	 * Parses the "editor" extension element and returns an input listener for it.
+	 * 
+	 * @param extension the extension element to parse
+	 * @return a new {@link LeapInputListener} instance as specified by the extension
+	 */
+	private LeapInputListener parseEditorElement(IConfigurationElement extension) {
+		boolean toolsEnabled = false;
+		boolean fingersEnabled = false;
+		boolean visualizeAll = false;
+		IConfigurationElement[] mouseMoverExtensions = extension.getChildren("mouseMover");
+		if (mouseMoverExtensions.length == 1) { // only one mouseMover element may exist
+			IConfigurationElement mouseMoverExtension = mouseMoverExtensions[0];
+			toolsEnabled = Boolean.parseBoolean(mouseMoverExtension.getAttribute("toolsEnabled"));
+			fingersEnabled = Boolean.parseBoolean(mouseMoverExtension.getAttribute("fingersEnabled"));
+			visualizeAll = Boolean.parseBoolean(mouseMoverExtension.getAttribute("visualizeAll"));
+		}
+		return new LeapInputListener(controller, toolsEnabled, fingersEnabled, visualizeAll);
+	}
+
+	/**
+	 * Parses the "action" extension element and returns an input processor which is able to process the specified input
+	 * sequence.
+	 * 
+	 * @param partRef the part reference the resulting input processor is defined for
+	 * @param actionExtension the extension to parse
+	 * @return an {@link InputProcessor} instance which is able to process the input as specified by the action
+	 *         extension
+	 */
+	private InputProcessor parseActionElement(IWorkbenchPartReference partRef, IConfigurationElement actionExtension) {
+		IConfigurationElement[] actionChildren = actionExtension.getChildren();
+		if (actionChildren.length < 1) {
+			// invalid extension
+			return null;
+		}
+		try {
+			ILeapActionHandler handler = (ILeapActionHandler) actionExtension.createExecutableExtension("leapHandler");
+
+			ActionInput[] inputArray = new ActionInput[actionChildren.length];
+			for (int i = 0; i < actionChildren.length; i++) {
+				IConfigurationElement inputExtension = actionChildren[i];
+				ActionInput input = InputUtil.convertToInput(inputExtension);
+				if (input == null) {
+					// invalid extension
+					return null;
+				} else {
+					inputArray[i] = input;
+				}
+			}
+			return new InputProcessor(partRef.getPage(), inputArray, handler);
+		} catch (CoreException e) {
+			return null;
+		}
+
 	}
 
 	@Override
