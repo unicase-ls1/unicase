@@ -4,54 +4,47 @@
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.leap;
+package org.unicase.leap.listener;
 
-import java.awt.AWTException;
-import java.awt.Robot;
+import java.lang.Thread.State;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Cursor;
-import org.eclipse.swt.graphics.ImageData;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.unicase.leap.action.LeapHelper;
+import org.unicase.leap.action.MouseMoverRunnable;
+import org.unicase.leap.events.LeapGestureEvent;
+import org.unicase.leap.events.LeapKeyEvent;
+import org.unicase.leap.events.LeapMouseEvent;
+import org.unicase.leap.input.InputProcessor;
 
-import com.leapmotion.leap.CircleGesture;
 import com.leapmotion.leap.Controller;
 import com.leapmotion.leap.Finger;
 import com.leapmotion.leap.Frame;
 import com.leapmotion.leap.Gesture;
-import com.leapmotion.leap.Gesture.Type;
-import com.leapmotion.leap.KeyTapGesture;
 import com.leapmotion.leap.Listener;
 import com.leapmotion.leap.Pointable;
-import com.leapmotion.leap.ScreenTapGesture;
-import com.leapmotion.leap.SwipeGesture;
 import com.leapmotion.leap.Tool;
 import com.leapmotion.leap.Vector;
 
 /**
  * A {@link Listener} extension that provides the possibility to convert leap motion input data into cursor movement.
  * Also, any captured fingers or tools can be displayed. Any occurring gestures are forwarded to the corresponding
- * {@link ILeapActionHandler}s.
+ * {@link org.unicase.leap.action.ILeapActionHandler ILeapActionHandlers}.
  * 
  * @author mharut
  */
 public class LeapInputListener extends Listener {
 
-	/**
-	 * The default {@link Cursor} used before the cursor has been changed by this listener.
-	 */
-	private static final Cursor DEFAULT_CURSOR = new Cursor(Display.getDefault(), SWT.CURSOR_ARROW);
-	/**
-	 * A disabled {@link Cursor} which is used to keep track of the current main {@link Pointable}.
-	 */
-	private static final Cursor DISABLED_CURSOR = new Cursor(Display.getDefault(), new ImageData(
-		LeapInputListener.class.getResourceAsStream("red.png")), 10, 10);
 	/**
 	 * The leap motion {@link Controller} tracking sensor data.
 	 */
@@ -74,28 +67,24 @@ public class LeapInputListener extends Listener {
 	 */
 	private final Map<Integer, Shell> pointableToVisual = new HashMap<Integer, Shell>();
 	/**
-	 * Collection of {@link ILeapActionHandler handlers} used to process {@link ScreenTapGesture}s.
+	 * The list of input processors the input events should be forwarded to.
 	 */
-	private final Set<ILeapActionHandler> screenTapHandlers = new HashSet<ILeapActionHandler>();
-	/**
-	 * Collection of {@link ILeapActionHandler handlers} used to process {@link KeyTapGesture}s.
-	 */
-	private final Set<ILeapActionHandler> keyTapHandlers = new HashSet<ILeapActionHandler>();
-	/**
-	 * Collection of {@link ILeapActionHandler handlers} used to process {@link SwipeGesture}s.
-	 */
-	private final Set<ILeapActionHandler> swipeHandlers = new HashSet<ILeapActionHandler>();
-	/**
-	 * Collection of {@link ILeapActionHandler handlers} used to process {@link CircleGesture}s.
-	 */
-	private final Set<ILeapActionHandler> circleHandlers = new HashSet<ILeapActionHandler>();
+	private final List<InputProcessor> inputProcessors = new LinkedList<InputProcessor>();
 	/**
 	 * The {@link LeapHelper} used for computations on leap motion sensor data.
 	 */
 	private final LeapHelper helper;
 	/**
-	 * {@link Thread} used to process {@link Cursor} movement asynchronously whenever new leap motion sensor data has
-	 * been tracked.
+	 * The {@link MouseListener} mouse input events are forwarded to.
+	 */
+	private final MouseListener mouseListener;
+	/**
+	 * The {@link KeyListener} key input events are forwarded to.
+	 */
+	private final KeyListener keyListener;
+	/**
+	 * {@link Thread} used to process {@link org.eclipse.swt.graphics.Cursor Cursor} movement asynchronously whenever
+	 * new leap motion sensor data has been tracked.
 	 */
 	private Thread moveCursorThread;
 	/**
@@ -104,106 +93,86 @@ public class LeapInputListener extends Listener {
 	 * will be replaced by the next valid pointable.
 	 */
 	private int mainPointableId = -1;
-	/**
-	 * Flag to indicate whether or not {@link Gesture}s are enabled.
-	 */
-	private boolean gesturesEnabled;
 
 	/**
 	 * Constructs a new leap listener for a {@link Controller} tracking sensor data and flags used for configuration.
 	 * 
-	 * @param leapController the leap motion controller tracking sensor data
+	 * @param controller the leap motion controller tracking sensor data
 	 * @param toolsEnabled whether or not {@link Tool} tracking should be enabled
 	 * @param fingersEnabled whether or not {@link Finger} tracking should be enabled
 	 * @param visualizeAll whether or not all {@link Pointable}s should be visualized (instead of just the main
 	 *            pointable)
 	 */
-	public LeapInputListener(Controller leapController, boolean toolsEnabled, boolean fingersEnabled,
-		boolean visualizeAll) {
-		this.controller = leapController;
+	public LeapInputListener(Controller controller, boolean toolsEnabled, boolean fingersEnabled, boolean visualizeAll) {
+		this.controller = controller;
 		this.fingersEnabled = fingersEnabled;
 		this.toolsEnabled = toolsEnabled;
 		this.visualizeAll = visualizeAll;
 		this.helper = new LeapHelper(controller);
-	}
-
-	/**
-	 * Moves the mouse cursor to the tip of a specified {@link Pointable}.
-	 * 
-	 * @param pointable the {@link Pointable} to move the mouse to
-	 */
-	private void moveMouseToPointable(Pointable pointable) {
-		if (pointable.isValid()) {
-			try {
-				Robot robot = new Robot();
-				Vector leapPosition = helper.getTip(pointable);
-				Vector screenPosition = helper.convert(leapPosition, pointable);
-				if (screenPosition != null && screenPosition.isValid()) {
-					robot.mouseMove((Math.round(screenPosition.getX())), (Math.round(screenPosition.getY())));
-				}
-			} catch (AWTException e) {
-				e.printStackTrace();
-			}
-		}
+		this.mouseListener = new MouseListener(this);
+		this.keyListener = new KeyListener(this);
 	}
 
 	/**
 	 * Starts this listener by adding it to the {@link Controller}. If either {@link Finger} or {@link Tool} tracking is
-	 * enabled, a new thread responsible for mouse movement is being started.
+	 * enabled, a new thread responsible for mouse movement is being started. In addition, filters for mouse and
+	 * keyboard events will be added to the display.
 	 */
 	public void start() {
 		controller.addListener(this);
 		if (fingersEnabled || toolsEnabled) {
-			moveCursorThread = new Thread(new MouseMoverRunnable());
-			moveCursorThread.start();
+			moveCursorThread = new Thread(new MouseMoverRunnable(helper));
+			if (controller.isConnected()) {
+				moveCursorThread.start();
+			}
 		}
+		Display display = Display.getCurrent();
+		if (display == null) {
+			display = Display.getDefault();
+		}
+		display.addFilter(SWT.MouseUp, mouseListener);
+		display.addFilter(SWT.MouseDoubleClick, mouseListener);
+		display.addFilter(SWT.KeyDown, keyListener);
+		display.addFilter(SWT.KeyUp, keyListener);
 	}
 
 	/**
 	 * Stops this listener by removing it from the {@link Controller}. If the {@link Thread} responsible for mouse
 	 * movement is still alive, it is being interrupted. In the process, the cursor is also set back to its default
-	 * value.
+	 * value. In addition, filters for mouse and keyboard events will be removed from the display.
 	 */
 	public void stop() {
-		if (moveCursorThread.isAlive()) {
+		if (moveCursorThread != null && moveCursorThread.isAlive()) {
 			moveCursorThread.interrupt();
-			setCursor(DEFAULT_CURSOR);
+			helper.hideLeapCursor();
 		}
 		controller.removeListener(this);
+		Display display = Display.getCurrent();
+		if (display == null) {
+			display = Display.getDefault();
+		}
+		display.removeFilter(SWT.MouseUp, mouseListener);
+		display.removeFilter(SWT.MouseDoubleClick, mouseListener);
+		display.removeFilter(SWT.KeyDown, keyListener);
+		display.removeFilter(SWT.KeyUp, keyListener);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+	@Override
+	public void onConnect(Controller controller) {
+		if (moveCursorThread != null && State.NEW.equals(moveCursorThread.getState())) {
+			moveCursorThread.start();
+		}
+	}
+
+	@Override
 	public void onDisconnect(Controller controller) {
-		setCursor(DEFAULT_CURSOR);
+		helper.hideLeapCursor();
 	}
 
-	/**
-	 * Sets the {@link Cursor} of the currently active {@link Shell} to a new value.
-	 * 
-	 * @param cursor the new {@link Cursor}
-	 */
-	private void setCursor(final Cursor cursor) {
-		final Display display = Display.getDefault();
-		display.asyncExec(new Runnable() {
-
-			@Override
-			public void run() {
-				Shell shell = display.getActiveShell();
-				if (shell != null && !shell.isDisposed()) {
-					shell.setCursor(cursor);
-				}
-			}
-		});
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
+	@Override
 	public void onFrame(Controller controller) {
 		Frame frame = controller.frame();
-		if (mainPointableId >= 0) {
+		if (mainPointableId >= 0) { // make sure the main pointable is still tracked
 			Pointable mainPointable = frame.pointable(mainPointableId);
 			if (!mainPointable.isValid()) {
 				mainPointableId = -1;
@@ -215,16 +184,14 @@ public class LeapInputListener extends Listener {
 		if (fingersEnabled) {
 			processFingers(frame);
 		}
-		if (gesturesEnabled) {
-			processGestures(frame);
-		}
+		processGestures(frame);
 		if (visualizeAll) {
 			try {
 				Set<Integer> copiedEntries = new HashSet<Integer>(pointableToVisual.keySet());
 				for (Integer id : copiedEntries) {
 					Pointable pointable = frame.pointable(id);
 					if (!pointable.isValid() || id.equals(mainPointableId)) {
-						removeVisualization(id);
+						removeVisualization(id); // remove any visualization from untracked pointables
 					}
 				}
 			} catch (ConcurrentModificationException e) {
@@ -246,6 +213,7 @@ public class LeapInputListener extends Listener {
 				final int id = tool.id();
 				if (mainPointableId < 0) {
 					mainPointableId = id;
+					helper.setMainPointable(id);
 					if (!visualizeAll) {
 						break;
 					}
@@ -273,6 +241,7 @@ public class LeapInputListener extends Listener {
 				final int id = finger.id();
 				if (mainPointableId < 0) {
 					mainPointableId = id;
+					helper.setMainPointable(id);
 					if (!visualizeAll) {
 						break;
 					}
@@ -288,8 +257,8 @@ public class LeapInputListener extends Listener {
 	}
 
 	/**
-	 * Processes {@link Gesture}s of a single {@link Frame}. A gesture of a certain {@link Type} will be forwarded to
-	 * all specified {@link ILeapActionHandler handlers} of the same type.
+	 * Processes {@link Gesture}s of a single {@link Frame}. Any gesture will be wrapped in a gesture event and
+	 * forwarded to the corresponding input processor.
 	 * 
 	 * @param frame the {@link Frame} containing the gesture sensor data
 	 */
@@ -297,23 +266,12 @@ public class LeapInputListener extends Listener {
 		for (Gesture gesture : frame.gestures()) {
 			switch (gesture.type()) {
 			case TYPE_SCREEN_TAP:
-				for (ILeapActionHandler handler : screenTapHandlers) {
-					handler.processGesture(gesture);
-				}
-				break;
 			case TYPE_KEY_TAP:
-				for (ILeapActionHandler handler : keyTapHandlers) {
-					handler.processGesture(gesture);
-				}
-				break;
 			case TYPE_SWIPE:
-				for (ILeapActionHandler handler : swipeHandlers) {
-					handler.processGesture(gesture);
-				}
-				break;
 			case TYPE_CIRCLE:
-				for (ILeapActionHandler handler : circleHandlers) {
-					handler.processGesture(gesture);
+				LeapGestureEvent event = new LeapGestureEvent(gesture, System.currentTimeMillis());
+				for (InputProcessor inputProcessor : inputProcessors) {
+					inputProcessor.processGesture(event);
 				}
 				break;
 			case TYPE_INVALID:
@@ -335,7 +293,7 @@ public class LeapInputListener extends Listener {
 	 * @param x the x-coordinate of the visualization to add
 	 * @param y the y-coordinate of the visualization to add
 	 */
-	public void addVisualization(final int id, final int x, final int y) {
+	private void addVisualization(final int id, final int x, final int y) {
 		final Display display = Display.getDefault();
 		final Shell existingShell = pointableToVisual.get(id);
 		if (existingShell == null) {
@@ -366,8 +324,9 @@ public class LeapInputListener extends Listener {
 	}
 
 	/**
-	 * Creates a new {@link Pointable} visualization by constructing a new {@link Shell} with no trimming
-	 * that is always on top of other shells.
+	 * Creates a new {@link Pointable} visualization by constructing a new {@link Shell} with no trimming that is always
+	 * on top of other shells.
+	 * 
 	 * @param display the {@link Display} to create the visualization for
 	 * @param x the x-coordinate of the location where the visualization should be created
 	 * @param y the y-coordinate of the location where the visualization should be created
@@ -387,7 +346,7 @@ public class LeapInputListener extends Listener {
 	 * 
 	 * @param id the ID of the {@link Pointable} to remove
 	 */
-	public void removeVisualization(final int id) {
+	private void removeVisualization(final int id) {
 		final Shell shell = pointableToVisual.get(id);
 		Display.getDefault().asyncExec(new Runnable() {
 
@@ -404,95 +363,46 @@ public class LeapInputListener extends Listener {
 	}
 
 	/**
-	 * Adds a new {@link ILeapActionHandler handler} for {@link ScreenTapGesture}s. If no handler for this type of
-	 * gesture has been defined yet, screen tap gestures will be enabled for the leap motion {@link Controller}.
+	 * Handles a mouse event by wrapping the actual {@link MouseEvent} in a {@link LeapMouseEvent} and forwarding this
+	 * wrapper to all input processors.
 	 * 
-	 * @param handler the {@link ILeapActionHandler} used to process screen tap gestures
+	 * @param event the event to handle
+	 * @param type the type of the event to handle
+	 * @see org.eclipse.swt.SWT#MouseUp
+	 * @see org.eclipse.swt.SWT#MouseDown
 	 */
-	public void addScreenTapHandler(ILeapActionHandler handler) {
-		if (handler != null) {
-			if (screenTapHandlers.isEmpty()) {
-				gesturesEnabled = true;
-				controller.enableGesture(Type.TYPE_SCREEN_TAP);
-			}
-			screenTapHandlers.add(handler);
+	public void handleMouseEvent(MouseEvent event, int type) {
+		LeapMouseEvent leapEvent = new LeapMouseEvent(controller.frame(), event, type);
+		for (InputProcessor inputProcessor : inputProcessors) {
+			inputProcessor.processMouseEvent(leapEvent);
 		}
 	}
 
 	/**
-	 * Adds a new {@link ILeapActionHandler handler} for {@link KeyTapGesture}s. If no handler for this type of gesture
-	 * has been defined yet, key tap gestures will be enabled for the leap motion {@link Controller}.
+	 * Handles a key event by wrapping the actual {@link KeyEvent} in a {@link LeapKeyEvent} and forwarding this wrapper
+	 * to all input processors.
 	 * 
-	 * @param handler the {@link ILeapActionHandler} used to process key tap gestures
+	 * @param event the event to handle
+	 * @param type the type of the event to handle
+	 * @see org.eclipse.swt.SWT keyboard constants
 	 */
-	public void addKeyTapHandler(ILeapActionHandler handler) {
-		if (handler != null) {
-			if (keyTapHandlers.isEmpty()) {
-				gesturesEnabled = true;
-				controller.enableGesture(Type.TYPE_KEY_TAP);
-			}
-			keyTapHandlers.add(handler);
+	public void handleKeyEvent(KeyEvent event, int type) {
+		LeapKeyEvent leapEvent = new LeapKeyEvent(controller.frame(), event, type);
+		for (InputProcessor inputProcessor : inputProcessors) {
+			inputProcessor.processKeyEvent(leapEvent);
 		}
 	}
 
 	/**
-	 * Adds a new {@link ILeapActionHandler handler} for {@link SwipeGesture}s. If no handler for this type of gesture
-	 * has been defined yet, swipe gestures will be enabled for the {@link Controller}.
+	 * Adds an input processor to this listener. Any input received by this listener will be forwarded to all input
+	 * processor. If one of the input processors completely processes an input sequence, it will call the corresponding
+	 * handler to execute its actions.
 	 * 
-	 * @param handler the {@link ILeapActionHandler} used to process swipe gestures
+	 * @param inputProcessor the {@link InputProcessor} to add
 	 */
-	public void addSwipeHandler(ILeapActionHandler handler) {
-		if (handler != null) {
-			if (swipeHandlers.isEmpty()) {
-				gesturesEnabled = true;
-				controller.enableGesture(Type.TYPE_SWIPE);
-			}
-			swipeHandlers.add(handler);
-		}
-	}
-
-	/**
-	 * Adds a new {@link ILeapActionHandler handler} for {@link CircleGesture}s. If no handler for this type of gesture
-	 * has been defined yet, circle gestures will be enabled for the {@link Controller}.
-	 * 
-	 * @param handler the {@link ILeapActionHandler} used to process circle gestures
-	 */
-	public void addCircleHandler(ILeapActionHandler handler) {
-		if (handler != null) {
-			if (circleHandlers.isEmpty()) {
-				gesturesEnabled = true;
-				controller.enableGesture(Type.TYPE_CIRCLE);
-			}
-			circleHandlers.add(handler);
-		}
-	}
-
-	/**
-	 * Runnable that keeps the mouse cursor updated as long as the executing thread has not been interrupted. The mouse
-	 * cursor will be updated based on sensor data received from the leap motion {@link Controller}.
-	 * 
-	 * @author mharut
-	 */
-	private class MouseMoverRunnable implements Runnable {
-		@Override
-		public void run() {
-			boolean isDefault = true;
-			while (!Thread.currentThread().isInterrupted()) {
-				final int id = mainPointableId;
-				if (id >= 0) {
-					if (isDefault) {
-						setCursor(DISABLED_CURSOR);
-						isDefault = false;
-					}
-					Pointable pointable = controller.frame().pointable(id);
-					moveMouseToPointable(pointable);
-				} else if (!isDefault) {
-					setCursor(DEFAULT_CURSOR);
-					isDefault = true;
-				}
-			}
-		}
-
+	public void addInputProcessor(InputProcessor inputProcessor) {
+		inputProcessors.add(inputProcessor);
+		inputProcessor.setHelper(helper);
 	}
 
 }
