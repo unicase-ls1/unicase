@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: unicase Model Edit Plug-in
+Bundle-SymbolicName: org.unicase.model.edit; singleton:=true
+Bundle-Version: 0.0.1
+Bundle-ClassPath: .
+Bundle-Activator: org.unicase.model.provider.ModelEditPlugin$Implementation
+Bundle-Vendor: unicase.org
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: 
+ org.unicase.model.attachment.provider,
+ org.unicase.model.bug.provider,
+ org.unicase.model.document.provider,
+ org.unicase.model.meeting.provider,
+ org.unicase.model.organization.provider,
+ org.unicase.model.provider,
+ org.unicase.model.rationale.provider,
+ org.unicase.model.task.provider,
+ org.unicase.model.util.provider
+Require-Bundle: org.eclipse.emf.ecore.edit;visibility:=reexport,
+ org.unicase.model;visibility:=reexport,
+ org.unicase.metamodel.edit;visibility:=reexport,
+ org.unicase.emfstore.esmodel.edit;visibility:=reexport
+Bundle-ActivationPolicy: lazy
+Import-Package: org.unicase.model.rationale
