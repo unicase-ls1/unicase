@@ -1,8 +1,0 @@
-#Wed Dec 05 17:16:15 EST 2012
-eclipse.preferences.version=1
-gmf_dashboard/domainGenerationModel=platform\:/resource/org.unicase.scrm/model/scrm.genmodel
-gmf_dashboard/domainModel=platform\:/resource/org.unicase.scrm/model/scrm.ecore
-gmf_dashboard/generationModel=platform\:/resource/org.unicase.scrm/model/scrm.gmfgen
-gmf_dashboard/graphicalDefinitionModel=platform\:/resource/org.unicase.scrm/model/scrm.gmfgraph
-gmf_dashboard/mappingModel=platform\:/resource/org.unicase.scrm/model/scrm.gmfmap
-gmf_dashboard/toolingDefinitionModel=platform\:/resource/org.unicase.scrm/model/scrm.gmftool
