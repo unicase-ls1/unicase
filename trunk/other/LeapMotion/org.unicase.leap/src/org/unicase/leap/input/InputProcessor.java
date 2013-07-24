@@ -6,8 +6,18 @@
  */
 package org.unicase.leap.input;
 
+import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPage;
 import org.unicase.leap.action.ILeapActionHandler;
 import org.unicase.leap.action.LeapHelper;
@@ -16,9 +26,12 @@ import org.unicase.leap.events.LeapGestureEvent;
 import org.unicase.leap.events.LeapInputEvent;
 import org.unicase.leap.events.LeapKeyEvent;
 import org.unicase.leap.events.LeapMouseEvent;
+import org.unicase.leap.events.LeapSpeechEvent;
 
 import com.leapmotion.leap.Gesture;
 import com.leapmotion.leap.Gesture.State;
+
+import edu.cmu.sphinx.result.Result;
 
 /**
  * This input processor can process input sequences as defined by the {@link ActionInput} class and the classes
@@ -29,6 +42,10 @@ import com.leapmotion.leap.Gesture.State;
  */
 public class InputProcessor {
 
+	/**
+	 * Flag indicating whether or not this processor is processing any gestures.
+	 */
+	private final boolean hasGestures;
 	/**
 	 * The workbench page this input processor is defined for.
 	 */
@@ -41,6 +58,11 @@ public class InputProcessor {
 	 * The handler the leap action event shall be forwarded to, once the input sequence has been completely processed.
 	 */
 	private final ILeapActionHandler handler;
+	/**
+	 * The locations of JSGF definitions used by specified {@link SpeechInput} instances. This may contain
+	 * <code>null</code>, in which case the default UNICASE grammar is being used.
+	 */
+	private final Set<URL> grammarLocations;
 	/**
 	 * The helper object which can be used for computations regarding leap sensor data.
 	 */
@@ -86,37 +108,48 @@ public class InputProcessor {
 		this.handler = handler;
 		this.currentInputIndex = 0;
 		this.remainingClicks = 0;
+		this.grammarLocations = new HashSet<URL>();
+		boolean hasGestures = false;
+		for (ActionInput input : inputArray) {
+			if (input instanceof GestureInput) {
+				hasGestures = true;
+			} else if (input instanceof SpeechInput) {
+				SpeechInput speechInput = (SpeechInput) input;
+				grammarLocations.add(speechInput.getGrammarLocation());
+			}
+		}
+		this.hasGestures = hasGestures;
 	}
 
 	/**
 	 * Processes a gesture input. This process is considered successful, if the next input in the input sequence is
 	 * actually a gesture, if the gesture types match and if the input types (fingers or tools) are supported.
 	 * 
-	 * @param event the event of the gesture that was performed
+	 * @param gestureEvent the event of the gesture that was performed
 	 */
-	public synchronized void processGesture(LeapGestureEvent event) {
-		GestureInput gestureInput = validateInput(GestureInput.class, event);
+	public synchronized void processGesture(LeapGestureEvent gestureEvent) {
+		GestureInput gestureInput = validateInput(GestureInput.class, gestureEvent);
 		if (gestureInput == null) {
 			// next input is not a gesture -> start input sequence from the beginning and check if the first input is a
 			// gesture
 			discardEvent();
-			gestureInput = validateInput(GestureInput.class, event);
+			gestureInput = validateInput(GestureInput.class, gestureEvent);
 			if (gestureInput == null) {
 				// this gesture is not part of this input sequence
 				return;
 			}
 		}
-		Gesture gesture = event.getGesture();
+		Gesture gesture = gestureEvent.getGesture();
 		if (gesture.type().equals(gestureInput.getInputType())
-			&& (event.isFingersInvolved() && gestureInput.isFingersEnabled())
-			|| (event.isToolsInvolved() && gestureInput.isToolsEnabled())) {
+			&& (gestureEvent.isFingersInvolved() && gestureInput.isFingersEnabled())
+			|| (gestureEvent.isToolsInvolved() && gestureInput.isToolsEnabled())) {
 			if (leapEvent == null) {
 				leapEvent = new LeapActionEvent(page.getActiveEditor(), helper);
 			}
-			leapEvent.addEvent(event);
+			leapEvent.addEvent(gestureEvent);
 			// finish this step of the input sequence only for the last state of the gesture
 			if (State.STATE_STOP.equals(gesture.state())) {
-				proceed(leapEvent, event);
+				proceed(leapEvent, gestureEvent);
 			}
 		} else {
 			discardEvent();
@@ -130,33 +163,33 @@ public class InputProcessor {
 	 * an hold-input is released, before the input sequence is finished, the whole input seqeunce is discarded and
 	 * started from the beginning.
 	 * 
-	 * @param event the event of the keyboard input that was performed
+	 * @param keyEvent the event of the keyboard input that was performed
 	 */
-	public synchronized void processKeyEvent(LeapKeyEvent event) {
-		KeyInput keyInput = validateInput(KeyInput.class, event);
+	public synchronized void processKeyEvent(LeapKeyEvent keyEvent) {
+		KeyInput keyInput = validateInput(KeyInput.class, keyEvent);
 		if (keyInput == null) {
 			// next input is not a keyboard input -> start input sequence from the beginning and check if the first
 			// input is a keyboard input
 			discardEvent();
-			keyInput = validateInput(KeyInput.class, event);
+			keyInput = validateInput(KeyInput.class, keyEvent);
 			if (keyInput == null) {
 				return;
 			}
 		}
-		if (event.getKeyEvent().keyCode == keyInput.getKey()) {
+		if (keyEvent.getKeyEvent().keyCode == keyInput.getKey()) {
 			if (leapEvent == null) {
 				leapEvent = new LeapActionEvent(page.getActiveEditor(), helper);
 			}
-			leapEvent.addEvent(event);
-			if (event.getType() == SWT.KeyDown) {
+			leapEvent.addEvent(keyEvent);
+			if (keyEvent.getType() == SWT.KeyDown) {
 				if (keyInput.isHold()) { // key down events are only relevant for hold-input
-					proceed(leapEvent, event);
+					proceed(leapEvent, keyEvent);
 				}
-			} else if (event.getType() == SWT.KeyUp) {
+			} else if (keyEvent.getType() == SWT.KeyUp) {
 				if (keyInput.isHold()) { // key of hold-input has been released, before the input sequence was complete
 					discardEvent();
 				} else { // push-input was performed successfully
-					proceed(leapEvent, event);
+					proceed(leapEvent, keyEvent);
 				}
 			} else {
 				discardEvent();
@@ -172,39 +205,39 @@ public class InputProcessor {
 	 * have to be processed: one for the first click, one for the doubleclick and one for the second click. It is
 	 * notably, that the doubleclick is processed as the second event, as defined by the SWT event framework.
 	 * 
-	 * @param event the event of the keyboard input that was performed
+	 * @param mouseEvent the event of the mouse input that was performed
 	 */
-	public synchronized void processMouseEvent(LeapMouseEvent event) {
-		if (event.getType() == SWT.MouseUp && remainingClicks == 1) { // check for an open doubleclick event
+	public synchronized void processMouseEvent(LeapMouseEvent mouseEvent) {
+		if (mouseEvent.getType() == SWT.MouseUp && remainingClicks == 1) { // check for an open doubleclick event
 			// last click of the doubleclick event -> finish processing and reset the counter
-			proceed(leapEvent, event);
+			proceed(leapEvent, mouseEvent);
 			remainingClicks = 0;
 			return;
 		}
-		MouseInput mouseInput = validateInput(MouseInput.class, event);
+		MouseInput mouseInput = validateInput(MouseInput.class, mouseEvent);
 		if (mouseInput == null) {
 			// next input is not a mouse input -> start input sequence from the beginning and check if the first
 			// input is a mouse input
 			discardEvent();
-			mouseInput = validateInput(MouseInput.class, event);
+			mouseInput = validateInput(MouseInput.class, mouseEvent);
 			if (mouseInput == null) {
 				return;
 			}
 		}
-		if (event.getMouseEvent().button == mouseInput.getButton()) {
+		if (mouseEvent.getMouseEvent().button == mouseInput.getButton()) {
 			if (leapEvent == null) {
 				leapEvent = new LeapActionEvent(page.getActiveEditor(), helper);
 			}
-			leapEvent.addEvent(event);
-			if (event.getType() == SWT.MouseDoubleClick) {
+			leapEvent.addEvent(mouseEvent);
+			if (mouseEvent.getType() == SWT.MouseDoubleClick) {
 				// check for second sub-event of the doubleclick event
 				if (mouseInput.isDoubleClick() && remainingClicks == 2) {
 					remainingClicks--;
 				}
-			} else if (event.getType() == SWT.MouseUp) {
+			} else if (mouseEvent.getType() == SWT.MouseUp) {
 				if (!mouseInput.isDoubleClick()) {
 					// no doubleclick -> processing successful
-					proceed(leapEvent, event);
+					proceed(leapEvent, mouseEvent);
 				} else if (remainingClicks == 0) {
 					// initiate double-click event -> wait for 2 more sub-events
 					remainingClicks = 2;
@@ -217,6 +250,32 @@ public class InputProcessor {
 			}
 		} else {
 			discardEvent();
+		}
+	}
+
+	/**
+	 * Processes a speech event. This process is considered successful, if the next input in the input sequence is
+	 * actually a speech input and if the actual phrase matches the expected phrase (ignoring case). In contrast to
+	 * other processing steps, invalid speech input will not discard the current input event. This means, that phrases
+	 * that differ from the expected phrase will not reset the input sequence. Thus, a phrase that is not recognized
+	 * properly will have no effect.
+	 * 
+	 * @param speechEvent the event of the speech input that was performed
+	 */
+	public void processSpeech(LeapSpeechEvent speechEvent) {
+		Result result = speechEvent.getResult();
+		String actualPhrase = result.getBestFinalResultNoFiller();
+		SpeechInput speechInput = validateInput(SpeechInput.class, speechEvent);
+		if (speechInput == null) {
+			return;
+		}
+		String expectedPhrase = speechInput.getPhrase();
+		if (expectedPhrase.equalsIgnoreCase(actualPhrase)) {
+			if (leapEvent == null) {
+				leapEvent = new LeapActionEvent(page.getActiveEditor(), helper);
+			}
+			leapEvent.addEvent(speechEvent);
+			proceed(leapEvent, speechEvent);
 		}
 	}
 
@@ -271,11 +330,43 @@ public class InputProcessor {
 				@Override
 				public void run() {
 					actionEvent.setMousePosition(display.getCursorLocation());
-					handler.handleLeapAction(actionEvent);
+					notifyHandler(display.getActiveShell(), actionEvent);
 				}
 			});
 		} else {
 			timeOfLastInput = inputEvent.getTime();
+		}
+	}
+
+	/**
+	 * Notifies this processor's {@link ILeapActionHandler} about the leap action event. If the handler requests a
+	 * progress bar, a {@link ProgressMonitorDialog} is shown. Otherwise, the handler is passed a
+	 * {@link NullProgressMonitor}, which will not display any progress.
+	 * 
+	 * @param shell the {@link Shell} to show the progress monitor dialog in- this is only used if the handler requests
+	 *            a progress bar
+	 * @param actionEvent the {@link LeapActionEvent} to notify the handler about
+	 */
+	private void notifyHandler(final Shell shell, final LeapActionEvent actionEvent) {
+		if (handler.showProgress()) {
+			ProgressMonitorDialog progressMonitor = new ProgressMonitorDialog(shell);
+			try {
+				progressMonitor.run(false, true, new IRunnableWithProgress() {
+
+					@Override
+					public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+						handler.handleLeapAction(actionEvent, monitor);
+					}
+				});
+			} catch (InvocationTargetException e) {
+				// a progress bar cannot be shown, but the handler can still be notified
+				handler.handleLeapAction(actionEvent, new NullProgressMonitor());
+			} catch (InterruptedException e) {
+				handler.handleLeapAction(actionEvent, new NullProgressMonitor());
+			}
+		} else {
+			// handler doesn't request a progress bar, so a null progress monitor is sufficient
+			handler.handleLeapAction(actionEvent, new NullProgressMonitor());
 		}
 	}
 
@@ -286,6 +377,27 @@ public class InputProcessor {
 	 */
 	public void setHelper(LeapHelper helper) {
 		this.helper = helper;
+	}
+
+	/**
+	 * Retrieves this processor's JSGF definition locations used by the specified {@link SpeechInput}. The result may
+	 * contain <code>null</code>, in which case the UNICASE default grammar is being used.
+	 * 
+	 * @return the JSGF definition locations as a set of {@link URL}s
+	 */
+	public Set<URL> getGrammarLocations() {
+		return grammarLocations;
+	}
+
+	/**
+	 * Checks whether or not this input processor has any gestures specified to process. This is <code>true</code> if
+	 * and only if at least one {@link GestureInput} has been specified in the input sequence.
+	 * 
+	 * @return <code>true</code> if a {@link GestureInput} has been specified,<br />
+	 *         <code>false</code> otherwise
+	 */
+	public boolean hasGestures() {
+		return hasGestures;
 	}
 
 }

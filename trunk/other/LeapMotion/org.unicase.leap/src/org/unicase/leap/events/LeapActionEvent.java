@@ -43,6 +43,10 @@ public class LeapActionEvent {
 	 */
 	private final List<LeapKeyEvent> keyEvents;
 	/**
+	 * The list of speech events that occurred during the leap action.
+	 */
+	private final List<LeapSpeechEvent> speechEvents;
+	/**
 	 * The position of the mouse when the event occurred.
 	 */
 	private Point mousePosition;
@@ -63,6 +67,7 @@ public class LeapActionEvent {
 		this.gestureEvents = new LinkedList<LeapGestureEvent>();
 		this.mouseEvents = new LinkedList<LeapMouseEvent>();
 		this.keyEvents = new LinkedList<LeapKeyEvent>();
+		this.speechEvents = new LinkedList<LeapSpeechEvent>();
 	}
 
 	/**
@@ -96,6 +101,8 @@ public class LeapActionEvent {
 			mouseEvents.add((LeapMouseEvent) event);
 		} else if (event instanceof LeapKeyEvent) {
 			keyEvents.add((LeapKeyEvent) event);
+		} else if (event instanceof LeapSpeechEvent) {
+			speechEvents.add((LeapSpeechEvent) event);
 		}
 	}
 
@@ -124,6 +131,15 @@ public class LeapActionEvent {
 	 */
 	public List<LeapKeyEvent> getKeyEvents() {
 		return keyEvents;
+	}
+
+	/**
+	 * Retrieves the list of speech events that occurred during the leap action.
+	 * 
+	 * @return the list of {@link LeapSpeechEvent}s
+	 */
+	public List<LeapSpeechEvent> getSpeechEvents() {
+		return speechEvents;
 	}
 
 	/**

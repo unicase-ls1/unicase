@@ -6,6 +6,7 @@
  */
 package org.unicase.leap.action;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.unicase.leap.events.LeapActionEvent;
 
 /**
@@ -19,10 +20,25 @@ public interface ILeapActionHandler {
 
 	/**
 	 * This method defines how occurring leap actions shall be handled. The method will be called whenever the
-	 * associated input sequence (which has been defined via the extension point) is performed by the user.
+	 * associated input sequence (which has been defined via the extension point) is performed by the user. The progress
+	 * monitor can be used to display current progress of the action handling. If progress shall be displayed,
+	 * {@link #showProgress()} must return <code>true</code>.
 	 * 
 	 * @param leapEvent the event containing information about the environment while the input sequence was performed
+	 * @param monitor the {@link IProgressMonitor} used to display progress. If {@link #showProgress()} returns
+	 *            <code>false</code>, this will be a {@link org.eclipse.core.runtime.NullProgressMonitor} which will not
+	 *            display any progress.
 	 */
-	void handleLeapAction(LeapActionEvent leapEvent);
+	void handleLeapAction(LeapActionEvent leapEvent, IProgressMonitor monitor);
+
+	/**
+	 * Returns whether or not a progress bar should be displayed while the action is being handled. Updating the
+	 * progress bar has to be done in {@link #handleLeapAction(LeapActionEvent, IProgressMonitor)} by any implementing
+	 * classes.
+	 * 
+	 * @return <code>true</code> if a progress bar should be displayed while handling the leap action,<br/>
+	 *         <code>false</code> otherwise
+	 */
+	boolean showProgress();
 
 }

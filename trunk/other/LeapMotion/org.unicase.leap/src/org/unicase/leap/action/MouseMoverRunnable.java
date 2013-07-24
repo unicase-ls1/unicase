@@ -14,7 +14,8 @@ import com.leapmotion.leap.Vector;
 
 /**
  * Runnable that keeps the mouse cursor updated as long as the executing thread has not been interrupted. The mouse
- * cursor will be updated based on sensor data received from the leap motion {@link com.leapmotion.Controller Controller}.
+ * cursor will be updated based on sensor data received from the leap motion {@link com.leapmotion.Controller
+ * Controller}.
  * 
  * @author mharut
  */
@@ -38,7 +39,7 @@ public class MouseMoverRunnable implements Runnable {
 	@Override
 	public void run() {
 		boolean isDefault = true; // flag used to indicate whether or not the default cursor is active
-		while (!Thread.currentThread().isInterrupted()) {
+		while (!Thread.interrupted()) {
 			final Pointable pointable = helper.getMainPointable();
 			if (pointable != null) {
 				if (isDefault) {

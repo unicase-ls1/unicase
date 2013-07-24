@@ -12,6 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
@@ -47,6 +48,7 @@ import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.unicase.leap.action.LeapActionCancelledException;
 import org.unicase.leap.action.LeapHelper;
 import org.unicase.leap.events.LeapActionEvent;
 import org.unicase.leap.papyrus.util.LeapPapyrusConstants;
@@ -83,6 +85,10 @@ public class LeapPapyrusClassDiagramHelper {
 	 */
 	private final LeapActionEvent leapEvent;
 	/**
+	 * The progress monitor used to display the current progress.
+	 */
+	private final IProgressMonitor monitor;
+	/**
 	 * The editor this helper is performing actions on.
 	 */
 	private final UMLClassDiagramEditor editor;
@@ -94,14 +100,20 @@ public class LeapPapyrusClassDiagramHelper {
 	 * A map from GMF nodes to their attribute compartments.
 	 */
 	private final Map<Node, BasicCompartment> nodeToAttrCompartment;
+	/**
+	 * The weight of the current work used to update the progress monitor.
+	 */
+	private int workWeight;
 
 	/**
 	 * Constructs a new helper for a {@link LeapActionEvent}.
 	 * 
 	 * @param leapEvent the leap event that needs to be handled
+	 * @param monitor the progress monitor used to display current progress
 	 */
-	public LeapPapyrusClassDiagramHelper(LeapActionEvent leapEvent) {
+	public LeapPapyrusClassDiagramHelper(LeapActionEvent leapEvent, IProgressMonitor monitor) {
 		this.leapEvent = leapEvent;
+		this.monitor = monitor;
 		IEditorPart editor = leapEvent.getEditor();
 		if (editor instanceof UMLClassDiagramEditor) {
 			this.editor = (UMLClassDiagramEditor) editor;
@@ -129,8 +141,12 @@ public class LeapPapyrusClassDiagramHelper {
 	 * @param name the name of the class
 	 * @param isAbstract whether or not the class shall be abstract
 	 * @return the new class as a GMF node - the underlying UML class is accessible via {@link Node#getElement()}.
+	 * @throws LeapActionCancelledException if the process has been cancelled by the user
 	 */
-	public Node createClass(String name, boolean isAbstract) {
+	public Node createClass(String name, boolean isAbstract) throws LeapActionCancelledException {
+		if (monitor.isCanceled()) {
+			throw new LeapActionCancelledException();
+		}
 		Diagram diagram = editor.getDiagram();
 		UMLModel model = (UMLModel) diagram.getElement();
 		org.eclipse.uml2.uml.Class clazz = FACTORY.createClass();
@@ -139,6 +155,7 @@ public class LeapPapyrusClassDiagramHelper {
 		model.getPackagedElements().add(clazz);
 		Node node = VIEW_SERVICE.createNode(new EObjectAdapter(clazz), diagram,
 			Integer.toString(ClassEditPart.VISUAL_ID), ViewUtil.APPEND, true, PREFERENCES_HINT);
+		monitor.worked(workWeight);
 		return node;
 	}
 
@@ -150,19 +167,27 @@ public class LeapPapyrusClassDiagramHelper {
 	 * @param node the class node this operation shall be added to
 	 * @return the new operation as a GMF node - the underlying UML operation is accessible via
 	 *         {@link Node#getElement()}
+	 * @throws LeapActionCancelledException if the process has been cancelled by the user
 	 */
-	public Node addOperation(String operationName, boolean isAbstract, Node node) {
+	public Node addOperation(String operationName, boolean isAbstract, Node node) throws LeapActionCancelledException {
+		if (monitor.isCanceled()) {
+			throw new LeapActionCancelledException();
+		}
 		BasicCompartment compartment = getOperationCompartment(node);
 		EObject element = node.getElement();
+		Node result;
 		if (compartment != null && element instanceof org.eclipse.uml2.uml.Class) {
 			Operation operation = FACTORY.createOperation();
 			operation.setName(operationName);
 			operation.setIsAbstract(isAbstract);
 			operation.setClass_((org.eclipse.uml2.uml.Class) element);
-			return VIEW_SERVICE.createNode(new EObjectAdapter(operation), compartment,
+			result = VIEW_SERVICE.createNode(new EObjectAdapter(operation), compartment,
 				Integer.toString(OperationForClassEditPart.VISUAL_ID), ViewUtil.APPEND, true, PREFERENCES_HINT);
+		} else {
+			result = null;
 		}
-		return null;
+		monitor.worked(workWeight);
+		return result;
 	}
 
 	/**
@@ -172,18 +197,26 @@ public class LeapPapyrusClassDiagramHelper {
 	 * @param typeNode the {@link Type} node defining the type of this parameter
 	 * @param operationNode the {@link Operation} this parameter shall be added to
 	 * @return the new parameter
+	 * @throws LeapActionCancelledException if the process has been cancelled by the user
 	 */
-	public Parameter addParameter(String parameterName, Node typeNode, Node operationNode) {
+	public Parameter addParameter(String parameterName, Node typeNode, Node operationNode)
+		throws LeapActionCancelledException {
+		if (monitor.isCanceled()) {
+			throw new LeapActionCancelledException();
+		}
 		EObject operationElement = operationNode.getElement();
 		EObject typeElement = typeNode.getElement();
+		Parameter result;
 		if (operationElement instanceof Operation && typeElement instanceof Type) {
-			Parameter parameter = FACTORY.createParameter();
-			parameter.setName(parameterName);
-			parameter.setType((Type) typeElement);
-			((Operation) operationElement).getOwnedParameters().add(parameter);
-			return parameter;
+			result = FACTORY.createParameter();
+			result.setName(parameterName);
+			result.setType((Type) typeElement);
+			((Operation) operationElement).getOwnedParameters().add(result);
+		} else {
+			result = null;
 		}
-		return null;
+		monitor.worked(workWeight);
+		return result;
 	}
 
 	/**
@@ -216,18 +249,26 @@ public class LeapPapyrusClassDiagramHelper {
 	 * @param attributeName the name of the attribute
 	 * @param node the class node this attribute shall be added to
 	 * @return the new attribute as a GMF node - the underlying UML property is accessible via {@link Node#getElement()}
+	 * @throws LeapActionCancelledException if the process has been cancelled by the user
 	 */
-	public Node addAttribute(String attributeName, Node node) {
+	public Node addAttribute(String attributeName, Node node) throws LeapActionCancelledException {
+		if (monitor.isCanceled()) {
+			throw new LeapActionCancelledException();
+		}
 		BasicCompartment compartment = getAttributeCompartment(node);
 		EObject element = node.getElement();
+		Node result;
 		if (compartment != null && element instanceof Type) {
 			Property attribute = FACTORY.createProperty();
 			attribute.setName(attributeName);
 			attribute.setType((Type) element);
-			return VIEW_SERVICE.createNode(new EObjectAdapter(attribute), compartment,
+			result = VIEW_SERVICE.createNode(new EObjectAdapter(attribute), compartment,
 				Integer.toString(PropertyForClassEditPart.VISUAL_ID), ViewUtil.APPEND, true, PREFERENCES_HINT);
+		} else {
+			result = null;
 		}
-		return null;
+		monitor.worked(workWeight);
+		return result;
 	}
 
 	/**
@@ -263,12 +304,17 @@ public class LeapPapyrusClassDiagramHelper {
 	 * @param name the name of the association
 	 * @return a new association as a GMF edge - the underlying UML association can be accessed by
 	 *         {@link Edge#getElement()}
+	 * @throws LeapActionCancelledException if the process has been cancelled by the user
 	 */
-	public Edge createAssociation(Node sourceNode, Node targetNode, String name) {
+	public Edge createAssociation(Node sourceNode, Node targetNode, String name) throws LeapActionCancelledException {
+		if (monitor.isCanceled()) {
+			throw new LeapActionCancelledException();
+		}
 		Diagram diagram = editor.getDiagram();
 		EObject sourceElement = sourceNode.getElement();
 		EObject destinationElement = targetNode.getElement();
 		EObject diagramElement = diagram.getElement();
+		Edge result;
 		if (sourceElement instanceof org.eclipse.uml2.uml.Class
 			&& destinationElement instanceof org.eclipse.uml2.uml.Class && diagramElement instanceof UMLModel) {
 
@@ -294,16 +340,19 @@ public class LeapPapyrusClassDiagramHelper {
 			destinationProperty.setLower(1);
 			destinationProperty.setUpper(1);
 
-			Edge edge = VIEW_SERVICE.createEdge(UMLElementTypes.Association_4001, diagram,
+			result = VIEW_SERVICE.createEdge(UMLElementTypes.Association_4001, diagram,
 				Integer.toString(AssociationEditPart.VISUAL_ID), ViewUtil.APPEND, true, PREFERENCES_HINT);
-			if (edge != null) {
-				edge.setElement(association);
-				edge.setSource(sourceNode);
-				edge.setTarget(targetNode);
+			if (result != null) {
+				result.setElement(association);
+				result.setSource(sourceNode);
+				result.setTarget(targetNode);
 			}
-			return edge;
+			return result;
+		} else {
+			result = null;
 		}
-		return null;
+		monitor.worked(workWeight);
+		return result;
 	}
 
 	/**
@@ -314,12 +363,17 @@ public class LeapPapyrusClassDiagramHelper {
 	 * @param name the name of the dependency
 	 * @return a new dependency as a GMF edge - the underlying UML dependency can be accessed by
 	 *         {@link Edge#getElement()}
+	 * @throws LeapActionCancelledException if the process has been cancelled by the user
 	 */
-	public Edge createDependency(Node sourceNode, Node targetNode, String name) {
+	public Edge createDependency(Node sourceNode, Node targetNode, String name) throws LeapActionCancelledException {
+		if (monitor.isCanceled()) {
+			throw new LeapActionCancelledException();
+		}
 		Diagram diagram = editor.getDiagram();
 		EObject sourceElement = sourceNode.getElement();
 		EObject destinationElement = targetNode.getElement();
 		EObject diagramElement = diagram.getElement();
+		Edge result;
 		if (sourceElement instanceof NamedElement && destinationElement instanceof NamedElement
 			&& diagramElement instanceof UMLModel) {
 			Dependency dependency = FACTORY.createDependency();
@@ -327,16 +381,18 @@ public class LeapPapyrusClassDiagramHelper {
 			dependency.setName(name);
 			dependency.getClients().add((NamedElement) sourceElement);
 			dependency.getSuppliers().add((NamedElement) destinationElement);
-			Edge edge = VIEW_SERVICE.createEdge(UMLElementTypes.Dependency_4008, diagram,
+			result = VIEW_SERVICE.createEdge(UMLElementTypes.Dependency_4008, diagram,
 				Integer.toString(DependencyEditPart.VISUAL_ID), ViewUtil.APPEND, true, PREFERENCES_HINT);
-			if (edge != null) {
-				edge.setElement(dependency);
-				edge.setSource(sourceNode);
-				edge.setTarget(targetNode);
+			if (result != null) {
+				result.setElement(dependency);
+				result.setSource(sourceNode);
+				result.setTarget(targetNode);
 			}
-			return edge;
+		} else {
+			result = null;
 		}
-		return null;
+		monitor.worked(workWeight);
+		return result;
 	}
 
 	/**
@@ -346,24 +402,31 @@ public class LeapPapyrusClassDiagramHelper {
 	 * @param specificNode the specific classifier of the generalization
 	 * @return a new generalization as a GMF edge - the underlying UML generalization can be accessed by
 	 *         {@link Edge#getElement()}
+	 * @throws LeapActionCancelledException if the process has been cancelled by the user
 	 */
-	public Edge createGeneralization(Node generalNode, Node specificNode) {
+	public Edge createGeneralization(Node generalNode, Node specificNode) throws LeapActionCancelledException {
+		if (monitor.isCanceled()) {
+			throw new LeapActionCancelledException();
+		}
 		EObject generalElement = generalNode.getElement();
 		EObject specificElement = specificNode.getElement();
+		Edge result;
 		if (generalElement instanceof Classifier && specificElement instanceof Classifier) {
 			Generalization generalization = FACTORY.createGeneralization();
 			generalization.setGeneral((Classifier) generalElement);
 			generalization.setSpecific((Classifier) specificElement);
-			Edge edge = VIEW_SERVICE.createEdge(UMLElementTypes.Generalization_4002, editor.getDiagram(),
+			result = VIEW_SERVICE.createEdge(UMLElementTypes.Generalization_4002, editor.getDiagram(),
 				Integer.toString(GeneralizationEditPart.VISUAL_ID), ViewUtil.APPEND, true, PREFERENCES_HINT);
-			if (edge != null) {
-				edge.setElement(generalization);
-				edge.setSource(specificNode);
-				edge.setTarget(generalNode);
+			if (result != null) {
+				result.setElement(generalization);
+				result.setSource(specificNode);
+				result.setTarget(generalNode);
 			}
-			return edge;
+		} else {
+			result = null;
 		}
-		return null;
+		monitor.worked(workWeight);
+		return result;
 	}
 
 	/**
@@ -373,8 +436,12 @@ public class LeapPapyrusClassDiagramHelper {
 	 * @param containerNode the node of the container of the containment
 	 * @param containeeNode the node of the containee of the containment
 	 * @return a new containment as a GMF edge
+	 * @throws LeapActionCancelledException if the process has been cancelled by the user
 	 */
-	public Edge createContainment(Node containerNode, Node containeeNode) {
+	public Edge createContainment(Node containerNode, Node containeeNode) throws LeapActionCancelledException {
+		if (monitor.isCanceled()) {
+			throw new LeapActionCancelledException();
+		}
 		Node containmentNode = VIEW_SERVICE.createNode(null, containerNode,
 			Integer.toString(ContainmentCircleEditPart.VISUAL_ID), ViewUtil.APPEND, true, PREFERENCES_HINT);
 		Edge edge = VIEW_SERVICE.createEdge(UMLElementTypes.Link_4022, editor.getDiagram(),
@@ -383,6 +450,7 @@ public class LeapPapyrusClassDiagramHelper {
 			edge.setSource(containmentNode);
 			edge.setTarget(containeeNode);
 		}
+		monitor.worked(workWeight);
 		return edge;
 	}
 
@@ -439,8 +507,12 @@ public class LeapPapyrusClassDiagramHelper {
 	 * @param x the x-coordinate of the new location
 	 * @param y the y-coordinate of the new location
 	 * @param convert flag to indicate whether or not to convert absolute coordinates to relative ones
+	 * @throws LeapActionCancelledException if the process has been cancelled by the user
 	 */
-	public void setLocation(View view, int x, int y, boolean convert) {
+	public void setLocation(View view, int x, int y, boolean convert) throws LeapActionCancelledException {
+		if (monitor.isCanceled()) {
+			throw new LeapActionCancelledException();
+		}
 		if (convert) {
 			Point location = editor.getGraphicalViewer().getControl().toControl(x, y);
 			ViewUtil.setStructuralFeatureValue(view, LeapPapyrusConstants.LOCATION_X, location.x);
@@ -449,6 +521,7 @@ public class LeapPapyrusClassDiagramHelper {
 			ViewUtil.setStructuralFeatureValue(view, LeapPapyrusConstants.LOCATION_X, x);
 			ViewUtil.setStructuralFeatureValue(view, LeapPapyrusConstants.LOCATION_Y, y);
 		}
+		monitor.worked(workWeight);
 	}
 
 	/**
@@ -461,6 +534,16 @@ public class LeapPapyrusClassDiagramHelper {
 		Integer x = (Integer) ViewUtil.getStructuralFeatureValue(view, LeapPapyrusConstants.LOCATION_X);
 		Integer y = (Integer) ViewUtil.getStructuralFeatureValue(view, LeapPapyrusConstants.LOCATION_Y);
 		return new Point(x, y);
+	}
+
+	/**
+	 * Sets the current work weight for this helper. The work weight is used to update the progress monitor.
+	 * 
+	 * @param workWeight the new value for the work weight
+	 * @see IProgressMonitor#worked(int)
+	 */
+	public void setWorkWeight(int workWeight) {
+		this.workWeight = workWeight;
 	}
 
 }

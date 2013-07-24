@@ -79,6 +79,23 @@ public class LeapPartListener implements IStartup, IPartListener2 {
 		if (page != null) {
 			// if this fails, all specified extensions will fail
 			page.addPartListener(this);
+
+			IConfigurationElement[] extensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
+				"org.unicase.leap.leapActions");
+			for (IConfigurationElement extension : extensions) {
+				if ("global".equals(extension.getName())) {
+					LeapInputListener listener = new LeapInputListener(controller, false, false, false);
+					// fetch action extension elements
+					IConfigurationElement[] actionExtensions = extension.getChildren("action");
+					for (IConfigurationElement actionExtension : actionExtensions) {
+						InputProcessor inputProcessor = parseActionElement(page, actionExtension);
+						if (inputProcessor != null) {
+							listener.addInputProcessor(inputProcessor);
+						}
+					}
+					listener.start();
+				}
+			}
 		}
 	}
 
@@ -99,6 +116,8 @@ public class LeapPartListener implements IStartup, IPartListener2 {
 	@Override
 	public void partClosed(IWorkbenchPartReference partRef) {
 		if (partToListener.containsKey(partRef)) {
+			LeapInputListener listener = partToListener.get(partRef);
+			listener.dispose();
 			partToListener.remove(partRef);
 		}
 	}
@@ -117,24 +136,25 @@ public class LeapPartListener implements IStartup, IPartListener2 {
 		IConfigurationElement[] extensions = Platform.getExtensionRegistry().getConfigurationElementsFor(
 			"org.unicase.leap.leapActions");
 		for (IConfigurationElement extension : extensions) {
-			// find all extensions where the specified ID matches the part's ID
-			String editorId = extension.getAttribute("id");
-			if (partRef.getId().equals(editorId)) {
-				LeapInputListener listener;
-				// check if a listener has been created for this part already
-				if (partToListener.get(partRef) == null) {
-					listener = parseEditorElement(extension);
-					partToListener.put(partRef, listener);
-				} else {
-					listener = partToListener.get(partRef);
-				}
-
-				// fetch action extension elements
-				IConfigurationElement[] actionExtensions = extension.getChildren("action");
-				for (IConfigurationElement actionExtension : actionExtensions) {
-					InputProcessor inputProcessor = parseActionElement(partRef, actionExtension);
-					if (inputProcessor != null) {
-						listener.addInputProcessor(inputProcessor);
+			if ("editor".equals(extension.getName())) {
+				// find all extensions where the specified ID matches the part's ID
+				String editorId = extension.getAttribute("id");
+				if (partRef.getId().equals(editorId)) {
+					LeapInputListener listener;
+					// check if a listener has been created for this part already
+					if (partToListener.get(partRef) == null) {
+						listener = parseEditorElement(extension);
+						partToListener.put(partRef, listener);
+					} else {
+						listener = partToListener.get(partRef);
+					}
+					// fetch action extension elements
+					IConfigurationElement[] actionExtensions = extension.getChildren("action");
+					for (IConfigurationElement actionExtension : actionExtensions) {
+						InputProcessor inputProcessor = parseActionElement(partRef.getPage(), actionExtension);
+						if (inputProcessor != null) {
+							listener.addInputProcessor(inputProcessor);
+						}
 					}
 				}
 			}
@@ -165,12 +185,12 @@ public class LeapPartListener implements IStartup, IPartListener2 {
 	 * Parses the "action" extension element and returns an input processor which is able to process the specified input
 	 * sequence.
 	 * 
-	 * @param partRef the part reference the resulting input processor is defined for
+	 * @param page the part reference the resulting input processor is defined for
 	 * @param actionExtension the extension to parse
 	 * @return an {@link InputProcessor} instance which is able to process the input as specified by the action
 	 *         extension
 	 */
-	private InputProcessor parseActionElement(IWorkbenchPartReference partRef, IConfigurationElement actionExtension) {
+	private InputProcessor parseActionElement(IWorkbenchPage page, IConfigurationElement actionExtension) {
 		IConfigurationElement[] actionChildren = actionExtension.getChildren();
 		if (actionChildren.length < 1) {
 			// invalid extension
@@ -190,7 +210,7 @@ public class LeapPartListener implements IStartup, IPartListener2 {
 					inputArray[i] = input;
 				}
 			}
-			return new InputProcessor(partRef.getPage(), inputArray, handler);
+			return new InputProcessor(page, inputArray, handler);
 		} catch (CoreException e) {
 			return null;
 		}

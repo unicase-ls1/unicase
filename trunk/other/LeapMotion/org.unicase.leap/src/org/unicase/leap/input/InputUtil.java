@@ -6,10 +6,22 @@
  */
 package org.unicase.leap.input;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.swt.SWT;
+import org.osgi.framework.Bundle;
+import org.unicase.leap.listener.SpeechListener;
 
 import com.leapmotion.leap.Gesture.Type;
+
+import edu.cmu.sphinx.jsgf.JSGFGrammarException;
+import edu.cmu.sphinx.jsgf.JSGFGrammarParseException;
+import edu.cmu.sphinx.util.props.ConfigurationManager;
 
 /**
  * Utility class for input regarding the leap motion input framework. This class defines constants used by the leap
@@ -33,6 +45,10 @@ public final class InputUtil {
 	 * Name of the mouse input extension element.
 	 */
 	private static final String MOUSE_INPUT = "mouseclick";
+	/**
+	 * Name of the speech input extension element.
+	 */
+	private static final String SPEECH_INPUT = "speech";
 
 	// Gesture related constants:
 	/**
@@ -157,6 +173,20 @@ public final class InputUtil {
 	private static final String BUTTON_5 = "button5";
 
 	/**
+	 * The location of the sphinx4 configuration file.
+	 */
+	private static final String CONFIGURATION_LOCATION = "/sphinx4/leapSpeech.xml";
+	/**
+	 * Map mapping grammar locations to speech listeners. By using this map, listeners using the same grammar can be
+	 * reused
+	 */
+	private static final Map<String, SpeechListener> LISTENER_MAP = new HashMap<String, SpeechListener>();
+	/**
+	 * The speech listener listening to input matched to the default UNICASE grammar.
+	 */
+	private static SpeechListener defaultSpeechListener;
+
+	/**
 	 * Private constructor, as this class should not be instantiated. All methods should be accessed statically.
 	 */
 	private InputUtil() {
@@ -177,6 +207,8 @@ public final class InputUtil {
 			return convertToKeyInput(extension);
 		} else if (MOUSE_INPUT.equals(name)) {
 			return convertToMouseInput(extension);
+		} else if (SPEECH_INPUT.equals(name)) {
+			return convertToSpeechInput(extension);
 		}
 		// unknown input type
 		return null;
@@ -330,6 +362,77 @@ public final class InputUtil {
 		}
 		// invalid extension
 		return null;
+	}
 
+	/**
+	 * Converts an extension definition of the leap action extension point to a {@link SpeechInput} instance.
+	 * 
+	 * @param extension the extension to convert
+	 * @return the speech input as defined by the extension or<br />
+	 *         <code>null</code> if the extension is invalid
+	 */
+	private static SpeechInput convertToSpeechInput(IConfigurationElement extension) {
+		try {
+			String phrase = extension.getAttribute("phrase");
+			int timeout = Integer.parseInt(extension.getAttribute("timeout"));
+			String grammarLocation = extension.getAttribute("grammar");
+			Bundle bundle = Platform.getBundle(extension.getContributor().getName());
+			URL grammarUrl = grammarLocation == null ? null : bundle.getResource(grammarLocation);
+
+			// extension is only valid if the button code is within the accepted range
+			if (phrase != null && !phrase.isEmpty()) {
+				return new SpeechInput(grammarUrl, phrase, timeout);
+			}
+		} catch (NumberFormatException e) {
+			// fall through
+		}
+		// invalid extension
+		return null;
+	}
+
+	/**
+	 * Retrieves a speech listener that will listen to speech input defined by the grammar whose JSGF definition is
+	 * located at <code>grammarUrl</code>. If a speech listener for the specified grammar already exists, it is being
+	 * reused. Otherwise, a new speech listener is being constructed and cached. If no grammar is specified, i.e. if the
+	 * location is set to <code>null</code> the speech listener for the UNICASE default grammar is being used.
+	 * 
+	 * @param grammarUrl the location of the JSGF definition - may be <code>null</code> if the default UNICASE grammar
+	 *            should be used
+	 * @return a speech listener recognizing input based on the specified grammar
+	 * @throws IOException if retrieving the grammar from the specified location fails
+	 * @throws JSGFGrammarParseException if parsing the specified grammar fails
+	 * @throws JSGFGrammarException if loading the specified grammar fails
+	 */
+	public static SpeechListener getSpeechListener(URL grammarUrl) throws IOException, JSGFGrammarParseException,
+		JSGFGrammarException {
+		SpeechListener result;
+		if (grammarUrl == null) {
+			result = getDefaultSpeechListener();
+		} else {
+			String grammarLocation = grammarUrl.toString();
+			if (LISTENER_MAP.containsKey(grammarLocation)) {
+				result = LISTENER_MAP.get(grammarLocation);
+			} else {
+				ConfigurationManager configMgr = new ConfigurationManager(
+					InputUtil.class.getResource(CONFIGURATION_LOCATION));
+				result = (SpeechListener) configMgr.lookup("speechListener");
+				result.setGrammarLocation(grammarUrl);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Retrieves the speech listener that is recognizing input for the default UNICASE grammar.
+	 * 
+	 * @return the default speech listener
+	 */
+	private static SpeechListener getDefaultSpeechListener() {
+		if (defaultSpeechListener == null) {
+			ConfigurationManager configMgr = new ConfigurationManager(
+				InputUtil.class.getResource(CONFIGURATION_LOCATION));
+			defaultSpeechListener = (SpeechListener) configMgr.lookup("speechListener");
+		}
+		return defaultSpeechListener;
 	}
 }

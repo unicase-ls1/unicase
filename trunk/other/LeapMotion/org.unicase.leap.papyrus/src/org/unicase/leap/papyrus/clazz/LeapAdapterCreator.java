@@ -6,10 +6,12 @@
  */
 package org.unicase.leap.papyrus.clazz;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.swt.graphics.Point;
 import org.unicase.leap.action.ILeapActionHandler;
+import org.unicase.leap.action.LeapActionCancelledException;
 import org.unicase.leap.events.LeapActionEvent;
 
 /**
@@ -21,30 +23,45 @@ import org.unicase.leap.events.LeapActionEvent;
 public class LeapAdapterCreator implements ILeapActionHandler {
 
 	@Override
-	public void handleLeapAction(LeapActionEvent leapEvent) {
-		final LeapPapyrusClassDiagramHelper helper = new LeapPapyrusClassDiagramHelper(leapEvent);
+	public void handleLeapAction(LeapActionEvent leapEvent, final IProgressMonitor monitor) {
+		final LeapPapyrusClassDiagramHelper helper = new LeapPapyrusClassDiagramHelper(leapEvent, monitor);
 
 		final Point location = leapEvent.getMousePosition();
 		new ECPCommand(helper.getDiagram()) {
 
 			@Override
 			protected void doRun() {
-				Node clientNode = helper.createClass("Client", false);
+				try {
+					monitor.beginTask("Create Adapter Pattern", 80);
+					helper.setWorkWeight(15);
+					Node clientNode = helper.createClass("Client", false);
+					Node adapterNode = helper.createClass("Adapter", false);
+					Node adapteeNode = helper.createClass("Adaptee", false);
 
-				Node adapterNode = helper.createClass("Adapter", false);
-				helper.addOperation("doThis", false, adapterNode);
-				Node adapteeNode = helper.createClass("Adaptee", false);
-				helper.addOperation("doThat", false, adapteeNode);
+					helper.setWorkWeight(5);
+					helper.addOperation("doThis", false, adapterNode);
+					helper.addOperation("doThat", false, adapteeNode);
 
-				helper.createAssociation(clientNode, adapterNode, "adapter");
-				helper.createAssociation(adapterNode, adapteeNode, "adaptee");
+					helper.setWorkWeight(10);
+					helper.createAssociation(clientNode, adapterNode, "adapter");
+					helper.createAssociation(adapterNode, adapteeNode, "adaptee");
 
-				helper.setLocation(clientNode, location.x, location.y, true);
-				helper.setLocation(adapterNode, location.x + 250, location.y, true);
-				helper.setLocation(adapteeNode, location.x + 250, location.y + 150, true);
+					helper.setWorkWeight(2);
+					helper.setLocation(clientNode, location.x, location.y, true);
+					helper.setLocation(adapterNode, location.x + 250, location.y, true);
+					helper.setLocation(adapteeNode, location.x + 250, location.y + 150, true);
 
+					monitor.done();
+				} catch (LeapActionCancelledException e) {
+					// do nothing
+				}
 			}
 		}.run(false);
+	}
+
+	@Override
+	public boolean showProgress() {
+		return true;
 	}
 
 }

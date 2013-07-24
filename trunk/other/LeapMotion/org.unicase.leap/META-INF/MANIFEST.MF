@@ -8,8 +8,13 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui;bundle-version="3.7.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ClassPath: lib/LeapJava.jar,
+ lib/js.jar,
+ lib/jsapi.jar,
+ lib/sphinx4.jar,
+ lib/tags.jar,
  .
 Export-Package: com.leapmotion.leap,
+ edu.cmu.sphinx.result,
  org.unicase.leap.action,
  org.unicase.leap.events,
  org.unicase.leap.input,

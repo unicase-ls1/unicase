@@ -1,0 +1,18 @@
+#JSGF V1.0;
+
+/**
+ * JSGF Grammar for UNICASE Domain.
+ */
+
+grammar domain;
+
+public <view> = Navigator | 
+                Tasks |
+                History |
+                Table |
+                Preview |
+                Repository |
+                Validation |
+                Status |
+                (Sprint Status) |
+                Repository;

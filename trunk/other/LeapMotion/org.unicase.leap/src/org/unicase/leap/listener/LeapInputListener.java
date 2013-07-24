@@ -6,7 +6,9 @@
  */
 package org.unicase.leap.listener;
 
+import java.io.IOException;
 import java.lang.Thread.State;
+import java.net.URL;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -25,7 +27,9 @@ import org.unicase.leap.action.MouseMoverRunnable;
 import org.unicase.leap.events.LeapGestureEvent;
 import org.unicase.leap.events.LeapKeyEvent;
 import org.unicase.leap.events.LeapMouseEvent;
+import org.unicase.leap.events.LeapSpeechEvent;
 import org.unicase.leap.input.InputProcessor;
+import org.unicase.leap.input.InputUtil;
 
 import com.leapmotion.leap.Controller;
 import com.leapmotion.leap.Finger;
@@ -36,6 +40,10 @@ import com.leapmotion.leap.Pointable;
 import com.leapmotion.leap.Tool;
 import com.leapmotion.leap.Vector;
 
+import edu.cmu.sphinx.jsgf.JSGFGrammarException;
+import edu.cmu.sphinx.jsgf.JSGFGrammarParseException;
+import edu.cmu.sphinx.result.Result;
+
 /**
  * A {@link Listener} extension that provides the possibility to convert leap motion input data into cursor movement.
  * Also, any captured fingers or tools can be displayed. Any occurring gestures are forwarded to the corresponding
@@ -43,10 +51,13 @@ import com.leapmotion.leap.Vector;
  * 
  * @author mharut
  */
+/**
+ * @author mharut
+ */
 public class LeapInputListener extends Listener {
 
 	/**
-	 * The leap motion {@link Controller} tracking sensor data.
+	 * The leap motion controller tracking sensor data.
 	 */
 	private final Controller controller;
 	/**
@@ -71,28 +82,40 @@ public class LeapInputListener extends Listener {
 	 */
 	private final List<InputProcessor> inputProcessors = new LinkedList<InputProcessor>();
 	/**
-	 * The {@link LeapHelper} used for computations on leap motion sensor data.
+	 * The leap helper used for computations on leap motion sensor data.
 	 */
 	private final LeapHelper helper;
 	/**
-	 * The {@link MouseListener} mouse input events are forwarded to.
+	 * The mouse listener {@link MouseEvent}s are forwarded to.
 	 */
 	private final MouseListener mouseListener;
 	/**
-	 * The {@link KeyListener} key input events are forwarded to.
+	 * The key listener {@link KeyEvent}s are forwarded to.
 	 */
 	private final KeyListener keyListener;
 	/**
-	 * {@link Thread} used to process {@link org.eclipse.swt.graphics.Cursor Cursor} movement asynchronously whenever
-	 * new leap motion sensor data has been tracked.
+	 * The speech listeners used to listen to recognized speech by sphinx4.
 	 */
-	private Thread moveCursorThread;
+	private final Set<SpeechListener> speechListeners = new HashSet<SpeechListener>();
+	/**
+	 * Flag indicating whether gestures are enabled or not. If this is <code>false</code>, the leap sensor is only
+	 * listened to if mouse movement has been enabled by either fingers or tools.
+	 * 
+	 * @see #fingersEnabled
+	 * @see #toolsEnabled
+	 */
+	private boolean gesturesEnabled;
 	/**
 	 * The ID of the main {@link Pointable} that is being captured by the leap motion {@link Controller}. This is the
 	 * pointable that was tracked first by the controller and is still valid. Once the main pointable is invalid, it
 	 * will be replaced by the next valid pointable.
 	 */
 	private int mainPointableId = -1;
+	/**
+	 * The thread used to process {@link org.eclipse.swt.graphics.Cursor Cursor} movement asynchronously whenever new
+	 * leap motion sensor data has been tracked.
+	 */
+	private Thread moveCursorThread;
 
 	/**
 	 * Constructs a new leap listener for a {@link Controller} tracking sensor data and flags used for configuration.
@@ -119,21 +142,40 @@ public class LeapInputListener extends Listener {
 	 * keyboard events will be added to the display.
 	 */
 	public void start() {
-		controller.addListener(this);
-		if (fingersEnabled || toolsEnabled) {
-			moveCursorThread = new Thread(new MouseMoverRunnable(helper));
-			if (controller.isConnected()) {
-				moveCursorThread.start();
+		// listen to the leap controller if either gestures, fingers or tools are enabled
+		boolean mouseMovementEnabled = fingersEnabled || toolsEnabled;
+		if (gesturesEnabled || mouseMovementEnabled) {
+			controller.addListener(this);
+			if (mouseMovementEnabled) {
+				moveCursorThread = new Thread(new MouseMoverRunnable(helper));
+				if (controller.isConnected()) {
+					moveCursorThread.start();
+				}
 			}
 		}
+
+		// add filters for mouse and keyboard events to the display
 		Display display = Display.getCurrent();
 		if (display == null) {
 			display = Display.getDefault();
 		}
-		display.addFilter(SWT.MouseUp, mouseListener);
-		display.addFilter(SWT.MouseDoubleClick, mouseListener);
-		display.addFilter(SWT.KeyDown, keyListener);
-		display.addFilter(SWT.KeyUp, keyListener);
+		final Display finalDisplay = display;
+		finalDisplay.asyncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				finalDisplay.addFilter(SWT.MouseUp, mouseListener);
+				finalDisplay.addFilter(SWT.MouseDoubleClick, mouseListener);
+				finalDisplay.addFilter(SWT.KeyDown, keyListener);
+				finalDisplay.addFilter(SWT.KeyUp, keyListener);
+			}
+		});
+
+		// start listening to sphinx4 speech recognition
+		for (SpeechListener speechListener : speechListeners) {
+			speechListener.addListener(this);
+		}
+
 	}
 
 	/**
@@ -142,19 +184,46 @@ public class LeapInputListener extends Listener {
 	 * value. In addition, filters for mouse and keyboard events will be removed from the display.
 	 */
 	public void stop() {
+		// stop mouse movement via leap sensor information and hide the cursor, if it was enabled
 		if (moveCursorThread != null && moveCursorThread.isAlive()) {
 			moveCursorThread.interrupt();
 			helper.hideLeapCursor();
 		}
 		controller.removeListener(this);
+
+		// remove mouse and keyboard event filters
 		Display display = Display.getCurrent();
 		if (display == null) {
 			display = Display.getDefault();
 		}
-		display.removeFilter(SWT.MouseUp, mouseListener);
-		display.removeFilter(SWT.MouseDoubleClick, mouseListener);
-		display.removeFilter(SWT.KeyDown, keyListener);
-		display.removeFilter(SWT.KeyUp, keyListener);
+		final Display finalDisplay = display;
+		finalDisplay.asyncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				finalDisplay.removeFilter(SWT.MouseUp, mouseListener);
+				finalDisplay.removeFilter(SWT.MouseDoubleClick, mouseListener);
+				finalDisplay.removeFilter(SWT.KeyDown, keyListener);
+				finalDisplay.removeFilter(SWT.KeyUp, keyListener);
+			}
+		});
+
+		// stop listening to sphinx4 speech recognition
+		for (SpeechListener speechListener : speechListeners) {
+			speechListener.removeListener(this);
+		}
+	}
+
+	/**
+	 * Disposes this listener. This will try to dispose every speech listener by deallocating the required resources
+	 * (like microphone or recognizer).
+	 */
+	public void dispose() {
+		// FIXME controller.delete();
+
+		for (SpeechListener speechListener : speechListeners) {
+			speechListener.dispose();
+		}
 	}
 
 	@Override
@@ -394,6 +463,20 @@ public class LeapInputListener extends Listener {
 	}
 
 	/**
+	 * Handles the result of a sphinx4 speech recognition by wrapping the result in a {@link LeapSpeechEvent} along with
+	 * the current time and the current {@link Frame} of the leap motion {@link Controller}. The speech event is then
+	 * forwarded to all input processors.
+	 * 
+	 * @param result the result of the sphinx4 speech recognition
+	 */
+	public void handleSpeechRecognized(Result result) {
+		LeapSpeechEvent leapEvent = new LeapSpeechEvent(controller.frame(), result, System.currentTimeMillis());
+		for (InputProcessor inputProcessor : inputProcessors) {
+			inputProcessor.processSpeech(leapEvent);
+		}
+	}
+
+	/**
 	 * Adds an input processor to this listener. Any input received by this listener will be forwarded to all input
 	 * processor. If one of the input processors completely processes an input sequence, it will call the corresponding
 	 * handler to execute its actions.
@@ -403,6 +486,20 @@ public class LeapInputListener extends Listener {
 	public void addInputProcessor(InputProcessor inputProcessor) {
 		inputProcessors.add(inputProcessor);
 		inputProcessor.setHelper(helper);
+		if (inputProcessor.hasGestures()) {
+			gesturesEnabled = true;
+		}
+		for (URL grammarLocation : inputProcessor.getGrammarLocations()) {
+			try {
+				SpeechListener speechListener = InputUtil.getSpeechListener(grammarLocation);
+				speechListeners.add(speechListener);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (JSGFGrammarParseException e) {
+				e.printStackTrace();
+			} catch (JSGFGrammarException e) {
+				e.printStackTrace();
+			}
+		}
 	}
-
 }
