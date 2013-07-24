@@ -17,9 +17,10 @@
          </appinfo>
       </annotation>
       <complexType>
-         <sequence minOccurs="1" maxOccurs="unbounded">
+         <choice minOccurs="1" maxOccurs="unbounded">
             <element ref="editor"/>
-         </sequence>
+            <element ref="global"/>
+         </choice>
          <attribute name="point" type="string" use="required">
             <annotation>
                <documentation>
@@ -80,6 +81,7 @@
                <element ref="gesture"/>
                <element ref="keystroke"/>
                <element ref="mouseclick"/>
+               <element ref="speech"/>
             </choice>
          </sequence>
          <attribute name="leapHandler" type="string" use="required">
@@ -136,7 +138,7 @@
          <attribute name="gestureType" use="required">
             <annotation>
                <documentation>
-                  The type of the gesture the corresponding action is able to process.
+                  The type of the gesture that needs to be processed for the action to be executed.
                </documentation>
             </annotation>
             <simpleType>
@@ -155,7 +157,7 @@
          <attribute name="enabledInput" use="default" value="fingers+tools">
             <annotation>
                <documentation>
-                  
+                  The enabled input mechanisms for this gesture.
                </documentation>
             </annotation>
             <simpleType>
@@ -180,11 +182,16 @@
    </element>
 
    <element name="keystroke">
+      <annotation>
+         <documentation>
+            Keystroke entered via a keyboard.
+         </documentation>
+      </annotation>
       <complexType>
          <attribute name="key" use="required">
             <annotation>
                <documentation>
-                  
+                  The key that needs to be processed for the action to be executed.
                </documentation>
             </annotation>
             <simpleType>
@@ -244,11 +251,16 @@
    </element>
 
    <element name="mouseclick">
+      <annotation>
+         <documentation>
+            Mouseclick performed by the system&apos;s mouse.
+         </documentation>
+      </annotation>
       <complexType>
          <attribute name="button" use="required">
             <annotation>
                <documentation>
-                  The mouse button that
+                  The mouse button that needs to be clicked for the action to be executed.
                </documentation>
             </annotation>
             <simpleType>
@@ -265,7 +277,7 @@
          <attribute name="doubleClick" type="boolean" use="default" value="false">
             <annotation>
                <documentation>
-                  Whether the user has to perform a double click with the specified mouse button, in order to activate this action.
+                  Flag to indicate whether or not the user has to perform a double click with the specified mouse button, in order to activate this action.
                </documentation>
             </annotation>
          </attribute>
@@ -276,6 +288,53 @@
                </documentation>
             </annotation>
          </attribute>
+      </complexType>
+   </element>
+
+   <element name="speech">
+      <annotation>
+         <documentation>
+            Speech recorded by the user&apos;s microphone.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="phrase" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The phrase that needs to be recognized over the microphone for the action to be executed.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="timeout" type="string" use="default" value="0">
+            <annotation>
+               <documentation>
+                  The timespan in milliseconds that can pass before a timeout occurs. If set to a negative value or zero, there will be no timeout.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="grammar" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="resource"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="global">
+      <annotation>
+         <documentation>
+            A global definition of a leap action.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="action" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
       </complexType>
    </element>
 

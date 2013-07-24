@@ -1,0 +1,14 @@
+#JSGF V1.0;
+
+/**
+ * JSGF Grammar for Main Entry Point.
+ */
+
+grammar main;
+
+import <class.pattern>;
+import <domain.view>;
+import <tools.view_tool>;
+import <tools.pattern_tool>;
+
+public <main> = <view_tool> <view> | <pattern_tool> <pattern>;

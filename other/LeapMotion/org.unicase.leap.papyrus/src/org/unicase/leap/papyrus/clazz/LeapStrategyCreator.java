@@ -6,10 +6,12 @@
  */
 package org.unicase.leap.papyrus.clazz;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.swt.graphics.Point;
 import org.unicase.leap.action.ILeapActionHandler;
+import org.unicase.leap.action.LeapActionCancelledException;
 import org.unicase.leap.events.LeapActionEvent;
 
 /**
@@ -21,32 +23,47 @@ import org.unicase.leap.events.LeapActionEvent;
 public class LeapStrategyCreator implements ILeapActionHandler {
 
 	@Override
-	public void handleLeapAction(LeapActionEvent leapEvent) {
-		final LeapPapyrusClassDiagramHelper helper = new LeapPapyrusClassDiagramHelper(leapEvent);
+	public void handleLeapAction(LeapActionEvent leapEvent, final IProgressMonitor monitor) {
+		final LeapPapyrusClassDiagramHelper helper = new LeapPapyrusClassDiagramHelper(leapEvent, monitor);
 
 		final Point location = leapEvent.getMousePosition();
 		new ECPCommand(helper.getDiagram()) {
 
 			@Override
 			protected void doRun() {
-				Node contextNode = helper.createClass("Context", false);
-				Node strategyNode = helper.createClass("Strategy", true);
-				Node strategyANode = helper.createClass("ConcreteStrategyA", false);
-				Node strategyBNode = helper.createClass("ConcreteStrategyB", false);
+				try {
+					monitor.beginTask("Create Strategy Pattern", 100);
+					helper.setWorkWeight(15);
+					Node contextNode = helper.createClass("Context", false);
+					Node strategyNode = helper.createClass("Strategy", true);
+					Node strategyANode = helper.createClass("ConcreteStrategyA", false);
+					Node strategyBNode = helper.createClass("ConcreteStrategyB", false);
 
-				helper.addOperation("execute", false, strategyNode);
+					helper.setWorkWeight(5);
+					helper.addOperation("execute", false, strategyNode);
 
-				helper.createContainment(contextNode, strategyNode);
-				helper.createGeneralization(strategyNode, strategyANode);
-				helper.createGeneralization(strategyNode, strategyBNode);
+					helper.setWorkWeight(10);
+					helper.createContainment(contextNode, strategyNode);
+					helper.createGeneralization(strategyNode, strategyANode);
+					helper.createGeneralization(strategyNode, strategyBNode);
 
-				helper.setLocation(contextNode, location.x, location.y, true);
-				helper.setLocation(strategyNode, location.x + 250, location.y, true);
-				helper.setLocation(strategyANode, location.x + 100, location.y + 150, true);
-				helper.setLocation(strategyBNode, location.x + 400, location.y + 150, true);
+					helper.setWorkWeight(1);
+					helper.setLocation(contextNode, location.x, location.y, true);
+					helper.setLocation(strategyNode, location.x + 250, location.y, true);
+					helper.setLocation(strategyANode, location.x + 100, location.y + 150, true);
+					helper.setLocation(strategyBNode, location.x + 400, location.y + 150, true);
 
+					monitor.done();
+				} catch (LeapActionCancelledException e) {
+					// do nothing
+				}
 			}
 		}.run(false);
+	}
+
+	@Override
+	public boolean showProgress() {
+		return true;
 	}
 
 }

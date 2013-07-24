@@ -1,0 +1,19 @@
+#JSGF V1.0;
+
+/**
+ * JSGF Grammar for Class Diagrams.
+ */
+
+grammar class;
+
+public <class> = Class |
+                 Interface |
+                 Generalization;
+                 
+public <pattern> = (Abstract Factory) |
+                   Adapter |
+                   Composite |
+                   Observer |
+                   Strategy; 
+                   
+                   
