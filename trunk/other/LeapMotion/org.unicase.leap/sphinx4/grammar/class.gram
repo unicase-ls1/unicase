@@ -6,7 +6,8 @@
 
 grammar class;
 
-public <class> = Class |
+public <element> = Class |
+                 Package |
                  Interface |
                  Generalization;
                  
@@ -16,4 +17,9 @@ public <pattern> = (Abstract Factory) |
                    Observer |
                    Strategy; 
                    
-                   
+public <attribute> = Name |
+                     I D |
+                     Age;
+                     
+public <operation> = Execute |
+                     Dispose;

@@ -16,3 +16,8 @@ public <view> = Navigator |
                 Status |
                 (Sprint Status) |
                 Repository;
+                
+public <element> = Project |
+                   Document |
+                   Leaf Section |
+                   Class Diagram;                  

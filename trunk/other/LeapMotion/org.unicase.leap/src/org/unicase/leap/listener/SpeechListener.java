@@ -179,8 +179,10 @@ public class SpeechListener implements Configurable {
 						while (running) {
 							Result result = recognizer.recognize();
 							if (result != null) {
+								System.out.print("RECOGNIZED: ");
 								String bestResult = result.getBestFinalResultNoFiller();
 								if (bestResult != null && !bestResult.isEmpty()) {
+									System.out.println(bestResult);
 									for (LeapInputListener listener : listeners) {
 										listener.handleSpeechRecognized(result);
 									}
