@@ -4,7 +4,7 @@
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.leap.papyrus.clazz;
+package org.unicase.leap.papyrus.clazz.pattern;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
@@ -13,6 +13,7 @@ import org.eclipse.swt.graphics.Point;
 import org.unicase.leap.action.ILeapActionHandler;
 import org.unicase.leap.action.LeapActionCancelledException;
 import org.unicase.leap.events.LeapActionEvent;
+import org.unicase.leap.papyrus.clazz.LeapPapyrusClassDiagramHelper;
 
 /**
  * Implementation of the {@link ILeapActionHandler} that will create the adapter pattern at the current cursor location,

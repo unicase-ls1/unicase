@@ -4,7 +4,7 @@
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.leap.papyrus.clazz;
+package org.unicase.leap.papyrus.clazz.pattern;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecp.common.commands.ECPCommand;
@@ -13,14 +13,15 @@ import org.eclipse.swt.graphics.Point;
 import org.unicase.leap.action.ILeapActionHandler;
 import org.unicase.leap.action.LeapActionCancelledException;
 import org.unicase.leap.events.LeapActionEvent;
+import org.unicase.leap.papyrus.clazz.LeapPapyrusClassDiagramHelper;
 
 /**
- * Implementation of the {@link ILeapActionHandler} that will create the observer pattern at the current cursor
+ * Implementation of the {@link ILeapActionHandler} that will create the strategy pattern at the current cursor
  * location, once a {@link LeapActionEvent} is raised.
  * 
  * @author mharut
  */
-public class LeapObserverCreator implements ILeapActionHandler {
+public class LeapStrategyCreator implements ILeapActionHandler {
 
 	@Override
 	public void handleLeapAction(LeapActionEvent leapEvent, final IProgressMonitor monitor) {
@@ -32,37 +33,31 @@ public class LeapObserverCreator implements ILeapActionHandler {
 			@Override
 			protected void doRun() {
 				try {
-					monitor.beginTask("Create Observer Pattern", 125);
+					monitor.beginTask("Create Strategy Pattern", 100);
 					helper.setWorkWeight(15);
-					Node observerNode = helper.createClass("Observer", true);
-					Node observerANode = helper.createClass("ConcreteObserverA", false);
-					Node observerBNode = helper.createClass("ConcreteObserverB", false);
-					Node subjectNode = helper.createClass("Subject", false);
+					Node contextNode = helper.createClass("Context", false);
+					Node strategyNode = helper.createClass("Strategy", true);
+					Node strategyANode = helper.createClass("ConcreteStrategyA", false);
+					Node strategyBNode = helper.createClass("ConcreteStrategyB", false);
 
 					helper.setWorkWeight(5);
-					helper.addOperation("notify", true, observerNode);
-					helper.addOperation("notifyAll", false, subjectNode);
-					Node attachNode = helper.addOperation("attach", false, subjectNode);
-					Node detachNode = helper.addOperation("detach", false, subjectNode);
-					helper.addParameter("observer", observerNode, attachNode);
-					helper.addParameter("observer", observerNode, detachNode);
+					helper.addOperation("execute", false, strategyNode);
 
 					helper.setWorkWeight(10);
-					helper.createContainment(subjectNode, observerNode);
-					helper.createGeneralization(observerNode, observerANode);
-					helper.createGeneralization(observerNode, observerBNode);
+					helper.createContainment(contextNode, strategyNode);
+					helper.createGeneralization(strategyNode, strategyANode);
+					helper.createGeneralization(strategyNode, strategyBNode);
 
 					helper.setWorkWeight(1);
-					helper.setLocation(subjectNode, location.x, location.y, true);
-					helper.setLocation(observerNode, location.x + 250, location.y, true);
-					helper.setLocation(observerANode, location.x + 100, location.y + 150, true);
-					helper.setLocation(observerBNode, location.x + 400, location.y + 150, true);
+					helper.setLocation(contextNode, location.x, location.y, true);
+					helper.setLocation(strategyNode, location.x + 250, location.y, true);
+					helper.setLocation(strategyANode, location.x + 100, location.y + 150, true);
+					helper.setLocation(strategyBNode, location.x + 400, location.y + 150, true);
 
 					monitor.done();
 				} catch (LeapActionCancelledException e) {
 					// do nothing
 				}
-
 			}
 		}.run(false);
 	}

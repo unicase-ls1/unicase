@@ -7,9 +7,10 @@
 package org.unicase.leap.papyrus.clazz;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
@@ -24,7 +25,7 @@ import org.unicase.leap.events.LeapActionEvent;
 
 /**
  * Implementation of the {@link ILeapActionHandler} that will extract all focussed nodes from the leap motion sensor
- * data and generate a generalized superclass once a {@link LeapActionEvent} is raised.. Any common operations or
+ * data and generate a generalized superclass once a {@link LeapActionEvent} is raised. Any common operations or
  * attributes will be added to this superclass as well.
  * 
  * @author mharut
@@ -69,11 +70,11 @@ public class LeapClassGeneralizer implements ILeapActionHandler {
 		/**
 		 * List of all operation names appearing across all classes.
 		 */
-		private final List<String> operationNames;
+		private final Map<String, Operation> operationByName;
 		/**
 		 * List of all attribute names appearing across all classes.
 		 */
-		private final List<String> attributeNames;
+		private final Map<String, Property> attributeByName;
 
 		/**
 		 * Constructs a new command for a papyrus class diagram helper object.
@@ -86,8 +87,8 @@ public class LeapClassGeneralizer implements ILeapActionHandler {
 			this.monitor = monitor;
 			focussedNodes = helper.getFocussedNodes();
 			classNodes = new ArrayList<Node>(focussedNodes.size());
-			operationNames = new LinkedList<String>();
-			attributeNames = new LinkedList<String>();
+			operationByName = new HashMap<String, Operation>();
+			attributeByName = new HashMap<String, Property>();
 		}
 
 		@Override
@@ -115,16 +116,16 @@ public class LeapClassGeneralizer implements ILeapActionHandler {
 					if (first) {
 						// for the first class, all operations and attributes are added
 						for (Operation operation : specificClass.getOperations()) {
-							operationNames.add(operation.getName());
+							operationByName.put(operation.getName(), operation);
 						}
 						for (Property attribute : specificClass.getAttributes()) {
-							attributeNames.add(attribute.getName());
+							attributeByName.put(attribute.getName(), attribute);
 						}
 						first = false;
 					} else {
 						// for every subsequent class, all operation and attribute names that this class doesn't share
 						// are removed
-						for (Iterator<String> it = operationNames.iterator(); it.hasNext();) {
+						for (Iterator<String> it = operationByName.keySet().iterator(); it.hasNext();) {
 							String operationName = it.next();
 							boolean contains = false;
 							for (Operation operation : specificClass.getOperations()) {
@@ -137,7 +138,7 @@ public class LeapClassGeneralizer implements ILeapActionHandler {
 								it.remove();
 							}
 						}
-						for (Iterator<String> it = attributeNames.iterator(); it.hasNext();) {
+						for (Iterator<String> it = attributeByName.keySet().iterator(); it.hasNext();) {
 							String attributeName = it.next();
 							boolean contains = false;
 							for (Property attribute : specificClass.getAttributes()) {
@@ -167,18 +168,20 @@ public class LeapClassGeneralizer implements ILeapActionHandler {
 			int size = classNodes.size();
 			if (2 <= size) {
 				monitor.beginTask("Extract Class Generalization", 15 // create generalized class
-					+ 5 * (operationNames.size() + attributeNames.size()) // add operations and attributes
+					+ 5 * (operationByName.size() + attributeByName.size()) // add operations and attributes
 					+ 10 * size // create generalization relationship for every class
 					+ 1); // set location of the new class
 				helper.setWorkWeight(15);
 				Node generalizedNode = helper.createClass("Generalized Class", false);
 
 				helper.setWorkWeight(5);
-				for (String operationName : operationNames) {
-					helper.addOperation(operationName, false, generalizedNode);
+				Node[] nodeArray = new Node[classNodes.size()];
+				classNodes.toArray(nodeArray);
+				for (Operation operation : operationByName.values()) {
+					helper.transferOperation(operation, nodeArray, generalizedNode);
 				}
-				for (String attributeName : attributeNames) {
-					helper.addAttribute(attributeName, generalizedNode);
+				for (Property attribute : attributeByName.values()) {
+					helper.transferAttribute(attribute, nodeArray, generalizedNode);
 				}
 
 				helper.setWorkWeight(10);
@@ -197,6 +200,8 @@ public class LeapClassGeneralizer implements ILeapActionHandler {
 					y = Math.min(y, nodeLocation.y);
 				}
 				helper.setLocation(generalizedNode, x / size, y - 150, false);
+			} else {
+				System.out.println("Only " + size + " nodes have been focussed.");
 			}
 		}
 
