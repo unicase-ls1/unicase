@@ -6,7 +6,12 @@
 
 grammar tools;
 
-public <pattern_tool> = Create;
+public <tool> = Create |
+                Delete |
+                Open |
+                Close |
+                Move |
+                Extract |
+                Pull Up |
+                Pull Down;
                 
-public <view_tool> = Open |
-                     Close;

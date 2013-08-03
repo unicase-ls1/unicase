@@ -51,9 +51,6 @@ import edu.cmu.sphinx.result.Result;
  * 
  * @author mharut
  */
-/**
- * @author mharut
- */
 public class LeapInputListener extends Listener {
 
 	/**
@@ -333,21 +330,9 @@ public class LeapInputListener extends Listener {
 	 */
 	private void processGestures(Frame frame) {
 		for (Gesture gesture : frame.gestures()) {
-			switch (gesture.type()) {
-			case TYPE_SCREEN_TAP:
-			case TYPE_KEY_TAP:
-			case TYPE_SWIPE:
-			case TYPE_CIRCLE:
-				LeapGestureEvent event = new LeapGestureEvent(gesture, System.currentTimeMillis());
-				for (InputProcessor inputProcessor : inputProcessors) {
-					inputProcessor.processGesture(event);
-				}
-				break;
-			case TYPE_INVALID:
-				// don't process invalid gestures
-				break;
-			default:
-				throw new IllegalArgumentException("Invalid gesture type!");
+			LeapGestureEvent event = new LeapGestureEvent(gesture, System.currentTimeMillis());
+			for (InputProcessor inputProcessor : inputProcessors) {
+				inputProcessor.processGesture(event);
 			}
 		}
 	}

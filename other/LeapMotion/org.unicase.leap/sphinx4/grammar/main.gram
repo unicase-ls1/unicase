@@ -6,9 +6,15 @@
 
 grammar main;
 
+import <class.attribute>;
+import <class.operation>;
 import <class.pattern>;
 import <domain.view>;
-import <tools.view_tool>;
-import <tools.pattern_tool>;
+import <tools.tool>;
 
-public <main> = <view_tool> <view> | <pattern_tool> <pattern>;
+public <main> = <tool> [<view> |
+                        <domain.element> |
+                        <pattern> |
+                        <class.element> |
+                        <attribute> |
+                        <operation>];

@@ -30,6 +30,7 @@ import org.unicase.leap.events.LeapSpeechEvent;
 
 import com.leapmotion.leap.Gesture;
 import com.leapmotion.leap.Gesture.State;
+import com.leapmotion.leap.Gesture.Type;
 
 import edu.cmu.sphinx.result.Result;
 
@@ -83,6 +84,13 @@ public class InputProcessor {
 	 */
 	private int remainingClicks;
 	/**
+	 * Code of a button of the input sequence that is being held down. If this is positive, any input not occurring in
+	 * the input sequence will not discard the action event. This is because it might be that users performed one action
+	 * before performing another with the same key held down (e.g. Ctrl+A to select all and Ctrl+D to delete the
+	 * selected elements). A negative value indicates that no key is being held down at the moment.
+	 */
+	private int holding;
+	/**
 	 * The timeout in milliseconds of the input that was currently processed. If the time between two inputs exceeds
 	 * this timeout, the whole sequence will be discarded and started from the beginning.
 	 */
@@ -108,6 +116,7 @@ public class InputProcessor {
 		this.handler = handler;
 		this.currentInputIndex = 0;
 		this.remainingClicks = 0;
+		this.holding = -1;
 		this.grammarLocations = new HashSet<URL>();
 		boolean hasGestures = false;
 		for (ActionInput input : inputArray) {
@@ -140,8 +149,9 @@ public class InputProcessor {
 			}
 		}
 		Gesture gesture = gestureEvent.getGesture();
-		if (gesture.type().equals(gestureInput.getInputType())
-			&& (gestureEvent.isFingersInvolved() && gestureInput.isFingersEnabled())
+		Type actualType = gesture.type();
+		Type expectedType = gestureInput.getInputType();
+		if (expectedType.equals(actualType) && (gestureEvent.isFingersInvolved() && gestureInput.isFingersEnabled())
 			|| (gestureEvent.isToolsInvolved() && gestureInput.isToolsEnabled())) {
 			if (leapEvent == null) {
 				leapEvent = new LeapActionEvent(page.getActiveEditor(), helper);
@@ -166,6 +176,14 @@ public class InputProcessor {
 	 * @param keyEvent the event of the keyboard input that was performed
 	 */
 	public synchronized void processKeyEvent(LeapKeyEvent keyEvent) {
+		int actualKey = keyEvent.getKeyEvent().keyCode;
+		int eventType = keyEvent.getType();
+		if (holding == actualKey && eventType == SWT.KeyUp) {
+			// held down key has been released before the input sequence was completed
+			holding = -1;
+			discardEvent();
+			return;
+		}
 		KeyInput keyInput = validateInput(KeyInput.class, keyEvent);
 		if (keyInput == null) {
 			// next input is not a keyboard input -> start input sequence from the beginning and check if the first
@@ -176,21 +194,20 @@ public class InputProcessor {
 				return;
 			}
 		}
-		if (keyEvent.getKeyEvent().keyCode == keyInput.getKey()) {
+		int expectedKey = keyInput.getKey();
+		if (expectedKey == actualKey) {
 			if (leapEvent == null) {
 				leapEvent = new LeapActionEvent(page.getActiveEditor(), helper);
 			}
 			leapEvent.addEvent(keyEvent);
-			if (keyEvent.getType() == SWT.KeyDown) {
+			if (eventType == SWT.KeyDown) {
 				if (keyInput.isHold()) { // key down events are only relevant for hold-input
+					holding = actualKey;
 					proceed(leapEvent, keyEvent);
 				}
-			} else if (keyEvent.getType() == SWT.KeyUp) {
-				if (keyInput.isHold()) { // key of hold-input has been released, before the input sequence was complete
-					discardEvent();
-				} else { // push-input was performed successfully
-					proceed(leapEvent, keyEvent);
-				}
+			} else if (eventType == SWT.KeyUp) {
+				// key up events are only relevant for push-input
+				proceed(leapEvent, keyEvent);
 			} else {
 				discardEvent();
 			}
@@ -307,11 +324,13 @@ public class InputProcessor {
 	 * Discards the current leap action event and resets all values involved in the input sequence processing process.
 	 */
 	private synchronized void discardEvent() {
-		leapEvent = null;
-		currentInputIndex = 0;
-		remainingClicks = 0;
-		timeOfLastInput = 0;
-		currentTimeout = 0;
+		if (holding >= 0) {
+			leapEvent = null;
+			currentInputIndex = 0;
+			remainingClicks = 0;
+			timeOfLastInput = 0;
+			currentTimeout = 0;
+		}
 	}
 
 	/**
@@ -333,6 +352,8 @@ public class InputProcessor {
 					notifyHandler(display.getActiveShell(), actionEvent);
 				}
 			});
+			currentInputIndex = 0;
+			holding = -1;
 		} else {
 			timeOfLastInput = inputEvent.getTime();
 		}
