@@ -8,6 +8,7 @@ package org.unicase.leap.papyrus.clazz;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -19,28 +20,36 @@ import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassAttributeCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassOperationCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentSubLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.OperationForClassEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyForClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Dependency;
+import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
@@ -79,7 +88,6 @@ public class LeapPapyrusClassDiagramHelper {
 	 * The preferences hint used for the view service to perform manipulations on Papyrus class diagrams.
 	 */
 	private static final PreferencesHint PREFERENCES_HINT = UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
-
 	/**
 	 * The leap event this helper is helping to handle.
 	 */
@@ -95,11 +103,15 @@ public class LeapPapyrusClassDiagramHelper {
 	/**
 	 * A map from GMF nodes to their operation compartments.
 	 */
-	private final Map<Node, BasicCompartment> nodeToOpCompartment;
+	private final Map<Node, Node> nodeToOpCompartment;
 	/**
 	 * A map from GMF nodes to their attribute compartments.
 	 */
-	private final Map<Node, BasicCompartment> nodeToAttrCompartment;
+	private final Map<Node, Node> nodeToAttrCompartment;
+	/**
+	 * A map from GMF nodes to their packageable element compartments.
+	 */
+	private final Map<Node, Node> nodeToPkgCompartment;
 	/**
 	 * The weight of the current work used to update the progress monitor.
 	 */
@@ -117,8 +129,9 @@ public class LeapPapyrusClassDiagramHelper {
 		IEditorPart editor = leapEvent.getEditor();
 		if (editor instanceof UMLClassDiagramEditor) {
 			this.editor = (UMLClassDiagramEditor) editor;
-			this.nodeToOpCompartment = new HashMap<Node, BasicCompartment>();
-			this.nodeToAttrCompartment = new HashMap<Node, BasicCompartment>();
+			this.nodeToOpCompartment = new HashMap<Node, Node>();
+			this.nodeToAttrCompartment = new HashMap<Node, Node>();
+			this.nodeToPkgCompartment = new HashMap<Node, Node>();
 		} else {
 			throw new IllegalArgumentException("Leap actions for this handler can only be defined for "
 				+ UMLClassDiagramEditor.class.getCanonicalName());
@@ -160,6 +173,28 @@ public class LeapPapyrusClassDiagramHelper {
 	}
 
 	/**
+	 * Creates a new {@link org.eclipse.uml2.uml.Package Package} node with a certain name.
+	 * 
+	 * @param name the name of the package
+	 * @return the new package as a GMF node - the underlying UML package is accessible via {@link Node#getElement()}.
+	 * @throws LeapActionCancelledException if the process has been cancelled by the user
+	 */
+	public Node createPackage(String name) throws LeapActionCancelledException {
+		if (monitor.isCanceled()) {
+			throw new LeapActionCancelledException();
+		}
+		Diagram diagram = editor.getDiagram();
+		UMLModel model = (UMLModel) diagram.getElement();
+		org.eclipse.uml2.uml.Package pkg = FACTORY.createPackage();
+		pkg.setName(name);
+		model.getPackagedElements().add(pkg);
+		Node node = VIEW_SERVICE.createNode(new EObjectAdapter(pkg), diagram,
+			Integer.toString(PackageEditPart.VISUAL_ID), ViewUtil.APPEND, true, PREFERENCES_HINT);
+		monitor.worked(workWeight);
+		return node;
+	}
+
+	/**
 	 * Creates a new {@link Operation} node with a certain name and adds it to an existing class node.
 	 * 
 	 * @param operationName the name of the operation
@@ -173,7 +208,7 @@ public class LeapPapyrusClassDiagramHelper {
 		if (monitor.isCanceled()) {
 			throw new LeapActionCancelledException();
 		}
-		BasicCompartment compartment = getOperationCompartment(node);
+		Node compartment = getOperationCompartment(node);
 		EObject element = node.getElement();
 		Node result;
 		if (compartment != null && element instanceof org.eclipse.uml2.uml.Class) {
@@ -226,16 +261,16 @@ public class LeapPapyrusClassDiagramHelper {
 	 * @return the operation compartment of <code>node</code> if any exists,<br/>
 	 *         <code>null</code> otherwise
 	 */
-	private BasicCompartment getOperationCompartment(Node node) {
+	private Node getOperationCompartment(Node node) {
 		if (nodeToOpCompartment.containsKey(node)) {
 			return nodeToOpCompartment.get(node);
 		} else {
-			for (Object o : node.getChildren()) {
-				if (o instanceof BasicCompartment) {
-					BasicCompartment compartment = (BasicCompartment) o;
-					if (compartment.getType().equals(Integer.toString(ClassOperationCompartmentEditPart.VISUAL_ID))) {
-						nodeToOpCompartment.put(node, compartment);
-						return compartment;
+			for (Object o : node.getPersistedChildren()) {
+				if (o instanceof Node) {
+					Node childNode = (Node) o;
+					if (node.getType().equals(Integer.toString(ClassOperationCompartmentEditPart.VISUAL_ID))) {
+						nodeToOpCompartment.put(node, childNode);
+						return childNode;
 					}
 				}
 			}
@@ -244,24 +279,25 @@ public class LeapPapyrusClassDiagramHelper {
 	}
 
 	/**
-	 * Creates a new {@link Property} node with a certain name and adds it to an existing class node.
+	 * Creates a new {@link Property} node with a certain name and type and adds it to an existing class node.
 	 * 
 	 * @param attributeName the name of the attribute
+	 * @param type the type of the attribute to add
 	 * @param node the class node this attribute shall be added to
 	 * @return the new attribute as a GMF node - the underlying UML property is accessible via {@link Node#getElement()}
 	 * @throws LeapActionCancelledException if the process has been cancelled by the user
 	 */
-	public Node addAttribute(String attributeName, Node node) throws LeapActionCancelledException {
+	public Node addAttribute(String attributeName, Type type, Node node) throws LeapActionCancelledException {
 		if (monitor.isCanceled()) {
 			throw new LeapActionCancelledException();
 		}
-		BasicCompartment compartment = getAttributeCompartment(node);
+		Node compartment = getAttributeCompartment(node);
 		EObject element = node.getElement();
 		Node result;
-		if (compartment != null && element instanceof Type) {
+		if (compartment != null && element instanceof Classifier) {
 			Property attribute = FACTORY.createProperty();
 			attribute.setName(attributeName);
-			attribute.setType((Type) element);
+			attribute.setType(type);
 			result = VIEW_SERVICE.createNode(new EObjectAdapter(attribute), compartment,
 				Integer.toString(PropertyForClassEditPart.VISUAL_ID), ViewUtil.APPEND, true, PREFERENCES_HINT);
 		} else {
@@ -278,21 +314,119 @@ public class LeapPapyrusClassDiagramHelper {
 	 * @return the attribute compartment of <code>node</code> if any exists,<br/>
 	 *         <code>null</code> otherwise
 	 */
-	private BasicCompartment getAttributeCompartment(Node node) {
+	private Node getAttributeCompartment(Node node) {
 		if (nodeToAttrCompartment.containsKey(node)) {
 			return nodeToAttrCompartment.get(node);
 		} else {
-			for (Object o : node.getChildren()) {
+			for (Object o : node.getPersistedChildren()) {
 				if (o instanceof BasicCompartment) {
-					BasicCompartment compartment = (BasicCompartment) o;
-					if (compartment.getType().equals(Integer.toString(ClassAttributeCompartmentEditPart.VISUAL_ID))) {
-						nodeToOpCompartment.put(node, compartment);
-						return compartment;
+					Node childNode = (Node) o;
+					if (childNode.getType().equals(Integer.toString(ClassAttributeCompartmentEditPart.VISUAL_ID))) {
+						nodeToOpCompartment.put(node, childNode);
+						return childNode;
 					}
 				}
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Adds a class to a package and its node to the packageable element compartment of the package node.
+	 * 
+	 * @param classNode the node of the class to add to the package
+	 * @param packageNode the node of the package to add the class to
+	 * @throws LeapActionCancelledException if the user has cancelled the process
+	 */
+	public void addClassToPackage(Node classNode, Node packageNode) throws LeapActionCancelledException {
+		if (monitor.isCanceled()) {
+			throw new LeapActionCancelledException();
+		}
+		Node pkgCompartment = getPackageCompartment(packageNode);
+		EObject clsElement = classNode.getElement();
+		EObject pkgElement = packageNode.getElement();
+		if (pkgCompartment != null && clsElement instanceof org.eclipse.uml2.uml.Class
+			&& pkgElement instanceof org.eclipse.uml2.uml.Package) {
+			org.eclipse.uml2.uml.Class clazz = (org.eclipse.uml2.uml.Class) clsElement;
+			org.eclipse.uml2.uml.Package pkg = (org.eclipse.uml2.uml.Package) pkgElement;
+			pkg.getPackagedElements().add(clazz);
+			VIEW_SERVICE.createNode(new EObjectAdapter(clazz), pkgCompartment,
+				Integer.toString(ClassEditPartCN.VISUAL_ID), ViewUtil.APPEND, true, PREFERENCES_HINT);
+			getDiagram().removeChild(classNode);
+		}
+		monitor.worked(workWeight);
+	}
+
+	/**
+	 * Retrieves the packageable element compartment of a GMF {@link Node}, if any exists.
+	 * 
+	 * @param node the node to obtain the compartment for
+	 * @return the packageable element compartment of <code>node</code> if any exists,<br/>
+	 *         <code>null</code> otherwise
+	 */
+	private Node getPackageCompartment(Node node) {
+		if (nodeToPkgCompartment.containsKey(node)) {
+			return nodeToPkgCompartment.get(node);
+		}
+		for (Object o : node.getPersistedChildren()) {
+			if (o instanceof DecorationNode) {
+				Node childNode = (Node) o;
+				if (childNode.getType()
+					.equals(Integer.toString(PackagePackageableElementCompartmentEditPart.VISUAL_ID))) {
+					nodeToPkgCompartment.put(node, childNode);
+					return childNode;
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Transfers an operation from several source nodes to one target node.
+	 * 
+	 * @param operation the operation to transfer
+	 * @param sourceNodes the array of source nodes to transfer the operation from
+	 * @param targetNode the target node to transfer the operation to
+	 * @throws LeapActionCancelledException if the user cancelled the process
+	 */
+	public void transferOperation(Operation operation, Node[] sourceNodes, Node targetNode)
+		throws LeapActionCancelledException {
+		String name = operation.getName();
+		boolean isAbstract = operation.isAbstract();
+		for (Node node : sourceNodes) {
+			org.eclipse.uml2.uml.Class clazz = (org.eclipse.uml2.uml.Class) node.getElement();
+			for (Iterator<Feature> it = clazz.getFeatures().iterator(); it.hasNext();) {
+				Feature feature = it.next();
+				if (feature instanceof Operation) {
+					Operation containedOperation = (Operation) feature;
+					if (name.equals(containedOperation.getName())) {
+						it.remove();
+						break;
+					}
+				}
+			}
+		}
+		addOperation(name, isAbstract, targetNode);
+	}
+
+	/**
+	 * Transfers an attribute from several source nodes to one target node.
+	 * 
+	 * @param attribute the attribute to transfer
+	 * @param sourceNodes the array of source nodes to transfer the attribute from
+	 * @param targetNode the target node to transfer the attribute to
+	 * @throws LeapActionCancelledException if the user cancelled the process
+	 */
+	public void transferAttribute(Property attribute, Node[] sourceNodes, Node targetNode)
+		throws LeapActionCancelledException {
+		String name = attribute.getName();
+		Type type = attribute.getType();
+		for (Node node : sourceNodes) {
+			org.eclipse.uml2.uml.Class clazz = (org.eclipse.uml2.uml.Class) node.getElement();
+			Property sourceAttribute = clazz.getAttribute(name, type);
+			clazz.getFeatures().remove(sourceAttribute);
+		}
+		addAttribute(name, type, targetNode);
 	}
 
 	/**
@@ -479,7 +613,7 @@ public class LeapPapyrusClassDiagramHelper {
 			}
 
 			// check for every of the diagram's children, if one of the pointables is pointing at it
-			for (Object o : editor.getDiagram().getChildren()) {
+			for (Object o : editor.getDiagram().getPersistedChildren()) {
 				if (o instanceof Node) {
 					Node node = (Node) o;
 					Integer x = (Integer) ViewUtil.getStructuralFeatureValue(node, LeapPapyrusConstants.LOCATION_X);
@@ -487,16 +621,38 @@ public class LeapPapyrusClassDiagramHelper {
 					Integer height = (Integer) ViewUtil.getStructuralFeatureValue(node,
 						LeapPapyrusConstants.SIZE_HEIGHT);
 					Integer width = (Integer) ViewUtil.getStructuralFeatureValue(node, LeapPapyrusConstants.SIZE_WIDTH);
+					if (width < 0) {
+						width = getIntConstant(node, PreferenceConstantHelper.WIDTH);
+					}
+					if (height < 0) {
+						height = getIntConstant(node, PreferenceConstantHelper.HEIGHT);
+					}
 					for (Point focussedLocation : focussedLocations) {
 						if (focussedLocation.x > x && focussedLocation.x < (x + width) && focussedLocation.y > y
 							&& focussedLocation.y < (y + height)) {
 							result.add(node);
+							break;
 						}
 					}
 				}
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * Retrieves the value of a default papyrus integer constant for a certain node and the key of the constant.
+	 * 
+	 * @param node the node to retrieve the constant for
+	 * @param preferenceConstantKey the key of the constant to retrieve
+	 * @return the value of the integer constant specified for the node and the constant's key
+	 */
+	private Integer getIntConstant(Node node, int preferenceConstantKey) {
+		String prefElementId = node.getElement().eClass().getName();
+		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		String preferenceConstant = PreferenceInitializerForElementHelper.getpreferenceKey(node, prefElementId,
+			preferenceConstantKey);
+		return store.getInt(preferenceConstant);
 	}
 
 	/**

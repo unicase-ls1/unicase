@@ -5,6 +5,7 @@ Bundle-SymbolicName: org.unicase.leap.papyrus;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.unicase.leap,
- org.unicase.papyrus.uml.diagram;bundle-version="0.5.1"
+ org.unicase.papyrus.uml.diagram,
+ org.eclipse.papyrus.preferences
 Export-Package: org.unicase.leap.papyrus.clazz
 Import-Package: com.leapmotion.leap
