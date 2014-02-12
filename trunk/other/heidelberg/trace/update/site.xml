@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.unicase.trace.feature_1.0.11.jar" id="org.unicase.trace.feature" version="1.0.11">
-      <category name="unicase"/>
+   <description name="UNICASE Trace Client update site" url="http://unicase.googlecode.com/svn/trunk/other/heidelberg/trace/update">
+      This update site contains all UNICASE Trace Client plug-ins.
+   </description>
+   <feature url="features/org.unicase.trace.feature_1.0.12.jar" id="org.unicase.trace.feature" version="1.0.12">
+      <category name="UNICASE"/>
    </feature>
-   <category-def name="unicase" label="UNICASE Trace"/>
+   <category-def name="UNICASE" label="UNICASE">
+      <description>
+         This category contains all UNICASE Trace Client plug-ins.
+      </description>
+   </category-def>
 </site>
