@@ -15,4 +15,4 @@ When you start the plug-in for the first time, no custom views are defined. In o
 [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/ViewsMenu.png] 
 
 ===User Manual===
-An in-depth user manual is available as a .pdf [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/ViewsUserManual.pdf here].
+An in-depth user manual is available as pdf [http://unicase.googlecode.com/svn/trunk/other/heidelberg/plugin-resources/ViewsUserManual.pdf here].
