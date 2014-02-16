@@ -14,6 +14,8 @@ The following plugins can be installed individually. This means that they can be
 
  * [UserTasks]: Provides advanced support for specifying use tasks as user requirements, especially new sub tasks. 
 
+ * [Views]: Provides fully customizable views on the overview tree of the navigator.
+
 ===Depending plugins===
 
 The following plugins have a *depencendy to the integrated plugins (see below)*. This means that the integrated plugins are required to run one of the following plugins.
