@@ -22,11 +22,11 @@ Right-click on the element you want to rename and select "Rename..." from the "R
 
 === Supported Elements ===
 Move operations are supported for UNICASE model elements, both native and non-native, as well as non-UNICASE model elements. There are some exceptions, however. The following elements are not supported:
-* Project spaces
-* The "Orphans" project
-* Proposals
-* Assessments
-* Solutions
+  * Project spaces
+  * The "Orphans" project
+  * Proposals
+  * Assessments
+  * Solutions
 Please note that when moving comments, the comment's reference to the commented element is changed to the element you have selected as the new location.
 
 Rename operations are only supported for UNICASE model elements, both native and non-native. 
