@@ -16,6 +16,8 @@ The following plugins can be installed individually. This means that they can be
 
  * [Views]: Provides fully customizable views on the overview tree of the navigator.
 
+ * [Refactor]: Enables moving and renaming elements in the navigator tree for Unicase 0.5.2
+
 ===Depending plugins===
 
 The following plugins have a *depencendy to the integrated plugins (see below)*. This means that the integrated plugins are required to run one of the following plugins.
