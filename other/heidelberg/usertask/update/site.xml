@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.unicase.usertask.feature_1.0.0.jar" id="org.unicase.usertask.feature" version="1.0.0">
-      <category name="unicase"/>
+   <feature url="features/org.unicase.usertask.feature_1.0.1.jar" id="org.unicase.usertask.feature" version="1.0.1">
+      <category name="UNICASE"/>
    </feature>
-   <category-def name="unicase" label="UNICASE"/>
+   <category-def name="UNICASE" label="UNICASE">
+      <description>
+         This category contains all UNICASE Views plug-ins.
+      </description>
+   </category-def>
 </site>
