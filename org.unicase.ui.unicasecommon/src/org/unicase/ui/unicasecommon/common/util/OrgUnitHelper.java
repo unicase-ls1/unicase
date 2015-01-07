@@ -56,7 +56,7 @@ public final class OrgUnitHelper {
 	 *             if the current user cannot be found in the current project
 	 */
 	public static User getCurrentUser(Workspace currentWorkspace)
-			throws NoCurrentUserException, CannotMatchUserInProjectException {
+			throws AccessControlException {
 		try {
 			ProjectSpace activeProjectSpace = (ProjectSpace) ECPWorkspaceManager
 					.getInstance().getWorkSpace().getActiveProject()

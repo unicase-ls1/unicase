@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -18,26 +18,26 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.ListOptionImpl#getListStyle <em>List Style</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.renderers.options.impl.ListOptionImpl#getListStyle <em>List Style</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ListOptionImpl extends RendererOptionImpl implements ListOption {
 	/**
-	 * The default value of the '{@link #getListStyle() <em>List Style</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getListStyle() <em>List Style</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getListStyle()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final ListStyle LIST_STYLE_EDEFAULT = ListStyle.BULLETED;
 	/**
-	 * The cached value of the '{@link #getListStyle() <em>List Style</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getListStyle() <em>List Style</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getListStyle()
 	 * @generated
 	 * @ordered
@@ -46,7 +46,6 @@ public class ListOptionImpl extends RendererOptionImpl implements ListOption {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ListOptionImpl() {
@@ -55,7 +54,6 @@ public class ListOptionImpl extends RendererOptionImpl implements ListOption {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,7 +63,6 @@ public class ListOptionImpl extends RendererOptionImpl implements ListOption {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ListStyle getListStyle() {
@@ -74,84 +71,76 @@ public class ListOptionImpl extends RendererOptionImpl implements ListOption {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setListStyle(ListStyle newListStyle) {
 		ListStyle oldListStyle = listStyle;
 		listStyle = newListStyle == null ? LIST_STYLE_EDEFAULT : newListStyle;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LIST_OPTION__LIST_STYLE, oldListStyle,
-				listStyle));
+			eNotify(new ENotificationImpl(this, Notification.SET, OptionsPackage.LIST_OPTION__LIST_STYLE, oldListStyle, listStyle));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case OptionsPackage.LIST_OPTION__LIST_STYLE:
-			return getListStyle();
+			case OptionsPackage.LIST_OPTION__LIST_STYLE:
+				return getListStyle();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case OptionsPackage.LIST_OPTION__LIST_STYLE:
-			setListStyle((ListStyle) newValue);
-			return;
+			case OptionsPackage.LIST_OPTION__LIST_STYLE:
+				setListStyle((ListStyle)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case OptionsPackage.LIST_OPTION__LIST_STYLE:
-			setListStyle(LIST_STYLE_EDEFAULT);
-			return;
+			case OptionsPackage.LIST_OPTION__LIST_STYLE:
+				setListStyle(LIST_STYLE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case OptionsPackage.LIST_OPTION__LIST_STYLE:
-			return listStyle != LIST_STYLE_EDEFAULT;
+			case OptionsPackage.LIST_OPTION__LIST_STYLE:
+				return listStyle != LIST_STYLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (listStyle: ");

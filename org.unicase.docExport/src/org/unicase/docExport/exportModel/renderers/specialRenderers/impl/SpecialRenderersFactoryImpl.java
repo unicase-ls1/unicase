@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -27,31 +27,30 @@ import org.unicase.docExport.exportModel.renderers.specialRenderers.StepsAttribu
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class SpecialRenderersFactoryImpl extends EFactoryImpl implements SpecialRenderersFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static SpecialRenderersFactory init() {
 		try {
-			SpecialRenderersFactory theSpecialRenderersFactory = (SpecialRenderersFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/docExport/exportModel/renderers/specialRenderers");
+			SpecialRenderersFactory theSpecialRenderersFactory = (SpecialRenderersFactory)EPackage.Registry.INSTANCE.getEFactory(SpecialRenderersPackage.eNS_URI);
 			if (theSpecialRenderersFactory != null) {
 				return theSpecialRenderersFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new SpecialRenderersFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public SpecialRenderersFactoryImpl() {
@@ -60,36 +59,26 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case SpecialRenderersPackage.MEETING_RENDERER:
-			return createMeetingRenderer();
-		case SpecialRenderersPackage.MILESTONE_RENDERER:
-			return createMilestoneRenderer();
-		case SpecialRenderersPackage.STEPS_ATTRIBUTE_RENDERER:
-			return createStepsAttributeRenderer();
-		case SpecialRenderersPackage.METHOD_RENDERER:
-			return createMethodRenderer();
-		case SpecialRenderersPackage.PACKAGE_FLAT_RENDERER:
-			return createPackageFlatRenderer();
-		case SpecialRenderersPackage.CLASS_RENDERER:
-			return createClassRenderer();
-		case SpecialRenderersPackage.CLASS_ATTRIBUTES_RENDERER:
-			return createClassAttributesRenderer();
-		case SpecialRenderersPackage.FHM_MEETING_RENDERER:
-			return createFhmMeetingRenderer();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			case SpecialRenderersPackage.MEETING_RENDERER: return createMeetingRenderer();
+			case SpecialRenderersPackage.MILESTONE_RENDERER: return createMilestoneRenderer();
+			case SpecialRenderersPackage.STEPS_ATTRIBUTE_RENDERER: return createStepsAttributeRenderer();
+			case SpecialRenderersPackage.METHOD_RENDERER: return createMethodRenderer();
+			case SpecialRenderersPackage.PACKAGE_FLAT_RENDERER: return createPackageFlatRenderer();
+			case SpecialRenderersPackage.CLASS_RENDERER: return createClassRenderer();
+			case SpecialRenderersPackage.CLASS_ATTRIBUTES_RENDERER: return createClassAttributesRenderer();
+			case SpecialRenderersPackage.FHM_MEETING_RENDERER: return createFhmMeetingRenderer();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MeetingRenderer createMeetingRenderer() {
@@ -113,7 +102,6 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 
 	/**
 	 * <!-- begin-user-doc --> . <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MilestoneRenderer createMilestoneRenderer() {
@@ -123,7 +111,6 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public StepsAttributeRenderer createStepsAttributeRenderer() {
@@ -133,7 +120,6 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MethodRenderer createMethodRenderer() {
@@ -143,7 +129,6 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PackageFlatRenderer createPackageFlatRenderer() {
@@ -153,7 +138,6 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ClassRenderer createClassRenderer() {
@@ -163,7 +147,6 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ClassAttributesRenderer createClassAttributesRenderer() {
@@ -173,7 +156,6 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FhmMeetingRenderer createFhmMeetingRenderer() {
@@ -183,16 +165,14 @@ public class SpecialRenderersFactoryImpl extends EFactoryImpl implements Special
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SpecialRenderersPackage getSpecialRenderersPackage() {
-		return (SpecialRenderersPackage) getEPackage();
+		return (SpecialRenderersPackage)getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

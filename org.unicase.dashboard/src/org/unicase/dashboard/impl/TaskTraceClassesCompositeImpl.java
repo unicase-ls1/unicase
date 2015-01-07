@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -9,14 +9,10 @@ package org.unicase.dashboard.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
 import org.unicase.dashboard.DashboardPackage;
 import org.unicase.dashboard.TaskTraceClassesComposite;
 
@@ -26,13 +22,14 @@ import org.unicase.dashboard.TaskTraceClassesComposite;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.dashboard.impl.TaskTraceClassesCompositeImpl#getTaskTraceClasses <em>Task Trace Classes</em>}</li>
+ *   <li>{@link org.unicase.dashboard.impl.TaskTraceClassesCompositeImpl#getTaskTraceClasses <em>Task Trace Classes</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class TaskTraceClassesCompositeImpl extends EObjectImpl implements TaskTraceClassesComposite {
+public class TaskTraceClassesCompositeImpl extends EObjectImpl implements
+		TaskTraceClassesComposite {
 	/**
 	 * The cached value of the '{@link #getTaskTraceClasses() <em>Task Trace Classes</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -45,7 +42,6 @@ public class TaskTraceClassesCompositeImpl extends EObjectImpl implements TaskTr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected TaskTraceClassesCompositeImpl() {
@@ -54,7 +50,6 @@ public class TaskTraceClassesCompositeImpl extends EObjectImpl implements TaskTr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,20 +59,20 @@ public class TaskTraceClassesCompositeImpl extends EObjectImpl implements TaskTr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<EObject> getTaskTraceClasses() {
 		if (taskTraceClasses == null) {
-			taskTraceClasses = new EObjectResolvingEList<EObject>(EObject.class, this,
-				DashboardPackage.TASK_TRACE_CLASSES_COMPOSITE__TASK_TRACE_CLASSES);
+			taskTraceClasses = new EObjectResolvingEList<EObject>(
+					EObject.class,
+					this,
+					DashboardPackage.TASK_TRACE_CLASSES_COMPOSITE__TASK_TRACE_CLASSES);
 		}
 		return taskTraceClasses;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -91,7 +86,6 @@ public class TaskTraceClassesCompositeImpl extends EObjectImpl implements TaskTr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -100,7 +94,8 @@ public class TaskTraceClassesCompositeImpl extends EObjectImpl implements TaskTr
 		switch (featureID) {
 		case DashboardPackage.TASK_TRACE_CLASSES_COMPOSITE__TASK_TRACE_CLASSES:
 			getTaskTraceClasses().clear();
-			getTaskTraceClasses().addAll((Collection<? extends EObject>) newValue);
+			getTaskTraceClasses().addAll(
+					(Collection<? extends EObject>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -108,7 +103,6 @@ public class TaskTraceClassesCompositeImpl extends EObjectImpl implements TaskTr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -123,7 +117,6 @@ public class TaskTraceClassesCompositeImpl extends EObjectImpl implements TaskTr
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

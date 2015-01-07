@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -20,44 +20,42 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.unicase.docExport.exportModel.renderers.RenderersFactory
  * @model kind="package"
  * @generated
  */
 public interface RenderersPackage extends EPackage {
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "renderers";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/docExport/exportModel/renderers";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.docExport.exportModel.renderers";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	RenderersPackage eINSTANCE = org.unicase.docExport.exportModel.renderers.impl.RenderersPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl
-	 * <em>Model Element Renderer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl <em>Model Element Renderer</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl
 	 * @see org.unicase.docExport.exportModel.renderers.impl.RenderersPackageImpl#getModelElementRenderer()
 	 * @generated
@@ -65,17 +63,17 @@ public interface RenderersPackage extends EPackage {
 	int MODEL_ELEMENT_RENDERER = 0;
 
 	/**
-	 * The feature id for the '<em><b>Renderer Options</b></em>' containment reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Renderer Options</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Template</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Template</b></em>' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -91,18 +89,17 @@ public interface RenderersPackage extends EPackage {
 	int MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING = 2;
 
 	/**
-	 * The number of structural features of the '<em>Model Element Renderer</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Model Element Renderer</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_RENDERER_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.impl.AttributeRendererImpl
-	 * <em>Attribute Renderer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.impl.AttributeRendererImpl <em>Attribute Renderer</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.docExport.exportModel.renderers.impl.AttributeRendererImpl
 	 * @see org.unicase.docExport.exportModel.renderers.impl.RenderersPackageImpl#getAttributeRenderer()
 	 * @generated
@@ -110,27 +107,26 @@ public interface RenderersPackage extends EPackage {
 	int ATTRIBUTE_RENDERER = 1;
 
 	/**
-	 * The feature id for the '<em><b>Attribute Option</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Attribute Option</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION = 0;
 
 	/**
-	 * The number of structural features of the '<em>Attribute Renderer</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Attribute Renderer</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ATTRIBUTE_RENDERER_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.impl.DocumentRendererImpl
-	 * <em>Document Renderer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.impl.DocumentRendererImpl <em>Document Renderer</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.docExport.exportModel.renderers.impl.DocumentRendererImpl
 	 * @see org.unicase.docExport.exportModel.renderers.impl.RenderersPackageImpl#getDocumentRenderer()
 	 * @generated
@@ -138,19 +134,17 @@ public interface RenderersPackage extends EPackage {
 	int DOCUMENT_RENDERER = 2;
 
 	/**
-	 * The number of structural features of the '<em>Document Renderer</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Document Renderer</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int DOCUMENT_RENDERER_FEATURE_COUNT = 0;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererMappingImpl
-	 * <em>Model Element Renderer Mapping</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererMappingImpl <em>Model Element Renderer Mapping</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererMappingImpl
 	 * @see org.unicase.docExport.exportModel.renderers.impl.RenderersPackageImpl#getModelElementRendererMapping()
 	 * @generated
@@ -158,35 +152,34 @@ public interface RenderersPackage extends EPackage {
 	int MODEL_ELEMENT_RENDERER_MAPPING = 3;
 
 	/**
-	 * The feature id for the '<em><b>Renderer</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Renderer</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_RENDERER_MAPPING__RENDERER = 0;
 
 	/**
-	 * The feature id for the '<em><b>EClass Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>EClass Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_RENDERER_MAPPING__ECLASS_NAME = 1;
 
 	/**
-	 * The number of structural features of the '<em>Model Element Renderer Mapping</em>' class. <!-- begin-user-doc -->
+	 * The number of structural features of the '<em>Model Element Renderer Mapping</em>' class.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_RENDERER_MAPPING_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.impl.AttributeRendererMappingImpl
-	 * <em>Attribute Renderer Mapping</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.impl.AttributeRendererMappingImpl <em>Attribute Renderer Mapping</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.docExport.exportModel.renderers.impl.AttributeRendererMappingImpl
 	 * @see org.unicase.docExport.exportModel.renderers.impl.RenderersPackageImpl#getAttributeRendererMapping()
 	 * @generated
@@ -194,35 +187,34 @@ public interface RenderersPackage extends EPackage {
 	int ATTRIBUTE_RENDERER_MAPPING = 4;
 
 	/**
-	 * The feature id for the '<em><b>Attribute Renderer</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Attribute Renderer</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER = 0;
 
 	/**
-	 * The feature id for the '<em><b>Feature Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Feature Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ATTRIBUTE_RENDERER_MAPPING__FEATURE_NAME = 1;
 
 	/**
-	 * The number of structural features of the '<em>Attribute Renderer Mapping</em>' class. <!-- begin-user-doc -->
+	 * The number of structural features of the '<em>Attribute Renderer Mapping</em>' class.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ATTRIBUTE_RENDERER_MAPPING_FEATURE_COUNT = 2;
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.ModelElementRenderer
-	 * <em>Model Element Renderer</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.ModelElementRenderer <em>Model Element Renderer</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Model Element Renderer</em>'.
 	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRenderer
 	 * @generated
@@ -230,10 +222,8 @@ public interface RenderersPackage extends EPackage {
 	EClass getModelElementRenderer();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.docExport.exportModel.renderers.ModelElementRenderer#getRendererOptions
-	 * <em>Renderer Options</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the containment reference list '{@link org.unicase.docExport.exportModel.renderers.ModelElementRenderer#getRendererOptions <em>Renderer Options</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Renderer Options</em>'.
 	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRenderer#getRendererOptions()
 	 * @see #getModelElementRenderer()
@@ -254,10 +244,8 @@ public interface RenderersPackage extends EPackage {
 	EReference getModelElementRenderer_Template();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.docExport.exportModel.renderers.ModelElementRenderer#getAttributeRendererMapping
-	 * <em>Attribute Renderer Mapping</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the containment reference list '{@link org.unicase.docExport.exportModel.renderers.ModelElementRenderer#getAttributeRendererMapping <em>Attribute Renderer Mapping</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Attribute Renderer Mapping</em>'.
 	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRenderer#getAttributeRendererMapping()
 	 * @see #getModelElementRenderer()
@@ -266,9 +254,8 @@ public interface RenderersPackage extends EPackage {
 	EReference getModelElementRenderer_AttributeRendererMapping();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.AttributeRenderer
-	 * <em>Attribute Renderer</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.AttributeRenderer <em>Attribute Renderer</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Attribute Renderer</em>'.
 	 * @see org.unicase.docExport.exportModel.renderers.AttributeRenderer
 	 * @generated
@@ -276,10 +263,8 @@ public interface RenderersPackage extends EPackage {
 	EClass getAttributeRenderer();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.unicase.docExport.exportModel.renderers.AttributeRenderer#getAttributeOption
-	 * <em>Attribute Option</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the containment reference '{@link org.unicase.docExport.exportModel.renderers.AttributeRenderer#getAttributeOption <em>Attribute Option</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Attribute Option</em>'.
 	 * @see org.unicase.docExport.exportModel.renderers.AttributeRenderer#getAttributeOption()
 	 * @see #getAttributeRenderer()
@@ -288,9 +273,8 @@ public interface RenderersPackage extends EPackage {
 	EReference getAttributeRenderer_AttributeOption();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.DocumentRenderer
-	 * <em>Document Renderer</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.DocumentRenderer <em>Document Renderer</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Document Renderer</em>'.
 	 * @see org.unicase.docExport.exportModel.renderers.DocumentRenderer
 	 * @generated
@@ -298,10 +282,8 @@ public interface RenderersPackage extends EPackage {
 	EClass getDocumentRenderer();
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping
-	 * <em>Model Element Renderer Mapping</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping <em>Model Element Renderer Mapping</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Model Element Renderer Mapping</em>'.
 	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping
 	 * @generated
@@ -309,10 +291,8 @@ public interface RenderersPackage extends EPackage {
 	EClass getModelElementRendererMapping();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping#getRenderer <em>Renderer</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping#getRenderer <em>Renderer</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference '<em>Renderer</em>'.
 	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping#getRenderer()
 	 * @see #getModelElementRendererMapping()
@@ -321,10 +301,8 @@ public interface RenderersPackage extends EPackage {
 	EReference getModelElementRendererMapping_Renderer();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping#getEClassName
-	 * <em>EClass Name</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping#getEClassName <em>EClass Name</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>EClass Name</em>'.
 	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping#getEClassName()
 	 * @see #getModelElementRendererMapping()
@@ -333,9 +311,8 @@ public interface RenderersPackage extends EPackage {
 	EAttribute getModelElementRendererMapping_EClassName();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.AttributeRendererMapping
-	 * <em>Attribute Renderer Mapping</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.AttributeRendererMapping <em>Attribute Renderer Mapping</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Attribute Renderer Mapping</em>'.
 	 * @see org.unicase.docExport.exportModel.renderers.AttributeRendererMapping
 	 * @generated
@@ -343,10 +320,8 @@ public interface RenderersPackage extends EPackage {
 	EClass getAttributeRendererMapping();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.unicase.docExport.exportModel.renderers.AttributeRendererMapping#getAttributeRenderer
-	 * <em>Attribute Renderer</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the containment reference '{@link org.unicase.docExport.exportModel.renderers.AttributeRendererMapping#getAttributeRenderer <em>Attribute Renderer</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Attribute Renderer</em>'.
 	 * @see org.unicase.docExport.exportModel.renderers.AttributeRendererMapping#getAttributeRenderer()
 	 * @see #getAttributeRendererMapping()
@@ -355,10 +330,8 @@ public interface RenderersPackage extends EPackage {
 	EReference getAttributeRendererMapping_AttributeRenderer();
 
 	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.unicase.docExport.exportModel.renderers.AttributeRendererMapping#getFeatureName <em>Feature Name</em>}
-	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.docExport.exportModel.renderers.AttributeRendererMapping#getFeatureName <em>Feature Name</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Feature Name</em>'.
 	 * @see org.unicase.docExport.exportModel.renderers.AttributeRendererMapping#getFeatureName()
 	 * @see #getAttributeRendererMapping()
@@ -367,8 +340,8 @@ public interface RenderersPackage extends EPackage {
 	EAttribute getAttributeRendererMapping_FeatureName();
 
 	/**
-	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -383,15 +356,12 @@ public interface RenderersPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl
-		 * <em>Model Element Renderer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl <em>Model Element Renderer</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl
 		 * @see org.unicase.docExport.exportModel.renderers.impl.RenderersPackageImpl#getModelElementRenderer()
 		 * @generated
@@ -407,27 +377,23 @@ public interface RenderersPackage extends EPackage {
 		EReference MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS = eINSTANCE.getModelElementRenderer_RendererOptions();
 
 		/**
-		 * The meta object literal for the '<em><b>Template</b></em>' reference feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Template</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference MODEL_ELEMENT_RENDERER__TEMPLATE = eINSTANCE.getModelElementRenderer_Template();
 
 		/**
-		 * The meta object literal for the '<em><b>Attribute Renderer Mapping</b></em>' containment reference list
-		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '<em><b>Attribute Renderer Mapping</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING = eINSTANCE
-			.getModelElementRenderer_AttributeRendererMapping();
+		EReference MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING = eINSTANCE.getModelElementRenderer_AttributeRendererMapping();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.docExport.exportModel.renderers.impl.AttributeRendererImpl <em>Attribute Renderer</em>}'
-		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.impl.AttributeRendererImpl <em>Attribute Renderer</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.docExport.exportModel.renderers.impl.AttributeRendererImpl
 		 * @see org.unicase.docExport.exportModel.renderers.impl.RenderersPackageImpl#getAttributeRenderer()
 		 * @generated
@@ -443,10 +409,8 @@ public interface RenderersPackage extends EPackage {
 		EReference ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION = eINSTANCE.getAttributeRenderer_AttributeOption();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.docExport.exportModel.renderers.impl.DocumentRendererImpl <em>Document Renderer</em>}'
-		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.impl.DocumentRendererImpl <em>Document Renderer</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.docExport.exportModel.renderers.impl.DocumentRendererImpl
 		 * @see org.unicase.docExport.exportModel.renderers.impl.RenderersPackageImpl#getDocumentRenderer()
 		 * @generated
@@ -454,10 +418,8 @@ public interface RenderersPackage extends EPackage {
 		EClass DOCUMENT_RENDERER = eINSTANCE.getDocumentRenderer();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererMappingImpl
-		 * <em>Model Element Renderer Mapping</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererMappingImpl <em>Model Element Renderer Mapping</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererMappingImpl
 		 * @see org.unicase.docExport.exportModel.renderers.impl.RenderersPackageImpl#getModelElementRendererMapping()
 		 * @generated
@@ -465,26 +427,24 @@ public interface RenderersPackage extends EPackage {
 		EClass MODEL_ELEMENT_RENDERER_MAPPING = eINSTANCE.getModelElementRendererMapping();
 
 		/**
-		 * The meta object literal for the '<em><b>Renderer</b></em>' containment reference feature. <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Renderer</b></em>' containment reference feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference MODEL_ELEMENT_RENDERER_MAPPING__RENDERER = eINSTANCE.getModelElementRendererMapping_Renderer();
 
 		/**
-		 * The meta object literal for the '<em><b>EClass Name</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>EClass Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute MODEL_ELEMENT_RENDERER_MAPPING__ECLASS_NAME = eINSTANCE.getModelElementRendererMapping_EClassName();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.docExport.exportModel.renderers.impl.AttributeRendererMappingImpl
-		 * <em>Attribute Renderer Mapping</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.impl.AttributeRendererMappingImpl <em>Attribute Renderer Mapping</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.docExport.exportModel.renderers.impl.AttributeRendererMappingImpl
 		 * @see org.unicase.docExport.exportModel.renderers.impl.RenderersPackageImpl#getAttributeRendererMapping()
 		 * @generated
@@ -497,13 +457,12 @@ public interface RenderersPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER = eINSTANCE
-			.getAttributeRendererMapping_AttributeRenderer();
+		EReference ATTRIBUTE_RENDERER_MAPPING__ATTRIBUTE_RENDERER = eINSTANCE.getAttributeRendererMapping_AttributeRenderer();
 
 		/**
-		 * The meta object literal for the '<em><b>Feature Name</b></em>' attribute feature. <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>Feature Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute ATTRIBUTE_RENDERER_MAPPING__FEATURE_NAME = eINSTANCE.getAttributeRendererMapping_FeatureName();

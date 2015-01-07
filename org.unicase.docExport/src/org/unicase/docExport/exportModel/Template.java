@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -15,17 +15,17 @@ import org.unicase.docExport.exportModel.renderers.options.LayoutOptions;
 
 /**
  * <!-- begin-user-doc --> Stores all information on how any unicase document is rendered. <!-- end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.docExport.exportModel.Template#getModelElementRendererMapping <em>Model Element Renderer
- * Mapping</em>}</li>
- * <li>{@link org.unicase.docExport.exportModel.Template#getLayoutOptions <em>Layout Options</em>}</li>
- * <li>{@link org.unicase.docExport.exportModel.Template#getName <em>Name</em>}</li>
- * <li>{@link org.unicase.docExport.exportModel.Template#isDefaultTemplate <em>Default Template</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.Template#getModelElementRendererMapping <em>Model Element Renderer Mapping</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.Template#getLayoutOptions <em>Layout Options</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.Template#getName <em>Name</em>}</li>
+ *   <li>{@link org.unicase.docExport.exportModel.Template#isDefaultTemplate <em>Default Template</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.docExport.exportModel.ExportModelPackage#getTemplate()
  * @model
  * @generated
@@ -49,13 +49,13 @@ public interface Template extends EObject {
 	EList<ModelElementRendererMapping> getModelElementRendererMapping();
 
 	/**
-	 * Returns the value of the '<em><b>Layout Options</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Layout Options</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Layout Options</em>' containment reference isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Layout Options</em>' containment reference.
 	 * @see #setLayoutOptions(LayoutOptions)
 	 * @see org.unicase.docExport.exportModel.ExportModelPackage#getTemplate_LayoutOptions()
@@ -65,9 +65,8 @@ public interface Template extends EObject {
 	LayoutOptions getLayoutOptions();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.Template#getLayoutOptions
-	 * <em>Layout Options</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.Template#getLayoutOptions <em>Layout Options</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Layout Options</em>' containment reference.
 	 * @see #getLayoutOptions()
 	 * @generated
@@ -75,12 +74,12 @@ public interface Template extends EObject {
 	void setLayoutOptions(LayoutOptions value);
 
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.unicase.docExport.exportModel.ExportModelPackage#getTemplate_Name()
@@ -100,13 +99,13 @@ public interface Template extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Default Template</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Default Template</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Default Template</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Default Template</em>' attribute.
 	 * @see #setDefaultTemplate(boolean)
 	 * @see org.unicase.docExport.exportModel.ExportModelPackage#getTemplate_DefaultTemplate()
@@ -116,9 +115,8 @@ public interface Template extends EObject {
 	boolean isDefaultTemplate();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.Template#isDefaultTemplate
-	 * <em>Default Template</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.Template#isDefaultTemplate <em>Default Template</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Default Template</em>' attribute.
 	 * @see #isDefaultTemplate()
 	 * @generated

@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.unicase.dashboard.DashboardPackage;
 import org.unicase.dashboard.SubscriptionComposite;
 
@@ -25,13 +24,14 @@ import org.unicase.dashboard.SubscriptionComposite;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.dashboard.impl.SubscriptionCompositeImpl#getSubscriptions <em>Subscriptions</em>}</li>
+ *   <li>{@link org.unicase.dashboard.impl.SubscriptionCompositeImpl#getSubscriptions <em>Subscriptions</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class SubscriptionCompositeImpl extends EObjectImpl implements SubscriptionComposite {
+public class SubscriptionCompositeImpl extends EObjectImpl implements
+		SubscriptionComposite {
 	/**
 	 * The cached value of the '{@link #getSubscriptions() <em>Subscriptions</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -40,11 +40,10 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElementId> subscriptions;
+	protected EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> subscriptions;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SubscriptionCompositeImpl() {
@@ -53,7 +52,6 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,34 +61,35 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EList<ModelElementId> getSubscriptions() {
+	public EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> getSubscriptions() {
 		if (subscriptions == null) {
-			subscriptions = new EObjectContainmentEList.Resolving<ModelElementId>(ModelElementId.class, this,
-				DashboardPackage.SUBSCRIPTION_COMPOSITE__SUBSCRIPTIONS);
+			subscriptions = new EObjectContainmentEList.Resolving<org.eclipse.emf.emfstore.internal.common.model.ModelElementId>(
+					org.eclipse.emf.emfstore.internal.common.model.ModelElementId.class,
+					this,
+					DashboardPackage.SUBSCRIPTION_COMPOSITE__SUBSCRIPTIONS);
 		}
 		return subscriptions;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case DashboardPackage.SUBSCRIPTION_COMPOSITE__SUBSCRIPTIONS:
-			return ((InternalEList<?>) getSubscriptions()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getSubscriptions()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -104,7 +103,6 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -113,7 +111,8 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 		switch (featureID) {
 		case DashboardPackage.SUBSCRIPTION_COMPOSITE__SUBSCRIPTIONS:
 			getSubscriptions().clear();
-			getSubscriptions().addAll((Collection<? extends ModelElementId>) newValue);
+			getSubscriptions()
+					.addAll((Collection<? extends org.eclipse.emf.emfstore.internal.common.model.ModelElementId>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -121,7 +120,6 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -136,7 +134,6 @@ public class SubscriptionCompositeImpl extends EObjectImpl implements Subscripti
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

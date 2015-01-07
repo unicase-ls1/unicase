@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -20,13 +20,13 @@ import org.unicase.model.diagram.MERelativeBendpoints;
  * end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
-public class MERelativeBendpointsImpl extends RelativeBendpointsImpl implements MERelativeBendpoints {
+public class MERelativeBendpointsImpl extends RelativeBendpointsImpl implements
+		MERelativeBendpoints {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MERelativeBendpointsImpl() {
@@ -35,7 +35,8 @@ public class MERelativeBendpointsImpl extends RelativeBendpointsImpl implements 
 
 	@SuppressWarnings("rawtypes")
 	public void setPoints(List points) {
-		List<MERelativeBendpoint> actualPoints = new ArrayList<MERelativeBendpoint>(points.size());
+		List<MERelativeBendpoint> actualPoints = new ArrayList<MERelativeBendpoint>(
+				points.size());
 		for (Object point : points) {
 			if (point instanceof MERelativeBendpoint) {
 				MERelativeBendpoint mePoint = (MERelativeBendpoint) point;
@@ -50,15 +51,15 @@ public class MERelativeBendpointsImpl extends RelativeBendpointsImpl implements 
 	}
 
 	private MERelativeBendpoint copyPoint(RelativeBendpoint relativePoint) {
-		MERelativeBendpoint copy = new MERelativeBendpoint(relativePoint.getSourceX(), relativePoint.getSourceY(),
-			relativePoint.getTargetX(), relativePoint.getTargetY());
+		MERelativeBendpoint copy = new MERelativeBendpoint(
+				relativePoint.getSourceX(), relativePoint.getSourceY(),
+				relativePoint.getTargetX(), relativePoint.getTargetY());
 
 		return copy;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -43,9 +43,8 @@ public interface AttributeOption extends RendererOption {
 	boolean isHide();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.AttributeOption#isHide
-	 * <em>Hide</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.AttributeOption#isHide <em>Hide</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Hide</em>' attribute.
 	 * @see #isHide()
 	 * @generated
@@ -53,14 +52,14 @@ public interface AttributeOption extends RendererOption {
 	void setHide(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Overwrite Global Option</b></em>' attribute. The default value is
-	 * <code>"false"</code>. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Overwrite Global Option</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Overwrite Global Option</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Overwrite Global Option</em>' attribute.
 	 * @see #setOverwriteGlobalOption(boolean)
 	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getAttributeOption_OverwriteGlobalOption()
@@ -70,10 +69,8 @@ public interface AttributeOption extends RendererOption {
 	boolean isOverwriteGlobalOption();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.docExport.exportModel.renderers.options.AttributeOption#isOverwriteGlobalOption
-	 * <em>Overwrite Global Option</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.AttributeOption#isOverwriteGlobalOption <em>Overwrite Global Option</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Overwrite Global Option</em>' attribute.
 	 * @see #isOverwriteGlobalOption()
 	 * @generated
@@ -81,13 +78,13 @@ public interface AttributeOption extends RendererOption {
 	void setOverwriteGlobalOption(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Attribute Text</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Attribute Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Attribute Text</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Attribute Text</em>' attribute.
 	 * @see #setAttributeText(String)
 	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getAttributeOption_AttributeText()
@@ -97,10 +94,8 @@ public interface AttributeOption extends RendererOption {
 	String getAttributeText();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.docExport.exportModel.renderers.options.AttributeOption#getAttributeText
-	 * <em>Attribute Text</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.AttributeOption#getAttributeText <em>Attribute Text</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Attribute Text</em>' attribute.
 	 * @see #getAttributeText()
 	 * @generated
@@ -108,13 +103,13 @@ public interface AttributeOption extends RendererOption {
 	void setAttributeText(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Order Number</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Order Number</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Order Number</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Order Number</em>' attribute.
 	 * @see #setOrderNumber(int)
 	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getAttributeOption_OrderNumber()
@@ -124,9 +119,8 @@ public interface AttributeOption extends RendererOption {
 	int getOrderNumber();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.AttributeOption#getOrderNumber
-	 * <em>Order Number</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.AttributeOption#getOrderNumber <em>Order Number</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Order Number</em>' attribute.
 	 * @see #getOrderNumber()
 	 * @generated

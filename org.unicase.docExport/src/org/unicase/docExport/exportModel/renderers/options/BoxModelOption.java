@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -70,9 +70,8 @@ public interface BoxModelOption extends RendererOption {
 	double getMargin();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getMargin
-	 * <em>Margin</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getMargin <em>Margin</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Margin</em>' attribute.
 	 * @see #getMargin()
 	 * @generated
@@ -97,9 +96,8 @@ public interface BoxModelOption extends RendererOption {
 	double getMarginTop();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getMarginTop
-	 * <em>Margin Top</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getMarginTop <em>Margin Top</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Margin Top</em>' attribute.
 	 * @see #getMarginTop()
 	 * @generated
@@ -124,9 +122,8 @@ public interface BoxModelOption extends RendererOption {
 	double getMarginLeft();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getMarginLeft
-	 * <em>Margin Left</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getMarginLeft <em>Margin Left</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Margin Left</em>' attribute.
 	 * @see #getMarginLeft()
 	 * @generated
@@ -151,9 +148,8 @@ public interface BoxModelOption extends RendererOption {
 	double getMarginBottom();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getMarginBottom
-	 * <em>Margin Bottom</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getMarginBottom <em>Margin Bottom</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Margin Bottom</em>' attribute.
 	 * @see #getMarginBottom()
 	 * @generated
@@ -178,9 +174,8 @@ public interface BoxModelOption extends RendererOption {
 	double getMarginRight();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getMarginRight
-	 * <em>Margin Right</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getMarginRight <em>Margin Right</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Margin Right</em>' attribute.
 	 * @see #getMarginRight()
 	 * @generated
@@ -205,9 +200,8 @@ public interface BoxModelOption extends RendererOption {
 	double getBorder();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorder
-	 * <em>Border</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorder <em>Border</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Border</em>' attribute.
 	 * @see #getBorder()
 	 * @generated
@@ -232,9 +226,8 @@ public interface BoxModelOption extends RendererOption {
 	double getBorderTop();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderTop
-	 * <em>Border Top</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderTop <em>Border Top</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Border Top</em>' attribute.
 	 * @see #getBorderTop()
 	 * @generated
@@ -259,9 +252,8 @@ public interface BoxModelOption extends RendererOption {
 	double getBorderLeft();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderLeft
-	 * <em>Border Left</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderLeft <em>Border Left</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Border Left</em>' attribute.
 	 * @see #getBorderLeft()
 	 * @generated
@@ -286,9 +278,8 @@ public interface BoxModelOption extends RendererOption {
 	double getBorderBottom();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderBottom
-	 * <em>Border Bottom</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderBottom <em>Border Bottom</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Border Bottom</em>' attribute.
 	 * @see #getBorderBottom()
 	 * @generated
@@ -313,9 +304,8 @@ public interface BoxModelOption extends RendererOption {
 	double getBorderRight();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderRight
-	 * <em>Border Right</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderRight <em>Border Right</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Border Right</em>' attribute.
 	 * @see #getBorderRight()
 	 * @generated
@@ -342,9 +332,8 @@ public interface BoxModelOption extends RendererOption {
 	UBorderStyle getBorderStyle();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderStyle
-	 * <em>Border Style</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderStyle <em>Border Style</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Border Style</em>' attribute.
 	 * @see org.unicase.docExport.exportModel.renderers.options.UBorderStyle
 	 * @see #getBorderStyle()
@@ -353,13 +342,13 @@ public interface BoxModelOption extends RendererOption {
 	void setBorderStyle(UBorderStyle value);
 
 	/**
-	 * Returns the value of the '<em><b>Border Color</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Border Color</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Border Color</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Border Color</em>' containment reference.
 	 * @see #setBorderColor(UColor)
 	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getBoxModelOption_BorderColor()
@@ -369,9 +358,8 @@ public interface BoxModelOption extends RendererOption {
 	UColor getBorderColor();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderColor
-	 * <em>Border Color</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBorderColor <em>Border Color</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Border Color</em>' containment reference.
 	 * @see #getBorderColor()
 	 * @generated
@@ -396,9 +384,8 @@ public interface BoxModelOption extends RendererOption {
 	double getPadding();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getPadding
-	 * <em>Padding</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getPadding <em>Padding</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Padding</em>' attribute.
 	 * @see #getPadding()
 	 * @generated
@@ -423,9 +410,8 @@ public interface BoxModelOption extends RendererOption {
 	double getPaddingTop();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getPaddingTop
-	 * <em>Padding Top</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getPaddingTop <em>Padding Top</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Padding Top</em>' attribute.
 	 * @see #getPaddingTop()
 	 * @generated
@@ -450,9 +436,8 @@ public interface BoxModelOption extends RendererOption {
 	double getPaddingLeft();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getPaddingLeft
-	 * <em>Padding Left</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getPaddingLeft <em>Padding Left</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Padding Left</em>' attribute.
 	 * @see #getPaddingLeft()
 	 * @generated
@@ -477,10 +462,8 @@ public interface BoxModelOption extends RendererOption {
 	double getPaddingBottom();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getPaddingBottom
-	 * <em>Padding Bottom</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getPaddingBottom <em>Padding Bottom</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Padding Bottom</em>' attribute.
 	 * @see #getPaddingBottom()
 	 * @generated
@@ -505,9 +488,8 @@ public interface BoxModelOption extends RendererOption {
 	double getPaddingRight();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getPaddingRight
-	 * <em>Padding Right</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getPaddingRight <em>Padding Right</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Padding Right</em>' attribute.
 	 * @see #getPaddingRight()
 	 * @generated
@@ -515,13 +497,13 @@ public interface BoxModelOption extends RendererOption {
 	void setPaddingRight(double value);
 
 	/**
-	 * Returns the value of the '<em><b>Background Color</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Background Color</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Background Color</em>' reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Background Color</em>' reference.
 	 * @see #setBackgroundColor(UColor)
 	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getBoxModelOption_BackgroundColor()
@@ -540,10 +522,8 @@ public interface BoxModelOption extends RendererOption {
 	// end custom code
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBackgroundColor
-	 * <em>Background Color</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getBackgroundColor <em>Background Color</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Background Color</em>' reference.
 	 * @see #getBackgroundColor()
 	 * @generated
@@ -551,13 +531,13 @@ public interface BoxModelOption extends RendererOption {
 	void setBackgroundColor(UColor value);
 
 	/**
-	 * Returns the value of the '<em><b>Keep Together</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Keep Together</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Keep Together</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Keep Together</em>' attribute.
 	 * @see #setKeepTogether(boolean)
 	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getBoxModelOption_KeepTogether()
@@ -567,9 +547,8 @@ public interface BoxModelOption extends RendererOption {
 	boolean isKeepTogether();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#isKeepTogether
-	 * <em>Keep Together</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#isKeepTogether <em>Keep Together</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Keep Together</em>' attribute.
 	 * @see #isKeepTogether()
 	 * @generated
@@ -577,13 +556,13 @@ public interface BoxModelOption extends RendererOption {
 	void setKeepTogether(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Keep With Previous</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Keep With Previous</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Keep With Previous</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Keep With Previous</em>' attribute.
 	 * @see #setKeepWithPrevious(boolean)
 	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getBoxModelOption_KeepWithPrevious()
@@ -593,10 +572,8 @@ public interface BoxModelOption extends RendererOption {
 	boolean isKeepWithPrevious();
 
 	/**
-	 * Sets the value of the '
-	 * {@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#isKeepWithPrevious
-	 * <em>Keep With Previous</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#isKeepWithPrevious <em>Keep With Previous</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Keep With Previous</em>' attribute.
 	 * @see #isKeepWithPrevious()
 	 * @generated
@@ -604,13 +581,13 @@ public interface BoxModelOption extends RendererOption {
 	void setKeepWithPrevious(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Keep With Next</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Keep With Next</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Keep With Next</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Keep With Next</em>' attribute.
 	 * @see #setKeepWithNext(boolean)
 	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getBoxModelOption_KeepWithNext()
@@ -620,9 +597,8 @@ public interface BoxModelOption extends RendererOption {
 	boolean isKeepWithNext();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#isKeepWithNext
-	 * <em>Keep With Next</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#isKeepWithNext <em>Keep With Next</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Keep With Next</em>' attribute.
 	 * @see #isKeepWithNext()
 	 * @generated
@@ -630,13 +606,13 @@ public interface BoxModelOption extends RendererOption {
 	void setKeepWithNext(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Break Before</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Break Before</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Break Before</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Break Before</em>' attribute.
 	 * @see #setBreakBefore(boolean)
 	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getBoxModelOption_BreakBefore()
@@ -646,9 +622,8 @@ public interface BoxModelOption extends RendererOption {
 	boolean isBreakBefore();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#isBreakBefore
-	 * <em>Break Before</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#isBreakBefore <em>Break Before</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Break Before</em>' attribute.
 	 * @see #isBreakBefore()
 	 * @generated
@@ -656,13 +631,13 @@ public interface BoxModelOption extends RendererOption {
 	void setBreakBefore(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Width</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Width</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Width</em>' attribute.
 	 * @see #setWidth(int)
 	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getBoxModelOption_Width()
@@ -672,9 +647,8 @@ public interface BoxModelOption extends RendererOption {
 	int getWidth();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getWidth
-	 * <em>Width</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#getWidth <em>Width</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Width</em>' attribute.
 	 * @see #getWidth()
 	 * @generated
@@ -682,13 +656,13 @@ public interface BoxModelOption extends RendererOption {
 	void setWidth(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Break After</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Break After</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Break After</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Break After</em>' attribute.
 	 * @see #setBreakAfter(boolean)
 	 * @see org.unicase.docExport.exportModel.renderers.options.OptionsPackage#getBoxModelOption_BreakAfter()
@@ -698,9 +672,8 @@ public interface BoxModelOption extends RendererOption {
 	boolean isBreakAfter();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#isBreakAfter
-	 * <em>Break After</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.docExport.exportModel.renderers.options.BoxModelOption#isBreakAfter <em>Break After</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Break After</em>' attribute.
 	 * @see #isBreakAfter()
 	 * @generated
