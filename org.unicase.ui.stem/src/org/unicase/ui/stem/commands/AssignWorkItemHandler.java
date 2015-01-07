@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -9,9 +9,9 @@ package org.unicase.ui.stem.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
-import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.internal.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
+import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
@@ -39,8 +39,8 @@ public abstract class AssignWorkItemHandler extends AbstractHandler {
 		}
 
 		final OrgUnit user = (OrgUnit) me;
-		final StatusView statusView = (StatusView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-			.getActivePart();
+		final StatusView statusView = (StatusView) PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage().getActivePart();
 		final UnicaseModelElement currentOpenME = statusView.getCurrentInput();
 
 		final Project project = ModelUtil.getProject(currentOpenME);
@@ -49,7 +49,8 @@ public abstract class AssignWorkItemHandler extends AbstractHandler {
 			@Override
 			protected void doRun() {
 				WorkItem workItem = assignWorkItem(currentOpenME, user, project);
-				UnicaseActionHelper.openModelElement(workItem, statusView.getSite().getId());
+				UnicaseActionHelper.openModelElement(workItem, statusView
+						.getSite().getId());
 			}
 		}.run();
 
@@ -59,10 +60,14 @@ public abstract class AssignWorkItemHandler extends AbstractHandler {
 	/**
 	 * This will be implemented by sub-classes.
 	 * 
-	 * @param project current project
-	 * @param user assignee
-	 * @param currentOpenME model element currently open in status view
+	 * @param project
+	 *            current project
+	 * @param user
+	 *            assignee
+	 * @param currentOpenME
+	 *            model element currently open in status view
 	 * @return newly created work item
 	 */
-	protected abstract WorkItem assignWorkItem(UnicaseModelElement currentOpenME, OrgUnit user, Project project);
+	protected abstract WorkItem assignWorkItem(
+			UnicaseModelElement currentOpenME, OrgUnit user, Project project);
 }

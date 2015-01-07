@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -26,11 +26,11 @@ import org.unicase.model.profile.Stereotype;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.profile.impl.ProfileImpl#getAffectedContainers <em>Affected Containers</em>}</li>
- * <li>{@link org.unicase.model.profile.impl.ProfileImpl#getStereotypes <em>Stereotypes</em>}</li>
+ *   <li>{@link org.unicase.model.profile.impl.ProfileImpl#getAffectedContainers <em>Affected Containers</em>}</li>
+ *   <li>{@link org.unicase.model.profile.impl.ProfileImpl#getStereotypes <em>Stereotypes</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
@@ -56,7 +56,6 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ProfileImpl() {
@@ -65,7 +64,6 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -75,62 +73,64 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<UnicaseModelElement> getAffectedContainers() {
 		if (affectedContainers == null) {
-			affectedContainers = new EObjectResolvingEList<UnicaseModelElement>(UnicaseModelElement.class, this,
-				ProfilePackage.PROFILE__AFFECTED_CONTAINERS);
+			affectedContainers = new EObjectResolvingEList<UnicaseModelElement>(
+					UnicaseModelElement.class, this,
+					ProfilePackage.PROFILE__AFFECTED_CONTAINERS);
 		}
 		return affectedContainers;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Stereotype> getStereotypes() {
 		if (stereotypes == null) {
-			stereotypes = new EObjectContainmentWithInverseEList.Resolving<Stereotype>(Stereotype.class, this,
-				ProfilePackage.PROFILE__STEREOTYPES, ProfilePackage.STEREOTYPE__PROFILE);
+			stereotypes = new EObjectContainmentWithInverseEList.Resolving<Stereotype>(
+					Stereotype.class, this,
+					ProfilePackage.PROFILE__STEREOTYPES,
+					ProfilePackage.STEREOTYPE__PROFILE);
 		}
 		return stereotypes;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ProfilePackage.PROFILE__STEREOTYPES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getStereotypes()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getStereotypes())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ProfilePackage.PROFILE__STEREOTYPES:
-			return ((InternalEList<?>) getStereotypes()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getStereotypes()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -146,7 +146,6 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -155,11 +154,13 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 		switch (featureID) {
 		case ProfilePackage.PROFILE__AFFECTED_CONTAINERS:
 			getAffectedContainers().clear();
-			getAffectedContainers().addAll((Collection<? extends UnicaseModelElement>) newValue);
+			getAffectedContainers().addAll(
+					(Collection<? extends UnicaseModelElement>) newValue);
 			return;
 		case ProfilePackage.PROFILE__STEREOTYPES:
 			getStereotypes().clear();
-			getStereotypes().addAll((Collection<? extends Stereotype>) newValue);
+			getStereotypes()
+					.addAll((Collection<? extends Stereotype>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -167,7 +168,6 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -185,7 +185,6 @@ public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

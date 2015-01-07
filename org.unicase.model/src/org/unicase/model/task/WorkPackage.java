@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -13,15 +13,16 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Work Package</b></em>'. <!-- end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.task.WorkPackage#getContainedWorkItems <em>Contained Work Items</em>}</li>
- * <li>{@link org.unicase.model.task.WorkPackage#getStartDate <em>Start Date</em>}</li>
- * <li>{@link org.unicase.model.task.WorkPackage#getEndDate <em>End Date</em>}</li>
+ *   <li>{@link org.unicase.model.task.WorkPackage#getContainedWorkItems <em>Contained Work Items</em>}</li>
+ *   <li>{@link org.unicase.model.task.WorkPackage#getStartDate <em>Start Date</em>}</li>
+ *   <li>{@link org.unicase.model.task.WorkPackage#getEndDate <em>End Date</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.model.task.TaskPackage#getWorkPackage()
  * @model
  * @generated
@@ -47,13 +48,13 @@ public interface WorkPackage extends WorkItem {
 	EList<WorkItem> getContainedWorkItems();
 
 	/**
-	 * Returns the value of the '<em><b>Start Date</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Start Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Start Date</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Start Date</em>' attribute.
 	 * @see #setStartDate(Date)
 	 * @see org.unicase.model.task.TaskPackage#getWorkPackage_StartDate()
@@ -65,7 +66,6 @@ public interface WorkPackage extends WorkItem {
 	/**
 	 * Sets the value of the '{@link org.unicase.model.task.WorkPackage#getStartDate <em>Start Date</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Start Date</em>' attribute.
 	 * @see #getStartDate()
 	 * @generated
@@ -73,13 +73,13 @@ public interface WorkPackage extends WorkItem {
 	void setStartDate(Date value);
 
 	/**
-	 * Returns the value of the '<em><b>End Date</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>End Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>End Date</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>End Date</em>' attribute.
 	 * @see #setEndDate(Date)
 	 * @see org.unicase.model.task.TaskPackage#getWorkPackage_EndDate()

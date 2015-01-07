@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -31,20 +31,20 @@ import org.unicase.model.profile.StereotypeInstance;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.profile.impl.StereotypeInstanceImpl#getStereotype <em>Stereotype</em>}</li>
- * <li>{@link org.unicase.model.profile.impl.StereotypeInstanceImpl#getModelElement <em>Model Element</em>}</li>
- * <li>{@link org.unicase.model.profile.impl.StereotypeInstanceImpl#getStereotypeAttributeInstances <em>Stereotype
- * Attribute Instances</em>}</li>
+ *   <li>{@link org.unicase.model.profile.impl.StereotypeInstanceImpl#getStereotype <em>Stereotype</em>}</li>
+ *   <li>{@link org.unicase.model.profile.impl.StereotypeInstanceImpl#getModelElement <em>Model Element</em>}</li>
+ *   <li>{@link org.unicase.model.profile.impl.StereotypeInstanceImpl#getStereotypeAttributeInstances <em>Stereotype Attribute Instances</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements StereotypeInstance {
+public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements
+		StereotypeInstance {
 	/**
-	 * The cached value of the '{@link #getStereotype() <em>Stereotype</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getStereotype() <em>Stereotype</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getStereotype()
 	 * @generated
 	 * @ordered
@@ -52,9 +52,8 @@ public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements S
 	protected Stereotype stereotype;
 
 	/**
-	 * The cached value of the '{@link #getStereotypeAttributeInstances() <em>Stereotype Attribute Instances</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getStereotypeAttributeInstances() <em>Stereotype Attribute Instances</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getStereotypeAttributeInstances()
 	 * @generated
 	 * @ordered
@@ -63,7 +62,6 @@ public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements S
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StereotypeInstanceImpl() {
@@ -72,7 +70,6 @@ public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements S
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -82,7 +79,6 @@ public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements S
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Stereotype getStereotype() {
@@ -92,7 +88,8 @@ public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements S
 			if (stereotype != oldStereotype) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						ProfilePackage.STEREOTYPE_INSTANCE__STEREOTYPE, oldStereotype, stereotype));
+							ProfilePackage.STEREOTYPE_INSTANCE__STEREOTYPE,
+							oldStereotype, stereotype));
 			}
 		}
 		return stereotype;
@@ -100,7 +97,6 @@ public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements S
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Stereotype basicGetStereotype() {
@@ -109,15 +105,17 @@ public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements S
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetStereotype(Stereotype newStereotype, NotificationChain msgs) {
+	public NotificationChain basicSetStereotype(Stereotype newStereotype,
+			NotificationChain msgs) {
 		Stereotype oldStereotype = stereotype;
 		stereotype = newStereotype;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				ProfilePackage.STEREOTYPE_INSTANCE__STEREOTYPE, oldStereotype, newStereotype);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					ProfilePackage.STEREOTYPE_INSTANCE__STEREOTYPE,
+					oldStereotype, newStereotype);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -128,7 +126,6 @@ public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements S
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setStereotype(Stereotype newStereotype) {
@@ -136,21 +133,23 @@ public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements S
 			NotificationChain msgs = null;
 			if (stereotype != null)
 				msgs = ((InternalEObject) stereotype).eInverseRemove(this,
-					ProfilePackage.STEREOTYPE__STEREOTYPE_INSTANCES, Stereotype.class, msgs);
+						ProfilePackage.STEREOTYPE__STEREOTYPE_INSTANCES,
+						Stereotype.class, msgs);
 			if (newStereotype != null)
 				msgs = ((InternalEObject) newStereotype).eInverseAdd(this,
-					ProfilePackage.STEREOTYPE__STEREOTYPE_INSTANCES, Stereotype.class, msgs);
+						ProfilePackage.STEREOTYPE__STEREOTYPE_INSTANCES,
+						Stereotype.class, msgs);
 			msgs = basicSetStereotype(newStereotype, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProfilePackage.STEREOTYPE_INSTANCE__STEREOTYPE,
-				newStereotype, newStereotype));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ProfilePackage.STEREOTYPE_INSTANCE__STEREOTYPE,
+					newStereotype, newStereotype));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UnicaseModelElement getModelElement() {
@@ -161,7 +160,6 @@ public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements S
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UnicaseModelElement basicGetModelElement() {
@@ -172,115 +170,123 @@ public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements S
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetModelElement(UnicaseModelElement newModelElement, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newModelElement, ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT,
-			msgs);
+	public NotificationChain basicSetModelElement(
+			UnicaseModelElement newModelElement, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newModelElement,
+				ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT, msgs);
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setModelElement(UnicaseModelElement newModelElement) {
 		if (newModelElement != eInternalContainer()
-			|| (eContainerFeatureID() != ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT && newModelElement != null)) {
+				|| (eContainerFeatureID() != ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT && newModelElement != null)) {
 			if (EcoreUtil.isAncestor(this, newModelElement))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newModelElement != null)
-				msgs = ((InternalEObject) newModelElement).eInverseAdd(this,
-					ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES, UnicaseModelElement.class, msgs);
+				msgs = ((InternalEObject) newModelElement)
+						.eInverseAdd(
+								this,
+								ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES,
+								UnicaseModelElement.class, msgs);
 			msgs = basicSetModelElement(newModelElement, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT,
-				newModelElement, newModelElement));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT,
+					newModelElement, newModelElement));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<StereotypeAttributeInstance> getStereotypeAttributeInstances() {
 		if (stereotypeAttributeInstances == null) {
 			stereotypeAttributeInstances = new EObjectContainmentWithInverseEList.Resolving<StereotypeAttributeInstance>(
-				StereotypeAttributeInstance.class, this,
-				ProfilePackage.STEREOTYPE_INSTANCE__STEREOTYPE_ATTRIBUTE_INSTANCES,
-				ProfilePackage.STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_INSTANCE);
+					StereotypeAttributeInstance.class,
+					this,
+					ProfilePackage.STEREOTYPE_INSTANCE__STEREOTYPE_ATTRIBUTE_INSTANCES,
+					ProfilePackage.STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_INSTANCE);
 		}
 		return stereotypeAttributeInstances;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ProfilePackage.STEREOTYPE_INSTANCE__STEREOTYPE:
 			if (stereotype != null)
 				msgs = ((InternalEObject) stereotype).eInverseRemove(this,
-					ProfilePackage.STEREOTYPE__STEREOTYPE_INSTANCES, Stereotype.class, msgs);
+						ProfilePackage.STEREOTYPE__STEREOTYPE_INSTANCES,
+						Stereotype.class, msgs);
 			return basicSetStereotype((Stereotype) otherEnd, msgs);
 		case ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetModelElement((UnicaseModelElement) otherEnd, msgs);
 		case ProfilePackage.STEREOTYPE_INSTANCE__STEREOTYPE_ATTRIBUTE_INSTANCES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getStereotypeAttributeInstances()).basicAdd(
-				otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getStereotypeAttributeInstances())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ProfilePackage.STEREOTYPE_INSTANCE__STEREOTYPE:
 			return basicSetStereotype(null, msgs);
 		case ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT:
 			return basicSetModelElement(null, msgs);
 		case ProfilePackage.STEREOTYPE_INSTANCE__STEREOTYPE_ATTRIBUTE_INSTANCES:
-			return ((InternalEList<?>) getStereotypeAttributeInstances()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getStereotypeAttributeInstances())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 		case ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT:
-			return eInternalContainer().eInverseRemove(this,
-				ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES, UnicaseModelElement.class, msgs);
+			return eInternalContainer()
+					.eInverseRemove(
+							this,
+							ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES,
+							UnicaseModelElement.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -302,7 +308,6 @@ public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements S
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -317,7 +322,8 @@ public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements S
 			return;
 		case ProfilePackage.STEREOTYPE_INSTANCE__STEREOTYPE_ATTRIBUTE_INSTANCES:
 			getStereotypeAttributeInstances().clear();
-			getStereotypeAttributeInstances().addAll((Collection<? extends StereotypeAttributeInstance>) newValue);
+			getStereotypeAttributeInstances()
+					.addAll((Collection<? extends StereotypeAttributeInstance>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -325,7 +331,6 @@ public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements S
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -346,7 +351,6 @@ public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements S
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -357,7 +361,8 @@ public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements S
 		case ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT:
 			return basicGetModelElement() != null;
 		case ProfilePackage.STEREOTYPE_INSTANCE__STEREOTYPE_ATTRIBUTE_INSTANCES:
-			return stereotypeAttributeInstances != null && !stereotypeAttributeInstances.isEmpty();
+			return stereotypeAttributeInstances != null
+					&& !stereotypeAttributeInstances.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

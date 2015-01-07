@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -21,19 +21,18 @@ import org.unicase.model.task.WorkPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static TaskFactory init() {
 		try {
 			TaskFactory theTaskFactory = (TaskFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/model/task");
+					.getEFactory(TaskPackage.eNS_URI);
 			if (theTaskFactory != null) {
 				return theTaskFactory;
 			}
@@ -44,8 +43,8 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public TaskFactoryImpl() {
@@ -54,7 +53,6 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,13 +65,13 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 		case TaskPackage.MILESTONE:
 			return createMilestone();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -82,13 +80,13 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 		case TaskPackage.ACTIVITY_TYPE:
 			return createActivityTypeFromString(eDataType, initialValue);
 		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '"
+					+ eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -97,13 +95,13 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 		case TaskPackage.ACTIVITY_TYPE:
 			return convertActivityTypeToString(eDataType, instanceValue);
 		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The datatype '"
+					+ eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ActionItem createActionItem() {
@@ -113,7 +111,6 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkPackage createWorkPackage() {
@@ -123,7 +120,6 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Milestone createMilestone() {
@@ -133,29 +129,29 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public ActivityType createActivityTypeFromString(EDataType eDataType, String initialValue) {
+	public ActivityType createActivityTypeFromString(EDataType eDataType,
+			String initialValue) {
 		ActivityType result = ActivityType.get(initialValue);
 		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
-				+ eDataType.getName() + "'");
+			throw new IllegalArgumentException("The value '" + initialValue
+					+ "' is not a valid enumerator of '" + eDataType.getName()
+					+ "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public String convertActivityTypeToString(EDataType eDataType, Object instanceValue) {
+	public String convertActivityTypeToString(EDataType eDataType,
+			Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TaskPackage getTaskPackage() {
@@ -164,7 +160,6 @@ public class TaskFactoryImpl extends EFactoryImpl implements TaskFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -36,7 +36,8 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
  * 
  * @generated
  */
-public abstract class PackageElementImpl extends UnicaseModelElementImpl implements PackageElement {
+public abstract class PackageElementImpl extends UnicaseModelElementImpl
+		implements PackageElement {
 	/**
 	 * The cached value of the '{@link #getOutgoingDependencies() <em>Outgoing Dependencies</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -58,7 +59,6 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PackageElementImpl() {
@@ -67,7 +67,6 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -77,7 +76,6 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Package getParentPackage() {
@@ -88,7 +86,6 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Package basicGetParentPackage() {
@@ -99,125 +96,133 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetParentPackage(org.unicase.model.classes.Package newParentPackage,
-		NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newParentPackage, ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE,
-			msgs);
+	public NotificationChain basicSetParentPackage(
+			org.unicase.model.classes.Package newParentPackage,
+			NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newParentPackage,
+				ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE, msgs);
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public void setParentPackage(org.unicase.model.classes.Package newParentPackage) {
+	public void setParentPackage(
+			org.unicase.model.classes.Package newParentPackage) {
 		if (newParentPackage != eInternalContainer()
-			|| (eContainerFeatureID() != ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE && newParentPackage != null)) {
+				|| (eContainerFeatureID() != ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE && newParentPackage != null)) {
 			if (EcoreUtil.isAncestor(this, newParentPackage))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newParentPackage != null)
 				msgs = ((InternalEObject) newParentPackage).eInverseAdd(this,
-					ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS, org.unicase.model.classes.Package.class, msgs);
+						ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS,
+						org.unicase.model.classes.Package.class, msgs);
 			msgs = basicSetParentPackage(newParentPackage, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE,
-				newParentPackage, newParentPackage));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE,
+					newParentPackage, newParentPackage));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Dependency> getOutgoingDependencies() {
 		if (outgoingDependencies == null) {
-			outgoingDependencies = new EObjectWithInverseResolvingEList<Dependency>(Dependency.class, this,
-				ClassesPackage.PACKAGE_ELEMENT__OUTGOING_DEPENDENCIES, ClassesPackage.DEPENDENCY__SOURCE);
+			outgoingDependencies = new EObjectWithInverseResolvingEList<Dependency>(
+					Dependency.class, this,
+					ClassesPackage.PACKAGE_ELEMENT__OUTGOING_DEPENDENCIES,
+					ClassesPackage.DEPENDENCY__SOURCE);
 		}
 		return outgoingDependencies;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Dependency> getIncomingDependencies() {
 		if (incomingDependencies == null) {
-			incomingDependencies = new EObjectWithInverseResolvingEList<Dependency>(Dependency.class, this,
-				ClassesPackage.PACKAGE_ELEMENT__INCOMING_DEPENDENCIES, ClassesPackage.DEPENDENCY__TARGET);
+			incomingDependencies = new EObjectWithInverseResolvingEList<Dependency>(
+					Dependency.class, this,
+					ClassesPackage.PACKAGE_ELEMENT__INCOMING_DEPENDENCIES,
+					ClassesPackage.DEPENDENCY__TARGET);
 		}
 		return incomingDependencies;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetParentPackage((org.unicase.model.classes.Package) otherEnd, msgs);
+			return basicSetParentPackage(
+					(org.unicase.model.classes.Package) otherEnd, msgs);
 		case ClassesPackage.PACKAGE_ELEMENT__OUTGOING_DEPENDENCIES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOutgoingDependencies()).basicAdd(otherEnd,
-				msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOutgoingDependencies())
+					.basicAdd(otherEnd, msgs);
 		case ClassesPackage.PACKAGE_ELEMENT__INCOMING_DEPENDENCIES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncomingDependencies()).basicAdd(otherEnd,
-				msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncomingDependencies())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE:
 			return basicSetParentPackage(null, msgs);
 		case ClassesPackage.PACKAGE_ELEMENT__OUTGOING_DEPENDENCIES:
-			return ((InternalEList<?>) getOutgoingDependencies()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getOutgoingDependencies()).basicRemove(
+					otherEnd, msgs);
 		case ClassesPackage.PACKAGE_ELEMENT__INCOMING_DEPENDENCIES:
-			return ((InternalEList<?>) getIncomingDependencies()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getIncomingDependencies()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 		case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE:
-			return eInternalContainer().eInverseRemove(this, ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS,
-				org.unicase.model.classes.Package.class, msgs);
+			return eInternalContainer().eInverseRemove(this,
+					ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS,
+					org.unicase.model.classes.Package.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -237,7 +242,6 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -249,11 +253,13 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 			return;
 		case ClassesPackage.PACKAGE_ELEMENT__OUTGOING_DEPENDENCIES:
 			getOutgoingDependencies().clear();
-			getOutgoingDependencies().addAll((Collection<? extends Dependency>) newValue);
+			getOutgoingDependencies().addAll(
+					(Collection<? extends Dependency>) newValue);
 			return;
 		case ClassesPackage.PACKAGE_ELEMENT__INCOMING_DEPENDENCIES:
 			getIncomingDependencies().clear();
-			getIncomingDependencies().addAll((Collection<? extends Dependency>) newValue);
+			getIncomingDependencies().addAll(
+					(Collection<? extends Dependency>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -261,7 +267,6 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -282,7 +287,6 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -291,9 +295,11 @@ public abstract class PackageElementImpl extends UnicaseModelElementImpl impleme
 		case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE:
 			return basicGetParentPackage() != null;
 		case ClassesPackage.PACKAGE_ELEMENT__OUTGOING_DEPENDENCIES:
-			return outgoingDependencies != null && !outgoingDependencies.isEmpty();
+			return outgoingDependencies != null
+					&& !outgoingDependencies.isEmpty();
 		case ClassesPackage.PACKAGE_ELEMENT__INCOMING_DEPENDENCIES:
-			return incomingDependencies != null && !incomingDependencies.isEmpty();
+			return incomingDependencies != null
+					&& !incomingDependencies.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

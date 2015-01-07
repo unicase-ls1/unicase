@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -22,18 +22,18 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.classes.impl.LiteralImpl#getEnumeration <em>Enumeration</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.LiteralImpl#getLiteral <em>Literal</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.LiteralImpl#getEnumeration <em>Enumeration</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.LiteralImpl#getLiteral <em>Literal</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 	/**
-	 * The default value of the '{@link #getLiteral() <em>Literal</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getLiteral() <em>Literal</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getLiteral()
 	 * @generated
 	 * @ordered
@@ -41,9 +41,9 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 	protected static final String LITERAL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getLiteral() <em>Literal</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getLiteral() <em>Literal</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getLiteral()
 	 * @generated
 	 * @ordered
@@ -52,7 +52,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected LiteralImpl() {
@@ -61,7 +60,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -71,7 +69,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Enumeration getEnumeration() {
@@ -82,7 +79,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Enumeration basicGetEnumeration() {
@@ -93,41 +89,43 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetEnumeration(Enumeration newEnumeration, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newEnumeration, ClassesPackage.LITERAL__ENUMERATION, msgs);
+	public NotificationChain basicSetEnumeration(Enumeration newEnumeration,
+			NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newEnumeration,
+				ClassesPackage.LITERAL__ENUMERATION, msgs);
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEnumeration(Enumeration newEnumeration) {
 		if (newEnumeration != eInternalContainer()
-			|| (eContainerFeatureID() != ClassesPackage.LITERAL__ENUMERATION && newEnumeration != null)) {
+				|| (eContainerFeatureID() != ClassesPackage.LITERAL__ENUMERATION && newEnumeration != null)) {
 			if (EcoreUtil.isAncestor(this, newEnumeration))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newEnumeration != null)
-				msgs = ((InternalEObject) newEnumeration).eInverseAdd(this, ClassesPackage.ENUMERATION__LITERALS,
-					Enumeration.class, msgs);
+				msgs = ((InternalEObject) newEnumeration).eInverseAdd(this,
+						ClassesPackage.ENUMERATION__LITERALS,
+						Enumeration.class, msgs);
 			msgs = basicSetEnumeration(newEnumeration, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.LITERAL__ENUMERATION, newEnumeration,
-				newEnumeration));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.LITERAL__ENUMERATION, newEnumeration,
+					newEnumeration));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
@@ -136,23 +134,23 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLiteral(String newLiteral) {
 		String oldLiteral = literal;
 		literal = newLiteral;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.LITERAL__LITERAL, oldLiteral, literal));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.LITERAL__LITERAL, oldLiteral, literal));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ClassesPackage.LITERAL__ENUMERATION:
 			if (eInternalContainer() != null)
@@ -164,11 +162,11 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ClassesPackage.LITERAL__ENUMERATION:
 			return basicSetEnumeration(null, msgs);
@@ -178,22 +176,22 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 		case ClassesPackage.LITERAL__ENUMERATION:
-			return eInternalContainer().eInverseRemove(this, ClassesPackage.ENUMERATION__LITERALS, Enumeration.class,
-				msgs);
+			return eInternalContainer().eInverseRemove(this,
+					ClassesPackage.ENUMERATION__LITERALS, Enumeration.class,
+					msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -211,7 +209,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -229,7 +226,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -247,7 +243,6 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -256,14 +251,14 @@ public class LiteralImpl extends UnicaseModelElementImpl implements Literal {
 		case ClassesPackage.LITERAL__ENUMERATION:
 			return basicGetEnumeration() != null;
 		case ClassesPackage.LITERAL__LITERAL:
-			return LITERAL_EDEFAULT == null ? literal != null : !LITERAL_EDEFAULT.equals(literal);
+			return LITERAL_EDEFAULT == null ? literal != null
+					: !LITERAL_EDEFAULT.equals(literal);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

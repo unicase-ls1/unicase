@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -19,9 +19,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.impl.SemanticCompositeOperationImpl;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
 import org.unicase.implementation.operations.ExtractSuperClassOperation;
 import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.implementation.operations.util.OperationHelper;
@@ -35,75 +33,87 @@ import org.unicase.model.classes.Package;
 import org.unicase.model.classes.PackageElement;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Extract Super Class Operation</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Extract Super Class Operation</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getSubClasses <em>Sub Classes
- * </em>}</li>
- * <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getAttributes <em>Attributes
- * </em>}</li>
- * <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getOutgoingAssociations <em>
- * Outgoing Associations</em>}</li>
- * <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getIncomingAssociations <em>
- * Incoming Associations</em>}</li>
- * <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getSuperClassName <em>Super
- * Class Name</em>}</li>
- * <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getTargetPackage <em>Target
- * Package</em>}</li>
- * <li>{@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getSuperSuperClasses <em>Super
- * Super Classes</em>}</li>
+ * <li>
+ * {@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getSubClasses
+ * <em>Sub Classes</em>}</li>
+ * <li>
+ * {@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getAttributes
+ * <em>Attributes</em>}</li>
+ * <li>
+ * {@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getOutgoingAssociations
+ * <em>Outgoing Associations</em>}</li>
+ * <li>
+ * {@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getIncomingAssociations
+ * <em>Incoming Associations</em>}</li>
+ * <li>
+ * {@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getSuperClassName
+ * <em>Super Class Name</em>}</li>
+ * <li>
+ * {@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getTargetPackage
+ * <em>Target Package</em>}</li>
+ * <li>
+ * {@link org.unicase.implementation.operations.impl.ExtractSuperClassOperationImpl#getSuperSuperClasses
+ * <em>Super Super Classes</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationImpl implements
-	ExtractSuperClassOperation {
+public class ExtractSuperClassOperationImpl
+		extends
+		org.eclipse.emf.emfstore.internal.server.model.versioning.operations.semantic.impl.SemanticCompositeOperationImpl
+		implements ExtractSuperClassOperation {
 	/**
-	 * The cached value of the '{@link #getSubClasses() <em>Sub Classes</em>}' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSubClasses() <em>Sub Classes</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getSubClasses()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElementId> subClasses;
+	protected EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> subClasses;
 
 	/**
-	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getAttributes()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElementId> attributes;
+	protected EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> attributes;
 
 	/**
-	 * The cached value of the '{@link #getOutgoingAssociations() <em>Outgoing Associations</em>}' containment reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getOutgoingAssociations()
+	 * <em>Outgoing Associations</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getOutgoingAssociations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElementId> outgoingAssociations;
+	protected EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> outgoingAssociations;
 
 	/**
-	 * The cached value of the '{@link #getIncomingAssociations() <em>Incoming Associations</em>}' containment reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIncomingAssociations()
+	 * <em>Incoming Associations</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getIncomingAssociations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElementId> incomingAssociations;
+	protected EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> incomingAssociations;
 
 	/**
-	 * The default value of the '{@link #getSuperClassName() <em>Super Class Name</em>}' attribute. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getSuperClassName()
+	 * <em>Super Class Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getSuperClassName()
 	 * @generated
@@ -112,8 +122,9 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	protected static final String SUPER_CLASS_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getSuperClassName() <em>Super Class Name</em>}' attribute. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSuperClassName()
+	 * <em>Super Class Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @see #getSuperClassName()
 	 * @generated
@@ -122,24 +133,26 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	protected String superClassName = SUPER_CLASS_NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTargetPackage() <em>Target Package</em>}' containment reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getTargetPackage()
+	 * <em>Target Package</em>}' containment reference. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see #getTargetPackage()
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelElementId targetPackage;
+	protected org.eclipse.emf.emfstore.internal.common.model.ModelElementId targetPackage;
 
 	/**
-	 * The cached value of the '{@link #getSuperSuperClasses() <em>Super Super Classes</em>}' containment reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSuperSuperClasses()
+	 * <em>Super Super Classes</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getSuperSuperClasses()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElementId> superSuperClasses;
+	protected EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> superSuperClasses;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -165,10 +178,12 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	 * 
 	 * @generated
 	 */
-	public EList<ModelElementId> getSubClasses() {
+	public EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> getSubClasses() {
 		if (subClasses == null) {
-			subClasses = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this,
-				OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUB_CLASSES);
+			subClasses = new EObjectContainmentEList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId>(
+					org.eclipse.emf.emfstore.internal.common.model.ModelElementId.class,
+					this,
+					OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUB_CLASSES);
 		}
 		return subClasses;
 	}
@@ -178,10 +193,12 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	 * 
 	 * @generated
 	 */
-	public EList<ModelElementId> getAttributes() {
+	public EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> getAttributes() {
 		if (attributes == null) {
-			attributes = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this,
-				OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__ATTRIBUTES);
+			attributes = new EObjectContainmentEList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId>(
+					org.eclipse.emf.emfstore.internal.common.model.ModelElementId.class,
+					this,
+					OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__ATTRIBUTES);
 		}
 		return attributes;
 	}
@@ -191,10 +208,12 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	 * 
 	 * @generated
 	 */
-	public EList<ModelElementId> getOutgoingAssociations() {
+	public EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> getOutgoingAssociations() {
 		if (outgoingAssociations == null) {
-			outgoingAssociations = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this,
-				OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__OUTGOING_ASSOCIATIONS);
+			outgoingAssociations = new EObjectContainmentEList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId>(
+					org.eclipse.emf.emfstore.internal.common.model.ModelElementId.class,
+					this,
+					OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__OUTGOING_ASSOCIATIONS);
 		}
 		return outgoingAssociations;
 	}
@@ -204,10 +223,12 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	 * 
 	 * @generated
 	 */
-	public EList<ModelElementId> getIncomingAssociations() {
+	public EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> getIncomingAssociations() {
 		if (incomingAssociations == null) {
-			incomingAssociations = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this,
-				OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__INCOMING_ASSOCIATIONS);
+			incomingAssociations = new EObjectContainmentEList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId>(
+					org.eclipse.emf.emfstore.internal.common.model.ModelElementId.class,
+					this,
+					OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__INCOMING_ASSOCIATIONS);
 		}
 		return incomingAssociations;
 	}
@@ -230,8 +251,11 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 		String oldSuperClassName = superClassName;
 		superClassName = newSuperClassName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_CLASS_NAME, oldSuperClassName, superClassName));
+			eNotify(new ENotificationImpl(
+					this,
+					Notification.SET,
+					OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_CLASS_NAME,
+					oldSuperClassName, superClassName));
 	}
 
 	/**
@@ -239,7 +263,7 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	 * 
 	 * @generated
 	 */
-	public ModelElementId getTargetPackage() {
+	public org.eclipse.emf.emfstore.internal.common.model.ModelElementId getTargetPackage() {
 		return targetPackage;
 	}
 
@@ -248,12 +272,17 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetTargetPackage(ModelElementId newTargetPackage, NotificationChain msgs) {
-		ModelElementId oldTargetPackage = targetPackage;
+	public NotificationChain basicSetTargetPackage(
+			org.eclipse.emf.emfstore.internal.common.model.ModelElementId newTargetPackage,
+			NotificationChain msgs) {
+		org.eclipse.emf.emfstore.internal.common.model.ModelElementId oldTargetPackage = targetPackage;
 		targetPackage = newTargetPackage;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE, oldTargetPackage, newTargetPackage);
+			ENotificationImpl notification = new ENotificationImpl(
+					this,
+					Notification.SET,
+					OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE,
+					oldTargetPackage, newTargetPackage);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -267,21 +296,33 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	 * 
 	 * @generated
 	 */
-	public void setTargetPackage(ModelElementId newTargetPackage) {
+	public void setTargetPackage(
+			org.eclipse.emf.emfstore.internal.common.model.ModelElementId newTargetPackage) {
 		if (newTargetPackage != targetPackage) {
 			NotificationChain msgs = null;
 			if (targetPackage != null)
-				msgs = ((InternalEObject) targetPackage).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE, null, msgs);
+				msgs = ((InternalEObject) targetPackage)
+						.eInverseRemove(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE,
+								null, msgs);
 			if (newTargetPackage != null)
-				msgs = ((InternalEObject) newTargetPackage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE, null, msgs);
+				msgs = ((InternalEObject) newTargetPackage)
+						.eInverseAdd(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE,
+								null, msgs);
 			msgs = basicSetTargetPackage(newTargetPackage, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE, newTargetPackage, newTargetPackage));
+			eNotify(new ENotificationImpl(
+					this,
+					Notification.SET,
+					OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE,
+					newTargetPackage, newTargetPackage));
 	}
 
 	/**
@@ -289,10 +330,12 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	 * 
 	 * @generated
 	 */
-	public EList<ModelElementId> getSuperSuperClasses() {
+	public EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> getSuperSuperClasses() {
 		if (superSuperClasses == null) {
-			superSuperClasses = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this,
-				OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES);
+			superSuperClasses = new EObjectContainmentEList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId>(
+					org.eclipse.emf.emfstore.internal.common.model.ModelElementId.class,
+					this,
+					OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES);
 		}
 		return superSuperClasses;
 	}
@@ -302,7 +345,8 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	 * 
 	 * @generated
 	 */
-	public EList<org.unicase.model.classes.Class> getSubClasses(Project project) {
+	public EList<org.unicase.model.classes.Class> getSubClasses(
+			final org.eclipse.emf.emfstore.internal.common.model.Project project) {
 		return OperationHelper.getElements(project, getSubClasses());
 	}
 
@@ -311,8 +355,49 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	 * 
 	 * @generated
 	 */
-	public EList<Attribute> getAttributes(Project project) {
+	public EList<Attribute> getAttributes(
+			final org.eclipse.emf.emfstore.internal.common.model.Project project) {
 		return OperationHelper.getElements(project, getAttributes());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<Association> getOutgoingAssociations(
+			final org.eclipse.emf.emfstore.internal.common.model.Project project) {
+		return OperationHelper.getElements(project, getOutgoingAssociations());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<Association> getIncomingAssociations(
+			final org.eclipse.emf.emfstore.internal.common.model.Project project) {
+		return OperationHelper.getElements(project, getIncomingAssociations());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public org.unicase.model.classes.Package getTargetPackage(
+			final org.eclipse.emf.emfstore.internal.common.model.Project project) {
+		return OperationHelper.getElement(project, getTargetPackage());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<org.unicase.model.classes.Class> getSuperSuperClasses(
+			final org.eclipse.emf.emfstore.internal.common.model.Project project) {
+		return OperationHelper.getElements(project, getSuperSuperClasses());
 	}
 
 	// begin of custom code
@@ -326,16 +411,8 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 		List<Class> subClasses = getSubClasses(project);
 		List<Attribute> attributes = getAttributes(project);
 
-		return PullUpOperationImpl.getPossibleAttributes(attributes, subClasses);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EList<Association> getOutgoingAssociations(Project project) {
-		return OperationHelper.getElements(project, getOutgoingAssociations());
+		return PullUpOperationImpl
+				.getPossibleAttributes(attributes, subClasses);
 	}
 
 	/**
@@ -347,7 +424,8 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 		List<Association> associations = getOutgoingAssociations(project);
 		List<Class> subClasses = getSubClasses(project);
 
-		return PullUpOperationImpl.getPossibleOutgoingAssociations(associations, subClasses);
+		return PullUpOperationImpl.getPossibleOutgoingAssociations(
+				associations, subClasses);
 	}
 
 	/**
@@ -359,42 +437,16 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 		List<Association> associations = getIncomingAssociations(project);
 		List<Class> subClasses = getSubClasses(project);
 
-		return PullUpOperationImpl.getPossibleIncomingAssociations(associations, subClasses);
+		return PullUpOperationImpl.getPossibleIncomingAssociations(
+				associations, subClasses);
 	}
 
 	// end of custom code
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EList<Association> getIncomingAssociations(Project project) {
-		return OperationHelper.getElements(project, getIncomingAssociations());
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public org.unicase.model.classes.Package getTargetPackage(Project project) {
-		return OperationHelper.getElement(project, getTargetPackage());
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EList<org.unicase.model.classes.Class> getSuperSuperClasses(Project project) {
-		return OperationHelper.getElements(project, getSuperSuperClasses());
-	}
-
 	// begin of custom code
 	/**
-	 * Retrieve all Super super classes that could be selected. {@inheritDoc} <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Retrieve all Super super classes that could be selected. {@inheritDoc}
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -423,7 +475,8 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 		String superClassName = getSuperClassName();
 
 		if (superClassName != null && targetPackage != null) {
-			for (PackageElement element : targetPackage.getContainedPackageElements()) {
+			for (PackageElement element : targetPackage
+					.getContainedPackageElements()) {
 				if (element instanceof Class || element instanceof Enumeration) {
 					if (superClassName.equals(element.getName())) {
 						return false;
@@ -442,20 +495,26 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUB_CLASSES:
-			return ((InternalEList<?>) getSubClasses()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getSubClasses()).basicRemove(otherEnd,
+					msgs);
 		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__ATTRIBUTES:
-			return ((InternalEList<?>) getAttributes()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getAttributes()).basicRemove(otherEnd,
+					msgs);
 		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__OUTGOING_ASSOCIATIONS:
-			return ((InternalEList<?>) getOutgoingAssociations()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getOutgoingAssociations()).basicRemove(
+					otherEnd, msgs);
 		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__INCOMING_ASSOCIATIONS:
-			return ((InternalEList<?>) getIncomingAssociations()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getIncomingAssociations()).basicRemove(
+					otherEnd, msgs);
 		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE:
 			return basicSetTargetPackage(null, msgs);
 		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES:
-			return ((InternalEList<?>) getSuperSuperClasses()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getSuperSuperClasses()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -497,29 +556,34 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 		switch (featureID) {
 		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUB_CLASSES:
 			getSubClasses().clear();
-			getSubClasses().addAll((Collection<? extends ModelElementId>) newValue);
+			getSubClasses()
+					.addAll((Collection<? extends org.eclipse.emf.emfstore.internal.common.model.ModelElementId>) newValue);
 			return;
 		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__ATTRIBUTES:
 			getAttributes().clear();
-			getAttributes().addAll((Collection<? extends ModelElementId>) newValue);
+			getAttributes()
+					.addAll((Collection<? extends org.eclipse.emf.emfstore.internal.common.model.ModelElementId>) newValue);
 			return;
 		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__OUTGOING_ASSOCIATIONS:
 			getOutgoingAssociations().clear();
-			getOutgoingAssociations().addAll((Collection<? extends ModelElementId>) newValue);
+			getOutgoingAssociations()
+					.addAll((Collection<? extends org.eclipse.emf.emfstore.internal.common.model.ModelElementId>) newValue);
 			return;
 		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__INCOMING_ASSOCIATIONS:
 			getIncomingAssociations().clear();
-			getIncomingAssociations().addAll((Collection<? extends ModelElementId>) newValue);
+			getIncomingAssociations()
+					.addAll((Collection<? extends org.eclipse.emf.emfstore.internal.common.model.ModelElementId>) newValue);
 			return;
 		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_CLASS_NAME:
 			setSuperClassName((String) newValue);
 			return;
 		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE:
-			setTargetPackage((ModelElementId) newValue);
+			setTargetPackage((org.eclipse.emf.emfstore.internal.common.model.ModelElementId) newValue);
 			return;
 		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES:
 			getSuperSuperClasses().clear();
-			getSuperSuperClasses().addAll((Collection<? extends ModelElementId>) newValue);
+			getSuperSuperClasses()
+					.addAll((Collection<? extends org.eclipse.emf.emfstore.internal.common.model.ModelElementId>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -549,7 +613,7 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 			setSuperClassName(SUPER_CLASS_NAME_EDEFAULT);
 			return;
 		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE:
-			setTargetPackage((ModelElementId) null);
+			setTargetPackage((org.eclipse.emf.emfstore.internal.common.model.ModelElementId) null);
 			return;
 		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES:
 			getSuperSuperClasses().clear();
@@ -571,12 +635,14 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__ATTRIBUTES:
 			return attributes != null && !attributes.isEmpty();
 		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__OUTGOING_ASSOCIATIONS:
-			return outgoingAssociations != null && !outgoingAssociations.isEmpty();
+			return outgoingAssociations != null
+					&& !outgoingAssociations.isEmpty();
 		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__INCOMING_ASSOCIATIONS:
-			return incomingAssociations != null && !incomingAssociations.isEmpty();
+			return incomingAssociations != null
+					&& !incomingAssociations.isEmpty();
 		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_CLASS_NAME:
-			return SUPER_CLASS_NAME_EDEFAULT == null ? superClassName != null : !SUPER_CLASS_NAME_EDEFAULT
-				.equals(superClassName);
+			return SUPER_CLASS_NAME_EDEFAULT == null ? superClassName != null
+					: !SUPER_CLASS_NAME_EDEFAULT.equals(superClassName);
 		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__TARGET_PACKAGE:
 			return targetPackage != null;
 		case OperationsPackage.EXTRACT_SUPER_CLASS_OPERATION__SUPER_SUPER_CLASSES:
@@ -625,8 +691,10 @@ public class ExtractSuperClassOperationImpl extends SemanticCompositeOperationIm
 
 		// pull up attribute and associations
 		PullUpOperationImpl.pullUpAttributes(attributes, superClass);
-		PullUpOperationImpl.pullUpOutgoingAssociations(outgoingAssociations, superClass);
-		PullUpOperationImpl.pullUpIncomingAssociations(incomingAssociations, superClass);
+		PullUpOperationImpl.pullUpOutgoingAssociations(outgoingAssociations,
+				superClass);
+		PullUpOperationImpl.pullUpIncomingAssociations(incomingAssociations,
+				superClass);
 	}
 
 } // ExtractSuperClassOperationImpl

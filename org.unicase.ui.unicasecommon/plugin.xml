@@ -789,33 +789,6 @@
           name="Unicase">
     </page>
  </extension>
- <extension
-        point="org.eclipse.emf.ecp.editor.referencecontrols">
-    <widget
-          class="org.unicase.ui.unicasecommon.meeditor.mecontrols.commentcontrol.MECommentsLinkControl"
-          name="org.unicase.ui.unicasecommon.commentlinkcontrol"
-          showLabel="true"
-          type="org.eclipse.emf.ecore.EObject">
-    </widget>
-    <widget
-          class="org.unicase.ui.unicasecommon.meeditor.mecontrols.issuecontrol.AssessmentMatrixControl"
-          name="org.unicase.ui.unicasecommon.assessmentmatrixcontrol"
-          showLabel="false"
-          type="org.eclipse.emf.ecore.EObject">
-    </widget>
-    <widget
-          class="org.unicase.ui.unicasecommon.meeditor.mecontrols.uccontrol.UseCaseStepsControl"
-          name="org.unicase.ui.unicasecommon.usecasestepscontrol"
-          showLabel="false"
-          type="org.eclipse.emf.ecore.EObject">
-    </widget>
-    <widget
-          class="org.unicase.ui.unicasecommon.meeditor.mecontrols.issuecontrol.MergingIssueResolutionControl"
-          name="org.unicase.ui.unicasecommon.mergingissueresolutin"
-          showLabel="true"
-          type="org.eclipse.emf.ecore.EObject">
-    </widget>
- </extension>
   <extension
         point="org.eclipse.emf.ecp.editor.pages">
     <page
@@ -831,88 +804,46 @@
     </page>
  </extension>
   <extension
-        point="org.eclipse.emf.ecp.editor.melinkcontrols">
-    <widget
-          class="org.unicase.ui.unicasecommon.meeditor.MEURLLinkControl"
-          name="org.unicase.ui.unicasecommon.meurllinkcontrol"
-          type="org.eclipse.emf.ecore.EObject">
-    </widget>
- </extension>
-  <extension
-        point="org.eclipse.emf.ecp.common.dropadapter">
-    <MEDropAdapter
+        point="org.eclipse.emf.ecp.ui.dropAdapter">
+    <ECPDropAdapter
           class="org.unicase.ui.unicasecommon.dnd.dropadapters.UCDropAdapter">
-    </MEDropAdapter>
-    <MEDropAdapter
+    </ECPDropAdapter>
+    <ECPDropAdapter
           class="org.unicase.ui.unicasecommon.dnd.dropadapters.CompositeSectionDropAdapter">
-    </MEDropAdapter>
-    <MEDropAdapter
+    </ECPDropAdapter>
+    <ECPDropAdapter
           class="org.unicase.ui.unicasecommon.dnd.dropadapters.AnnotationDropAdapter">
-    </MEDropAdapter>
-    <MEDropAdapter
+    </ECPDropAdapter>
+    <ECPDropAdapter
           class="org.unicase.ui.unicasecommon.dnd.dropadapters.LeafSectionDropAdapter">
-    </MEDropAdapter>
-    <MEDropAdapter
+    </ECPDropAdapter>
+    <ECPDropAdapter
           class="org.unicase.ui.unicasecommon.dnd.dropadapters.MEDiagramDropAdapter">
-    </MEDropAdapter>
-    <MEDropAdapter
+    </ECPDropAdapter>
+    <ECPDropAdapter
           class="org.unicase.ui.unicasecommon.dnd.dropadapters.MeetingDropAdapter">
-    </MEDropAdapter>
-    <MEDropAdapter
+    </ECPDropAdapter>
+    <ECPDropAdapter
           class="org.unicase.ui.unicasecommon.dnd.dropadapters.ProjectDropAdapter">
-    </MEDropAdapter>
-    <MEDropAdapter
+    </ECPDropAdapter>
+    <ECPDropAdapter
           class="org.unicase.ui.unicasecommon.dnd.dropadapters.WorkItemMeetingSectionDropAdapter">
-    </MEDropAdapter>
-    <MEDropAdapter
+    </ECPDropAdapter>
+    <ECPDropAdapter
           class="org.unicase.ui.unicasecommon.dnd.dropadapters.WorkPackageDropAdapter">
-    </MEDropAdapter>
-    <MEDropAdapter
+    </ECPDropAdapter>
+    <ECPDropAdapter
           class="org.unicase.ui.unicasecommon.dnd.dropadapters.MilestoneDropAdapter">
-    </MEDropAdapter>
-    <MEDropAdapter
+    </ECPDropAdapter>
+    <ECPDropAdapter
           class="org.unicase.ui.unicasecommon.dnd.dropadapters.IssueMeetingDiscussionSectionDropAdapter">
-    </MEDropAdapter>
- </extension>
-  <extension
-        point="org.eclipse.emf.emfstore.client.ui.merge.customoption">
-    <customoption
-          class="org.unicase.ui.unicasecommon.merge.IssueConflictOptionFactory"
-          name="org.unicase.ui.unicasecommon.merge.issuefactory">
-    </customoption>
- </extension>
-  <extension
-        point="org.eclipse.emf.ecp.navigator.menuconfiguration">
-    <ContainmentCreationActions
-          enabled="false">
-    </ContainmentCreationActions>
- </extension>
-  <extension
-        point="org.eclipse.emf.emfstore.client.ui.commitdialog.tray">
-    <dialogTray
-          class="org.unicase.ui.unicasecommon.common.dialogs.CommitNotificationsTray"
-          name="Notify users">
-    </dialogTray>
+    </ECPDropAdapter>
  </extension>
   <extension
         point="org.eclipse.emf.ecp.editor.statusmessage">
      <provider
            class="org.unicase.ui.unicasecommon.meeditor.CreationStatusProvider">
      </provider>
-  </extension>
-  <extension
-        point="org.eclipse.emf.ecp.navigator.replaceContentProvider">
-     <ContentProvider
-           class="org.unicase.ui.unicasecommon.navigator.ProjectSpaceContentProvider"
-           type="org.eclipse.emf.emfstore.client.model.impl.ProjectSpaceImpl">
-     </ContentProvider>
-  </extension>
-  <extension
-        point="org.eclipse.emf.emfstore.common.observer">
-     <observer
-           extensionPointName="org.eclipse.emf.emfstore.client.postCreationObserver"
-           observerAttributeName="postCreationObserver">
-     </observer>
   </extension>
   <extension
         point="org.eclipse.emf.emfstore.client.postCreationObserver">
@@ -925,33 +856,6 @@
      <configurationProvider
            providerClass="org.unicase.ui.unicasecommon.UnicaseConfigurationProvider">
      </configurationProvider>
-  </extension>
-  <extension
-        point="org.eclipse.emf.ecp.editor.attributecontrols">
-     <widget
-           class="org.unicase.ui.unicasecommon.meeditor.MEEmailControl"
-           name="org.unicase.ui.unicasecommon.meemailcontrol"
-           showLabel="true"
-           type="java.lang.String">
-     </widget>
-     <widget
-           class="org.unicase.ui.unicasecommon.meeditor.MEURLControl"
-           name="URLwidget"
-           showLabel="true"
-           type="java.lang.String">
-     </widget>
-     <widget
-           class="org.unicase.ui.unicasecommon.meeditor.mecontrols.MEFileChooserControl"
-           name="org.unicase.ui.unicasecommon.mefilechoosercontrol"
-           showLabel="true"
-           type="java.lang.String">
-     </widget>
-     <widget
-           class="org.unicase.ui.unicasecommon.meeditor.mecontrols.MEFileSizeControl"
-           name="org.unicase.ui.unicasecommon.mefilesizecontrol"
-           showLabel="true"
-           type="java.lang.Long">
-     </widget>
   </extension>
   <extension
         id="org.eclipse.emf.emfstore.client.workspaceLocationProvider"
@@ -974,7 +878,7 @@
      </observer>
   </extension>
   <extension
-        point="org.eclipse.emf.ecp.common.menuContributionEnablement">
+        point="org.eclipse.emf.ecp.ui.menuContributionEnablement">
      <MenuContributionEnablement
            enabled="true">
         <Command
@@ -982,4 +886,16 @@
         </Command>
      </MenuContributionEnablement>
   </extension>
+    <extension
+        point="org.eclipse.emf.emfstore.client.clientVersion">
+     <version
+           class="org.unicase.ui.unicasecommon.UnicaseClientVersionProvider">
+     </version>
+  </extension>
+    <extension
+          point="org.eclipse.emf.emfstore.client.defaultConfigurationProvider">
+       <configurationProvider
+             providerClass="org.unicase.ui.unicasecommon.UnicaseConfigurationProvider">
+       </configurationProvider>
+    </extension>
 </plugin>

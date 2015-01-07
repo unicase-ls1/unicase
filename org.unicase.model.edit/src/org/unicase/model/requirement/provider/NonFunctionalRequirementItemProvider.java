@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -13,12 +13,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.provider.ModelEditPlugin;
@@ -32,11 +27,10 @@ import org.unicase.model.requirement.RequirementPackage;
  * 
  * @generated
  */
-public class NonFunctionalRequirementItemProvider extends CriterionItemProvider implements IEditingDomainItemProvider,
-	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class NonFunctionalRequirementItemProvider extends CriterionItemProvider {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NonFunctionalRequirementItemProvider(AdapterFactory adapterFactory) {
@@ -44,8 +38,8 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -69,14 +63,18 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 	 * @generated
 	 */
 	protected void addRestrictedScenariosPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_NonFunctionalRequirement_restrictedScenarios_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_restrictedScenarios_feature",
-				"_UI_NonFunctionalRequirement_type"),
-			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS, true, false, true, null,
-			null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_NonFunctionalRequirement_restrictedScenarios_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_NonFunctionalRequirement_restrictedScenarios_feature",
+								"_UI_NonFunctionalRequirement_type"),
+						RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS,
+						true, false, true, null, null, null));
 	}
 
 	/**
@@ -86,70 +84,90 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 	 * @generated
 	 */
 	protected void addRestrictedUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_NonFunctionalRequirement_restrictedUseCases_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_restrictedUseCases_feature",
-				"_UI_NonFunctionalRequirement_type"),
-			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES, true, false, true, null,
-			null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_NonFunctionalRequirement_restrictedUseCases_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_NonFunctionalRequirement_restrictedUseCases_feature",
+								"_UI_NonFunctionalRequirement_type"),
+						RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES,
+						true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the System Functions feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the System Functions feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSystemFunctionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_NonFunctionalRequirement_systemFunctions_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_systemFunctions_feature",
-				"_UI_NonFunctionalRequirement_type"),
-			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__SYSTEM_FUNCTIONS, true, false, true, null, null,
-			null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_NonFunctionalRequirement_systemFunctions_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_NonFunctionalRequirement_systemFunctions_feature",
+								"_UI_NonFunctionalRequirement_type"),
+						RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__SYSTEM_FUNCTIONS,
+						true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the User Tasks feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the User Tasks feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addUserTasksPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_NonFunctionalRequirement_userTasks_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_userTasks_feature",
-				"_UI_NonFunctionalRequirement_type"),
-			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__USER_TASKS, true, false, true, null, null, null));
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_NonFunctionalRequirement_userTasks_feature"),
+						getString(
+								"_UI_PropertyDescriptor_description",
+								"_UI_NonFunctionalRequirement_userTasks_feature",
+								"_UI_NonFunctionalRequirement_type"),
+						RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__USER_TASKS,
+						true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Done feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Done feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDonePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_NonFunctionalRequirement_done_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_done_feature",
-				"_UI_NonFunctionalRequirement_type"), RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__DONE,
-			true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_NonFunctionalRequirement_done_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_NonFunctionalRequirement_done_feature",
+						"_UI_NonFunctionalRequirement_type"),
+				RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__DONE,
+				true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null, null));
 	}
 
 	/**
-	 * This returns NonFunctionalRequirement.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns NonFunctionalRequirement.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/NonFunctionalRequirement"));
+		return overlayImage(
+				object,
+				getResourceLocator().getImage(
+						"full/obj16/NonFunctionalRequirement"));
 	}
 
 	/**
@@ -175,26 +193,28 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 
 		switch (notification.getFeatureID(NonFunctionalRequirement.class)) {
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__DONE:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

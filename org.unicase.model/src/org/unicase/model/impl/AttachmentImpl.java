@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -23,17 +23,17 @@ import org.unicase.model.UnicaseModelElement;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.impl.AttachmentImpl#getReferringModelElements <em>Referring Model Elements</em>}</li>
+ *   <li>{@link org.unicase.model.impl.AttachmentImpl#getReferringModelElements <em>Referring Model Elements</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public abstract class AttachmentImpl extends UnicaseModelElementImpl implements Attachment {
+public abstract class AttachmentImpl extends UnicaseModelElementImpl implements
+		Attachment {
 	/**
 	 * The cached value of the '{@link #getReferringModelElements() <em>Referring Model Elements</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getReferringModelElements()
 	 * @generated
 	 * @ordered
@@ -42,7 +42,6 @@ public abstract class AttachmentImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AttachmentImpl() {
@@ -51,7 +50,6 @@ public abstract class AttachmentImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -61,51 +59,51 @@ public abstract class AttachmentImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<UnicaseModelElement> getReferringModelElements() {
 		if (referringModelElements == null) {
 			referringModelElements = new EObjectWithInverseResolvingEList.ManyInverse<UnicaseModelElement>(
-				UnicaseModelElement.class, this, ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS,
-				ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS);
+					UnicaseModelElement.class, this,
+					ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS,
+					ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS);
 		}
 		return referringModelElements;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getReferringModelElements()).basicAdd(otherEnd,
-				msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getReferringModelElements())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS:
-			return ((InternalEList<?>) getReferringModelElements()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getReferringModelElements())
+					.basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -119,7 +117,6 @@ public abstract class AttachmentImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -128,7 +125,8 @@ public abstract class AttachmentImpl extends UnicaseModelElementImpl implements 
 		switch (featureID) {
 		case ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS:
 			getReferringModelElements().clear();
-			getReferringModelElements().addAll((Collection<? extends UnicaseModelElement>) newValue);
+			getReferringModelElements().addAll(
+					(Collection<? extends UnicaseModelElement>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -136,7 +134,6 @@ public abstract class AttachmentImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -151,14 +148,14 @@ public abstract class AttachmentImpl extends UnicaseModelElementImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS:
-			return referringModelElements != null && !referringModelElements.isEmpty();
+			return referringModelElements != null
+					&& !referringModelElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

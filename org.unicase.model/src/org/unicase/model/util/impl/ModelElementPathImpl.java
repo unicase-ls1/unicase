@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.emfstore.common.model.ModelElementId;
 import org.unicase.model.util.ModelElementPath;
 import org.unicase.model.util.UtilPackage;
 
@@ -35,40 +34,40 @@ import org.unicase.model.util.UtilPackage;
  * 
  * @generated
  */
-public class ModelElementPathImpl extends EObjectImpl implements ModelElementPath {
+public class ModelElementPathImpl extends EObjectImpl implements
+		ModelElementPath {
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelElementId source;
+	protected org.eclipse.emf.emfstore.internal.common.model.ModelElementId source;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' containment reference. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelElementId target;
+	protected org.eclipse.emf.emfstore.internal.common.model.ModelElementId target;
 
 	/**
-	 * The cached value of the '{@link #getPath() <em>Path</em>}' containment reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPath() <em>Path</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getPath()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElementId> path;
+	protected EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> path;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ModelElementPathImpl() {
@@ -77,7 +76,6 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -87,26 +85,29 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public ModelElementId getSource() {
+	public org.eclipse.emf.emfstore.internal.common.model.ModelElementId getSource() {
 		if (source != null && source.eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject) source;
-			source = (ModelElementId) eResolveProxy(oldSource);
+			source = (org.eclipse.emf.emfstore.internal.common.model.ModelElementId) eResolveProxy(oldSource);
 			if (source != oldSource) {
 				InternalEObject newSource = (InternalEObject) source;
-				NotificationChain msgs = oldSource.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- UtilPackage.MODEL_ELEMENT_PATH__SOURCE, null, null);
+				NotificationChain msgs = oldSource.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- UtilPackage.MODEL_ELEMENT_PATH__SOURCE, null,
+						null);
 				if (newSource.eInternalContainer() == null) {
-					msgs = newSource.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UtilPackage.MODEL_ELEMENT_PATH__SOURCE,
-						null, msgs);
+					msgs = newSource.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+							- UtilPackage.MODEL_ELEMENT_PATH__SOURCE, null,
+							msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UtilPackage.MODEL_ELEMENT_PATH__SOURCE,
-						oldSource, source));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							UtilPackage.MODEL_ELEMENT_PATH__SOURCE, oldSource,
+							source));
 			}
 		}
 		return source;
@@ -114,24 +115,26 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public ModelElementId basicGetSource() {
+	public org.eclipse.emf.emfstore.internal.common.model.ModelElementId basicGetSource() {
 		return source;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSource(ModelElementId newSource, NotificationChain msgs) {
-		ModelElementId oldSource = source;
+	public NotificationChain basicSetSource(
+			org.eclipse.emf.emfstore.internal.common.model.ModelElementId newSource,
+			NotificationChain msgs) {
+		org.eclipse.emf.emfstore.internal.common.model.ModelElementId oldSource = source;
 		source = newSource;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				UtilPackage.MODEL_ELEMENT_PATH__SOURCE, oldSource, newSource);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, UtilPackage.MODEL_ELEMENT_PATH__SOURCE,
+					oldSource, newSource);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -141,49 +144,58 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSource(ModelElementId newSource) {
+	public void setSource(
+			org.eclipse.emf.emfstore.internal.common.model.ModelElementId newSource) {
 		if (newSource != source) {
 			NotificationChain msgs = null;
 			if (source != null)
-				msgs = ((InternalEObject) source).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- UtilPackage.MODEL_ELEMENT_PATH__SOURCE, null, msgs);
+				msgs = ((InternalEObject) source).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- UtilPackage.MODEL_ELEMENT_PATH__SOURCE, null,
+						msgs);
 			if (newSource != null)
-				msgs = ((InternalEObject) newSource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- UtilPackage.MODEL_ELEMENT_PATH__SOURCE, null, msgs);
+				msgs = ((InternalEObject) newSource).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE
+								- UtilPackage.MODEL_ELEMENT_PATH__SOURCE, null,
+						msgs);
 			msgs = basicSetSource(newSource, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UtilPackage.MODEL_ELEMENT_PATH__SOURCE, newSource,
-				newSource));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					UtilPackage.MODEL_ELEMENT_PATH__SOURCE, newSource,
+					newSource));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public ModelElementId getTarget() {
+	public org.eclipse.emf.emfstore.internal.common.model.ModelElementId getTarget() {
 		if (target != null && target.eIsProxy()) {
 			InternalEObject oldTarget = (InternalEObject) target;
-			target = (ModelElementId) eResolveProxy(oldTarget);
+			target = (org.eclipse.emf.emfstore.internal.common.model.ModelElementId) eResolveProxy(oldTarget);
 			if (target != oldTarget) {
 				InternalEObject newTarget = (InternalEObject) target;
-				NotificationChain msgs = oldTarget.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- UtilPackage.MODEL_ELEMENT_PATH__TARGET, null, null);
+				NotificationChain msgs = oldTarget.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- UtilPackage.MODEL_ELEMENT_PATH__TARGET, null,
+						null);
 				if (newTarget.eInternalContainer() == null) {
-					msgs = newTarget.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UtilPackage.MODEL_ELEMENT_PATH__TARGET,
-						null, msgs);
+					msgs = newTarget.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+							- UtilPackage.MODEL_ELEMENT_PATH__TARGET, null,
+							msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UtilPackage.MODEL_ELEMENT_PATH__TARGET,
-						oldTarget, target));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							UtilPackage.MODEL_ELEMENT_PATH__TARGET, oldTarget,
+							target));
 			}
 		}
 		return target;
@@ -191,24 +203,26 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public ModelElementId basicGetTarget() {
+	public org.eclipse.emf.emfstore.internal.common.model.ModelElementId basicGetTarget() {
 		return target;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(ModelElementId newTarget, NotificationChain msgs) {
-		ModelElementId oldTarget = target;
+	public NotificationChain basicSetTarget(
+			org.eclipse.emf.emfstore.internal.common.model.ModelElementId newTarget,
+			NotificationChain msgs) {
+		org.eclipse.emf.emfstore.internal.common.model.ModelElementId oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				UtilPackage.MODEL_ELEMENT_PATH__TARGET, oldTarget, newTarget);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, UtilPackage.MODEL_ELEMENT_PATH__TARGET,
+					oldTarget, newTarget);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -218,47 +232,53 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(ModelElementId newTarget) {
+	public void setTarget(
+			org.eclipse.emf.emfstore.internal.common.model.ModelElementId newTarget) {
 		if (newTarget != target) {
 			NotificationChain msgs = null;
 			if (target != null)
-				msgs = ((InternalEObject) target).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- UtilPackage.MODEL_ELEMENT_PATH__TARGET, null, msgs);
+				msgs = ((InternalEObject) target).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- UtilPackage.MODEL_ELEMENT_PATH__TARGET, null,
+						msgs);
 			if (newTarget != null)
-				msgs = ((InternalEObject) newTarget).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- UtilPackage.MODEL_ELEMENT_PATH__TARGET, null, msgs);
+				msgs = ((InternalEObject) newTarget).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE
+								- UtilPackage.MODEL_ELEMENT_PATH__TARGET, null,
+						msgs);
 			msgs = basicSetTarget(newTarget, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UtilPackage.MODEL_ELEMENT_PATH__TARGET, newTarget,
-				newTarget));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					UtilPackage.MODEL_ELEMENT_PATH__TARGET, newTarget,
+					newTarget));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EList<ModelElementId> getPath() {
+	public EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> getPath() {
 		if (path == null) {
-			path = new EObjectContainmentEList.Resolving<ModelElementId>(ModelElementId.class, this,
-				UtilPackage.MODEL_ELEMENT_PATH__PATH);
+			path = new EObjectContainmentEList.Resolving<org.eclipse.emf.emfstore.internal.common.model.ModelElementId>(
+					org.eclipse.emf.emfstore.internal.common.model.ModelElementId.class,
+					this, UtilPackage.MODEL_ELEMENT_PATH__PATH);
 		}
 		return path;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case UtilPackage.MODEL_ELEMENT_PATH__SOURCE:
 			return basicSetSource(null, msgs);
@@ -272,7 +292,6 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -294,7 +313,6 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -302,14 +320,15 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case UtilPackage.MODEL_ELEMENT_PATH__SOURCE:
-			setSource((ModelElementId) newValue);
+			setSource((org.eclipse.emf.emfstore.internal.common.model.ModelElementId) newValue);
 			return;
 		case UtilPackage.MODEL_ELEMENT_PATH__TARGET:
-			setTarget((ModelElementId) newValue);
+			setTarget((org.eclipse.emf.emfstore.internal.common.model.ModelElementId) newValue);
 			return;
 		case UtilPackage.MODEL_ELEMENT_PATH__PATH:
 			getPath().clear();
-			getPath().addAll((Collection<? extends ModelElementId>) newValue);
+			getPath()
+					.addAll((Collection<? extends org.eclipse.emf.emfstore.internal.common.model.ModelElementId>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -317,17 +336,16 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case UtilPackage.MODEL_ELEMENT_PATH__SOURCE:
-			setSource((ModelElementId) null);
+			setSource((org.eclipse.emf.emfstore.internal.common.model.ModelElementId) null);
 			return;
 		case UtilPackage.MODEL_ELEMENT_PATH__TARGET:
-			setTarget((ModelElementId) null);
+			setTarget((org.eclipse.emf.emfstore.internal.common.model.ModelElementId) null);
 			return;
 		case UtilPackage.MODEL_ELEMENT_PATH__PATH:
 			getPath().clear();
@@ -338,7 +356,6 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.emf.emfstore.server.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
 import org.unicase.model.attachment.AttachmentPackage;
@@ -50,27 +49,24 @@ import org.unicase.model.util.impl.UtilPackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
-public class ComponentPackageImpl extends EPackageImpl implements ComponentPackage {
+public class ComponentPackageImpl extends EPackageImpl implements
+		ComponentPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass componentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass componentServiceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass deploymentNodeEClass = null;
@@ -94,18 +90,17 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * <p>
-	 * This method is used to initialize {@link ComponentPackage#eINSTANCE} when that field is accessed. Clients should
-	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
 	 * 
+	 * <p>This method is used to initialize {@link ComponentPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -113,63 +108,76 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 	 */
 	public static ComponentPackage init() {
 		if (isInited)
-			return (ComponentPackage) EPackage.Registry.INSTANCE.getEPackage(ComponentPackage.eNS_URI);
+			return (ComponentPackage) EPackage.Registry.INSTANCE
+					.getEPackage(ComponentPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
-			.get(eNS_URI) : new ComponentPackageImpl());
+		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl) (EPackage.Registry.INSTANCE
+				.get(eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
+				.get(eNS_URI) : new ComponentPackageImpl());
 
 		isInited = true;
 
 		// Initialize simple dependencies
-		ModelPackage.eINSTANCE.eClass();
+		org.eclipse.emf.emfstore.internal.server.model.ModelPackage.eINSTANCE
+				.eClass();
 
 		// Obtain or create and register interdependencies
 		ModelPackageImpl theModelPackage_1 = (ModelPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) : org.unicase.model.ModelPackage.eINSTANCE);
+				.getEPackage(org.unicase.model.ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(org.unicase.model.ModelPackage.eNS_URI)
+				: org.unicase.model.ModelPackage.eINSTANCE);
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
-		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
+				.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(OrganizationPackage.eNS_URI)
+				: OrganizationPackage.eINSTANCE);
+		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
 		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
+				.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
 		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
+				.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(DocumentPackage.eNS_URI)
+				: DocumentPackage.eINSTANCE);
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
+				.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(RequirementPackage.eNS_URI)
+				: RequirementPackage.eINSTANCE);
 		RationalePackageImpl theRationalePackage = (RationalePackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(RationalePackage.eNS_URI) : RationalePackage.eINSTANCE);
+				.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(RationalePackage.eNS_URI)
+				: RationalePackage.eINSTANCE);
 		ChangePackageImpl theChangePackage = (ChangePackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ChangePackage.eNS_URI) : ChangePackage.eINSTANCE);
-		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(BugPackage.eNS_URI) : BugPackage.eINSTANCE);
+				.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ChangePackage.eNS_URI) : ChangePackage.eINSTANCE);
+		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(BugPackage.eNS_URI) : BugPackage.eINSTANCE);
 		MeetingPackageImpl theMeetingPackage = (MeetingPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(MeetingPackage.eNS_URI) instanceof MeetingPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(MeetingPackage.eNS_URI) : MeetingPackage.eINSTANCE);
+				.getEPackage(MeetingPackage.eNS_URI) instanceof MeetingPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(MeetingPackage.eNS_URI) : MeetingPackage.eINSTANCE);
 		StatePackageImpl theStatePackage = (StatePackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(StatePackage.eNS_URI) instanceof StatePackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(StatePackage.eNS_URI) : StatePackage.eINSTANCE);
+				.getEPackage(StatePackage.eNS_URI) instanceof StatePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(StatePackage.eNS_URI) : StatePackage.eINSTANCE);
 		AttachmentPackageImpl theAttachmentPackage = (AttachmentPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(AttachmentPackage.eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(AttachmentPackage.eNS_URI) : AttachmentPackage.eINSTANCE);
+				.getEPackage(AttachmentPackage.eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(AttachmentPackage.eNS_URI)
+				: AttachmentPackage.eINSTANCE);
 		ProfilePackageImpl theProfilePackage = (ProfilePackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ProfilePackage.eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ProfilePackage.eNS_URI) : ProfilePackage.eINSTANCE);
-		UtilPackageImpl theUtilPackage = (UtilPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(UtilPackage.eNS_URI) instanceof UtilPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(UtilPackage.eNS_URI) : UtilPackage.eINSTANCE);
+				.getEPackage(ProfilePackage.eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ProfilePackage.eNS_URI) : ProfilePackage.eINSTANCE);
+		UtilPackageImpl theUtilPackage = (UtilPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(UtilPackage.eNS_URI) instanceof UtilPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(UtilPackage.eNS_URI) : UtilPackage.eINSTANCE);
 		ActivityPackageImpl theActivityPackage = (ActivityPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ActivityPackage.eNS_URI) instanceof ActivityPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ActivityPackage.eNS_URI) : ActivityPackage.eINSTANCE);
+				.getEPackage(ActivityPackage.eNS_URI) instanceof ActivityPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ActivityPackage.eNS_URI)
+				: ActivityPackage.eINSTANCE);
 		ReleasePackageImpl theReleasePackage = (ReleasePackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ReleasePackage.eNS_URI) instanceof ReleasePackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ReleasePackage.eNS_URI) : ReleasePackage.eINSTANCE);
+				.getEPackage(ReleasePackage.eNS_URI) instanceof ReleasePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ReleasePackage.eNS_URI) : ReleasePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theComponentPackage.createPackageContents();
@@ -213,13 +221,13 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 		theComponentPackage.freeze();
 
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(ComponentPackage.eNS_URI, theComponentPackage);
+		EPackage.Registry.INSTANCE.put(ComponentPackage.eNS_URI,
+				theComponentPackage);
 		return theComponentPackage;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getComponent() {
@@ -228,7 +236,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getComponent_Packages() {
@@ -237,7 +244,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getComponent_OfferedServices() {
@@ -246,7 +252,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getComponent_ConsumedServices() {
@@ -255,7 +260,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getComponent_Subsystems() {
@@ -264,7 +268,6 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getComponentService() {
@@ -273,25 +276,24 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getComponentService_OfferingComponent() {
-		return (EReference) componentServiceEClass.getEStructuralFeatures().get(0);
+		return (EReference) componentServiceEClass.getEStructuralFeatures()
+				.get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getComponentService_ConsumingComponents() {
-		return (EReference) componentServiceEClass.getEStructuralFeatures().get(1);
+		return (EReference) componentServiceEClass.getEStructuralFeatures()
+				.get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getDeploymentNode() {
@@ -300,16 +302,15 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getDeploymentNode_Components() {
-		return (EReference) deploymentNodeEClass.getEStructuralFeatures().get(0);
+		return (EReference) deploymentNodeEClass.getEStructuralFeatures()
+				.get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ComponentFactory getComponentFactory() {
@@ -318,15 +319,14 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -342,8 +342,10 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 		createEReference(componentEClass, COMPONENT__SUBSYSTEMS);
 
 		componentServiceEClass = createEClass(COMPONENT_SERVICE);
-		createEReference(componentServiceEClass, COMPONENT_SERVICE__OFFERING_COMPONENT);
-		createEReference(componentServiceEClass, COMPONENT_SERVICE__CONSUMING_COMPONENTS);
+		createEReference(componentServiceEClass,
+				COMPONENT_SERVICE__OFFERING_COMPONENT);
+		createEReference(componentServiceEClass,
+				COMPONENT_SERVICE__CONSUMING_COMPONENTS);
 
 		deploymentNodeEClass = createEClass(DEPLOYMENT_NODE);
 		createEReference(deploymentNodeEClass, DEPLOYMENT_NODE__COMPONENTS);
@@ -351,15 +353,14 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -374,53 +375,72 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 
 		// Obtain other dependent packages
 		org.unicase.model.ModelPackage theModelPackage_1 = (org.unicase.model.ModelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(org.unicase.model.ModelPackage.eNS_URI);
+				.getEPackage(org.unicase.model.ModelPackage.eNS_URI);
 		ClassesPackage theClassesPackage = (ClassesPackage) EPackage.Registry.INSTANCE
-			.getEPackage(ClassesPackage.eNS_URI);
+				.getEPackage(ClassesPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		componentEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
-		componentServiceEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
-		deploymentNodeEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		componentEClass.getESuperTypes().add(
+				theModelPackage_1.getUnicaseModelElement());
+		componentServiceEClass.getESuperTypes().add(
+				theModelPackage_1.getUnicaseModelElement());
+		deploymentNodeEClass.getESuperTypes().add(
+				theModelPackage_1.getUnicaseModelElement());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(componentEClass, Component.class, "Component", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComponent_Packages(), theClassesPackage.getPackage(), null, "packages", null, 0, -1,
-			Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getComponent_OfferedServices(), this.getComponentService(),
-			this.getComponentService_OfferingComponent(), "offeredServices", null, 0, -1, Component.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEReference(getComponent_ConsumedServices(), this.getComponentService(),
-			this.getComponentService_ConsumingComponents(), "consumedServices", null, 0, -1, Component.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEReference(getComponent_Subsystems(), theClassesPackage.getPackage(), null, "subsystems", null, 0, -1,
-			Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(componentEClass, Component.class, "Component", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getComponent_Packages(), theClassesPackage.getPackage(),
+				null, "packages", null, 0, -1, Component.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComponent_OfferedServices(),
+				this.getComponentService(),
+				this.getComponentService_OfferingComponent(),
+				"offeredServices", null, 0, -1, Component.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComponent_ConsumedServices(),
+				this.getComponentService(),
+				this.getComponentService_ConsumingComponents(),
+				"consumedServices", null, 0, -1, Component.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getComponent_Subsystems(),
+				theClassesPackage.getPackage(), null, "subsystems", null, 0,
+				-1, Component.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(componentServiceEClass, ComponentService.class, "ComponentService", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComponentService_OfferingComponent(), this.getComponent(),
-			this.getComponent_OfferedServices(), "offeringComponent", null, 0, 1, ComponentService.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEReference(getComponentService_ConsumingComponents(), this.getComponent(),
-			this.getComponent_ConsumedServices(), "consumingComponents", null, 0, -1, ComponentService.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
+		initEClass(componentServiceEClass, ComponentService.class,
+				"ComponentService", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getComponentService_OfferingComponent(),
+				this.getComponent(), this.getComponent_OfferedServices(),
+				"offeringComponent", null, 0, 1, ComponentService.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getComponentService_ConsumingComponents(),
+				this.getComponent(), this.getComponent_ConsumedServices(),
+				"consumingComponents", null, 0, -1, ComponentService.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
-		initEClass(deploymentNodeEClass, DeploymentNode.class, "DeploymentNode", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDeploymentNode_Components(), this.getComponent(), null, "components", null, 0, -1,
-			DeploymentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(deploymentNodeEClass, DeploymentNode.class,
+				"DeploymentNode", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDeploymentNode_Components(), this.getComponent(),
+				null, "components", null, 0, -1, DeploymentNode.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
 		// Create annotations
 		// org.eclipse.emf.ecp.editor
@@ -428,17 +448,18 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 	}
 
 	/**
-	 * Initializes the annotations for <b>org.eclipse.emf.ecp.editor</b>. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Initializes the annotations for <b>org.eclipse.emf.ecp.editor</b>.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {
 		String source = "org.eclipse.emf.ecp.editor";
-		addAnnotation(getComponentService_OfferingComponent(), source, new String[] { "priority", "10.0", "position",
-			"left" });
-		addAnnotation(getComponentService_ConsumingComponents(), source, new String[] { "priority", "10.0", "position",
-			"right" });
-		addAnnotation(getDeploymentNode_Components(), source, new String[] { "priority", "10.0", "position", "right" });
+		addAnnotation(getComponentService_OfferingComponent(), source,
+				new String[] { "priority", "10.0", "position", "left" });
+		addAnnotation(getComponentService_ConsumingComponents(), source,
+				new String[] { "priority", "10.0", "position", "right" });
+		addAnnotation(getDeploymentNode_Components(), source, new String[] {
+				"priority", "10.0", "position", "right" });
 	}
 
 } // ComponentPackageImpl

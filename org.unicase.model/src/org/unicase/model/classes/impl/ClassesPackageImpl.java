@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.emf.emfstore.server.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
 import org.unicase.model.attachment.AttachmentPackage;
@@ -65,116 +64,99 @@ import org.unicase.model.util.impl.UtilPackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 @SuppressWarnings("unused")
 public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass classEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass packageEClass = null;
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass packageElementEClass = null;
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass associationEClass = null;
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass attributeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass methodEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass methodArgumentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass dependencyEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass enumerationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass literalEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum associationTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum visibilityTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum scopeTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum argumentDirectionTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum instantiationTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum primitiveTypeEEnum = null;
@@ -198,18 +180,17 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * <p>
-	 * This method is used to initialize {@link ClassesPackage#eINSTANCE} when that field is accessed. Clients should
-	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
 	 * 
+	 * <p>This method is used to initialize {@link ClassesPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -217,63 +198,77 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	 */
 	public static ClassesPackage init() {
 		if (isInited)
-			return (ClassesPackage) EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI);
+			return (ClassesPackage) EPackage.Registry.INSTANCE
+					.getEPackage(ClassesPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
-			.get(eNS_URI) : new ClassesPackageImpl());
+		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl) (EPackage.Registry.INSTANCE
+				.get(eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
+				.get(eNS_URI) : new ClassesPackageImpl());
 
 		isInited = true;
 
 		// Initialize simple dependencies
-		ModelPackage.eINSTANCE.eClass();
+		org.eclipse.emf.emfstore.internal.server.model.ModelPackage.eINSTANCE
+				.eClass();
 
 		// Obtain or create and register interdependencies
 		ModelPackageImpl theModelPackage_1 = (ModelPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(org.unicase.model.ModelPackage.eNS_URI) : org.unicase.model.ModelPackage.eINSTANCE);
+				.getEPackage(org.unicase.model.ModelPackage.eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(org.unicase.model.ModelPackage.eNS_URI)
+				: org.unicase.model.ModelPackage.eINSTANCE);
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(OrganizationPackage.eNS_URI) : OrganizationPackage.eINSTANCE);
-		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
+				.getEPackage(OrganizationPackage.eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(OrganizationPackage.eNS_URI)
+				: OrganizationPackage.eINSTANCE);
+		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(TaskPackage.eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(TaskPackage.eNS_URI) : TaskPackage.eINSTANCE);
 		DocumentPackageImpl theDocumentPackage = (DocumentPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(DocumentPackage.eNS_URI) : DocumentPackage.eINSTANCE);
+				.getEPackage(DocumentPackage.eNS_URI) instanceof DocumentPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(DocumentPackage.eNS_URI)
+				: DocumentPackage.eINSTANCE);
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(RequirementPackage.eNS_URI) : RequirementPackage.eINSTANCE);
+				.getEPackage(RequirementPackage.eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(RequirementPackage.eNS_URI)
+				: RequirementPackage.eINSTANCE);
 		RationalePackageImpl theRationalePackage = (RationalePackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(RationalePackage.eNS_URI) : RationalePackage.eINSTANCE);
+				.getEPackage(RationalePackage.eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(RationalePackage.eNS_URI)
+				: RationalePackage.eINSTANCE);
 		ChangePackageImpl theChangePackage = (ChangePackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ChangePackage.eNS_URI) : ChangePackage.eINSTANCE);
-		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(BugPackage.eNS_URI) : BugPackage.eINSTANCE);
+				.getEPackage(ChangePackage.eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ChangePackage.eNS_URI) : ChangePackage.eINSTANCE);
+		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(BugPackage.eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(BugPackage.eNS_URI) : BugPackage.eINSTANCE);
 		ComponentPackageImpl theComponentPackage = (ComponentPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ComponentPackage.eNS_URI) : ComponentPackage.eINSTANCE);
+				.getEPackage(ComponentPackage.eNS_URI) instanceof ComponentPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ComponentPackage.eNS_URI)
+				: ComponentPackage.eINSTANCE);
 		MeetingPackageImpl theMeetingPackage = (MeetingPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(MeetingPackage.eNS_URI) instanceof MeetingPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(MeetingPackage.eNS_URI) : MeetingPackage.eINSTANCE);
+				.getEPackage(MeetingPackage.eNS_URI) instanceof MeetingPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(MeetingPackage.eNS_URI) : MeetingPackage.eINSTANCE);
 		StatePackageImpl theStatePackage = (StatePackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(StatePackage.eNS_URI) instanceof StatePackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(StatePackage.eNS_URI) : StatePackage.eINSTANCE);
+				.getEPackage(StatePackage.eNS_URI) instanceof StatePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(StatePackage.eNS_URI) : StatePackage.eINSTANCE);
 		AttachmentPackageImpl theAttachmentPackage = (AttachmentPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(AttachmentPackage.eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(AttachmentPackage.eNS_URI) : AttachmentPackage.eINSTANCE);
+				.getEPackage(AttachmentPackage.eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(AttachmentPackage.eNS_URI)
+				: AttachmentPackage.eINSTANCE);
 		ProfilePackageImpl theProfilePackage = (ProfilePackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ProfilePackage.eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ProfilePackage.eNS_URI) : ProfilePackage.eINSTANCE);
-		UtilPackageImpl theUtilPackage = (UtilPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(UtilPackage.eNS_URI) instanceof UtilPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(UtilPackage.eNS_URI) : UtilPackage.eINSTANCE);
+				.getEPackage(ProfilePackage.eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ProfilePackage.eNS_URI) : ProfilePackage.eINSTANCE);
+		UtilPackageImpl theUtilPackage = (UtilPackageImpl) (EPackage.Registry.INSTANCE
+				.getEPackage(UtilPackage.eNS_URI) instanceof UtilPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(UtilPackage.eNS_URI) : UtilPackage.eINSTANCE);
 		ActivityPackageImpl theActivityPackage = (ActivityPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ActivityPackage.eNS_URI) instanceof ActivityPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ActivityPackage.eNS_URI) : ActivityPackage.eINSTANCE);
+				.getEPackage(ActivityPackage.eNS_URI) instanceof ActivityPackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ActivityPackage.eNS_URI)
+				: ActivityPackage.eINSTANCE);
 		ReleasePackageImpl theReleasePackage = (ReleasePackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ReleasePackage.eNS_URI) instanceof ReleasePackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ReleasePackage.eNS_URI) : ReleasePackage.eINSTANCE);
+				.getEPackage(ReleasePackage.eNS_URI) instanceof ReleasePackageImpl ? EPackage.Registry.INSTANCE
+				.getEPackage(ReleasePackage.eNS_URI) : ReleasePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theClassesPackage.createPackageContents();
@@ -317,13 +312,13 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		theClassesPackage.freeze();
 
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(ClassesPackage.eNS_URI, theClassesPackage);
+		EPackage.Registry.INSTANCE.put(ClassesPackage.eNS_URI,
+				theClassesPackage);
 		return theClassesPackage;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getClass_() {
@@ -332,7 +327,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getClass_InstantiationType() {
@@ -341,7 +335,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getClass_ParticipatedUseCases() {
@@ -350,7 +343,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getClass_SuperClasses() {
@@ -359,7 +351,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getClass_SubClasses() {
@@ -368,7 +359,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getClass_IncomingAssociations() {
@@ -377,7 +367,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getClass_OutgoingAssociations() {
@@ -386,7 +375,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getClass_Attributes() {
@@ -395,7 +383,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getClass_Methods() {
@@ -404,7 +391,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getClass_DemoParticipations() {
@@ -412,8 +398,16 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getClass_Blob() {
+		return (EAttribute) classEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getPackage() {
@@ -422,7 +416,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getPackage_ContainedPackageElements() {
@@ -431,7 +424,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getPackage_FacadeClass() {
@@ -440,7 +432,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getPackageElement() {
@@ -449,34 +440,33 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getPackageElement_ParentPackage() {
-		return (EReference) packageElementEClass.getEStructuralFeatures().get(0);
+		return (EReference) packageElementEClass.getEStructuralFeatures()
+				.get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getPackageElement_OutgoingDependencies() {
-		return (EReference) packageElementEClass.getEStructuralFeatures().get(1);
+		return (EReference) packageElementEClass.getEStructuralFeatures()
+				.get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getPackageElement_IncomingDependencies() {
-		return (EReference) packageElementEClass.getEStructuralFeatures().get(2);
+		return (EReference) packageElementEClass.getEStructuralFeatures()
+				.get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getAssociation() {
@@ -485,7 +475,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAssociation_Source() {
@@ -494,7 +483,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAssociation_Target() {
@@ -503,7 +491,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAssociation_Type() {
@@ -512,7 +499,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAssociation_SourceMultiplicity() {
@@ -521,7 +507,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAssociation_TargetMultiplicity() {
@@ -530,7 +515,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAssociation_SourceRole() {
@@ -539,7 +523,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAssociation_TargetRole() {
@@ -548,7 +531,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAssociation_Transient() {
@@ -557,7 +539,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getAttribute() {
@@ -566,7 +547,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAttribute_DefiningClass() {
@@ -575,7 +555,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAttribute_Visibility() {
@@ -584,7 +563,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAttribute_Scope() {
@@ -593,7 +571,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAttribute_Signature() {
@@ -602,7 +579,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAttribute_Type() {
@@ -611,7 +587,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAttribute_DefaultValue() {
@@ -620,7 +595,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAttribute_Properties() {
@@ -629,7 +603,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAttribute_Label() {
@@ -638,7 +611,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAttribute_Id() {
@@ -647,7 +619,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAttribute_ImplementationType() {
@@ -656,7 +627,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAttribute_ImplementationEnumeration() {
@@ -665,7 +635,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAttribute_Transient() {
@@ -674,7 +643,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getMethod() {
@@ -683,7 +651,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getMethod_Visibility() {
@@ -692,7 +659,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getMethod_Scope() {
@@ -701,7 +667,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getMethod_DefiningClass() {
@@ -710,7 +675,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getMethod_ReturnType() {
@@ -719,7 +683,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getMethod_Signature() {
@@ -728,7 +691,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getMethod_Arguments() {
@@ -737,7 +699,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getMethod_Properties() {
@@ -746,7 +707,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getMethod_Label() {
@@ -755,7 +715,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getMethod_Stubbed() {
@@ -764,7 +723,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getMethod_CalledMethods() {
@@ -773,7 +731,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getMethod_CallingMethods() {
@@ -782,7 +739,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getMethod_DemoParticipations() {
@@ -791,7 +747,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getMethodArgument() {
@@ -800,52 +755,51 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getMethodArgument_Type() {
-		return (EAttribute) methodArgumentEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) methodArgumentEClass.getEStructuralFeatures()
+				.get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getMethodArgument_Direction() {
-		return (EAttribute) methodArgumentEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) methodArgumentEClass.getEStructuralFeatures()
+				.get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getMethodArgument_DefaultValue() {
-		return (EAttribute) methodArgumentEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) methodArgumentEClass.getEStructuralFeatures()
+				.get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getMethodArgument_Signature() {
-		return (EAttribute) methodArgumentEClass.getEStructuralFeatures().get(3);
+		return (EAttribute) methodArgumentEClass.getEStructuralFeatures()
+				.get(3);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getMethodArgument_Label() {
-		return (EAttribute) methodArgumentEClass.getEStructuralFeatures().get(4);
+		return (EAttribute) methodArgumentEClass.getEStructuralFeatures()
+				.get(4);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getDependency() {
@@ -854,7 +808,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getDependency_Source() {
@@ -863,7 +816,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getDependency_Target() {
@@ -872,7 +824,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getEnumeration() {
@@ -881,7 +832,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getEnumeration_Literals() {
@@ -890,7 +840,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getEnumeration_Attributes() {
@@ -899,7 +848,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getLiteral() {
@@ -908,7 +856,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getLiteral_Enumeration() {
@@ -917,7 +864,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getLiteral_Literal() {
@@ -926,7 +872,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getAssociationType() {
@@ -935,7 +880,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getVisibilityType() {
@@ -944,7 +888,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getScopeType() {
@@ -953,7 +896,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getArgumentDirectionType() {
@@ -962,7 +904,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getInstantiationType() {
@@ -971,7 +912,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getPrimitiveType() {
@@ -980,7 +920,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ClassesFactory getClassesFactory() {
@@ -989,15 +928,14 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -1016,6 +954,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		createEReference(classEClass, CLASS__ATTRIBUTES);
 		createEReference(classEClass, CLASS__METHODS);
 		createEReference(classEClass, CLASS__DEMO_PARTICIPATIONS);
+		createEAttribute(classEClass, CLASS__BLOB);
 
 		packageEClass = createEClass(PACKAGE);
 		createEReference(packageEClass, PACKAGE__CONTAINED_PACKAGE_ELEMENTS);
@@ -1023,8 +962,10 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 		packageElementEClass = createEClass(PACKAGE_ELEMENT);
 		createEReference(packageElementEClass, PACKAGE_ELEMENT__PARENT_PACKAGE);
-		createEReference(packageElementEClass, PACKAGE_ELEMENT__OUTGOING_DEPENDENCIES);
-		createEReference(packageElementEClass, PACKAGE_ELEMENT__INCOMING_DEPENDENCIES);
+		createEReference(packageElementEClass,
+				PACKAGE_ELEMENT__OUTGOING_DEPENDENCIES);
+		createEReference(packageElementEClass,
+				PACKAGE_ELEMENT__INCOMING_DEPENDENCIES);
 
 		associationEClass = createEClass(ASSOCIATION);
 		createEReference(associationEClass, ASSOCIATION__SOURCE);
@@ -1094,15 +1035,14 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -1117,9 +1057,9 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 		// Obtain other dependent packages
 		RequirementPackage theRequirementPackage = (RequirementPackage) EPackage.Registry.INSTANCE
-			.getEPackage(RequirementPackage.eNS_URI);
+				.getEPackage(RequirementPackage.eNS_URI);
 		org.unicase.model.ModelPackage theModelPackage_1 = (org.unicase.model.ModelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(org.unicase.model.ModelPackage.eNS_URI);
+				.getEPackage(org.unicase.model.ModelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1128,206 +1068,334 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		// Add supertypes to classes
 		classEClass.getESuperTypes().add(this.getPackageElement());
 		packageEClass.getESuperTypes().add(this.getPackageElement());
-		packageElementEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
-		associationEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
-		attributeEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
-		methodEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
-		methodArgumentEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
-		dependencyEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		packageElementEClass.getESuperTypes().add(
+				theModelPackage_1.getUnicaseModelElement());
+		associationEClass.getESuperTypes().add(
+				theModelPackage_1.getUnicaseModelElement());
+		attributeEClass.getESuperTypes().add(
+				theModelPackage_1.getUnicaseModelElement());
+		methodEClass.getESuperTypes().add(
+				theModelPackage_1.getUnicaseModelElement());
+		methodArgumentEClass.getESuperTypes().add(
+				theModelPackage_1.getUnicaseModelElement());
+		dependencyEClass.getESuperTypes().add(
+				theModelPackage_1.getUnicaseModelElement());
 		enumerationEClass.getESuperTypes().add(this.getPackageElement());
-		literalEClass.getESuperTypes().add(theModelPackage_1.getUnicaseModelElement());
+		literalEClass.getESuperTypes().add(
+				theModelPackage_1.getUnicaseModelElement());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(classEClass, org.unicase.model.classes.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getClass_InstantiationType(), this.getInstantiationType(), "instantiationType", null, 0, 1,
-			org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClass_ParticipatedUseCases(), theRequirementPackage.getUseCase(),
-			theRequirementPackage.getUseCase_IdentifiedClasses(), "participatedUseCases", null, 0, -1,
-			org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClass_SuperClasses(), this.getClass_(), this.getClass_SubClasses(), "superClasses", null, 0,
-			-1, org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClass_SubClasses(), this.getClass_(), this.getClass_SuperClasses(), "subClasses", null, 0,
-			-1, org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClass_IncomingAssociations(), this.getAssociation(), this.getAssociation_Target(),
-			"incomingAssociations", null, 0, -1, org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE,
-			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClass_OutgoingAssociations(), this.getAssociation(), this.getAssociation_Source(),
-			"outgoingAssociations", null, 0, -1, org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE,
-			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClass_Attributes(), this.getAttribute(), this.getAttribute_DefiningClass(), "attributes",
-			null, 0, -1, org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClass_Methods(), this.getMethod(), this.getMethod_DefiningClass(), "methods", null, 0, -1,
-			org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getClass_DemoParticipations(), theRequirementPackage.getScenario(),
-			theRequirementPackage.getScenario_ParticipatingClasses(), "demoParticipations", null, 0, -1,
-			org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(classEClass, org.unicase.model.classes.Class.class, "Class",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getClass_InstantiationType(),
+				this.getInstantiationType(), "instantiationType", null, 0, 1,
+				org.unicase.model.classes.Class.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getClass_ParticipatedUseCases(),
+				theRequirementPackage.getUseCase(),
+				theRequirementPackage.getUseCase_IdentifiedClasses(),
+				"participatedUseCases", null, 0, -1,
+				org.unicase.model.classes.Class.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClass_SuperClasses(), this.getClass_(),
+				this.getClass_SubClasses(), "superClasses", null, 0, -1,
+				org.unicase.model.classes.Class.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClass_SubClasses(), this.getClass_(),
+				this.getClass_SuperClasses(), "subClasses", null, 0, -1,
+				org.unicase.model.classes.Class.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClass_IncomingAssociations(), this.getAssociation(),
+				this.getAssociation_Target(), "incomingAssociations", null, 0,
+				-1, org.unicase.model.classes.Class.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClass_OutgoingAssociations(), this.getAssociation(),
+				this.getAssociation_Source(), "outgoingAssociations", null, 0,
+				-1, org.unicase.model.classes.Class.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClass_Attributes(), this.getAttribute(),
+				this.getAttribute_DefiningClass(), "attributes", null, 0, -1,
+				org.unicase.model.classes.Class.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClass_Methods(), this.getMethod(),
+				this.getMethod_DefiningClass(), "methods", null, 0, -1,
+				org.unicase.model.classes.Class.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClass_DemoParticipations(),
+				theRequirementPackage.getScenario(),
+				theRequirementPackage.getScenario_ParticipatingClasses(),
+				"demoParticipations", null, 0, -1,
+				org.unicase.model.classes.Class.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getClass_Blob(), ecorePackage.getEEnumerator(), "blob",
+				null, 0, 1, org.unicase.model.classes.Class.class,
+				IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
+				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(packageEClass, org.unicase.model.classes.Package.class, "Package", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPackage_ContainedPackageElements(), this.getPackageElement(),
-			this.getPackageElement_ParentPackage(), "containedPackageElements", null, 0, -1,
-			org.unicase.model.classes.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPackage_FacadeClass(), this.getClass_(), null, "facadeClass", null, 0, 1,
-			org.unicase.model.classes.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(packageEClass, org.unicase.model.classes.Package.class,
+				"Package", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPackage_ContainedPackageElements(),
+				this.getPackageElement(),
+				this.getPackageElement_ParentPackage(),
+				"containedPackageElements", null, 0, -1,
+				org.unicase.model.classes.Package.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPackage_FacadeClass(), this.getClass_(), null,
+				"facadeClass", null, 0, 1,
+				org.unicase.model.classes.Package.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(packageElementEClass, PackageElement.class, "PackageElement", IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
+		initEClass(packageElementEClass, PackageElement.class,
+				"PackageElement", IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPackageElement_ParentPackage(), this.getPackage(),
-			this.getPackage_ContainedPackageElements(), "parentPackage", null, 0, 1, PackageElement.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEReference(getPackageElement_OutgoingDependencies(), this.getDependency(), this.getDependency_Source(),
-			"outgoingDependencies", null, 0, -1, PackageElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPackageElement_IncomingDependencies(), this.getDependency(), this.getDependency_Target(),
-			"incomingDependencies", null, 0, -1, PackageElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+				this.getPackage_ContainedPackageElements(), "parentPackage",
+				null, 0, 1, PackageElement.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPackageElement_OutgoingDependencies(),
+				this.getDependency(), this.getDependency_Source(),
+				"outgoingDependencies", null, 0, -1, PackageElement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getPackageElement_IncomingDependencies(),
+				this.getDependency(), this.getDependency_Target(),
+				"incomingDependencies", null, 0, -1, PackageElement.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
-		initEClass(associationEClass, Association.class, "Association", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAssociation_Source(), this.getClass_(), this.getClass_OutgoingAssociations(), "source", null,
-			0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAssociation_Target(), this.getClass_(), this.getClass_IncomingAssociations(), "target", null,
-			0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAssociation_Type(), this.getAssociationType(), "type", "", 0, 1, Association.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAssociation_SourceMultiplicity(), ecorePackage.getEString(), "sourceMultiplicity", "1", 0, 1,
-			Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAssociation_TargetMultiplicity(), ecorePackage.getEString(), "targetMultiplicity", "1", 0, 1,
-			Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAssociation_SourceRole(), ecorePackage.getEString(), "sourceRole", null, 0, 1,
-			Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAssociation_TargetRole(), ecorePackage.getEString(), "targetRole", null, 0, 1,
-			Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAssociation_Transient(), ecorePackage.getEBoolean(), "transient", null, 0, 1,
-			Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
+		initEClass(associationEClass, Association.class, "Association",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAssociation_Source(), this.getClass_(),
+				this.getClass_OutgoingAssociations(), "source", null, 0, 1,
+				Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getAssociation_Target(), this.getClass_(),
+				this.getClass_IncomingAssociations(), "target", null, 0, 1,
+				Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAssociation_Type(), this.getAssociationType(),
+				"type", null, 0, 1, Association.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAssociation_SourceMultiplicity(),
+				ecorePackage.getEString(), "sourceMultiplicity", "1", 0, 1,
+				Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAssociation_TargetMultiplicity(),
+				ecorePackage.getEString(), "targetMultiplicity", "1", 0, 1,
+				Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAssociation_SourceRole(), ecorePackage.getEString(),
+				"sourceRole", null, 0, 1, Association.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAssociation_TargetRole(), ecorePackage.getEString(),
+				"targetRole", null, 0, 1, Association.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAssociation_Transient(), ecorePackage.getEBoolean(),
+				"transient", null, 0, 1, Association.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
-		initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAttribute_DefiningClass(), this.getClass_(), this.getClass_Attributes(), "definingClass",
-			null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAttribute_Visibility(), this.getVisibilityType(), "visibility", null, 0, 1, Attribute.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAttribute_Scope(), this.getScopeType(), "scope", null, 0, 1, Attribute.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAttribute_Signature(), ecorePackage.getEString(), "signature", null, 0, 1, Attribute.class,
-			IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAttribute_Type(), ecorePackage.getEString(), "type", "", 0, 1, Attribute.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAttribute_DefaultValue(), ecorePackage.getEString(), "defaultValue", null, 0, 1,
-			Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAttribute_Properties(), ecorePackage.getEString(), "properties", null, 0, 1, Attribute.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAttribute_Label(), ecorePackage.getEString(), "label", null, 0, 1, Attribute.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAttribute_Id(), ecorePackage.getEBoolean(), "id", null, 0, 1, Attribute.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAttribute_ImplementationType(), this.getPrimitiveType(), "implementationType", null, 0, 1,
-			Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEReference(getAttribute_ImplementationEnumeration(), this.getEnumeration(),
-			this.getEnumeration_Attributes(), "implementationEnumeration", null, 0, 1, Attribute.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-			IS_ORDERED);
-		initEAttribute(getAttribute_Transient(), ecorePackage.getEBoolean(), "transient", null, 0, 1, Attribute.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAttribute_DefiningClass(), this.getClass_(),
+				this.getClass_Attributes(), "definingClass", null, 0, 1,
+				Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttribute_Visibility(), this.getVisibilityType(),
+				"visibility", null, 0, 1, Attribute.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttribute_Scope(), this.getScopeType(), "scope",
+				null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getAttribute_Signature(), ecorePackage.getEString(),
+				"signature", null, 0, 1, Attribute.class, IS_TRANSIENT,
+				IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttribute_Type(), ecorePackage.getEString(), "type",
+				"", 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getAttribute_DefaultValue(), ecorePackage.getEString(),
+				"defaultValue", null, 0, 1, Attribute.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttribute_Properties(), ecorePackage.getEString(),
+				"properties", null, 0, 1, Attribute.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttribute_Label(), ecorePackage.getEString(),
+				"label", null, 0, 1, Attribute.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttribute_Id(), ecorePackage.getEBoolean(), "id",
+				null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getAttribute_ImplementationType(),
+				this.getPrimitiveType(), "implementationType", null, 0, 1,
+				Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAttribute_ImplementationEnumeration(),
+				this.getEnumeration(), this.getEnumeration_Attributes(),
+				"implementationEnumeration", null, 0, 1, Attribute.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getAttribute_Transient(), ecorePackage.getEBoolean(),
+				"transient", null, 0, 1, Attribute.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
-		initEClass(methodEClass, Method.class, "Method", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMethod_Visibility(), this.getVisibilityType(), "visibility", null, 0, 1, Method.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMethod_Scope(), this.getScopeType(), "scope", null, 0, 1, Method.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMethod_ReturnType(), ecorePackage.getEString(), "returnType", null, 0, 1, Method.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMethod_Signature(), ecorePackage.getEString(), "signature", "", 0, 1, Method.class,
-			IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getMethod_Arguments(), this.getMethodArgument(), null, "arguments", null, 0, -1, Method.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMethod_Properties(), ecorePackage.getEString(), "properties", null, 0, 1, Method.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMethod_DefiningClass(), this.getClass_(), this.getClass_Methods(), "definingClass", null, 0,
-			1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMethod_Label(), ecorePackage.getEString(), "label", null, 0, 1, Method.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMethod_Stubbed(), ecorePackage.getEBoolean(), "stubbed", null, 0, 1, Method.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMethod_CalledMethods(), this.getMethod(), this.getMethod_CallingMethods(), "calledMethods",
-			null, 0, -1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMethod_CallingMethods(), this.getMethod(), this.getMethod_CalledMethods(), "callingMethods",
-			null, 0, -1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMethod_DemoParticipations(), theRequirementPackage.getScenario(),
-			theRequirementPackage.getScenario_ParticipatingMethods(), "demoParticipations", null, 0, -1, Method.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
+		initEClass(methodEClass, Method.class, "Method", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMethod_Visibility(), this.getVisibilityType(),
+				"visibility", null, 0, 1, Method.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMethod_Scope(), this.getScopeType(), "scope", null,
+				0, 1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMethod_ReturnType(), ecorePackage.getEString(),
+				"returnType", null, 0, 1, Method.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMethod_Signature(), ecorePackage.getEString(),
+				"signature", "", 0, 1, Method.class, IS_TRANSIENT, IS_VOLATILE,
+				!IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED,
+				IS_ORDERED);
+		initEReference(getMethod_Arguments(), this.getMethodArgument(), null,
+				"arguments", null, 0, -1, Method.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMethod_Properties(), ecorePackage.getEString(),
+				"properties", null, 0, 1, Method.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getMethod_DefiningClass(), this.getClass_(),
+				this.getClass_Methods(), "definingClass", null, 0, 1,
+				Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMethod_Label(), ecorePackage.getEString(), "label",
+				null, 0, 1, Method.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getMethod_Stubbed(), ecorePackage.getEBoolean(),
+				"stubbed", null, 0, 1, Method.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getMethod_CalledMethods(), this.getMethod(),
+				this.getMethod_CallingMethods(), "calledMethods", null, 0, -1,
+				Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getMethod_CallingMethods(), this.getMethod(),
+				this.getMethod_CalledMethods(), "callingMethods", null, 0, -1,
+				Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getMethod_DemoParticipations(),
+				theRequirementPackage.getScenario(),
+				theRequirementPackage.getScenario_ParticipatingMethods(),
+				"demoParticipations", null, 0, -1, Method.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(methodArgumentEClass, MethodArgument.class, "MethodArgument", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMethodArgument_Type(), ecorePackage.getEString(), "type", null, 0, 1, MethodArgument.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMethodArgument_Direction(), this.getArgumentDirectionType(), "direction", null, 0, 1,
-			MethodArgument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMethodArgument_DefaultValue(), ecorePackage.getEString(), "defaultValue", null, 0, 1,
-			MethodArgument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMethodArgument_Signature(), ecorePackage.getEString(), "signature", null, 0, 1,
-			MethodArgument.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMethodArgument_Label(), ecorePackage.getEString(), "label", null, 0, 1, MethodArgument.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(methodArgumentEClass, MethodArgument.class,
+				"MethodArgument", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getMethodArgument_Type(), ecorePackage.getEString(),
+				"type", null, 0, 1, MethodArgument.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMethodArgument_Direction(),
+				this.getArgumentDirectionType(), "direction", null, 0, 1,
+				MethodArgument.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getMethodArgument_DefaultValue(),
+				ecorePackage.getEString(), "defaultValue", null, 0, 1,
+				MethodArgument.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getMethodArgument_Signature(),
+				ecorePackage.getEString(), "signature", null, 0, 1,
+				MethodArgument.class, IS_TRANSIENT, IS_VOLATILE,
+				!IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED,
+				IS_ORDERED);
+		initEAttribute(getMethodArgument_Label(), ecorePackage.getEString(),
+				"label", null, 0, 1, MethodArgument.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
-		initEClass(dependencyEClass, Dependency.class, "Dependency", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDependency_Source(), this.getPackageElement(), this.getPackageElement_OutgoingDependencies(),
-			"source", null, 0, 1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDependency_Target(), this.getPackageElement(), this.getPackageElement_IncomingDependencies(),
-			"target", null, 0, 1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(dependencyEClass, Dependency.class, "Dependency",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getDependency_Source(), this.getPackageElement(),
+				this.getPackageElement_OutgoingDependencies(), "source", null,
+				0, 1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDependency_Target(), this.getPackageElement(),
+				this.getPackageElement_IncomingDependencies(), "target", null,
+				0, 1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(enumerationEClass, Enumeration.class, "Enumeration", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEnumeration_Literals(), this.getLiteral(), this.getLiteral_Enumeration(), "literals", null,
-			0, -1, Enumeration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEnumeration_Attributes(), this.getAttribute(), this.getAttribute_ImplementationEnumeration(),
-			"attributes", null, 0, -1, Enumeration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(enumerationEClass, Enumeration.class, "Enumeration",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEnumeration_Literals(), this.getLiteral(),
+				this.getLiteral_Enumeration(), "literals", null, 0, -1,
+				Enumeration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getEnumeration_Attributes(), this.getAttribute(),
+				this.getAttribute_ImplementationEnumeration(), "attributes",
+				null, 0, -1, Enumeration.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(literalEClass, Literal.class, "Literal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLiteral_Enumeration(), this.getEnumeration(), this.getEnumeration_Literals(), "enumeration",
-			null, 0, 1, Literal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLiteral_Literal(), ecorePackage.getEString(), "literal", null, 0, 1, Literal.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(literalEClass, Literal.class, "Literal", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLiteral_Enumeration(), this.getEnumeration(),
+				this.getEnumeration_Literals(), "enumeration", null, 0, 1,
+				Literal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLiteral_Literal(), ecorePackage.getEString(),
+				"literal", null, 0, 1, Literal.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
-		initEEnum(associationTypeEEnum, AssociationType.class, "AssociationType");
-		addEEnumLiteral(associationTypeEEnum, AssociationType.UNDIRECTED_ASSOCIATION);
-		addEEnumLiteral(associationTypeEEnum, AssociationType.DIRECTED_ASSOCIATION);
+		initEEnum(associationTypeEEnum, AssociationType.class,
+				"AssociationType");
+		addEEnumLiteral(associationTypeEEnum,
+				AssociationType.UNDIRECTED_ASSOCIATION);
+		addEEnumLiteral(associationTypeEEnum,
+				AssociationType.DIRECTED_ASSOCIATION);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.AGGREGATION);
 		addEEnumLiteral(associationTypeEEnum, AssociationType.COMPOSITION);
 
@@ -1342,13 +1410,16 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		addEEnumLiteral(scopeTypeEEnum, ScopeType.INSTANCE);
 		addEEnumLiteral(scopeTypeEEnum, ScopeType.CLASS);
 
-		initEEnum(argumentDirectionTypeEEnum, ArgumentDirectionType.class, "ArgumentDirectionType");
-		addEEnumLiteral(argumentDirectionTypeEEnum, ArgumentDirectionType.UNDEFINED);
+		initEEnum(argumentDirectionTypeEEnum, ArgumentDirectionType.class,
+				"ArgumentDirectionType");
+		addEEnumLiteral(argumentDirectionTypeEEnum,
+				ArgumentDirectionType.UNDEFINED);
 		addEEnumLiteral(argumentDirectionTypeEEnum, ArgumentDirectionType.IN);
 		addEEnumLiteral(argumentDirectionTypeEEnum, ArgumentDirectionType.OUT);
 		addEEnumLiteral(argumentDirectionTypeEEnum, ArgumentDirectionType.INOUT);
 
-		initEEnum(instantiationTypeEEnum, InstantiationType.class, "InstantiationType");
+		initEEnum(instantiationTypeEEnum, InstantiationType.class,
+				"InstantiationType");
 		addEEnumLiteral(instantiationTypeEEnum, InstantiationType.CONCRETE);
 		addEEnumLiteral(instantiationTypeEEnum, InstantiationType.ABSTRACT);
 		addEEnumLiteral(instantiationTypeEEnum, InstantiationType.INTERFACE);
@@ -1367,59 +1438,94 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	}
 
 	/**
-	 * Initializes the annotations for <b>org.eclipse.emf.ecp.editor</b>. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Initializes the annotations for <b>org.eclipse.emf.ecp.editor</b>.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {
 		String source = "org.eclipse.emf.ecp.editor";
-		addAnnotation(getClass_ParticipatedUseCases(), source, new String[] { "priority", "20.0", "position", "left" });
-		addAnnotation(getClass_SuperClasses(), source, new String[] { "priority", "21.0", "position", "left" });
-		addAnnotation(getClass_SubClasses(), source, new String[] { "priority", "22.0", "position", "left" });
-		addAnnotation(getClass_IncomingAssociations(), source, new String[] { "priority", "20.0", "position", "right" });
-		addAnnotation(getClass_OutgoingAssociations(), source, new String[] { "priority", "21.0", "position", "right" });
-		addAnnotation(getClass_Attributes(), source, new String[] { "priority", "23.0", "position", "left" });
-		addAnnotation(getClass_Methods(), source, new String[] { "priority", "24.0", "position", "left" });
-		addAnnotation(getClass_DemoParticipations(), source, new String[] { "priority", "9.0", "position", "right" });
-		addAnnotation(getPackage_ContainedPackageElements(), source, new String[] { "priority", "9.5", "position",
-			"right" });
-		addAnnotation(getPackage_FacadeClass(), source, new String[] { "priority", "20.0", "position", "left" });
-		addAnnotation(getPackageElement_ParentPackage(), source,
-			new String[] { "priority", "10.0", "position", "left" });
-		addAnnotation(getPackageElement_OutgoingDependencies(), source, new String[] { "priority", "10.0", "position",
-			"right" });
-		addAnnotation(getPackageElement_IncomingDependencies(), source, new String[] { "priority", "11.0", "position",
-			"right" });
-		addAnnotation(getAssociation_Source(), source, new String[] { "priority", "10.0", "position", "left" });
-		addAnnotation(getAssociation_Target(), source, new String[] { "priority", "11.0", "position", "left" });
-		addAnnotation(getAssociation_Type(), source, new String[] { "priority", "12.0", "position", "left" });
-		addAnnotation(getAssociation_SourceMultiplicity(), source, new String[] { "priority", "13.0", "position",
-			"left" });
-		addAnnotation(getAssociation_TargetMultiplicity(), source, new String[] { "priority", "14.0", "position",
-			"left" });
-		addAnnotation(getAttribute_DefiningClass(), source, new String[] { "priority", "10.0", "position", "left" });
-		addAnnotation(getAttribute_Visibility(), source, new String[] { "priority", "11.0", "position", "left" });
-		addAnnotation(getAttribute_Scope(), source, new String[] { "priority", "12.0", "position", "left" });
-		addAnnotation(getAttribute_Type(), source, new String[] { "priority", "13.0", "position", "left" });
-		addAnnotation(getAttribute_DefaultValue(), source, new String[] { "priority", "14.0", "position", "left" });
-		addAnnotation(getAttribute_Properties(), source, new String[] { "priority", "15.0", "position", "left" });
-		addAnnotation(getAttribute_Label(), source, new String[] { "priority", "16.0", "position", "left" });
-		addAnnotation(getMethod_Visibility(), source, new String[] { "priority", "11.0", "position", "left" });
-		addAnnotation(getMethod_Scope(), source, new String[] { "priority", "12.0", "position", "left" });
-		addAnnotation(getMethod_ReturnType(), source, new String[] { "priority", "13.0", "position", "left" });
-		addAnnotation(getMethod_Arguments(), source, new String[] { "priority", "10.0", "position", "right" });
-		addAnnotation(getMethod_Properties(), source, new String[] { "priority", "14.0", "position", "left" });
-		addAnnotation(getMethod_DefiningClass(), source, new String[] { "priority", "10.0", "position", "left" });
-		addAnnotation(getMethod_Label(), source, new String[] { "priority", "15.0", "position", "left" });
-		addAnnotation(getMethod_CalledMethods(), source, new String[] { "priority", "10.1", "position", "right" });
-		addAnnotation(getMethod_CallingMethods(), source, new String[] { "priority", "10.2", "position", "right" });
-		addAnnotation(getMethod_DemoParticipations(), source, new String[] { "priority", "9.0", "position", "right" });
-		addAnnotation(getMethodArgument_Type(), source, new String[] { "priority", "10.0", "position", "left" });
-		addAnnotation(getMethodArgument_Direction(), source, new String[] { "priority", "11.0", "position", "left" });
-		addAnnotation(getMethodArgument_DefaultValue(), source, new String[] { "priority", "12.0", "position", "left" });
-		addAnnotation(getMethodArgument_Label(), source, new String[] { "priority", "13.0", "position", "left" });
-		addAnnotation(getDependency_Source(), source, new String[] { "priority", "10.0", "position", "left" });
-		addAnnotation(getDependency_Target(), source, new String[] { "priority", "11.0", "position", "left" });
+		addAnnotation(getClass_ParticipatedUseCases(), source, new String[] {
+				"priority", "20.0", "position", "left" });
+		addAnnotation(getClass_SuperClasses(), source, new String[] {
+				"priority", "21.0", "position", "left" });
+		addAnnotation(getClass_SubClasses(), source, new String[] { "priority",
+				"22.0", "position", "left" });
+		addAnnotation(getClass_IncomingAssociations(), source, new String[] {
+				"priority", "20.0", "position", "right" });
+		addAnnotation(getClass_OutgoingAssociations(), source, new String[] {
+				"priority", "21.0", "position", "right" });
+		addAnnotation(getClass_Attributes(), source, new String[] { "priority",
+				"23.0", "position", "left" });
+		addAnnotation(getClass_Methods(), source, new String[] { "priority",
+				"24.0", "position", "left" });
+		addAnnotation(getClass_DemoParticipations(), source, new String[] {
+				"priority", "9.0", "position", "right" });
+		addAnnotation(getPackage_ContainedPackageElements(), source,
+				new String[] { "priority", "9.5", "position", "right" });
+		addAnnotation(getPackage_FacadeClass(), source, new String[] {
+				"priority", "20.0", "position", "left" });
+		addAnnotation(getPackageElement_ParentPackage(), source, new String[] {
+				"priority", "10.0", "position", "left" });
+		addAnnotation(getPackageElement_OutgoingDependencies(), source,
+				new String[] { "priority", "10.0", "position", "right" });
+		addAnnotation(getPackageElement_IncomingDependencies(), source,
+				new String[] { "priority", "11.0", "position", "right" });
+		addAnnotation(getAssociation_Source(), source, new String[] {
+				"priority", "10.0", "position", "left" });
+		addAnnotation(getAssociation_Target(), source, new String[] {
+				"priority", "11.0", "position", "left" });
+		addAnnotation(getAssociation_Type(), source, new String[] { "priority",
+				"12.0", "position", "left" });
+		addAnnotation(getAssociation_SourceMultiplicity(), source,
+				new String[] { "priority", "13.0", "position", "left" });
+		addAnnotation(getAssociation_TargetMultiplicity(), source,
+				new String[] { "priority", "14.0", "position", "left" });
+		addAnnotation(getAttribute_DefiningClass(), source, new String[] {
+				"priority", "10.0", "position", "left" });
+		addAnnotation(getAttribute_Visibility(), source, new String[] {
+				"priority", "11.0", "position", "left" });
+		addAnnotation(getAttribute_Scope(), source, new String[] { "priority",
+				"12.0", "position", "left" });
+		addAnnotation(getAttribute_Type(), source, new String[] { "priority",
+				"13.0", "position", "left" });
+		addAnnotation(getAttribute_DefaultValue(), source, new String[] {
+				"priority", "14.0", "position", "left" });
+		addAnnotation(getAttribute_Properties(), source, new String[] {
+				"priority", "15.0", "position", "left" });
+		addAnnotation(getAttribute_Label(), source, new String[] { "priority",
+				"16.0", "position", "left" });
+		addAnnotation(getMethod_Visibility(), source, new String[] {
+				"priority", "11.0", "position", "left" });
+		addAnnotation(getMethod_Scope(), source, new String[] { "priority",
+				"12.0", "position", "left" });
+		addAnnotation(getMethod_ReturnType(), source, new String[] {
+				"priority", "13.0", "position", "left" });
+		addAnnotation(getMethod_Arguments(), source, new String[] { "priority",
+				"10.0", "position", "right" });
+		addAnnotation(getMethod_Properties(), source, new String[] {
+				"priority", "14.0", "position", "left" });
+		addAnnotation(getMethod_DefiningClass(), source, new String[] {
+				"priority", "10.0", "position", "left" });
+		addAnnotation(getMethod_Label(), source, new String[] { "priority",
+				"15.0", "position", "left" });
+		addAnnotation(getMethod_CalledMethods(), source, new String[] {
+				"priority", "10.1", "position", "right" });
+		addAnnotation(getMethod_CallingMethods(), source, new String[] {
+				"priority", "10.2", "position", "right" });
+		addAnnotation(getMethod_DemoParticipations(), source, new String[] {
+				"priority", "9.0", "position", "right" });
+		addAnnotation(getMethodArgument_Type(), source, new String[] {
+				"priority", "10.0", "position", "left" });
+		addAnnotation(getMethodArgument_Direction(), source, new String[] {
+				"priority", "11.0", "position", "left" });
+		addAnnotation(getMethodArgument_DefaultValue(), source, new String[] {
+				"priority", "12.0", "position", "left" });
+		addAnnotation(getMethodArgument_Label(), source, new String[] {
+				"priority", "13.0", "position", "left" });
+		addAnnotation(getDependency_Source(), source, new String[] {
+				"priority", "10.0", "position", "left" });
+		addAnnotation(getDependency_Target(), source, new String[] {
+				"priority", "11.0", "position", "left" });
 	}
 
 } // ClassesPackageImpl

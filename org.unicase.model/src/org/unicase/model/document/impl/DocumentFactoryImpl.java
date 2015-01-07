@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -18,19 +18,19 @@ import org.unicase.model.document.LeafSection;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
-public class DocumentFactoryImpl extends EFactoryImpl implements DocumentFactory {
+public class DocumentFactoryImpl extends EFactoryImpl implements
+		DocumentFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static DocumentFactory init() {
 		try {
 			DocumentFactory theDocumentFactory = (DocumentFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/model/document");
+					.getEFactory(DocumentPackage.eNS_URI);
 			if (theDocumentFactory != null) {
 				return theDocumentFactory;
 			}
@@ -41,8 +41,8 @@ public class DocumentFactoryImpl extends EFactoryImpl implements DocumentFactory
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public DocumentFactoryImpl() {
@@ -51,7 +51,6 @@ public class DocumentFactoryImpl extends EFactoryImpl implements DocumentFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -62,13 +61,13 @@ public class DocumentFactoryImpl extends EFactoryImpl implements DocumentFactory
 		case DocumentPackage.COMPOSITE_SECTION:
 			return createCompositeSection();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LeafSection createLeafSection() {
@@ -78,7 +77,6 @@ public class DocumentFactoryImpl extends EFactoryImpl implements DocumentFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CompositeSection createCompositeSection() {
@@ -88,7 +86,6 @@ public class DocumentFactoryImpl extends EFactoryImpl implements DocumentFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DocumentPackage getDocumentPackage() {
@@ -97,7 +94,6 @@ public class DocumentFactoryImpl extends EFactoryImpl implements DocumentFactory
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

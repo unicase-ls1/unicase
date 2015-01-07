@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -21,13 +21,14 @@ import org.unicase.model.rationale.Issue;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.meeting.impl.IssueMeetingSectionImpl#getIncludedIssues <em>Included Issues</em>}</li>
+ *   <li>{@link org.unicase.model.meeting.impl.IssueMeetingSectionImpl#getIncludedIssues <em>Included Issues</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class IssueMeetingSectionImpl extends MeetingSectionImpl implements IssueMeetingSection {
+public class IssueMeetingSectionImpl extends MeetingSectionImpl implements
+		IssueMeetingSection {
 	/**
 	 * The cached value of the '{@link #getIncludedIssues() <em>Included Issues</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -40,7 +41,6 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IssueMeetingSectionImpl() {
@@ -49,7 +49,6 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,20 +58,18 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Issue> getIncludedIssues() {
 		if (includedIssues == null) {
-			includedIssues = new EObjectResolvingEList<Issue>(Issue.class, this,
-				MeetingPackage.ISSUE_MEETING_SECTION__INCLUDED_ISSUES);
+			includedIssues = new EObjectResolvingEList<Issue>(Issue.class,
+					this, MeetingPackage.ISSUE_MEETING_SECTION__INCLUDED_ISSUES);
 		}
 		return includedIssues;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,7 +83,6 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -103,7 +99,6 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -118,7 +113,6 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -8,7 +8,6 @@ package org.unicase.model.util;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.emfstore.common.model.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Model Element Path</b></em>'. <!-- end-user-doc
@@ -28,71 +27,73 @@ import org.eclipse.emf.emfstore.common.model.ModelElementId;
  */
 public interface ModelElementPath extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Source</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Source</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Source</em>' containment reference.
-	 * @see #setSource(ModelElementId)
+	 * @see #setSource(org.eclipse.emf.emfstore.internal.common.model.ModelElementId)
 	 * @see org.unicase.model.util.UtilPackage#getModelElementPath_Source()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	ModelElementId getSource();
+	org.eclipse.emf.emfstore.internal.common.model.ModelElementId getSource();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.util.ModelElementPath#getSource <em>Source</em>}' containment
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.util.ModelElementPath#getSource <em>Source</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source</em>' containment reference.
 	 * @see #getSource()
 	 * @generated
 	 */
-	void setSource(ModelElementId value);
+	void setSource(
+			org.eclipse.emf.emfstore.internal.common.model.ModelElementId value);
 
 	/**
-	 * Returns the value of the '<em><b>Target</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Target</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Target</em>' containment reference.
-	 * @see #setTarget(ModelElementId)
+	 * @see #setTarget(org.eclipse.emf.emfstore.internal.common.model.ModelElementId)
 	 * @see org.unicase.model.util.UtilPackage#getModelElementPath_Target()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	ModelElementId getTarget();
+	org.eclipse.emf.emfstore.internal.common.model.ModelElementId getTarget();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.util.ModelElementPath#getTarget <em>Target</em>}' containment
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.util.ModelElementPath#getTarget <em>Target</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Target</em>' containment reference.
 	 * @see #getTarget()
 	 * @generated
 	 */
-	void setTarget(ModelElementId value);
+	void setTarget(
+			org.eclipse.emf.emfstore.internal.common.model.ModelElementId value);
 
 	/**
-	 * Returns the value of the '<em><b>Path</b></em>' containment reference list. The list contents are of type
-	 * {@link org.eclipse.emf.emfstore.common.model.ModelElementId}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Path</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.emfstore.internal.common.model.ModelElementId}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Path</em>' containment reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Path</em>' containment reference list.
 	 * @see org.unicase.model.util.UtilPackage#getModelElementPath_Path()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	EList<ModelElementId> getPath();
+	EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> getPath();
 
 } // ModelElementPath

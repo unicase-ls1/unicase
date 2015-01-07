@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -21,14 +21,14 @@ import org.unicase.model.task.WorkItem;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.meeting.impl.WorkItemMeetingSectionImpl#getIncludedWorkItems <em>Included Work Items
- * </em>}</li>
+ *   <li>{@link org.unicase.model.meeting.impl.WorkItemMeetingSectionImpl#getIncludedWorkItems <em>Included Work Items</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class WorkItemMeetingSectionImpl extends MeetingSectionImpl implements WorkItemMeetingSection {
+public class WorkItemMeetingSectionImpl extends MeetingSectionImpl implements
+		WorkItemMeetingSection {
 	/**
 	 * The cached value of the '{@link #getIncludedWorkItems() <em>Included Work Items</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -41,7 +41,6 @@ public class WorkItemMeetingSectionImpl extends MeetingSectionImpl implements Wo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected WorkItemMeetingSectionImpl() {
@@ -50,7 +49,6 @@ public class WorkItemMeetingSectionImpl extends MeetingSectionImpl implements Wo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,20 +58,20 @@ public class WorkItemMeetingSectionImpl extends MeetingSectionImpl implements Wo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<WorkItem> getIncludedWorkItems() {
 		if (includedWorkItems == null) {
-			includedWorkItems = new EObjectResolvingEList<WorkItem>(WorkItem.class, this,
-				MeetingPackage.WORK_ITEM_MEETING_SECTION__INCLUDED_WORK_ITEMS);
+			includedWorkItems = new EObjectResolvingEList<WorkItem>(
+					WorkItem.class,
+					this,
+					MeetingPackage.WORK_ITEM_MEETING_SECTION__INCLUDED_WORK_ITEMS);
 		}
 		return includedWorkItems;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -87,7 +85,6 @@ public class WorkItemMeetingSectionImpl extends MeetingSectionImpl implements Wo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -96,7 +93,8 @@ public class WorkItemMeetingSectionImpl extends MeetingSectionImpl implements Wo
 		switch (featureID) {
 		case MeetingPackage.WORK_ITEM_MEETING_SECTION__INCLUDED_WORK_ITEMS:
 			getIncludedWorkItems().clear();
-			getIncludedWorkItems().addAll((Collection<? extends WorkItem>) newValue);
+			getIncludedWorkItems().addAll(
+					(Collection<? extends WorkItem>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -104,7 +102,6 @@ public class WorkItemMeetingSectionImpl extends MeetingSectionImpl implements Wo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -119,7 +116,6 @@ public class WorkItemMeetingSectionImpl extends MeetingSectionImpl implements Wo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -1,12 +1,12 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.stem.views.iterationplanningview;
 
-import org.eclipse.emf.ecp.common.EMFColumnLabelProvider;
+import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.model.task.ActivityType;
 import org.unicase.ui.stem.Activator;
@@ -17,7 +17,7 @@ import org.unicase.ui.stem.views.statusview.NotAssigned;
  * 
  * @author Helming
  */
-public class WorkPackageColumnLabelProvider extends EMFColumnLabelProvider {
+public class WorkPackageColumnLabelProvider extends ColumnLabelProvider {
 
 	private Image backlogImage;
 
@@ -26,7 +26,8 @@ public class WorkPackageColumnLabelProvider extends EMFColumnLabelProvider {
 	 */
 	public WorkPackageColumnLabelProvider() {
 		super();
-		backlogImage = Activator.getImageDescriptor("icons/backlog.png").createImage();
+		backlogImage = Activator.getImageDescriptor("icons/backlog.png")
+				.createImage();
 
 	}
 

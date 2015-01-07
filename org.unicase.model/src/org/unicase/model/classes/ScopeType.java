@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -15,37 +15,36 @@ import org.eclipse.emf.common.util.Enumerator;
 /**
  * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Scope Type</b></em>', and utility
  * methods for working with them. <!-- end-user-doc -->
- * 
  * @see org.unicase.model.classes.ClassesPackage#getScopeType()
  * @model
  * @generated
  */
 public enum ScopeType implements Enumerator {
 	/**
-	 * The '<em><b>INSTANCE</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>INSTANCE</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #INSTANCE_VALUE
 	 * @generated
 	 * @ordered
 	 */
 	INSTANCE(1, "INSTANCE", "Instance"), /**
-	 * The '<em><b>CLASS</b></em>' literal object. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @see #CLASS_VALUE
-	 * @generated
-	 * @ordered
-	 */
+											 * The '<em><b>CLASS</b></em>' literal object.
+											 * <!-- begin-user-doc --> <!--
+											 * end-user-doc -->
+											 * @see #CLASS_VALUE
+											 * @generated
+											 * @ordered
+											 */
 	CLASS(2, "CLASS", "Class");
 
 	/**
-	 * The '<em><b>INSTANCE</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>INSTANCE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>INSTANCE</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #INSTANCE
 	 * @model literal="Instance"
 	 * @generated
@@ -54,13 +53,13 @@ public enum ScopeType implements Enumerator {
 	public static final int INSTANCE_VALUE = 1;
 
 	/**
-	 * The '<em><b>CLASS</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>CLASS</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>CLASS</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #CLASS
 	 * @model literal="Class"
 	 * @generated
@@ -69,24 +68,26 @@ public enum ScopeType implements Enumerator {
 	public static final int CLASS_VALUE = 2;
 
 	/**
-	 * An array of all the '<em><b>Scope Type</b></em>' enumerators. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * An array of all the '<em><b>Scope Type</b></em>' enumerators.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ScopeType[] VALUES_ARRAY = new ScopeType[] { INSTANCE, CLASS, };
+	private static final ScopeType[] VALUES_ARRAY = new ScopeType[] { INSTANCE,
+			CLASS, };
 
 	/**
-	 * A public read-only list of all the '<em><b>Scope Type</b></em>' enumerators. <!-- begin-user-doc --> <!--
+	 * A public read-only list of all the '<em><b>Scope Type</b></em>' enumerators.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public static final List<ScopeType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ScopeType> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Scope Type</b></em>' literal with the specified literal value. <!-- begin-user-doc --> <!--
+	 * Returns the '<em><b>Scope Type</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static ScopeType get(String literal) {
@@ -100,9 +101,9 @@ public enum ScopeType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Scope Type</b></em>' literal with the specified name. <!-- begin-user-doc --> <!--
+	 * Returns the '<em><b>Scope Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static ScopeType getByName(String name) {
@@ -116,9 +117,9 @@ public enum ScopeType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Scope Type</b></em>' literal with the specified integer value. <!-- begin-user-doc --> <!--
+	 * Returns the '<em><b>Scope Type</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static ScopeType get(int value) {
@@ -133,28 +134,25 @@ public enum ScopeType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private ScopeType(int value, String name, String literal) {
@@ -165,7 +163,6 @@ public enum ScopeType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getValue() {
@@ -174,7 +171,6 @@ public enum ScopeType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -183,7 +179,6 @@ public enum ScopeType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
@@ -191,9 +186,9 @@ public enum ScopeType implements Enumerator {
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation. <!-- begin-user-doc --> <!--
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -1,12 +1,11 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.unicasecommon.common;
 
-import org.eclipse.emf.ecp.common.ColumnViewerSorter;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
@@ -18,9 +17,10 @@ import org.unicase.model.Annotation;
 import org.unicase.model.task.WorkPackage;
 
 /**
- * . This is a sorter class used to sort TreeViewers. Note this class is currently only used by StatusView and its
- * category method is tailored to handle WorkPackages and Annotations. It may be changed to an abstract class without
- * any implementation of category method.
+ * . This is a sorter class used to sort TreeViewers. Note this class is
+ * currently only used by StatusView and its category method is tailored to
+ * handle WorkPackages and Annotations. It may be changed to an abstract class
+ * without any implementation of category method.
  * 
  * @author hodaie
  */
@@ -31,11 +31,15 @@ public class TreeViewerColumnSorter extends ColumnViewerSorter {
 	/**
 	 * Constructor.
 	 * 
-	 * @param viewer TreeViewer to be sorted
-	 * @param column TreeViewerColumn based on which the TreeViewer is sorted
-	 * @param columnLabelProvider LabelProvider used to sort the contents
+	 * @param viewer
+	 *            TreeViewer to be sorted
+	 * @param column
+	 *            TreeViewerColumn based on which the TreeViewer is sorted
+	 * @param columnLabelProvider
+	 *            LabelProvider used to sort the contents
 	 */
-	public TreeViewerColumnSorter(TreeViewer viewer, TreeViewerColumn column, ColumnLabelProvider columnLabelProvider) {
+	public TreeViewerColumnSorter(TreeViewer viewer, TreeViewerColumn column,
+			ColumnLabelProvider columnLabelProvider) {
 		super(viewer, columnLabelProvider);
 		this.column = column;
 
@@ -61,10 +65,13 @@ public class TreeViewerColumnSorter extends ColumnViewerSorter {
 	}
 
 	/**
-	 * This is used to set the right direction arrow at column header and refresh the viewer.
+	 * This is used to set the right direction arrow at column header and
+	 * refresh the viewer.
 	 * 
-	 * @param sorter sorter
-	 * @param direction direction
+	 * @param sorter
+	 *            sorter
+	 * @param direction
+	 *            direction
 	 */
 	@Override
 	protected void setSorter(ColumnViewerSorter sorter, int direction) {

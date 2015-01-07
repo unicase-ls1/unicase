@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -18,13 +18,14 @@ import org.unicase.model.profile.StereotypeAttributeSimple;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.profile.impl.StereotypeAttributeSimpleImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.unicase.model.profile.impl.StereotypeAttributeSimpleImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl implements StereotypeAttributeSimple {
+public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl
+		implements StereotypeAttributeSimple {
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
@@ -47,7 +48,6 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StereotypeAttributeSimpleImpl() {
@@ -56,7 +56,6 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,7 +65,6 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getType() {
@@ -75,20 +73,19 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setType(String newType) {
 		String oldType = type;
 		type = newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProfilePackage.STEREOTYPE_ATTRIBUTE_SIMPLE__TYPE,
-				oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ProfilePackage.STEREOTYPE_ATTRIBUTE_SIMPLE__TYPE, oldType,
+					type));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -102,7 +99,6 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,7 +113,6 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -132,21 +127,20 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ProfilePackage.STEREOTYPE_ATTRIBUTE_SIMPLE__TYPE:
-			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT
+					.equals(type);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

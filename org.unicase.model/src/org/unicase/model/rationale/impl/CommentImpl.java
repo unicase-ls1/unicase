@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -30,19 +30,19 @@ import org.unicase.model.rationale.RationalePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.rationale.impl.CommentImpl#getSender <em>Sender</em>}</li>
- * <li>{@link org.unicase.model.rationale.impl.CommentImpl#getRecipients <em>Recipients</em>}</li>
- * <li>{@link org.unicase.model.rationale.impl.CommentImpl#getCommentedElement <em>Commented Element</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.CommentImpl#getSender <em>Sender</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.CommentImpl#getRecipients <em>Recipients</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.CommentImpl#getCommentedElement <em>Commented Element</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 	/**
-	 * The cached value of the '{@link #getSender() <em>Sender</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getSender() <em>Sender</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getSender()
 	 * @generated
 	 * @ordered
@@ -50,9 +50,9 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 	protected OrgUnit sender;
 
 	/**
-	 * The cached value of the '{@link #getRecipients() <em>Recipients</em>}' reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getRecipients() <em>Recipients</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getRecipients()
 	 * @generated
 	 * @ordered
@@ -61,7 +61,6 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CommentImpl() {
@@ -70,7 +69,6 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -80,7 +78,6 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OrgUnit getSender() {
@@ -89,8 +86,8 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 			sender = (OrgUnit) eResolveProxy(oldSender);
 			if (sender != oldSender) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RationalePackage.COMMENT__SENDER,
-						oldSender, sender));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							RationalePackage.COMMENT__SENDER, oldSender, sender));
 			}
 		}
 		return sender;
@@ -98,7 +95,6 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OrgUnit basicGetSender() {
@@ -107,31 +103,30 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSender(OrgUnit newSender) {
 		OrgUnit oldSender = sender;
 		sender = newSender;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.COMMENT__SENDER, oldSender, sender));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RationalePackage.COMMENT__SENDER, oldSender, sender));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<OrgUnit> getRecipients() {
 		if (recipients == null) {
-			recipients = new EObjectResolvingEList<OrgUnit>(OrgUnit.class, this, RationalePackage.COMMENT__RECIPIENTS);
+			recipients = new EObjectResolvingEList<OrgUnit>(OrgUnit.class,
+					this, RationalePackage.COMMENT__RECIPIENTS);
 		}
 		return recipients;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UnicaseModelElement getCommentedElement() {
@@ -142,7 +137,6 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UnicaseModelElement basicGetCommentedElement() {
@@ -153,62 +147,65 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetCommentedElement(UnicaseModelElement newCommentedElement, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newCommentedElement, RationalePackage.COMMENT__COMMENTED_ELEMENT,
-			msgs);
+	public NotificationChain basicSetCommentedElement(
+			UnicaseModelElement newCommentedElement, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newCommentedElement,
+				RationalePackage.COMMENT__COMMENTED_ELEMENT, msgs);
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setCommentedElement(UnicaseModelElement newCommentedElement) {
 		if (newCommentedElement != eInternalContainer()
-			|| (eContainerFeatureID() != RationalePackage.COMMENT__COMMENTED_ELEMENT && newCommentedElement != null)) {
+				|| (eContainerFeatureID() != RationalePackage.COMMENT__COMMENTED_ELEMENT && newCommentedElement != null)) {
 			if (EcoreUtil.isAncestor(this, newCommentedElement))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newCommentedElement != null)
-				msgs = ((InternalEObject) newCommentedElement).eInverseAdd(this,
-					ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS, UnicaseModelElement.class, msgs);
+				msgs = ((InternalEObject) newCommentedElement).eInverseAdd(
+						this, ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS,
+						UnicaseModelElement.class, msgs);
 			msgs = basicSetCommentedElement(newCommentedElement, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.COMMENT__COMMENTED_ELEMENT,
-				newCommentedElement, newCommentedElement));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RationalePackage.COMMENT__COMMENTED_ELEMENT,
+					newCommentedElement, newCommentedElement));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RationalePackage.COMMENT__COMMENTED_ELEMENT:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetCommentedElement((UnicaseModelElement) otherEnd, msgs);
+			return basicSetCommentedElement((UnicaseModelElement) otherEnd,
+					msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RationalePackage.COMMENT__COMMENTED_ELEMENT:
 			return basicSetCommentedElement(null, msgs);
@@ -218,22 +215,22 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 		case RationalePackage.COMMENT__COMMENTED_ELEMENT:
-			return eInternalContainer().eInverseRemove(this, ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS,
-				UnicaseModelElement.class, msgs);
+			return eInternalContainer().eInverseRemove(this,
+					ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS,
+					UnicaseModelElement.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -255,7 +252,6 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -278,7 +274,6 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -299,7 +294,6 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -33,29 +33,25 @@ import org.unicase.model.requirement.UseCase;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.requirement.impl.ScenarioImpl#getSteps <em>Steps</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.ScenarioImpl#getInitiatingActorInstance <em>Initiating Actor Instance
- * </em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.ScenarioImpl#getParticipatingActorInstances <em>Participating Actor
- * Instances</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.ScenarioImpl#getInstantiatedUseCases <em>Instantiated Use Cases</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.ScenarioImpl#getFunctionalRequirements <em>Functional Requirements
- * </em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.ScenarioImpl#getNonFunctionalRequirements <em>Non Functional
- * Requirements</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.ScenarioImpl#getParticipatingMethods <em>Participating Methods</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.ScenarioImpl#getParticipatingClasses <em>Participating Classes</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.ScenarioImpl#isDone <em>Done</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.ScenarioImpl#getSteps <em>Steps</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.ScenarioImpl#getInitiatingActorInstance <em>Initiating Actor Instance</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.ScenarioImpl#getParticipatingActorInstances <em>Participating Actor Instances</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.ScenarioImpl#getInstantiatedUseCases <em>Instantiated Use Cases</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.ScenarioImpl#getFunctionalRequirements <em>Functional Requirements</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.ScenarioImpl#getNonFunctionalRequirements <em>Non Functional Requirements</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.ScenarioImpl#getParticipatingMethods <em>Participating Methods</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.ScenarioImpl#getParticipatingClasses <em>Participating Classes</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.ScenarioImpl#isDone <em>Done</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ScenarioImpl extends UnicaseModelElementImpl implements Scenario {
 	/**
-	 * The cached value of the '{@link #getSteps() <em>Steps</em>}' containment reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSteps() <em>Steps</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getSteps()
 	 * @generated
 	 * @ordered
@@ -64,16 +60,14 @@ public class ScenarioImpl extends UnicaseModelElementImpl implements Scenario {
 	/**
 	 * The cached value of the '{@link #getInitiatingActorInstance() <em>Initiating Actor Instance</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getInitiatingActorInstance()
 	 * @generated
 	 * @ordered
 	 */
 	protected ActorInstance initiatingActorInstance;
 	/**
-	 * The cached value of the '{@link #getParticipatingActorInstances() <em>Participating Actor Instances</em>}'
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getParticipatingActorInstances() <em>Participating Actor Instances</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getParticipatingActorInstances()
 	 * @generated
 	 * @ordered
@@ -92,16 +86,14 @@ public class ScenarioImpl extends UnicaseModelElementImpl implements Scenario {
 	/**
 	 * The cached value of the '{@link #getFunctionalRequirements() <em>Functional Requirements</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getFunctionalRequirements()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<FunctionalRequirement> functionalRequirements;
 	/**
-	 * The cached value of the '{@link #getNonFunctionalRequirements() <em>Non Functional Requirements</em>}' reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getNonFunctionalRequirements() <em>Non Functional Requirements</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getNonFunctionalRequirements()
 	 * @generated
 	 * @ordered
@@ -148,7 +140,6 @@ public class ScenarioImpl extends UnicaseModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ScenarioImpl() {
@@ -157,7 +148,6 @@ public class ScenarioImpl extends UnicaseModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -167,30 +157,32 @@ public class ScenarioImpl extends UnicaseModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Step> getSteps() {
 		if (steps == null) {
-			steps = new EObjectContainmentEList.Resolving<Step>(Step.class, this, RequirementPackage.SCENARIO__STEPS);
+			steps = new EObjectContainmentEList.Resolving<Step>(Step.class,
+					this, RequirementPackage.SCENARIO__STEPS);
 		}
 		return steps;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ActorInstance getInitiatingActorInstance() {
-		if (initiatingActorInstance != null && initiatingActorInstance.eIsProxy()) {
+		if (initiatingActorInstance != null
+				&& initiatingActorInstance.eIsProxy()) {
 			InternalEObject oldInitiatingActorInstance = (InternalEObject) initiatingActorInstance;
 			initiatingActorInstance = (ActorInstance) eResolveProxy(oldInitiatingActorInstance);
 			if (initiatingActorInstance != oldInitiatingActorInstance) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE, oldInitiatingActorInstance,
-						initiatingActorInstance));
+					eNotify(new ENotificationImpl(
+							this,
+							Notification.RESOLVE,
+							RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE,
+							oldInitiatingActorInstance, initiatingActorInstance));
 			}
 		}
 		return initiatingActorInstance;
@@ -198,7 +190,6 @@ public class ScenarioImpl extends UnicaseModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ActorInstance basicGetInitiatingActorInstance() {
@@ -207,17 +198,17 @@ public class ScenarioImpl extends UnicaseModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetInitiatingActorInstance(ActorInstance newInitiatingActorInstance,
-		NotificationChain msgs) {
+	public NotificationChain basicSetInitiatingActorInstance(
+			ActorInstance newInitiatingActorInstance, NotificationChain msgs) {
 		ActorInstance oldInitiatingActorInstance = initiatingActorInstance;
 		initiatingActorInstance = newInitiatingActorInstance;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE, oldInitiatingActorInstance,
-				newInitiatingActorInstance);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE,
+					oldInitiatingActorInstance, newInitiatingActorInstance);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -228,112 +219,121 @@ public class ScenarioImpl extends UnicaseModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public void setInitiatingActorInstance(ActorInstance newInitiatingActorInstance) {
+	public void setInitiatingActorInstance(
+			ActorInstance newInitiatingActorInstance) {
 		if (newInitiatingActorInstance != initiatingActorInstance) {
 			NotificationChain msgs = null;
 			if (initiatingActorInstance != null)
-				msgs = ((InternalEObject) initiatingActorInstance).eInverseRemove(this,
-					RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS, ActorInstance.class, msgs);
+				msgs = ((InternalEObject) initiatingActorInstance)
+						.eInverseRemove(
+								this,
+								RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS,
+								ActorInstance.class, msgs);
 			if (newInitiatingActorInstance != null)
-				msgs = ((InternalEObject) newInitiatingActorInstance).eInverseAdd(this,
-					RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS, ActorInstance.class, msgs);
-			msgs = basicSetInitiatingActorInstance(newInitiatingActorInstance, msgs);
+				msgs = ((InternalEObject) newInitiatingActorInstance)
+						.eInverseAdd(
+								this,
+								RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS,
+								ActorInstance.class, msgs);
+			msgs = basicSetInitiatingActorInstance(newInitiatingActorInstance,
+					msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE, newInitiatingActorInstance,
-				newInitiatingActorInstance));
+					RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE,
+					newInitiatingActorInstance, newInitiatingActorInstance));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ActorInstance> getParticipatingActorInstances() {
 		if (participatingActorInstances == null) {
 			participatingActorInstances = new EObjectWithInverseResolvingEList.ManyInverse<ActorInstance>(
-				ActorInstance.class, this, RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES,
-				RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS);
+					ActorInstance.class, this,
+					RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES,
+					RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS);
 		}
 		return participatingActorInstances;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getInstantiatedUseCases() {
 		if (instantiatedUseCases == null) {
-			instantiatedUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(UseCase.class, this,
-				RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES, RequirementPackage.USE_CASE__SCENARIOS);
+			instantiatedUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(
+					UseCase.class, this,
+					RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES,
+					RequirementPackage.USE_CASE__SCENARIOS);
 		}
 		return instantiatedUseCases;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<FunctionalRequirement> getFunctionalRequirements() {
 		if (functionalRequirements == null) {
 			functionalRequirements = new EObjectWithInverseResolvingEList.ManyInverse<FunctionalRequirement>(
-				FunctionalRequirement.class, this, RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS,
-				RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS);
+					FunctionalRequirement.class, this,
+					RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS,
+					RequirementPackage.FUNCTIONAL_REQUIREMENT__SCENARIOS);
 		}
 		return functionalRequirements;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<NonFunctionalRequirement> getNonFunctionalRequirements() {
 		if (nonFunctionalRequirements == null) {
 			nonFunctionalRequirements = new EObjectWithInverseResolvingEList.ManyInverse<NonFunctionalRequirement>(
-				NonFunctionalRequirement.class, this, RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS,
-				RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS);
+					NonFunctionalRequirement.class,
+					this,
+					RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS,
+					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS);
 		}
 		return nonFunctionalRequirements;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Method> getParticipatingMethods() {
 		if (participatingMethods == null) {
-			participatingMethods = new EObjectWithInverseResolvingEList.ManyInverse<Method>(Method.class, this,
-				RequirementPackage.SCENARIO__PARTICIPATING_METHODS, ClassesPackage.METHOD__DEMO_PARTICIPATIONS);
+			participatingMethods = new EObjectWithInverseResolvingEList.ManyInverse<Method>(
+					Method.class, this,
+					RequirementPackage.SCENARIO__PARTICIPATING_METHODS,
+					ClassesPackage.METHOD__DEMO_PARTICIPATIONS);
 		}
 		return participatingMethods;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<org.unicase.model.classes.Class> getParticipatingClasses() {
 		if (participatingClasses == null) {
 			participatingClasses = new EObjectWithInverseResolvingEList.ManyInverse<org.unicase.model.classes.Class>(
-				org.unicase.model.classes.Class.class, this, RequirementPackage.SCENARIO__PARTICIPATING_CLASSES,
-				ClassesPackage.CLASS__DEMO_PARTICIPATIONS);
+					org.unicase.model.classes.Class.class, this,
+					RequirementPackage.SCENARIO__PARTICIPATING_CLASSES,
+					ClassesPackage.CLASS__DEMO_PARTICIPATIONS);
 		}
 		return participatingClasses;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isDone() {
@@ -342,83 +342,92 @@ public class ScenarioImpl extends UnicaseModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDone(boolean newDone) {
 		boolean oldDone = done;
 		done = newDone;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.SCENARIO__DONE, oldDone, done));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementPackage.SCENARIO__DONE, oldDone, done));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE:
 			if (initiatingActorInstance != null)
-				msgs = ((InternalEObject) initiatingActorInstance).eInverseRemove(this,
-					RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS, ActorInstance.class, msgs);
-			return basicSetInitiatingActorInstance((ActorInstance) otherEnd, msgs);
+				msgs = ((InternalEObject) initiatingActorInstance)
+						.eInverseRemove(
+								this,
+								RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS,
+								ActorInstance.class, msgs);
+			return basicSetInitiatingActorInstance((ActorInstance) otherEnd,
+					msgs);
 		case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatingActorInstances()).basicAdd(
-				otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatingActorInstances())
+					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInstantiatedUseCases()).basicAdd(otherEnd,
-				msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInstantiatedUseCases())
+					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getFunctionalRequirements()).basicAdd(otherEnd,
-				msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getFunctionalRequirements())
+					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getNonFunctionalRequirements()).basicAdd(
-				otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getNonFunctionalRequirements())
+					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.SCENARIO__PARTICIPATING_METHODS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatingMethods()).basicAdd(otherEnd,
-				msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatingMethods())
+					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.SCENARIO__PARTICIPATING_CLASSES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatingClasses()).basicAdd(otherEnd,
-				msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatingClasses())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.SCENARIO__STEPS:
 			return ((InternalEList<?>) getSteps()).basicRemove(otherEnd, msgs);
 		case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE:
 			return basicSetInitiatingActorInstance(null, msgs);
 		case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
-			return ((InternalEList<?>) getParticipatingActorInstances()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getParticipatingActorInstances())
+					.basicRemove(otherEnd, msgs);
 		case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
-			return ((InternalEList<?>) getInstantiatedUseCases()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getInstantiatedUseCases()).basicRemove(
+					otherEnd, msgs);
 		case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<?>) getFunctionalRequirements()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getFunctionalRequirements())
+					.basicRemove(otherEnd, msgs);
 		case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<?>) getNonFunctionalRequirements()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getNonFunctionalRequirements())
+					.basicRemove(otherEnd, msgs);
 		case RequirementPackage.SCENARIO__PARTICIPATING_METHODS:
-			return ((InternalEList<?>) getParticipatingMethods()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getParticipatingMethods()).basicRemove(
+					otherEnd, msgs);
 		case RequirementPackage.SCENARIO__PARTICIPATING_CLASSES:
-			return ((InternalEList<?>) getParticipatingClasses()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getParticipatingClasses()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -450,7 +459,6 @@ public class ScenarioImpl extends UnicaseModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -466,27 +474,33 @@ public class ScenarioImpl extends UnicaseModelElementImpl implements Scenario {
 			return;
 		case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
 			getParticipatingActorInstances().clear();
-			getParticipatingActorInstances().addAll((Collection<? extends ActorInstance>) newValue);
+			getParticipatingActorInstances().addAll(
+					(Collection<? extends ActorInstance>) newValue);
 			return;
 		case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
 			getInstantiatedUseCases().clear();
-			getInstantiatedUseCases().addAll((Collection<? extends UseCase>) newValue);
+			getInstantiatedUseCases().addAll(
+					(Collection<? extends UseCase>) newValue);
 			return;
 		case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
 			getFunctionalRequirements().clear();
-			getFunctionalRequirements().addAll((Collection<? extends FunctionalRequirement>) newValue);
+			getFunctionalRequirements().addAll(
+					(Collection<? extends FunctionalRequirement>) newValue);
 			return;
 		case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
 			getNonFunctionalRequirements().clear();
-			getNonFunctionalRequirements().addAll((Collection<? extends NonFunctionalRequirement>) newValue);
+			getNonFunctionalRequirements().addAll(
+					(Collection<? extends NonFunctionalRequirement>) newValue);
 			return;
 		case RequirementPackage.SCENARIO__PARTICIPATING_METHODS:
 			getParticipatingMethods().clear();
-			getParticipatingMethods().addAll((Collection<? extends Method>) newValue);
+			getParticipatingMethods().addAll(
+					(Collection<? extends Method>) newValue);
 			return;
 		case RequirementPackage.SCENARIO__PARTICIPATING_CLASSES:
 			getParticipatingClasses().clear();
-			getParticipatingClasses().addAll((Collection<? extends org.unicase.model.classes.Class>) newValue);
+			getParticipatingClasses()
+					.addAll((Collection<? extends org.unicase.model.classes.Class>) newValue);
 			return;
 		case RequirementPackage.SCENARIO__DONE:
 			setDone((Boolean) newValue);
@@ -497,7 +511,6 @@ public class ScenarioImpl extends UnicaseModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -536,7 +549,6 @@ public class ScenarioImpl extends UnicaseModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -547,17 +559,23 @@ public class ScenarioImpl extends UnicaseModelElementImpl implements Scenario {
 		case RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE:
 			return initiatingActorInstance != null;
 		case RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES:
-			return participatingActorInstances != null && !participatingActorInstances.isEmpty();
+			return participatingActorInstances != null
+					&& !participatingActorInstances.isEmpty();
 		case RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES:
-			return instantiatedUseCases != null && !instantiatedUseCases.isEmpty();
+			return instantiatedUseCases != null
+					&& !instantiatedUseCases.isEmpty();
 		case RequirementPackage.SCENARIO__FUNCTIONAL_REQUIREMENTS:
-			return functionalRequirements != null && !functionalRequirements.isEmpty();
+			return functionalRequirements != null
+					&& !functionalRequirements.isEmpty();
 		case RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS:
-			return nonFunctionalRequirements != null && !nonFunctionalRequirements.isEmpty();
+			return nonFunctionalRequirements != null
+					&& !nonFunctionalRequirements.isEmpty();
 		case RequirementPackage.SCENARIO__PARTICIPATING_METHODS:
-			return participatingMethods != null && !participatingMethods.isEmpty();
+			return participatingMethods != null
+					&& !participatingMethods.isEmpty();
 		case RequirementPackage.SCENARIO__PARTICIPATING_CLASSES:
-			return participatingClasses != null && !participatingClasses.isEmpty();
+			return participatingClasses != null
+					&& !participatingClasses.isEmpty();
 		case RequirementPackage.SCENARIO__DONE:
 			return done != DONE_EDEFAULT;
 		}
@@ -566,7 +584,6 @@ public class ScenarioImpl extends UnicaseModelElementImpl implements Scenario {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

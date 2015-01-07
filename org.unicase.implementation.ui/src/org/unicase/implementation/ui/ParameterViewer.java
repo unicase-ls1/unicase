@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -21,9 +21,9 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.ui.celleditor.FeatureEditorDialog;
 import org.eclipse.emf.edit.ui.provider.PropertyDescriptor;
-import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.SemanticCompositeOperation;
+import org.eclipse.emf.emfstore.internal.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
+import org.eclipse.emf.emfstore.internal.server.model.versioning.operations.semantic.SemanticCompositeOperation;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ColumnViewer;
@@ -64,9 +64,10 @@ public class ParameterViewer extends TableViewer {
 		 * 
 		 * @author herrmi
 		 */
-		private final class ExtendedComboBoxCellEditorExtension extends ExtendedComboBoxCellEditor {
-			private ExtendedComboBoxCellEditorExtension(Composite composite, List<?> list,
-				ILabelProvider labelProvider, boolean sorted) {
+		private final class ExtendedComboBoxCellEditorExtension extends
+				ExtendedComboBoxCellEditor {
+			private ExtendedComboBoxCellEditorExtension(Composite composite,
+					List<?> list, ILabelProvider labelProvider, boolean sorted) {
 				super(composite, list, labelProvider, sorted);
 			}
 
@@ -105,15 +106,20 @@ public class ParameterViewer extends TableViewer {
 
 		private CellEditor getReferenceCellEditor(final EReference reference) {
 			if (reference.isMany()) {
-				return new ExtendedDialogCellEditor(getTable(), valueLabelProvider) {
+				return new ExtendedDialogCellEditor(getTable(),
+						valueLabelProvider) {
 
 					@SuppressWarnings("unchecked")
 					@Override
 					protected Object openDialogBox(Control cellEditorWindow) {
 
-						FeatureEditorDialog dialog = new FeatureEditorDialog(cellEditorWindow.getShell(),
-							labelProvider, operation, reference.getEType(), (List) getFeatureValue(reference),
-							getEditorTitle(reference), OperationHelper.getPossibleValues(operation, reference, project));
+						FeatureEditorDialog dialog = new FeatureEditorDialog(
+								cellEditorWindow.getShell(), labelProvider,
+								operation, reference.getEType(),
+								(List) getFeatureValue(reference),
+								getEditorTitle(reference),
+								OperationHelper.getPossibleValues(operation,
+										reference, project));
 
 						dialog.open();
 						return dialog.getResult();
@@ -122,8 +128,10 @@ public class ParameterViewer extends TableViewer {
 				};
 			}
 			final ExtendedComboBoxCellEditorExtension extendedComboBoxCellEditor = new ExtendedComboBoxCellEditorExtension(
-				getTable(), OperationHelper.getPossibleValues(operation, reference, project), valueLabelProvider, true);
-			final CCombo combo = (CCombo) extendedComboBoxCellEditor.getControl();
+					getTable(), OperationHelper.getPossibleValues(operation,
+							reference, project), valueLabelProvider, true);
+			final CCombo combo = (CCombo) extendedComboBoxCellEditor
+					.getControl();
 			combo.addSelectionListener(new SelectionAdapter() {
 
 				@Override
@@ -139,14 +147,17 @@ public class ParameterViewer extends TableViewer {
 
 		private CellEditor getAttributeCellEditor(final EAttribute attribute) {
 			if (attribute.isMany()) {
-				return new ExtendedDialogCellEditor(getTable(), valueLabelProvider) {
+				return new ExtendedDialogCellEditor(getTable(),
+						valueLabelProvider) {
 
 					@SuppressWarnings("unchecked")
 					@Override
 					protected Object openDialogBox(Control cellEditorWindow) {
-						FeatureEditorDialog dialog = new FeatureEditorDialog(cellEditorWindow.getShell(),
-							labelProvider, attribute, (EDataType) attribute.getEType(),
-							(List) getFeatureValue(attribute), getEditorTitle(attribute), null);
+						FeatureEditorDialog dialog = new FeatureEditorDialog(
+								cellEditorWindow.getShell(), labelProvider,
+								attribute, (EDataType) attribute.getEType(),
+								(List) getFeatureValue(attribute),
+								getEditorTitle(attribute), null);
 						dialog.open();
 						return dialog.getResult();
 					}
@@ -154,9 +165,11 @@ public class ParameterViewer extends TableViewer {
 				};
 			}
 			EDataType dataType = (EDataType) attribute.getEType();
-			if (dataType.getInstanceClass() == Boolean.class || dataType.getInstanceClass() == Boolean.TYPE) {
-				ExtendedComboBoxCellEditor extendedComboBoxCellEditor = new ExtendedComboBoxCellEditor(getTable(),
-					Arrays.asList(new Object[] { Boolean.FALSE, Boolean.TRUE }), valueLabelProvider, false);
+			if (dataType.getInstanceClass() == Boolean.class
+					|| dataType.getInstanceClass() == Boolean.TYPE) {
+				ExtendedComboBoxCellEditor extendedComboBoxCellEditor = new ExtendedComboBoxCellEditor(
+						getTable(), Arrays.asList(new Object[] { Boolean.FALSE,
+								Boolean.TRUE }), valueLabelProvider, false);
 				CCombo combo = (CCombo) extendedComboBoxCellEditor.getControl();
 				combo.addSelectionListener(new SelectionAdapter() {
 
@@ -167,7 +180,8 @@ public class ParameterViewer extends TableViewer {
 				});
 				return extendedComboBoxCellEditor;
 			}
-			return new PropertyDescriptor.EDataTypeCellEditor((EDataType) attribute.getEType(), getTable());
+			return new PropertyDescriptor.EDataTypeCellEditor(
+					(EDataType) attribute.getEType(), getTable());
 		}
 
 		@Override
@@ -196,7 +210,8 @@ public class ParameterViewer extends TableViewer {
 			if (element instanceof Collection) {
 				Collection collection = (Collection) element;
 				if (!collection.isEmpty()) {
-					return dialog.getLabelProvider().getImage(collection.iterator().next());
+					return dialog.getLabelProvider().getImage(
+							collection.iterator().next());
 				}
 			} else {
 				if (element != null) {
@@ -235,11 +250,15 @@ public class ParameterViewer extends TableViewer {
 	/**
 	 * Constructor.
 	 * 
-	 * @param dialog the dialog
-	 * @param parent the parent composite
-	 * @param project the project to run in
+	 * @param dialog
+	 *            the dialog
+	 * @param parent
+	 *            the parent composite
+	 * @param project
+	 *            the project to run in
 	 */
-	public ParameterViewer(ExecuteOperationDialog dialog, Composite parent, Project project) {
+	public ParameterViewer(ExecuteOperationDialog dialog, Composite parent,
+			Project project) {
 		super(parent, SWT.FULL_SELECTION | SWT.BORDER);
 
 		this.project = project;
@@ -260,7 +279,8 @@ public class ParameterViewer extends TableViewer {
 
 			public Object[] getElements(Object inputElement) {
 				SemanticCompositeOperation operation = (SemanticCompositeOperation) inputElement;
-				EList<EStructuralFeature> features = operation.eClass().getEStructuralFeatures();
+				EList<EStructuralFeature> features = operation.eClass()
+						.getEStructuralFeatures();
 				return features.toArray();
 			}
 
@@ -268,7 +288,8 @@ public class ParameterViewer extends TableViewer {
 				// not required
 			}
 
-			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+			public void inputChanged(Viewer viewer, Object oldInput,
+					Object newInput) {
 				// not required
 			}
 
@@ -288,7 +309,8 @@ public class ParameterViewer extends TableViewer {
 			@Override
 			public String getText(Object element) {
 				EStructuralFeature feature = (EStructuralFeature) element;
-				String key = "_UI_" + feature.getEContainingClass().getName() + "_" + feature.getName() + "_feature";
+				String key = "_UI_" + feature.getEContainingClass().getName()
+						+ "_" + feature.getName() + "_feature";
 				return OperationsEditPlugin.getPlugin().getString(key);
 			}
 		});
@@ -317,7 +339,8 @@ public class ParameterViewer extends TableViewer {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.jface.viewers.AbstractTableViewer#inputChanged(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.jface.viewers.AbstractTableViewer#inputChanged(java.lang.Object,
+	 *      java.lang.Object)
 	 */
 	@Override
 	protected void inputChanged(Object input, Object oldInput) {
@@ -330,9 +353,11 @@ public class ParameterViewer extends TableViewer {
 		Object value = operation.eGet(feature);
 		if (feature instanceof EReference) {
 			if (feature.isMany()) {
-				value = OperationHelper.getElements(project, (List<ModelElementId>) value);
+				value = OperationHelper.getElements(project,
+						(List<ModelElementId>) value);
 			} else {
-				value = OperationHelper.getElement(project, (ModelElementId) value);
+				value = OperationHelper.getElement(project,
+						(ModelElementId) value);
 			}
 		}
 		return value;

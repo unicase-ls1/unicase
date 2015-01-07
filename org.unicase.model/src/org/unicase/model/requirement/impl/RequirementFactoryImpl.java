@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -26,19 +26,19 @@ import org.unicase.model.requirement.Workspace;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
-public class RequirementFactoryImpl extends EFactoryImpl implements RequirementFactory {
+public class RequirementFactoryImpl extends EFactoryImpl implements
+		RequirementFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static RequirementFactory init() {
 		try {
 			RequirementFactory theRequirementFactory = (RequirementFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/model/requirement");
+					.getEFactory(RequirementPackage.eNS_URI);
 			if (theRequirementFactory != null) {
 				return theRequirementFactory;
 			}
@@ -49,8 +49,8 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public RequirementFactoryImpl() {
@@ -59,7 +59,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,13 +85,13 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 		case RequirementPackage.WORKSPACE:
 			return createWorkspace();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NonFunctionalRequirement createNonFunctionalRequirement() {
@@ -102,7 +101,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FunctionalRequirement createFunctionalRequirement() {
@@ -112,7 +110,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UseCase createUseCase() {
@@ -122,7 +119,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Scenario createScenario() {
@@ -132,7 +128,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Actor createActor() {
@@ -142,7 +137,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ActorInstance createActorInstance() {
@@ -152,7 +146,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Step createStep() {
@@ -162,7 +155,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SystemFunction createSystemFunction() {
@@ -172,7 +164,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UserTask createUserTask() {
@@ -182,7 +173,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Workspace createWorkspace() {
@@ -192,7 +182,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RequirementPackage getRequirementPackage() {
@@ -201,7 +190,6 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -24,13 +24,14 @@ import org.unicase.model.meeting.MeetingSection;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.meeting.impl.CompositeMeetingSectionImpl#getSubsections <em>Subsections</em>}</li>
+ *   <li>{@link org.unicase.model.meeting.impl.CompositeMeetingSectionImpl#getSubsections <em>Subsections</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements CompositeMeetingSection {
+public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements
+		CompositeMeetingSection {
 	/**
 	 * The cached value of the '{@link #getSubsections() <em>Subsections</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -43,7 +44,6 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CompositeMeetingSectionImpl() {
@@ -52,7 +52,6 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -62,34 +61,34 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<MeetingSection> getSubsections() {
 		if (subsections == null) {
-			subsections = new EObjectContainmentEList.Resolving<MeetingSection>(MeetingSection.class, this,
-				MeetingPackage.COMPOSITE_MEETING_SECTION__SUBSECTIONS);
+			subsections = new EObjectContainmentEList.Resolving<MeetingSection>(
+					MeetingSection.class, this,
+					MeetingPackage.COMPOSITE_MEETING_SECTION__SUBSECTIONS);
 		}
 		return subsections;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case MeetingPackage.COMPOSITE_MEETING_SECTION__SUBSECTIONS:
-			return ((InternalEList<?>) getSubsections()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getSubsections()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -103,7 +102,6 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -112,7 +110,8 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 		switch (featureID) {
 		case MeetingPackage.COMPOSITE_MEETING_SECTION__SUBSECTIONS:
 			getSubsections().clear();
-			getSubsections().addAll((Collection<? extends MeetingSection>) newValue);
+			getSubsections().addAll(
+					(Collection<? extends MeetingSection>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -120,7 +119,6 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -135,7 +133,6 @@ public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements C
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

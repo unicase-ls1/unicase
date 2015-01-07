@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -13,27 +13,21 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.UnicaseModelElementItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.classes.PackageElement} object. <!-- begin-user-doc
+ * This is the item provider adapter for a {@link org.unicase.model.classes.PackageElement} object.
+ * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
  * @generated
  */
-public class PackageElementItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
-	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class PackageElementItemProvider extends UnicaseModelElementItemProvider {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public PackageElementItemProvider(AdapterFactory adapterFactory) {
@@ -41,8 +35,8 @@ public class PackageElementItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -58,18 +52,21 @@ public class PackageElementItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Parent Package feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Parent Package feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addParentPackagePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_PackageElement_parentPackage_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_PackageElement_parentPackage_feature",
-				"_UI_PackageElement_type"), ClassesPackage.Literals.PACKAGE_ELEMENT__PARENT_PACKAGE, true, false,
-			false, null, null, null));
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PackageElement_parentPackage_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_PackageElement_parentPackage_feature",
+						"_UI_PackageElement_type"),
+				ClassesPackage.Literals.PACKAGE_ELEMENT__PARENT_PACKAGE, true,
+				false, false, null, null, null));
 	}
 
 	/**
@@ -80,12 +77,15 @@ public class PackageElementItemProvider extends UnicaseModelElementItemProvider 
 	 */
 	protected void addOutgoingDependenciesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_PackageElement_outgoingDependencies_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_PackageElement_outgoingDependencies_feature",
-				"_UI_PackageElement_type"), ClassesPackage.Literals.PACKAGE_ELEMENT__OUTGOING_DEPENDENCIES, true,
-			false, true, null, null, null));
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PackageElement_outgoingDependencies_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_PackageElement_outgoingDependencies_feature",
+						"_UI_PackageElement_type"),
+				ClassesPackage.Literals.PACKAGE_ELEMENT__OUTGOING_DEPENDENCIES,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -96,12 +96,15 @@ public class PackageElementItemProvider extends UnicaseModelElementItemProvider 
 	 */
 	protected void addIncomingDependenciesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_PackageElement_incomingDependencies_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_PackageElement_incomingDependencies_feature",
-				"_UI_PackageElement_type"), ClassesPackage.Literals.PACKAGE_ELEMENT__INCOMING_DEPENDENCIES, true,
-			false, true, null, null, null));
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PackageElement_incomingDependencies_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_PackageElement_incomingDependencies_feature",
+						"_UI_PackageElement_type"),
+				ClassesPackage.Literals.PACKAGE_ELEMENT__INCOMING_DEPENDENCIES,
+				true, false, true, null, null, null));
 	}
 
 	/**
@@ -128,19 +131,20 @@ public class PackageElementItemProvider extends UnicaseModelElementItemProvider 
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

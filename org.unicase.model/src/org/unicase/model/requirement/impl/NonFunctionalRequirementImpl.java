@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -30,20 +30,18 @@ import org.unicase.model.requirement.UserTask;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getRestrictedScenarios <em>Restricted
- * Scenarios</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getRestrictedUseCases <em>Restricted Use
- * Cases</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getSystemFunctions <em>System Functions
- * </em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getUserTasks <em>User Tasks</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#isDone <em>Done</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getRestrictedScenarios <em>Restricted Scenarios</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getRestrictedUseCases <em>Restricted Use Cases</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getSystemFunctions <em>System Functions</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getUserTasks <em>User Tasks</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#isDone <em>Done</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFunctionalRequirement {
+public class NonFunctionalRequirementImpl extends CriterionImpl implements
+		NonFunctionalRequirement {
 	/**
 	 * The cached value of the '{@link #getRestrictedScenarios() <em>Restricted Scenarios</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -73,9 +71,9 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 	 */
 	protected EList<SystemFunction> systemFunctions;
 	/**
-	 * The cached value of the '{@link #getUserTasks() <em>User Tasks</em>}' reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getUserTasks() <em>User Tasks</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getUserTasks()
 	 * @generated
 	 * @ordered
@@ -103,7 +101,6 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NonFunctionalRequirementImpl() {
@@ -112,7 +109,6 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -122,63 +118,65 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Scenario> getRestrictedScenarios() {
 		if (restrictedScenarios == null) {
-			restrictedScenarios = new EObjectWithInverseResolvingEList.ManyInverse<Scenario>(Scenario.class, this,
-				RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS,
-				RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS);
+			restrictedScenarios = new EObjectWithInverseResolvingEList.ManyInverse<Scenario>(
+					Scenario.class,
+					this,
+					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS,
+					RequirementPackage.SCENARIO__NON_FUNCTIONAL_REQUIREMENTS);
 		}
 		return restrictedScenarios;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getRestrictedUseCases() {
 		if (restrictedUseCases == null) {
-			restrictedUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(UseCase.class, this,
-				RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES,
-				RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS);
+			restrictedUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(
+					UseCase.class,
+					this,
+					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES,
+					RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS);
 		}
 		return restrictedUseCases;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<SystemFunction> getSystemFunctions() {
 		if (systemFunctions == null) {
-			systemFunctions = new EObjectWithInverseResolvingEList<SystemFunction>(SystemFunction.class, this,
-				RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__SYSTEM_FUNCTIONS,
-				RequirementPackage.SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT);
+			systemFunctions = new EObjectWithInverseResolvingEList<SystemFunction>(
+					SystemFunction.class,
+					this,
+					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__SYSTEM_FUNCTIONS,
+					RequirementPackage.SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT);
 		}
 		return systemFunctions;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<UserTask> getUserTasks() {
 		if (userTasks == null) {
-			userTasks = new EObjectWithInverseResolvingEList.ManyInverse<UserTask>(UserTask.class, this,
-				RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__USER_TASKS,
-				RequirementPackage.USER_TASK__NON_FUNCTIONAL_REQUIREMENTS);
+			userTasks = new EObjectWithInverseResolvingEList.ManyInverse<UserTask>(
+					UserTask.class, this,
+					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__USER_TASKS,
+					RequirementPackage.USER_TASK__NON_FUNCTIONAL_REQUIREMENTS);
 		}
 		return userTasks;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isDone() {
@@ -187,63 +185,68 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDone(boolean newDone) {
 		boolean oldDone = done;
 		done = newDone;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__DONE,
-				oldDone, done));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__DONE,
+					oldDone, done));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRestrictedScenarios()).basicAdd(otherEnd,
-				msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRestrictedScenarios())
+					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRestrictedUseCases()).basicAdd(otherEnd,
-				msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRestrictedUseCases())
+					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__SYSTEM_FUNCTIONS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSystemFunctions()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSystemFunctions())
+					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__USER_TASKS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUserTasks()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUserTasks())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS:
-			return ((InternalEList<?>) getRestrictedScenarios()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getRestrictedScenarios()).basicRemove(
+					otherEnd, msgs);
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES:
-			return ((InternalEList<?>) getRestrictedUseCases()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getRestrictedUseCases()).basicRemove(
+					otherEnd, msgs);
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__SYSTEM_FUNCTIONS:
-			return ((InternalEList<?>) getSystemFunctions()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getSystemFunctions()).basicRemove(
+					otherEnd, msgs);
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__USER_TASKS:
-			return ((InternalEList<?>) getUserTasks()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getUserTasks()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -265,7 +268,6 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -274,15 +276,18 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 		switch (featureID) {
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS:
 			getRestrictedScenarios().clear();
-			getRestrictedScenarios().addAll((Collection<? extends Scenario>) newValue);
+			getRestrictedScenarios().addAll(
+					(Collection<? extends Scenario>) newValue);
 			return;
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES:
 			getRestrictedUseCases().clear();
-			getRestrictedUseCases().addAll((Collection<? extends UseCase>) newValue);
+			getRestrictedUseCases().addAll(
+					(Collection<? extends UseCase>) newValue);
 			return;
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__SYSTEM_FUNCTIONS:
 			getSystemFunctions().clear();
-			getSystemFunctions().addAll((Collection<? extends SystemFunction>) newValue);
+			getSystemFunctions().addAll(
+					(Collection<? extends SystemFunction>) newValue);
 			return;
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__USER_TASKS:
 			getUserTasks().clear();
@@ -297,7 +302,6 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -324,14 +328,14 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS:
-			return restrictedScenarios != null && !restrictedScenarios.isEmpty();
+			return restrictedScenarios != null
+					&& !restrictedScenarios.isEmpty();
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES:
 			return restrictedUseCases != null && !restrictedUseCases.isEmpty();
 		case RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__SYSTEM_FUNCTIONS:
@@ -346,7 +350,6 @@ public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFu
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

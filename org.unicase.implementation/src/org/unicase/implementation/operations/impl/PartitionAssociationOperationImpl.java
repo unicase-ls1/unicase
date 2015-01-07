@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -13,10 +13,8 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.impl.SemanticCompositeOperationImpl;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
+import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
 import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.implementation.operations.PartitionAssociationOperation;
 import org.unicase.implementation.operations.util.OperationHelper;
@@ -27,29 +25,32 @@ import org.unicase.model.classes.validation.ClassesHelper;
 import org.unicase.model.classes.validation.MultiplicityParseResult;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Partition Association Operation</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Partition Association Operation</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.implementation.operations.impl.PartitionAssociationOperationImpl#getAssociation <em>
- * Association</em>}</li>
+ * <li>
+ * {@link org.unicase.implementation.operations.impl.PartitionAssociationOperationImpl#getAssociation
+ * <em>Association</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class PartitionAssociationOperationImpl extends SemanticCompositeOperationImpl implements
-	PartitionAssociationOperation {
+public class PartitionAssociationOperationImpl
+		extends
+		org.eclipse.emf.emfstore.internal.server.model.versioning.operations.semantic.impl.SemanticCompositeOperationImpl
+		implements PartitionAssociationOperation {
 	/**
-	 * The cached value of the '{@link #getAssociation() <em>Association</em>}' containment reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAssociation() <em>Association</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getAssociation()
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelElementId association;
+	protected org.eclipse.emf.emfstore.internal.common.model.ModelElementId association;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -75,7 +76,7 @@ public class PartitionAssociationOperationImpl extends SemanticCompositeOperatio
 	 * 
 	 * @generated
 	 */
-	public ModelElementId getAssociation() {
+	public org.eclipse.emf.emfstore.internal.common.model.ModelElementId getAssociation() {
 		return association;
 	}
 
@@ -84,12 +85,17 @@ public class PartitionAssociationOperationImpl extends SemanticCompositeOperatio
 	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetAssociation(ModelElementId newAssociation, NotificationChain msgs) {
-		ModelElementId oldAssociation = association;
+	public NotificationChain basicSetAssociation(
+			org.eclipse.emf.emfstore.internal.common.model.ModelElementId newAssociation,
+			NotificationChain msgs) {
+		org.eclipse.emf.emfstore.internal.common.model.ModelElementId oldAssociation = association;
 		association = newAssociation;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.PARTITION_ASSOCIATION_OPERATION__ASSOCIATION, oldAssociation, newAssociation);
+			ENotificationImpl notification = new ENotificationImpl(
+					this,
+					Notification.SET,
+					OperationsPackage.PARTITION_ASSOCIATION_OPERATION__ASSOCIATION,
+					oldAssociation, newAssociation);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -103,21 +109,33 @@ public class PartitionAssociationOperationImpl extends SemanticCompositeOperatio
 	 * 
 	 * @generated
 	 */
-	public void setAssociation(ModelElementId newAssociation) {
+	public void setAssociation(
+			org.eclipse.emf.emfstore.internal.common.model.ModelElementId newAssociation) {
 		if (newAssociation != association) {
 			NotificationChain msgs = null;
 			if (association != null)
-				msgs = ((InternalEObject) association).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.PARTITION_ASSOCIATION_OPERATION__ASSOCIATION, null, msgs);
+				msgs = ((InternalEObject) association)
+						.eInverseRemove(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.PARTITION_ASSOCIATION_OPERATION__ASSOCIATION,
+								null, msgs);
 			if (newAssociation != null)
-				msgs = ((InternalEObject) newAssociation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.PARTITION_ASSOCIATION_OPERATION__ASSOCIATION, null, msgs);
+				msgs = ((InternalEObject) newAssociation)
+						.eInverseAdd(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.PARTITION_ASSOCIATION_OPERATION__ASSOCIATION,
+								null, msgs);
 			msgs = basicSetAssociation(newAssociation, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.PARTITION_ASSOCIATION_OPERATION__ASSOCIATION, newAssociation, newAssociation));
+			eNotify(new ENotificationImpl(
+					this,
+					Notification.SET,
+					OperationsPackage.PARTITION_ASSOCIATION_OPERATION__ASSOCIATION,
+					newAssociation, newAssociation));
 	}
 
 	/**
@@ -125,7 +143,8 @@ public class PartitionAssociationOperationImpl extends SemanticCompositeOperatio
 	 * 
 	 * @generated
 	 */
-	public Association getAssociation(Project project) {
+	public Association getAssociation(
+			final org.eclipse.emf.emfstore.internal.common.model.Project project) {
 		return OperationHelper.getElement(project, getAssociation());
 	}
 
@@ -140,7 +159,7 @@ public class PartitionAssociationOperationImpl extends SemanticCompositeOperatio
 
 		Class target = association.getTarget();
 		boolean isAbstract = target.getInstantiationType() == InstantiationType.ABSTRACT
-			|| target.getInstantiationType() == InstantiationType.INTERFACE;
+				|| target.getInstantiationType() == InstantiationType.INTERFACE;
 		boolean hasSubClasses = !target.getSubClasses().isEmpty();
 		return isAbstract && hasSubClasses;
 	}
@@ -153,8 +172,8 @@ public class PartitionAssociationOperationImpl extends SemanticCompositeOperatio
 	public boolean validateAssociationMultiplicity(Project project) {
 		Association association = getAssociation(project);
 
-		MultiplicityParseResult targetMultiplicity = ClassesHelper.parseMultiplicity(association
-			.getTargetMultiplicity());
+		MultiplicityParseResult targetMultiplicity = ClassesHelper
+				.parseMultiplicity(association.getTargetMultiplicity());
 
 		return targetMultiplicity.getMaximumMultiplicity() == -1;
 	}
@@ -167,7 +186,8 @@ public class PartitionAssociationOperationImpl extends SemanticCompositeOperatio
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case OperationsPackage.PARTITION_ASSOCIATION_OPERATION__ASSOCIATION:
 			return basicSetAssociation(null, msgs);
@@ -198,7 +218,7 @@ public class PartitionAssociationOperationImpl extends SemanticCompositeOperatio
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case OperationsPackage.PARTITION_ASSOCIATION_OPERATION__ASSOCIATION:
-			setAssociation((ModelElementId) newValue);
+			setAssociation((org.eclipse.emf.emfstore.internal.common.model.ModelElementId) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -213,7 +233,7 @@ public class PartitionAssociationOperationImpl extends SemanticCompositeOperatio
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case OperationsPackage.PARTITION_ASSOCIATION_OPERATION__ASSOCIATION:
-			setAssociation((ModelElementId) null);
+			setAssociation((org.eclipse.emf.emfstore.internal.common.model.ModelElementId) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -241,7 +261,8 @@ public class PartitionAssociationOperationImpl extends SemanticCompositeOperatio
 		for (Class subClass : target.getSubClasses()) {
 			String name = OperationHelper.firstLower(subClass.getName());
 			Association subAssociation = ModelUtil.clone(association);
-			((List) association.eContainer().eGet(association.eContainmentFeature())).add(subAssociation);
+			((List) association.eContainer().eGet(
+					association.eContainmentFeature())).add(subAssociation);
 
 			subAssociation.setSource(association.getSource());
 			subAssociation.setTarget(subClass);

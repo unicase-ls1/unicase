@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -13,12 +13,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.meeting.MeetingPackage;
 
 /**
@@ -27,11 +22,10 @@ import org.unicase.model.meeting.MeetingPackage;
  * 
  * @generated
  */
-public class IssueMeetingSectionItemProvider extends MeetingSectionItemProvider implements IEditingDomainItemProvider,
-	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class IssueMeetingSectionItemProvider extends MeetingSectionItemProvider {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public IssueMeetingSectionItemProvider(AdapterFactory adapterFactory) {
@@ -39,8 +33,8 @@ public class IssueMeetingSectionItemProvider extends MeetingSectionItemProvider 
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -54,40 +48,44 @@ public class IssueMeetingSectionItemProvider extends MeetingSectionItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Included Issues feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Included Issues feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addIncludedIssuesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_IssueMeetingSection_includedIssues_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_IssueMeetingSection_includedIssues_feature",
-				"_UI_IssueMeetingSection_type"), MeetingPackage.Literals.ISSUE_MEETING_SECTION__INCLUDED_ISSUES, true,
-			false, true, null, null, null));
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_IssueMeetingSection_includedIssues_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_IssueMeetingSection_includedIssues_feature",
+						"_UI_IssueMeetingSection_type"),
+				MeetingPackage.Literals.ISSUE_MEETING_SECTION__INCLUDED_ISSUES,
+				true, false, true, null, null, null));
 	}
 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MeetingPackage.Literals.ISSUE_MEETING_SECTION__INCLUDED_ISSUES);
+			childrenFeatures
+					.add(MeetingPackage.Literals.ISSUE_MEETING_SECTION__INCLUDED_ISSUES);
 		}
 		return childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -99,13 +97,14 @@ public class IssueMeetingSectionItemProvider extends MeetingSectionItemProvider 
 	}
 
 	/**
-	 * This returns IssueMeetingSection.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns IssueMeetingSection.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/IssueMeetingSection"));
+		return overlayImage(object,
+				getResourceLocator().getImage("full/obj16/IssueMeetingSection"));
 	}
 
 	/**
@@ -132,13 +131,14 @@ public class IssueMeetingSectionItemProvider extends MeetingSectionItemProvider 
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 

@@ -15,13 +15,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.emfstore.client,
  org.eclipse.emf.emfstore.client.ui,
  org.eclipse.emf.edit.ui,
- org.eclipse.emf.ecp.common.util,
  org.eclipse.emf.ecp.common,
- org.eclipse.emf.ecp.editor,
- org.eclipse.emf.ecp.navigatoreditorbridge,
- org.eclipse.emf.ecp.navigator,
  org.eclipse.emf.compare,
- org.unicase.dashboard
+ org.unicase.dashboard,
+ org.eclipse.emf.ecp.edit,
+ org.eclipse.emf.ecp.ui,
+ org.eclipse.emf.emfstore.server.model
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.unicase.ui.unicasecommon,
@@ -46,7 +45,6 @@ Export-Package: org.unicase.ui.unicasecommon,
  org.unicase.ui.unicasecommon.observer
 Import-Package: org.eclipse.core.expressions,
  org.eclipse.emf.common.ui,
- org.eclipse.emf.ecp.emfstorebridge,
  org.eclipse.ui.part,
  org.unicase.model.diagram,
  org.unicase.model.diagram.impl

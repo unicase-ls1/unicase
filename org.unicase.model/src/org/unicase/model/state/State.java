@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -8,28 +8,29 @@ package org.unicase.model.state;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>State</b></em>'. <!-- end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.state.State#getExitConditions <em>Exit Conditions</em>}</li>
- * <li>{@link org.unicase.model.state.State#getActivities <em>Activities</em>}</li>
- * <li>{@link org.unicase.model.state.State#getEntryConditions <em>Entry Conditions</em>}</li>
+ *   <li>{@link org.unicase.model.state.State#getExitConditions <em>Exit Conditions</em>}</li>
+ *   <li>{@link org.unicase.model.state.State#getActivities <em>Activities</em>}</li>
+ *   <li>{@link org.unicase.model.state.State#getEntryConditions <em>Entry Conditions</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.model.state.StatePackage#getState()
  * @model
  * @generated
  */
 public interface State extends StateNode {
 	/**
-	 * Returns the value of the '<em><b>Exit Conditions</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Exit Conditions</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Exit Conditions</em>' attribute list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Exit Conditions</em>' attribute.
 	 * @see #setExitConditions(String)
 	 * @see org.unicase.model.state.StatePackage#getState_ExitConditions()
@@ -39,9 +40,8 @@ public interface State extends StateNode {
 	String getExitConditions();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.state.State#getExitConditions <em>Exit Conditions</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.state.State#getExitConditions <em>Exit Conditions</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Exit Conditions</em>' attribute.
 	 * @see #getExitConditions()
 	 * @generated
@@ -49,13 +49,13 @@ public interface State extends StateNode {
 	void setExitConditions(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Activities</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Activities</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Activities</em>' attribute list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Activities</em>' attribute.
 	 * @see #setActivities(String)
 	 * @see org.unicase.model.state.StatePackage#getState_Activities()
@@ -75,13 +75,13 @@ public interface State extends StateNode {
 	void setActivities(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Entry Conditions</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Entry Conditions</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Entry Conditions</em>' attribute list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Entry Conditions</em>' attribute.
 	 * @see #setEntryConditions(String)
 	 * @see org.unicase.model.state.StatePackage#getState_EntryConditions()
@@ -91,9 +91,8 @@ public interface State extends StateNode {
 	String getEntryConditions();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.state.State#getEntryConditions <em>Entry Conditions</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.state.State#getEntryConditions <em>Entry Conditions</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Entry Conditions</em>' attribute.
 	 * @see #getEntryConditions()
 	 * @generated

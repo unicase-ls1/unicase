@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -24,15 +24,15 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface CompositeSection extends Section {
 	/**
-	 * Returns the value of the '<em><b>Subsections</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.model.document.Section}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.document.Section#getParent <em>Parent</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Subsections</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.model.document.Section}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.document.Section#getParent <em>Parent</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Subsections</em>' containment reference list isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Subsections</em>' containment reference list.
 	 * @see org.unicase.model.document.DocumentPackage#getCompositeSection_Subsections()
 	 * @see org.unicase.model.document.Section#getParent

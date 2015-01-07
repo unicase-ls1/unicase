@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -37,7 +37,8 @@ import org.unicase.model.requirement.Scenario;
  * 
  * @generated
  */
-public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorInstance {
+public class ActorInstanceImpl extends UnicaseModelElementImpl implements
+		ActorInstance {
 	/**
 	 * The cached value of the '{@link #getInitiatedScenarios() <em>Initiated Scenarios</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -51,7 +52,6 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 	/**
 	 * The cached value of the '{@link #getParticipatedScenarios() <em>Participated Scenarios</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getParticipatedScenarios()
 	 * @generated
 	 * @ordered
@@ -70,7 +70,6 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ActorInstanceImpl() {
@@ -79,7 +78,6 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -89,35 +87,34 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Scenario> getInitiatedScenarios() {
 		if (initiatedScenarios == null) {
-			initiatedScenarios = new EObjectWithInverseResolvingEList<Scenario>(Scenario.class, this,
-				RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS,
-				RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE);
+			initiatedScenarios = new EObjectWithInverseResolvingEList<Scenario>(
+					Scenario.class, this,
+					RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS,
+					RequirementPackage.SCENARIO__INITIATING_ACTOR_INSTANCE);
 		}
 		return initiatedScenarios;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Scenario> getParticipatedScenarios() {
 		if (participatedScenarios == null) {
-			participatedScenarios = new EObjectWithInverseResolvingEList.ManyInverse<Scenario>(Scenario.class, this,
-				RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS,
-				RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES);
+			participatedScenarios = new EObjectWithInverseResolvingEList.ManyInverse<Scenario>(
+					Scenario.class, this,
+					RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS,
+					RequirementPackage.SCENARIO__PARTICIPATING_ACTOR_INSTANCES);
 		}
 		return participatedScenarios;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Actor getInstantiatedActor() {
@@ -126,8 +123,11 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 			instantiatedActor = (Actor) eResolveProxy(oldInstantiatedActor);
 			if (instantiatedActor != oldInstantiatedActor) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR, oldInstantiatedActor, instantiatedActor));
+					eNotify(new ENotificationImpl(
+							this,
+							Notification.RESOLVE,
+							RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR,
+							oldInstantiatedActor, instantiatedActor));
 			}
 		}
 		return instantiatedActor;
@@ -135,7 +135,6 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Actor basicGetInstantiatedActor() {
@@ -144,15 +143,17 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetInstantiatedActor(Actor newInstantiatedActor, NotificationChain msgs) {
+	public NotificationChain basicSetInstantiatedActor(
+			Actor newInstantiatedActor, NotificationChain msgs) {
 		Actor oldInstantiatedActor = instantiatedActor;
 		instantiatedActor = newInstantiatedActor;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR, oldInstantiatedActor, newInstantiatedActor);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR,
+					oldInstantiatedActor, newInstantiatedActor);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -163,45 +164,48 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setInstantiatedActor(Actor newInstantiatedActor) {
 		if (newInstantiatedActor != instantiatedActor) {
 			NotificationChain msgs = null;
 			if (instantiatedActor != null)
-				msgs = ((InternalEObject) instantiatedActor).eInverseRemove(this, RequirementPackage.ACTOR__INSTANCES,
-					Actor.class, msgs);
+				msgs = ((InternalEObject) instantiatedActor).eInverseRemove(
+						this, RequirementPackage.ACTOR__INSTANCES, Actor.class,
+						msgs);
 			if (newInstantiatedActor != null)
-				msgs = ((InternalEObject) newInstantiatedActor).eInverseAdd(this, RequirementPackage.ACTOR__INSTANCES,
-					Actor.class, msgs);
+				msgs = ((InternalEObject) newInstantiatedActor).eInverseAdd(
+						this, RequirementPackage.ACTOR__INSTANCES, Actor.class,
+						msgs);
 			msgs = basicSetInstantiatedActor(newInstantiatedActor, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR, newInstantiatedActor, newInstantiatedActor));
+					RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR,
+					newInstantiatedActor, newInstantiatedActor));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInitiatedScenarios()).basicAdd(otherEnd,
-				msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInitiatedScenarios())
+					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatedScenarios()).basicAdd(otherEnd,
-				msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatedScenarios())
+					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR:
 			if (instantiatedActor != null)
-				msgs = ((InternalEObject) instantiatedActor).eInverseRemove(this, RequirementPackage.ACTOR__INSTANCES,
-					Actor.class, msgs);
+				msgs = ((InternalEObject) instantiatedActor).eInverseRemove(
+						this, RequirementPackage.ACTOR__INSTANCES, Actor.class,
+						msgs);
 			return basicSetInstantiatedActor((Actor) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -209,16 +213,18 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS:
-			return ((InternalEList<?>) getInitiatedScenarios()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getInitiatedScenarios()).basicRemove(
+					otherEnd, msgs);
 		case RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS:
-			return ((InternalEList<?>) getParticipatedScenarios()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getParticipatedScenarios()).basicRemove(
+					otherEnd, msgs);
 		case RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR:
 			return basicSetInstantiatedActor(null, msgs);
 		}
@@ -227,7 +233,6 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -247,7 +252,6 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -256,11 +260,13 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 		switch (featureID) {
 		case RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS:
 			getInitiatedScenarios().clear();
-			getInitiatedScenarios().addAll((Collection<? extends Scenario>) newValue);
+			getInitiatedScenarios().addAll(
+					(Collection<? extends Scenario>) newValue);
 			return;
 		case RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS:
 			getParticipatedScenarios().clear();
-			getParticipatedScenarios().addAll((Collection<? extends Scenario>) newValue);
+			getParticipatedScenarios().addAll(
+					(Collection<? extends Scenario>) newValue);
 			return;
 		case RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR:
 			setInstantiatedActor((Actor) newValue);
@@ -271,7 +277,6 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -292,7 +297,6 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -301,7 +305,8 @@ public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorI
 		case RequirementPackage.ACTOR_INSTANCE__INITIATED_SCENARIOS:
 			return initiatedScenarios != null && !initiatedScenarios.isEmpty();
 		case RequirementPackage.ACTOR_INSTANCE__PARTICIPATED_SCENARIOS:
-			return participatedScenarios != null && !participatedScenarios.isEmpty();
+			return participatedScenarios != null
+					&& !participatedScenarios.isEmpty();
 		case RequirementPackage.ACTOR_INSTANCE__INSTANTIATED_ACTOR:
 			return instantiatedActor != null;
 		}

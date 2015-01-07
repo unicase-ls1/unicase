@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -21,19 +21,20 @@ import org.unicase.model.state.Transition;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.state.impl.TransitionImpl#getCondition <em>Condition</em>}</li>
- * <li>{@link org.unicase.model.state.impl.TransitionImpl#getSource <em>Source</em>}</li>
- * <li>{@link org.unicase.model.state.impl.TransitionImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.unicase.model.state.impl.TransitionImpl#getCondition <em>Condition</em>}</li>
+ *   <li>{@link org.unicase.model.state.impl.TransitionImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.unicase.model.state.impl.TransitionImpl#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class TransitionImpl extends UnicaseModelElementImpl implements Transition {
+public class TransitionImpl extends UnicaseModelElementImpl implements
+		Transition {
 	/**
-	 * The default value of the '{@link #getCondition() <em>Condition</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getCondition() <em>Condition</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getCondition()
 	 * @generated
 	 * @ordered
@@ -41,9 +42,9 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 	protected static final String CONDITION_EDEFAULT = "";
 
 	/**
-	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getCondition()
 	 * @generated
 	 * @ordered
@@ -51,9 +52,9 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 	protected String condition = CONDITION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
@@ -61,9 +62,9 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 	protected StateNode source;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -72,7 +73,6 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected TransitionImpl() {
@@ -81,7 +81,6 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -91,7 +90,6 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getCondition() {
@@ -100,20 +98,18 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setCondition(String newCondition) {
 		String oldCondition = condition;
 		condition = newCondition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StatePackage.TRANSITION__CONDITION, oldCondition,
-				condition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					StatePackage.TRANSITION__CONDITION, oldCondition, condition));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public StateNode getSource() {
@@ -122,8 +118,8 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 			source = (StateNode) eResolveProxy(oldSource);
 			if (source != oldSource) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StatePackage.TRANSITION__SOURCE,
-						oldSource, source));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							StatePackage.TRANSITION__SOURCE, oldSource, source));
 			}
 		}
 		return source;
@@ -131,7 +127,6 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public StateNode basicGetSource() {
@@ -140,15 +135,16 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetSource(StateNode newSource, NotificationChain msgs) {
+	public NotificationChain basicSetSource(StateNode newSource,
+			NotificationChain msgs) {
 		StateNode oldSource = source;
 		source = newSource;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				StatePackage.TRANSITION__SOURCE, oldSource, newSource);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, StatePackage.TRANSITION__SOURCE,
+					oldSource, newSource);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -159,28 +155,29 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSource(StateNode newSource) {
 		if (newSource != source) {
 			NotificationChain msgs = null;
 			if (source != null)
-				msgs = ((InternalEObject) source).eInverseRemove(this, StatePackage.STATE_NODE__OUTGOING_TRANSITIONS,
-					StateNode.class, msgs);
+				msgs = ((InternalEObject) source).eInverseRemove(this,
+						StatePackage.STATE_NODE__OUTGOING_TRANSITIONS,
+						StateNode.class, msgs);
 			if (newSource != null)
-				msgs = ((InternalEObject) newSource).eInverseAdd(this, StatePackage.STATE_NODE__OUTGOING_TRANSITIONS,
-					StateNode.class, msgs);
+				msgs = ((InternalEObject) newSource).eInverseAdd(this,
+						StatePackage.STATE_NODE__OUTGOING_TRANSITIONS,
+						StateNode.class, msgs);
 			msgs = basicSetSource(newSource, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StatePackage.TRANSITION__SOURCE, newSource, newSource));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					StatePackage.TRANSITION__SOURCE, newSource, newSource));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public StateNode getTarget() {
@@ -189,8 +186,8 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 			target = (StateNode) eResolveProxy(oldTarget);
 			if (target != oldTarget) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StatePackage.TRANSITION__TARGET,
-						oldTarget, target));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							StatePackage.TRANSITION__TARGET, oldTarget, target));
 			}
 		}
 		return target;
@@ -198,7 +195,6 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public StateNode basicGetTarget() {
@@ -207,15 +203,16 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(StateNode newTarget, NotificationChain msgs) {
+	public NotificationChain basicSetTarget(StateNode newTarget,
+			NotificationChain msgs) {
 		StateNode oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				StatePackage.TRANSITION__TARGET, oldTarget, newTarget);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, StatePackage.TRANSITION__TARGET,
+					oldTarget, newTarget);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -226,42 +223,46 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTarget(StateNode newTarget) {
 		if (newTarget != target) {
 			NotificationChain msgs = null;
 			if (target != null)
-				msgs = ((InternalEObject) target).eInverseRemove(this, StatePackage.STATE_NODE__INCOMING_TRANSITIONS,
-					StateNode.class, msgs);
+				msgs = ((InternalEObject) target).eInverseRemove(this,
+						StatePackage.STATE_NODE__INCOMING_TRANSITIONS,
+						StateNode.class, msgs);
 			if (newTarget != null)
-				msgs = ((InternalEObject) newTarget).eInverseAdd(this, StatePackage.STATE_NODE__INCOMING_TRANSITIONS,
-					StateNode.class, msgs);
+				msgs = ((InternalEObject) newTarget).eInverseAdd(this,
+						StatePackage.STATE_NODE__INCOMING_TRANSITIONS,
+						StateNode.class, msgs);
 			msgs = basicSetTarget(newTarget, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, StatePackage.TRANSITION__TARGET, newTarget, newTarget));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					StatePackage.TRANSITION__TARGET, newTarget, newTarget));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case StatePackage.TRANSITION__SOURCE:
 			if (source != null)
-				msgs = ((InternalEObject) source).eInverseRemove(this, StatePackage.STATE_NODE__OUTGOING_TRANSITIONS,
-					StateNode.class, msgs);
+				msgs = ((InternalEObject) source).eInverseRemove(this,
+						StatePackage.STATE_NODE__OUTGOING_TRANSITIONS,
+						StateNode.class, msgs);
 			return basicSetSource((StateNode) otherEnd, msgs);
 		case StatePackage.TRANSITION__TARGET:
 			if (target != null)
-				msgs = ((InternalEObject) target).eInverseRemove(this, StatePackage.STATE_NODE__INCOMING_TRANSITIONS,
-					StateNode.class, msgs);
+				msgs = ((InternalEObject) target).eInverseRemove(this,
+						StatePackage.STATE_NODE__INCOMING_TRANSITIONS,
+						StateNode.class, msgs);
 			return basicSetTarget((StateNode) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -269,11 +270,11 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case StatePackage.TRANSITION__SOURCE:
 			return basicSetSource(null, msgs);
@@ -285,7 +286,6 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -307,7 +307,6 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -328,7 +327,6 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -349,14 +347,14 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case StatePackage.TRANSITION__CONDITION:
-			return CONDITION_EDEFAULT == null ? condition != null : !CONDITION_EDEFAULT.equals(condition);
+			return CONDITION_EDEFAULT == null ? condition != null
+					: !CONDITION_EDEFAULT.equals(condition);
 		case StatePackage.TRANSITION__SOURCE:
 			return source != null;
 		case StatePackage.TRANSITION__TARGET:
@@ -367,7 +365,6 @@ public class TransitionImpl extends UnicaseModelElementImpl implements Transitio
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

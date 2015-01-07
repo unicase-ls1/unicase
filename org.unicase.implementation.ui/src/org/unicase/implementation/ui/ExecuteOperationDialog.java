@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -9,8 +9,8 @@ package org.unicase.implementation.ui;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.SemanticCompositeOperation;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
+import org.eclipse.emf.emfstore.internal.server.model.versioning.operations.semantic.SemanticCompositeOperation;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.layout.GridData;
@@ -38,10 +38,13 @@ public class ExecuteOperationDialog extends TitleAreaDialog {
 	/**
 	 * Constructor.
 	 * 
-	 * @param operation the operation
-	 * @param project the project
+	 * @param operation
+	 *            the operation
+	 * @param project
+	 *            the project
 	 */
-	public ExecuteOperationDialog(SemanticCompositeOperation operation, Project project) {
+	public ExecuteOperationDialog(SemanticCompositeOperation operation,
+			Project project) {
 		super(Display.getDefault().getActiveShell());
 
 		this.project = project;
@@ -69,11 +72,14 @@ public class ExecuteOperationDialog extends TitleAreaDialog {
 		setTitle(OperationHelper.getAnnotation(operation, "label"));
 		setMessage(OperationHelper.getAnnotation(operation, "description"));
 
-		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		adapterFactory = new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
 
-		ParameterViewer parameterViewer = new ParameterViewer(this, parent, project);
-		parameterViewer.getTable().setLayoutData(new GridData(GridData.FILL_BOTH));
+		ParameterViewer parameterViewer = new ParameterViewer(this, parent,
+				project);
+		parameterViewer.getTable().setLayoutData(
+				new GridData(GridData.FILL_BOTH));
 
 		parameterViewer.setInput(operation);
 

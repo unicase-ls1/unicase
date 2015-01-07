@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -18,17 +18,18 @@ import org.unicase.model.meeting.MeetingSection;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.meeting.impl.MeetingSectionImpl#getAllocatedTime <em>Allocated Time</em>}</li>
+ *   <li>{@link org.unicase.model.meeting.impl.MeetingSectionImpl#getAllocatedTime <em>Allocated Time</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public abstract class MeetingSectionImpl extends UnicaseModelElementImpl implements MeetingSection {
+public abstract class MeetingSectionImpl extends UnicaseModelElementImpl
+		implements MeetingSection {
 	/**
-	 * The default value of the '{@link #getAllocatedTime() <em>Allocated Time</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getAllocatedTime() <em>Allocated Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getAllocatedTime()
 	 * @generated
 	 * @ordered
@@ -36,9 +37,9 @@ public abstract class MeetingSectionImpl extends UnicaseModelElementImpl impleme
 	protected static final int ALLOCATED_TIME_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getAllocatedTime() <em>Allocated Time</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAllocatedTime() <em>Allocated Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getAllocatedTime()
 	 * @generated
 	 * @ordered
@@ -47,7 +48,6 @@ public abstract class MeetingSectionImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MeetingSectionImpl() {
@@ -56,7 +56,6 @@ public abstract class MeetingSectionImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,7 +65,6 @@ public abstract class MeetingSectionImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getAllocatedTime() {
@@ -75,20 +73,19 @@ public abstract class MeetingSectionImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setAllocatedTime(int newAllocatedTime) {
 		int oldAllocatedTime = allocatedTime;
 		allocatedTime = newAllocatedTime;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MeetingPackage.MEETING_SECTION__ALLOCATED_TIME,
-				oldAllocatedTime, allocatedTime));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					MeetingPackage.MEETING_SECTION__ALLOCATED_TIME,
+					oldAllocatedTime, allocatedTime));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -102,7 +99,6 @@ public abstract class MeetingSectionImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,7 +113,6 @@ public abstract class MeetingSectionImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -132,7 +127,6 @@ public abstract class MeetingSectionImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -146,7 +140,6 @@ public abstract class MeetingSectionImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
