@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -10,18 +10,21 @@ import java.net.MalformedURLException;
 import java.util.HashMap;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecp.common.utilities.ActionHelper;
-import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.exceptions.MEUrlResolutionException;
-import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
-import org.eclipse.emf.emfstore.server.model.url.ModelElementUrl;
-import org.eclipse.emf.emfstore.server.model.url.ModelElementUrlFragment;
-import org.eclipse.emf.emfstore.server.model.url.UrlFactory;
+import org.eclipse.emf.ecp.core.ECPProject;
+import org.eclipse.emf.ecp.spi.ui.util.ECPHandlerHelper;
+import org.eclipse.emf.emfstore.internal.client.model.ESWorkspaceProviderImpl;
+import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.internal.client.model.exceptions.MEUrlResolutionException;
+import org.eclipse.emf.emfstore.internal.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.internal.server.model.url.ModelElementUrl;
+import org.eclipse.emf.emfstore.internal.server.model.url.ModelElementUrlFragment;
+import org.eclipse.emf.emfstore.internal.server.model.url.UrlFactory;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 
 /**
- * A singleton selection listener that resolves EMFStore URLs and opens the element in a MEEditor.
+ * A singleton selection listener that resolves EMFStore URLs and opens the
+ * element in a MEEditor.
  * 
  * @author Shterev
  */
@@ -33,7 +36,8 @@ public final class URLSelectionListener implements SelectionListener {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param projectSpace the project space needed for resolving the urls.
+	 * @param projectSpace
+	 *            the project space needed for resolving the urls.
 	 */
 	private URLSelectionListener(ProjectSpace projectSpace) {
 		super();
@@ -54,14 +58,19 @@ public final class URLSelectionListener implements SelectionListener {
 	public void widgetSelected(SelectionEvent e) {
 		String text = e.text;
 		try {
-			ModelElementUrl modelElementUrl = UrlFactory.eINSTANCE.createModelElementUrl(text);
+			ModelElementUrl modelElementUrl = UrlFactory.eINSTANCE
+					.createModelElementUrl(text);
 			EObject modelElement = null;
-			ModelElementUrlFragment modelElementUrlFragment = modelElementUrl.getModelElementUrlFragment();
+			ModelElementUrlFragment modelElementUrlFragment = modelElementUrl
+					.getModelElementUrlFragment();
 			try {
 				modelElement = projectSpace.resolve(modelElementUrlFragment);
 			} catch (MEUrlResolutionException e1) {
 			}
-			ActionHelper.openModelElement(modelElement, e.getSource().getClass().getName());
+
+			ECPHandlerHelper.openModelElement(modelElement,
+					(ECPProject) ESWorkspaceProviderImpl.getInstance()
+							.getWorkspace().getLocalProject(modelElement));
 		} catch (MalformedURLException ex) {
 			WorkspaceUtil.logException("Invalid EMFStore URL pattern", ex);
 		}
@@ -71,7 +80,8 @@ public final class URLSelectionListener implements SelectionListener {
 	/**
 	 * Gets the singleton instance for this project space.
 	 * 
-	 * @param projectSpace the project space.
+	 * @param projectSpace
+	 *            the project space.
 	 * @return the singleton instance.
 	 */
 	public static URLSelectionListener getInstance(ProjectSpace projectSpace) {

@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -23,19 +23,19 @@ import org.unicase.model.rationale.Solution;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
-public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFactory {
+public class RationaleFactoryImpl extends EFactoryImpl implements
+		RationaleFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static RationaleFactory init() {
 		try {
 			RationaleFactory theRationaleFactory = (RationaleFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/model/rationale");
+					.getEFactory(RationalePackage.eNS_URI);
 			if (theRationaleFactory != null) {
 				return theRationaleFactory;
 			}
@@ -46,8 +46,8 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public RationaleFactoryImpl() {
@@ -56,7 +56,6 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -77,13 +76,13 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 		case RationalePackage.AUDIO_COMMENT:
 			return createAudioComment();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Issue createIssue() {
@@ -93,7 +92,6 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Proposal createProposal() {
@@ -103,7 +101,6 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Solution createSolution() {
@@ -113,7 +110,6 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Criterion createCriterion() {
@@ -123,7 +119,6 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Assessment createAssessment() {
@@ -133,7 +128,6 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Comment createComment() {
@@ -143,7 +137,6 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AudioComment createAudioComment() {
@@ -153,7 +146,6 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RationalePackage getRationalePackage() {
@@ -162,7 +154,6 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

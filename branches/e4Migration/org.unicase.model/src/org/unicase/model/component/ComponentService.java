@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -11,14 +11,15 @@ import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Service</b></em>'. <!-- end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.component.ComponentService#getOfferingComponent <em>Offering Component</em>}</li>
- * <li>{@link org.unicase.model.component.ComponentService#getConsumingComponents <em>Consuming Components</em>}</li>
+ *   <li>{@link org.unicase.model.component.ComponentService#getOfferingComponent <em>Offering Component</em>}</li>
+ *   <li>{@link org.unicase.model.component.ComponentService#getConsumingComponents <em>Consuming Components</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.model.component.ComponentPackage#getComponentService()
  * @model
  * @generated
@@ -44,9 +45,8 @@ public interface ComponentService extends UnicaseModelElement {
 	Component getOfferingComponent();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.component.ComponentService#getOfferingComponent
-	 * <em>Offering Component</em>}' container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.component.ComponentService#getOfferingComponent <em>Offering Component</em>}' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Offering Component</em>' container reference.
 	 * @see #getOfferingComponent()
 	 * @generated

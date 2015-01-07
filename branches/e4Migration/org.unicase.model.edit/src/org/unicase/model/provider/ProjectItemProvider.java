@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -12,21 +12,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.emfstore.common.model.ModelPackage;
-import org.eclipse.emf.emfstore.server.model.accesscontrol.AccesscontrolFactory;
-import org.eclipse.emf.emfstore.server.model.accesscontrol.roles.RolesFactory;
-import org.eclipse.emf.emfstore.server.model.url.UrlFactory;
-import org.eclipse.emf.emfstore.server.model.versioning.VersioningFactory;
-import org.eclipse.emf.emfstore.server.model.versioning.events.EventsFactory;
-import org.eclipse.emf.emfstore.server.model.versioning.events.server.ServerFactory;
-import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsFactory;
-import org.eclipse.emf.emfstore.server.model.versioning.operations.OperationsPackage;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.activity.ActivityFactory;
 import org.unicase.model.attachment.AttachmentFactory;
@@ -45,17 +31,17 @@ import org.unicase.model.task.TaskFactory;
 import org.unicase.model.util.UtilFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.Project} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.model.Project} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
-public class ProjectItemProvider extends org.eclipse.emf.emfstore.common.model.provider.ProjectItemProvider implements
-	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
-	IItemPropertySource {
+public class ProjectItemProvider
+		extends
+		org.eclipse.emf.emfstore.internal.common.model.provider.ProjectItemProvider {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ProjectItemProvider(AdapterFactory adapterFactory) {
@@ -63,8 +49,8 @@ public class ProjectItemProvider extends org.eclipse.emf.emfstore.common.model.p
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -110,700 +96,1331 @@ public class ProjectItemProvider extends org.eclipse.emf.emfstore.common.model.p
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ModelFactory.eINSTANCE.createProject()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			OrganizationFactory.eINSTANCE.createUser()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			OrganizationFactory.eINSTANCE.createGroup()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			TaskFactory.eINSTANCE.createActionItem()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			TaskFactory.eINSTANCE.createWorkPackage()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			TaskFactory.eINSTANCE.createMilestone()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ClassesFactory.eINSTANCE.createClass()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ClassesFactory.eINSTANCE.createPackage()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ClassesFactory.eINSTANCE.createAssociation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ClassesFactory.eINSTANCE.createAttribute()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ClassesFactory.eINSTANCE.createMethod()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ClassesFactory.eINSTANCE.createMethodArgument()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ClassesFactory.eINSTANCE.createDependency()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ClassesFactory.eINSTANCE.createEnumeration()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ClassesFactory.eINSTANCE.createLiteral()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			DocumentFactory.eINSTANCE.createLeafSection()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			DocumentFactory.eINSTANCE.createCompositeSection()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createFunctionalRequirement()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createUseCase()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createScenario()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createActor()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createActorInstance()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createStep()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createSystemFunction()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createUserTask()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RequirementFactory.eINSTANCE.createWorkspace()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RationaleFactory.eINSTANCE.createIssue()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RationaleFactory.eINSTANCE.createProposal()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RationaleFactory.eINSTANCE.createSolution()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RationaleFactory.eINSTANCE.createCriterion()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RationaleFactory.eINSTANCE.createAssessment()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RationaleFactory.eINSTANCE.createComment()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RationaleFactory.eINSTANCE.createAudioComment()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ChangeFactory.eINSTANCE.createMergingIssue()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ChangeFactory.eINSTANCE.createMergingProposal()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ChangeFactory.eINSTANCE.createMergingSolution()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			BugFactory.eINSTANCE.createBugReport()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ComponentFactory.eINSTANCE.createComponent()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ComponentFactory.eINSTANCE.createComponentService()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ComponentFactory.eINSTANCE.createDeploymentNode()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			MeetingFactory.eINSTANCE.createMeeting()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			MeetingFactory.eINSTANCE.createCompositeMeetingSection()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			MeetingFactory.eINSTANCE.createIssueMeetingSection()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			MeetingFactory.eINSTANCE.createWorkItemMeetingSection()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			StateFactory.eINSTANCE.createState()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			StateFactory.eINSTANCE.createTransition()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			StateFactory.eINSTANCE.createStateInitial()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			StateFactory.eINSTANCE.createStateEnd()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			AttachmentFactory.eINSTANCE.createUrlAttachment()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			AttachmentFactory.eINSTANCE.createFileAttachment()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ProfileFactory.eINSTANCE.createProfile()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ProfileFactory.eINSTANCE.createStereotype()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ProfileFactory.eINSTANCE.createStereotypeInstance()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ProfileFactory.eINSTANCE.createStereotypeAttributeSimple()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ProfileFactory.eINSTANCE.createStereotypeAttributeInstanceString()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			UtilFactory.eINSTANCE.createModelElementPath()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ActivityFactory.eINSTANCE.createTransition()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ActivityFactory.eINSTANCE.createActivity()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ActivityFactory.eINSTANCE.createFork()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ActivityFactory.eINSTANCE.createBranch()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ActivityFactory.eINSTANCE.createActivityInitial()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ActivityFactory.eINSTANCE.createActivityEnd()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createProjectHistory()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createProjectInfo()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createSessionId()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createServerSpace()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createProjectId()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createVersionInfo()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createClientVersionInfo()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createFileIdentifier()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			VersioningFactory.eINSTANCE.createTagVersionSpec()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			VersioningFactory.eINSTANCE.createDateVersionSpec()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			VersioningFactory.eINSTANCE.createLogMessage()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			VersioningFactory.eINSTANCE.createChangePackage()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			VersioningFactory.eINSTANCE.createHistoryInfo()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			VersioningFactory.eINSTANCE.createHistoryQuery()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			VersioningFactory.eINSTANCE.createVersion()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			VersioningFactory.eINSTANCE.createHeadVersionSpec()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			VersioningFactory.eINSTANCE.createVersionProperty()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			OperationsFactory.eINSTANCE.createCompositeOperation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			OperationsFactory.eINSTANCE.createAttributeOperation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			OperationsFactory.eINSTANCE.createMultiAttributeSetOperation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			OperationsFactory.eINSTANCE.createMultiReferenceSetOperation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			OperationsFactory.eINSTANCE.createOperationId()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			OperationsFactory.eINSTANCE.createOperationGroup()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			OperationsFactory.eINSTANCE.createModelElementGroup()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			OperationsFactory.eINSTANCE.create(OperationsPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			EventsFactory.eINSTANCE.createEvent()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			ServerFactory.eINSTANCE.createProjectUpdatedEvent()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			AccesscontrolFactory.eINSTANCE.createACOrgUnit()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			AccesscontrolFactory.eINSTANCE.createACUser()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			AccesscontrolFactory.eINSTANCE.createACGroup()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			AccesscontrolFactory.eINSTANCE.createACOrgUnitId()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			AccesscontrolFactory.eINSTANCE.createOrgUnitProperty()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RolesFactory.eINSTANCE.createReaderRole()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RolesFactory.eINSTANCE.createWriterRole()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RolesFactory.eINSTANCE.createProjectAdminRole()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			RolesFactory.eINSTANCE.createServerAdmin()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			UrlFactory.eINSTANCE.createServerUrl()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			UrlFactory.eINSTANCE.createProjectUrlFragment()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			UrlFactory.eINSTANCE.createModelElementUrlFragment()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
-			UrlFactory.eINSTANCE.createModelElementUrl()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ModelFactory.eINSTANCE.createProject()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			OrganizationFactory.eINSTANCE.createUser()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			OrganizationFactory.eINSTANCE.createGroup()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			TaskFactory.eINSTANCE.createActionItem()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			TaskFactory.eINSTANCE.createWorkPackage()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			TaskFactory.eINSTANCE.createMilestone()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ClassesFactory.eINSTANCE.createClass()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ClassesFactory.eINSTANCE.createPackage()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ClassesFactory.eINSTANCE.createAssociation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ClassesFactory.eINSTANCE.createAttribute()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ClassesFactory.eINSTANCE.createMethod()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ClassesFactory.eINSTANCE.createMethodArgument()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ClassesFactory.eINSTANCE.createDependency()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ClassesFactory.eINSTANCE.createEnumeration()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ClassesFactory.eINSTANCE.createLiteral()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			DocumentFactory.eINSTANCE.createLeafSection()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			DocumentFactory.eINSTANCE.createCompositeSection()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RequirementFactory.eINSTANCE.createFunctionalRequirement()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RequirementFactory.eINSTANCE.createUseCase()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RequirementFactory.eINSTANCE.createScenario()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RequirementFactory.eINSTANCE.createActor()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RequirementFactory.eINSTANCE.createActorInstance()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RequirementFactory.eINSTANCE.createStep()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RequirementFactory.eINSTANCE.createSystemFunction()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RequirementFactory.eINSTANCE.createUserTask()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RequirementFactory.eINSTANCE.createWorkspace()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RationaleFactory.eINSTANCE.createIssue()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RationaleFactory.eINSTANCE.createProposal()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RationaleFactory.eINSTANCE.createSolution()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RationaleFactory.eINSTANCE.createCriterion()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RationaleFactory.eINSTANCE.createAssessment()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RationaleFactory.eINSTANCE.createComment()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RationaleFactory.eINSTANCE.createAudioComment()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ChangeFactory.eINSTANCE.createMergingIssue()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ChangeFactory.eINSTANCE.createMergingProposal()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ChangeFactory.eINSTANCE.createMergingSolution()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			BugFactory.eINSTANCE.createBugReport()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ComponentFactory.eINSTANCE.createComponent()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ComponentFactory.eINSTANCE.createComponentService()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ComponentFactory.eINSTANCE.createDeploymentNode()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			MeetingFactory.eINSTANCE.createMeeting()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			MeetingFactory.eINSTANCE.createCompositeMeetingSection()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			MeetingFactory.eINSTANCE.createIssueMeetingSection()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			MeetingFactory.eINSTANCE.createWorkItemMeetingSection()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			StateFactory.eINSTANCE.createState()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			StateFactory.eINSTANCE.createTransition()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			StateFactory.eINSTANCE.createStateInitial()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			StateFactory.eINSTANCE.createStateEnd()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			AttachmentFactory.eINSTANCE.createUrlAttachment()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			AttachmentFactory.eINSTANCE.createFileAttachment()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ProfileFactory.eINSTANCE.createProfile()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ProfileFactory.eINSTANCE.createStereotype()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ProfileFactory.eINSTANCE.createStereotypeInstance()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ProfileFactory.eINSTANCE.createStereotypeAttributeSimple()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ProfileFactory.eINSTANCE.createStereotypeAttributeInstanceString()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			UtilFactory.eINSTANCE.createModelElementPath()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ActivityFactory.eINSTANCE.createTransition()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ActivityFactory.eINSTANCE.createActivity()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ActivityFactory.eINSTANCE.createFork()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ActivityFactory.eINSTANCE.createBranch()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ActivityFactory.eINSTANCE.createActivityInitial()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ActivityFactory.eINSTANCE.createActivityEnd()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createProjectHistory()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createProjectInfo()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createSessionId()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createServerSpace()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createProjectId()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createVersionInfo()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createClientVersionInfo()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			org.eclipse.emf.emfstore.server.model.ModelFactory.eINSTANCE.createFileIdentifier()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			VersioningFactory.eINSTANCE.createTagVersionSpec()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			VersioningFactory.eINSTANCE.createDateVersionSpec()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			VersioningFactory.eINSTANCE.createLogMessage()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			VersioningFactory.eINSTANCE.createChangePackage()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			VersioningFactory.eINSTANCE.createHistoryInfo()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			VersioningFactory.eINSTANCE.createHistoryQuery()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			VersioningFactory.eINSTANCE.createVersion()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			VersioningFactory.eINSTANCE.createHeadVersionSpec()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			VersioningFactory.eINSTANCE.createVersionProperty()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			OperationsFactory.eINSTANCE.createCompositeOperation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			OperationsFactory.eINSTANCE.createAttributeOperation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			OperationsFactory.eINSTANCE.createMultiAttributeSetOperation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			OperationsFactory.eINSTANCE.createMultiReferenceSetOperation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			OperationsFactory.eINSTANCE.createOperationId()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			OperationsFactory.eINSTANCE.createOperationGroup()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			OperationsFactory.eINSTANCE.createModelElementGroup()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			OperationsFactory.eINSTANCE.create(OperationsPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			EventsFactory.eINSTANCE.createEvent()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			ServerFactory.eINSTANCE.createProjectUpdatedEvent()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			AccesscontrolFactory.eINSTANCE.createACOrgUnit()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			AccesscontrolFactory.eINSTANCE.createACUser()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			AccesscontrolFactory.eINSTANCE.createACGroup()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			AccesscontrolFactory.eINSTANCE.createACOrgUnitId()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			AccesscontrolFactory.eINSTANCE.createOrgUnitProperty()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RolesFactory.eINSTANCE.createReaderRole()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RolesFactory.eINSTANCE.createWriterRole()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RolesFactory.eINSTANCE.createProjectAdminRole()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			RolesFactory.eINSTANCE.createServerAdmin()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			UrlFactory.eINSTANCE.createServerUrl()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			UrlFactory.eINSTANCE.createProjectUrlFragment()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			UrlFactory.eINSTANCE.createModelElementUrlFragment()));
-
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
-			UrlFactory.eINSTANCE.createModelElementUrl()));
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ModelFactory.eINSTANCE.createProject()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						OrganizationFactory.eINSTANCE.createUser()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						OrganizationFactory.eINSTANCE.createGroup()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						TaskFactory.eINSTANCE.createActionItem()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						TaskFactory.eINSTANCE.createWorkPackage()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						TaskFactory.eINSTANCE.createMilestone()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ClassesFactory.eINSTANCE.createClass()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ClassesFactory.eINSTANCE.createPackage()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ClassesFactory.eINSTANCE.createAssociation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ClassesFactory.eINSTANCE.createAttribute()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ClassesFactory.eINSTANCE.createMethod()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ClassesFactory.eINSTANCE.createMethodArgument()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ClassesFactory.eINSTANCE.createDependency()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ClassesFactory.eINSTANCE.createEnumeration()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ClassesFactory.eINSTANCE.createLiteral()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						DocumentFactory.eINSTANCE.createLeafSection()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						DocumentFactory.eINSTANCE.createCompositeSection()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						RequirementFactory.eINSTANCE
+								.createNonFunctionalRequirement()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						RequirementFactory.eINSTANCE
+								.createFunctionalRequirement()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						RequirementFactory.eINSTANCE.createUseCase()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						RequirementFactory.eINSTANCE.createScenario()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						RequirementFactory.eINSTANCE.createActor()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						RequirementFactory.eINSTANCE.createActorInstance()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						RequirementFactory.eINSTANCE.createStep()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						RequirementFactory.eINSTANCE.createSystemFunction()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						RequirementFactory.eINSTANCE.createUserTask()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						RequirementFactory.eINSTANCE.createWorkspace()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						RationaleFactory.eINSTANCE.createIssue()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						RationaleFactory.eINSTANCE.createProposal()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						RationaleFactory.eINSTANCE.createSolution()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						RationaleFactory.eINSTANCE.createCriterion()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						RationaleFactory.eINSTANCE.createAssessment()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						RationaleFactory.eINSTANCE.createComment()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						RationaleFactory.eINSTANCE.createAudioComment()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ChangeFactory.eINSTANCE.createMergingIssue()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ChangeFactory.eINSTANCE.createMergingProposal()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ChangeFactory.eINSTANCE.createMergingSolution()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						BugFactory.eINSTANCE.createBugReport()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ComponentFactory.eINSTANCE.createComponent()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ComponentFactory.eINSTANCE.createComponentService()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ComponentFactory.eINSTANCE.createDeploymentNode()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						MeetingFactory.eINSTANCE.createMeeting()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						MeetingFactory.eINSTANCE
+								.createCompositeMeetingSection()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						MeetingFactory.eINSTANCE.createIssueMeetingSection()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						MeetingFactory.eINSTANCE.createWorkItemMeetingSection()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						StateFactory.eINSTANCE.createState()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						StateFactory.eINSTANCE.createTransition()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						StateFactory.eINSTANCE.createStateInitial()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						StateFactory.eINSTANCE.createStateEnd()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						AttachmentFactory.eINSTANCE.createUrlAttachment()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						AttachmentFactory.eINSTANCE.createFileAttachment()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ProfileFactory.eINSTANCE.createProfile()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ProfileFactory.eINSTANCE.createStereotype()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ProfileFactory.eINSTANCE.createStereotypeInstance()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ProfileFactory.eINSTANCE
+								.createStereotypeAttributeSimple()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ProfileFactory.eINSTANCE
+								.createStereotypeAttributeInstanceString()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						UtilFactory.eINSTANCE.createModelElementPath()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ActivityFactory.eINSTANCE.createTransition()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ActivityFactory.eINSTANCE.createActivity()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ActivityFactory.eINSTANCE.createFork()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ActivityFactory.eINSTANCE.createBranch()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ActivityFactory.eINSTANCE.createActivityInitial()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						ActivityFactory.eINSTANCE.createActivityEnd()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.ModelFactory.eINSTANCE
+								.createProjectHistory()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.ModelFactory.eINSTANCE
+								.createProjectInfo()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.ModelFactory.eINSTANCE
+								.createSessionId()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.ModelFactory.eINSTANCE
+								.createServerSpace()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.ModelFactory.eINSTANCE
+								.createProjectId()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.ModelFactory.eINSTANCE
+								.createVersionInfo()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.ModelFactory.eINSTANCE
+								.createClientVersionInfo()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.ModelFactory.eINSTANCE
+								.createFileIdentifier()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.ModelFactory.eINSTANCE
+								.createAuthenticationInformation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createTagVersionSpec()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createDateVersionSpec()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createPrimaryVersionSpec()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createLogMessage()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createChangePackage()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createHistoryInfo()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createRangeQuery()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createPathQuery()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createModelElementQuery()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createVersion()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createHeadVersionSpec()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createVersionProperty()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createBranchVersionSpec()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createBranchInfo()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createAncestorVersionSpec()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createPagedUpdateVersionSpec()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createCompositeOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createCreateDeleteOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createAttributeOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createMultiAttributeOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createMultiAttributeSetOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createMultiAttributeMoveOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createSingleReferenceOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createMultiReferenceSetOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createMultiReferenceOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createMultiReferenceMoveOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createOperationId()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createOperationGroup()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createModelElementGroup()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.create(org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.events.EventsFactory.eINSTANCE
+								.createEvent()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.events.server.ServerFactory.eINSTANCE
+								.createProjectUpdatedEvent()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.accesscontrol.AccesscontrolFactory.eINSTANCE
+								.createACOrgUnit()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.accesscontrol.AccesscontrolFactory.eINSTANCE
+								.createACUser()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.accesscontrol.AccesscontrolFactory.eINSTANCE
+								.createACGroup()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.accesscontrol.AccesscontrolFactory.eINSTANCE
+								.createACOrgUnitId()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.accesscontrol.AccesscontrolFactory.eINSTANCE
+								.createOrgUnitProperty()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.accesscontrol.roles.RolesFactory.eINSTANCE
+								.createReaderRole()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.accesscontrol.roles.RolesFactory.eINSTANCE
+								.createWriterRole()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.accesscontrol.roles.RolesFactory.eINSTANCE
+								.createProjectAdminRole()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.accesscontrol.roles.RolesFactory.eINSTANCE
+								.createServerAdmin()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.url.UrlFactory.eINSTANCE
+								.createServerUrl()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.url.UrlFactory.eINSTANCE
+								.createProjectUrlFragment()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.url.UrlFactory.eINSTANCE
+								.createModelElementUrlFragment()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.url.UrlFactory.eINSTANCE
+								.createModelElementUrl()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ModelFactory.eINSTANCE.createProject()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						OrganizationFactory.eINSTANCE.createUser()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						OrganizationFactory.eINSTANCE.createGroup()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						TaskFactory.eINSTANCE.createActionItem()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						TaskFactory.eINSTANCE.createWorkPackage()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						TaskFactory.eINSTANCE.createMilestone()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ClassesFactory.eINSTANCE.createClass()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ClassesFactory.eINSTANCE.createPackage()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ClassesFactory.eINSTANCE.createAssociation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ClassesFactory.eINSTANCE.createAttribute()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ClassesFactory.eINSTANCE.createMethod()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ClassesFactory.eINSTANCE.createMethodArgument()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ClassesFactory.eINSTANCE.createDependency()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ClassesFactory.eINSTANCE.createEnumeration()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ClassesFactory.eINSTANCE.createLiteral()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						DocumentFactory.eINSTANCE.createLeafSection()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						DocumentFactory.eINSTANCE.createCompositeSection()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						RequirementFactory.eINSTANCE
+								.createNonFunctionalRequirement()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						RequirementFactory.eINSTANCE
+								.createFunctionalRequirement()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						RequirementFactory.eINSTANCE.createUseCase()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						RequirementFactory.eINSTANCE.createScenario()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						RequirementFactory.eINSTANCE.createActor()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						RequirementFactory.eINSTANCE.createActorInstance()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						RequirementFactory.eINSTANCE.createStep()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						RequirementFactory.eINSTANCE.createSystemFunction()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						RequirementFactory.eINSTANCE.createUserTask()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						RequirementFactory.eINSTANCE.createWorkspace()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						RationaleFactory.eINSTANCE.createIssue()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						RationaleFactory.eINSTANCE.createProposal()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						RationaleFactory.eINSTANCE.createSolution()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						RationaleFactory.eINSTANCE.createCriterion()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						RationaleFactory.eINSTANCE.createAssessment()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						RationaleFactory.eINSTANCE.createComment()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						RationaleFactory.eINSTANCE.createAudioComment()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ChangeFactory.eINSTANCE.createMergingIssue()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ChangeFactory.eINSTANCE.createMergingProposal()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ChangeFactory.eINSTANCE.createMergingSolution()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						BugFactory.eINSTANCE.createBugReport()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ComponentFactory.eINSTANCE.createComponent()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ComponentFactory.eINSTANCE.createComponentService()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ComponentFactory.eINSTANCE.createDeploymentNode()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						MeetingFactory.eINSTANCE.createMeeting()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						MeetingFactory.eINSTANCE
+								.createCompositeMeetingSection()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						MeetingFactory.eINSTANCE.createIssueMeetingSection()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						MeetingFactory.eINSTANCE.createWorkItemMeetingSection()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						StateFactory.eINSTANCE.createState()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						StateFactory.eINSTANCE.createTransition()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						StateFactory.eINSTANCE.createStateInitial()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						StateFactory.eINSTANCE.createStateEnd()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						AttachmentFactory.eINSTANCE.createUrlAttachment()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						AttachmentFactory.eINSTANCE.createFileAttachment()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ProfileFactory.eINSTANCE.createProfile()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ProfileFactory.eINSTANCE.createStereotype()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ProfileFactory.eINSTANCE.createStereotypeInstance()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ProfileFactory.eINSTANCE
+								.createStereotypeAttributeSimple()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ProfileFactory.eINSTANCE
+								.createStereotypeAttributeInstanceString()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						UtilFactory.eINSTANCE.createModelElementPath()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ActivityFactory.eINSTANCE.createTransition()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ActivityFactory.eINSTANCE.createActivity()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ActivityFactory.eINSTANCE.createFork()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ActivityFactory.eINSTANCE.createBranch()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ActivityFactory.eINSTANCE.createActivityInitial()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						ActivityFactory.eINSTANCE.createActivityEnd()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.ModelFactory.eINSTANCE
+								.createProjectHistory()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.ModelFactory.eINSTANCE
+								.createProjectInfo()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.ModelFactory.eINSTANCE
+								.createSessionId()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.ModelFactory.eINSTANCE
+								.createServerSpace()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.ModelFactory.eINSTANCE
+								.createProjectId()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.ModelFactory.eINSTANCE
+								.createVersionInfo()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.ModelFactory.eINSTANCE
+								.createClientVersionInfo()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.ModelFactory.eINSTANCE
+								.createFileIdentifier()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.ModelFactory.eINSTANCE
+								.createAuthenticationInformation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createTagVersionSpec()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createDateVersionSpec()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createPrimaryVersionSpec()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createLogMessage()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createChangePackage()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createHistoryInfo()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createRangeQuery()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createPathQuery()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createModelElementQuery()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createVersion()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createHeadVersionSpec()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createVersionProperty()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createBranchVersionSpec()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createBranchInfo()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createAncestorVersionSpec()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
+								.createPagedUpdateVersionSpec()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createCompositeOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createCreateDeleteOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createAttributeOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createMultiAttributeOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createMultiAttributeSetOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createMultiAttributeMoveOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createSingleReferenceOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createMultiReferenceSetOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createMultiReferenceOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createMultiReferenceMoveOperation()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createOperationId()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createOperationGroup()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.createModelElementGroup()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+								.create(org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsPackage.Literals.EOBJECT_TO_MODEL_ELEMENT_ID_MAP)));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.events.EventsFactory.eINSTANCE
+								.createEvent()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.versioning.events.server.ServerFactory.eINSTANCE
+								.createProjectUpdatedEvent()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.accesscontrol.AccesscontrolFactory.eINSTANCE
+								.createACOrgUnit()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.accesscontrol.AccesscontrolFactory.eINSTANCE
+								.createACUser()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.accesscontrol.AccesscontrolFactory.eINSTANCE
+								.createACGroup()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.accesscontrol.AccesscontrolFactory.eINSTANCE
+								.createACOrgUnitId()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.accesscontrol.AccesscontrolFactory.eINSTANCE
+								.createOrgUnitProperty()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.accesscontrol.roles.RolesFactory.eINSTANCE
+								.createReaderRole()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.accesscontrol.roles.RolesFactory.eINSTANCE
+								.createWriterRole()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.accesscontrol.roles.RolesFactory.eINSTANCE
+								.createProjectAdminRole()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.accesscontrol.roles.RolesFactory.eINSTANCE
+								.createServerAdmin()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.url.UrlFactory.eINSTANCE
+								.createServerUrl()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.url.UrlFactory.eINSTANCE
+								.createProjectUrlFragment()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.url.UrlFactory.eINSTANCE
+								.createModelElementUrlFragment()));
+
+		newChildDescriptors
+				.add(createChildParameter(
+						org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS,
+						org.eclipse.emf.emfstore.internal.server.model.url.UrlFactory.eINSTANCE
+								.createModelElementUrl()));
 	}
 
 	/**
-	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+	public String getCreateChildText(Object owner, Object feature,
+			Object child, Collection<?> selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify = childFeature == ModelPackage.Literals.PROJECT__MODEL_ELEMENTS
-			|| childFeature == ModelPackage.Literals.PROJECT__CUT_ELEMENTS;
+		boolean qualify = childFeature == org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__MODEL_ELEMENTS
+				|| childFeature == org.eclipse.emf.emfstore.internal.common.model.ModelPackage.Literals.PROJECT__CUT_ELEMENTS;
 
 		if (qualify) {
-			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),
-				getFeatureText(childFeature), getTypeText(owner) });
+			return getString("_UI_CreateChild_text2", new Object[] {
+					getTypeText(childObject), getFeatureText(childFeature),
+					getTypeText(owner) });
 		}
 		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

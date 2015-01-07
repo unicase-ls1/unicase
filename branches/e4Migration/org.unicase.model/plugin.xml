@@ -7,6 +7,14 @@
        class = "org.unicase.model.ModelPackage"
        genModel = "model/model.genmodel" />
   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated model -->
+      <package
+            uri="http://unicase.org/model/organization"
+            class="org.unicase.model.organization.OrganizationPackage"
+            genModel="model/model.genmodel"/>
+   </extension>
   <extension
         point="org.eclipse.emf.validation.constraintProviders">
      <category
@@ -823,22 +831,9 @@
      </package>
   </extension>
   <extension
-        point="org.eclipse.emf.emfstore.common.model.modelversion">
+        point="org.eclipse.emf.emfstore.common.model.modelVersion">
      <ModelVersion
            versionIdentifier="8">
      </ModelVersion>
-  </extension>
-  <extension
-        point="org.eclipse.emf.ecp.model.ecppackage">
-     <modelPackage
-           modelPackage="http://unicase.org/model">
-     </modelPackage>
-     <modelPackage></modelPackage>
-  </extension>
-  <extension
-        point="org.eclipse.emf.emfstore.client.version">
-     <version
-           identifier="0.5.2.1">
-     </version>
   </extension>
 </plugin>

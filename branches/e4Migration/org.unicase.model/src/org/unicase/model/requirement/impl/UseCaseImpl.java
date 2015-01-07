@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -35,34 +35,32 @@ import org.unicase.model.requirement.UserTask;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getInitiatingActor <em>Initiating Actor</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getParticipatingActors <em>Participating Actors</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getRealizedUserTask <em>Realized User Task</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getPrecondition <em>Precondition</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getUseCaseSteps <em>Use Case Steps</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getPostcondition <em>Postcondition</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getRules <em>Rules</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getException <em>Exception</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getScenarios <em>Scenarios</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getFunctionalRequirements <em>Functional Requirements</em>}
- * </li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getNonFunctionalRequirements <em>Non Functional
- * Requirements</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getIdentifiedClasses <em>Identified Classes</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getIncludedUseCases <em>Included Use Cases</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getExtendedUseCases <em>Extended Use Cases</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getSystemFunctions <em>System Functions</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#isDone <em>Done</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getInitiatingActor <em>Initiating Actor</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getParticipatingActors <em>Participating Actors</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getRealizedUserTask <em>Realized User Task</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getPrecondition <em>Precondition</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getUseCaseSteps <em>Use Case Steps</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getPostcondition <em>Postcondition</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getRules <em>Rules</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getException <em>Exception</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getScenarios <em>Scenarios</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getFunctionalRequirements <em>Functional Requirements</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getNonFunctionalRequirements <em>Non Functional Requirements</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getIdentifiedClasses <em>Identified Classes</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getIncludedUseCases <em>Included Use Cases</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getExtendedUseCases <em>Extended Use Cases</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getSystemFunctions <em>System Functions</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#isDone <em>Done</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	/**
-	 * The cached value of the '{@link #getInitiatingActor() <em>Initiating Actor</em>}' reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getInitiatingActor() <em>Initiating Actor</em>}' reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getInitiatingActor()
 	 * @generated
 	 * @ordered
@@ -90,9 +88,9 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	protected UserTask realizedUserTask;
 
 	/**
-	 * The default value of the '{@link #getPrecondition() <em>Precondition</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getPrecondition() <em>Precondition</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getPrecondition()
 	 * @generated
 	 * @ordered
@@ -100,9 +98,9 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	protected static final String PRECONDITION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPrecondition() <em>Precondition</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPrecondition() <em>Precondition</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getPrecondition()
 	 * @generated
 	 * @ordered
@@ -120,9 +118,9 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	protected EList<Step> useCaseSteps;
 
 	/**
-	 * The default value of the '{@link #getPostcondition() <em>Postcondition</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getPostcondition() <em>Postcondition</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getPostcondition()
 	 * @generated
 	 * @ordered
@@ -130,9 +128,9 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	protected static final String POSTCONDITION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPostcondition() <em>Postcondition</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPostcondition() <em>Postcondition</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getPostcondition()
 	 * @generated
 	 * @ordered
@@ -140,9 +138,9 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	protected String postcondition = POSTCONDITION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getRules() <em>Rules</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getRules() <em>Rules</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getRules()
 	 * @generated
 	 * @ordered
@@ -160,9 +158,9 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	protected String rules = RULES_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getException() <em>Exception</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getException() <em>Exception</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getException()
 	 * @generated
 	 * @ordered
@@ -170,9 +168,9 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	protected static final String EXCEPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getException() <em>Exception</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getException() <em>Exception</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getException()
 	 * @generated
 	 * @ordered
@@ -180,9 +178,9 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	protected String exception = EXCEPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getScenarios() <em>Scenarios</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getScenarios() <em>Scenarios</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getScenarios()
 	 * @generated
 	 * @ordered
@@ -192,7 +190,6 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	/**
 	 * The cached value of the '{@link #getFunctionalRequirements() <em>Functional Requirements</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getFunctionalRequirements()
 	 * @generated
 	 * @ordered
@@ -200,9 +197,8 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 	protected EList<FunctionalRequirement> functionalRequirements;
 
 	/**
-	 * The cached value of the '{@link #getNonFunctionalRequirements() <em>Non Functional Requirements</em>}' reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getNonFunctionalRequirements() <em>Non Functional Requirements</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getNonFunctionalRequirements()
 	 * @generated
 	 * @ordered
@@ -271,7 +267,6 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected UseCaseImpl() {
@@ -280,7 +275,6 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -290,7 +284,6 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Actor getInitiatingActor() {
@@ -300,7 +293,8 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 			if (initiatingActor != oldInitiatingActor) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						RequirementPackage.USE_CASE__INITIATING_ACTOR, oldInitiatingActor, initiatingActor));
+							RequirementPackage.USE_CASE__INITIATING_ACTOR,
+							oldInitiatingActor, initiatingActor));
 			}
 		}
 		return initiatingActor;
@@ -308,7 +302,6 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Actor basicGetInitiatingActor() {
@@ -317,15 +310,17 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetInitiatingActor(Actor newInitiatingActor, NotificationChain msgs) {
+	public NotificationChain basicSetInitiatingActor(Actor newInitiatingActor,
+			NotificationChain msgs) {
 		Actor oldInitiatingActor = initiatingActor;
 		initiatingActor = newInitiatingActor;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				RequirementPackage.USE_CASE__INITIATING_ACTOR, oldInitiatingActor, newInitiatingActor);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					RequirementPackage.USE_CASE__INITIATING_ACTOR,
+					oldInitiatingActor, newInitiatingActor);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -336,7 +331,6 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setInitiatingActor(Actor newInitiatingActor) {
@@ -344,115 +338,120 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 			NotificationChain msgs = null;
 			if (initiatingActor != null)
 				msgs = ((InternalEObject) initiatingActor).eInverseRemove(this,
-					RequirementPackage.ACTOR__INITIATED_USE_CASES, Actor.class, msgs);
+						RequirementPackage.ACTOR__INITIATED_USE_CASES,
+						Actor.class, msgs);
 			if (newInitiatingActor != null)
 				msgs = ((InternalEObject) newInitiatingActor).eInverseAdd(this,
-					RequirementPackage.ACTOR__INITIATED_USE_CASES, Actor.class, msgs);
+						RequirementPackage.ACTOR__INITIATED_USE_CASES,
+						Actor.class, msgs);
 			msgs = basicSetInitiatingActor(newInitiatingActor, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.USE_CASE__INITIATING_ACTOR,
-				newInitiatingActor, newInitiatingActor));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementPackage.USE_CASE__INITIATING_ACTOR,
+					newInitiatingActor, newInitiatingActor));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Scenario> getScenarios() {
 		if (scenarios == null) {
-			scenarios = new EObjectWithInverseResolvingEList.ManyInverse<Scenario>(Scenario.class, this,
-				RequirementPackage.USE_CASE__SCENARIOS, RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES);
+			scenarios = new EObjectWithInverseResolvingEList.ManyInverse<Scenario>(
+					Scenario.class, this,
+					RequirementPackage.USE_CASE__SCENARIOS,
+					RequirementPackage.SCENARIO__INSTANTIATED_USE_CASES);
 		}
 		return scenarios;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<FunctionalRequirement> getFunctionalRequirements() {
 		if (functionalRequirements == null) {
 			functionalRequirements = new EObjectWithInverseResolvingEList.ManyInverse<FunctionalRequirement>(
-				FunctionalRequirement.class, this, RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS,
-				RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES);
+					FunctionalRequirement.class, this,
+					RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS,
+					RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES);
 		}
 		return functionalRequirements;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<NonFunctionalRequirement> getNonFunctionalRequirements() {
 		if (nonFunctionalRequirements == null) {
 			nonFunctionalRequirements = new EObjectWithInverseResolvingEList.ManyInverse<NonFunctionalRequirement>(
-				NonFunctionalRequirement.class, this, RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS,
-				RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES);
+					NonFunctionalRequirement.class,
+					this,
+					RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS,
+					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES);
 		}
 		return nonFunctionalRequirements;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<org.unicase.model.classes.Class> getIdentifiedClasses() {
 		if (identifiedClasses == null) {
 			identifiedClasses = new EObjectWithInverseResolvingEList.ManyInverse<org.unicase.model.classes.Class>(
-				org.unicase.model.classes.Class.class, this, RequirementPackage.USE_CASE__IDENTIFIED_CLASSES,
-				ClassesPackage.CLASS__PARTICIPATED_USE_CASES);
+					org.unicase.model.classes.Class.class, this,
+					RequirementPackage.USE_CASE__IDENTIFIED_CLASSES,
+					ClassesPackage.CLASS__PARTICIPATED_USE_CASES);
 		}
 		return identifiedClasses;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getIncludedUseCases() {
 		if (includedUseCases == null) {
-			includedUseCases = new EObjectResolvingEList<UseCase>(UseCase.class, this,
-				RequirementPackage.USE_CASE__INCLUDED_USE_CASES);
+			includedUseCases = new EObjectResolvingEList<UseCase>(
+					UseCase.class, this,
+					RequirementPackage.USE_CASE__INCLUDED_USE_CASES);
 		}
 		return includedUseCases;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getExtendedUseCases() {
 		if (extendedUseCases == null) {
-			extendedUseCases = new EObjectResolvingEList<UseCase>(UseCase.class, this,
-				RequirementPackage.USE_CASE__EXTENDED_USE_CASES);
+			extendedUseCases = new EObjectResolvingEList<UseCase>(
+					UseCase.class, this,
+					RequirementPackage.USE_CASE__EXTENDED_USE_CASES);
 		}
 		return extendedUseCases;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<SystemFunction> getSystemFunctions() {
 		if (systemFunctions == null) {
-			systemFunctions = new EObjectWithInverseResolvingEList.ManyInverse<SystemFunction>(SystemFunction.class,
-				this, RequirementPackage.USE_CASE__SYSTEM_FUNCTIONS, RequirementPackage.SYSTEM_FUNCTION__USECASES);
+			systemFunctions = new EObjectWithInverseResolvingEList.ManyInverse<SystemFunction>(
+					SystemFunction.class, this,
+					RequirementPackage.USE_CASE__SYSTEM_FUNCTIONS,
+					RequirementPackage.SYSTEM_FUNCTION__USECASES);
 		}
 		return systemFunctions;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isDone() {
@@ -461,32 +460,32 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDone(boolean newDone) {
 		boolean oldDone = done;
 		done = newDone;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.USE_CASE__DONE, oldDone, done));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementPackage.USE_CASE__DONE, oldDone, done));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Actor> getParticipatingActors() {
 		if (participatingActors == null) {
-			participatingActors = new EObjectWithInverseResolvingEList.ManyInverse<Actor>(Actor.class, this,
-				RequirementPackage.USE_CASE__PARTICIPATING_ACTORS, RequirementPackage.ACTOR__PARTICIPATED_USE_CASES);
+			participatingActors = new EObjectWithInverseResolvingEList.ManyInverse<Actor>(
+					Actor.class, this,
+					RequirementPackage.USE_CASE__PARTICIPATING_ACTORS,
+					RequirementPackage.ACTOR__PARTICIPATED_USE_CASES);
 		}
 		return participatingActors;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UserTask getRealizedUserTask() {
@@ -496,7 +495,8 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 			if (realizedUserTask != oldRealizedUserTask) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						RequirementPackage.USE_CASE__REALIZED_USER_TASK, oldRealizedUserTask, realizedUserTask));
+							RequirementPackage.USE_CASE__REALIZED_USER_TASK,
+							oldRealizedUserTask, realizedUserTask));
 			}
 		}
 		return realizedUserTask;
@@ -504,7 +504,6 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UserTask basicGetRealizedUserTask() {
@@ -513,15 +512,17 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetRealizedUserTask(UserTask newRealizedUserTask, NotificationChain msgs) {
+	public NotificationChain basicSetRealizedUserTask(
+			UserTask newRealizedUserTask, NotificationChain msgs) {
 		UserTask oldRealizedUserTask = realizedUserTask;
 		realizedUserTask = newRealizedUserTask;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				RequirementPackage.USE_CASE__REALIZED_USER_TASK, oldRealizedUserTask, newRealizedUserTask);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					RequirementPackage.USE_CASE__REALIZED_USER_TASK,
+					oldRealizedUserTask, newRealizedUserTask);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -532,29 +533,32 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setRealizedUserTask(UserTask newRealizedUserTask) {
 		if (newRealizedUserTask != realizedUserTask) {
 			NotificationChain msgs = null;
 			if (realizedUserTask != null)
-				msgs = ((InternalEObject) realizedUserTask).eInverseRemove(this,
-					RequirementPackage.USER_TASK__REALIZING_USE_CASES, UserTask.class, msgs);
+				msgs = ((InternalEObject) realizedUserTask).eInverseRemove(
+						this,
+						RequirementPackage.USER_TASK__REALIZING_USE_CASES,
+						UserTask.class, msgs);
 			if (newRealizedUserTask != null)
-				msgs = ((InternalEObject) newRealizedUserTask).eInverseAdd(this,
-					RequirementPackage.USER_TASK__REALIZING_USE_CASES, UserTask.class, msgs);
+				msgs = ((InternalEObject) newRealizedUserTask).eInverseAdd(
+						this,
+						RequirementPackage.USER_TASK__REALIZING_USE_CASES,
+						UserTask.class, msgs);
 			msgs = basicSetRealizedUserTask(newRealizedUserTask, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.USE_CASE__REALIZED_USER_TASK,
-				newRealizedUserTask, newRealizedUserTask));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementPackage.USE_CASE__REALIZED_USER_TASK,
+					newRealizedUserTask, newRealizedUserTask));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getPrecondition() {
@@ -563,33 +567,33 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPrecondition(String newPrecondition) {
 		String oldPrecondition = precondition;
 		precondition = newPrecondition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.USE_CASE__PRECONDITION,
-				oldPrecondition, precondition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementPackage.USE_CASE__PRECONDITION, oldPrecondition,
+					precondition));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Step> getUseCaseSteps() {
 		if (useCaseSteps == null) {
-			useCaseSteps = new EObjectContainmentWithInverseEList.Resolving<Step>(Step.class, this,
-				RequirementPackage.USE_CASE__USE_CASE_STEPS, RequirementPackage.STEP__USE_CASE);
+			useCaseSteps = new EObjectContainmentWithInverseEList.Resolving<Step>(
+					Step.class, this,
+					RequirementPackage.USE_CASE__USE_CASE_STEPS,
+					RequirementPackage.STEP__USE_CASE);
 		}
 		return useCaseSteps;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getPostcondition() {
@@ -598,20 +602,19 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPostcondition(String newPostcondition) {
 		String oldPostcondition = postcondition;
 		postcondition = newPostcondition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.USE_CASE__POSTCONDITION,
-				oldPostcondition, postcondition));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementPackage.USE_CASE__POSTCONDITION,
+					oldPostcondition, postcondition));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getRules() {
@@ -620,19 +623,18 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setRules(String newRules) {
 		String oldRules = rules;
 		rules = newRules;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.USE_CASE__RULES, oldRules, rules));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementPackage.USE_CASE__RULES, oldRules, rules));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getException() {
@@ -641,91 +643,103 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setException(String newException) {
 		String oldException = exception;
 		exception = newException;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.USE_CASE__EXCEPTION, oldException,
-				exception));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RequirementPackage.USE_CASE__EXCEPTION, oldException,
+					exception));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.USE_CASE__INITIATING_ACTOR:
 			if (initiatingActor != null)
 				msgs = ((InternalEObject) initiatingActor).eInverseRemove(this,
-					RequirementPackage.ACTOR__INITIATED_USE_CASES, Actor.class, msgs);
+						RequirementPackage.ACTOR__INITIATED_USE_CASES,
+						Actor.class, msgs);
 			return basicSetInitiatingActor((Actor) otherEnd, msgs);
 		case RequirementPackage.USE_CASE__PARTICIPATING_ACTORS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatingActors()).basicAdd(otherEnd,
-				msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatingActors())
+					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.USE_CASE__REALIZED_USER_TASK:
 			if (realizedUserTask != null)
-				msgs = ((InternalEObject) realizedUserTask).eInverseRemove(this,
-					RequirementPackage.USER_TASK__REALIZING_USE_CASES, UserTask.class, msgs);
+				msgs = ((InternalEObject) realizedUserTask).eInverseRemove(
+						this,
+						RequirementPackage.USER_TASK__REALIZING_USE_CASES,
+						UserTask.class, msgs);
 			return basicSetRealizedUserTask((UserTask) otherEnd, msgs);
 		case RequirementPackage.USE_CASE__USE_CASE_STEPS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUseCaseSteps()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUseCaseSteps())
+					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.USE_CASE__SCENARIOS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getScenarios()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getScenarios())
+					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getFunctionalRequirements()).basicAdd(otherEnd,
-				msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getFunctionalRequirements())
+					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getNonFunctionalRequirements()).basicAdd(
-				otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getNonFunctionalRequirements())
+					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIdentifiedClasses())
-				.basicAdd(otherEnd, msgs);
+					.basicAdd(otherEnd, msgs);
 		case RequirementPackage.USE_CASE__SYSTEM_FUNCTIONS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSystemFunctions()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSystemFunctions())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.USE_CASE__INITIATING_ACTOR:
 			return basicSetInitiatingActor(null, msgs);
 		case RequirementPackage.USE_CASE__PARTICIPATING_ACTORS:
-			return ((InternalEList<?>) getParticipatingActors()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getParticipatingActors()).basicRemove(
+					otherEnd, msgs);
 		case RequirementPackage.USE_CASE__REALIZED_USER_TASK:
 			return basicSetRealizedUserTask(null, msgs);
 		case RequirementPackage.USE_CASE__USE_CASE_STEPS:
-			return ((InternalEList<?>) getUseCaseSteps()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getUseCaseSteps()).basicRemove(otherEnd,
+					msgs);
 		case RequirementPackage.USE_CASE__SCENARIOS:
-			return ((InternalEList<?>) getScenarios()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getScenarios()).basicRemove(otherEnd,
+					msgs);
 		case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<?>) getFunctionalRequirements()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getFunctionalRequirements())
+					.basicRemove(otherEnd, msgs);
 		case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<?>) getNonFunctionalRequirements()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getNonFunctionalRequirements())
+					.basicRemove(otherEnd, msgs);
 		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
-			return ((InternalEList<?>) getIdentifiedClasses()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getIdentifiedClasses()).basicRemove(
+					otherEnd, msgs);
 		case RequirementPackage.USE_CASE__SYSTEM_FUNCTIONS:
-			return ((InternalEList<?>) getSystemFunctions()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getSystemFunctions()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -773,7 +787,6 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -785,7 +798,8 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 			return;
 		case RequirementPackage.USE_CASE__PARTICIPATING_ACTORS:
 			getParticipatingActors().clear();
-			getParticipatingActors().addAll((Collection<? extends Actor>) newValue);
+			getParticipatingActors().addAll(
+					(Collection<? extends Actor>) newValue);
 			return;
 		case RequirementPackage.USE_CASE__REALIZED_USER_TASK:
 			setRealizedUserTask((UserTask) newValue);
@@ -812,27 +826,33 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 			return;
 		case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS:
 			getFunctionalRequirements().clear();
-			getFunctionalRequirements().addAll((Collection<? extends FunctionalRequirement>) newValue);
+			getFunctionalRequirements().addAll(
+					(Collection<? extends FunctionalRequirement>) newValue);
 			return;
 		case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
 			getNonFunctionalRequirements().clear();
-			getNonFunctionalRequirements().addAll((Collection<? extends NonFunctionalRequirement>) newValue);
+			getNonFunctionalRequirements().addAll(
+					(Collection<? extends NonFunctionalRequirement>) newValue);
 			return;
 		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
 			getIdentifiedClasses().clear();
-			getIdentifiedClasses().addAll((Collection<? extends org.unicase.model.classes.Class>) newValue);
+			getIdentifiedClasses()
+					.addAll((Collection<? extends org.unicase.model.classes.Class>) newValue);
 			return;
 		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
 			getIncludedUseCases().clear();
-			getIncludedUseCases().addAll((Collection<? extends UseCase>) newValue);
+			getIncludedUseCases().addAll(
+					(Collection<? extends UseCase>) newValue);
 			return;
 		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
 			getExtendedUseCases().clear();
-			getExtendedUseCases().addAll((Collection<? extends UseCase>) newValue);
+			getExtendedUseCases().addAll(
+					(Collection<? extends UseCase>) newValue);
 			return;
 		case RequirementPackage.USE_CASE__SYSTEM_FUNCTIONS:
 			getSystemFunctions().clear();
-			getSystemFunctions().addAll((Collection<? extends SystemFunction>) newValue);
+			getSystemFunctions().addAll(
+					(Collection<? extends SystemFunction>) newValue);
 			return;
 		case RequirementPackage.USE_CASE__DONE:
 			setDone((Boolean) newValue);
@@ -843,7 +863,6 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -903,7 +922,6 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -912,26 +930,32 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 		case RequirementPackage.USE_CASE__INITIATING_ACTOR:
 			return initiatingActor != null;
 		case RequirementPackage.USE_CASE__PARTICIPATING_ACTORS:
-			return participatingActors != null && !participatingActors.isEmpty();
+			return participatingActors != null
+					&& !participatingActors.isEmpty();
 		case RequirementPackage.USE_CASE__REALIZED_USER_TASK:
 			return realizedUserTask != null;
 		case RequirementPackage.USE_CASE__PRECONDITION:
-			return PRECONDITION_EDEFAULT == null ? precondition != null : !PRECONDITION_EDEFAULT.equals(precondition);
+			return PRECONDITION_EDEFAULT == null ? precondition != null
+					: !PRECONDITION_EDEFAULT.equals(precondition);
 		case RequirementPackage.USE_CASE__USE_CASE_STEPS:
 			return useCaseSteps != null && !useCaseSteps.isEmpty();
 		case RequirementPackage.USE_CASE__POSTCONDITION:
-			return POSTCONDITION_EDEFAULT == null ? postcondition != null : !POSTCONDITION_EDEFAULT
-				.equals(postcondition);
+			return POSTCONDITION_EDEFAULT == null ? postcondition != null
+					: !POSTCONDITION_EDEFAULT.equals(postcondition);
 		case RequirementPackage.USE_CASE__RULES:
-			return RULES_EDEFAULT == null ? rules != null : !RULES_EDEFAULT.equals(rules);
+			return RULES_EDEFAULT == null ? rules != null : !RULES_EDEFAULT
+					.equals(rules);
 		case RequirementPackage.USE_CASE__EXCEPTION:
-			return EXCEPTION_EDEFAULT == null ? exception != null : !EXCEPTION_EDEFAULT.equals(exception);
+			return EXCEPTION_EDEFAULT == null ? exception != null
+					: !EXCEPTION_EDEFAULT.equals(exception);
 		case RequirementPackage.USE_CASE__SCENARIOS:
 			return scenarios != null && !scenarios.isEmpty();
 		case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS:
-			return functionalRequirements != null && !functionalRequirements.isEmpty();
+			return functionalRequirements != null
+					&& !functionalRequirements.isEmpty();
 		case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
-			return nonFunctionalRequirements != null && !nonFunctionalRequirements.isEmpty();
+			return nonFunctionalRequirements != null
+					&& !nonFunctionalRequirements.isEmpty();
 		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
 			return identifiedClasses != null && !identifiedClasses.isEmpty();
 		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
@@ -948,7 +972,6 @@ public class UseCaseImpl extends UnicaseModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

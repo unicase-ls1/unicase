@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -18,7 +18,8 @@ import org.unicase.model.UnicaseModelElement;
  * 
  * @author Helming
  */
-public class TaskObjectLabelProvider extends IterationPlanningLabelProvider implements IColorProvider {
+public class TaskObjectLabelProvider extends IterationPlanningLabelProvider
+		implements IColorProvider {
 
 	private AdapterFactoryLabelProvider adapterFactoryLabelProvider;
 
@@ -27,8 +28,9 @@ public class TaskObjectLabelProvider extends IterationPlanningLabelProvider impl
 	 */
 	public TaskObjectLabelProvider() {
 		super();
-		this.adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		this.adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	/**
@@ -73,7 +75,8 @@ public class TaskObjectLabelProvider extends IterationPlanningLabelProvider impl
 	}
 
 	/**
-	 * . this returns the adapterFactoryLabelProvider used to retrieve text and images
+	 * . this returns the adapterFactoryLabelProvider used to retrieve text and
+	 * images
 	 * 
 	 * @return AdapterFactoryLabelProvider
 	 */

@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -20,19 +20,18 @@ import org.unicase.model.meeting.WorkItemMeetingSection;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static MeetingFactory init() {
 		try {
 			MeetingFactory theMeetingFactory = (MeetingFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/model/meeting");
+					.getEFactory(MeetingPackage.eNS_URI);
 			if (theMeetingFactory != null) {
 				return theMeetingFactory;
 			}
@@ -43,8 +42,8 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public MeetingFactoryImpl() {
@@ -53,7 +52,6 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,13 +66,13 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 		case MeetingPackage.WORK_ITEM_MEETING_SECTION:
 			return createWorkItemMeetingSection();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Meeting createMeeting() {
@@ -84,7 +82,6 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CompositeMeetingSection createCompositeMeetingSection() {
@@ -94,7 +91,6 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public IssueMeetingSection createIssueMeetingSection() {
@@ -104,7 +100,6 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkItemMeetingSection createWorkItemMeetingSection() {
@@ -114,7 +109,6 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MeetingPackage getMeetingPackage() {
@@ -123,7 +117,6 @@ public class MeetingFactoryImpl extends EFactoryImpl implements MeetingFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -21,17 +21,18 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.component.impl.DeploymentNodeImpl#getComponents <em>Components</em>}</li>
+ *   <li>{@link org.unicase.model.component.impl.DeploymentNodeImpl#getComponents <em>Components</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class DeploymentNodeImpl extends UnicaseModelElementImpl implements DeploymentNode {
+public class DeploymentNodeImpl extends UnicaseModelElementImpl implements
+		DeploymentNode {
 	/**
-	 * The cached value of the '{@link #getComponents() <em>Components</em>}' reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getComponents() <em>Components</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getComponents()
 	 * @generated
 	 * @ordered
@@ -40,7 +41,6 @@ public class DeploymentNodeImpl extends UnicaseModelElementImpl implements Deplo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DeploymentNodeImpl() {
@@ -49,7 +49,6 @@ public class DeploymentNodeImpl extends UnicaseModelElementImpl implements Deplo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,20 +58,18 @@ public class DeploymentNodeImpl extends UnicaseModelElementImpl implements Deplo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Component> getComponents() {
 		if (components == null) {
-			components = new EObjectResolvingEList<Component>(Component.class, this,
-				ComponentPackage.DEPLOYMENT_NODE__COMPONENTS);
+			components = new EObjectResolvingEList<Component>(Component.class,
+					this, ComponentPackage.DEPLOYMENT_NODE__COMPONENTS);
 		}
 		return components;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,7 +83,6 @@ public class DeploymentNodeImpl extends UnicaseModelElementImpl implements Deplo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -103,7 +99,6 @@ public class DeploymentNodeImpl extends UnicaseModelElementImpl implements Deplo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -118,7 +113,6 @@ public class DeploymentNodeImpl extends UnicaseModelElementImpl implements Deplo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

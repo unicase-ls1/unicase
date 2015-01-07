@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -22,23 +22,24 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.emf.emfstore.common.model.AssociationClassElement;
+import org.eclipse.emf.emfstore.internal.common.model.AssociationClassElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.profile.ProfileFactory;
 import org.unicase.model.rationale.RationaleFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.UnicaseModelElement} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.UnicaseModelElement} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
-public class UnicaseModelElementItemProvider extends RootElementItemProvider implements IEditingDomainItemProvider,
-	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class UnicaseModelElementItemProvider extends RootElementItemProvider
+		implements IEditingDomainItemProvider, IStructuredItemContentProvider,
+		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public UnicaseModelElementItemProvider(AdapterFactory adapterFactory) {
@@ -46,8 +47,8 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -67,78 +68,94 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_UnicaseModelElement_name_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_UnicaseModelElement_name_feature",
-				"_UI_UnicaseModelElement_type"), ModelPackage.Literals.UNICASE_MODEL_ELEMENT__NAME, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_UnicaseModelElement_name_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_UnicaseModelElement_name_feature",
+						"_UI_UnicaseModelElement_type"),
+				ModelPackage.Literals.UNICASE_MODEL_ELEMENT__NAME, true, false,
+				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Description feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Description feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDescriptionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_UnicaseModelElement_description_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_UnicaseModelElement_description_feature",
-				"_UI_UnicaseModelElement_type"), ModelPackage.Literals.UNICASE_MODEL_ELEMENT__DESCRIPTION, true, true,
-			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_UnicaseModelElement_description_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_UnicaseModelElement_description_feature",
+						"_UI_UnicaseModelElement_type"),
+				ModelPackage.Literals.UNICASE_MODEL_ELEMENT__DESCRIPTION, true,
+				true, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+				null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Annotations feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Annotations feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addAnnotationsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_UnicaseModelElement_annotations_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_UnicaseModelElement_annotations_feature",
-				"_UI_UnicaseModelElement_type"), ModelPackage.Literals.UNICASE_MODEL_ELEMENT__ANNOTATIONS, true, false,
-			true, null, null, null));
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_UnicaseModelElement_annotations_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_UnicaseModelElement_annotations_feature",
+						"_UI_UnicaseModelElement_type"),
+				ModelPackage.Literals.UNICASE_MODEL_ELEMENT__ANNOTATIONS, true,
+				false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Attachments feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Attachments feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addAttachmentsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_UnicaseModelElement_attachments_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_UnicaseModelElement_attachments_feature",
-				"_UI_UnicaseModelElement_type"), ModelPackage.Literals.UNICASE_MODEL_ELEMENT__ATTACHMENTS, true, false,
-			true, null, null, null));
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_UnicaseModelElement_attachments_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_UnicaseModelElement_attachments_feature",
+						"_UI_UnicaseModelElement_type"),
+				ModelPackage.Literals.UNICASE_MODEL_ELEMENT__ATTACHMENTS, true,
+				false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Comments feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Comments feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addCommentsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-			((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-			getResourceLocator(),
-			getString("_UI_UnicaseModelElement_comments_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_UnicaseModelElement_comments_feature",
-				"_UI_UnicaseModelElement_type"), ModelPackage.Literals.UNICASE_MODEL_ELEMENT__COMMENTS, true, false,
-			false, null, null, null));
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_UnicaseModelElement_comments_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_UnicaseModelElement_comments_feature",
+						"_UI_UnicaseModelElement_type"),
+				ModelPackage.Literals.UNICASE_MODEL_ELEMENT__COMMENTS, true,
+				false, false, null, null, null));
 	}
 
 	/**
@@ -162,24 +179,26 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(
+			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ModelPackage.Literals.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES);
-			childrenFeatures.add(ModelPackage.Literals.UNICASE_MODEL_ELEMENT__COMMENTS);
+			childrenFeatures
+					.add(ModelPackage.Literals.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES);
+			childrenFeatures
+					.add(ModelPackage.Literals.UNICASE_MODEL_ELEMENT__COMMENTS);
 		}
 		return childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -207,37 +226,42 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 		case ModelPackage.UNICASE_MODEL_ELEMENT__STATE:
 		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE:
 		case ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
 			return;
 		case ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
 		case ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+	protected void collectNewChildDescriptors(
+			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-			ModelPackage.Literals.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES,
-			ProfileFactory.eINSTANCE.createStereotypeInstance()));
+		newChildDescriptors
+				.add(createChildParameter(
+						ModelPackage.Literals.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES,
+						ProfileFactory.eINSTANCE.createStereotypeInstance()));
 
-		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.UNICASE_MODEL_ELEMENT__COMMENTS,
-			RationaleFactory.eINSTANCE.createComment()));
+		newChildDescriptors.add(createChildParameter(
+				ModelPackage.Literals.UNICASE_MODEL_ELEMENT__COMMENTS,
+				RationaleFactory.eINSTANCE.createComment()));
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -254,10 +278,14 @@ public class UnicaseModelElementItemProvider extends RootElementItemProvider imp
 	public String getText(Object object) {
 		if (object instanceof AssociationClassElement) {
 			AssociationClassElement association = (AssociationClassElement) object;
-			return ((UnicaseModelElement) association.eGet(association.getSourceFeature())).getName() + " - "
-				+ ((UnicaseModelElement) association.eGet(association.getTargetFeature())).getName() + " Association";
+			return ((UnicaseModelElement) association.eGet(association
+					.getSourceFeature())).getName()
+					+ " - "
+					+ ((UnicaseModelElement) association.eGet(association
+							.getTargetFeature())).getName() + " Association";
 		}
 		String label = ((UnicaseModelElement) object).getName();
-		return label == null || label.length() == 0 ? "unnamed" + getString("_UI_ModelElement_type") : label;
+		return label == null || label.length() == 0 ? "unnamed"
+				+ getString("_UI_ModelElement_type") : label;
 	}
 }

@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -13,10 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.ecp.common.util.DialogHandler;
-import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
-import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
+import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -96,13 +93,15 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 
 			now = new Date();
 
-			List<WorkItem> allWI = ps.getProject().getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(),
-				new BasicEList<WorkItem>());
+			List<WorkItem> allWI = ps.getProject().getAllModelElementsbyClass(
+					TaskPackage.eINSTANCE.getWorkItem(),
+					new BasicEList<WorkItem>());
 
 			for (WorkItem wi : allWI) {
 				if (applies(wi)) {
 					addWorkItem(wi);
-					WorkPackage containingWorkpackage = wi.getContainingWorkpackage();
+					WorkPackage containingWorkpackage = wi
+							.getContainingWorkpackage();
 					addWorkPackage(containingWorkpackage);
 				}
 			}
@@ -120,7 +119,8 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 	protected void createToolbar() {
 		super.createToolbar();
 		Composite toolbar = getToolbar();
-		DashboardToolbarAction taskView = new DashboardToolbarAction(toolbar, "table.png", 150);
+		DashboardToolbarAction taskView = new DashboardToolbarAction(toolbar,
+				"table.png", 150);
 		taskView.setToolTipText("Open the Task View");
 		taskView.addHyperlinkListener(new HyperlinkAdapter() {
 			@Override
@@ -131,7 +131,8 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 	}
 
 	private void openTaskView() {
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		IWorkbenchPage page = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage();
 		String viewId = "org.unicase.ui.taskview";
 		try {
 			IViewPart showView = page.showView(viewId);
@@ -182,7 +183,8 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 			currentSprint.setText("You are participating in:");
 
 			for (WorkPackage sprint : sprints) {
-				URLHelper.getModelElementLink(panel, sprint, getDashboard().getProjectSpace(), 15);
+				URLHelper.getModelElementLink(panel, sprint, getDashboard()
+						.getProjectSpace(), 15);
 			}
 		}
 	}
@@ -200,8 +202,10 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 
 	private void addWorkPackage(WorkPackage containingWorkpackage) {
 		if (containingWorkpackage != null
-			&& (containingWorkpackage.getStartDate() == null || containingWorkpackage.getStartDate().before(now))
-			&& (containingWorkpackage.getDueDate() != null && containingWorkpackage.getDueDate().after(now))) {
+				&& (containingWorkpackage.getStartDate() == null || containingWorkpackage
+						.getStartDate().before(now))
+				&& (containingWorkpackage.getDueDate() != null && containingWorkpackage
+						.getDueDate().after(now))) {
 			sprints.add(containingWorkpackage);
 		}
 	}
@@ -222,7 +226,9 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 	}
 
 	private boolean isGroupAssignee(WorkItem wi) {
-		if (wi.getAssignee() != null && OrganizationPackage.eINSTANCE.getGroup().isInstance(wi.getAssignee())) {
+		if (wi.getAssignee() != null
+				&& OrganizationPackage.eINSTANCE.getGroup().isInstance(
+						wi.getAssignee())) {
 			Set<Group> groups = OrgUnitHelper.getAllGroupsOfOrgUnit(user);
 			return groups.contains(wi.getAssignee());
 		}
@@ -242,7 +248,8 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 	}
 
 	private boolean isChecked(WorkItem wi) {
-		return TaskPackage.eINSTANCE.getCheckable().isInstance(wi) && ((Checkable) wi).isChecked();
+		return TaskPackage.eINSTANCE.getCheckable().isInstance(wi)
+				&& ((Checkable) wi).isChecked();
 	}
 
 	/**

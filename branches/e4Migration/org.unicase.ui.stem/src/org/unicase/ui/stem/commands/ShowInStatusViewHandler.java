@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -12,7 +12,7 @@ import java.util.List;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecp.common.util.DialogHandler;
+import org.eclipse.emf.emfstore.internal.client.ui.dialogs.EMFStoreMessageDialog;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
@@ -27,7 +27,8 @@ import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
  * 
  * @author Hodaie
  */
-public class ShowInStatusViewHandler extends AbstractHandler implements IPartListener {
+public class ShowInStatusViewHandler extends AbstractHandler implements
+		IPartListener {
 
 	private static final String STATUS_VIEW_ID = "org.unicase.ui.treeview.views.StatusView";
 	private static List<StatusView> openStatusViews;
@@ -56,19 +57,21 @@ public class ShowInStatusViewHandler extends AbstractHandler implements IPartLis
 		if (openStatusViews == null) {
 			openStatusViews = new ArrayList<StatusView>();
 		}
-		page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		page = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+				.getActivePage();
 		page.addPartListener(this);
-		UnicaseModelElement newInput = UnicaseActionHelper.getModelElement(event);
+		UnicaseModelElement newInput = UnicaseActionHelper
+				.getModelElement(event);
 
 		StatusView statusView = (StatusView) page.findView(STATUS_VIEW_ID);
 		if (statusView == null) {
 			try {
-				statusView = (StatusView) page.showView(STATUS_VIEW_ID, newInput.getName(),
-					IWorkbenchPage.VIEW_ACTIVATE);
+				statusView = (StatusView) page.showView(STATUS_VIEW_ID,
+						newInput.getName(), IWorkbenchPage.VIEW_ACTIVATE);
 				statusView.setInput(newInput);
 				openStatusViews.add(statusView);
 			} catch (PartInitException e) {
-				DialogHandler.showExceptionDialog(e);
+				EMFStoreMessageDialog.showExceptionDialog(e);
 			}
 
 		} else {
@@ -84,12 +87,13 @@ public class ShowInStatusViewHandler extends AbstractHandler implements IPartLis
 			}
 			try {
 
-				StatusView newStatusView = (StatusView) page.showView(STATUS_VIEW_ID, newInput.getName(),
-					IWorkbenchPage.VIEW_ACTIVATE);
+				StatusView newStatusView = (StatusView) page.showView(
+						STATUS_VIEW_ID, newInput.getName(),
+						IWorkbenchPage.VIEW_ACTIVATE);
 				newStatusView.setInput(newInput);
 				openStatusViews.add(newStatusView);
 			} catch (PartInitException e) {
-				DialogHandler.showExceptionDialog(e);
+				EMFStoreMessageDialog.showExceptionDialog(e);
 			}
 
 		}

@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -7,9 +7,6 @@
 package org.unicase.implementation.operations;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.SemanticCompositeOperation;
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.Attribute;
 
@@ -33,156 +30,153 @@ import org.unicase.model.classes.Attribute;
  *        "http://unicase.org/operations description='Attributes and associations are pulled up into a common super class.' label='Pull Up Attributes and Associations'"
  * @generated
  */
-public interface PullUpOperation extends SemanticCompositeOperation {
+public interface PullUpOperation extends org.eclipse.emf.emfstore.internal.server.model.versioning.operations.semantic.SemanticCompositeOperation {
 	/**
-	 * Returns the value of the '<em><b>Super Class</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Super Class</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Super Class</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Super Class</em>' containment reference.
-	 * @see #setSuperClass(ModelElementId)
+	 * @see #setSuperClass(org.eclipse.emf.emfstore.internal.common.model.ModelElementId)
 	 * @see org.unicase.implementation.operations.OperationsPackage#getPullUpOperation_SuperClass()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	ModelElementId getSuperClass();
+	org.eclipse.emf.emfstore.internal.common.model.ModelElementId getSuperClass();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.implementation.operations.PullUpOperation#getSuperClass
-	 * <em>Super Class</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.implementation.operations.PullUpOperation#getSuperClass <em>Super Class</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Super Class</em>' containment reference.
 	 * @see #getSuperClass()
 	 * @generated
 	 */
-	void setSuperClass(ModelElementId value);
+	void setSuperClass(org.eclipse.emf.emfstore.internal.common.model.ModelElementId value);
 
 	/**
-	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list. The list contents are of type
-	 * {@link org.eclipse.emf.emfstore.common.model.ModelElementId}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.emfstore.internal.common.model.ModelElementId}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Attributes</em>' containment reference list isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Attributes</em>' containment reference list.
 	 * @see org.unicase.implementation.operations.OperationsPackage#getPullUpOperation_Attributes()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ModelElementId> getAttributes();
+	EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> getAttributes();
 
 	/**
-	 * Returns the value of the '<em><b>Outgoing Associations</b></em>' containment reference list. The list contents
-	 * are of type {@link org.eclipse.emf.emfstore.common.model.ModelElementId}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Outgoing Associations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.emfstore.internal.common.model.ModelElementId}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Outgoing Associations</em>' containment reference list isn't clear, there really
 	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Outgoing Associations</em>' containment reference list.
 	 * @see org.unicase.implementation.operations.OperationsPackage#getPullUpOperation_OutgoingAssociations()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ModelElementId> getOutgoingAssociations();
+	EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> getOutgoingAssociations();
 
 	/**
-	 * Returns the value of the '<em><b>Incoming Associations</b></em>' containment reference list. The list contents
-	 * are of type {@link org.eclipse.emf.emfstore.common.model.ModelElementId}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Incoming Associations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.emfstore.internal.common.model.ModelElementId}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Incoming Associations</em>' containment reference list isn't clear, there really
 	 * should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Incoming Associations</em>' containment reference list.
 	 * @see org.unicase.implementation.operations.OperationsPackage#getPullUpOperation_IncomingAssociations()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<ModelElementId> getIncomingAssociations();
+	EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> getIncomingAssociations();
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getAttributes());'"
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElement(project, getSuperClass());'"
 	 * @generated
 	 */
-	EList<Attribute> getAttributes(Project project);
+	org.unicase.model.classes.Class getSuperClass(org.eclipse.emf.emfstore.internal.common.model.Project project);
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model
 	 * @generated
 	 */
-	EList<Attribute> getPossibleAttributes(Project project);
+	EList<org.unicase.model.classes.Class> getPossibleSuperClasses(org.eclipse.emf.emfstore.internal.common.model.Project project);
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getOutgoingAssociations());'"
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getAttributes());'"
 	 * @generated
 	 */
-	EList<Association> getOutgoingAssociations(Project project);
+	EList<Attribute> getAttributes(org.eclipse.emf.emfstore.internal.common.model.Project project);
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model
 	 * @generated
 	 */
-	EList<Association> getPossibleOutgoingAssociations(Project project);
+	EList<Attribute> getPossibleAttributes(org.eclipse.emf.emfstore.internal.common.model.Project project);
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getIncomingAssociations());'"
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getOutgoingAssociations());'"
 	 * @generated
 	 */
-	EList<Association> getIncomingAssociations(Project project);
+	EList<Association> getOutgoingAssociations(org.eclipse.emf.emfstore.internal.common.model.Project project);
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model
 	 * @generated
 	 */
-	EList<Association> getPossibleIncomingAssociations(Project project);
+	EList<Association> getPossibleOutgoingAssociations(org.eclipse.emf.emfstore.internal.common.model.Project project);
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @model required="true" annotation=
-	 *        "http://unicase.org/operations description='At least one attribute or association must be pulled up.'"
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElements(project, getIncomingAssociations());'"
 	 * @generated
 	 */
-	boolean validateAttributesAssociations(Project project);
+	EList<Association> getIncomingAssociations(org.eclipse.emf.emfstore.internal.common.model.Project project);
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @model required="true" annotation=
-	 *        "http://www.eclipse.org/emf/2002/GenModel body='return OperationHelper.getElement(project, getSuperClass());'"
-	 * @generated
-	 */
-	org.unicase.model.classes.Class getSuperClass(Project project);
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model
 	 * @generated
 	 */
-	EList<org.unicase.model.classes.Class> getPossibleSuperClasses(Project project);
+	EList<Association> getPossibleIncomingAssociations(org.eclipse.emf.emfstore.internal.common.model.Project project);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 *        annotation="http://unicase.org/operations description='At least one attribute or association must be pulled up.'"
+	 * @generated
+	 */
+	boolean validateAttributesAssociations(org.eclipse.emf.emfstore.internal.common.model.Project project);
 
 } // PullUpOperation

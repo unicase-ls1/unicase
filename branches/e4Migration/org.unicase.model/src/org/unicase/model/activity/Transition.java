@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -10,15 +10,16 @@ import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Transition</b></em>'. <!-- end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.activity.Transition#getSource <em>Source</em>}</li>
- * <li>{@link org.unicase.model.activity.Transition#getTarget <em>Target</em>}</li>
- * <li>{@link org.unicase.model.activity.Transition#getCondition <em>Condition</em>}</li>
+ *   <li>{@link org.unicase.model.activity.Transition#getSource <em>Source</em>}</li>
+ *   <li>{@link org.unicase.model.activity.Transition#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.unicase.model.activity.Transition#getCondition <em>Condition</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.model.activity.ActivityPackage#getTransition()
  * @model
  * @generated
@@ -83,13 +84,13 @@ public interface Transition extends UnicaseModelElement {
 	void setTarget(ActivityObject value);
 
 	/**
-	 * Returns the value of the '<em><b>Condition</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Condition</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Condition</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Condition</em>' attribute.
 	 * @see #setCondition(String)
 	 * @see org.unicase.model.activity.ActivityPackage#getTransition_Condition()
@@ -101,7 +102,6 @@ public interface Transition extends UnicaseModelElement {
 	/**
 	 * Sets the value of the '{@link org.unicase.model.activity.Transition#getCondition <em>Condition</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Condition</em>' attribute.
 	 * @see #getCondition()
 	 * @generated

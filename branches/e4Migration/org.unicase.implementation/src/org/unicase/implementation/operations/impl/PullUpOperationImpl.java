@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -19,10 +19,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.impl.SemanticCompositeOperationImpl;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
+import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
 import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.implementation.operations.PullUpOperation;
 import org.unicase.implementation.operations.util.ClassesOperationHelper;
@@ -32,62 +30,73 @@ import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.Class;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Pull Up Attribute Operation</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Pull Up Attribute Operation</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.implementation.operations.impl.PullUpOperationImpl#getSuperClass <em>Super Class</em>}</li>
- * <li>{@link org.unicase.implementation.operations.impl.PullUpOperationImpl#getAttributes <em>Attributes</em>}</li>
- * <li>{@link org.unicase.implementation.operations.impl.PullUpOperationImpl#getOutgoingAssociations <em>Outgoing
- * Associations</em>}</li>
- * <li>{@link org.unicase.implementation.operations.impl.PullUpOperationImpl#getIncomingAssociations <em>Incoming
- * Associations</em>}</li>
+ * <li>
+ * {@link org.unicase.implementation.operations.impl.PullUpOperationImpl#getSuperClass
+ * <em>Super Class</em>}</li>
+ * <li>
+ * {@link org.unicase.implementation.operations.impl.PullUpOperationImpl#getAttributes
+ * <em>Attributes</em>}</li>
+ * <li>
+ * {@link org.unicase.implementation.operations.impl.PullUpOperationImpl#getOutgoingAssociations
+ * <em>Outgoing Associations</em>}</li>
+ * <li>
+ * {@link org.unicase.implementation.operations.impl.PullUpOperationImpl#getIncomingAssociations
+ * <em>Incoming Associations</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class PullUpOperationImpl extends SemanticCompositeOperationImpl implements PullUpOperation {
+public class PullUpOperationImpl
+		extends
+		org.eclipse.emf.emfstore.internal.server.model.versioning.operations.semantic.impl.SemanticCompositeOperationImpl
+		implements PullUpOperation {
 	/**
-	 * The cached value of the '{@link #getSuperClass() <em>Super Class</em>}' containment reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getSuperClass() <em>Super Class</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getSuperClass()
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelElementId superClass;
+	protected org.eclipse.emf.emfstore.internal.common.model.ModelElementId superClass;
 
 	/**
-	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getAttributes()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElementId> attributes;
+	protected EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> attributes;
 
 	/**
-	 * The cached value of the '{@link #getOutgoingAssociations() <em>Outgoing Associations</em>}' containment reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getOutgoingAssociations()
+	 * <em>Outgoing Associations</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getOutgoingAssociations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElementId> outgoingAssociations;
+	protected EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> outgoingAssociations;
 
 	/**
-	 * The cached value of the '{@link #getIncomingAssociations() <em>Incoming Associations</em>}' containment reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIncomingAssociations()
+	 * <em>Incoming Associations</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getIncomingAssociations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElementId> incomingAssociations;
+	protected EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> incomingAssociations;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -113,7 +122,7 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	 * 
 	 * @generated
 	 */
-	public ModelElementId getSuperClass() {
+	public org.eclipse.emf.emfstore.internal.common.model.ModelElementId getSuperClass() {
 		return superClass;
 	}
 
@@ -122,12 +131,16 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetSuperClass(ModelElementId newSuperClass, NotificationChain msgs) {
-		ModelElementId oldSuperClass = superClass;
+	public NotificationChain basicSetSuperClass(
+			org.eclipse.emf.emfstore.internal.common.model.ModelElementId newSuperClass,
+			NotificationChain msgs) {
+		org.eclipse.emf.emfstore.internal.common.model.ModelElementId oldSuperClass = superClass;
 		superClass = newSuperClass;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.PULL_UP_OPERATION__SUPER_CLASS, oldSuperClass, newSuperClass);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					OperationsPackage.PULL_UP_OPERATION__SUPER_CLASS,
+					oldSuperClass, newSuperClass);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -141,21 +154,31 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	 * 
 	 * @generated
 	 */
-	public void setSuperClass(ModelElementId newSuperClass) {
+	public void setSuperClass(
+			org.eclipse.emf.emfstore.internal.common.model.ModelElementId newSuperClass) {
 		if (newSuperClass != superClass) {
 			NotificationChain msgs = null;
 			if (superClass != null)
-				msgs = ((InternalEObject) superClass).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.PULL_UP_OPERATION__SUPER_CLASS, null, msgs);
+				msgs = ((InternalEObject) superClass)
+						.eInverseRemove(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.PULL_UP_OPERATION__SUPER_CLASS,
+								null, msgs);
 			if (newSuperClass != null)
-				msgs = ((InternalEObject) newSuperClass).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.PULL_UP_OPERATION__SUPER_CLASS, null, msgs);
+				msgs = ((InternalEObject) newSuperClass)
+						.eInverseAdd(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.PULL_UP_OPERATION__SUPER_CLASS,
+								null, msgs);
 			msgs = basicSetSuperClass(newSuperClass, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OperationsPackage.PULL_UP_OPERATION__SUPER_CLASS,
-				newSuperClass, newSuperClass));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					OperationsPackage.PULL_UP_OPERATION__SUPER_CLASS,
+					newSuperClass, newSuperClass));
 	}
 
 	/**
@@ -163,10 +186,11 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	 * 
 	 * @generated
 	 */
-	public EList<ModelElementId> getAttributes() {
+	public EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> getAttributes() {
 		if (attributes == null) {
-			attributes = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this,
-				OperationsPackage.PULL_UP_OPERATION__ATTRIBUTES);
+			attributes = new EObjectContainmentEList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId>(
+					org.eclipse.emf.emfstore.internal.common.model.ModelElementId.class,
+					this, OperationsPackage.PULL_UP_OPERATION__ATTRIBUTES);
 		}
 		return attributes;
 	}
@@ -176,10 +200,12 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	 * 
 	 * @generated
 	 */
-	public EList<ModelElementId> getOutgoingAssociations() {
+	public EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> getOutgoingAssociations() {
 		if (outgoingAssociations == null) {
-			outgoingAssociations = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this,
-				OperationsPackage.PULL_UP_OPERATION__OUTGOING_ASSOCIATIONS);
+			outgoingAssociations = new EObjectContainmentEList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId>(
+					org.eclipse.emf.emfstore.internal.common.model.ModelElementId.class,
+					this,
+					OperationsPackage.PULL_UP_OPERATION__OUTGOING_ASSOCIATIONS);
 		}
 		return outgoingAssociations;
 	}
@@ -189,10 +215,12 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	 * 
 	 * @generated
 	 */
-	public EList<ModelElementId> getIncomingAssociations() {
+	public EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> getIncomingAssociations() {
 		if (incomingAssociations == null) {
-			incomingAssociations = new EObjectContainmentEList<ModelElementId>(ModelElementId.class, this,
-				OperationsPackage.PULL_UP_OPERATION__INCOMING_ASSOCIATIONS);
+			incomingAssociations = new EObjectContainmentEList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId>(
+					org.eclipse.emf.emfstore.internal.common.model.ModelElementId.class,
+					this,
+					OperationsPackage.PULL_UP_OPERATION__INCOMING_ASSOCIATIONS);
 		}
 		return incomingAssociations;
 	}
@@ -202,8 +230,39 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	 * 
 	 * @generated
 	 */
-	public EList<Attribute> getAttributes(Project project) {
+	public org.unicase.model.classes.Class getSuperClass(
+			final org.eclipse.emf.emfstore.internal.common.model.Project project) {
+		return OperationHelper.getElement(project, getSuperClass());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<Attribute> getAttributes(
+			final org.eclipse.emf.emfstore.internal.common.model.Project project) {
 		return OperationHelper.getElements(project, getAttributes());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<Association> getOutgoingAssociations(
+			final org.eclipse.emf.emfstore.internal.common.model.Project project) {
+		return OperationHelper.getElements(project, getOutgoingAssociations());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<Association> getIncomingAssociations(
+			final org.eclipse.emf.emfstore.internal.common.model.Project project) {
+		return OperationHelper.getElements(project, getIncomingAssociations());
 	}
 
 	// begin of custom code
@@ -223,12 +282,15 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	/**
 	 * Retrieve all attributes that could be pulled up.
 	 * 
-	 * @param attributes the attributes
-	 * @param subClasses the subclasses of the target super class
+	 * @param attributes
+	 *            the attributes
+	 * @param subClasses
+	 *            the subclasses of the target super class
 	 * @return a list of attributes a list of candidate attributes
 	 * @generated NOT
 	 */
-	public static EList<Attribute> getPossibleAttributes(List<Attribute> attributes, List<Class> subClasses) {
+	public static EList<Attribute> getPossibleAttributes(
+			List<Attribute> attributes, List<Class> subClasses) {
 		EList<Attribute> possibleAttributes = new BasicEList<Attribute>();
 		if (!subClasses.isEmpty()) {
 			Class subClass = subClasses.get(0);
@@ -242,7 +304,8 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 					if (c == subClass) {
 						continue;
 					}
-					Attribute sameAttribute = ClassesOperationHelper.getSameAttribute(c, subClassAttribute);
+					Attribute sameAttribute = ClassesOperationHelper
+							.getSameAttribute(c, subClassAttribute);
 					if (sameAttribute == null) {
 						attribute = null;
 						break;
@@ -259,15 +322,6 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	}
 
 	// end of custom code
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EList<Association> getOutgoingAssociations(Project project) {
-		return OperationHelper.getElements(project, getOutgoingAssociations());
-	}
 
 	// begin of custom code
 	/**
@@ -286,17 +340,20 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	/**
 	 * Retrieve all {@link Association}s that could be pulled up.
 	 * 
-	 * @param associations the {@link Association}
-	 * @param subClasses the subclasses of the target super class
+	 * @param associations
+	 *            the {@link Association}
+	 * @param subClasses
+	 *            the subclasses of the target super class
 	 * @return a list of associations
 	 * @generated NOT
 	 */
-	public static EList<Association> getPossibleOutgoingAssociations(List<Association> associations,
-		List<Class> subClasses) {
+	public static EList<Association> getPossibleOutgoingAssociations(
+			List<Association> associations, List<Class> subClasses) {
 		EList<Association> possibleAssociations = new BasicEList<Association>();
 		if (!subClasses.isEmpty()) {
 			Class subClass = subClasses.get(0);
-			EList<Association> subClassAssociations = subClass.getOutgoingAssociations();
+			EList<Association> subClassAssociations = subClass
+					.getOutgoingAssociations();
 			if (subClasses.size() == 1) {
 				return subClassAssociations;
 			}
@@ -306,8 +363,8 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 					if (c == subClass) {
 						continue;
 					}
-					Association sameAssociation = ClassesOperationHelper.getSameOutgoingAssociation(c,
-						subClassAssociation);
+					Association sameAssociation = ClassesOperationHelper
+							.getSameOutgoingAssociation(c, subClassAssociation);
 					if (sameAssociation == null) {
 						association = null;
 						break;
@@ -321,16 +378,6 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 			}
 		}
 		return possibleAssociations;
-	}
-
-	// end of custom code
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EList<Association> getIncomingAssociations(Project project) {
-		return OperationHelper.getElements(project, getIncomingAssociations());
 	}
 
 	// begin of custom code
@@ -350,17 +397,20 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	/**
 	 * Retrieve all {@link Association}s that could be pulled up.
 	 * 
-	 * @param associations the {@link Association}
-	 * @param subClasses the subclasses of the target super class
+	 * @param associations
+	 *            the {@link Association}
+	 * @param subClasses
+	 *            the subclasses of the target super class
 	 * @return a list of associations
 	 * @generated NOT
 	 */
-	public static EList<Association> getPossibleIncomingAssociations(List<Association> associations,
-		List<Class> subClasses) {
+	public static EList<Association> getPossibleIncomingAssociations(
+			List<Association> associations, List<Class> subClasses) {
 		EList<Association> possibleAssociations = new BasicEList<Association>();
 		if (!subClasses.isEmpty()) {
 			Class subClass = subClasses.get(0);
-			EList<Association> subClassAssociations = subClass.getIncomingAssociations();
+			EList<Association> subClassAssociations = subClass
+					.getIncomingAssociations();
 			if (subClasses.size() == 1) {
 				return subClassAssociations;
 			}
@@ -370,8 +420,8 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 					if (c == subClass) {
 						continue;
 					}
-					Association sameAssociation = ClassesOperationHelper.getSameIncomingAssociation(c,
-						subClassAssociation);
+					Association sameAssociation = ClassesOperationHelper
+							.getSameIncomingAssociation(c, subClassAssociation);
 					if (sameAssociation == null) {
 						association = null;
 						break;
@@ -397,19 +447,11 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 		List<Association> outgoingAssociations = getOutgoingAssociations(project);
 		List<Association> incomingAssociations = getIncomingAssociations(project);
 
-		return attributes.size() + outgoingAssociations.size() + incomingAssociations.size() > 0;
+		return attributes.size() + outgoingAssociations.size()
+				+ incomingAssociations.size() > 0;
 	}
 
 	// end of custom code
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public org.unicase.model.classes.Class getSuperClass(Project project) {
-		return OperationHelper.getElement(project, getSuperClass());
-	}
 
 	// begin of custom code
 	// BEGIN COMPLEX CODE
@@ -418,7 +460,8 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	 * 
 	 * @generated NOT
 	 */
-	public EList<org.unicase.model.classes.Class> getPossibleSuperClasses(Project project) {
+	public EList<org.unicase.model.classes.Class> getPossibleSuperClasses(
+			Project project) {
 		List<Attribute> attributes = getAttributes(project);
 		List<Association> outgoingAssociations = getOutgoingAssociations(project);
 		List<Association> incomingAssociations = getIncomingAssociations(project);
@@ -426,44 +469,53 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 		EList<Class> possibleSuperClasses = new BasicEList<Class>();
 		if (!attributes.isEmpty()) {
 			Attribute attribute = attributes.get(0);
-			possibleSuperClasses.addAll(attribute.getDefiningClass().getSuperClasses());
+			possibleSuperClasses.addAll(attribute.getDefiningClass()
+					.getSuperClasses());
 			attributes.remove(attribute);
 		} else if (!outgoingAssociations.isEmpty()) {
 			Association association = outgoingAssociations.get(0);
 			if (association.getSource() != null) {
-				possibleSuperClasses.addAll(association.getSource().getSuperClasses());
+				possibleSuperClasses.addAll(association.getSource()
+						.getSuperClasses());
 			}
 			outgoingAssociations.remove(association);
 		} else {
 			Association association = incomingAssociations.get(0);
 			if (association.getTarget() != null) {
-				possibleSuperClasses.addAll(association.getTarget().getSuperClasses());
+				possibleSuperClasses.addAll(association.getTarget()
+						.getSuperClasses());
 			}
 			incomingAssociations.remove(association);
 		}
 
 		for (Attribute attribute : attributes) {
-			for (Iterator<Class> i = possibleSuperClasses.iterator(); i.hasNext();) {
+			for (Iterator<Class> i = possibleSuperClasses.iterator(); i
+					.hasNext();) {
 				Class superClass = i.next();
-				if (!attribute.getDefiningClass().getSuperClasses().contains(superClass)) {
+				if (!attribute.getDefiningClass().getSuperClasses()
+						.contains(superClass)) {
 					i.remove();
 				}
 			}
 		}
 
 		for (Association association : outgoingAssociations) {
-			for (Iterator<Class> i = possibleSuperClasses.iterator(); i.hasNext();) {
+			for (Iterator<Class> i = possibleSuperClasses.iterator(); i
+					.hasNext();) {
 				Class superClass = i.next();
-				if (!association.getSource().getSuperClasses().contains(superClass)) {
+				if (!association.getSource().getSuperClasses()
+						.contains(superClass)) {
 					i.remove();
 				}
 			}
 		}
 
 		for (Association association : incomingAssociations) {
-			for (Iterator<Class> i = possibleSuperClasses.iterator(); i.hasNext();) {
+			for (Iterator<Class> i = possibleSuperClasses.iterator(); i
+					.hasNext();) {
 				Class superClass = i.next();
-				if (!association.getTarget().getSuperClasses().contains(superClass)) {
+				if (!association.getTarget().getSuperClasses()
+						.contains(superClass)) {
 					i.remove();
 				}
 			}
@@ -481,16 +533,20 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case OperationsPackage.PULL_UP_OPERATION__SUPER_CLASS:
 			return basicSetSuperClass(null, msgs);
 		case OperationsPackage.PULL_UP_OPERATION__ATTRIBUTES:
-			return ((InternalEList<?>) getAttributes()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getAttributes()).basicRemove(otherEnd,
+					msgs);
 		case OperationsPackage.PULL_UP_OPERATION__OUTGOING_ASSOCIATIONS:
-			return ((InternalEList<?>) getOutgoingAssociations()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getOutgoingAssociations()).basicRemove(
+					otherEnd, msgs);
 		case OperationsPackage.PULL_UP_OPERATION__INCOMING_ASSOCIATIONS:
-			return ((InternalEList<?>) getIncomingAssociations()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getIncomingAssociations()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -525,19 +581,22 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case OperationsPackage.PULL_UP_OPERATION__SUPER_CLASS:
-			setSuperClass((ModelElementId) newValue);
+			setSuperClass((org.eclipse.emf.emfstore.internal.common.model.ModelElementId) newValue);
 			return;
 		case OperationsPackage.PULL_UP_OPERATION__ATTRIBUTES:
 			getAttributes().clear();
-			getAttributes().addAll((Collection<? extends ModelElementId>) newValue);
+			getAttributes()
+					.addAll((Collection<? extends org.eclipse.emf.emfstore.internal.common.model.ModelElementId>) newValue);
 			return;
 		case OperationsPackage.PULL_UP_OPERATION__OUTGOING_ASSOCIATIONS:
 			getOutgoingAssociations().clear();
-			getOutgoingAssociations().addAll((Collection<? extends ModelElementId>) newValue);
+			getOutgoingAssociations()
+					.addAll((Collection<? extends org.eclipse.emf.emfstore.internal.common.model.ModelElementId>) newValue);
 			return;
 		case OperationsPackage.PULL_UP_OPERATION__INCOMING_ASSOCIATIONS:
 			getIncomingAssociations().clear();
-			getIncomingAssociations().addAll((Collection<? extends ModelElementId>) newValue);
+			getIncomingAssociations()
+					.addAll((Collection<? extends org.eclipse.emf.emfstore.internal.common.model.ModelElementId>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -552,7 +611,7 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case OperationsPackage.PULL_UP_OPERATION__SUPER_CLASS:
-			setSuperClass((ModelElementId) null);
+			setSuperClass((org.eclipse.emf.emfstore.internal.common.model.ModelElementId) null);
 			return;
 		case OperationsPackage.PULL_UP_OPERATION__ATTRIBUTES:
 			getAttributes().clear();
@@ -580,9 +639,11 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 		case OperationsPackage.PULL_UP_OPERATION__ATTRIBUTES:
 			return attributes != null && !attributes.isEmpty();
 		case OperationsPackage.PULL_UP_OPERATION__OUTGOING_ASSOCIATIONS:
-			return outgoingAssociations != null && !outgoingAssociations.isEmpty();
+			return outgoingAssociations != null
+					&& !outgoingAssociations.isEmpty();
 		case OperationsPackage.PULL_UP_OPERATION__INCOMING_ASSOCIATIONS:
-			return incomingAssociations != null && !incomingAssociations.isEmpty();
+			return incomingAssociations != null
+					&& !incomingAssociations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -598,14 +659,17 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 		pullUpIncomingAssociations(incomingAssociations, superClass);
 	}
 
-	public static void pullUpAttributes(List<Attribute> attributes, Class superClass) {
+	public static void pullUpAttributes(List<Attribute> attributes,
+			Class superClass) {
 		for (Attribute attribute : attributes) {
 			Attribute superAttribute = ModelUtil.clone(attribute);
 			superClass.getAttributes().add(superAttribute);
 			for (Class subClass : superClass.getSubClasses()) {
 				if (subClass != attribute.getDefiningClass()) {
-					Attribute sameAttribute = ClassesOperationHelper.getSameAttribute(subClass, attribute);
-					ModelUtil.getProject(sameAttribute).deleteModelElement(sameAttribute);
+					Attribute sameAttribute = ClassesOperationHelper
+							.getSameAttribute(subClass, attribute);
+					ModelUtil.getProject(sameAttribute).deleteModelElement(
+							sameAttribute);
 				}
 			}
 			ModelUtil.getProject(attribute).deleteModelElement(attribute);
@@ -613,18 +677,20 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	}
 
 	@SuppressWarnings("unchecked")
-	public static void pullUpOutgoingAssociations(List<Association> associations, Class superClass) {
+	public static void pullUpOutgoingAssociations(
+			List<Association> associations, Class superClass) {
 		for (Association association : associations) {
 			for (Class subClass : superClass.getSubClasses()) {
 				if (subClass != association.getSource()) {
-					Association sameAssociation = ClassesOperationHelper.getSameOutgoingAssociation(subClass,
-						association);
-					ModelUtil.getProject(sameAssociation).deleteModelElement(sameAssociation);
+					Association sameAssociation = ClassesOperationHelper
+							.getSameOutgoingAssociation(subClass, association);
+					ModelUtil.getProject(sameAssociation).deleteModelElement(
+							sameAssociation);
 				}
 			}
 			Association superAssociation = ModelUtil.clone(association);
-			((List<Association>) association.eContainer().eGet(association.eContainmentFeature()))
-				.add(superAssociation);
+			((List<Association>) association.eContainer().eGet(
+					association.eContainmentFeature())).add(superAssociation);
 			superAssociation.setSource(superClass);
 			superAssociation.setTarget(association.getTarget());
 			ModelUtil.getProject(association).deleteModelElement(association);
@@ -632,18 +698,20 @@ public class PullUpOperationImpl extends SemanticCompositeOperationImpl implemen
 	}
 
 	@SuppressWarnings("unchecked")
-	public static void pullUpIncomingAssociations(List<Association> associations, Class superClass) {
+	public static void pullUpIncomingAssociations(
+			List<Association> associations, Class superClass) {
 		for (Association association : associations) {
 			for (Class subClass : superClass.getSubClasses()) {
 				if (subClass != association.getSource()) {
-					Association sameAssociation = ClassesOperationHelper.getSameIncomingAssociation(subClass,
-						association);
-					ModelUtil.getProject(sameAssociation).deleteModelElement(sameAssociation);
+					Association sameAssociation = ClassesOperationHelper
+							.getSameIncomingAssociation(subClass, association);
+					ModelUtil.getProject(sameAssociation).deleteModelElement(
+							sameAssociation);
 				}
 			}
 			Association superAssociation = ModelUtil.clone(association);
-			((List<Association>) association.eContainer().eGet(association.eContainmentFeature()))
-				.add(superAssociation);
+			((List<Association>) association.eContainer().eGet(
+					association.eContainmentFeature())).add(superAssociation);
 			superAssociation.setSource(association.getSource());
 			superAssociation.setTarget(superClass);
 			ModelUtil.getProject(association).deleteModelElement(association);

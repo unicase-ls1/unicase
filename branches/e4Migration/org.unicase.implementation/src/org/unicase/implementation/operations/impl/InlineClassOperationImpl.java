@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -15,10 +15,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.impl.SemanticCompositeOperationImpl;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
+import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
 import org.unicase.implementation.operations.InlineClassOperation;
 import org.unicase.implementation.operations.OperationsPackage;
 import org.unicase.implementation.operations.util.OperationHelper;
@@ -30,38 +28,45 @@ import org.unicase.model.classes.validation.ClassesHelper;
 import org.unicase.model.classes.validation.MultiplicityParseResult;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Inline Class Operation</b></em>'. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>Inline Class Operation</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.implementation.operations.impl.InlineClassOperationImpl#getAssociation <em>Association</em>}</li>
- * <li>{@link org.unicase.implementation.operations.impl.InlineClassOperationImpl#getInlineClass <em>Inline Class</em>}</li>
+ * <li>
+ * {@link org.unicase.implementation.operations.impl.InlineClassOperationImpl#getAssociation
+ * <em>Association</em>}</li>
+ * <li>
+ * {@link org.unicase.implementation.operations.impl.InlineClassOperationImpl#getInlineClass
+ * <em>Inline Class</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class InlineClassOperationImpl extends SemanticCompositeOperationImpl implements InlineClassOperation {
+public class InlineClassOperationImpl
+		extends
+		org.eclipse.emf.emfstore.internal.server.model.versioning.operations.semantic.impl.SemanticCompositeOperationImpl
+		implements InlineClassOperation {
 	/**
-	 * The cached value of the '{@link #getAssociation() <em>Association</em>}' containment reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAssociation() <em>Association</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getAssociation()
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelElementId association;
+	protected org.eclipse.emf.emfstore.internal.common.model.ModelElementId association;
 
 	/**
-	 * The cached value of the '{@link #getInlineClass() <em>Inline Class</em>}' containment reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getInlineClass() <em>Inline Class</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getInlineClass()
 	 * @generated
 	 * @ordered
 	 */
-	protected ModelElementId inlineClass;
+	protected org.eclipse.emf.emfstore.internal.common.model.ModelElementId inlineClass;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -87,7 +92,7 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 	 * 
 	 * @generated
 	 */
-	public ModelElementId getAssociation() {
+	public org.eclipse.emf.emfstore.internal.common.model.ModelElementId getAssociation() {
 		return association;
 	}
 
@@ -96,12 +101,16 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetAssociation(ModelElementId newAssociation, NotificationChain msgs) {
-		ModelElementId oldAssociation = association;
+	public NotificationChain basicSetAssociation(
+			org.eclipse.emf.emfstore.internal.common.model.ModelElementId newAssociation,
+			NotificationChain msgs) {
+		org.eclipse.emf.emfstore.internal.common.model.ModelElementId oldAssociation = association;
 		association = newAssociation;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.INLINE_CLASS_OPERATION__ASSOCIATION, oldAssociation, newAssociation);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					OperationsPackage.INLINE_CLASS_OPERATION__ASSOCIATION,
+					oldAssociation, newAssociation);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -115,21 +124,31 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 	 * 
 	 * @generated
 	 */
-	public void setAssociation(ModelElementId newAssociation) {
+	public void setAssociation(
+			org.eclipse.emf.emfstore.internal.common.model.ModelElementId newAssociation) {
 		if (newAssociation != association) {
 			NotificationChain msgs = null;
 			if (association != null)
-				msgs = ((InternalEObject) association).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.INLINE_CLASS_OPERATION__ASSOCIATION, null, msgs);
+				msgs = ((InternalEObject) association)
+						.eInverseRemove(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.INLINE_CLASS_OPERATION__ASSOCIATION,
+								null, msgs);
 			if (newAssociation != null)
-				msgs = ((InternalEObject) newAssociation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.INLINE_CLASS_OPERATION__ASSOCIATION, null, msgs);
+				msgs = ((InternalEObject) newAssociation)
+						.eInverseAdd(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.INLINE_CLASS_OPERATION__ASSOCIATION,
+								null, msgs);
 			msgs = basicSetAssociation(newAssociation, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.INLINE_CLASS_OPERATION__ASSOCIATION, newAssociation, newAssociation));
+					OperationsPackage.INLINE_CLASS_OPERATION__ASSOCIATION,
+					newAssociation, newAssociation));
 	}
 
 	/**
@@ -137,7 +156,7 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 	 * 
 	 * @generated
 	 */
-	public ModelElementId getInlineClass() {
+	public org.eclipse.emf.emfstore.internal.common.model.ModelElementId getInlineClass() {
 		return inlineClass;
 	}
 
@@ -146,12 +165,16 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetInlineClass(ModelElementId newInlineClass, NotificationChain msgs) {
-		ModelElementId oldInlineClass = inlineClass;
+	public NotificationChain basicSetInlineClass(
+			org.eclipse.emf.emfstore.internal.common.model.ModelElementId newInlineClass,
+			NotificationChain msgs) {
+		org.eclipse.emf.emfstore.internal.common.model.ModelElementId oldInlineClass = inlineClass;
 		inlineClass = newInlineClass;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS, oldInlineClass, newInlineClass);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS,
+					oldInlineClass, newInlineClass);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -165,21 +188,31 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 	 * 
 	 * @generated
 	 */
-	public void setInlineClass(ModelElementId newInlineClass) {
+	public void setInlineClass(
+			org.eclipse.emf.emfstore.internal.common.model.ModelElementId newInlineClass) {
 		if (newInlineClass != inlineClass) {
 			NotificationChain msgs = null;
 			if (inlineClass != null)
-				msgs = ((InternalEObject) inlineClass).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS, null, msgs);
+				msgs = ((InternalEObject) inlineClass)
+						.eInverseRemove(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS,
+								null, msgs);
 			if (newInlineClass != null)
-				msgs = ((InternalEObject) newInlineClass).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS, null, msgs);
+				msgs = ((InternalEObject) newInlineClass)
+						.eInverseAdd(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS,
+								null, msgs);
 			msgs = basicSetInlineClass(newInlineClass, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET,
-				OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS, newInlineClass, newInlineClass));
+					OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS,
+					newInlineClass, newInlineClass));
 	}
 
 	/**
@@ -187,8 +220,19 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 	 * 
 	 * @generated
 	 */
-	public Association getAssociation(Project project) {
+	public Association getAssociation(
+			final org.eclipse.emf.emfstore.internal.common.model.Project project) {
 		return OperationHelper.getElement(project, getAssociation());
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public org.unicase.model.classes.Class getInlineClass(
+			final org.eclipse.emf.emfstore.internal.common.model.Project project) {
+		return OperationHelper.getElement(project, getInlineClass());
 	}
 
 	// begin of custom code
@@ -202,8 +246,10 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 		EList<Association> associations = new BasicEList<Association>();
 		for (Association association : inlineClass.getIncomingAssociations()) {
 			boolean composition = association.getType() == AssociationType.COMPOSITION;
-			boolean oneToOne = ClassesHelper.getMaximumMultiplicity(association.getSourceMultiplicity()) == 1
-				&& ClassesHelper.getMaximumMultiplicity(association.getTargetMultiplicity()) == 1;
+			boolean oneToOne = ClassesHelper.getMaximumMultiplicity(association
+					.getSourceMultiplicity()) == 1
+					&& ClassesHelper.getMaximumMultiplicity(association
+							.getTargetMultiplicity()) == 1;
 			if (composition && oneToOne) {
 				associations.add(association);
 			}
@@ -213,22 +259,14 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 
 	// end of custom code
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public org.unicase.model.classes.Class getInlineClass(Project project) {
-		return OperationHelper.getElement(project, getInlineClass());
-	}
-
 	// begin of custom code
 	/**
 	 * {@inheritDoc}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
-	public EList<org.unicase.model.classes.Class> getPossibleInlineClass(Project project) {
+	public EList<org.unicase.model.classes.Class> getPossibleInlineClass(
+			Project project) {
 		Association association = getAssociation(project);
 		EList<Class> inlineClasses = new BasicEList<Class>();
 		inlineClasses.add(association.getTarget());
@@ -252,12 +290,13 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 	 */
 	public boolean validateAssociationMultiplicity(Project project) {
 		Association association = getAssociation(project);
-		MultiplicityParseResult targetMultiplicity = ClassesHelper.parseMultiplicity(association
-			.getTargetMultiplicity());
-		MultiplicityParseResult sourceMultiplicity = ClassesHelper.parseMultiplicity(association
-			.getSourceMultiplicity());
+		MultiplicityParseResult targetMultiplicity = ClassesHelper
+				.parseMultiplicity(association.getTargetMultiplicity());
+		MultiplicityParseResult sourceMultiplicity = ClassesHelper
+				.parseMultiplicity(association.getSourceMultiplicity());
 
-		return targetMultiplicity.getMaximumMultiplicity() == 1 && sourceMultiplicity.getMaximumMultiplicity() == 1;
+		return targetMultiplicity.getMaximumMultiplicity() == 1
+				&& sourceMultiplicity.getMaximumMultiplicity() == 1;
 	}
 
 	/**
@@ -279,8 +318,10 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 		Association association = getAssociation(project);
 		Class inlinedClass = getInlineClass(project);
 
-		EList<Association> incomingAssociations = inlinedClass.getIncomingAssociations();
-		return incomingAssociations.size() == 1 && incomingAssociations.get(0) == association;
+		EList<Association> incomingAssociations = inlinedClass
+				.getIncomingAssociations();
+		return incomingAssociations.size() == 1
+				&& incomingAssociations.get(0) == association;
 	}
 
 	// end of custom code
@@ -291,7 +332,8 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case OperationsPackage.INLINE_CLASS_OPERATION__ASSOCIATION:
 			return basicSetAssociation(null, msgs);
@@ -326,10 +368,10 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case OperationsPackage.INLINE_CLASS_OPERATION__ASSOCIATION:
-			setAssociation((ModelElementId) newValue);
+			setAssociation((org.eclipse.emf.emfstore.internal.common.model.ModelElementId) newValue);
 			return;
 		case OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS:
-			setInlineClass((ModelElementId) newValue);
+			setInlineClass((org.eclipse.emf.emfstore.internal.common.model.ModelElementId) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -344,10 +386,10 @@ public class InlineClassOperationImpl extends SemanticCompositeOperationImpl imp
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case OperationsPackage.INLINE_CLASS_OPERATION__ASSOCIATION:
-			setAssociation((ModelElementId) null);
+			setAssociation((org.eclipse.emf.emfstore.internal.common.model.ModelElementId) null);
 			return;
 		case OperationsPackage.INLINE_CLASS_OPERATION__INLINE_CLASS:
-			setInlineClass((ModelElementId) null);
+			setInlineClass((org.eclipse.emf.emfstore.internal.common.model.ModelElementId) null);
 			return;
 		}
 		super.eUnset(featureID);

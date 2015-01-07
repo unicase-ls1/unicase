@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -21,17 +21,17 @@ import org.unicase.model.rationale.RationalePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.rationale.impl.AudioCommentImpl#getAudioFile <em>Audio File</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.AudioCommentImpl#getAudioFile <em>Audio File</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 	/**
-	 * The cached value of the '{@link #getAudioFile() <em>Audio File</em>}' containment reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getAudioFile() <em>Audio File</em>}' containment reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getAudioFile()
 	 * @generated
 	 * @ordered
@@ -40,7 +40,6 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AudioCommentImpl() {
@@ -49,7 +48,6 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,7 +57,6 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FileAttachment getAudioFile() {
@@ -68,17 +65,24 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 			audioFile = (FileAttachment) eResolveProxy(oldAudioFile);
 			if (audioFile != oldAudioFile) {
 				InternalEObject newAudioFile = (InternalEObject) audioFile;
-				NotificationChain msgs = oldAudioFile.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- RationalePackage.AUDIO_COMMENT__AUDIO_FILE, null, null);
+				NotificationChain msgs = oldAudioFile.eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- RationalePackage.AUDIO_COMMENT__AUDIO_FILE,
+						null, null);
 				if (newAudioFile.eInternalContainer() == null) {
-					msgs = newAudioFile.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- RationalePackage.AUDIO_COMMENT__AUDIO_FILE, null, msgs);
+					msgs = newAudioFile
+							.eInverseAdd(
+									this,
+									EOPPOSITE_FEATURE_BASE
+											- RationalePackage.AUDIO_COMMENT__AUDIO_FILE,
+									null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						RationalePackage.AUDIO_COMMENT__AUDIO_FILE, oldAudioFile, audioFile));
+							RationalePackage.AUDIO_COMMENT__AUDIO_FILE,
+							oldAudioFile, audioFile));
 			}
 		}
 		return audioFile;
@@ -86,7 +90,6 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FileAttachment basicGetAudioFile() {
@@ -95,15 +98,17 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetAudioFile(FileAttachment newAudioFile, NotificationChain msgs) {
+	public NotificationChain basicSetAudioFile(FileAttachment newAudioFile,
+			NotificationChain msgs) {
 		FileAttachment oldAudioFile = audioFile;
 		audioFile = newAudioFile;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				RationalePackage.AUDIO_COMMENT__AUDIO_FILE, oldAudioFile, newAudioFile);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					RationalePackage.AUDIO_COMMENT__AUDIO_FILE, oldAudioFile,
+					newAudioFile);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -114,33 +119,37 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setAudioFile(FileAttachment newAudioFile) {
 		if (newAudioFile != audioFile) {
 			NotificationChain msgs = null;
 			if (audioFile != null)
-				msgs = ((InternalEObject) audioFile).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- RationalePackage.AUDIO_COMMENT__AUDIO_FILE, null, msgs);
+				msgs = ((InternalEObject) audioFile).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- RationalePackage.AUDIO_COMMENT__AUDIO_FILE,
+						null, msgs);
 			if (newAudioFile != null)
-				msgs = ((InternalEObject) newAudioFile).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- RationalePackage.AUDIO_COMMENT__AUDIO_FILE, null, msgs);
+				msgs = ((InternalEObject) newAudioFile).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE
+								- RationalePackage.AUDIO_COMMENT__AUDIO_FILE,
+						null, msgs);
 			msgs = basicSetAudioFile(newAudioFile, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.AUDIO_COMMENT__AUDIO_FILE,
-				newAudioFile, newAudioFile));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RationalePackage.AUDIO_COMMENT__AUDIO_FILE, newAudioFile,
+					newAudioFile));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RationalePackage.AUDIO_COMMENT__AUDIO_FILE:
 			return basicSetAudioFile(null, msgs);
@@ -150,7 +159,6 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -166,7 +174,6 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -181,7 +188,6 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -196,7 +202,6 @@ public class AudioCommentImpl extends EObjectImpl implements AudioComment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

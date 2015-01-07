@@ -9,14 +9,13 @@ Require-Bundle: org.eclipse.ui,
  org.unicase.ui.unicasecommon;visibility:=reexport,
  org.eclipse.emf.emfstore.client.ui,
  org.eclipse.emf.ecp.common,
- org.unicase.dashboard
+ org.unicase.dashboard,
+ org.eclipse.emf.ecp.ui
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.ui.dashboard,
  org.unicase.ui.dashboard.notificationProviders,
  org.unicase.ui.dashboard.view,
  org.unicase.ui.dashboard.view.widgets
 Bundle-Vendor: unicase.org
-Import-Package: org.eclipse.emf.ecp.common.util,
- org.eclipse.emf.ecp.common.utilities,
- org.eclipse.emf.edit.ui.provider
 Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.emf.emfstore.internal.client.model;version="1.4.0"

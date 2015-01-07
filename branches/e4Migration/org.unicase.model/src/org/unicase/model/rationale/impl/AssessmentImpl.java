@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -23,19 +23,20 @@ import org.unicase.model.rationale.RationalePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.rationale.impl.AssessmentImpl#getProposal <em>Proposal</em>}</li>
- * <li>{@link org.unicase.model.rationale.impl.AssessmentImpl#getCriterion <em>Criterion</em>}</li>
- * <li>{@link org.unicase.model.rationale.impl.AssessmentImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.AssessmentImpl#getProposal <em>Proposal</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.AssessmentImpl#getCriterion <em>Criterion</em>}</li>
+ *   <li>{@link org.unicase.model.rationale.impl.AssessmentImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class AssessmentImpl extends UnicaseModelElementImpl implements Assessment {
+public class AssessmentImpl extends UnicaseModelElementImpl implements
+		Assessment {
 	/**
-	 * The cached value of the '{@link #getCriterion() <em>Criterion</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getCriterion() <em>Criterion</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getCriterion()
 	 * @generated
 	 * @ordered
@@ -43,9 +44,9 @@ public class AssessmentImpl extends UnicaseModelElementImpl implements Assessmen
 	protected Criterion criterion;
 
 	/**
-	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -64,7 +65,6 @@ public class AssessmentImpl extends UnicaseModelElementImpl implements Assessmen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AssessmentImpl() {
@@ -73,7 +73,6 @@ public class AssessmentImpl extends UnicaseModelElementImpl implements Assessmen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -83,7 +82,6 @@ public class AssessmentImpl extends UnicaseModelElementImpl implements Assessmen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Proposal getProposal() {
@@ -94,7 +92,6 @@ public class AssessmentImpl extends UnicaseModelElementImpl implements Assessmen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Proposal basicGetProposal() {
@@ -105,41 +102,43 @@ public class AssessmentImpl extends UnicaseModelElementImpl implements Assessmen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetProposal(Proposal newProposal, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject) newProposal, RationalePackage.ASSESSMENT__PROPOSAL, msgs);
+	public NotificationChain basicSetProposal(Proposal newProposal,
+			NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newProposal,
+				RationalePackage.ASSESSMENT__PROPOSAL, msgs);
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProposal(Proposal newProposal) {
 		if (newProposal != eInternalContainer()
-			|| (eContainerFeatureID() != RationalePackage.ASSESSMENT__PROPOSAL && newProposal != null)) {
+				|| (eContainerFeatureID() != RationalePackage.ASSESSMENT__PROPOSAL && newProposal != null)) {
 			if (EcoreUtil.isAncestor(this, newProposal))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newProposal != null)
-				msgs = ((InternalEObject) newProposal).eInverseAdd(this, RationalePackage.PROPOSAL__ASSESSMENTS,
-					Proposal.class, msgs);
+				msgs = ((InternalEObject) newProposal).eInverseAdd(this,
+						RationalePackage.PROPOSAL__ASSESSMENTS, Proposal.class,
+						msgs);
 			msgs = basicSetProposal(newProposal, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.ASSESSMENT__PROPOSAL, newProposal,
-				newProposal));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RationalePackage.ASSESSMENT__PROPOSAL, newProposal,
+					newProposal));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Criterion getCriterion() {
@@ -148,8 +147,9 @@ public class AssessmentImpl extends UnicaseModelElementImpl implements Assessmen
 			criterion = (Criterion) eResolveProxy(oldCriterion);
 			if (criterion != oldCriterion) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RationalePackage.ASSESSMENT__CRITERION,
-						oldCriterion, criterion));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							RationalePackage.ASSESSMENT__CRITERION,
+							oldCriterion, criterion));
 			}
 		}
 		return criterion;
@@ -157,7 +157,6 @@ public class AssessmentImpl extends UnicaseModelElementImpl implements Assessmen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Criterion basicGetCriterion() {
@@ -166,15 +165,16 @@ public class AssessmentImpl extends UnicaseModelElementImpl implements Assessmen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetCriterion(Criterion newCriterion, NotificationChain msgs) {
+	public NotificationChain basicSetCriterion(Criterion newCriterion,
+			NotificationChain msgs) {
 		Criterion oldCriterion = criterion;
 		criterion = newCriterion;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				RationalePackage.ASSESSMENT__CRITERION, oldCriterion, newCriterion);
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, RationalePackage.ASSESSMENT__CRITERION,
+					oldCriterion, newCriterion);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -185,29 +185,30 @@ public class AssessmentImpl extends UnicaseModelElementImpl implements Assessmen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setCriterion(Criterion newCriterion) {
 		if (newCriterion != criterion) {
 			NotificationChain msgs = null;
 			if (criterion != null)
-				msgs = ((InternalEObject) criterion).eInverseRemove(this, RationalePackage.CRITERION__ASSESSMENTS,
-					Criterion.class, msgs);
+				msgs = ((InternalEObject) criterion).eInverseRemove(this,
+						RationalePackage.CRITERION__ASSESSMENTS,
+						Criterion.class, msgs);
 			if (newCriterion != null)
-				msgs = ((InternalEObject) newCriterion).eInverseAdd(this, RationalePackage.CRITERION__ASSESSMENTS,
-					Criterion.class, msgs);
+				msgs = ((InternalEObject) newCriterion).eInverseAdd(this,
+						RationalePackage.CRITERION__ASSESSMENTS,
+						Criterion.class, msgs);
 			msgs = basicSetCriterion(newCriterion, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.ASSESSMENT__CRITERION, newCriterion,
-				newCriterion));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RationalePackage.ASSESSMENT__CRITERION, newCriterion,
+					newCriterion));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getValue() {
@@ -216,23 +217,23 @@ public class AssessmentImpl extends UnicaseModelElementImpl implements Assessmen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setValue(int newValue) {
 		int oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.ASSESSMENT__VALUE, oldValue, value));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RationalePackage.ASSESSMENT__VALUE, oldValue, value));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RationalePackage.ASSESSMENT__PROPOSAL:
 			if (eInternalContainer() != null)
@@ -240,8 +241,9 @@ public class AssessmentImpl extends UnicaseModelElementImpl implements Assessmen
 			return basicSetProposal((Proposal) otherEnd, msgs);
 		case RationalePackage.ASSESSMENT__CRITERION:
 			if (criterion != null)
-				msgs = ((InternalEObject) criterion).eInverseRemove(this, RationalePackage.CRITERION__ASSESSMENTS,
-					Criterion.class, msgs);
+				msgs = ((InternalEObject) criterion).eInverseRemove(this,
+						RationalePackage.CRITERION__ASSESSMENTS,
+						Criterion.class, msgs);
 			return basicSetCriterion((Criterion) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -249,11 +251,11 @@ public class AssessmentImpl extends UnicaseModelElementImpl implements Assessmen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RationalePackage.ASSESSMENT__PROPOSAL:
 			return basicSetProposal(null, msgs);
@@ -265,22 +267,22 @@ public class AssessmentImpl extends UnicaseModelElementImpl implements Assessmen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 		case RationalePackage.ASSESSMENT__PROPOSAL:
-			return eInternalContainer().eInverseRemove(this, RationalePackage.PROPOSAL__ASSESSMENTS, Proposal.class,
-				msgs);
+			return eInternalContainer().eInverseRemove(this,
+					RationalePackage.PROPOSAL__ASSESSMENTS, Proposal.class,
+					msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -302,7 +304,6 @@ public class AssessmentImpl extends UnicaseModelElementImpl implements Assessmen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -323,7 +324,6 @@ public class AssessmentImpl extends UnicaseModelElementImpl implements Assessmen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -344,7 +344,6 @@ public class AssessmentImpl extends UnicaseModelElementImpl implements Assessmen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -362,7 +361,6 @@ public class AssessmentImpl extends UnicaseModelElementImpl implements Assessmen
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

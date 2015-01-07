@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="operations"
-    nsURI="http://unicase.org/operations" nsPrefix="operations">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="operations" nsURI="http://unicase.org/operations" nsPrefix="operations">
   <eClassifiers xsi:type="ecore:EClass" name="ExtractSuperClassOperation" eSuperTypes="platform:/plugin/org.eclipse.emf.emfstore.server.model/model/server.ecore#//versioning/operations/semantic/SemanticCompositeOperation">
     <eAnnotations source="http://unicase.org/operations">
       <details key="description" value="Attributes and associations from a number of classes are extracted into a common super class."/>

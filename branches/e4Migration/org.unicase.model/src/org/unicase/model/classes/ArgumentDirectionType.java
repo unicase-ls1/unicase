@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -15,15 +15,14 @@ import org.eclipse.emf.common.util.Enumerator;
 /**
  * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Argument Direction Type</b></em>
  * ', and utility methods for working with them. <!-- end-user-doc -->
- * 
  * @see org.unicase.model.classes.ClassesPackage#getArgumentDirectionType()
  * @model
  * @generated
  */
 public enum ArgumentDirectionType implements Enumerator {
 	/**
-	 * The '<em><b>UNDEFINED</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>UNDEFINED</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #UNDEFINED_VALUE
 	 * @generated
 	 * @ordered
@@ -31,8 +30,8 @@ public enum ArgumentDirectionType implements Enumerator {
 	UNDEFINED(0, "UNDEFINED", "Undefined"),
 
 	/**
-	 * The '<em><b>IN</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>IN</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #IN_VALUE
 	 * @generated
 	 * @ordered
@@ -40,8 +39,8 @@ public enum ArgumentDirectionType implements Enumerator {
 	IN(1, "IN", "in"),
 
 	/**
-	 * The '<em><b>OUT</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>OUT</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #OUT_VALUE
 	 * @generated
 	 * @ordered
@@ -49,8 +48,8 @@ public enum ArgumentDirectionType implements Enumerator {
 	OUT(2, "OUT", "out"),
 
 	/**
-	 * The '<em><b>INOUT</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>INOUT</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #INOUT_VALUE
 	 * @generated
 	 * @ordered
@@ -58,13 +57,13 @@ public enum ArgumentDirectionType implements Enumerator {
 	INOUT(3, "INOUT", "inout");
 
 	/**
-	 * The '<em><b>UNDEFINED</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>UNDEFINED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>UNDEFINED</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #UNDEFINED
 	 * @model literal="Undefined"
 	 * @generated
@@ -73,13 +72,13 @@ public enum ArgumentDirectionType implements Enumerator {
 	public static final int UNDEFINED_VALUE = 0;
 
 	/**
-	 * The '<em><b>IN</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>IN</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>IN</b></em>' literal object isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #IN
 	 * @model literal="in"
 	 * @generated
@@ -88,13 +87,13 @@ public enum ArgumentDirectionType implements Enumerator {
 	public static final int IN_VALUE = 1;
 
 	/**
-	 * The '<em><b>OUT</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>OUT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>OUT</b></em>' literal object isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #OUT
 	 * @model literal="out"
 	 * @generated
@@ -103,13 +102,13 @@ public enum ArgumentDirectionType implements Enumerator {
 	public static final int OUT_VALUE = 2;
 
 	/**
-	 * The '<em><b>INOUT</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>INOUT</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>INOUT</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #INOUT
 	 * @model literal="inout"
 	 * @generated
@@ -118,21 +117,22 @@ public enum ArgumentDirectionType implements Enumerator {
 	public static final int INOUT_VALUE = 3;
 
 	/**
-	 * An array of all the '<em><b>Argument Direction Type</b></em>' enumerators. <!-- begin-user-doc --> <!--
+	 * An array of all the '<em><b>Argument Direction Type</b></em>' enumerators.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	private static final ArgumentDirectionType[] VALUES_ARRAY = new ArgumentDirectionType[] { UNDEFINED, IN, OUT,
-		INOUT, };
+	private static final ArgumentDirectionType[] VALUES_ARRAY = new ArgumentDirectionType[] {
+			UNDEFINED, IN, OUT, INOUT, };
 
 	/**
-	 * A public read-only list of all the '<em><b>Argument Direction Type</b></em>' enumerators. <!-- begin-user-doc -->
+	 * A public read-only list of all the '<em><b>Argument Direction Type</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public static final List<ArgumentDirectionType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ArgumentDirectionType> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Argument Direction Type</b></em>' literal with the specified literal value. <!--
@@ -151,9 +151,9 @@ public enum ArgumentDirectionType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Argument Direction Type</b></em>' literal with the specified name. <!-- begin-user-doc -->
+	 * Returns the '<em><b>Argument Direction Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static ArgumentDirectionType getByName(String name) {
@@ -188,28 +188,25 @@ public enum ArgumentDirectionType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private ArgumentDirectionType(int value, String name, String literal) {
@@ -220,7 +217,6 @@ public enum ArgumentDirectionType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getValue() {
@@ -229,7 +225,6 @@ public enum ArgumentDirectionType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -238,7 +233,6 @@ public enum ArgumentDirectionType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
@@ -246,9 +240,9 @@ public enum ArgumentDirectionType implements Enumerator {
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation. <!-- begin-user-doc --> <!--
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

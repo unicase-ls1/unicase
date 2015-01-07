@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -33,7 +33,8 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
  * 
  * @generated
  */
-public class MethodArgumentImpl extends UnicaseModelElementImpl implements MethodArgument {
+public class MethodArgumentImpl extends UnicaseModelElementImpl implements
+		MethodArgument {
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
@@ -55,9 +56,9 @@ public class MethodArgumentImpl extends UnicaseModelElementImpl implements Metho
 	protected String type = TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getDirection()
 	 * @generated
 	 * @ordered
@@ -65,9 +66,9 @@ public class MethodArgumentImpl extends UnicaseModelElementImpl implements Metho
 	protected static final ArgumentDirectionType DIRECTION_EDEFAULT = ArgumentDirectionType.UNDEFINED;
 
 	/**
-	 * The cached value of the '{@link #getDirection() <em>Direction</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getDirection() <em>Direction</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getDirection()
 	 * @generated
 	 * @ordered
@@ -75,9 +76,9 @@ public class MethodArgumentImpl extends UnicaseModelElementImpl implements Metho
 	protected ArgumentDirectionType direction = DIRECTION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getDefaultValue()
 	 * @generated
 	 * @ordered
@@ -85,9 +86,9 @@ public class MethodArgumentImpl extends UnicaseModelElementImpl implements Metho
 	protected static final String DEFAULT_VALUE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getDefaultValue()
 	 * @generated
 	 * @ordered
@@ -95,9 +96,9 @@ public class MethodArgumentImpl extends UnicaseModelElementImpl implements Metho
 	protected String defaultValue = DEFAULT_VALUE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSignature() <em>Signature</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getSignature() <em>Signature</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getSignature()
 	 * @generated
 	 * @ordered
@@ -105,9 +106,9 @@ public class MethodArgumentImpl extends UnicaseModelElementImpl implements Metho
 	protected static final String SIGNATURE_EDEFAULT = null;
 
 	/**
-	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getLabel()
 	 * @generated
 	 * @ordered
@@ -126,7 +127,6 @@ public class MethodArgumentImpl extends UnicaseModelElementImpl implements Metho
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MethodArgumentImpl() {
@@ -135,7 +135,6 @@ public class MethodArgumentImpl extends UnicaseModelElementImpl implements Metho
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -145,7 +144,6 @@ public class MethodArgumentImpl extends UnicaseModelElementImpl implements Metho
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getType() {
@@ -154,19 +152,18 @@ public class MethodArgumentImpl extends UnicaseModelElementImpl implements Metho
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setType(String newType) {
 		String oldType = type;
 		type = newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_ARGUMENT__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.METHOD_ARGUMENT__TYPE, oldType, type));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ArgumentDirectionType getDirection() {
@@ -175,20 +172,19 @@ public class MethodArgumentImpl extends UnicaseModelElementImpl implements Metho
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDirection(ArgumentDirectionType newDirection) {
 		ArgumentDirectionType oldDirection = direction;
 		direction = newDirection == null ? DIRECTION_EDEFAULT : newDirection;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_ARGUMENT__DIRECTION,
-				oldDirection, direction));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.METHOD_ARGUMENT__DIRECTION, oldDirection,
+					direction));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getDefaultValue() {
@@ -197,15 +193,15 @@ public class MethodArgumentImpl extends UnicaseModelElementImpl implements Metho
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDefaultValue(String newDefaultValue) {
 		String oldDefaultValue = defaultValue;
 		defaultValue = newDefaultValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_ARGUMENT__DEFAULT_VALUE,
-				oldDefaultValue, defaultValue));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.METHOD_ARGUMENT__DEFAULT_VALUE,
+					oldDefaultValue, defaultValue));
 	}
 
 	/**
@@ -312,14 +308,13 @@ public class MethodArgumentImpl extends UnicaseModelElementImpl implements Metho
 		}
 
 		if (eNotificationRequired()) {
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_ARGUMENT__LABEL, oldLabel,
-				label));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					ClassesPackage.METHOD_ARGUMENT__LABEL, oldLabel, label));
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -341,7 +336,6 @@ public class MethodArgumentImpl extends UnicaseModelElementImpl implements Metho
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -365,7 +359,6 @@ public class MethodArgumentImpl extends UnicaseModelElementImpl implements Metho
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -389,29 +382,31 @@ public class MethodArgumentImpl extends UnicaseModelElementImpl implements Metho
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ClassesPackage.METHOD_ARGUMENT__TYPE:
-			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT
+					.equals(type);
 		case ClassesPackage.METHOD_ARGUMENT__DIRECTION:
 			return direction != DIRECTION_EDEFAULT;
 		case ClassesPackage.METHOD_ARGUMENT__DEFAULT_VALUE:
-			return DEFAULT_VALUE_EDEFAULT == null ? defaultValue != null : !DEFAULT_VALUE_EDEFAULT.equals(defaultValue);
+			return DEFAULT_VALUE_EDEFAULT == null ? defaultValue != null
+					: !DEFAULT_VALUE_EDEFAULT.equals(defaultValue);
 		case ClassesPackage.METHOD_ARGUMENT__SIGNATURE:
-			return SIGNATURE_EDEFAULT == null ? getSignature() != null : !SIGNATURE_EDEFAULT.equals(getSignature());
+			return SIGNATURE_EDEFAULT == null ? getSignature() != null
+					: !SIGNATURE_EDEFAULT.equals(getSignature());
 		case ClassesPackage.METHOD_ARGUMENT__LABEL:
-			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT
+					.equals(label);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

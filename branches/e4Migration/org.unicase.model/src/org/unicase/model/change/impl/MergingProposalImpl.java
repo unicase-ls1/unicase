@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingProposal;
 import org.unicase.model.rationale.impl.ProposalImpl;
@@ -32,20 +31,19 @@ import org.unicase.model.rationale.impl.ProposalImpl;
  * 
  * @generated
  */
-public class MergingProposalImpl extends ProposalImpl implements MergingProposal {
+public class MergingProposalImpl extends ProposalImpl implements
+		MergingProposal {
 	/**
 	 * The cached value of the '{@link #getPendingOperations() <em>Pending Operations</em>}' containment reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getPendingOperations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AbstractOperation> pendingOperations;
+	protected EList<org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation> pendingOperations;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MergingProposalImpl() {
@@ -54,7 +52,6 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,34 +61,34 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EList<AbstractOperation> getPendingOperations() {
+	public EList<org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation> getPendingOperations() {
 		if (pendingOperations == null) {
-			pendingOperations = new EObjectContainmentEList.Resolving<AbstractOperation>(AbstractOperation.class, this,
-				ChangePackage.MERGING_PROPOSAL__PENDING_OPERATIONS);
+			pendingOperations = new EObjectContainmentEList.Resolving<org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation>(
+					org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation.class,
+					this, ChangePackage.MERGING_PROPOSAL__PENDING_OPERATIONS);
 		}
 		return pendingOperations;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ChangePackage.MERGING_PROPOSAL__PENDING_OPERATIONS:
-			return ((InternalEList<?>) getPendingOperations()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getPendingOperations()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,7 +102,6 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -114,7 +110,8 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 		switch (featureID) {
 		case ChangePackage.MERGING_PROPOSAL__PENDING_OPERATIONS:
 			getPendingOperations().clear();
-			getPendingOperations().addAll((Collection<? extends AbstractOperation>) newValue);
+			getPendingOperations()
+					.addAll((Collection<? extends org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -122,7 +119,6 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -137,7 +133,6 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -14,19 +14,19 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.emfstore.client.model.CompositeOperationHandle;
-import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.Workspace;
-import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.exceptions.InvalidHandleException;
-import org.eclipse.emf.emfstore.client.model.exceptions.UnkownProjectException;
-import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
-import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
-import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.eclipse.emf.emfstore.common.model.ModelFactory;
-import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.emf.emfstore.server.model.versioning.operations.semantic.SemanticCompositeOperation;
+import org.eclipse.emf.emfstore.internal.client.model.CompositeOperationHandle;
+import org.eclipse.emf.emfstore.internal.client.model.ESWorkspaceProviderImpl;
+import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.internal.client.model.Workspace;
+import org.eclipse.emf.emfstore.internal.client.model.exceptions.InvalidHandleException;
+import org.eclipse.emf.emfstore.internal.client.model.exceptions.UnkownProjectException;
+import org.eclipse.emf.emfstore.internal.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.internal.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.internal.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.internal.common.model.ModelFactory;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
+import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.internal.server.model.versioning.operations.semantic.SemanticCompositeOperation;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -45,7 +45,8 @@ public abstract class OperationHandlerBase extends AbstractHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IWorkbenchPage activePage = HandlerUtil.getActiveWorkbenchWindow(event).getActivePage();
+		IWorkbenchPage activePage = HandlerUtil.getActiveWorkbenchWindow(event)
+				.getActivePage();
 		ISelection selection = activePage.getSelection();
 		if (selection != null & selection instanceof IStructuredSelection) {
 
@@ -55,14 +56,18 @@ public abstract class OperationHandlerBase extends AbstractHandler {
 			}
 
 			SemanticCompositeOperation operation = initOperation(structuredSelection);
-			operation.setCompositeName(EcoreUtil.getAnnotation(operation.eClass(), OperationsPackage.eNS_URI, "label"));
-			operation.setCompositeDescription(EcoreUtil.getAnnotation(operation.eClass(), OperationsPackage.eNS_URI,
-				"description"));
+			operation.setCompositeName(EcoreUtil.getAnnotation(
+					operation.eClass(), OperationsPackage.eNS_URI, "label"));
+			operation.setCompositeDescription(EcoreUtil.getAnnotation(
+					operation.eClass(), OperationsPackage.eNS_URI,
+					"description"));
 
 			Project project = getProject(structuredSelection);
-			ExecuteOperationDialog dialog = new ExecuteOperationDialog(operation, project);
+			ExecuteOperationDialog dialog = new ExecuteOperationDialog(
+					operation, project);
 			if (dialog.open() == IDialogConstants.OK_ID) {
-				ModelElementId id = ModelFactory.eINSTANCE.createModelElementId();
+				ModelElementId id = ModelFactory.eINSTANCE
+						.createModelElementId();
 				id.setId(getModelElementId(operation).getId());
 				operation.setModelElementId(id);
 				new SemanticCommand(project, operation).run();
@@ -73,8 +78,10 @@ public abstract class OperationHandlerBase extends AbstractHandler {
 	}
 
 	@SuppressWarnings("unchecked")
-	private ModelElementId getModelElementId(SemanticCompositeOperation operation) {
-		EStructuralFeature feature = operation.eClass().getEStructuralFeatures().get(0);
+	private ModelElementId getModelElementId(
+			SemanticCompositeOperation operation) {
+		EStructuralFeature feature = operation.eClass()
+				.getEStructuralFeatures().get(0);
 		if (feature.isMany()) {
 			return ((List<ModelElementId>) operation.eGet(feature)).get(0);
 		} else {
@@ -83,15 +90,19 @@ public abstract class OperationHandlerBase extends AbstractHandler {
 	}
 
 	/**
-	 * To be implemented by sub classes to assemble operation based on the selection.
+	 * To be implemented by sub classes to assemble operation based on the
+	 * selection.
 	 * 
-	 * @param structuredSelection Selection
+	 * @param structuredSelection
+	 *            Selection
 	 * @return the semantic operation
 	 */
-	protected abstract SemanticCompositeOperation initOperation(IStructuredSelection structuredSelection);
+	protected abstract SemanticCompositeOperation initOperation(
+			IStructuredSelection structuredSelection);
 
 	private Project getProject(IStructuredSelection structuredSelection) {
-		List<Object> elements = SelectionHelper.getSelectedElements(structuredSelection);
+		List<Object> elements = SelectionHelper
+				.getSelectedElements(structuredSelection);
 		for (Object element : elements) {
 			if (element instanceof EObject) {
 				return ModelUtil.getProject((EObject) element);
@@ -113,13 +124,18 @@ public abstract class OperationHandlerBase extends AbstractHandler {
 		/**
 		 * Constructor.
 		 * 
-		 * @param project the project to run the operation on.
-		 * @param semanticOperation the operation to execute.
+		 * @param project
+		 *            the project to run the operation on.
+		 * @param semanticOperation
+		 *            the operation to execute.
 		 */
-		public SemanticCommand(Project project, SemanticCompositeOperation semanticOperation) {
-			if (semanticOperation.getCompositeName() == null || semanticOperation.getCompositeDescription() == null
-				|| semanticOperation.getModelElementId() == null) {
-				throw new IllegalArgumentException("Name, description or modelElementId are not set!");
+		public SemanticCommand(Project project,
+				SemanticCompositeOperation semanticOperation) {
+			if (semanticOperation.getCompositeName() == null
+					|| semanticOperation.getCompositeDescription() == null
+					|| semanticOperation.getModelElementId() == null) {
+				throw new IllegalArgumentException(
+						"Name, description or modelElementId are not set!");
 			}
 			this.project = project;
 			this.semanticOperation = semanticOperation;
@@ -132,16 +148,21 @@ public abstract class OperationHandlerBase extends AbstractHandler {
 		 */
 		@Override
 		protected void doRun() {
-			Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+			Workspace currentWorkspace = ESWorkspaceProviderImpl.getInstance()
+					.getInternalWorkspace();
 			try {
-				ProjectSpace projectSpace = currentWorkspace.getProjectSpace(project);
-				CompositeOperationHandle handle = projectSpace.beginCompositeOperation();
+				ProjectSpace projectSpace = currentWorkspace
+						.getProjectSpace(project);
+				CompositeOperationHandle handle = projectSpace
+						.beginCompositeOperation();
 				semanticOperation.semanticApply(project);
 				try {
 					handle.end(semanticOperation);
 				} catch (InvalidHandleException e) {
-					WorkspaceUtil.logException(
-						"Semantic command failed because of illegal state of composite operation handle!", e);
+					WorkspaceUtil
+							.logException(
+									"Semantic command failed because of illegal state of composite operation handle!",
+									e);
 				}
 
 			} catch (UnkownProjectException e) {

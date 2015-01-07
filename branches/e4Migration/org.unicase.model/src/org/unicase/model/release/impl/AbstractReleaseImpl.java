@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -32,7 +32,8 @@ import org.unicase.model.task.WorkItem;
  * 
  * @generated
  */
-public abstract class AbstractReleaseImpl extends UnicaseModelElementImpl implements AbstractRelease {
+public abstract class AbstractReleaseImpl extends UnicaseModelElementImpl
+		implements AbstractRelease {
 	/**
 	 * The cached value of the '{@link #getIncludedWorkItems() <em>Included Work Items</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -45,7 +46,6 @@ public abstract class AbstractReleaseImpl extends UnicaseModelElementImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AbstractReleaseImpl() {
@@ -54,7 +54,6 @@ public abstract class AbstractReleaseImpl extends UnicaseModelElementImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,50 +63,51 @@ public abstract class AbstractReleaseImpl extends UnicaseModelElementImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<WorkItem> getIncludedWorkItems() {
 		if (includedWorkItems == null) {
-			includedWorkItems = new EObjectWithInverseResolvingEList.ManyInverse<WorkItem>(WorkItem.class, this,
-				ReleasePackage.ABSTRACT_RELEASE__INCLUDED_WORK_ITEMS, TaskPackage.WORK_ITEM__INCLUDING_RELEASES);
+			includedWorkItems = new EObjectWithInverseResolvingEList.ManyInverse<WorkItem>(
+					WorkItem.class, this,
+					ReleasePackage.ABSTRACT_RELEASE__INCLUDED_WORK_ITEMS,
+					TaskPackage.WORK_ITEM__INCLUDING_RELEASES);
 		}
 		return includedWorkItems;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ReleasePackage.ABSTRACT_RELEASE__INCLUDED_WORK_ITEMS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncludedWorkItems())
-				.basicAdd(otherEnd, msgs);
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ReleasePackage.ABSTRACT_RELEASE__INCLUDED_WORK_ITEMS:
-			return ((InternalEList<?>) getIncludedWorkItems()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getIncludedWorkItems()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -121,7 +121,6 @@ public abstract class AbstractReleaseImpl extends UnicaseModelElementImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -130,7 +129,8 @@ public abstract class AbstractReleaseImpl extends UnicaseModelElementImpl implem
 		switch (featureID) {
 		case ReleasePackage.ABSTRACT_RELEASE__INCLUDED_WORK_ITEMS:
 			getIncludedWorkItems().clear();
-			getIncludedWorkItems().addAll((Collection<? extends WorkItem>) newValue);
+			getIncludedWorkItems().addAll(
+					(Collection<? extends WorkItem>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -138,7 +138,6 @@ public abstract class AbstractReleaseImpl extends UnicaseModelElementImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -153,7 +152,6 @@ public abstract class AbstractReleaseImpl extends UnicaseModelElementImpl implem
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

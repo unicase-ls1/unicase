@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -11,17 +11,13 @@ import java.io.IOException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.ecp.common.dnd.ComposedDropAdapter;
-import org.eclipse.emf.ecp.common.dnd.UCDragAdapter;
-import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
-import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
-import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
-import org.eclipse.emf.ecp.common.utilities.CannotMatchUserInProjectException;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.emf.emfstore.client.model.WorkspaceManager;
-import org.eclipse.emf.emfstore.client.model.exceptions.NoCurrentUserException;
-import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.client.ESWorkspace;
+import org.eclipse.emf.emfstore.internal.client.model.ESWorkspaceProviderImpl;
+import org.eclipse.emf.emfstore.internal.client.model.ModelPackage;
+import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.internal.client.model.exceptions.WorkspaceException;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.DialogSettings;
@@ -54,8 +50,9 @@ import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
 /**
- * This view helps managing WorkPackages (sprints) contained in a project. It shows the WorkPackages of active project
- * space (the project currently selected in navigator)
+ * This view helps managing WorkPackages (sprints) contained in a project. It
+ * shows the WorkPackages of active project space (the project currently
+ * selected in navigator)
  * 
  * @author Hodaie
  */
@@ -71,7 +68,8 @@ public class IterationPlanningView extends ViewPart {
 		 * Default constructor.
 		 */
 		public GantAction() {
-			super("Show Gantt Chart", Activator.getImageDescriptor("icons/ganttChart.png"));
+			super("Show Gantt Chart", Activator
+					.getImageDescriptor("icons/ganttChart.png"));
 		}
 
 		/**
@@ -90,7 +88,7 @@ public class IterationPlanningView extends ViewPart {
 
 	private TreeViewer viewer;
 	private WorkpackageContentProvider workpackageContentProvider;
-	private org.eclipse.emf.emfstore.common.model.Project project;
+	private Project project;
 	private DialogSettings settings;
 	private String filename;
 	private Action filterToMyTeam;
@@ -101,7 +99,7 @@ public class IterationPlanningView extends ViewPart {
 	/**
 	 * The constructor.
 	 */
-	public IterationPlanningView() {
+	public IterationPlanningView() throws WorkspaceException {
 		IPath path = Activator.getDefault().getStateLocation();
 		filename = path.append("settings.txt").toOSString();
 		settings = new DialogSettings("Top");
@@ -110,20 +108,16 @@ public class IterationPlanningView extends ViewPart {
 		} catch (IOException e) {
 			// Do nothing.
 		}
-		try {
-			final ECPWorkspace workspace = ECPWorkspaceManager.getInstance().getWorkSpace();
-			workspace.eAdapters().add(new AdapterImpl() {
-				@Override
-				public void notifyChanged(Notification msg) {
-					if ((msg.getFeatureID(ECPWorkspace.class)) == org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT) {
-						initFilters();
-					}
+		ProjectSpace projectSpace = ESWorkspaceProviderImpl.getInstance()
+				.getProjectSpace(null);
+		projectSpace.eAdapters().add(new AdapterImpl() {
+			@Override
+			public void notifyChanged(Notification msg) {
+				if ((msg.getFeatureID(ESWorkspace.class)) == ModelPackage.PROJECT_SPACE__PROJECT) {
+					initFilters();
 				}
-			});
-		} catch (NoWorkspaceException e) {
-			ModelUtil.logException("Failed to receive Project!", e);
-			return;
-		}
+			}
+		});
 	}
 
 	/**
@@ -148,37 +142,35 @@ public class IterationPlanningView extends ViewPart {
 		menuManager.add(new GantAction());
 
 		// Create the help context id for the viewer's control
-		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(), "org.unicase.ui.treeview.viewer");
+		PlatformUI.getWorkbench().getHelpSystem()
+				.setHelp(viewer.getControl(), "org.unicase.ui.treeview.viewer");
 
 		hookDoubleClickAction();
 		addDNDSupport();
 
-		// respond to change of active ProjectSpace
-		try {
-			final ECPWorkspace workspace = ECPWorkspaceManager.getInstance().getWorkSpace();
-			workspace.eAdapters().add(new AdapterImpl() {
-				@Override
-				public void notifyChanged(Notification msg) {
-					if ((msg.getFeatureID(ECPWorkspace.class)) == org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT) {
-						if (workspace.getActiveProject() != null) {
-							project = (Project) workspace.getActiveProject().getRootContainer();
-						} else {
-							project = null;
-						}
-						setInput();
+		final ProjectSpace projectSpace = ESWorkspaceProviderImpl.getInstance()
+				.getProjectSpace(null);
+		projectSpace.eAdapters().add(new AdapterImpl() {
+			@Override
+			public void notifyChanged(Notification msg) {
+				if ((msg.getFeatureID(ESWorkspace.class)) == ModelPackage.PROJECT_SPACE__PROJECT) {
+					if (projectSpace != null) {
+						project = (Project) projectSpace.getProject()
+								.eContainer();
+					} else {
+						project = null;
 					}
-					super.notifyChanged(msg);
+					setInput();
 				}
-			});
-
-			// set input when showing the view for the first time.
-			if (workspace.getActiveProject() != null) {
-				project = (Project) workspace.getActiveProject().getRootContainer();
-			} else {
-				project = null;
+				super.notifyChanged(msg);
 			}
-		} catch (NoWorkspaceException e) {
-			ModelUtil.logException("Failed to receive Project!", e);
+		});
+
+		// set input when showing the view for the first time.
+		if (projectSpace.getProject() != null) {
+			project = (Project) projectSpace.getProject().eContainer();
+		} else {
+			project = null;
 		}
 
 		setInput();
@@ -188,7 +180,8 @@ public class IterationPlanningView extends ViewPart {
 	private void initFilters() {
 		User user;
 		try {
-			user = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance().getCurrentWorkspace());
+			user = OrgUnitHelper.getCurrentUser(ESWorkspaceProviderImpl
+					.getInstance().getWorkspace());
 			createTeamFilter(user);
 			createUserFilter(user);
 		} catch (NoCurrentUserException e) {
@@ -212,7 +205,8 @@ public class IterationPlanningView extends ViewPart {
 				}
 
 			};
-			filterToMe.setImageDescriptor(Activator.getImageDescriptor("/icons/filtertouser.png"));
+			filterToMe.setImageDescriptor(Activator
+					.getImageDescriptor("/icons/filtertouser.png"));
 		}
 		if (user == null) {
 			setUserFilter(false);
@@ -236,7 +230,8 @@ public class IterationPlanningView extends ViewPart {
 				}
 
 			};
-			filterToMyTeam.setImageDescriptor(Activator.getImageDescriptor("/icons/filtertomyteam.png"));
+			filterToMyTeam.setImageDescriptor(Activator
+					.getImageDescriptor("/icons/filtertomyteam.png"));
 		}
 		if (user == null) {
 			setTeamFilter(false);
@@ -253,7 +248,8 @@ public class IterationPlanningView extends ViewPart {
 	/**
 	 * Sets if the user filter is turned on.
 	 * 
-	 * @param checked if the filter is turned on.
+	 * @param checked
+	 *            if the filter is turned on.
 	 */
 	protected void setUserFilter(boolean checked) {
 		if (checked) {
@@ -269,7 +265,8 @@ public class IterationPlanningView extends ViewPart {
 	/**
 	 * Sets the team filter.
 	 * 
-	 * @param checked if the team filter is turned on.
+	 * @param checked
+	 *            if the team filter is turned on.
 	 */
 	protected void setTeamFilter(boolean checked) {
 		if (checked) {
@@ -283,11 +280,14 @@ public class IterationPlanningView extends ViewPart {
 	}
 
 	private void createTreeViewer(Composite parent) {
-		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION);
+		viewer = new TreeViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL
+				| SWT.FULL_SELECTION);
 		workpackageContentProvider = new WorkpackageContentProvider();
 		viewer.setContentProvider(workpackageContentProvider);
-		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
-		viewer.setLabelProvider(new DecoratingLabelProvider(new LabelProvider(), decoratorManager.getLabelDecorator()));
+		IDecoratorManager decoratorManager = PlatformUI.getWorkbench()
+				.getDecoratorManager();
+		viewer.setLabelProvider(new DecoratingLabelProvider(
+				new LabelProvider(), decoratorManager.getLabelDecorator()));
 
 		createColumns(viewer);
 
@@ -313,13 +313,15 @@ public class IterationPlanningView extends ViewPart {
 		// emfColumnLabelProvider);
 
 		// annotated model element
-		TreeViewerColumn tclmAnnotatedME = new TreeViewerColumn(viewer, SWT.NONE);
+		TreeViewerColumn tclmAnnotatedME = new TreeViewerColumn(viewer,
+				SWT.NONE);
 		tclmAnnotatedME.getColumn().setText("Annotated");
 		tclmAnnotatedME.getColumn().setWidth(100);
 		TaskObjectLabelProvider taskObjectLabelProvider = new TaskObjectLabelProvider();
 		tclmAnnotatedME.setLabelProvider(taskObjectLabelProvider);
 		tclmAnnotatedME.setEditingSupport(new TaskObjectEditingSupport(viewer));
-		new TreeViewerColumnSorter(viewer, tclmAnnotatedME, taskObjectLabelProvider);
+		new TreeViewerColumnSorter(viewer, tclmAnnotatedME,
+				taskObjectLabelProvider);
 
 		// Assignee
 		TreeViewerColumn tclmAssignedTo = new TreeViewerColumn(viewer, SWT.NONE);
@@ -328,14 +330,15 @@ public class IterationPlanningView extends ViewPart {
 		AssignedToLabelProvider assignedToLabelProvider = new AssignedToLabelProvider();
 		tclmAssignedTo.setLabelProvider(assignedToLabelProvider);
 		tclmAssignedTo.setEditingSupport(new AssignedToEditingSupport(viewer));
-		new TreeViewerColumnSorter(viewer, tclmAssignedTo, assignedToLabelProvider);
+		new TreeViewerColumnSorter(viewer, tclmAssignedTo,
+				assignedToLabelProvider);
 		// Status of model elements
 
 	}
 
 	/**
-	 * . This sets the input of viewer on change of active ProjectSpace. The project is a field being set when
-	 * activeProjectSpace is changed
+	 * . This sets the input of viewer on change of active ProjectSpace. The
+	 * project is a field being set when activeProjectSpace is changed
 	 */
 	protected void setInput() {
 		viewer.setInput(project);
@@ -356,7 +359,8 @@ public class IterationPlanningView extends ViewPart {
 				TreeSelection selection = (TreeSelection) viewer.getSelection();
 				Object object = selection.getFirstElement();
 				if (object instanceof UnicaseModelElement) {
-					UnicaseActionHelper.openModelElement((UnicaseModelElement) object, viewId);
+					UnicaseActionHelper.openModelElement(
+							(UnicaseModelElement) object, viewId);
 				}
 			}
 
@@ -375,8 +379,10 @@ public class IterationPlanningView extends ViewPart {
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
 
-		viewer.addDragSupport(dndOperations, transfers, new UCDragAdapter(viewer));
-		viewer.addDropSupport(dndOperations, transfers, new ComposedDropAdapter(viewer));
+		viewer.addDragSupport(dndOperations, transfers, new UCDragAdapter(
+				viewer));
+		viewer.addDropSupport(dndOperations, transfers,
+				new ComposedDropAdapter(viewer));
 
 	}
 

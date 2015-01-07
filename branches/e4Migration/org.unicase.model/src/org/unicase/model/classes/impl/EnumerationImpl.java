@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -25,11 +25,11 @@ import org.unicase.model.classes.Literal;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.classes.impl.EnumerationImpl#getLiterals <em>Literals</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.EnumerationImpl#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.EnumerationImpl#getLiterals <em>Literals</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.EnumerationImpl#getAttributes <em>Attributes</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class EnumerationImpl extends PackageElementImpl implements Enumeration {
@@ -44,9 +44,9 @@ public class EnumerationImpl extends PackageElementImpl implements Enumeration {
 	protected EList<Literal> literals;
 
 	/**
-	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getAttributes()
 	 * @generated
 	 * @ordered
@@ -55,7 +55,6 @@ public class EnumerationImpl extends PackageElementImpl implements Enumeration {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EnumerationImpl() {
@@ -64,7 +63,6 @@ public class EnumerationImpl extends PackageElementImpl implements Enumeration {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,66 +72,70 @@ public class EnumerationImpl extends PackageElementImpl implements Enumeration {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Literal> getLiterals() {
 		if (literals == null) {
-			literals = new EObjectContainmentWithInverseEList.Resolving<Literal>(Literal.class, this,
-				ClassesPackage.ENUMERATION__LITERALS, ClassesPackage.LITERAL__ENUMERATION);
+			literals = new EObjectContainmentWithInverseEList.Resolving<Literal>(
+					Literal.class, this, ClassesPackage.ENUMERATION__LITERALS,
+					ClassesPackage.LITERAL__ENUMERATION);
 		}
 		return literals;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Attribute> getAttributes() {
 		if (attributes == null) {
-			attributes = new EObjectWithInverseResolvingEList<Attribute>(Attribute.class, this,
-				ClassesPackage.ENUMERATION__ATTRIBUTES, ClassesPackage.ATTRIBUTE__IMPLEMENTATION_ENUMERATION);
+			attributes = new EObjectWithInverseResolvingEList<Attribute>(
+					Attribute.class, this,
+					ClassesPackage.ENUMERATION__ATTRIBUTES,
+					ClassesPackage.ATTRIBUTE__IMPLEMENTATION_ENUMERATION);
 		}
 		return attributes;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ClassesPackage.ENUMERATION__LITERALS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getLiterals()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getLiterals())
+					.basicAdd(otherEnd, msgs);
 		case ClassesPackage.ENUMERATION__ATTRIBUTES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAttributes()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAttributes())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ClassesPackage.ENUMERATION__LITERALS:
-			return ((InternalEList<?>) getLiterals()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getLiterals()).basicRemove(otherEnd,
+					msgs);
 		case ClassesPackage.ENUMERATION__ATTRIBUTES:
-			return ((InternalEList<?>) getAttributes()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getAttributes()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -149,7 +151,6 @@ public class EnumerationImpl extends PackageElementImpl implements Enumeration {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -170,7 +171,6 @@ public class EnumerationImpl extends PackageElementImpl implements Enumeration {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -188,7 +188,6 @@ public class EnumerationImpl extends PackageElementImpl implements Enumeration {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

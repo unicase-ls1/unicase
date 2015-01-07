@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -24,14 +24,15 @@ import org.unicase.model.impl.UnicaseModelElementImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.activity.impl.ActivityObjectImpl#getIncomingTransitions <em>Incoming Transitions</em>}</li>
- * <li>{@link org.unicase.model.activity.impl.ActivityObjectImpl#getOutgoingTransitions <em>Outgoing Transitions</em>}</li>
+ *   <li>{@link org.unicase.model.activity.impl.ActivityObjectImpl#getIncomingTransitions <em>Incoming Transitions</em>}</li>
+ *   <li>{@link org.unicase.model.activity.impl.ActivityObjectImpl#getOutgoingTransitions <em>Outgoing Transitions</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public abstract class ActivityObjectImpl extends UnicaseModelElementImpl implements ActivityObject {
+public abstract class ActivityObjectImpl extends UnicaseModelElementImpl
+		implements ActivityObject {
 	/**
 	 * The cached value of the '{@link #getIncomingTransitions() <em>Incoming Transitions</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -54,7 +55,6 @@ public abstract class ActivityObjectImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ActivityObjectImpl() {
@@ -63,7 +63,6 @@ public abstract class ActivityObjectImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,68 +72,71 @@ public abstract class ActivityObjectImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Transition> getIncomingTransitions() {
 		if (incomingTransitions == null) {
-			incomingTransitions = new EObjectWithInverseResolvingEList<Transition>(Transition.class, this,
-				ActivityPackage.ACTIVITY_OBJECT__INCOMING_TRANSITIONS, ActivityPackage.TRANSITION__TARGET);
+			incomingTransitions = new EObjectWithInverseResolvingEList<Transition>(
+					Transition.class, this,
+					ActivityPackage.ACTIVITY_OBJECT__INCOMING_TRANSITIONS,
+					ActivityPackage.TRANSITION__TARGET);
 		}
 		return incomingTransitions;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Transition> getOutgoingTransitions() {
 		if (outgoingTransitions == null) {
-			outgoingTransitions = new EObjectWithInverseResolvingEList<Transition>(Transition.class, this,
-				ActivityPackage.ACTIVITY_OBJECT__OUTGOING_TRANSITIONS, ActivityPackage.TRANSITION__SOURCE);
+			outgoingTransitions = new EObjectWithInverseResolvingEList<Transition>(
+					Transition.class, this,
+					ActivityPackage.ACTIVITY_OBJECT__OUTGOING_TRANSITIONS,
+					ActivityPackage.TRANSITION__SOURCE);
 		}
 		return outgoingTransitions;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ActivityPackage.ACTIVITY_OBJECT__INCOMING_TRANSITIONS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncomingTransitions()).basicAdd(otherEnd,
-				msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIncomingTransitions())
+					.basicAdd(otherEnd, msgs);
 		case ActivityPackage.ACTIVITY_OBJECT__OUTGOING_TRANSITIONS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOutgoingTransitions()).basicAdd(otherEnd,
-				msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getOutgoingTransitions())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ActivityPackage.ACTIVITY_OBJECT__INCOMING_TRANSITIONS:
-			return ((InternalEList<?>) getIncomingTransitions()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getIncomingTransitions()).basicRemove(
+					otherEnd, msgs);
 		case ActivityPackage.ACTIVITY_OBJECT__OUTGOING_TRANSITIONS:
-			return ((InternalEList<?>) getOutgoingTransitions()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getOutgoingTransitions()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -150,7 +152,6 @@ public abstract class ActivityObjectImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -159,11 +160,13 @@ public abstract class ActivityObjectImpl extends UnicaseModelElementImpl impleme
 		switch (featureID) {
 		case ActivityPackage.ACTIVITY_OBJECT__INCOMING_TRANSITIONS:
 			getIncomingTransitions().clear();
-			getIncomingTransitions().addAll((Collection<? extends Transition>) newValue);
+			getIncomingTransitions().addAll(
+					(Collection<? extends Transition>) newValue);
 			return;
 		case ActivityPackage.ACTIVITY_OBJECT__OUTGOING_TRANSITIONS:
 			getOutgoingTransitions().clear();
-			getOutgoingTransitions().addAll((Collection<? extends Transition>) newValue);
+			getOutgoingTransitions().addAll(
+					(Collection<? extends Transition>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -171,7 +174,6 @@ public abstract class ActivityObjectImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -189,16 +191,17 @@ public abstract class ActivityObjectImpl extends UnicaseModelElementImpl impleme
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case ActivityPackage.ACTIVITY_OBJECT__INCOMING_TRANSITIONS:
-			return incomingTransitions != null && !incomingTransitions.isEmpty();
+			return incomingTransitions != null
+					&& !incomingTransitions.isEmpty();
 		case ActivityPackage.ACTIVITY_OBJECT__OUTGOING_TRANSITIONS:
-			return outgoingTransitions != null && !outgoingTransitions.isEmpty();
+			return outgoingTransitions != null
+					&& !outgoingTransitions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

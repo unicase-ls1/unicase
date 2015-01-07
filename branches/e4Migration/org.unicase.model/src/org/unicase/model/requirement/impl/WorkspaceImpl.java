@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -24,10 +24,10 @@ import org.unicase.model.requirement.Workspace;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.requirement.impl.WorkspaceImpl#getSystemFunctions <em>System Functions</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.WorkspaceImpl#getSystemFunctions <em>System Functions</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class WorkspaceImpl extends UnicaseModelElementImpl implements Workspace {
@@ -43,7 +43,6 @@ public class WorkspaceImpl extends UnicaseModelElementImpl implements Workspace 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected WorkspaceImpl() {
@@ -52,7 +51,6 @@ public class WorkspaceImpl extends UnicaseModelElementImpl implements Workspace 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -62,49 +60,51 @@ public class WorkspaceImpl extends UnicaseModelElementImpl implements Workspace 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<SystemFunction> getSystemFunctions() {
 		if (systemFunctions == null) {
-			systemFunctions = new EObjectWithInverseResolvingEList<SystemFunction>(SystemFunction.class, this,
-				RequirementPackage.WORKSPACE__SYSTEM_FUNCTIONS, RequirementPackage.SYSTEM_FUNCTION__WORKSPACE);
+			systemFunctions = new EObjectWithInverseResolvingEList<SystemFunction>(
+					SystemFunction.class, this,
+					RequirementPackage.WORKSPACE__SYSTEM_FUNCTIONS,
+					RequirementPackage.SYSTEM_FUNCTION__WORKSPACE);
 		}
 		return systemFunctions;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.WORKSPACE__SYSTEM_FUNCTIONS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSystemFunctions()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSystemFunctions())
+					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RequirementPackage.WORKSPACE__SYSTEM_FUNCTIONS:
-			return ((InternalEList<?>) getSystemFunctions()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getSystemFunctions()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -118,7 +118,6 @@ public class WorkspaceImpl extends UnicaseModelElementImpl implements Workspace 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -127,7 +126,8 @@ public class WorkspaceImpl extends UnicaseModelElementImpl implements Workspace 
 		switch (featureID) {
 		case RequirementPackage.WORKSPACE__SYSTEM_FUNCTIONS:
 			getSystemFunctions().clear();
-			getSystemFunctions().addAll((Collection<? extends SystemFunction>) newValue);
+			getSystemFunctions().addAll(
+					(Collection<? extends SystemFunction>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -135,7 +135,6 @@ public class WorkspaceImpl extends UnicaseModelElementImpl implements Workspace 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -150,7 +149,6 @@ public class WorkspaceImpl extends UnicaseModelElementImpl implements Workspace 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

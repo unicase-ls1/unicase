@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -13,29 +13,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.emfstore.client.model.ModelFactory;
-import org.eclipse.emf.emfstore.client.model.ServerInfo;
-import org.eclipse.emf.emfstore.client.model.connectionmanager.KeyStoreManager;
-import org.eclipse.emf.emfstore.client.model.exceptions.CertificateStoreException;
-import org.eclipse.emf.emfstore.client.model.util.ConfigurationProvider;
-import org.eclipse.emf.emfstore.common.model.util.FileUtil;
+import org.eclipse.emf.emfstore.client.ESServer;
+import org.eclipse.emf.emfstore.client.exceptions.ESCertificateException;
+import org.eclipse.emf.emfstore.client.provider.ESClientConfigurationProvider;
+import org.eclipse.emf.emfstore.client.provider.ESKeyStoreManager;
+import org.eclipse.emf.emfstore.internal.client.model.ModelFactory;
+import org.eclipse.emf.emfstore.internal.client.model.ServerInfo;
+import org.eclipse.emf.emfstore.internal.client.model.connectionmanager.KeyStoreManager;
+import org.eclipse.emf.emfstore.internal.common.model.util.FileUtil;
 import org.osgi.framework.Bundle;
 
 /**
- * Default configuration provider for unicase. At the moment default {@link ServerInfo} can be set and certificates can
- * be initialized.
+ * Default configuration provider for unicase. At the moment default
+ * {@link ServerInfo} can be set and certificates can be initialized.
  * 
  * @author wesendon
  */
-public class UnicaseConfigurationProvider implements ConfigurationProvider {
+public class UnicaseConfigurationProvider implements
+		ESClientConfigurationProvider {
 
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.workspace.util.ConfigurationProvider#getDefaultServerInfos()
 	 */
-	public List<ServerInfo> getDefaultServerInfos() {
-		List<ServerInfo> serverInfos = new ArrayList<ServerInfo>();
+	public List<ESServer> getDefaultServerInfos() {
+		List<ESServer> serverInfos = new ArrayList<ESServer>();
 
 		if (isUnicaseReleaseVersion()) {
 			serverInfos.add(getReleaseServerInfo());
@@ -46,62 +49,57 @@ public class UnicaseConfigurationProvider implements ConfigurationProvider {
 		return (serverInfos.size() == 0) ? null : serverInfos;
 	}
 
-	private static ServerInfo getReleaseServerInfo() {
+	private static ESServer getReleaseServerInfo() {
 		ServerInfo serverInfo = ModelFactory.eINSTANCE.createServerInfo();
 		serverInfo.setName("unicase Server");
 		serverInfo.setPort(443);
 		serverInfo.setUrl("unicase.in.tum.de");
-		return serverInfo;
+		return (ESServer) serverInfo;
 	}
 
 	private static boolean isUnicaseReleaseVersion() {
 		if (isInternalUnicaseReleaseVersion()) {
 			return false;
 		}
-		Bundle unicaseBundle = Platform.getBundle("org.unicase.ui.unicasecommon");
-		String unicaseVersionString = (String) unicaseBundle.getHeaders().get(
-			org.osgi.framework.Constants.BUNDLE_VERSION);
+		Bundle unicaseBundle = Platform
+				.getBundle("org.unicase.ui.unicasecommon");
+		String unicaseVersionString = unicaseBundle.getHeaders().get(
+				org.osgi.framework.Constants.BUNDLE_VERSION);
 		return !unicaseVersionString.endsWith("qualifier");
 	}
 
 	private static boolean isInternalUnicaseReleaseVersion() {
-		Bundle unicaseBundle = Platform.getBundle("org.unicase.ui.unicasecommon");
-		String unicaseVersionString = (String) unicaseBundle.getHeaders().get(
-			org.osgi.framework.Constants.BUNDLE_VERSION);
+		Bundle unicaseBundle = Platform
+				.getBundle("org.unicase.ui.unicasecommon");
+		String unicaseVersionString = unicaseBundle.getHeaders().get(
+				org.osgi.framework.Constants.BUNDLE_VERSION);
 		return unicaseVersionString.endsWith("internal");
 	}
 
-	private static ServerInfo getInternalServerInfo() {
+	private static ESServer getInternalServerInfo() {
 		ServerInfo serverInfo = ModelFactory.eINSTANCE.createServerInfo();
 		serverInfo.setName("unicase Developer Server");
 		serverInfo.setPort(8080);
 		serverInfo.setUrl("unicase-internal2.informatik.tu-muenchen.de");
-		return serverInfo;
+		return (ESServer) serverInfo;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.util.ConfigurationProvider#initDefaultCertificates(org.unicase.workspace.connectionmanager.KeyStoreManager)
-	 */
-	public void initDefaultCertificates(KeyStoreManager keyStoreManager) {
+	public void initDefaultCertificates(ESKeyStoreManager keyStoreManager) {
 		try {
-			// TODO: add certificate rather then replacing the keystore and
-			// reloading:
-			// if default certificate is not contained in keystore, keystore
-			// will be deleted and recopied from the
-			// plugin. This is done, because one assumes that the default key is
-			// in the plugin's keystore. It would
-			// be nicer to add the default certificate to the given keystore.
-			if (keyStoreManager.getDefaultCertificate().equals(KeyStoreManager.DEFAULT_CERTIFICATE)) {
-				File clientKeyTarget = new File(keyStoreManager.getPathToKeyStore());
+			if (keyStoreManager.getDefaultCertificate().equals(
+					KeyStoreManager.DEFAULT_CERTIFICATE)) {
+				File clientKeyTarget = new File(
+						((KeyStoreManager) keyStoreManager).getPathToKeyStore());
 				clientKeyTarget.delete();
-				InputStream inputStream = getClass().getResourceAsStream("/keystore/" + KeyStoreManager.KEYSTORENAME);
+				InputStream inputStream = getClass().getResourceAsStream(
+						"/keystore/" + KeyStoreManager.KEYSTORENAME);
 				FileUtil.copyFile(inputStream, clientKeyTarget);
-				keyStoreManager.reloadKeyStore();
+				((KeyStoreManager) keyStoreManager).reloadKeyStore();
 			}
-		} catch (CertificateStoreException e) {
+		} catch (ESCertificateException e) {
+
 		} catch (IOException e) {
+
 		}
 	}
 }

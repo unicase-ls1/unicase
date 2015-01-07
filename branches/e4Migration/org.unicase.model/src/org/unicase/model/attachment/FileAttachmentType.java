@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -15,15 +15,14 @@ import org.eclipse.emf.common.util.Enumerator;
 /**
  * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>File Attachment Type</b></em>',
  * and utility methods for working with them. <!-- end-user-doc -->
- * 
  * @see org.unicase.model.attachment.AttachmentPackage#getFileAttachmentType()
  * @model
  * @generated
  */
 public enum FileAttachmentType implements Enumerator {
 	/**
-	 * The '<em><b>BINARY</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>BINARY</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #BINARY_VALUE
 	 * @generated
 	 * @ordered
@@ -31,8 +30,8 @@ public enum FileAttachmentType implements Enumerator {
 	BINARY(0, "BINARY", "BINARY"),
 
 	/**
-	 * The '<em><b>IMAGE</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>IMAGE</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #IMAGE_VALUE
 	 * @generated
 	 * @ordered
@@ -40,8 +39,8 @@ public enum FileAttachmentType implements Enumerator {
 	IMAGE(1, "IMAGE", "IMAGE"),
 
 	/**
-	 * The '<em><b>AUDIO</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>AUDIO</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #AUDIO_VALUE
 	 * @generated
 	 * @ordered
@@ -49,8 +48,8 @@ public enum FileAttachmentType implements Enumerator {
 	AUDIO(2, "AUDIO", "AUDIO"),
 
 	/**
-	 * The '<em><b>VIDEO</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The '<em><b>VIDEO</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #VIDEO_VALUE
 	 * @generated
 	 * @ordered
@@ -58,13 +57,13 @@ public enum FileAttachmentType implements Enumerator {
 	VIDEO(3, "VIDEO", "VIDEO");
 
 	/**
-	 * The '<em><b>BINARY</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>BINARY</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>BINARY</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #BINARY
 	 * @model
 	 * @generated
@@ -73,13 +72,13 @@ public enum FileAttachmentType implements Enumerator {
 	public static final int BINARY_VALUE = 0;
 
 	/**
-	 * The '<em><b>IMAGE</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>IMAGE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>IMAGE</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #IMAGE
 	 * @model
 	 * @generated
@@ -88,13 +87,13 @@ public enum FileAttachmentType implements Enumerator {
 	public static final int IMAGE_VALUE = 1;
 
 	/**
-	 * The '<em><b>AUDIO</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>AUDIO</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>AUDIO</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #AUDIO
 	 * @model
 	 * @generated
@@ -103,13 +102,13 @@ public enum FileAttachmentType implements Enumerator {
 	public static final int AUDIO_VALUE = 2;
 
 	/**
-	 * The '<em><b>VIDEO</b></em>' literal value. <!-- begin-user-doc -->
+	 * The '<em><b>VIDEO</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>VIDEO</b></em>' literal object isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #VIDEO
 	 * @model
 	 * @generated
@@ -123,20 +122,22 @@ public enum FileAttachmentType implements Enumerator {
 	 * 
 	 * @generated
 	 */
-	private static final FileAttachmentType[] VALUES_ARRAY = new FileAttachmentType[] { BINARY, IMAGE, AUDIO, VIDEO, };
+	private static final FileAttachmentType[] VALUES_ARRAY = new FileAttachmentType[] {
+			BINARY, IMAGE, AUDIO, VIDEO, };
 
 	/**
-	 * A public read-only list of all the '<em><b>File Attachment Type</b></em>' enumerators. <!-- begin-user-doc -->
+	 * A public read-only list of all the '<em><b>File Attachment Type</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public static final List<FileAttachmentType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<FileAttachmentType> VALUES = Collections
+			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>File Attachment Type</b></em>' literal with the specified literal value. <!-- begin-user-doc
+	 * Returns the '<em><b>File Attachment Type</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static FileAttachmentType get(String literal) {
@@ -150,9 +151,9 @@ public enum FileAttachmentType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>File Attachment Type</b></em>' literal with the specified name. <!-- begin-user-doc --> <!--
+	 * Returns the '<em><b>File Attachment Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static FileAttachmentType getByName(String name) {
@@ -166,9 +167,9 @@ public enum FileAttachmentType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>File Attachment Type</b></em>' literal with the specified integer value. <!-- begin-user-doc
+	 * Returns the '<em><b>File Attachment Type</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static FileAttachmentType get(int value) {
@@ -187,28 +188,25 @@ public enum FileAttachmentType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private FileAttachmentType(int value, String name, String literal) {
@@ -219,7 +217,6 @@ public enum FileAttachmentType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getValue() {
@@ -228,7 +225,6 @@ public enum FileAttachmentType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -237,7 +233,6 @@ public enum FileAttachmentType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
@@ -245,9 +240,9 @@ public enum FileAttachmentType implements Enumerator {
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation. <!-- begin-user-doc --> <!--
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

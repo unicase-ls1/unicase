@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -11,9 +11,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
-import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
-import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.internal.client.model.ESWorkspaceProviderImpl;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.nebula.widgets.ganttchart.GanttChart;
@@ -58,7 +57,8 @@ public class GantChart {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent The parent shell
+	 * @param parent
+	 *            The parent shell
 	 */
 	public GantChart(Composite parent) {
 
@@ -105,7 +105,8 @@ public class GantChart {
 		// is a must or you won't see a thing!)
 		left.setGanttChart(chart);
 
-		TreeViewer viewer = new TreeViewer(left, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.FULL_SELECTION);
+		TreeViewer viewer = new TreeViewer(left, SWT.BORDER | SWT.V_SCROLL
+				| SWT.H_SCROLL | SWT.FULL_SELECTION);
 		Tree tree = viewer.getTree();
 		tree.setHeaderVisible(true);
 		tree.setLinesVisible(true);
@@ -117,12 +118,8 @@ public class GantChart {
 		tclmWorkItem.setLabelProvider(emfColumnLabelProvider);
 
 		viewer.setContentProvider(new GantItemProvider());
-		try {
-			viewer.setInput(ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject().getRootContainer());
-		} catch (NoWorkspaceException e) {
-			ModelUtil.logException("Failed to receive Project!", e);
-		}
-		// viewer.expandAll();
+		viewer.setInput(ESWorkspaceProviderImpl.getInstance().getWorkspace()
+				.getLocalProject((EObject) parent));
 
 		TreeItem[] items = tree.getItems();
 
@@ -164,7 +161,8 @@ public class GantChart {
 			end.setTime(endDate);
 		}
 
-		GanttEvent ganttEvent = new GanttEvent(chart, workPackage.getName(), start, end, 0);
+		GanttEvent ganttEvent = new GanttEvent(chart, workPackage.getName(),
+				start, end, 0);
 		if (ge != null) {
 			ganttComposite.addDependency(ge, ganttEvent);
 		}
@@ -186,7 +184,8 @@ public class GantChart {
 			end.setTime(endDate);
 		}
 
-		GanttEvent ganttEvent = new GanttEvent(chart, workPackage.getName(), start, end, 0);
+		GanttEvent ganttEvent = new GanttEvent(chart, workPackage.getName(),
+				start, end, 0);
 		parent.addScopeEvent(ganttEvent);
 		return ganttEvent;
 	}

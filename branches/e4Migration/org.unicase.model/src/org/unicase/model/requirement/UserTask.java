@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -11,16 +11,17 @@ import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>User Task</b></em>'. <!-- end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.requirement.UserTask#getInitiatingActor <em>Initiating Actor</em>}</li>
- * <li>{@link org.unicase.model.requirement.UserTask#getParticipatingActors <em>Participating Actors</em>}</li>
- * <li>{@link org.unicase.model.requirement.UserTask#getRealizingUseCases <em>Realizing Use Cases</em>}</li>
- * <li>{@link org.unicase.model.requirement.UserTask#getNonFunctionalRequirements <em>Non Functional Requirements</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UserTask#getInitiatingActor <em>Initiating Actor</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UserTask#getParticipatingActors <em>Participating Actors</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UserTask#getRealizingUseCases <em>Realizing Use Cases</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UserTask#getNonFunctionalRequirements <em>Non Functional Requirements</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.model.requirement.RequirementPackage#getUserTask()
  * @model
  * @generated
@@ -46,9 +47,8 @@ public interface UserTask extends UnicaseModelElement {
 	Actor getInitiatingActor();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.requirement.UserTask#getInitiatingActor
-	 * <em>Initiating Actor</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.requirement.UserTask#getInitiatingActor <em>Initiating Actor</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Initiating Actor</em>' reference.
 	 * @see #getInitiatingActor()
 	 * @generated

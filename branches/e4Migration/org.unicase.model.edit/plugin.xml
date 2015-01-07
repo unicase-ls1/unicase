@@ -132,6 +132,19 @@
            uri="http://unicase.org/model/profile">
      </factory>
   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated model -->
+      <factory
+            uri="http://unicase.org/model/util"
+            class="org.unicase.model.util.provider.UtilItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
   <extension
         point="org.eclipse.emf.edit.itemProviderAdapterFactories">
      <factory
@@ -140,11 +153,19 @@
            uri="http://unicase.org/model/activity">
      </factory>
   </extension>
-  <extension
-        point="org.eclipse.emf.emfstore.server.model.edit.customOperationLabelProvider">
-     <provider
-           class="org.unicase.model.task.provider.ActionItemResolvedOperationProvider">
-     </provider>
-  </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated model -->
+      <factory
+            uri="http://unicase.org/model/release"
+            class="org.unicase.model.release.provider.ReleaseItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
 </plugin>
 

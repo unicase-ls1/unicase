@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -9,32 +9,37 @@ package org.unicase.model.attachment.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.emfstore.server.model.FileIdentifier;
-import org.eclipse.emf.emfstore.server.model.ModelFactory;
+import org.eclipse.emf.emfstore.internal.server.model.FileIdentifier;
+import org.eclipse.emf.emfstore.internal.server.model.ModelFactory;
 import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.attachment.FileAttachmentType;
 import org.unicase.model.impl.AttachmentImpl;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>File Attachment</b></em>'. <!-- end-user-doc
- * -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>File Attachment</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.attachment.impl.FileAttachmentImpl#getFileName <em>File Name</em>}</li>
- * <li>{@link org.unicase.model.attachment.impl.FileAttachmentImpl#getFileHash <em>File Hash</em>}</li>
- * <li>{@link org.unicase.model.attachment.impl.FileAttachmentImpl#getFileID <em>File ID</em>}</li>
- * <li>{@link org.unicase.model.attachment.impl.FileAttachmentImpl#getFileSize <em>File Size</em>}</li>
+ * <li>{@link org.unicase.model.attachment.impl.FileAttachmentImpl#getFileName
+ * <em>File Name</em>}</li>
+ * <li>{@link org.unicase.model.attachment.impl.FileAttachmentImpl#getFileHash
+ * <em>File Hash</em>}</li>
+ * <li>{@link org.unicase.model.attachment.impl.FileAttachmentImpl#getFileID
+ * <em>File ID</em>}</li>
+ * <li>{@link org.unicase.model.attachment.impl.FileAttachmentImpl#getFileSize
+ * <em>File Size</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment {
+public class FileAttachmentImpl extends AttachmentImpl implements
+		FileAttachment {
 	/**
-	 * The default value of the '{@link #getFileName() <em>File Name</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #getFileName() <em>File Name</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getFileName()
 	 * @generated
@@ -43,8 +48,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	protected static final String FILE_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFileName() <em>File Name</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getFileName() <em>File Name</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getFileName()
 	 * @generated
@@ -53,8 +58,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	protected String fileName = FILE_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getFileHash() <em>File Hash</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #getFileHash() <em>File Hash</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getFileHash()
 	 * @generated
@@ -63,8 +68,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	protected static final String FILE_HASH_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFileHash() <em>File Hash</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getFileHash() <em>File Hash</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getFileHash()
 	 * @generated
@@ -73,8 +78,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	protected String fileHash = FILE_HASH_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getFileID() <em>File ID</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #getFileID() <em>File ID</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getFileID()
 	 * @generated
@@ -83,8 +88,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	protected static final String FILE_ID_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFileID() <em>File ID</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getFileID() <em>File ID</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getFileID()
 	 * @generated
@@ -93,8 +98,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	protected String fileID = FILE_ID_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getFileSize() <em>File Size</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #getFileSize() <em>File Size</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getFileSize()
 	 * @generated
@@ -103,8 +108,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	protected static final long FILE_SIZE_EDEFAULT = 0L;
 
 	/**
-	 * The cached value of the '{@link #getFileSize() <em>File Size</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getFileSize() <em>File Size</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getFileSize()
 	 * @generated
@@ -113,8 +118,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	protected long fileSize = FILE_SIZE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getFileType() <em>File Type</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The default value of the '{@link #getFileType() <em>File Type</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getFileType()
 	 * @generated
@@ -123,8 +128,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	protected static final FileAttachmentType FILE_TYPE_EDEFAULT = FileAttachmentType.BINARY;
 
 	/**
-	 * The cached value of the '{@link #getFileType() <em>File Type</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getFileType() <em>File Type</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getFileType()
 	 * @generated
@@ -156,6 +161,7 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	 * 
 	 * @generated
 	 */
+	@Override
 	public String getFileName() {
 		return fileName;
 	}
@@ -165,12 +171,14 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	 * 
 	 * @generated
 	 */
+	@Override
 	public void setFileName(String newFileName) {
 		String oldFileName = fileName;
 		fileName = newFileName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AttachmentPackage.FILE_ATTACHMENT__FILE_NAME,
-				oldFileName, fileName));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					AttachmentPackage.FILE_ATTACHMENT__FILE_NAME, oldFileName,
+					fileName));
 	}
 
 	/**
@@ -178,6 +186,7 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	 * 
 	 * @generated
 	 */
+	@Override
 	public String getFileHash() {
 		return fileHash;
 	}
@@ -187,12 +196,14 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	 * 
 	 * @generated
 	 */
+	@Override
 	public void setFileHash(String newFileHash) {
 		String oldFileHash = fileHash;
 		fileHash = newFileHash;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AttachmentPackage.FILE_ATTACHMENT__FILE_HASH,
-				oldFileHash, fileHash));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					AttachmentPackage.FILE_ATTACHMENT__FILE_HASH, oldFileHash,
+					fileHash));
 	}
 
 	/**
@@ -200,6 +211,7 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	 * 
 	 * @generated
 	 */
+	@Override
 	public String getFileID() {
 		return fileID;
 	}
@@ -209,12 +221,14 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	 * 
 	 * @generated
 	 */
+	@Override
 	public void setFileID(String newFileID) {
 		String oldFileID = fileID;
 		fileID = newFileID;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AttachmentPackage.FILE_ATTACHMENT__FILE_ID,
-				oldFileID, fileID));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					AttachmentPackage.FILE_ATTACHMENT__FILE_ID, oldFileID,
+					fileID));
 	}
 
 	/**
@@ -222,6 +236,7 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	 * 
 	 * @generated
 	 */
+	@Override
 	public long getFileSize() {
 		return fileSize;
 	}
@@ -231,12 +246,14 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	 * 
 	 * @generated
 	 */
+	@Override
 	public void setFileSize(long newFileSize) {
 		long oldFileSize = fileSize;
 		fileSize = newFileSize;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE,
-				oldFileSize, fileSize));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE, oldFileSize,
+					fileSize));
 	}
 
 	/**
@@ -244,6 +261,7 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	 * 
 	 * @generated
 	 */
+	@Override
 	public FileAttachmentType getFileType() {
 		return fileType;
 	}
@@ -253,12 +271,14 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	 * 
 	 * @generated
 	 */
+	@Override
 	public void setFileType(FileAttachmentType newFileType) {
 		FileAttachmentType oldFileType = fileType;
 		fileType = newFileType == null ? FILE_TYPE_EDEFAULT : newFileType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE,
-				oldFileType, fileType));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE, oldFileType,
+					fileType));
 	}
 
 	/**
@@ -346,11 +366,14 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_NAME:
-			return FILE_NAME_EDEFAULT == null ? fileName != null : !FILE_NAME_EDEFAULT.equals(fileName);
+			return FILE_NAME_EDEFAULT == null ? fileName != null
+					: !FILE_NAME_EDEFAULT.equals(fileName);
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_HASH:
-			return FILE_HASH_EDEFAULT == null ? fileHash != null : !FILE_HASH_EDEFAULT.equals(fileHash);
+			return FILE_HASH_EDEFAULT == null ? fileHash != null
+					: !FILE_HASH_EDEFAULT.equals(fileHash);
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_ID:
-			return FILE_ID_EDEFAULT == null ? fileID != null : !FILE_ID_EDEFAULT.equals(fileID);
+			return FILE_ID_EDEFAULT == null ? fileID != null
+					: !FILE_ID_EDEFAULT.equals(fileID);
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE:
 			return fileSize != FILE_SIZE_EDEFAULT;
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE:
@@ -389,6 +412,7 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	 * 
 	 * @see org.unicase.model.attachment.FileAttachment#getFileIdentifier()
 	 */
+	@Override
 	public FileIdentifier getFileIdentifier() {
 		if (fileID == null) {
 			return null;
@@ -403,6 +427,7 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	 * 
 	 * @see org.unicase.model.attachment.FileAttachment#setFileIdentifier(org.unicase.emfstore.esmodel.FileIdentifier)
 	 */
+	@Override
 	public void setFileIdentifier(FileIdentifier fileId) {
 		if (fileId == null) {
 			setFileID(null);
