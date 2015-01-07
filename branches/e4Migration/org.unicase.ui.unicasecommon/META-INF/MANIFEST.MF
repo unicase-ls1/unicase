@@ -20,7 +20,8 @@ Require-Bundle: org.eclipse.ui,
  org.unicase.dashboard,
  org.eclipse.emf.ecp.edit,
  org.eclipse.emf.ecp.ui,
- org.eclipse.emf.emfstore.server.model
+ org.eclipse.emf.emfstore.server.model,
+ org.unicase.model
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.unicase.ui.unicasecommon,
@@ -39,6 +40,7 @@ Export-Package: org.unicase.ui.unicasecommon,
  org.unicase.ui.unicasecommon.diagram.shapes,
  org.unicase.ui.unicasecommon.diagram.util,
  org.unicase.ui.unicasecommon.dnd.dropadapters,
+ org.unicase.ui.unicasecommon.file.util,
  org.unicase.ui.unicasecommon.meeditor,
  org.unicase.ui.unicasecommon.meeditor.mecontrols,
  org.unicase.ui.unicasecommon.navigator.wizards,

@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -13,10 +13,9 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
-import org.eclipse.emf.ecp.common.util.PreferenceHelper;
-import org.eclipse.emf.emfstore.client.model.filetransfer.FileTransferUtil;
-import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.emf.emfstore.server.exceptions.FileTransferException;
+import org.eclipse.emf.ecp.internal.ui.PreferenceHelper;
+import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.internal.server.exceptions.FileTransferException;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
@@ -51,6 +50,7 @@ import org.unicase.docExport.exportModel.renderers.DocumentRenderer;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.LeafSection;
+import org.unicase.ui.unicasecommon.file.util.FileTransferUtil;
 
 /**
  * A custom Dialog for the document export function.

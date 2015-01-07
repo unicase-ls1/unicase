@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -12,19 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecp.common.util.DialogHandler;
-import org.eclipse.emf.ecp.common.utilities.ModelElementClassTooltip;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.model.exceptions.MEUrlResolutionException;
-import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
-import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
-import org.eclipse.emf.emfstore.client.ui.views.historybrowserview.HistoryBrowserView;
-import org.eclipse.emf.emfstore.common.model.ModelElementId;
-import org.eclipse.emf.emfstore.server.model.url.ModelElementUrl;
-import org.eclipse.emf.emfstore.server.model.url.ModelElementUrlFragment;
-import org.eclipse.emf.emfstore.server.model.url.UrlFactory;
+import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.internal.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.internal.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.internal.client.ui.views.historybrowserview.HistoryBrowserView;
+import org.eclipse.emf.emfstore.internal.common.model.ModelElementId;
+import org.eclipse.emf.emfstore.internal.server.model.url.ModelElementUrl;
+import org.eclipse.emf.emfstore.internal.server.model.url.ModelElementUrlFragment;
+import org.eclipse.emf.emfstore.internal.server.model.url.UrlFactory;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;

@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -11,29 +11,29 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.dashboard.*;
 import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.DashboardNotification;
 import org.unicase.dashboard.DashboardNotificationComposite;
 import org.unicase.dashboard.DashboardPackage;
+import org.unicase.dashboard.NotificationOperation;
 import org.unicase.dashboard.SubscriptionComposite;
 import org.unicase.dashboard.TaskTraceClassesComposite;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
-public class DashboardFactoryImpl extends EFactoryImpl implements DashboardFactory {
+public class DashboardFactoryImpl extends EFactoryImpl implements
+		DashboardFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static DashboardFactory init() {
 		try {
 			DashboardFactory theDashboardFactory = (DashboardFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/model/dashboard");
+					.getEFactory(DashboardPackage.eNS_URI);
 			if (theDashboardFactory != null) {
 				return theDashboardFactory;
 			}
@@ -44,8 +44,8 @@ public class DashboardFactoryImpl extends EFactoryImpl implements DashboardFacto
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public DashboardFactoryImpl() {
@@ -54,7 +54,6 @@ public class DashboardFactoryImpl extends EFactoryImpl implements DashboardFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -71,13 +70,13 @@ public class DashboardFactoryImpl extends EFactoryImpl implements DashboardFacto
 		case DashboardPackage.NOTIFICATION_OPERATION:
 			return createNotificationOperation();
 		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DashboardNotification createDashboardNotification() {
@@ -87,7 +86,6 @@ public class DashboardFactoryImpl extends EFactoryImpl implements DashboardFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DashboardNotificationComposite createDashboardNotificationComposite() {
@@ -97,7 +95,6 @@ public class DashboardFactoryImpl extends EFactoryImpl implements DashboardFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SubscriptionComposite createSubscriptionComposite() {
@@ -107,7 +104,6 @@ public class DashboardFactoryImpl extends EFactoryImpl implements DashboardFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TaskTraceClassesComposite createTaskTraceClassesComposite() {
@@ -117,7 +113,6 @@ public class DashboardFactoryImpl extends EFactoryImpl implements DashboardFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationOperation createNotificationOperation() {
@@ -127,7 +122,6 @@ public class DashboardFactoryImpl extends EFactoryImpl implements DashboardFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DashboardPackage getDashboardPackage() {
@@ -136,7 +130,6 @@ public class DashboardFactoryImpl extends EFactoryImpl implements DashboardFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -25,8 +25,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecp.common.util.PreferenceHelper;
-import org.eclipse.emf.emfstore.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.ecp.internal.ui.PreferenceHelper;
+import org.eclipse.emf.emfstore.internal.client.model.util.WorkspaceUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.MessageBox;
@@ -52,20 +52,25 @@ public class ImportTemplate extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		FileDialog fd = new FileDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), SWT.OPEN);
-		String initialPath = PreferenceHelper.getPreference(IMPORT_TEMPLATE_PATH, System.getProperty("user.home"));
+		FileDialog fd = new FileDialog(PlatformUI.getWorkbench().getDisplay()
+				.getActiveShell(), SWT.OPEN);
+		String initialPath = PreferenceHelper.getPreference(
+				IMPORT_TEMPLATE_PATH, System.getProperty("user.home"));
 		fd.setFilterPath(initialPath);
 		fd.setText("Enter the filename, where you want to save the template");
 		String filePath = fd.open();
 
 		if (filePath != null) {
-			PreferenceHelper.setPreference(IMPORT_TEMPLATE_PATH, new File(filePath).getParent());
+			PreferenceHelper.setPreference(IMPORT_TEMPLATE_PATH, new File(
+					filePath).getParent());
 			try {
 				importTemplate(filePath, false);
 			} catch (InvalidTemplateArchiveException e) {
-				WorkspaceUtil.log("The template import failed", e, IStatus.ERROR);
+				WorkspaceUtil.log("The template import failed", e,
+						IStatus.ERROR);
 			} catch (TemplateSaveException e) {
-				WorkspaceUtil.log("The template import failed", e, IStatus.ERROR);
+				WorkspaceUtil.log("The template import failed", e,
+						IStatus.ERROR);
 			}
 		}
 
@@ -73,17 +78,23 @@ public class ImportTemplate extends AbstractHandler {
 	}
 
 	/**
-	 * Imports a Template stored in a zip file to the local folders of the client. The zip file contains a resource of
-	 * the Template and an image file, if there is a logo stored in the Template.
+	 * Imports a Template stored in a zip file to the local folders of the
+	 * client. The zip file contains a resource of the Template and an image
+	 * file, if there is a logo stored in the Template.
 	 * 
-	 * @param zipFilePath the Path of the File which should contain an exported Template
-	 * @param isDefaultTemplate if the template ist imported manually, it is not a default template and therefore, it
-	 *            can be edited.
-	 * @throws InvalidTemplateArchiveException The zipFile is missing some important files
-	 * @throws TemplateSaveException The template which shall be imported could not be saved
+	 * @param zipFilePath
+	 *            the Path of the File which should contain an exported Template
+	 * @param isDefaultTemplate
+	 *            if the template ist imported manually, it is not a default
+	 *            template and therefore, it can be edited.
+	 * @throws InvalidTemplateArchiveException
+	 *             The zipFile is missing some important files
+	 * @throws TemplateSaveException
+	 *             The template which shall be imported could not be saved
 	 */
-	public static void importTemplate(String zipFilePath, boolean isDefaultTemplate)
-		throws InvalidTemplateArchiveException, TemplateSaveException {
+	public static void importTemplate(String zipFilePath,
+			boolean isDefaultTemplate) throws InvalidTemplateArchiveException,
+			TemplateSaveException {
 		InputStream theFile;
 		try {
 			theFile = new FileInputStream(zipFilePath);
@@ -96,21 +107,26 @@ public class ImportTemplate extends AbstractHandler {
 				ZipEntry entry;
 				Template template = null;
 				while ((entry = stream.getNextEntry()) != null) {
-					if (entry.getName().equals(ExportTemplate.TEMPLATE_RESOURCE_FILE_NAME)) {
-						template = storeTemplate(entry, stream, isDefaultTemplate);
-					} else if (entry.getName().equals(ExportTemplate.LOGO_FILE_NAME)) {
+					if (entry.getName().equals(
+							ExportTemplate.TEMPLATE_RESOURCE_FILE_NAME)) {
+						template = storeTemplate(entry, stream,
+								isDefaultTemplate);
+					} else if (entry.getName().equals(
+							ExportTemplate.LOGO_FILE_NAME)) {
 						storeImage(entry, stream, template);
 					}
 				}
 			} catch (IOException e) {
-				MessageBox finished = new MessageBox(PlatformUI.getWorkbench().getDisplay().getActiveShell(), SWT.OK
-					| SWT.ICON_INFORMATION);
+				MessageBox finished = new MessageBox(PlatformUI.getWorkbench()
+						.getDisplay().getActiveShell(), SWT.OK
+						| SWT.ICON_INFORMATION);
 				finished.setText("Template import failed");
 				finished.setMessage("The template file could not be accessed for any reason");
 				finished.open();
 			} catch (TemplateImportException e) {
-				MessageBox finished = new MessageBox(PlatformUI.getWorkbench().getDisplay().getActiveShell(), SWT.OK
-					| SWT.ICON_INFORMATION);
+				MessageBox finished = new MessageBox(PlatformUI.getWorkbench()
+						.getDisplay().getActiveShell(), SWT.OK
+						| SWT.ICON_INFORMATION);
 				finished.setText("Template import failed");
 				finished.setMessage("The template import failed for some reason.");
 				finished.open();
@@ -131,12 +147,14 @@ public class ImportTemplate extends AbstractHandler {
 	 * 
 	 * @throws TemplateImportException
 	 */
-	private static Template storeTemplate(ZipEntry entry, ZipInputStream stream, boolean isDefaultTemplate)
-		throws TemplateImportException {
+	private static Template storeTemplate(ZipEntry entry,
+			ZipInputStream stream, boolean isDefaultTemplate)
+			throws TemplateImportException {
 		String outPath;
 		File tmpTemplateFile;
 		try {
-			tmpTemplateFile = File.createTempFile("templateImport", ".template");
+			tmpTemplateFile = File
+					.createTempFile("templateImport", ".template");
 			outPath = tmpTemplateFile.getAbsolutePath();
 
 			writeZipData(outPath, stream);
@@ -158,8 +176,8 @@ public class ImportTemplate extends AbstractHandler {
 		}
 	}
 
-	private static void storeImage(ZipEntry entry, ZipInputStream stream, Template template)
-		throws TemplateImportException, IOException {
+	private static void storeImage(ZipEntry entry, ZipInputStream stream,
+			Template template) throws TemplateImportException, IOException {
 		String outPath;
 		File tmpTemplateFile;
 
@@ -169,12 +187,14 @@ public class ImportTemplate extends AbstractHandler {
 		outPath = tmpTemplateFile.getAbsolutePath();
 
 		writeZipData(outPath, stream);
-		tmpTemplateFile.renameTo(new File(TemplateRegistry.TEMPLATE_IMAGE_FOLDER
-			+ template.getLayoutOptions().getLogoImage()));
+		tmpTemplateFile.renameTo(new File(
+				TemplateRegistry.TEMPLATE_IMAGE_FOLDER
+						+ template.getLayoutOptions().getLogoImage()));
 
 	}
 
-	private static void writeZipData(String outPath, ZipInputStream stream) throws TemplateImportException {
+	private static void writeZipData(String outPath, ZipInputStream stream)
+			throws TemplateImportException {
 		// create a buffer to improve copy performance later.
 		byte[] buffer = new byte[1024];
 
@@ -207,16 +227,19 @@ public class ImportTemplate extends AbstractHandler {
 	/**
 	 * Returns the template from a EMF XML resource file.
 	 */
-	private static Template getTemplate(String resourceFile) throws InvalidTemplateArchiveException {
+	private static Template getTemplate(String resourceFile)
+			throws InvalidTemplateArchiveException {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		URI fileURI = URI.createFileURI(resourceFile);
 
 		Resource templateResource = resourceSet.getResource(fileURI, true);
 
 		try {
-			templateResource.load(templateResource.getResourceSet().getLoadOptions());
+			templateResource.load(templateResource.getResourceSet()
+					.getLoadOptions());
 		} catch (IOException e) {
-			WorkspaceUtil.log("Importing Template failed", new TemplatesFileNotFoundException(e), IStatus.WARNING);
+			WorkspaceUtil.log("Importing Template failed",
+					new TemplatesFileNotFoundException(e), IStatus.WARNING);
 			throw new InvalidTemplateArchiveException();
 		}
 

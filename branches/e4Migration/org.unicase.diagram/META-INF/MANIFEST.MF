@@ -11,8 +11,11 @@ Export-Package: org.unicase.model.diagram,
  org.unicase.model.diagram.impl,
  org.unicase.model.diagram.util,
  org.unicase.model.diagram.validation
-Require-Bundle: org.unicase.model;visibility:=reexport,
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.unicase.model;visibility:=reexport,
  org.eclipse.gmf.runtime.notation;visibility:=reexport,
  org.eclipse.emf.emfstore.common.model;visibility:=reexport,
+ org.eclipse.emf.emfstore.server.model;visibility:=reexport,
  org.eclipse.ocl.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy

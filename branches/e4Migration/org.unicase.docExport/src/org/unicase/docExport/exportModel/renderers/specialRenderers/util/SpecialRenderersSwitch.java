@@ -1,15 +1,14 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.docExport.exportModel.renderers.specialRenderers.util;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.Switch;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.ClassAttributesRenderer;
@@ -27,21 +26,20 @@ import org.unicase.docExport.exportModel.renderers.specialRenderers.StepsAttribu
  * {@link #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each class of the model,
  * starting with the actual class of the object and proceeding up the inheritance hierarchy until a non-null result is
  * returned, which is the result of the switch. <!-- end-user-doc -->
- * 
  * @see org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage
  * @generated
  */
-public class SpecialRenderersSwitch<T> {
+public class SpecialRenderersSwitch<T> extends Switch<T> {
 	/**
-	 * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached model package
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected static SpecialRenderersPackage modelPackage;
 
 	/**
-	 * Creates an instance of the switch. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the switch.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public SpecialRenderersSwitch() {
@@ -51,117 +49,85 @@ public class SpecialRenderersSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
-	 * result. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * Checks whether this is a switch for the given package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @parameter ePackage the package in question.
+	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
-	public T doSwitch(EObject theEObject) {
-		return doSwitch(theEObject.eClass(), theEObject);
+	@Override
+	protected boolean isSwitchFor(EPackage ePackage) {
+		return ePackage == modelPackage;
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
-	 * result. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
-			return doSwitch(theEClass.getClassifierID(), theEObject);
-		} else {
-			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
-		}
-	}
-
-	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that
-	 * result. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
-	 * @generated
-	 */
+	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-		case SpecialRenderersPackage.MEETING_RENDERER: {
-			MeetingRenderer meetingRenderer = (MeetingRenderer) theEObject;
-			T result = caseMeetingRenderer(meetingRenderer);
-			if (result == null)
-				result = caseModelElementRenderer(meetingRenderer);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case SpecialRenderersPackage.MILESTONE_RENDERER: {
-			MilestoneRenderer milestoneRenderer = (MilestoneRenderer) theEObject;
-			T result = caseMilestoneRenderer(milestoneRenderer);
-			if (result == null)
-				result = caseModelElementRenderer(milestoneRenderer);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case SpecialRenderersPackage.STEPS_ATTRIBUTE_RENDERER: {
-			StepsAttributeRenderer stepsAttributeRenderer = (StepsAttributeRenderer) theEObject;
-			T result = caseStepsAttributeRenderer(stepsAttributeRenderer);
-			if (result == null)
-				result = caseAttributeRenderer(stepsAttributeRenderer);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case SpecialRenderersPackage.METHOD_RENDERER: {
-			MethodRenderer methodRenderer = (MethodRenderer) theEObject;
-			T result = caseMethodRenderer(methodRenderer);
-			if (result == null)
-				result = caseAttributeRenderer(methodRenderer);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case SpecialRenderersPackage.PACKAGE_FLAT_RENDERER: {
-			PackageFlatRenderer packageFlatRenderer = (PackageFlatRenderer) theEObject;
-			T result = casePackageFlatRenderer(packageFlatRenderer);
-			if (result == null)
-				result = caseModelElementRenderer(packageFlatRenderer);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case SpecialRenderersPackage.CLASS_RENDERER: {
-			ClassRenderer classRenderer = (ClassRenderer) theEObject;
-			T result = caseClassRenderer(classRenderer);
-			if (result == null)
-				result = caseModelElementRenderer(classRenderer);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case SpecialRenderersPackage.CLASS_ATTRIBUTES_RENDERER: {
-			ClassAttributesRenderer classAttributesRenderer = (ClassAttributesRenderer) theEObject;
-			T result = caseClassAttributesRenderer(classAttributesRenderer);
-			if (result == null)
-				result = caseAttributeRenderer(classAttributesRenderer);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case SpecialRenderersPackage.FHM_MEETING_RENDERER: {
-			FhmMeetingRenderer fhmMeetingRenderer = (FhmMeetingRenderer) theEObject;
-			T result = caseFhmMeetingRenderer(fhmMeetingRenderer);
-			if (result == null)
-				result = caseMeetingRenderer(fhmMeetingRenderer);
-			if (result == null)
-				result = caseModelElementRenderer(fhmMeetingRenderer);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+			case SpecialRenderersPackage.MEETING_RENDERER: {
+				MeetingRenderer meetingRenderer = (MeetingRenderer)theEObject;
+				T result = caseMeetingRenderer(meetingRenderer);
+				if (result == null) result = caseModelElementRenderer(meetingRenderer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SpecialRenderersPackage.MILESTONE_RENDERER: {
+				MilestoneRenderer milestoneRenderer = (MilestoneRenderer)theEObject;
+				T result = caseMilestoneRenderer(milestoneRenderer);
+				if (result == null) result = caseModelElementRenderer(milestoneRenderer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SpecialRenderersPackage.STEPS_ATTRIBUTE_RENDERER: {
+				StepsAttributeRenderer stepsAttributeRenderer = (StepsAttributeRenderer)theEObject;
+				T result = caseStepsAttributeRenderer(stepsAttributeRenderer);
+				if (result == null) result = caseAttributeRenderer(stepsAttributeRenderer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SpecialRenderersPackage.METHOD_RENDERER: {
+				MethodRenderer methodRenderer = (MethodRenderer)theEObject;
+				T result = caseMethodRenderer(methodRenderer);
+				if (result == null) result = caseAttributeRenderer(methodRenderer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SpecialRenderersPackage.PACKAGE_FLAT_RENDERER: {
+				PackageFlatRenderer packageFlatRenderer = (PackageFlatRenderer)theEObject;
+				T result = casePackageFlatRenderer(packageFlatRenderer);
+				if (result == null) result = caseModelElementRenderer(packageFlatRenderer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SpecialRenderersPackage.CLASS_RENDERER: {
+				ClassRenderer classRenderer = (ClassRenderer)theEObject;
+				T result = caseClassRenderer(classRenderer);
+				if (result == null) result = caseModelElementRenderer(classRenderer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SpecialRenderersPackage.CLASS_ATTRIBUTES_RENDERER: {
+				ClassAttributesRenderer classAttributesRenderer = (ClassAttributesRenderer)theEObject;
+				T result = caseClassAttributesRenderer(classAttributesRenderer);
+				if (result == null) result = caseAttributeRenderer(classAttributesRenderer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SpecialRenderersPackage.FHM_MEETING_RENDERER: {
+				FhmMeetingRenderer fhmMeetingRenderer = (FhmMeetingRenderer)theEObject;
+				T result = caseFhmMeetingRenderer(fhmMeetingRenderer);
+				if (result == null) result = caseMeetingRenderer(fhmMeetingRenderer);
+				if (result == null) result = caseModelElementRenderer(fhmMeetingRenderer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
 		}
 	}
 
@@ -306,15 +272,16 @@ public class SpecialRenderersSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate the switch, but this is the last case
 	 * anyway. <!-- end-user-doc -->
-	 * 
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
+	@Override
 	public T defaultCase(EObject object) {
 		return null;
 	}

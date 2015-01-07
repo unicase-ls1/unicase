@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -50,181 +50,155 @@ import org.unicase.docExport.exportModel.renderers.specialRenderers.impl.Special
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass rendererOptionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass attributeOptionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass singleReferenceAttributeOptionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass multiReferenceAttributeOptionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass referenceOptionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass stringAttributeOptionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass layoutOptionsEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass listOptionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass textOptionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass referenceAttributeOptionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass uColorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass boxModelOptionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass sectionOptionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass booleanAttributeOptionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass dateAttributeOptionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum pageCitationStyleEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum headerStyleEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum appendixStyleEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum fontFamilyEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum listStyleEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum uBorderStyleEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum sectionNumberingStyleEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum textAlignEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum booleanStyleEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum dateStyleEEnum = null;
@@ -248,55 +222,35 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * Simple dependencies are satisfied by calling this method on all dependent packages before doing anything else.
-	 * This method drives initialization for interdependent packages directly, in parallel with this package, itself.
-	 * <p>
-	 * Of this package and its interdependencies, all packages which have not yet been registered by their URI values
-	 * are first created and registered. The packages are then initialized in two steps: meta-model objects for all of
-	 * the packages are created before any are initialized, since one package's meta-model objects may refer to those of
-	 * another.
-	 * <p>
-	 * Invocation of this method will not affect any packages that have already been initialized. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
 	 * 
+	 * <p>This method is used to initialize {@link OptionsPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static OptionsPackage init() {
-		if (isInited)
-			return (OptionsPackage) EPackage.Registry.INSTANCE.getEPackage(OptionsPackage.eNS_URI);
+		if (isInited) return (OptionsPackage)EPackage.Registry.INSTANCE.getEPackage(OptionsPackage.eNS_URI);
 
 		// Obtain or create and register package
-		OptionsPackageImpl theOptionsPackage = (OptionsPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof OptionsPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI)
-			: new OptionsPackageImpl());
+		OptionsPackageImpl theOptionsPackage = (OptionsPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof OptionsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new OptionsPackageImpl());
 
 		isInited = true;
 
 		// Obtain or create and register interdependencies
-		ExportModelPackageImpl theExportModelPackage = (ExportModelPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ExportModelPackage.eNS_URI) instanceof ExportModelPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ExportModelPackage.eNS_URI) : ExportModelPackage.eINSTANCE);
-		RenderersPackageImpl theRenderersPackage = (RenderersPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(RenderersPackage.eNS_URI) instanceof RenderersPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(RenderersPackage.eNS_URI) : RenderersPackage.eINSTANCE);
-		DefaultRenderersPackageImpl theDefaultRenderersPackage = (DefaultRenderersPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(DefaultRenderersPackage.eNS_URI) instanceof DefaultRenderersPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(DefaultRenderersPackage.eNS_URI)
-			: DefaultRenderersPackage.eINSTANCE);
-		SpecialRenderersPackageImpl theSpecialRenderersPackage = (SpecialRenderersPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(SpecialRenderersPackage.eNS_URI) instanceof SpecialRenderersPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(SpecialRenderersPackage.eNS_URI)
-			: SpecialRenderersPackage.eINSTANCE);
+		ExportModelPackageImpl theExportModelPackage = (ExportModelPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExportModelPackage.eNS_URI) instanceof ExportModelPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExportModelPackage.eNS_URI) : ExportModelPackage.eINSTANCE);
+		RenderersPackageImpl theRenderersPackage = (RenderersPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RenderersPackage.eNS_URI) instanceof RenderersPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RenderersPackage.eNS_URI) : RenderersPackage.eINSTANCE);
+		DefaultRenderersPackageImpl theDefaultRenderersPackage = (DefaultRenderersPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DefaultRenderersPackage.eNS_URI) instanceof DefaultRenderersPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DefaultRenderersPackage.eNS_URI) : DefaultRenderersPackage.eINSTANCE);
+		SpecialRenderersPackageImpl theSpecialRenderersPackage = (SpecialRenderersPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SpecialRenderersPackage.eNS_URI) instanceof SpecialRenderersPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SpecialRenderersPackage.eNS_URI) : SpecialRenderersPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theOptionsPackage.createPackageContents();
@@ -315,12 +269,14 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		// Mark meta-data to indicate it can't be changed
 		theOptionsPackage.freeze();
 
+  
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(OptionsPackage.eNS_URI, theOptionsPackage);
 		return theOptionsPackage;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getRendererOption() {
@@ -329,16 +285,14 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getRendererOption_Name() {
-		return (EAttribute) rendererOptionEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)rendererOptionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getAttributeOption() {
@@ -347,43 +301,38 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAttributeOption_Hide() {
-		return (EAttribute) attributeOptionEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)attributeOptionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAttributeOption_OverwriteGlobalOption() {
-		return (EAttribute) attributeOptionEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)attributeOptionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAttributeOption_AttributeText() {
-		return (EAttribute) attributeOptionEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)attributeOptionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAttributeOption_OrderNumber() {
-		return (EAttribute) attributeOptionEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)attributeOptionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getSingleReferenceAttributeOption() {
@@ -392,7 +341,6 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getMultiReferenceAttributeOption() {
@@ -401,16 +349,14 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getMultiReferenceAttributeOption_ListOption() {
-		return (EReference) multiReferenceAttributeOptionEClass.getEStructuralFeatures().get(0);
+		return (EReference)multiReferenceAttributeOptionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getReferenceOption() {
@@ -419,7 +365,6 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getStringAttributeOption() {
@@ -428,7 +373,6 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getLayoutOptions() {
@@ -437,241 +381,214 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getLayoutOptions_HeaderTextOption() {
-		return (EReference) layoutOptionsEClass.getEStructuralFeatures().get(0);
+		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getLayoutOptions_DefaultTextOption() {
-		return (EReference) layoutOptionsEClass.getEStructuralFeatures().get(1);
+		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getLayoutOptions_SectionTextOption() {
-		return (EReference) layoutOptionsEClass.getEStructuralFeatures().get(2);
+		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getLayoutOptions_HideAnnotations() {
-		return (EAttribute) layoutOptionsEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getLayoutOptions_HideAttachments() {
-		return (EAttribute) layoutOptionsEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getLayoutOptions_HideIncomingDocumentReferences() {
-		return (EAttribute) layoutOptionsEClass.getEStructuralFeatures().get(5);
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getLayoutOptions_HideModelElementImages() {
-		return (EAttribute) layoutOptionsEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getLayoutOptions_ModelElementTextOption() {
-		return (EReference) layoutOptionsEClass.getEStructuralFeatures().get(7);
+		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getLayoutOptions_HeaderText() {
-		return (EAttribute) layoutOptionsEClass.getEStructuralFeatures().get(8);
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getLayoutOptions_FooterText() {
-		return (EAttribute) layoutOptionsEClass.getEStructuralFeatures().get(9);
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getLayoutOptions_SectionOption() {
-		return (EReference) layoutOptionsEClass.getEStructuralFeatures().get(10);
+		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getLayoutOptions_SectionFontSizeDecreaseStep() {
-		return (EAttribute) layoutOptionsEClass.getEStructuralFeatures().get(11);
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getLayoutOptions_DocumentTitleTextOption() {
-		return (EReference) layoutOptionsEClass.getEStructuralFeatures().get(12);
+		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(12);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getLayoutOptions_ShowModelElementTypeInSectionTitle() {
-		return (EAttribute) layoutOptionsEClass.getEStructuralFeatures().get(13);
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(13);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getLayoutOptions_AppendixStyle() {
-		return (EAttribute) layoutOptionsEClass.getEStructuralFeatures().get(14);
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(14);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getLayoutOptions_LogoImage() {
-		return (EAttribute) layoutOptionsEClass.getEStructuralFeatures().get(15);
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(15);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getLayoutOptions_FooterTextOption() {
-		return (EReference) layoutOptionsEClass.getEStructuralFeatures().get(16);
+		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(16);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getLayoutOptions_FooterShowDocumentTitle() {
-		return (EAttribute) layoutOptionsEClass.getEStructuralFeatures().get(17);
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(17);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getLayoutOptions_PageCitationStyle() {
-		return (EAttribute) layoutOptionsEClass.getEStructuralFeatures().get(18);
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(18);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getLayoutOptions_HeaderStyle() {
-		return (EAttribute) layoutOptionsEClass.getEStructuralFeatures().get(19);
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(19);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getLayoutOptions_LogoWidth() {
-		return (EAttribute) layoutOptionsEClass.getEStructuralFeatures().get(20);
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(20);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getLayoutOptions_LogoHeight() {
-		return (EAttribute) layoutOptionsEClass.getEStructuralFeatures().get(21);
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(21);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getLayoutOptions_LogoOnCoverPage() {
-		return (EAttribute) layoutOptionsEClass.getEStructuralFeatures().get(22);
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(22);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getLayoutOptions_TableOfContentsTextOption() {
-		return (EReference) layoutOptionsEClass.getEStructuralFeatures().get(23);
+		return (EReference)layoutOptionsEClass.getEStructuralFeatures().get(23);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getLayoutOptions_HideTableOfContents() {
-		return (EAttribute) layoutOptionsEClass.getEStructuralFeatures().get(24);
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(24);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getLayoutOptions_HideHeaderAndFooterOnCoverPage() {
-		return (EAttribute) layoutOptionsEClass.getEStructuralFeatures().get(25);
+		return (EAttribute)layoutOptionsEClass.getEStructuralFeatures().get(25);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getListOption() {
@@ -680,16 +597,14 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getListOption_ListStyle() {
-		return (EAttribute) listOptionEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)listOptionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getTextOption() {
@@ -698,70 +613,62 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getTextOption_FontFamily() {
-		return (EAttribute) textOptionEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)textOptionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getTextOption_FontSize() {
-		return (EAttribute) textOptionEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)textOptionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getTextOption_FontColor() {
-		return (EReference) textOptionEClass.getEStructuralFeatures().get(4);
+		return (EReference)textOptionEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getTextOption_TextAlign() {
-		return (EAttribute) textOptionEClass.getEStructuralFeatures().get(5);
+		return (EAttribute)textOptionEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getTextOption_Italics() {
-		return (EAttribute) textOptionEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)textOptionEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getTextOption_Bold() {
-		return (EAttribute) textOptionEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)textOptionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getTextOption_Underline() {
-		return (EAttribute) textOptionEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)textOptionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getReferenceAttributeOption() {
@@ -770,25 +677,22 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getReferenceAttributeOption_Contained() {
-		return (EAttribute) referenceAttributeOptionEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)referenceAttributeOptionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getReferenceAttributeOption_ReferenceOption() {
-		return (EReference) referenceAttributeOptionEClass.getEStructuralFeatures().get(1);
+		return (EReference)referenceAttributeOptionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getUColor() {
@@ -797,34 +701,30 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getUColor_Red() {
-		return (EAttribute) uColorEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)uColorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getUColor_Green() {
-		return (EAttribute) uColorEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)uColorEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getUColor_Blue() {
-		return (EAttribute) uColorEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)uColorEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getBoxModelOption() {
@@ -833,223 +733,198 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_Margin() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_MarginTop() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_MarginLeft() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_MarginBottom() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_MarginRight() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_Border() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(5);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_BorderTop() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_BorderLeft() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(7);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_BorderBottom() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(8);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_BorderRight() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(9);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_BorderStyle() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(10);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getBoxModelOption_BorderColor() {
-		return (EReference) boxModelOptionEClass.getEStructuralFeatures().get(11);
+		return (EReference)boxModelOptionEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_Padding() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(12);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(12);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_PaddingTop() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(13);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(13);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_PaddingLeft() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(14);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(14);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_PaddingBottom() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(15);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(15);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_PaddingRight() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(16);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(16);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getBoxModelOption_BackgroundColor() {
-		return (EReference) boxModelOptionEClass.getEStructuralFeatures().get(17);
+		return (EReference)boxModelOptionEClass.getEStructuralFeatures().get(17);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_KeepTogether() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(18);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(18);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_KeepWithPrevious() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(19);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(19);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_KeepWithNext() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(20);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(20);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_BreakBefore() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(21);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(21);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_Width() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(22);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(22);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBoxModelOption_BreakAfter() {
-		return (EAttribute) boxModelOptionEClass.getEStructuralFeatures().get(23);
+		return (EAttribute)boxModelOptionEClass.getEStructuralFeatures().get(23);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getSectionOption() {
@@ -1058,25 +933,22 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getSectionOption_SectionNumberingStyle() {
-		return (EAttribute) sectionOptionEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)sectionOptionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getSectionOption_LeaveOutPreviousSectionNumbering() {
-		return (EAttribute) sectionOptionEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)sectionOptionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getBooleanAttributeOption() {
@@ -1085,16 +957,14 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getBooleanAttributeOption_BooleanStyle() {
-		return (EAttribute) booleanAttributeOptionEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)booleanAttributeOptionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getDateAttributeOption() {
@@ -1103,16 +973,14 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getDateAttributeOption_DateStyle() {
-		return (EAttribute) dateAttributeOptionEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)dateAttributeOptionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getPageCitationStyle() {
@@ -1121,7 +989,6 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getHeaderStyle() {
@@ -1130,7 +997,6 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getAppendixStyle() {
@@ -1139,7 +1005,6 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getFontFamily() {
@@ -1148,7 +1013,6 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getListStyle() {
@@ -1157,7 +1021,6 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getUBorderStyle() {
@@ -1166,7 +1029,6 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getSectionNumberingStyle() {
@@ -1175,7 +1037,6 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getTextAlign() {
@@ -1184,7 +1045,6 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getBooleanStyle() {
@@ -1193,7 +1053,6 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getDateStyle() {
@@ -1202,29 +1061,26 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OptionsFactory getOptionsFactory() {
-		return (OptionsFactory) getEFactoryInstance();
+		return (OptionsFactory)getEFactoryInstance();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated)
-			return;
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -1346,20 +1202,18 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized)
-			return;
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -1388,257 +1242,108 @@ public class OptionsPackageImpl extends EPackageImpl implements OptionsPackage {
 		dateAttributeOptionEClass.getESuperTypes().add(this.getAttributeOption());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(rendererOptionEClass, RendererOption.class, "RendererOption", IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getRendererOption_Name(), ecorePackage.getEString(), "name", null, 0, 1, RendererOption.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(rendererOptionEClass, RendererOption.class, "RendererOption", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getRendererOption_Name(), ecorePackage.getEString(), "name", null, 0, 1, RendererOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(attributeOptionEClass, AttributeOption.class, "AttributeOption", IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAttributeOption_Hide(), ecorePackage.getEBoolean(), "hide", "false", 0, 1,
-			AttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAttributeOption_OverwriteGlobalOption(), ecorePackage.getEBoolean(), "overwriteGlobalOption",
-			"false", 0, 1, AttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAttributeOption_AttributeText(), ecorePackage.getEString(), "attributeText", null, 0, 1,
-			AttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAttributeOption_OrderNumber(), ecorePackage.getEInt(), "orderNumber", null, 0, 1,
-			AttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
+		initEClass(attributeOptionEClass, AttributeOption.class, "AttributeOption", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAttributeOption_Hide(), ecorePackage.getEBoolean(), "hide", "false", 0, 1, AttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttributeOption_OverwriteGlobalOption(), ecorePackage.getEBoolean(), "overwriteGlobalOption", "false", 0, 1, AttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttributeOption_AttributeText(), ecorePackage.getEString(), "attributeText", null, 0, 1, AttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAttributeOption_OrderNumber(), ecorePackage.getEInt(), "orderNumber", null, 0, 1, AttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(singleReferenceAttributeOptionEClass, SingleReferenceAttributeOption.class,
-			"SingleReferenceAttributeOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(singleReferenceAttributeOptionEClass, SingleReferenceAttributeOption.class, "SingleReferenceAttributeOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(multiReferenceAttributeOptionEClass, MultiReferenceAttributeOption.class,
-			"MultiReferenceAttributeOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMultiReferenceAttributeOption_ListOption(), this.getListOption(), null, "listOption", null,
-			0, 1, MultiReferenceAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-			!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(multiReferenceAttributeOptionEClass, MultiReferenceAttributeOption.class, "MultiReferenceAttributeOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMultiReferenceAttributeOption_ListOption(), this.getListOption(), null, "listOption", null, 0, 1, MultiReferenceAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(referenceOptionEClass, ReferenceOption.class, "ReferenceOption", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
+		initEClass(referenceOptionEClass, ReferenceOption.class, "ReferenceOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(stringAttributeOptionEClass, StringAttributeOption.class, "StringAttributeOption", !IS_ABSTRACT,
-			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(stringAttributeOptionEClass, StringAttributeOption.class, "StringAttributeOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(layoutOptionsEClass, LayoutOptions.class, "LayoutOptions", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLayoutOptions_HeaderTextOption(), this.getTextOption(), null, "headerTextOption", null, 0, 1,
-			LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLayoutOptions_DefaultTextOption(), this.getTextOption(), null, "defaultTextOption", null, 0,
-			1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLayoutOptions_SectionTextOption(), this.getTextOption(), null, "sectionTextOption", null, 0,
-			1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLayoutOptions_HideAnnotations(), ecorePackage.getEBoolean(), "hideAnnotations", null, 0, 1,
-			LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLayoutOptions_HideAttachments(), ecorePackage.getEBoolean(), "hideAttachments", null, 0, 1,
-			LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLayoutOptions_HideIncomingDocumentReferences(), ecorePackage.getEBoolean(),
-			"hideIncomingDocumentReferences", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE,
-			IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLayoutOptions_HideModelElementImages(), ecorePackage.getEBoolean(), "hideModelElementImages",
-			null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLayoutOptions_ModelElementTextOption(), this.getTextOption(), null, "modelElementTextOption",
-			null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-			!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLayoutOptions_HeaderText(), ecorePackage.getEString(), "headerText", null, 0, 1,
-			LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLayoutOptions_FooterText(), ecorePackage.getEString(), "footerText", null, 0, 1,
-			LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEReference(getLayoutOptions_SectionOption(), this.getSectionOption(), null, "sectionOption", null, 0, 1,
-			LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLayoutOptions_SectionFontSizeDecreaseStep(), ecorePackage.getEInt(),
-			"sectionFontSizeDecreaseStep", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLayoutOptions_DocumentTitleTextOption(), this.getTextOption(), null,
-			"documentTitleTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLayoutOptions_ShowModelElementTypeInSectionTitle(), ecorePackage.getEBoolean(),
-			"showModelElementTypeInSectionTitle", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE,
-			IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLayoutOptions_AppendixStyle(), this.getAppendixStyle(), "appendixStyle", null, 0, 1,
-			LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLayoutOptions_LogoImage(), ecorePackage.getEString(), "logoImage", null, 0, 1,
-			LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEReference(getLayoutOptions_FooterTextOption(), this.getTextOption(), null, "footerTextOption", null, 0, 1,
-			LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLayoutOptions_FooterShowDocumentTitle(), ecorePackage.getEBoolean(),
-			"footerShowDocumentTitle", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLayoutOptions_PageCitationStyle(), this.getPageCitationStyle(), "pageCitationStyle", null, 0,
-			1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLayoutOptions_HeaderStyle(), this.getHeaderStyle(), "headerStyle", null, 0, 1,
-			LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLayoutOptions_LogoWidth(), ecorePackage.getEInt(), "logoWidth", null, 0, 1,
-			LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLayoutOptions_LogoHeight(), ecorePackage.getEInt(), "logoHeight", null, 0, 1,
-			LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLayoutOptions_LogoOnCoverPage(), ecorePackage.getEBoolean(), "logoOnCoverPage", null, 0, 1,
-			LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEReference(getLayoutOptions_TableOfContentsTextOption(), this.getTextOption(), null,
-			"tableOfContentsTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLayoutOptions_HideTableOfContents(), ecorePackage.getEBoolean(), "hideTableOfContents", null,
-			0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLayoutOptions_HideHeaderAndFooterOnCoverPage(), ecorePackage.getEBoolean(),
-			"hideHeaderAndFooterOnCoverPage", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE,
-			IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(layoutOptionsEClass, LayoutOptions.class, "LayoutOptions", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLayoutOptions_HeaderTextOption(), this.getTextOption(), null, "headerTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLayoutOptions_DefaultTextOption(), this.getTextOption(), null, "defaultTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLayoutOptions_SectionTextOption(), this.getTextOption(), null, "sectionTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_HideAnnotations(), ecorePackage.getEBoolean(), "hideAnnotations", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_HideAttachments(), ecorePackage.getEBoolean(), "hideAttachments", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_HideIncomingDocumentReferences(), ecorePackage.getEBoolean(), "hideIncomingDocumentReferences", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_HideModelElementImages(), ecorePackage.getEBoolean(), "hideModelElementImages", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLayoutOptions_ModelElementTextOption(), this.getTextOption(), null, "modelElementTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_HeaderText(), ecorePackage.getEString(), "headerText", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_FooterText(), ecorePackage.getEString(), "footerText", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLayoutOptions_SectionOption(), this.getSectionOption(), null, "sectionOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_SectionFontSizeDecreaseStep(), ecorePackage.getEInt(), "sectionFontSizeDecreaseStep", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLayoutOptions_DocumentTitleTextOption(), this.getTextOption(), null, "documentTitleTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_ShowModelElementTypeInSectionTitle(), ecorePackage.getEBoolean(), "showModelElementTypeInSectionTitle", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_AppendixStyle(), this.getAppendixStyle(), "appendixStyle", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_LogoImage(), ecorePackage.getEString(), "logoImage", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLayoutOptions_FooterTextOption(), this.getTextOption(), null, "footerTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_FooterShowDocumentTitle(), ecorePackage.getEBoolean(), "footerShowDocumentTitle", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_PageCitationStyle(), this.getPageCitationStyle(), "pageCitationStyle", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_HeaderStyle(), this.getHeaderStyle(), "headerStyle", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_LogoWidth(), ecorePackage.getEInt(), "logoWidth", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_LogoHeight(), ecorePackage.getEInt(), "logoHeight", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_LogoOnCoverPage(), ecorePackage.getEBoolean(), "logoOnCoverPage", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLayoutOptions_TableOfContentsTextOption(), this.getTextOption(), null, "tableOfContentsTextOption", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_HideTableOfContents(), ecorePackage.getEBoolean(), "hideTableOfContents", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLayoutOptions_HideHeaderAndFooterOnCoverPage(), ecorePackage.getEBoolean(), "hideHeaderAndFooterOnCoverPage", null, 0, 1, LayoutOptions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(listOptionEClass, ListOption.class, "ListOption", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getListOption_ListStyle(), this.getListStyle(), "listStyle", null, 0, 1, ListOption.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(listOptionEClass, ListOption.class, "ListOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getListOption_ListStyle(), this.getListStyle(), "listStyle", null, 0, 1, ListOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(textOptionEClass, TextOption.class, "TextOption", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTextOption_FontFamily(), this.getFontFamily(), "fontFamily", "", 0, 1, TextOption.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTextOption_FontSize(), ecorePackage.getEInt(), "fontSize", "12", 0, 1, TextOption.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTextOption_Bold(), ecorePackage.getEBoolean(), "bold", null, 0, 1, TextOption.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTextOption_Underline(), ecorePackage.getEBoolean(), "underline", null, 0, 1,
-			TextOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEReference(getTextOption_FontColor(), this.getUColor(), null, "fontColor", null, 0, 1, TextOption.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTextOption_TextAlign(), this.getTextAlign(), "textAlign", null, 0, 1, TextOption.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTextOption_Italics(), ecorePackage.getEBoolean(), "italics", null, 0, 1, TextOption.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(textOptionEClass, TextOption.class, "TextOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTextOption_FontFamily(), this.getFontFamily(), "fontFamily", null, 0, 1, TextOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTextOption_FontSize(), ecorePackage.getEInt(), "fontSize", "12", 0, 1, TextOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTextOption_Bold(), ecorePackage.getEBoolean(), "bold", null, 0, 1, TextOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTextOption_Underline(), ecorePackage.getEBoolean(), "underline", null, 0, 1, TextOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTextOption_FontColor(), this.getUColor(), null, "fontColor", null, 0, 1, TextOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTextOption_TextAlign(), this.getTextAlign(), "textAlign", null, 0, 1, TextOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTextOption_Italics(), ecorePackage.getEBoolean(), "italics", null, 0, 1, TextOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(referenceAttributeOptionEClass, ReferenceAttributeOption.class, "ReferenceAttributeOption",
-			IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getReferenceAttributeOption_Contained(), ecorePackage.getEBoolean(), "contained", null, 0, 1,
-			ReferenceAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getReferenceAttributeOption_ReferenceOption(), this.getReferenceOption(), null,
-			"referenceOption", null, 0, 1, ReferenceAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(referenceAttributeOptionEClass, ReferenceAttributeOption.class, "ReferenceAttributeOption", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getReferenceAttributeOption_Contained(), ecorePackage.getEBoolean(), "contained", null, 0, 1, ReferenceAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getReferenceAttributeOption_ReferenceOption(), this.getReferenceOption(), null, "referenceOption", null, 0, 1, ReferenceAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(uColorEClass, UColor.class, "UColor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getUColor_Red(), ecorePackage.getEInt(), "red", null, 0, 1, UColor.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUColor_Green(), ecorePackage.getEInt(), "green", null, 0, 1, UColor.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getUColor_Blue(), ecorePackage.getEInt(), "blue", null, 0, 1, UColor.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUColor_Red(), ecorePackage.getEInt(), "red", null, 0, 1, UColor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUColor_Green(), ecorePackage.getEInt(), "green", null, 0, 1, UColor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUColor_Blue(), ecorePackage.getEInt(), "blue", null, 0, 1, UColor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(boxModelOptionEClass, BoxModelOption.class, "BoxModelOption", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBoxModelOption_Margin(), ecorePackage.getEDouble(), "margin", "0", 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoxModelOption_MarginTop(), ecorePackage.getEDouble(), "marginTop", "0", 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoxModelOption_MarginLeft(), ecorePackage.getEDouble(), "marginLeft", "0", 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoxModelOption_MarginBottom(), ecorePackage.getEDouble(), "marginBottom", "0", 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoxModelOption_MarginRight(), ecorePackage.getEDouble(), "marginRight", "0", 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoxModelOption_Border(), ecorePackage.getEDouble(), "border", "0", 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoxModelOption_BorderTop(), ecorePackage.getEDouble(), "borderTop", "0", 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoxModelOption_BorderLeft(), ecorePackage.getEDouble(), "borderLeft", "0", 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoxModelOption_BorderBottom(), ecorePackage.getEDouble(), "borderBottom", "0", 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoxModelOption_BorderRight(), ecorePackage.getEDouble(), "borderRight", "0", 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoxModelOption_BorderStyle(), this.getUBorderStyle(), "borderStyle", "SOLID", 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEReference(getBoxModelOption_BorderColor(), this.getUColor(), null, "borderColor", null, 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoxModelOption_Padding(), ecorePackage.getEDouble(), "padding", "0", 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoxModelOption_PaddingTop(), ecorePackage.getEDouble(), "paddingTop", "0", 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoxModelOption_PaddingLeft(), ecorePackage.getEDouble(), "paddingLeft", "0", 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoxModelOption_PaddingBottom(), ecorePackage.getEDouble(), "paddingBottom", "0", 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoxModelOption_PaddingRight(), ecorePackage.getEDouble(), "paddingRight", "0", 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEReference(getBoxModelOption_BackgroundColor(), this.getUColor(), null, "backgroundColor", null, 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoxModelOption_KeepTogether(), ecorePackage.getEBoolean(), "keepTogether", null, 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoxModelOption_KeepWithPrevious(), ecorePackage.getEBoolean(), "keepWithPrevious", null, 0,
-			1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoxModelOption_KeepWithNext(), ecorePackage.getEBoolean(), "keepWithNext", null, 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoxModelOption_BreakBefore(), ecorePackage.getEBoolean(), "breakBefore", null, 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoxModelOption_Width(), ecorePackage.getEInt(), "width", null, 0, 1, BoxModelOption.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBoxModelOption_BreakAfter(), ecorePackage.getEBoolean(), "breakAfter", null, 0, 1,
-			BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
+		initEClass(boxModelOptionEClass, BoxModelOption.class, "BoxModelOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBoxModelOption_Margin(), ecorePackage.getEDouble(), "margin", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_MarginTop(), ecorePackage.getEDouble(), "marginTop", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_MarginLeft(), ecorePackage.getEDouble(), "marginLeft", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_MarginBottom(), ecorePackage.getEDouble(), "marginBottom", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_MarginRight(), ecorePackage.getEDouble(), "marginRight", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_Border(), ecorePackage.getEDouble(), "border", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_BorderTop(), ecorePackage.getEDouble(), "borderTop", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_BorderLeft(), ecorePackage.getEDouble(), "borderLeft", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_BorderBottom(), ecorePackage.getEDouble(), "borderBottom", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_BorderRight(), ecorePackage.getEDouble(), "borderRight", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_BorderStyle(), this.getUBorderStyle(), "borderStyle", null, 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBoxModelOption_BorderColor(), this.getUColor(), null, "borderColor", null, 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_Padding(), ecorePackage.getEDouble(), "padding", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_PaddingTop(), ecorePackage.getEDouble(), "paddingTop", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_PaddingLeft(), ecorePackage.getEDouble(), "paddingLeft", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_PaddingBottom(), ecorePackage.getEDouble(), "paddingBottom", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_PaddingRight(), ecorePackage.getEDouble(), "paddingRight", "0", 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBoxModelOption_BackgroundColor(), this.getUColor(), null, "backgroundColor", null, 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_KeepTogether(), ecorePackage.getEBoolean(), "keepTogether", null, 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_KeepWithPrevious(), ecorePackage.getEBoolean(), "keepWithPrevious", null, 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_KeepWithNext(), ecorePackage.getEBoolean(), "keepWithNext", null, 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_BreakBefore(), ecorePackage.getEBoolean(), "breakBefore", null, 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_Width(), ecorePackage.getEInt(), "width", null, 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBoxModelOption_BreakAfter(), ecorePackage.getEBoolean(), "breakAfter", null, 0, 1, BoxModelOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(sectionOptionEClass, SectionOption.class, "SectionOption", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSectionOption_SectionNumberingStyle(), this.getSectionNumberingStyle(),
-			"sectionNumberingStyle", null, 0, 1, SectionOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSectionOption_LeaveOutPreviousSectionNumbering(), ecorePackage.getEBoolean(),
-			"leaveOutPreviousSectionNumbering", null, 0, 1, SectionOption.class, !IS_TRANSIENT, !IS_VOLATILE,
-			IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(sectionOptionEClass, SectionOption.class, "SectionOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSectionOption_SectionNumberingStyle(), this.getSectionNumberingStyle(), "sectionNumberingStyle", null, 0, 1, SectionOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSectionOption_LeaveOutPreviousSectionNumbering(), ecorePackage.getEBoolean(), "leaveOutPreviousSectionNumbering", null, 0, 1, SectionOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(booleanAttributeOptionEClass, BooleanAttributeOption.class, "BooleanAttributeOption", !IS_ABSTRACT,
-			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBooleanAttributeOption_BooleanStyle(), this.getBooleanStyle(), "booleanStyle", null, 0, 1,
-			BooleanAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(booleanAttributeOptionEClass, BooleanAttributeOption.class, "BooleanAttributeOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBooleanAttributeOption_BooleanStyle(), this.getBooleanStyle(), "booleanStyle", null, 0, 1, BooleanAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(dateAttributeOptionEClass, DateAttributeOption.class, "DateAttributeOption", !IS_ABSTRACT,
-			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDateAttributeOption_DateStyle(), this.getDateStyle(), "dateStyle", null, 0, 1,
-			DateAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
+		initEClass(dateAttributeOptionEClass, DateAttributeOption.class, "DateAttributeOption", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDateAttributeOption_DateStyle(), this.getDateStyle(), "dateStyle", null, 0, 1, DateAttributeOption.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(pageCitationStyleEEnum, PageCitationStyle.class, "PageCitationStyle");

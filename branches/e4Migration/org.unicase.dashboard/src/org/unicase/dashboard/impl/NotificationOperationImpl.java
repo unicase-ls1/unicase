@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -20,14 +20,13 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.emfstore.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.client.properties.PropertyManager;
-import org.eclipse.emf.emfstore.common.model.EMFStoreProperty;
-import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
-import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
-import org.eclipse.emf.emfstore.server.model.versioning.operations.AbstractOperation;
-import org.eclipse.emf.emfstore.server.model.versioning.operations.impl.AbstractOperationImpl;
+import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.internal.client.properties.PropertyManager;
+import org.eclipse.emf.emfstore.internal.common.model.EMFStoreProperty;
+import org.eclipse.emf.emfstore.internal.common.model.IdEObjectCollection;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
+import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation;
 import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.DashboardNotification;
 import org.unicase.dashboard.DashboardNotificationComposite;
@@ -41,14 +40,17 @@ import org.unicase.dashboard.util.DashboardPropertyKeys;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.dashboard.impl.NotificationOperationImpl#getNotifications <em>Notifications</em>}</li>
- * <li>{@link org.unicase.dashboard.impl.NotificationOperationImpl#isReversed <em>Reversed</em>}</li>
+ *   <li>{@link org.unicase.dashboard.impl.NotificationOperationImpl#getNotifications <em>Notifications</em>}</li>
+ *   <li>{@link org.unicase.dashboard.impl.NotificationOperationImpl#isReversed <em>Reversed</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public class NotificationOperationImpl extends AbstractOperationImpl implements NotificationOperation {
+public class NotificationOperationImpl
+		extends
+		org.eclipse.emf.emfstore.internal.server.model.versioning.operations.impl.AbstractOperationImpl
+		implements NotificationOperation {
 	/**
 	 * The cached value of the '{@link #getNotifications() <em>Notifications</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -60,18 +62,18 @@ public class NotificationOperationImpl extends AbstractOperationImpl implements 
 	protected EList<DashboardNotification> notifications;
 
 	/**
-	 * The default value of the '{@link #isReversed() <em>Reversed</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isReversed() <em>Reversed</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isReversed()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final boolean REVERSED_EDEFAULT = false;
 	/**
-	 * The cached value of the '{@link #isReversed() <em>Reversed</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isReversed() <em>Reversed</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isReversed()
 	 * @generated
 	 * @ordered
@@ -80,7 +82,6 @@ public class NotificationOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NotificationOperationImpl() {
@@ -89,7 +90,6 @@ public class NotificationOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -99,20 +99,19 @@ public class NotificationOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<DashboardNotification> getNotifications() {
 		if (notifications == null) {
-			notifications = new EObjectContainmentEList.Resolving<DashboardNotification>(DashboardNotification.class,
-				this, DashboardPackage.NOTIFICATION_OPERATION__NOTIFICATIONS);
+			notifications = new EObjectContainmentEList.Resolving<DashboardNotification>(
+					DashboardNotification.class, this,
+					DashboardPackage.NOTIFICATION_OPERATION__NOTIFICATIONS);
 		}
 		return notifications;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isReversed() {
@@ -121,34 +120,34 @@ public class NotificationOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setReversed(boolean newReversed) {
 		boolean oldReversed = reversed;
 		reversed = newReversed;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DashboardPackage.NOTIFICATION_OPERATION__REVERSED,
-				oldReversed, reversed));
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					DashboardPackage.NOTIFICATION_OPERATION__REVERSED,
+					oldReversed, reversed));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case DashboardPackage.NOTIFICATION_OPERATION__NOTIFICATIONS:
-			return ((InternalEList<?>) getNotifications()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>) getNotifications()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -164,7 +163,6 @@ public class NotificationOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -173,7 +171,8 @@ public class NotificationOperationImpl extends AbstractOperationImpl implements 
 		switch (featureID) {
 		case DashboardPackage.NOTIFICATION_OPERATION__NOTIFICATIONS:
 			getNotifications().clear();
-			getNotifications().addAll((Collection<? extends DashboardNotification>) newValue);
+			getNotifications().addAll(
+					(Collection<? extends DashboardNotification>) newValue);
 			return;
 		case DashboardPackage.NOTIFICATION_OPERATION__REVERSED:
 			setReversed((Boolean) newValue);
@@ -184,7 +183,6 @@ public class NotificationOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -202,7 +200,6 @@ public class NotificationOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -218,7 +215,6 @@ public class NotificationOperationImpl extends AbstractOperationImpl implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -245,23 +241,30 @@ public class NotificationOperationImpl extends AbstractOperationImpl implements 
 		}
 		if (projectSpace != null) {
 			PropertyManager manager = projectSpace.getPropertyManager();
-			EMFStoreProperty property = manager.getLocalProperty(DashboardPropertyKeys.NOTIFICATION_COMPOSITE);
+			EMFStoreProperty property = manager
+					.getLocalProperty(DashboardPropertyKeys.NOTIFICATION_COMPOSITE);
 			if (property != null) {
 				EObject value = property.getValue();
-				if (value != null && value instanceof DashboardNotificationComposite) {
+				if (value != null
+						&& value instanceof DashboardNotificationComposite) {
 					DashboardNotificationComposite notificationComposite = (DashboardNotificationComposite) value;
 					if (isReversed()) {
-						notificationComposite.getNotifications().removeAll(getNotifications());
+						notificationComposite.getNotifications().removeAll(
+								getNotifications());
 					} else {
-						notificationComposite.getNotifications().addAll(getNotifications());
+						notificationComposite.getNotifications().addAll(
+								getNotifications());
 					}
 				}
 			} else {
 				if (!isReversed()) {
 					DashboardNotificationComposite notificationComposite = DashboardFactory.eINSTANCE
-						.createDashboardNotificationComposite();
-					notificationComposite.getNotifications().addAll(getNotifications());
-					manager.setLocalProperty(DashboardPropertyKeys.NOTIFICATION_COMPOSITE, notificationComposite);
+							.createDashboardNotificationComposite();
+					notificationComposite.getNotifications().addAll(
+							getNotifications());
+					manager.setLocalProperty(
+							DashboardPropertyKeys.NOTIFICATION_COMPOSITE,
+							notificationComposite);
 				}
 			}
 		}
@@ -273,7 +276,8 @@ public class NotificationOperationImpl extends AbstractOperationImpl implements 
 
 	@Override
 	public AbstractOperation reverse() {
-		NotificationOperation operation = DashboardFactory.eINSTANCE.createNotificationOperation();
+		NotificationOperation operation = DashboardFactory.eINSTANCE
+				.createNotificationOperation();
 		operation.setReversed(true);
 		operation.setClientDate(new Date());
 		operation.getNotifications().addAll(getNotifications());

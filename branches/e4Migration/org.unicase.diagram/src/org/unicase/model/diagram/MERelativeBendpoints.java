@@ -12,11 +12,13 @@ import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>ME Relative Bendpoints</b></em>'. <!--
  * end-user-doc -->
- * 
+ *
+ *
  * @see org.unicase.model.diagram.DiagramPackage#getMERelativeBendpoints()
  * @model
  * @generated
  */
 @SuppressWarnings("restriction")
-public interface MERelativeBendpoints extends RelativeBendpoints, NonDomainElement {
+public interface MERelativeBendpoints extends RelativeBendpoints,
+		NonDomainElement {
 } // MERelativeBendpoints

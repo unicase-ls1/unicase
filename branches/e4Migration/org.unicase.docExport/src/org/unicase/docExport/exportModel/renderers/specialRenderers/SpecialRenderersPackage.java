@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -19,46 +19,42 @@ import org.unicase.docExport.exportModel.renderers.RenderersPackage;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersFactory
  * @model kind="package"
  * @generated
  */
 public interface SpecialRenderersPackage extends EPackage {
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "specialRenderers";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/docExport/exportModel/renderers/specialRenderers";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.docExport.exportModel.renderers.specialRenderers";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	SpecialRenderersPackage eINSTANCE = org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl
-		.init();
+	SpecialRenderersPackage eINSTANCE = org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl.init();
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.MeetingRendererImpl
-	 * <em>Meeting Renderer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.MeetingRendererImpl <em>Meeting Renderer</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.MeetingRendererImpl
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getMeetingRenderer()
 	 * @generated
@@ -66,17 +62,17 @@ public interface SpecialRenderersPackage extends EPackage {
 	int MEETING_RENDERER = 0;
 
 	/**
-	 * The feature id for the '<em><b>Renderer Options</b></em>' containment reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Renderer Options</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MEETING_RENDERER__RENDERER_OPTIONS = RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS;
 
 	/**
-	 * The feature id for the '<em><b>Template</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Template</b></em>' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -92,19 +88,17 @@ public interface SpecialRenderersPackage extends EPackage {
 	int MEETING_RENDERER__ATTRIBUTE_RENDERER_MAPPING = RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING;
 
 	/**
-	 * The number of structural features of the '<em>Meeting Renderer</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Meeting Renderer</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MEETING_RENDERER_FEATURE_COUNT = RenderersPackage.MODEL_ELEMENT_RENDERER_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.MilestoneRendererImpl
-	 * <em>Milestone Renderer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.MilestoneRendererImpl <em>Milestone Renderer</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.MilestoneRendererImpl
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getMilestoneRenderer()
 	 * @generated
@@ -112,17 +106,17 @@ public interface SpecialRenderersPackage extends EPackage {
 	int MILESTONE_RENDERER = 1;
 
 	/**
-	 * The feature id for the '<em><b>Renderer Options</b></em>' containment reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Renderer Options</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MILESTONE_RENDERER__RENDERER_OPTIONS = RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS;
 
 	/**
-	 * The feature id for the '<em><b>Template</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Template</b></em>' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -138,19 +132,17 @@ public interface SpecialRenderersPackage extends EPackage {
 	int MILESTONE_RENDERER__ATTRIBUTE_RENDERER_MAPPING = RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING;
 
 	/**
-	 * The number of structural features of the '<em>Milestone Renderer</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Milestone Renderer</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MILESTONE_RENDERER_FEATURE_COUNT = RenderersPackage.MODEL_ELEMENT_RENDERER_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.StepsAttributeRendererImpl
-	 * <em>Steps Attribute Renderer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.StepsAttributeRendererImpl <em>Steps Attribute Renderer</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.StepsAttributeRendererImpl
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getStepsAttributeRenderer()
 	 * @generated
@@ -158,28 +150,26 @@ public interface SpecialRenderersPackage extends EPackage {
 	int STEPS_ATTRIBUTE_RENDERER = 2;
 
 	/**
-	 * The feature id for the '<em><b>Attribute Option</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Attribute Option</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEPS_ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION = RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION;
 
 	/**
-	 * The number of structural features of the '<em>Steps Attribute Renderer</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Steps Attribute Renderer</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int STEPS_ATTRIBUTE_RENDERER_FEATURE_COUNT = RenderersPackage.ATTRIBUTE_RENDERER_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.MethodRendererImpl
-	 * <em>Method Renderer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.MethodRendererImpl <em>Method Renderer</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.MethodRendererImpl
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getMethodRenderer()
 	 * @generated
@@ -187,28 +177,26 @@ public interface SpecialRenderersPackage extends EPackage {
 	int METHOD_RENDERER = 3;
 
 	/**
-	 * The feature id for the '<em><b>Attribute Option</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Attribute Option</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int METHOD_RENDERER__ATTRIBUTE_OPTION = RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION;
 
 	/**
-	 * The number of structural features of the '<em>Method Renderer</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Method Renderer</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int METHOD_RENDERER_FEATURE_COUNT = RenderersPackage.ATTRIBUTE_RENDERER_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.PackageFlatRendererImpl
-	 * <em>Package Flat Renderer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.PackageFlatRendererImpl <em>Package Flat Renderer</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.PackageFlatRendererImpl
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getPackageFlatRenderer()
 	 * @generated
@@ -216,17 +204,17 @@ public interface SpecialRenderersPackage extends EPackage {
 	int PACKAGE_FLAT_RENDERER = 4;
 
 	/**
-	 * The feature id for the '<em><b>Renderer Options</b></em>' containment reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Renderer Options</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PACKAGE_FLAT_RENDERER__RENDERER_OPTIONS = RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS;
 
 	/**
-	 * The feature id for the '<em><b>Template</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Template</b></em>' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -242,19 +230,17 @@ public interface SpecialRenderersPackage extends EPackage {
 	int PACKAGE_FLAT_RENDERER__ATTRIBUTE_RENDERER_MAPPING = RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING;
 
 	/**
-	 * The number of structural features of the '<em>Package Flat Renderer</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Package Flat Renderer</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PACKAGE_FLAT_RENDERER_FEATURE_COUNT = RenderersPackage.MODEL_ELEMENT_RENDERER_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.ClassRendererImpl
-	 * <em>Class Renderer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.ClassRendererImpl <em>Class Renderer</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.ClassRendererImpl
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getClassRenderer()
 	 * @generated
@@ -262,17 +248,17 @@ public interface SpecialRenderersPackage extends EPackage {
 	int CLASS_RENDERER = 5;
 
 	/**
-	 * The feature id for the '<em><b>Renderer Options</b></em>' containment reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Renderer Options</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int CLASS_RENDERER__RENDERER_OPTIONS = RenderersPackage.MODEL_ELEMENT_RENDERER__RENDERER_OPTIONS;
 
 	/**
-	 * The feature id for the '<em><b>Template</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Template</b></em>' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -288,19 +274,17 @@ public interface SpecialRenderersPackage extends EPackage {
 	int CLASS_RENDERER__ATTRIBUTE_RENDERER_MAPPING = RenderersPackage.MODEL_ELEMENT_RENDERER__ATTRIBUTE_RENDERER_MAPPING;
 
 	/**
-	 * The number of structural features of the '<em>Class Renderer</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Class Renderer</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int CLASS_RENDERER_FEATURE_COUNT = RenderersPackage.MODEL_ELEMENT_RENDERER_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.ClassAttributesRendererImpl
-	 * <em>Class Attributes Renderer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.ClassAttributesRendererImpl <em>Class Attributes Renderer</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.ClassAttributesRendererImpl
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getClassAttributesRenderer()
 	 * @generated
@@ -308,28 +292,26 @@ public interface SpecialRenderersPackage extends EPackage {
 	int CLASS_ATTRIBUTES_RENDERER = 6;
 
 	/**
-	 * The feature id for the '<em><b>Attribute Option</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Attribute Option</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int CLASS_ATTRIBUTES_RENDERER__ATTRIBUTE_OPTION = RenderersPackage.ATTRIBUTE_RENDERER__ATTRIBUTE_OPTION;
 
 	/**
-	 * The number of structural features of the '<em>Class Attributes Renderer</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Class Attributes Renderer</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int CLASS_ATTRIBUTES_RENDERER_FEATURE_COUNT = RenderersPackage.ATTRIBUTE_RENDERER_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '
-	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.FhmMeetingRendererImpl
-	 * <em>Fhm Meeting Renderer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.FhmMeetingRendererImpl <em>Fhm Meeting Renderer</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.FhmMeetingRendererImpl
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getFhmMeetingRenderer()
 	 * @generated
@@ -337,17 +319,17 @@ public interface SpecialRenderersPackage extends EPackage {
 	int FHM_MEETING_RENDERER = 7;
 
 	/**
-	 * The feature id for the '<em><b>Renderer Options</b></em>' containment reference list. <!-- begin-user-doc -->
+	 * The feature id for the '<em><b>Renderer Options</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int FHM_MEETING_RENDERER__RENDERER_OPTIONS = MEETING_RENDERER__RENDERER_OPTIONS;
 
 	/**
-	 * The feature id for the '<em><b>Template</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Template</b></em>' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -363,19 +345,17 @@ public interface SpecialRenderersPackage extends EPackage {
 	int FHM_MEETING_RENDERER__ATTRIBUTE_RENDERER_MAPPING = MEETING_RENDERER__ATTRIBUTE_RENDERER_MAPPING;
 
 	/**
-	 * The number of structural features of the '<em>Fhm Meeting Renderer</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Fhm Meeting Renderer</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int FHM_MEETING_RENDERER_FEATURE_COUNT = MEETING_RENDERER_FEATURE_COUNT + 0;
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer <em>Meeting Renderer</em>}'.
+	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer <em>Meeting Renderer</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Meeting Renderer</em>'.
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer
 	 * @generated
@@ -383,10 +363,8 @@ public interface SpecialRenderersPackage extends EPackage {
 	EClass getMeetingRenderer();
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRenderer
-	 * <em>Milestone Renderer</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRenderer <em>Milestone Renderer</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Milestone Renderer</em>'.
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRenderer
 	 * @generated
@@ -394,10 +372,8 @@ public interface SpecialRenderersPackage extends EPackage {
 	EClass getMilestoneRenderer();
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.StepsAttributeRenderer
-	 * <em>Steps Attribute Renderer</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.StepsAttributeRenderer <em>Steps Attribute Renderer</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Steps Attribute Renderer</em>'.
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.StepsAttributeRenderer
 	 * @generated
@@ -405,10 +381,8 @@ public interface SpecialRenderersPackage extends EPackage {
 	EClass getStepsAttributeRenderer();
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.MethodRenderer <em>Method Renderer</em>}'.
+	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.MethodRenderer <em>Method Renderer</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Method Renderer</em>'.
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.MethodRenderer
 	 * @generated
@@ -416,10 +390,8 @@ public interface SpecialRenderersPackage extends EPackage {
 	EClass getMethodRenderer();
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.PackageFlatRenderer
-	 * <em>Package Flat Renderer</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.PackageFlatRenderer <em>Package Flat Renderer</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Package Flat Renderer</em>'.
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.PackageFlatRenderer
 	 * @generated
@@ -438,10 +410,8 @@ public interface SpecialRenderersPackage extends EPackage {
 	EClass getClassRenderer();
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.ClassAttributesRenderer
-	 * <em>Class Attributes Renderer</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.ClassAttributesRenderer <em>Class Attributes Renderer</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Class Attributes Renderer</em>'.
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.ClassAttributesRenderer
 	 * @generated
@@ -449,10 +419,8 @@ public interface SpecialRenderersPackage extends EPackage {
 	EClass getClassAttributesRenderer();
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer
-	 * <em>Fhm Meeting Renderer</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for class '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer <em>Fhm Meeting Renderer</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Fhm Meeting Renderer</em>'.
 	 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer
 	 * @generated
@@ -460,8 +428,8 @@ public interface SpecialRenderersPackage extends EPackage {
 	EClass getFhmMeetingRenderer();
 
 	/**
-	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -476,15 +444,12 @@ public interface SpecialRenderersPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.MeetingRendererImpl
-		 * <em>Meeting Renderer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.MeetingRendererImpl <em>Meeting Renderer</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.MeetingRendererImpl
 		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getMeetingRenderer()
 		 * @generated
@@ -492,10 +457,8 @@ public interface SpecialRenderersPackage extends EPackage {
 		EClass MEETING_RENDERER = eINSTANCE.getMeetingRenderer();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.MilestoneRendererImpl
-		 * <em>Milestone Renderer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.MilestoneRendererImpl <em>Milestone Renderer</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.MilestoneRendererImpl
 		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getMilestoneRenderer()
 		 * @generated
@@ -503,10 +466,8 @@ public interface SpecialRenderersPackage extends EPackage {
 		EClass MILESTONE_RENDERER = eINSTANCE.getMilestoneRenderer();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.StepsAttributeRendererImpl
-		 * <em>Steps Attribute Renderer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.StepsAttributeRendererImpl <em>Steps Attribute Renderer</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.StepsAttributeRendererImpl
 		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getStepsAttributeRenderer()
 		 * @generated
@@ -514,10 +475,8 @@ public interface SpecialRenderersPackage extends EPackage {
 		EClass STEPS_ATTRIBUTE_RENDERER = eINSTANCE.getStepsAttributeRenderer();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.MethodRendererImpl
-		 * <em>Method Renderer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.MethodRendererImpl <em>Method Renderer</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.MethodRendererImpl
 		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getMethodRenderer()
 		 * @generated
@@ -525,10 +484,8 @@ public interface SpecialRenderersPackage extends EPackage {
 		EClass METHOD_RENDERER = eINSTANCE.getMethodRenderer();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.PackageFlatRendererImpl
-		 * <em>Package Flat Renderer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.PackageFlatRendererImpl <em>Package Flat Renderer</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.PackageFlatRendererImpl
 		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getPackageFlatRenderer()
 		 * @generated
@@ -536,10 +493,8 @@ public interface SpecialRenderersPackage extends EPackage {
 		EClass PACKAGE_FLAT_RENDERER = eINSTANCE.getPackageFlatRenderer();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.ClassRendererImpl
-		 * <em>Class Renderer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.ClassRendererImpl <em>Class Renderer</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.ClassRendererImpl
 		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getClassRenderer()
 		 * @generated
@@ -547,10 +502,8 @@ public interface SpecialRenderersPackage extends EPackage {
 		EClass CLASS_RENDERER = eINSTANCE.getClassRenderer();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.ClassAttributesRendererImpl
-		 * <em>Class Attributes Renderer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.ClassAttributesRendererImpl <em>Class Attributes Renderer</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.ClassAttributesRendererImpl
 		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getClassAttributesRenderer()
 		 * @generated
@@ -558,10 +511,8 @@ public interface SpecialRenderersPackage extends EPackage {
 		EClass CLASS_ATTRIBUTES_RENDERER = eINSTANCE.getClassAttributesRenderer();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.FhmMeetingRendererImpl
-		 * <em>Fhm Meeting Renderer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.docExport.exportModel.renderers.specialRenderers.impl.FhmMeetingRendererImpl <em>Fhm Meeting Renderer</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.FhmMeetingRendererImpl
 		 * @see org.unicase.docExport.exportModel.renderers.specialRenderers.impl.SpecialRenderersPackageImpl#getFhmMeetingRenderer()
 		 * @generated
