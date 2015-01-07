@@ -1,7 +1,0 @@
-# Tracing options for the org.unicase.uiModeling.diagram plug-in
-
-# Common issues
-org.unicase.uiModeling.diagram/debug=false
-
-# Visual IDs
-org.unicase.uiModeling.diagram/debug/visualID=false

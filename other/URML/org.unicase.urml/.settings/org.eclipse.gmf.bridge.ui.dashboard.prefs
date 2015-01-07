@@ -1,8 +1,0 @@
-#Thu Jun 10 19:35:19 CEST 2010
-eclipse.preferences.version=1
-gmf_dashboard/domainGenerationModel=platform\:/resource/org.unicase.urml/model/urml.genmodel
-gmf_dashboard/domainModel=platform\:/resource/org.unicase.urml/model/urml.ecore
-gmf_dashboard/generationModel=platform\:/resource/org.unicase.urml/model/urml.gmfgen
-gmf_dashboard/graphicalDefinitionModel=platform\:/resource/org.unicase.urml/model/urml1.gmfgraph
-gmf_dashboard/mappingModel=platform\:/resource/org.unicase.urml/model/urml1.gmfmap
-gmf_dashboard/toolingDefinitionModel=platform\:/resource/org.unicase.urml/model/urml.gmftool

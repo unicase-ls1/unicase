@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<site>
-   <feature url="features/org.unicase.model.search.feature_1.0.1.jar" id="org.unicase.model.search.feature" version="1.0.1">
-      <category name="unicase"/>
-   </feature>
-   <category-def name="unicase" label="UNICASE Search"/>
-</site>
