@@ -1,0 +1,4 @@
+By default the editor renders all attributes of an EObject in the same order, as they are specified in the Ecore file. This order can be modified using annotations. They can be added to an attribute in the ecore by right clicking on the attribute. The editor supports tow values: priority will affect the order in which attributes are rendered in the editor. The lowest priorities will be rendered first. Position will affect the location, where an attribute is rendered, the supported values are **left, right and bottom**
+The following screenshot shows the positioning of the author attribute as a first attribute on the right side.
+
+![http://unicase.googlecode.com/svn/trunk/documentation/images/screenshots/editorAnnotations.png](http://unicase.googlecode.com/svn/trunk/documentation/images/screenshots/editorAnnotations.png)

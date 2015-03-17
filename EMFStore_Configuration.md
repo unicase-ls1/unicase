@@ -1,0 +1,277 @@
+# EMFStore #
+
+EMFStore is the repository/server for UNICASE.
+
+## Data Storage Configuration ##
+
+By default EMFStore will store its data in the user home in the ".unicase" folder in a subfolder called "emfstore". To change this behaviour you can configure the following start-up parameter:
+-EMFStoreHome=<your new path>
+
+## Loading a Model ##
+
+EMFStore is independent of the actual model and therefore only operates on the metamodel offered by UNICASE. It is possible to plug in any other model by inheriting the metamodel.
+Due to this decoupling EMFStore does not know where to find your model and it must therefore be defined within the startup configuration. This is also true for the default UNICASE model. Additionally you have to provide a model version number in your model to allow the migrator code (which is able to migrate from one version of the model to another) by using the org.unicase.metamodel.modelversion extension in your model (This is already set in the UNICASE model)
+
+### How to load a model with EMFStore ###
+  * Open the _Run Configuration_ for the EMFStore (e.g right-click on org.unicase.emfstore => click on _Run as_ => click on _Run Configuration_)
+
+  * Be sure, that the emfstore run configuration is chosen on the left side. Then Choose the _Plug-ins_ Tab in the _Run Configurations_ window
+
+  * For _Launch with_ select _plug-ins selected below only_
+
+  * Now choose your model. In the case of UNICASE, select _org.unicase.model_
+
+  * Just to be sure, use the _Add Required Plug-ins_ button on the right side
+
+  * To validate the chosen Plug-ins you can press _Validate Plug-ins_. There shouldn't be any problem, if yes, try to resovle them.
+
+  * Finally press _Apply_ and you are ready to go
+
+## Note about ports ##
+EMFStore can run with RMI and XML-RPC. XML-RPC was introduced to be able to run via HTTPS and therefore work in firewalled environments. HTTPS known port lies on 443, this causes a problem for the EMFStore on Unix based systems (e.g. Linux and Mac OS). These operating systems only allow low port numbers (<1024) if the process has root access. Because we wanted to avoid giving the server root access, we decided to use rerouting of the port.
+So we reroute port 443 to 8443 for example and EMFStore then listens on 8443.
+
+System administrators should know how to do this, but if you want to try it out, here are the command lines (replace the IP with your adress):
+
+Mac OS
+
+```
+ sudo ipfw add forward 123.123.123.123,8443 ip from any to 123.123.123.123 443 in
+```
+
+Linux
+
+```
+sudo iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 8443
+```
+
+## Configuration File ##
+
+If you need to adapt the default configuration of EMFStore you have to create a configuration file called **es.properties**. EMFStore will look for this file in this folder: {user-folder}/.unicase/emfstore/conf/es.properties
+
+
+In this file you can use the default java propeties syntax to define your options. Below there will be a sample es.properties file explaining all possible configurations:
+
+```
+
+#
+# Copyright (c) 2008-2010 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+# accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+# distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+#
+#
+# EMFStore property file: es.properties
+# with descriptions
+#
+# Version of file: 5
+# Last Update: 15.02.2010
+# Author(s): Otto von Wesendonk
+#
+
+# EMFStore is able to run without this configuration file. The default values are displayed for every option.
+
+# Some options differ if the server is running as released version [RV] or is running as a developer version [DV]
+
+# This file will be processed by the default java properties api. Therefore the syntax for options is:
+# "option.key = value". If multiple values are allowed, separate them with ",". "option.key = value1,value2"
+
+
+#
+# Version
+#
+
+# Use this property do define accepted version numbers. For the server, version numbers only are strings, so you can define
+# your format as you wish. You can define several version numbers at the same time seperating them with a ","
+# With the keyword "any" all versions are accepted, this should be used for developement only.
+# Options: Multiple values seperate by ","
+# Default: [RV] no value, server won't accept any call. [DV] if no value is specified, "any" is used, otherwise 
+# the specified values are checked
+#
+emfstore.acceptedversions=0.3.40, 0.3.41, 0.3.42
+
+
+#
+# Persistence
+#
+
+#
+#emfstore.persistence.version.projectstate
+
+# EMFStore mainly saves operations in it's versions. For backup reasons however, every X versions the total project state 
+# is saved into  a file. This options allows to specify how often a complete  project state should be saved. If the range is too 
+# small a lot of memory is used.
+# Options: Number bigger than 0
+# Default: "1" - every state is preserved. Shouldn't be used if server is deployed
+#
+emfstore.persistence.version.projectstate.everyxversions = 50
+
+# Deprecated, not in use anymore.
+# emfstore.persistence.version.backup.projectstate.everyxversions = 10
+
+
+#
+# Validation
+#
+
+# Defines whether the projects on the server shall run through validation. 
+# Validation is used to confirm the consistency of the saved projects and models.
+# Options: "true" or "false"
+# Default: "true"
+#
+emfstore.validation = true
+
+# Defines level of validation. At the moment there are 3 kinds of validation, which can be combined by adding them bitwise.
+# Level 1: Loading all files and loading their models and cross-file links.
+# Level 2: Checks whether every modelelement and change operation has modelelement id
+# Level 4: Applies all changes between to projectstates and compares whether calculated projet state and the actual projectstate are equal.
+# Options: Any level or their bitwise combination. E.g. the default value 7 is a combination of all other levels: 1 & 2 & 4 = 7. 
+# If only want to use the first both level, choose 3 = 1 & 2.
+# Default: 7 
+#
+emfstore.validation.level = 7
+
+# You can exclude certain projects from the validation. It is not possible to exclude projects from _Level 1_ validation
+# Options: Multiple Project IDs seperated by ","
+# Default: Not set
+#
+emfstore.validation.exclude = 
+
+
+
+#
+# Connection related options
+#
+
+# At the moment EMFStore runs with RMI and XML RPC in parallel. So you can use both technologies for the connection.
+# XML RPC is suggested for enviroments with strict firewalls, because it runs via HTTPS.
+
+# Defines whether RMI should use SSL encryption or not. Please Note: The password is always encrypted with the server certificate,
+# this "only" indicates whether all data is encrypted additionally.
+# Options: "true" or "false"
+# Default: "true"
+#
+emfstore.connection.rmi.encryption = true
+
+# Defines the Port for the XML RPC server. Normally we want to use the "442" HTTPS port. However, on Linux/Unix based systems
+# lower ports (<1024) are restricted. One workaround for these operating systems ist to listen on higher port and to setup 
+# a port forward from 443 to the specified port.
+# Options: Any possible port
+# Default: [RV] "443", [DV] "8080"
+#
+emfstore.connection.xmlrpc.port= 8080
+
+
+#
+# Certificates
+#
+
+# These options are used to handle the server's keystore. the keystore file is located in the main EMFStore folder.
+# When deploying you should generate an own certificate and don't use the default developer certificate
+
+# Defines the alias of the main server certificate stored in the keystore.
+# Options: any alias allowed in the keystore
+# Default: dependent of the used certificate
+#
+emfstore.keystore.alias = youralias
+
+# Password for the selected certificate.
+# Options: any password
+# Default: dependent of the used certificate
+#
+emfstore.keystore.password = yourpassword
+
+# Defines the used certificate type stored in the keystore
+# Options: All Certificates which are supported by the java keystore
+# Default: "SunX509"
+#
+emfstore.keystore.certificate.type= SunX509
+
+# Defines the used cipher algorithm for the certificate
+# Options: All cipher algorithms supported by the java api
+# Default: "RSA"
+#
+emfstore.keystore.cipher.algorithm=RSA
+
+
+#
+# Authentication
+#
+
+# Defines the name of the super user. The super user will be created on server startup if not present.
+# If the super user is deleted while runtime, you have to restart the server in order to restor it.
+# Options: Any name
+# Default: "super"
+#
+emfstore.accesscontrol.authentication.superuser = super
+
+# The password for the super user account.
+# Options: Any password
+# Default: "super"
+#
+emfstore.accesscontrol.authentication.superuser.password = super
+
+# Defines the session timeout for a user session. If a session is inactive for this period of time, the session will be destroyed.
+# Options: A number specifiing the time in milliseconds
+# Default: "1800000" (= 30 minutes)
+#
+emfstore.accesscontrol.session.timeout= 1800000
+
+
+# Defines the policy for user authentication. EMFStore doesn't store any password and uses external resources for authentication.
+# In order to create a new user, the user has to be created within the EMFStore with a specified user name.
+# The authentication method uses this name and validates the password against the specified authentication adapter
+# Options: "spfv" or "ldap" (explenations beneath)
+# Default: "spfv"
+#
+emfstore.accesscontrol.authentication.policy=spfv
+
+# SPFV (Simple property file verification) is a simple mechanism to store user passwords. It's only intended for development purposes.
+# It uses the java properties api and the format for passwords are: "username=userpassword" in each line
+# The default location for this file is {user-folder}/.unicase/emfstore/conf/user.properties
+
+# Defines the location of the spfv file.
+# Options: OS dependent path to file, absolute or relative.
+# Default: Not set (= than uses the default location)
+#
+#emfstore.accesscontrol.authentication.spfv = /your/path/
+
+# If you are using LDAP, you have to specify the server's location. EMFStore can cope with several LDAP server at once.
+# The server will try to authenticate against each server until the authentication was successful, otherwise the authentication fails
+# For each LDAP server there are 3 necessary options, all prefixed with the server's index
+# Indexes start with 1 and you can add more by counting up. You shouldn't have a gap in your indexes, otherwise the server will stop lookinf for further LDAP servers.
+# Also if a configuration is empty, the server will stop looking for further configurations.
+# Options: LDAP configuration specifying "url", "base" and "searchdn"
+# Default: Not set
+#
+emfstore.accesscontrol.authentication.ldap.1.url=ldap://ldap1.in.tum.de:389
+emfstore.accesscontrol.authentication.ldap.1.base=ou=Personen,ou=IN,o=TUM,c=DE
+emfstore.accesscontrol.authentication.ldap.1.searchdn=uid
+
+emfstore.accesscontrol.authentication.ldap.2.url=ldap://ldap2.in.tum.de:389
+emfstore.accesscontrol.authentication.ldap.2.base=ou=Personen,ou=IN,o=TUM,c=DE
+emfstore.accesscontrol.authentication.ldap.2.searchdn=uid
+
+
+#
+# Plugin configuration.
+#
+
+# Defines whehter post load plugins shall be called or not.
+# Options: true or false
+# Default: false
+#
+emfstore.startup.post.loadlistener = false
+
+#
+# Deprecated options or options not ment for public use. Please dont change or use these:
+#
+
+# Used for development purposes.
+#
+emfstore.startup.loadlistener = false
+
+# EMF resource type for storing data. At the moment only one option is allowed: org.unicase.emfstore.storage.XMLStorage
+# emfstore.persistence.resourceStorage = org.unicase.emfstore.storage.XMLStorage
+
+
+```

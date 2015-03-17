@@ -1,0 +1,1 @@
+EMF Client Platform has moved to Eclipse, please follow [this link](http://emfcp.org).

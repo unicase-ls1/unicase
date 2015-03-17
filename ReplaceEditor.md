@@ -1,0 +1,1 @@
+<a href='http://www.youtube.com/watch?feature=player_embedded&v=cR8nLDRrVc4' target='_blank'><img src='http://img.youtube.com/vi/cR8nLDRrVc4/0.jpg' width='425' height=344 /></a>

@@ -1,0 +1,1 @@
+The EMF Client Platform is a framework to build EMF-based client applications.

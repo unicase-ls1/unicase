@@ -1,0 +1,3 @@
+### How to change the icon and label of a model element ###
+
+The icon, which is shown in the GUI is declared by the method getImage() in the corresponding ItemProvider (e.g. ModelElementItemProvider) in the model.edit package. To change the icon you can either modify this method. Don´t forget to mark it as @generated NOT, otherwise you changes will be overwritten during the next model generation. The standard way to change the icon is to override the image in the `icons/full/obj16/ModelElement.gif` folder without modifying the Provider. To set the text which is shown as the label of a Model Element, override the getText() method in the corresponding provider.

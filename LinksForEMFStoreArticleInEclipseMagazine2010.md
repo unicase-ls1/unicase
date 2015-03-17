@@ -1,0 +1,1 @@
+http://phoenix.eclipse.org/packages/eclipse-modeling-tools-includes-incubating-components/galileosr1

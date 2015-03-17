@@ -1,0 +1,1 @@
+![http://www.eclipse.org/donate/images/friendslogo200.jpg](http://www.eclipse.org/donate/images/friendslogo200.jpg)
