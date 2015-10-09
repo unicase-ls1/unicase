@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2015-2016 Chair of Applied Software Engineering, Technische Universit‰t M¸nchen (TUM).
+ * <copyright> Copyright (c) 2015-2016 Chair of Applied Software Engineering, Technische Universität München (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -9,11 +9,14 @@ package org.unicase.ui.stem.views.iterationplanningview;
 import java.io.IOException;
 
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecp.core.ECPProject;
+import org.eclipse.emf.ecp.core.util.ECPUtil;
+import org.eclipse.emf.ecp.ui.common.dnd.ModelExplorerDropAdapter;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.emfstore.internal.client.model.ESWorkspaceProviderImpl;
+import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.internal.client.model.Workspace;
+import org.eclipse.emf.emfstore.internal.client.model.exceptions.UnkownProjectException;
 import org.eclipse.emf.emfstore.internal.common.model.Project;
 import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
 import org.eclipse.jface.action.Action;
@@ -43,6 +46,7 @@ import org.unicase.ui.stem.Activator;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
 import org.unicase.ui.tableview.labelproviders.StatusLabelProvider;
 import org.unicase.ui.unicasecommon.common.TreeViewerColumnSorter;
+import org.unicase.ui.unicasecommon.common.UCDragAdapter;
 import org.unicase.ui.unicasecommon.common.filter.UserFilter;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
@@ -93,6 +97,9 @@ public class IterationPlanningView extends ViewPart {
 	private ViewerFilter teamFilter;
 	private UserFilter userFilter;
 	private Action filterToMe;
+	private Workspace workspace;
+	private Project activeProject;
+	private ECPProject ecpProject;
 
 	/**
 	 * The constructor.
@@ -105,21 +112,6 @@ public class IterationPlanningView extends ViewPart {
 			settings.load(filename);
 		} catch (IOException e) {
 			// Do nothing.
-		}
-		try {
-			final Workspace workspace = ESWorkspaceProviderImpl.getInstance()
-					.getInternalWorkspace();
-			workspace.eAdapters().add(new AdapterImpl() {
-				@Override
-				public void notifyChanged(Notification msg) {
-					if ((msg.getFeatureID(ECPWorkspace.class)) == org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT) {
-						initFilters();
-					}
-				}
-			});
-		} catch (NoWorkspaceException e) {
-			ModelUtil.logException("Failed to receive Project!", e);
-			return;
 		}
 	}
 
@@ -151,35 +143,16 @@ public class IterationPlanningView extends ViewPart {
 		hookDoubleClickAction();
 		addDNDSupport();
 
-		// respond to change of active ProjectSpace
-		try {
-			final ECPWorkspace workspace = ECPWorkspaceManager.getInstance()
-					.getWorkSpace();
-			workspace.eAdapters().add(new AdapterImpl() {
-				@Override
-				public void notifyChanged(Notification msg) {
-					if ((msg.getFeatureID(ECPWorkspace.class)) == org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT) {
-						if (workspace.getActiveProject() != null) {
-							project = (Project) workspace.getActiveProject()
-									.getRootContainer();
-						} else {
-							project = null;
-						}
-						setInput();
-					}
-					super.notifyChanged(msg);
-				}
-			});
-
-			// set input when showing the view for the first time.
-			if (workspace.getActiveProject() != null) {
-				project = (Project) workspace.getActiveProject()
-						.getRootContainer();
-			} else {
-				project = null;
-			}
-		} catch (NoWorkspaceException e) {
-			ModelUtil.logException("Failed to receive Project!", e);
+		workspace = ESWorkspaceProviderImpl.getInstance()
+				.getInternalWorkspace();
+		if (workspace.getProjectSpaces() != null
+				&& !workspace.getProjectSpaces().isEmpty()) {
+			activeProject = workspace.getProjectSpaces().get(0).getProject();
+		}
+		if (activeProject != null && activeProject instanceof Project) {
+			ecpProject = ECPUtil.getECPProjectManager().getProject(
+					((ProjectSpace) activeProject.eContainer())
+							.getProjectName());
 		}
 
 		setInput();
@@ -187,16 +160,17 @@ public class IterationPlanningView extends ViewPart {
 	}
 
 	private void initFilters() {
-		User user;
+		User user = null;
 		try {
-			user = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance()
-					.getCurrentWorkspace());
+			user = OrgUnitHelper.getUser(ecpProject, OrgUnitHelper
+					.getUserSession(ecpProject).getUsername());
+		} catch (UnkownProjectException e) {
+			ModelUtil.logException(e);
+		}
+		if (user != null) {
 			createTeamFilter(user);
 			createUserFilter(user);
-		} catch (NoCurrentUserException e) {
-			createTeamFilter(null);
-			createUserFilter(null);
-		} catch (CannotMatchUserInProjectException e) {
+		} else {
 			createTeamFilter(null);
 			createUserFilter(null);
 		}
@@ -391,7 +365,7 @@ public class IterationPlanningView extends ViewPart {
 		viewer.addDragSupport(dndOperations, transfers, new UCDragAdapter(
 				viewer));
 		viewer.addDropSupport(dndOperations, transfers,
-				new ComposedDropAdapter(viewer));
+				new ModelExplorerDropAdapter(viewer));
 
 	}
 

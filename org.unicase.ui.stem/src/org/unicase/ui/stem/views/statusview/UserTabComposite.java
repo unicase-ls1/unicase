@@ -9,10 +9,16 @@ package org.unicase.ui.stem.views.statusview;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.core.ECPProject;
+import org.eclipse.emf.ecp.core.util.ECPUtil;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.emfstore.internal.client.model.ESWorkspaceProviderImpl;
+import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.internal.client.model.Workspace;
 import org.eclipse.emf.emfstore.internal.common.model.IdEObjectCollection;
+import org.eclipse.emf.emfstore.internal.common.model.NotifiableIdEObjectCollection;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
 import org.eclipse.emf.emfstore.internal.common.model.util.IdEObjectCollectionChangeObserver;
-import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -44,69 +50,61 @@ import org.unicase.ui.unicasecommon.common.TreeViewerColumnSorter;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
 /**
- * This class provides contents of users tab in Status view. It contains a TreeViewer showing all OrgUnits participating
- * in progress of input model element. The TreeView has only two levels. At root level are the OrgUnits. The children
- * are Assignables corresponding the input element which are assigned to this OrgUnit.
+ * This class provides contents of users tab in Status view. It contains a
+ * TreeViewer showing all OrgUnits participating in progress of input model
+ * element. The TreeView has only two levels. At root level are the OrgUnits.
+ * The children are Assignables corresponding the input element which are
+ * assigned to this OrgUnit.
  * 
  * @author Hodaie
  */
-public class UserTabComposite extends Composite implements IdEObjectCollectionChangeObserver {
+public class UserTabComposite extends Composite implements
+		IdEObjectCollectionChangeObserver {
 
 	private TreeViewer treeViewer;
 	private UserTabStatusColumnLabelProvider statusColumnLabelProvider;
 	private UserTabDropAdapter userTabDropAdapter;
 	private StatusViewTabsDragAdapter userTabDragAdapter;
-	private ECPWorkspace workspace;
 	private AdapterImpl adapterImpl;
+	private Workspace workspace;
+	private NotifiableIdEObjectCollection activeProject;
+	private ECPProject ecpProject;
 
 	// private ModelElement input;
 
 	/**
 	 * Constructor.
 	 * 
-	 * @param parent parent
-	 * @param style style
-	 * @param statusView status view. Used to register context menu on user tab.
+	 * @param parent
+	 *            parent
+	 * @param style
+	 *            style
+	 * @param statusView
+	 *            status view. Used to register context menu on user tab.
 	 */
 	public UserTabComposite(Composite parent, int style, StatusView statusView) {
 		super(parent, style);
 		this.setLayout(new GridLayout());
 		createTree(statusView);
 
-		try {
-			workspace = ECPWorkspaceManager.getInstance().getWorkSpace();
-		} catch (NoWorkspaceException e) {
-			ModelUtil.logException("Failed to receive Project!", e);
-			return;
+		workspace = ESWorkspaceProviderImpl.getInstance()
+				.getInternalWorkspace();
+		if (workspace.getProjectSpaces() != null
+				&& !workspace.getProjectSpaces().isEmpty()) {
+			activeProject = workspace.getProjectSpaces().get(0).getProject();
+			activeProject.addIdEObjectCollectionChangeObserver(this);
 		}
-		if (workspace.getActiveProject() != null) {
-			((Project) workspace.getActiveProject().getRootContainer()).addIdEObjectCollectionChangeObserver(this);
+		if (activeProject != null && activeProject instanceof Project) {
+			ecpProject = ECPUtil.getECPProjectManager().getProject(
+					((ProjectSpace) activeProject.eContainer())
+							.getProjectName());
 		}
-		adapterImpl = new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(ECPWorkspace.class)) == org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT) {
-
-					// remove old listeners
-					Object oldValue = msg.getOldValue();
-					if (oldValue instanceof ECPProject) {
-						((Project) ((ECPProject) oldValue).getRootContainer())
-							.removeIdEObjectCollectionChangeObserver(UserTabComposite.this);
-					}
-					// add listener to get notified when work items get deleted/added/changed
-					if (workspace.getActiveProject() != null) {
-						((Project) workspace.getActiveProject().getRootContainer())
-							.addIdEObjectCollectionChangeObserver(UserTabComposite.this);
-					}
-				}
-			}
-		};
-		workspace.eAdapters().add(adapterImpl);
 	}
 
 	private void createTree(StatusView statusView) {
 		treeViewer = new TreeViewer(this, SWT.BORDER | SWT.FULL_SELECTION);
-		treeViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		treeViewer.getTree().setLayoutData(
+				new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		UserTabContentProvider contentProvider = new UserTabContentProvider();
 		treeViewer.setContentProvider(contentProvider);
@@ -117,10 +115,12 @@ public class UserTabComposite extends Composite implements IdEObjectCollectionCh
 		treeViewer.addDoubleClickListener(new IDoubleClickListener() {
 
 			public void doubleClick(DoubleClickEvent event) {
-				IStructuredSelection sel = (IStructuredSelection) event.getSelection();
+				IStructuredSelection sel = (IStructuredSelection) event
+						.getSelection();
 				if (sel.getFirstElement() instanceof UnicaseModelElement) {
-					UnicaseActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), treeViewer
-						.getClass().getName());
+					UnicaseActionHelper.openModelElement(
+							(UnicaseModelElement) sel.getFirstElement(),
+							treeViewer.getClass().getName());
 				}
 			}
 
@@ -134,7 +134,9 @@ public class UserTabComposite extends Composite implements IdEObjectCollectionCh
 	private void registerContextMenu(StatusView statusView) {
 		statusView.getSite().setSelectionProvider(treeViewer);
 		MenuManager menuManager = new MenuManager();
-		statusView.getSite().registerContextMenu("org.unicase.ui.stem.StatusView.UserTab", menuManager, treeViewer);
+		statusView.getSite().registerContextMenu(
+				"org.unicase.ui.stem.StatusView.UserTab", menuManager,
+				treeViewer);
 		Menu contextMenu = menuManager.createContextMenu(treeViewer.getTree());
 		treeViewer.getTree().setMenu(contextMenu);
 	}
@@ -156,12 +158,14 @@ public class UserTabComposite extends Composite implements IdEObjectCollectionCh
 		tree.setHeaderVisible(true);
 
 		// root nodes (WorkPackage) and their contained WorkItems
-		TreeViewerColumn tclmWorkItem = new TreeViewerColumn(treeViewer, SWT.NONE);
+		TreeViewerColumn tclmWorkItem = new TreeViewerColumn(treeViewer,
+				SWT.NONE);
 		tclmWorkItem.getColumn().setText("WorkItem");
 		tclmWorkItem.getColumn().setWidth(300);
 		WorkPackageColumnLabelProvider emfColumnLabelProvider = new WorkPackageColumnLabelProvider();
 		tclmWorkItem.setLabelProvider(emfColumnLabelProvider);
-		new TreeViewerColumnSorter(treeViewer, tclmWorkItem, emfColumnLabelProvider);
+		new TreeViewerColumnSorter(treeViewer, tclmWorkItem,
+				emfColumnLabelProvider);
 
 		// status column
 		TreeViewerColumn status = new TreeViewerColumn(treeViewer, SWT.NONE);
@@ -171,22 +175,28 @@ public class UserTabComposite extends Composite implements IdEObjectCollectionCh
 		status.getColumn().setText("State");
 
 		// annotated model element
-		TreeViewerColumn tclmAnnotatedME = new TreeViewerColumn(treeViewer, SWT.NONE);
+		TreeViewerColumn tclmAnnotatedME = new TreeViewerColumn(treeViewer,
+				SWT.NONE);
 		tclmAnnotatedME.getColumn().setText("Annotated");
 		tclmAnnotatedME.getColumn().setWidth(200);
 		TaskObjectLabelProvider taskObjectLabelProvider = new TaskObjectLabelProvider();
 		tclmAnnotatedME.setLabelProvider(taskObjectLabelProvider);
-		tclmAnnotatedME.setEditingSupport(new TaskObjectEditingSupport(treeViewer));
-		new TreeViewerColumnSorter(treeViewer, tclmAnnotatedME, taskObjectLabelProvider);
+		tclmAnnotatedME.setEditingSupport(new TaskObjectEditingSupport(
+				treeViewer));
+		new TreeViewerColumnSorter(treeViewer, tclmAnnotatedME,
+				taskObjectLabelProvider);
 
 		// Assignee
-		TreeViewerColumn tclmAssignedTo = new TreeViewerColumn(treeViewer, SWT.NONE);
+		TreeViewerColumn tclmAssignedTo = new TreeViewerColumn(treeViewer,
+				SWT.NONE);
 		tclmAssignedTo.getColumn().setText("Assigned to");
 		tclmAssignedTo.getColumn().setWidth(100);
 		AssignedToLabelProvider assignedToLabelProvider = new AssignedToLabelProvider();
 		tclmAssignedTo.setLabelProvider(assignedToLabelProvider);
-		tclmAssignedTo.setEditingSupport(new AssignedToEditingSupport(treeViewer));
-		new TreeViewerColumnSorter(treeViewer, tclmAssignedTo, assignedToLabelProvider);
+		tclmAssignedTo.setEditingSupport(new AssignedToEditingSupport(
+				treeViewer));
+		new TreeViewerColumnSorter(treeViewer, tclmAssignedTo,
+				assignedToLabelProvider);
 
 		// Priority
 		TreeViewerColumn priority = new TreeViewerColumn(treeViewer, SWT.NONE);
@@ -205,31 +215,38 @@ public class UserTabComposite extends Composite implements IdEObjectCollectionCh
 
 		};
 		priority.setLabelProvider(priorityLableProvider);
-		priority.setEditingSupport(new IntegerEditingSupport(treeViewer, TaskPackage.eINSTANCE.getWorkItem_Priority()));
+		priority.setEditingSupport(new IntegerEditingSupport(treeViewer,
+				TaskPackage.eINSTANCE.getWorkItem_Priority()));
 		new TreeViewerColumnSorter(treeViewer, priority, priorityLableProvider);
 
 		// Estimate
 		TreeViewerColumn estimate = new TreeViewerColumn(treeViewer, SWT.NONE);
 		estimate.getColumn().setText("Estimate");
 		estimate.getColumn().setWidth(100);
-		UserEstimateLabelProvider userEstimateLabelProvider = new UserEstimateLabelProvider(contentProvider);
+		UserEstimateLabelProvider userEstimateLabelProvider = new UserEstimateLabelProvider(
+				contentProvider);
 		estimate.setLabelProvider(userEstimateLabelProvider);
-		estimate.setEditingSupport(new IntegerEditingSupport(treeViewer, TaskPackage.eINSTANCE.getWorkItem_Estimate()));
-		new TreeViewerColumnSorter(treeViewer, estimate, userEstimateLabelProvider);
+		estimate.setEditingSupport(new IntegerEditingSupport(treeViewer,
+				TaskPackage.eINSTANCE.getWorkItem_Estimate()));
+		new TreeViewerColumnSorter(treeViewer, estimate,
+				userEstimateLabelProvider);
 
 	}
 
 	/**
 	 * Set input to TreeViewer.
 	 * 
-	 * @param me input model element
-	 * @param statusView the active status view. This is needed for drag and drop.
+	 * @param me
+	 *            input model element
+	 * @param statusView
+	 *            the active status view. This is needed for drag and drop.
 	 */
 	public void setInput(UnicaseModelElement me, StatusView statusView) {
 		// this.input = me;
 		userTabDropAdapter.setCurrentOpenME(me);
 		statusColumnLabelProvider.setCurrentOpenME(me);
-		if ((treeViewer.getInput() == null) || (!treeViewer.getInput().equals(me))) {
+		if ((treeViewer.getInput() == null)
+				|| (!treeViewer.getInput().equals(me))) {
 			treeViewer.setInput(me);
 		} else {
 			treeViewer.refresh();
@@ -243,7 +260,8 @@ public class UserTabComposite extends Composite implements IdEObjectCollectionCh
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementAdded(IdEObjectCollection project, EObject modelElement) {
+	public void modelElementAdded(IdEObjectCollection project,
+			EObject modelElement) {
 		treeViewer.refresh();
 	}
 
@@ -252,7 +270,8 @@ public class UserTabComposite extends Composite implements IdEObjectCollectionCh
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementRemoved(org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementRemoved(IdEObjectCollection project, EObject modelElement) {
+	public void modelElementRemoved(IdEObjectCollection project,
+			EObject modelElement) {
 		// nothing to do;
 
 	}
@@ -261,9 +280,11 @@ public class UserTabComposite extends Composite implements IdEObjectCollectionCh
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
+	 *      org.unicase.metamodel.Project,
+	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
+	public void notify(Notification notification, IdEObjectCollection project,
+			EObject modelElement) {
 		treeViewer.refresh();
 	}
 
@@ -272,10 +293,10 @@ public class UserTabComposite extends Composite implements IdEObjectCollectionCh
 	 */
 	@Override
 	public void dispose() {
-
-		workspace.eAdapters().remove(adapterImpl);
-		if (workspace.getActiveProject() != null && workspace.getActiveProject().getRootContainer() != null) {
-			((Project) workspace.getActiveProject().getRootContainer()).removeIdEObjectCollectionChangeObserver(this);
+		if (workspace.getProjectSpaces() != null
+				&& !workspace.getProjectSpaces().isEmpty()) {
+			activeProject = workspace.getProjectSpaces().get(0).getProject();
+			activeProject.removeIdEObjectCollectionChangeObserver(this);
 		}
 
 		super.dispose();

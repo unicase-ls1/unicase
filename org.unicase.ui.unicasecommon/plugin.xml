@@ -91,13 +91,6 @@
             id="org.unicase.ui.common.newDocument"
             name="New Document">
       </command>
-  
-       <command
-           categoryId="org.unicase.ui.common.modifyModelelement"
-           defaultHandler="org.unicase.ui.unicasecommon.common.commands.ImportUserHandler"
-           id="org.unicase.ui.unicasecommon.importUser"
-           name="Import User">
-     </command>
       <command
             categoryId="org.unicase.ui.common.modifyModelelement"
             defaultHandler="org.unicase.ui.unicasecommon.common.handlers.OpenDiagramWithMEEditorHandler"

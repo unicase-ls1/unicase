@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.emf.emfstore.migration.migrator">
       <Migrator
-            migratorClass="org.unicase.model.migrator.EMFStoreMigrator1">
+            migratorClass="org.unicase.model.migrator.UnicaseMigrator">
       </Migrator>
    </extension>
 </plugin>

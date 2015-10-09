@@ -70,7 +70,7 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?after=org.unicase.ui.common.commands.annotateActionItemSeperator">
+            locationURI="popup:org.eclipse.emf.ecp.ui.ModelExplorerView?after=org.unicase.ui.common.commands.annotateActionItemSeperator">
          <command
                commandId="org.unicase.ui.stem.ShowInStatusView"
                icon="icons/StatusView.gif"
@@ -94,7 +94,7 @@
          </command>
       </menuContribution>
       <menuContribution
-            locationURI="popup:org.eclipse.emf.ecp.navigator.viewer?before=org.unicase.ui.stem.ShowInStatusView">
+            locationURI="popup:org.eclipse.emf.ecp.ui.ModelExplorerView?before=org.unicase.ui.stem.ShowInStatusView">
          <command
                commandId="org.unicase.ui.stem.ShowSprintStatusView"
                icon="icons/backlog.png"
@@ -118,7 +118,7 @@
          </command>
       </menuContribution>
       <menuContribution
-            locationURI="popup:org.unicase.ui.stem.StatusView.UserTab?after=additions">
+            locationURI="popup:org.eclipse.emf.ecp.ui.ModelExplorerView?after=additions">
          <command
                commandId="org.unicase.ui.stem.AssignNewBugReport"
                icon="icons/Bug_closed.png"

@@ -7,12 +7,16 @@
 package org.unicase.ui.stem.views.statusview;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.core.ECPProject;
+import org.eclipse.emf.ecp.core.util.ECPUtil;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.emfstore.internal.client.model.ESWorkspaceProviderImpl;
+import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.internal.client.model.Workspace;
 import org.eclipse.emf.emfstore.internal.common.model.IdEObjectCollection;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
 import org.eclipse.emf.emfstore.internal.common.model.util.IdEObjectCollectionChangeObserver;
-import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -35,59 +39,47 @@ import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
  * 
  * @author helming
  */
-public class ActivityTabComposite extends Composite implements IdEObjectCollectionChangeObserver {
+@SuppressWarnings("restriction")
+public class ActivityTabComposite extends Composite implements
+		IdEObjectCollectionChangeObserver {
 
 	private TreeViewer treeViewer;
-	private ECPWorkspace workspace;
-	private AdapterImpl adapterImpl;
 	private ActivityTabDropAdapter activityTabDropAdapter;
 	private StatusViewTabsDragAdapter activityTabDragAdapter;
+	private Workspace workspace;
+	private Project activeProject;
+	private ECPProject ecpProject;
 
 	/**
 	 * default constructor.
 	 * 
-	 * @param parent the parent composite
-	 * @param style the swt style
+	 * @param parent
+	 *            the parent composite
+	 * @param style
+	 *            the swt style
 	 */
 	public ActivityTabComposite(Composite parent, int style) {
 		super(parent, style);
 		this.setLayout(new GridLayout());
 		createTree();
-
-		try {
-			workspace = ECPWorkspaceManager.getInstance().getWorkSpace();
-		} catch (NoWorkspaceException e) {
-			ModelUtil.logException("Failed to receive Project!", e);
-			return;
+		workspace = ESWorkspaceProviderImpl.getInstance()
+				.getInternalWorkspace();
+		if (workspace.getProjectSpaces() != null
+				&& !workspace.getProjectSpaces().isEmpty()) {
+			activeProject = workspace.getProjectSpaces().get(0).getProject();
+			activeProject.addIdEObjectCollectionChangeObserver(this);
 		}
-		if (workspace.getActiveProject() != null) {
-			((Project) workspace.getActiveProject().getRootContainer()).addIdEObjectCollectionChangeObserver(this);
+		if (activeProject != null && activeProject instanceof Project) {
+			ecpProject = ECPUtil.getECPProjectManager().getProject(
+					((ProjectSpace) activeProject.eContainer())
+							.getProjectName());
 		}
-		adapterImpl = new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(ECPWorkspace.class)) == org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT) {
-
-					// remove old listeners
-					Object oldValue = msg.getOldValue();
-					if (oldValue instanceof ECPProject) {
-						((Project) ((ECPProject) oldValue).getRootContainer())
-							.removeIdEObjectCollectionChangeObserver(ActivityTabComposite.this);
-					}
-					// add listener to get notified when work items get deleted/added/changed
-					if (workspace.getActiveProject() != null) {
-						((Project) workspace.getActiveProject().getRootContainer())
-							.addIdEObjectCollectionChangeObserver(ActivityTabComposite.this);
-					}
-				}
-			}
-		};
-		workspace.eAdapters().add(adapterImpl);
 	}
 
 	private void createTree() {
 		treeViewer = new TreeViewer(this, SWT.BORDER);
-		treeViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		treeViewer.getTree().setLayoutData(
+				new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		ActivityTabContentProvider contentProvider = new ActivityTabContentProvider();
 		treeViewer.setContentProvider(contentProvider);
@@ -98,10 +90,12 @@ public class ActivityTabComposite extends Composite implements IdEObjectCollecti
 		treeViewer.addDoubleClickListener(new IDoubleClickListener() {
 
 			public void doubleClick(DoubleClickEvent event) {
-				IStructuredSelection sel = (IStructuredSelection) event.getSelection();
+				IStructuredSelection sel = (IStructuredSelection) event
+						.getSelection();
 				if (sel.getFirstElement() instanceof UnicaseModelElement) {
-					UnicaseActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), treeViewer
-						.getClass().getName());
+					UnicaseActionHelper.openModelElement(
+							(UnicaseModelElement) sel.getFirstElement(),
+							treeViewer.getClass().getName());
 				}
 			}
 
@@ -115,23 +109,28 @@ public class ActivityTabComposite extends Composite implements IdEObjectCollecti
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
 
 		activityTabDropAdapter = new ActivityTabDropAdapter();
-		treeViewer.addDropSupport(dndOperations, transfers, activityTabDropAdapter);
+		treeViewer.addDropSupport(dndOperations, transfers,
+				activityTabDropAdapter);
 		activityTabDragAdapter = new StatusViewTabsDragAdapter(treeViewer);
-		treeViewer.addDragSupport(dndOperations, transfers, activityTabDragAdapter);
+		treeViewer.addDragSupport(dndOperations, transfers,
+				activityTabDragAdapter);
 
 	}
 
 	/**
 	 * Set input to TreeViewer.
 	 * 
-	 * @param me input model element
-	 * @param statusView the active status view. This is needed for drag and drop.
+	 * @param me
+	 *            input model element
+	 * @param statusView
+	 *            the active status view. This is needed for drag and drop.
 	 */
 	public void setInput(UnicaseModelElement me, StatusView statusView) {
 		activityTabDropAdapter.setCurrentOpenME(me);
 		treeViewer.setInput(me);
 
-		if ((treeViewer.getInput() == null) || (!treeViewer.getInput().equals(me))) {
+		if ((treeViewer.getInput() == null)
+				|| (!treeViewer.getInput().equals(me))) {
 			treeViewer.setInput(me);
 		} else {
 			treeViewer.refresh();
@@ -145,7 +144,8 @@ public class ActivityTabComposite extends Composite implements IdEObjectCollecti
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementAdded(IdEObjectCollection project, EObject modelElement) {
+	public void modelElementAdded(IdEObjectCollection project,
+			EObject modelElement) {
 		treeViewer.refresh();
 	}
 
@@ -154,7 +154,8 @@ public class ActivityTabComposite extends Composite implements IdEObjectCollecti
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementRemoved(IdEObjectCollection project, EObject modelElement) {
+	public void modelElementRemoved(IdEObjectCollection project,
+			EObject modelElement) {
 		// nothing to do;
 
 	}
@@ -163,9 +164,11 @@ public class ActivityTabComposite extends Composite implements IdEObjectCollecti
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
+	 *      org.unicase.metamodel.Project,
+	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
+	public void notify(Notification notification, IdEObjectCollection project,
+			EObject modelElement) {
 		treeViewer.refresh();
 	}
 
@@ -174,10 +177,10 @@ public class ActivityTabComposite extends Composite implements IdEObjectCollecti
 	 */
 	@Override
 	public void dispose() {
-
-		workspace.eAdapters().remove(adapterImpl);
-		if (workspace.getActiveProject() != null && workspace.getActiveProject().getRootContainer() != null) {
-			((Project) workspace.getActiveProject().getRootContainer()).removeIdEObjectCollectionChangeObserver(this);
+		if (workspace.getProjectSpaces() != null
+				&& !workspace.getProjectSpaces().isEmpty()) {
+			activeProject = workspace.getProjectSpaces().get(0).getProject();
+			activeProject.removeIdEObjectCollectionChangeObserver(this);
 		}
 		super.dispose();
 	}

@@ -21,7 +21,6 @@ import org.eclipse.emf.ecp.internal.core.ECPProjectImpl;
 import org.eclipse.emf.ecp.spi.core.InternalProject;
 import org.eclipse.emf.emfstore.client.ESLocalProject;
 import org.eclipse.emf.emfstore.client.ESUsersession;
-import org.eclipse.emf.emfstore.internal.client.accesscontrol.AccessControlHelper;
 import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.internal.client.model.exceptions.UnkownProjectException;
 import org.eclipse.emf.emfstore.internal.client.model.impl.api.ESLocalProjectImpl;
@@ -160,36 +159,6 @@ public final class OrgUnitHelper {
 			}
 		}
 		return alreadySeenGroups;
-	}
-
-	/**
-	 * Imports users from the access control to the project in the given project
-	 * space. Will only work if the usersession of the project space is an admin
-	 * user.
-	 * 
-	 * @param projectSpace
-	 *            the project space
-	 * @throws AccessControlException
-	 *             if the user has no admin rights
-	 */
-	public static void importACUsers(ProjectSpace projectSpace)
-			throws AccessControlException {
-		AccessControlHelper accessControlHelper = new AccessControlHelper(
-				projectSpace.getUsersession());
-		accessControlHelper
-				.checkProjectAdminAccess(projectSpace.getProjectId());
-		try {
-			List<ACOrgUnit> participants = projectSpace.getWorkspace()
-					.getAdminBroker(projectSpace.getUsersession())
-					.getParticipants(projectSpace.getProjectId());
-			if (participants != null) {
-				addToProject(participants, projectSpace);
-			}
-		} catch (ConnectionException e) {
-			WorkspaceUtil.logException("Importing users failed!", e);
-		} catch (ESException e) {
-			ModelUtil.logWarning(e.getMessage(), e);
-		}
 	}
 
 	/**

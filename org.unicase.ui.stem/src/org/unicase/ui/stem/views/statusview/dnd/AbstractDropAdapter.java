@@ -25,7 +25,6 @@ import org.unicase.model.task.WorkPackage;
 import org.unicase.model.task.util.TaskUtil;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
-import org.unicase.ui.unicasecommon.dnd.dropadapters.DragSourcePlaceHolder;
 
 /**
  * Note that in methods dropXXOnYY(), YY actually means the currentOpenME and
@@ -195,7 +194,7 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 	private boolean extractDnDSourceAndTarget(DropTargetEvent event) {
 		boolean result = true;
 
-		List<Object> tmpSource = (List<Object>) DragSourcePlaceHolder
+		List<Object> tmpSource = (List<Object>) org.unicase.ui.unicasecommon.common.DragSourcePlaceHolder
 				.getDragSource();
 
 		if (tmpSource == null || tmpSource.size() != 1) {

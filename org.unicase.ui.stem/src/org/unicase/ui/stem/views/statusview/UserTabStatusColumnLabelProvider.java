@@ -16,6 +16,7 @@ import java.util.Set;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -47,22 +48,26 @@ public class UserTabStatusColumnLabelProvider extends ColumnLabelProvider {
 		images = new HashMap<String, Image>();
 
 		String path = "icons/open.png";
-		URL url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path(path), null);
+		URL url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"),
+				new Path(path), null);
 		ImageDescriptor imageDescriptor = ImageDescriptor.createFromURL(url);
 		images.put(OPEN, imageDescriptor.createImage());
 
 		path = "icons/closed.gif";
-		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path(path), null);
+		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"),
+				new Path(path), null);
 		imageDescriptor = ImageDescriptor.createFromURL(url);
 		images.put(CLOSED, imageDescriptor.createImage());
 
 		path = "icons/blocked.gif";
-		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path(path), null);
+		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"),
+				new Path(path), null);
 		imageDescriptor = ImageDescriptor.createFromURL(url);
 		images.put(BLOCKED, imageDescriptor.createImage());
 
 		path = "icons/open_resolved.png";
-		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path(path), null);
+		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"),
+				new Path(path), null);
 		imageDescriptor = ImageDescriptor.createFromURL(url);
 		images.put(OPEN_RESOLVED, imageDescriptor.createImage());
 	}
@@ -102,7 +107,7 @@ public class UserTabStatusColumnLabelProvider extends ColumnLabelProvider {
 				}
 
 			} catch (CircularDependencyException e) {
-				DialogHandler.showExceptionDialog(e);
+				ModelUtil.logException(e);
 			}
 
 			if (status.equals(MEState.OPEN)) {
@@ -141,18 +146,20 @@ public class UserTabStatusColumnLabelProvider extends ColumnLabelProvider {
 	}
 
 	/**
-	 * This goes through openers hierarchy and gathers all Assignables assigned to this Assignee. I think it would be
-	 * more convenient to change the model, so that any OrgUnit maintains a list of all its assigned tasks.
+	 * This goes through openers hierarchy and gathers all Assignables assigned
+	 * to this Assignee. I think it would be more convenient to change the
+	 * model, so that any OrgUnit maintains a list of all its assigned tasks.
 	 * 
-	 * @param assignee OrgUnit assignee
+	 * @param assignee
+	 *            OrgUnit assignee
 	 * @return
 	 */
 	private List<WorkItem> getWorkItems(OrgUnit assignee) {
 
 		List<WorkItem> workItems = new ArrayList<WorkItem>();
 		// then check its openers (hierarchical)
-		Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(
-			currentOpenME);
+		Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance()
+				.getOpeningLinkTaxonomy().getLeafOpeners(currentOpenME);
 		for (UnicaseModelElement opener : openers) {
 			if (opener instanceof WorkItem) {
 				OrgUnit assignee2 = ((WorkItem) opener).getAssignee();
@@ -174,10 +181,12 @@ public class UserTabStatusColumnLabelProvider extends ColumnLabelProvider {
 	}
 
 	/**
-	 * This keeps track of model element currently open in status view. This is used to extract work items each user has
-	 * relating this currently model element.
+	 * This keeps track of model element currently open in status view. This is
+	 * used to extract work items each user has relating this currently model
+	 * element.
 	 * 
-	 * @param me Model element that is currently open in status view.
+	 * @param me
+	 *            Model element that is currently open in status view.
 	 */
 	public void setCurrentOpenME(UnicaseModelElement me) {
 		this.currentOpenME = me;

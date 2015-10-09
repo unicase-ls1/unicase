@@ -12,7 +12,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.client.ESUsersession;
 import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.internal.client.model.exceptions.UnkownProjectException;
 import org.eclipse.emf.emfstore.internal.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.internal.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
@@ -45,12 +44,8 @@ public class ShowDashboardHandler extends AbstractHandler {
 		final ISelection selection = HandlerUtil.getActiveMenuSelection(event);
 		final IStructuredSelection ssel = (IStructuredSelection) selection;
 		ESUsersession userSession = null;
-		try {
-			userSession = OrgUnitHelper.getUserSession((EObject) ssel
-					.getFirstElement());
-		} catch (UnkownProjectException e) {
-			ModelUtil.logWarning(e.getMessage());
-		}
+		userSession = OrgUnitHelper.getUserSession(ModelUtil
+				.getProject((EObject) ssel.getFirstElement()));
 		if (userSession == null) {
 			return null;
 		}

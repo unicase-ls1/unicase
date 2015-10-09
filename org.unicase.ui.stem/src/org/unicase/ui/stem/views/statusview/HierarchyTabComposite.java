@@ -9,10 +9,16 @@ package org.unicase.ui.stem.views.statusview;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.core.ECPProject;
+import org.eclipse.emf.ecp.core.util.ECPUtil;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.emfstore.internal.client.model.ESWorkspaceProviderImpl;
+import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.internal.client.model.Workspace;
 import org.eclipse.emf.emfstore.internal.common.model.IdEObjectCollection;
+import org.eclipse.emf.emfstore.internal.common.model.NotifiableIdEObjectCollection;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
 import org.eclipse.emf.emfstore.internal.common.model.util.IdEObjectCollectionChangeObserver;
-import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -44,71 +50,64 @@ import org.unicase.ui.unicasecommon.common.TreeViewerColumnSorter;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
 /**
- * . This class provides contents of hierarchy tab in Status view. It contains a TreeViewer. For a WorkPackage as input
- * model element, the TreeViewer shows a hierarchical view of all model elements being annotated by WorkItems contained
- * in this WorckPackage. For a model element as input, the TreeViewer just shows a hierarchical view of all its openers
- * as returned by OpeningLinkTaxonomy.getOpeners() I believe that for a model element as input there should also be an
- * implementation like that of a WorkPackage, i.e. for every opener that is an Annotation, instead of this opener its
- * annotated model elements should be shown. This is implemented but currently commented out.
+ * . This class provides contents of hierarchy tab in Status view. It contains a
+ * TreeViewer. For a WorkPackage as input model element, the TreeViewer shows a
+ * hierarchical view of all model elements being annotated by WorkItems
+ * contained in this WorckPackage. For a model element as input, the TreeViewer
+ * just shows a hierarchical view of all its openers as returned by
+ * OpeningLinkTaxonomy.getOpeners() I believe that for a model element as input
+ * there should also be an implementation like that of a WorkPackage, i.e. for
+ * every opener that is an Annotation, instead of this opener its annotated
+ * model elements should be shown. This is implemented but currently commented
+ * out.
  * 
  * @author Hodaie
  */
-public class HierarchyTabComposite extends Composite implements IdEObjectCollectionChangeObserver {
+@SuppressWarnings("restriction")
+public class HierarchyTabComposite extends Composite implements
+		IdEObjectCollectionChangeObserver {
 
 	private TreeViewer treeViewer;
-	private ECPWorkspace workspace;
 	private AdapterImpl adapterImpl;
 	private StatusViewTabsDragAdapter hierachieTabDragAdapter;
 	private HierarchyTabDropAdapter hierachieTabDropAdapter;
+	private Workspace workspace;
+	private NotifiableIdEObjectCollection activeProject;
+	private ECPProject ecpProject;
 
 	// private ModelElement input;
 
 	/**
 	 * Constructor.
 	 * 
-	 * @param parent parent
-	 * @param style style
+	 * @param parent
+	 *            parent
+	 * @param style
+	 *            style
 	 */
 	public HierarchyTabComposite(Composite parent, int style) {
 		super(parent, style);
 		this.setLayout(new GridLayout());
 		createTree();
-
-		try {
-			workspace = ECPWorkspaceManager.getInstance().getWorkSpace();
-		} catch (NoWorkspaceException e) {
-			ModelUtil.logException("Failed to receive Project!", e);
-			return;
+		workspace = ESWorkspaceProviderImpl.getInstance()
+				.getInternalWorkspace();
+		if (workspace.getProjectSpaces() != null
+				&& !workspace.getProjectSpaces().isEmpty()) {
+			activeProject = workspace.getProjectSpaces().get(0).getProject();
+			activeProject.addIdEObjectCollectionChangeObserver(this);
 		}
-		if (workspace.getActiveProject() != null) {
-			((Project) workspace.getActiveProject().getRootContainer()).addIdEObjectCollectionChangeObserver(this);
+		if (activeProject != null && activeProject instanceof Project) {
+			ecpProject = ECPUtil.getECPProjectManager().getProject(
+					((ProjectSpace) activeProject.eContainer())
+							.getProjectName());
 		}
-		adapterImpl = new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(ECPWorkspace.class)) == org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT) {
-
-					// remove old listeners
-					Object oldValue = msg.getOldValue();
-					if (oldValue instanceof ECPProject) {
-						((Project) ((ECPProject) oldValue).getRootContainer())
-							.removeIdEObjectCollectionChangeObserver(HierarchyTabComposite.this);
-					}
-					// add listener to get notified when work items get deleted/added/changed
-					if (workspace.getActiveProject() != null) {
-						((Project) workspace.getActiveProject().getRootContainer())
-							.addIdEObjectCollectionChangeObserver(HierarchyTabComposite.this);
-					}
-				}
-			}
-		};
-		workspace.eAdapters().add(adapterImpl);
 
 	}
 
 	private void createTree() {
 		treeViewer = new TreeViewer(this, SWT.BORDER | SWT.FULL_SELECTION);
-		treeViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		treeViewer.getTree().setLayoutData(
+				new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		treeViewer.setContentProvider(new HierarchyTabContentProvider());
 		// sort contents
@@ -126,10 +125,12 @@ public class HierarchyTabComposite extends Composite implements IdEObjectCollect
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
 
 		hierachieTabDragAdapter = new StatusViewTabsDragAdapter(treeViewer);
-		treeViewer.addDragSupport(dndOperations, transfers, hierachieTabDragAdapter);
+		treeViewer.addDragSupport(dndOperations, transfers,
+				hierachieTabDragAdapter);
 
 		hierachieTabDropAdapter = new HierarchyTabDropAdapter();
-		treeViewer.addDropSupport(dndOperations, transfers, hierachieTabDropAdapter);
+		treeViewer.addDropSupport(dndOperations, transfers,
+				hierachieTabDropAdapter);
 
 	}
 
@@ -151,13 +152,15 @@ public class HierarchyTabComposite extends Composite implements IdEObjectCollect
 		status.getColumn().setText("State");
 
 		// annotated model element
-		TreeViewerColumn tclmAnnotatedME = new TreeViewerColumn(viewer, SWT.NONE);
+		TreeViewerColumn tclmAnnotatedME = new TreeViewerColumn(viewer,
+				SWT.NONE);
 		tclmAnnotatedME.getColumn().setText("Annotated");
 		tclmAnnotatedME.getColumn().setWidth(200);
 		TaskObjectLabelProvider taskObjectLabelProvider = new TaskObjectLabelProvider();
 		tclmAnnotatedME.setLabelProvider(taskObjectLabelProvider);
 		tclmAnnotatedME.setEditingSupport(new TaskObjectEditingSupport(viewer));
-		new TreeViewerColumnSorter(viewer, tclmAnnotatedME, taskObjectLabelProvider);
+		new TreeViewerColumnSorter(viewer, tclmAnnotatedME,
+				taskObjectLabelProvider);
 
 		// Assignee
 		TreeViewerColumn tclmAssignedTo = new TreeViewerColumn(viewer, SWT.NONE);
@@ -166,7 +169,8 @@ public class HierarchyTabComposite extends Composite implements IdEObjectCollect
 		AssignedToLabelProvider assignedToLabelProvider = new AssignedToLabelProvider();
 		tclmAssignedTo.setLabelProvider(assignedToLabelProvider);
 		tclmAssignedTo.setEditingSupport(new AssignedToEditingSupport(viewer));
-		new TreeViewerColumnSorter(viewer, tclmAssignedTo, assignedToLabelProvider);
+		new TreeViewerColumnSorter(viewer, tclmAssignedTo,
+				assignedToLabelProvider);
 
 		// Priotity
 		TreeViewerColumn tclmPriority = new TreeViewerColumn(viewer, SWT.NONE);
@@ -187,17 +191,20 @@ public class HierarchyTabComposite extends Composite implements IdEObjectCollect
 
 		};
 		tclmPriority.setLabelProvider(priorityToLabelProvider);
-		tclmPriority.setEditingSupport(new HierarchyTabPriorityEditingSupport(viewer));
-		new TreeViewerColumnSorter(viewer, tclmPriority, priorityToLabelProvider);
+		tclmPriority.setEditingSupport(new HierarchyTabPriorityEditingSupport(
+				viewer));
+		new TreeViewerColumnSorter(viewer, tclmPriority,
+				priorityToLabelProvider);
 
 		// Estimate
 		TreeViewerColumn tclmEstimate = new TreeViewerColumn(viewer, SWT.NONE);
 		tclmEstimate.getColumn().setText("Estimate");
 		tclmEstimate.getColumn().setWidth(100);
 		HierarchyTabEstimateLabelProvider estimateLabelProvider = new HierarchyTabEstimateLabelProvider(
-			(HierarchyTabContentProvider) viewer.getContentProvider());
+				(HierarchyTabContentProvider) viewer.getContentProvider());
 		tclmEstimate.setLabelProvider(estimateLabelProvider);
-		tclmEstimate.setEditingSupport(new IntegerEditingSupport(viewer, TaskPackage.eINSTANCE.getWorkItem_Estimate()));
+		tclmEstimate.setEditingSupport(new IntegerEditingSupport(viewer,
+				TaskPackage.eINSTANCE.getWorkItem_Estimate()));
 		new TreeViewerColumnSorter(viewer, tclmEstimate, estimateLabelProvider);
 
 	}
@@ -206,9 +213,10 @@ public class HierarchyTabComposite extends Composite implements IdEObjectCollect
 	private void hookDoubleClick() {
 		treeViewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
-				IStructuredSelection sel = (IStructuredSelection) event.getSelection();
-				UnicaseActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), treeViewer.getClass()
-					.getName());
+				IStructuredSelection sel = (IStructuredSelection) event
+						.getSelection();
+				UnicaseActionHelper.openModelElement((UnicaseModelElement) sel
+						.getFirstElement(), treeViewer.getClass().getName());
 			}
 
 		});
@@ -217,7 +225,8 @@ public class HierarchyTabComposite extends Composite implements IdEObjectCollect
 	/**
 	 * . set input to TreeViewer
 	 * 
-	 * @param me input model element
+	 * @param me
+	 *            input model element
 	 */
 	public void setInput(UnicaseModelElement me) {
 		hierachieTabDropAdapter.setCurrentOpenME(me);
@@ -231,7 +240,8 @@ public class HierarchyTabComposite extends Composite implements IdEObjectCollect
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementAdded(IdEObjectCollection project, EObject modelElement) {
+	public void modelElementAdded(IdEObjectCollection project,
+			EObject modelElement) {
 		treeViewer.refresh();
 	}
 
@@ -240,7 +250,8 @@ public class HierarchyTabComposite extends Composite implements IdEObjectCollect
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementRemoved(IdEObjectCollection project, EObject modelElement) {
+	public void modelElementRemoved(IdEObjectCollection project,
+			EObject modelElement) {
 		treeViewer.refresh();
 
 	}
@@ -249,9 +260,11 @@ public class HierarchyTabComposite extends Composite implements IdEObjectCollect
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
+	 *      org.unicase.metamodel.Project,
+	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
+	public void notify(Notification notification, IdEObjectCollection project,
+			EObject modelElement) {
 		treeViewer.update(modelElement, null);
 	}
 
@@ -260,12 +273,11 @@ public class HierarchyTabComposite extends Composite implements IdEObjectCollect
 	 */
 	@Override
 	public void dispose() {
-
-		workspace.eAdapters().remove(adapterImpl);
-		if (workspace.getActiveProject() != null && workspace.getActiveProject().getRootContainer() != null) {
-			((Project) workspace.getActiveProject().getRootContainer()).removeIdEObjectCollectionChangeObserver(this);
+		if (workspace.getProjectSpaces() != null
+				&& !workspace.getProjectSpaces().isEmpty()) {
+			activeProject = workspace.getProjectSpaces().get(0).getProject();
+			activeProject.removeIdEObjectCollectionChangeObserver(this);
 		}
-
 		super.dispose();
 	}
 

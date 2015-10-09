@@ -11,11 +11,14 @@ Require-Bundle: org.unicase.ui.tableview,
  org.eclipse.emf.emfstore.client,
  org.eclipse.emf.ecp.common,
  org.eclipse.emf.emfstore.client.ui,
- org.unicase.model
+ org.unicase.model,
+ org.eclipse.emf.ecp.core
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  lib/org.eclipse.nebula.widgets.ganttchart-2.0-NIGHTLY.jar
-Import-Package: org.eclipse.emf.edit.ui.dnd,
+Import-Package: org.eclipse.emf.ecp.core.util;version="1.5.1",
+ org.eclipse.emf.ecp.ui.common.dnd;version="1.5.1",
+ org.eclipse.emf.edit.ui.dnd,
  org.eclipse.emf.edit.ui.provider,
  org.eclipse.ui.forms.widgets

@@ -9,10 +9,15 @@ package org.unicase.ui.stem.views.statusview;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.core.ECPProject;
+import org.eclipse.emf.ecp.core.util.ECPUtil;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.emfstore.internal.client.model.ESWorkspaceProviderImpl;
+import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.internal.client.model.Workspace;
 import org.eclipse.emf.emfstore.internal.common.model.IdEObjectCollection;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
 import org.eclipse.emf.emfstore.internal.common.model.util.IdEObjectCollectionChangeObserver;
-import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -43,28 +48,34 @@ import org.unicase.ui.unicasecommon.common.TableViewerColumnSorter;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
 /**
- * This class provides contents of flat tab in Status view. It contains a TableViewer that shows all Checkables and
- * Assignalbes for a model element. These are collected recursively. For example, if a FR has some child FRs as its
- * refiningRequirements(), their Checkables and Assignables are also considered the parents Checkables and Assignables
- * and shown in flat tab of parent.
+ * This class provides contents of flat tab in Status view. It contains a
+ * TableViewer that shows all Checkables and Assignalbes for a model element.
+ * These are collected recursively. For example, if a FR has some child FRs as
+ * its refiningRequirements(), their Checkables and Assignables are also
+ * considered the parents Checkables and Assignables and shown in flat tab of
+ * parent.
  * 
  * @author Hodaie
  */
-public class FlatTabComposite extends Composite implements IdEObjectCollectionChangeObserver {
+public class FlatTabComposite extends Composite implements
+		IdEObjectCollectionChangeObserver {
 	/**
 	 * Sorter to sort a status view.
 	 * 
 	 * @author helming
 	 */
 	private final class StatusSorter extends TableViewerColumnSorter {
-		private StatusSorter(TableViewer viewer, TableViewerColumn column, ColumnLabelProvider columnLabelProvider) {
+		private StatusSorter(TableViewer viewer, TableViewerColumn column,
+				ColumnLabelProvider columnLabelProvider) {
 			super(viewer, column, columnLabelProvider);
 		}
 
 		/*
 		 * (non-Javadoc)
-		 * @see org.unicase.ui.common.TableViewerColumnSorter#compare(org.eclipse .jface.viewers.Viewer,
-		 * java.lang.Object, java.lang.Object)
+		 * 
+		 * @see
+		 * org.unicase.ui.common.TableViewerColumnSorter#compare(org.eclipse
+		 * .jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 		 */
 		@Override
 		public int compare(Viewer viewer, Object e1, Object e2) {
@@ -72,24 +83,28 @@ public class FlatTabComposite extends Composite implements IdEObjectCollectionCh
 			String status2 = MEState.CLOSED;
 			if (e1 instanceof UnicaseModelElement) {
 				try {
-					status1 = ((UnicaseModelElement) e1).getMEState().getStatus();
+					status1 = ((UnicaseModelElement) e1).getMEState()
+							.getStatus();
 				} catch (CircularDependencyException e) {
 					// To nothing.
 				}
 			}
 			if (e2 instanceof UnicaseModelElement) {
 				try {
-					status2 = ((UnicaseModelElement) e2).getMEState().getStatus();
+					status2 = ((UnicaseModelElement) e2).getMEState()
+							.getStatus();
 				} catch (CircularDependencyException e) {
 					// To nothing.
 				}
 			}
 
-			if (status1.equals(MEState.OPEN) && e1 instanceof WorkItem && ((WorkItem) e1).isResolved()) {
+			if (status1.equals(MEState.OPEN) && e1 instanceof WorkItem
+					&& ((WorkItem) e1).isResolved()) {
 				status1 = "Open_Resolved";
 			}
 
-			if (status2.equals(MEState.OPEN) && e2 instanceof WorkItem && ((WorkItem) e2).isResolved()) {
+			if (status2.equals(MEState.OPEN) && e2 instanceof WorkItem
+					&& ((WorkItem) e2).isResolved()) {
 				status2 = "Open_Resolved";
 			}
 
@@ -101,7 +116,9 @@ public class FlatTabComposite extends Composite implements IdEObjectCollectionCh
 	private FlatTabDropAdapter flatTabDropAdapter;
 	private StatusViewTabsDragAdapter flatTabDragAdapter;
 	private AdapterImpl adapterImpl;
-	private ECPWorkspace workspace;
+	private Workspace workspace;
+	private Project activeProject;
+	private ECPProject ecpProject;
 
 	// //for future use maybe
 	// private ModelElement input;
@@ -109,43 +126,28 @@ public class FlatTabComposite extends Composite implements IdEObjectCollectionCh
 	/**
 	 * . Constructor
 	 * 
-	 * @param parent parent
-	 * @param style style
+	 * @param parent
+	 *            parent
+	 * @param style
+	 *            style
 	 */
 	public FlatTabComposite(Composite parent, int style) {
 		super(parent, style);
 		this.setLayout(new GridLayout());
 		createTable();
 
-		try {
-			workspace = ECPWorkspaceManager.getInstance().getWorkSpace();
-		} catch (NoWorkspaceException e) {
-			ModelUtil.logException("Failed to receive Project!", e);
-			return;
+		workspace = ESWorkspaceProviderImpl.getInstance()
+				.getInternalWorkspace();
+		if (workspace.getProjectSpaces() != null
+				&& !workspace.getProjectSpaces().isEmpty()) {
+			activeProject = workspace.getProjectSpaces().get(0).getProject();
+			activeProject.addIdEObjectCollectionChangeObserver(this);
 		}
-		if (workspace.getActiveProject() != null) {
-			((Project) workspace.getActiveProject().getRootContainer()).addIdEObjectCollectionChangeObserver(this);
+		if (activeProject != null && activeProject instanceof Project) {
+			ecpProject = ECPUtil.getECPProjectManager().getProject(
+					((ProjectSpace) activeProject.eContainer())
+							.getProjectName());
 		}
-		adapterImpl = new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(ECPWorkspace.class)) == org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT) {
-
-					// remove old listeners
-					Object oldValue = msg.getOldValue();
-					if (oldValue instanceof ECPProject) {
-						((Project) ((ECPProject) oldValue).getRootContainer())
-							.removeIdEObjectCollectionChangeObserver(FlatTabComposite.this);
-					}
-					// add listener to get notified when work items get deleted/added/changed
-					if (workspace.getActiveProject() != null) {
-						((Project) workspace.getActiveProject().getRootContainer())
-							.addIdEObjectCollectionChangeObserver(FlatTabComposite.this);
-					}
-				}
-			}
-		};
-		workspace.eAdapters().add(adapterImpl);
 	}
 
 	private void createTable() {
@@ -157,7 +159,8 @@ public class FlatTabComposite extends Composite implements IdEObjectCollectionCh
 		// LabelProvider inherits FlatTabColumnLabelProvider which
 		// implements IColorProvider
 		tableViewer = new TableViewer(this, SWT.FULL_SELECTION | SWT.BORDER);
-		tableViewer.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		tableViewer.getTable().setLayoutData(
+				new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		tableViewer.setContentProvider(new FlatTabContentProvider());
 
@@ -174,10 +177,12 @@ public class FlatTabComposite extends Composite implements IdEObjectCollectionCh
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
 
 		flatTabDragAdapter = new StatusViewTabsDragAdapter(tableViewer);
-		tableViewer.addDragSupport(dndOperations, transfers, flatTabDragAdapter);
+		tableViewer
+				.addDragSupport(dndOperations, transfers, flatTabDragAdapter);
 
 		flatTabDropAdapter = new FlatTabDropAdapter();
-		tableViewer.addDropSupport(dndOperations, transfers, flatTabDropAdapter);
+		tableViewer
+				.addDropSupport(dndOperations, transfers, flatTabDropAdapter);
 
 	}
 
@@ -206,7 +211,8 @@ public class FlatTabComposite extends Composite implements IdEObjectCollectionCh
 	}
 
 	private void createTodoColumn() {
-		TableViewerColumn tclmTodo = new TableViewerColumn(tableViewer, SWT.LEAD);
+		TableViewerColumn tclmTodo = new TableViewerColumn(tableViewer,
+				SWT.LEAD);
 		tclmTodo.getColumn().setText("Todo");
 		tclmTodo.getColumn().setWidth(250);
 		FlatTabColumnLabelProvider columnLabelProvider = new FlatTabColumnLabelProvider() {
@@ -238,7 +244,8 @@ public class FlatTabComposite extends Composite implements IdEObjectCollectionCh
 
 	private void createStateColumn() {
 		StatusLabelProvider columnLabelProvider;
-		TableViewerColumn tclmState = new TableViewerColumn(tableViewer, SWT.LEAD);
+		TableViewerColumn tclmState = new TableViewerColumn(tableViewer,
+				SWT.LEAD);
 		tclmState.getColumn().setText("State");
 		tclmState.getColumn().setWidth(40);
 		columnLabelProvider = new StatusLabelProvider();
@@ -249,25 +256,30 @@ public class FlatTabComposite extends Composite implements IdEObjectCollectionCh
 
 	private void createAssignedToColumn() {
 		AssignedToLabelProvider columnLabelProvider;
-		TableViewerColumn tclmAsignedTo = new TableViewerColumn(tableViewer, SWT.LEAD);
+		TableViewerColumn tclmAsignedTo = new TableViewerColumn(tableViewer,
+				SWT.LEAD);
 		tclmAsignedTo.getColumn().setText("Assigned to");
 		tclmAsignedTo.getColumn().setWidth(100);
 		columnLabelProvider = new AssignedToLabelProvider();
 		tclmAsignedTo.setLabelProvider(columnLabelProvider);
-		new TableViewerColumnSorter(tableViewer, tclmAsignedTo, columnLabelProvider);
+		new TableViewerColumnSorter(tableViewer, tclmAsignedTo,
+				columnLabelProvider);
 	}
 
 	private void createModelElementColumn() {
-		TableViewerColumn tclmModelElement = new TableViewerColumn(tableViewer, SWT.LEAD);
+		TableViewerColumn tclmModelElement = new TableViewerColumn(tableViewer,
+				SWT.LEAD);
 		tclmModelElement.getColumn().setText("Annotated");
 		tclmModelElement.getColumn().setWidth(200);
 		TaskObjectLabelProvider labelProvider = new TaskObjectLabelProvider();
 		tclmModelElement.setLabelProvider(labelProvider);
-		new TableViewerColumnSorter(tableViewer, tclmModelElement, labelProvider);
+		new TableViewerColumnSorter(tableViewer, tclmModelElement,
+				labelProvider);
 	}
 
 	private void createPriorityColumn() {
-		TableViewerColumn tclmPriority = new TableViewerColumn(tableViewer, SWT.LEAD);
+		TableViewerColumn tclmPriority = new TableViewerColumn(tableViewer,
+				SWT.LEAD);
 		tclmPriority.getColumn().setText("Priority");
 		tclmPriority.getColumn().setWidth(70);
 		ColumnLabelProvider labelProvider = new ColumnLabelProvider() {
@@ -284,13 +296,14 @@ public class FlatTabComposite extends Composite implements IdEObjectCollectionCh
 
 		};
 		tclmPriority.setLabelProvider(labelProvider);
-		tclmPriority.setEditingSupport(new IntegerEditingSupport(tableViewer, TaskPackage.eINSTANCE
-			.getWorkItem_Priority()));
+		tclmPriority.setEditingSupport(new IntegerEditingSupport(tableViewer,
+				TaskPackage.eINSTANCE.getWorkItem_Priority()));
 		new TableViewerColumnSorter(tableViewer, tclmPriority, labelProvider);
 	}
 
 	private void createEstimateColumn() {
-		TableViewerColumn tclmEstimate = new TableViewerColumn(tableViewer, SWT.LEAD);
+		TableViewerColumn tclmEstimate = new TableViewerColumn(tableViewer,
+				SWT.LEAD);
 		tclmEstimate.getColumn().setText("Estimate");
 		tclmEstimate.getColumn().setWidth(70);
 		ColumnLabelProvider labelProvider = new ColumnLabelProvider() {
@@ -307,8 +320,8 @@ public class FlatTabComposite extends Composite implements IdEObjectCollectionCh
 
 		};
 		tclmEstimate.setLabelProvider(labelProvider);
-		tclmEstimate.setEditingSupport(new IntegerEditingSupport(tableViewer, TaskPackage.eINSTANCE
-			.getWorkItem_Estimate()));
+		tclmEstimate.setEditingSupport(new IntegerEditingSupport(tableViewer,
+				TaskPackage.eINSTANCE.getWorkItem_Estimate()));
 		new TableViewerColumnSorter(tableViewer, tclmEstimate, labelProvider);
 	}
 
@@ -316,9 +329,11 @@ public class FlatTabComposite extends Composite implements IdEObjectCollectionCh
 	private void hookDoubleClick() {
 		tableViewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
-				IStructuredSelection sel = (IStructuredSelection) event.getSelection();
-				UnicaseActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), tableViewer
-					.getClass().getName());
+				IStructuredSelection sel = (IStructuredSelection) event
+						.getSelection();
+				UnicaseActionHelper.openModelElement(
+						(UnicaseModelElement) sel.getFirstElement(),
+						tableViewer.getClass().getName());
 			}
 
 		});
@@ -327,8 +342,10 @@ public class FlatTabComposite extends Composite implements IdEObjectCollectionCh
 	/**
 	 * Set input to flat tab TableViewer.
 	 * 
-	 * @param me input model element
-	 * @param statusView the active status view. This is needed for drag and drop.
+	 * @param me
+	 *            input model element
+	 * @param statusView
+	 *            the active status view. This is needed for drag and drop.
 	 */
 	public void setInput(UnicaseModelElement me, StatusView statusView) {
 		// this.input = me;
@@ -343,7 +360,8 @@ public class FlatTabComposite extends Composite implements IdEObjectCollectionCh
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementAdded(IdEObjectCollection project, EObject modelElement) {
+	public void modelElementAdded(IdEObjectCollection project,
+			EObject modelElement) {
 		tableViewer.refresh();
 	}
 
@@ -352,7 +370,8 @@ public class FlatTabComposite extends Composite implements IdEObjectCollectionCh
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementRemoved(IdEObjectCollection project, EObject modelElement) {
+	public void modelElementRemoved(IdEObjectCollection project,
+			EObject modelElement) {
 		// nothing to do;
 
 	}
@@ -361,9 +380,11 @@ public class FlatTabComposite extends Composite implements IdEObjectCollectionCh
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
+	 *      org.unicase.metamodel.Project,
+	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
+	public void notify(Notification notification, IdEObjectCollection project,
+			EObject modelElement) {
 		tableViewer.refresh();
 	}
 
@@ -372,12 +393,11 @@ public class FlatTabComposite extends Composite implements IdEObjectCollectionCh
 	 */
 	@Override
 	public void dispose() {
-
-		workspace.eAdapters().remove(adapterImpl);
-		if (workspace.getActiveProject() != null && workspace.getActiveProject().getRootContainer() != null) {
-			((Project) workspace.getActiveProject().getRootContainer()).removeIdEObjectCollectionChangeObserver(this);
+		if (workspace.getProjectSpaces() != null
+				&& !workspace.getProjectSpaces().isEmpty()) {
+			activeProject = workspace.getProjectSpaces().get(0).getProject();
+			activeProject.removeIdEObjectCollectionChangeObserver(this);
 		}
-
 		super.dispose();
 	}
 

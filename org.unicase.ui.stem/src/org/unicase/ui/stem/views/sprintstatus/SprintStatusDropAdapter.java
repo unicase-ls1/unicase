@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2015-2016 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2015-2016 Chair of Applied Software Engineering,Technische Universität München (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -8,6 +8,7 @@ package org.unicase.ui.stem.views.sprintstatus;
 
 import java.util.List;
 
+import org.eclipse.emf.emfstore.internal.client.model.ESWorkspaceProviderImpl;
 import org.eclipse.emf.emfstore.internal.client.model.util.EMFStoreCommand;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetAdapter;
@@ -15,7 +16,7 @@ import org.eclipse.swt.dnd.DropTargetEvent;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
-import org.unicase.ui.unicasecommon.dnd.dropadapters.DragSourcePlaceHolder;
+import org.unicase.ui.unicasecommon.common.DragSourcePlaceHolder;
 import org.unicase.ui.unicasecommon.observer.StatusViewDropEventObserver;
 
 /**
@@ -54,13 +55,17 @@ public class SprintStatusDropAdapter extends DropTargetAdapter {
 	 * 
 	 * @see org.eclipse.swt.dnd.DropTargetAdapter#drop(org.eclipse.swt.dnd.DropTargetEvent)
 	 */
+	@SuppressWarnings("restriction")
 	@Override
 	public void drop(DropTargetEvent event) {
 		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
-				ECPWorkspaceManager.getObserverBus().notify(StatusViewDropEventObserver.class)
-					.onStatusViewDropEvent(target, source, "Unknown", "Sprint status view");
+				ESWorkspaceProviderImpl
+						.getObserverBus()
+						.notify(StatusViewDropEventObserver.class)
+						.onStatusViewDropEvent(target, source, "Unknown",
+								"Sprint status view");
 				reassignWorkItem(target, (OrgUnit) source);
 			}
 		}.run();
@@ -77,7 +82,8 @@ public class SprintStatusDropAdapter extends DropTargetAdapter {
 		target = null;
 		boolean result = true;
 
-		List<Object> tmpSource = (List<Object>) DragSourcePlaceHolder.getDragSource();
+		List<Object> tmpSource = (List<Object>) DragSourcePlaceHolder
+				.getDragSource();
 
 		if (tmpSource == null) {
 			result = false;
@@ -90,7 +96,8 @@ public class SprintStatusDropAdapter extends DropTargetAdapter {
 			result = false;
 		}
 
-		if (event.item == null || event.item.getData() == null || !(event.item.getData() instanceof WorkItem)) {
+		if (event.item == null || event.item.getData() == null
+				|| !(event.item.getData() instanceof WorkItem)) {
 			result = false;
 		}
 

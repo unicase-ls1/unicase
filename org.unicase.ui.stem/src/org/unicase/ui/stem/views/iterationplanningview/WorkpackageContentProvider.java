@@ -10,15 +10,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.core.ECPProject;
+import org.eclipse.emf.ecp.core.util.ECPUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.emfstore.internal.client.model.ESWorkspaceProviderImpl;
+import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.internal.client.model.Workspace;
 import org.eclipse.emf.emfstore.internal.common.model.IdEObjectCollection;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
 import org.eclipse.emf.emfstore.internal.common.model.util.IdEObjectCollectionChangeObserver;
-import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
@@ -29,67 +33,46 @@ import org.unicase.model.task.WorkPackage;
  * 
  * @author Helming
  */
-public class WorkpackageContentProvider extends AdapterFactoryContentProvider implements
-	IdEObjectCollectionChangeObserver {
+@SuppressWarnings("restriction")
+public class WorkpackageContentProvider extends AdapterFactoryContentProvider
+		implements IdEObjectCollectionChangeObserver {
 
 	/**
 	 * remove listener.
 	 */
 	@Override
 	public void dispose() {
-		try {
-			if (ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject() != null
-				&& ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject().getRootContainer() != null) {
-				((Project) ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject().getRootContainer())
-					.removeIdEObjectCollectionChangeObserver(this);
-			}
-		} catch (NoWorkspaceException e) {
-			ModelUtil.logException("Failed to receive Project!", e);
+		if (workspace.getProjectSpaces() != null
+				&& !workspace.getProjectSpaces().isEmpty()) {
+			activeProject = workspace.getProjectSpaces().get(0).getProject();
+			activeProject.removeIdEObjectCollectionChangeObserver(this);
 		}
-
 		super.dispose();
 	}
 
 	private Backlog backlog;
+	private Workspace workspace;
+	private Project activeProject;
+	private ECPProject ecpProject;
 
 	/**
 	 * . Constructor
 	 */
 	public WorkpackageContentProvider() {
-		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		// Listen to active project space change and register as listener
-		final WorkpackageContentProvider instance = this;
-		try {
-			final ECPWorkspace currentWorkspace = ECPWorkspaceManager.getInstance().getWorkSpace();
-
-			ECPProject activeProject = currentWorkspace.getActiveProject();
-			if (activeProject != null) {
-				((Project) activeProject.getRootContainer()).addIdEObjectCollectionChangeObserver(this);
-			}
-
-			currentWorkspace.eAdapters().add(new AdapterImpl() {
-				@Override
-				public void notifyChanged(Notification msg) {
-					if ((msg.getFeatureID(ECPWorkspace.class)) == org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT) {
-						if (currentWorkspace.getActiveProject() != null) {
-							Object oldValue = msg.getOldValue();
-							if (oldValue instanceof ECPProject) {
-								((Project) ((ECPProject) oldValue).getRootContainer())
-									.removeIdEObjectCollectionChangeObserver(instance);
-							}
-							Object newValue = msg.getNewValue();
-							if (newValue instanceof ECPProject) {
-								((Project) ((ECPProject) oldValue).getRootContainer())
-									.addIdEObjectCollectionChangeObserver(instance);
-							}
-						}
-					}
-				}
-			});
-		} catch (NoWorkspaceException e) {
-			ModelUtil.logException("Failed to receive Project!", e);
+		super(new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		workspace = ESWorkspaceProviderImpl.getInstance()
+				.getInternalWorkspace();
+		if (workspace.getProjectSpaces() != null
+				&& !workspace.getProjectSpaces().isEmpty()) {
+			activeProject = workspace.getProjectSpaces().get(0).getProject();
+			activeProject.addIdEObjectCollectionChangeObserver(this);
 		}
-
+		if (activeProject != null && activeProject instanceof Project) {
+			ecpProject = ECPUtil.getECPProjectManager().getProject(
+					((ProjectSpace) activeProject.eContainer())
+							.getProjectName());
+		}
 	}
 
 	/**
@@ -103,8 +86,10 @@ public class WorkpackageContentProvider extends AdapterFactoryContentProvider im
 			Project project = (Project) object;
 			backlog = new Backlog(project);
 			ret.add(backlog);
-			EList<WorkPackage> allModelElementsbyClass = project.getAllModelElementsbyClass(
-				TaskPackage.eINSTANCE.getWorkPackage(), new BasicEList<WorkPackage>());
+			EList<WorkPackage> allModelElementsbyClass = project
+					.getModelElementsByClass(
+							TaskPackage.eINSTANCE.getWorkPackage(),
+							new BasicEList<WorkPackage>());
 			for (WorkPackage workPackage : allModelElementsbyClass) {
 				if (workPackage.getContainingWorkpackage() == null) {
 					ret.add(workPackage);
@@ -121,7 +106,8 @@ public class WorkpackageContentProvider extends AdapterFactoryContentProvider im
 	@Override
 	public Object[] getChildren(Object object) {
 		if (object instanceof Backlog) {
-			return getProjectWorkItems(((Backlog) object).getProject()).toArray();
+			return getProjectWorkItems(((Backlog) object).getProject())
+					.toArray();
 		}
 		return super.getChildren(object);
 	}
@@ -138,8 +124,9 @@ public class WorkpackageContentProvider extends AdapterFactoryContentProvider im
 	}
 
 	private List<WorkItem> getProjectWorkItems(Project project) {
-		EList<WorkItem> allModelElementsbyClass = project.getAllModelElementsbyClass(
-			TaskPackage.eINSTANCE.getWorkItem(), new BasicEList<WorkItem>(), true);
+		EList<WorkItem> allModelElementsbyClass = project
+				.getModelElementsByClass(TaskPackage.eINSTANCE.getWorkItem(),
+						new BasicEList<WorkItem>());
 		List<WorkItem> ret = new ArrayList<WorkItem>();
 		for (WorkItem workItem : allModelElementsbyClass) {
 			if (!(workItem instanceof WorkPackage)) {
@@ -154,9 +141,11 @@ public class WorkpackageContentProvider extends AdapterFactoryContentProvider im
 	/**
 	 * {@inheritDoc}
 	 */
-	public void modelElementAdded(IdEObjectCollection project, EObject modelElement) {
+	public void modelElementAdded(IdEObjectCollection project,
+			EObject modelElement) {
 		if (modelElement instanceof WorkItem) {
-			WorkPackage containingWorkpackage = ((WorkItem) modelElement).getContainingWorkpackage();
+			WorkPackage containingWorkpackage = ((WorkItem) modelElement)
+					.getContainingWorkpackage();
 			if (containingWorkpackage == null) {
 				TreeViewer treeViewer = (TreeViewer) viewer;
 				treeViewer.refresh(backlog, true);
@@ -168,12 +157,14 @@ public class WorkpackageContentProvider extends AdapterFactoryContentProvider im
 	/**
 	 * {@inheritDoc}
 	 */
-	public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
+	public void notify(Notification notification, IdEObjectCollection project,
+			EObject modelElement) {
 		if (notification.isTouch()) {
 			return;
 		}
 		if (notification.getFeatureID(WorkItem.class) == TaskPackage.WORK_ITEM__CONTAINING_WORKPACKAGE) {
-			if (notification.getNewValue() == null | notification.getOldValue() == null) {
+			if (notification.getNewValue() == null
+					| notification.getOldValue() == null) {
 				TreeViewer treeViewer = (TreeViewer) viewer;
 				treeViewer.refresh(backlog, true);
 			}
@@ -185,9 +176,11 @@ public class WorkpackageContentProvider extends AdapterFactoryContentProvider im
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 *      {@inheritDoc}
 	 */
-	public void modelElementRemoved(IdEObjectCollection project, EObject modelElement) {
+	public void modelElementRemoved(IdEObjectCollection project,
+			EObject modelElement) {
 		if (modelElement instanceof WorkItem) {
-			WorkPackage containingWorkpackage = ((WorkItem) modelElement).getContainingWorkpackage();
+			WorkPackage containingWorkpackage = ((WorkItem) modelElement)
+					.getContainingWorkpackage();
 			if (containingWorkpackage == null) {
 				TreeViewer treeViewer = (TreeViewer) viewer;
 				treeViewer.refresh(backlog, true);

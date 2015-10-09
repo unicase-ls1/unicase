@@ -50,7 +50,8 @@ Export-Package: org.unicase.ui.unicasecommon,
  org.unicase.ui.unicasecommon.meeditor.mecontrols,
  org.unicase.ui.unicasecommon.meeditor.mecontrols.issuecontrol,
  org.unicase.ui.unicasecommon.navigator.commands,
- org.unicase.ui.unicasecommon.navigator.wizards
+ org.unicase.ui.unicasecommon.navigator.wizards,
+ org.unicase.ui.unicasecommon.observer
 Import-Package: org.eclipse.emf.common.ui,
  org.eclipse.ui.part,
  org.unicase.model.diagram,

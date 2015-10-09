@@ -13,7 +13,6 @@ import java.util.Set;
 
 import org.eclipse.emf.emfstore.client.ESUsersession;
 import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.internal.client.model.exceptions.UnkownProjectException;
 import org.eclipse.emf.emfstore.internal.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.internal.server.model.versioning.operations.CompositeOperation;
@@ -72,13 +71,9 @@ public abstract class AbstractNotificationProvider implements
 		List<DashboardNotification> result = new ArrayList<DashboardNotification>();
 
 		ESUsersession currentUser;
-		try {
-			currentUser = OrgUnitHelper.getUserSession(projectSpace
-					.getProject());
-			return provideNotifications(projectSpace, changePackages,
-					currentUser.getUsername());
-		} catch (UnkownProjectException e) {
-		}
+		currentUser = OrgUnitHelper.getUserSession(projectSpace.getProject());
+		return provideNotifications(projectSpace, changePackages,
+				currentUser.getUsername());
 		return null;
 
 	}

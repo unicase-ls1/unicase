@@ -18,10 +18,16 @@ import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.core.ECPProject;
+import org.eclipse.emf.ecp.core.util.ECPUtil;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.emfstore.internal.client.model.ESWorkspaceProviderImpl;
+import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.internal.client.model.Workspace;
 import org.eclipse.emf.emfstore.internal.common.model.IdEObjectCollection;
+import org.eclipse.emf.emfstore.internal.common.model.NotifiableIdEObjectCollection;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
 import org.eclipse.emf.emfstore.internal.common.model.util.IdEObjectCollectionChangeObserver;
 import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
 import org.eclipse.jface.action.Action;
@@ -59,21 +65,24 @@ import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.stem.Activator;
 import org.unicase.ui.unicasecommon.common.dialogs.MEClassLabelProvider;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
+import org.unicase.ui.unicasecommon.observer.PresentationSwitchObserver;
 
 /**
- * This view summarizes the the progress status of a model element according to its Openers, Annotations, and
- * corresponding Assignables. The view contains a top part showing name, description and project of input model element,
- * and a progress bar showing its overall progress. The bottom part of view contains two tabs showing Openers of the
- * input model element in flat and hierarchical views, and a tab showing users participating in this model element and
- * their Assignables regarding this model element. The input is set by drag and dropping a model element of top part of
- * the view.
+ * This view summarizes the the progress status of a model element according to
+ * its Openers, Annotations, and corresponding Assignables. The view contains a
+ * top part showing name, description and project of input model element, and a
+ * progress bar showing its overall progress. The bottom part of view contains
+ * two tabs showing Openers of the input model element in flat and hierarchical
+ * views, and a tab showing users participating in this model element and their
+ * Assignables regarding this model element. The input is set by drag and
+ * dropping a model element of top part of the view.
  * 
  * @author Hodaie
  * @author Shterev
  */
-public class StatusView extends ViewPart implements IdEObjectCollectionChangeObserver {
+public class StatusView extends ViewPart implements
+		IdEObjectCollectionChangeObserver {
 
-	private Project activeProject;
 	private UnicaseModelElement input;
 	// this must be disposed!
 	private DropTarget dropTarget;
@@ -102,8 +111,6 @@ public class StatusView extends ViewPart implements IdEObjectCollectionChangeObs
 	private Composite sectionComposite;
 
 	private Map<String, Image> images;
-	private ECPWorkspace workspace;
-	private AdapterImpl adapterImpl;
 	private static final String DROP_COMPOSITE_BACKGROUND = "drop_composite_background";
 	private static final String FLAT_TAB_IMAGE = "flat_tab_image";
 	private static final String HIERARCHY_TAB_IMAGE = "hierarchy_tab_image";
@@ -112,6 +119,9 @@ public class StatusView extends ViewPart implements IdEObjectCollectionChangeObs
 	private static final String WP_TAB_IMAGE = "wp_tab_image";
 	private TabFolder tabFolder;
 	private boolean pinned;
+	private Workspace workspace;
+	private NotifiableIdEObjectCollection activeProject;
+	private ECPProject ecpProject;
 
 	/**
 	 * Constructor.
@@ -122,64 +132,49 @@ public class StatusView extends ViewPart implements IdEObjectCollectionChangeObs
 
 		createImages();
 
-		try {
-			workspace = ECPWorkspaceManager.getInstance().getWorkSpace();
-		} catch (NoWorkspaceException e) {
-			ModelUtil.logException("Failed to receive Project!", e);
-			return;
+		workspace = ESWorkspaceProviderImpl.getInstance()
+				.getInternalWorkspace();
+		if (workspace.getProjectSpaces() != null
+				&& !workspace.getProjectSpaces().isEmpty()) {
+			activeProject = workspace.getProjectSpaces().get(0).getProject();
+			activeProject.addIdEObjectCollectionChangeObserver(this);
 		}
-		if (workspace.getActiveProject() != null) {
-			((Project) workspace.getActiveProject().getRootContainer()).addIdEObjectCollectionChangeObserver(this);
+		if (activeProject != null && activeProject instanceof Project) {
+			ecpProject = ECPUtil.getECPProjectManager().getProject(
+					((ProjectSpace) activeProject.eContainer())
+							.getProjectName());
 		}
-		adapterImpl = new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(ECPWorkspace.class)) == org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT) {
-					// remove old listeners
-					if (activeProject != null) {
-						activeProject.removeIdEObjectCollectionChangeObserver(StatusView.this);
-					}
-					// add listener to get notified when work items get deleted/added/changed
-					if (workspace.getActiveProject() != null) {
-						activeProject = (Project) workspace.getActiveProject().getRootContainer();
-						activeProject.addIdEObjectCollectionChangeObserver(StatusView.this);
-					} else {
-						if (msg.getOldValue() instanceof ECPProject) {
-							if (((ECPProject) msg.getOldValue()).getRootContainer().equals(activeProject)) {
-								setInput(null);
-							}
-						}
-					}
-				}
-			}
-		};
-		workspace.eAdapters().add(adapterImpl);
 
 	}
 
 	private void createImages() {
 		images = new HashMap<String, Image>();
 
-		images.put(DROP_COMPOSITE_BACKGROUND, Activator.getImageDescriptor("icons/dropBox.png").createImage());
+		images.put(DROP_COMPOSITE_BACKGROUND,
+				Activator.getImageDescriptor("icons/dropBox.png").createImage());
 
-		URL url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path("icons/flatLayout.gif"), null);
+		URL url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"),
+				new Path("icons/flatLayout.gif"), null);
 		ImageDescriptor imageDescriptor = ImageDescriptor.createFromURL(url);
 		images.put(FLAT_TAB_IMAGE, imageDescriptor.createImage());
 
-		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path("icons/hierarchicalLayout.gif"),
-			null);
+		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"),
+				new Path("icons/hierarchicalLayout.gif"), null);
 		imageDescriptor = ImageDescriptor.createFromURL(url);
 		images.put(HIERARCHY_TAB_IMAGE, imageDescriptor.createImage());
 
-		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path("icons/User.gif"), null);
+		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"),
+				new Path("icons/User.gif"), null);
 		imageDescriptor = ImageDescriptor.createFromURL(url);
 		images.put(USER_TAB_IMAGE, imageDescriptor.createImage());
 
-		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path("icons/ganttChart.png"), null);
+		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"),
+				new Path("icons/ganttChart.png"), null);
 		imageDescriptor = ImageDescriptor.createFromURL(url);
 		images.put(ACTIVITY_TAB_IMAGE, imageDescriptor.createImage());
 
-		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path("icons/backlog.png"), null);
+		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"),
+				new Path("icons/backlog.png"), null);
 		imageDescriptor = ImageDescriptor.createFromURL(url);
 		images.put(WP_TAB_IMAGE, imageDescriptor.createImage());
 
@@ -208,7 +203,8 @@ public class StatusView extends ViewPart implements IdEObjectCollectionChangeObs
 			}
 
 		};
-		refresh.setImageDescriptor(Activator.getImageDescriptor("/icons/refresh.png"));
+		refresh.setImageDescriptor(Activator
+				.getImageDescriptor("/icons/refresh.png"));
 		refresh.setToolTipText("Refresh");
 		toolbarManager.add(refresh);
 
@@ -218,17 +214,20 @@ public class StatusView extends ViewPart implements IdEObjectCollectionChangeObs
 			public void run() {
 				if (isChecked()) {
 					pinned = true;
-					setImageDescriptor(Activator.getImageDescriptor("/icons/unpin.png"));
+					setImageDescriptor(Activator
+							.getImageDescriptor("/icons/unpin.png"));
 					setToolTipText("Unpin");
 				} else {
 					pinned = false;
-					setImageDescriptor(Activator.getImageDescriptor("/icons/pin.png"));
+					setImageDescriptor(Activator
+							.getImageDescriptor("/icons/pin.png"));
 					setToolTipText("Pin");
 				}
 			}
 		};
 		pinned = false;
-		pinView.setImageDescriptor(Activator.getImageDescriptor("/icons/pin.png"));
+		pinView.setImageDescriptor(Activator
+				.getImageDescriptor("/icons/pin.png"));
 		pinView.setToolTipText("Pin");
 		toolbarManager.add(pinView);
 
@@ -236,89 +235,113 @@ public class StatusView extends ViewPart implements IdEObjectCollectionChangeObs
 
 	private void createTopComposite(Composite root) {
 		topComposite = new Composite(root, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).applyTo(topComposite);
-		GridDataFactory.fillDefaults().grab(true, false).hint(80, 80).applyTo(topComposite);
+		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false)
+				.applyTo(topComposite);
+		GridDataFactory.fillDefaults().grab(true, false).hint(80, 80)
+				.applyTo(topComposite);
 
 		dropComposite = new Composite(topComposite, SWT.NONE);
-		dropComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND));
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).applyTo(dropComposite);
-		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).grab(false, false).hint(80, 80).indent(5, 0)
-			.applyTo(dropComposite);
+		dropComposite.setBackground(Display.getCurrent().getSystemColor(
+				SWT.COLOR_WIDGET_BACKGROUND));
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false)
+				.applyTo(dropComposite);
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING)
+				.grab(false, false).hint(80, 80).indent(5, 0)
+				.applyTo(dropComposite);
 		dropComposite.setBackgroundImage(images.get(DROP_COMPOSITE_BACKGROUND));
 
 		section = new Composite(topComposite, SWT.NONE);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(section);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).applyTo(section);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL)
+				.grab(true, true).applyTo(section);
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false)
+				.applyTo(section);
 
 		// name of model element
 		lblName = new CLabel(section, SWT.SHADOW_NONE);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(false, false).applyTo(lblName);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING)
+				.grab(false, false).applyTo(lblName);
 		if (input != null) {
 			lblName.setImage(labelProvider.getImage(input));
 		}
 		lblName.setText("Drag a model element in the drop box to the left");
 		Color bgColor = new Color(Display.getCurrent(), 205, 223, 237);
-		Color bgColor2 = Display.getCurrent().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND);
-		lblName.setBackground(new Color[] { bgColor, bgColor2 }, new int[] { 100 }, true);
+		Color bgColor2 = Display.getCurrent().getSystemColor(
+				SWT.COLOR_WIDGET_BACKGROUND);
+		lblName.setBackground(new Color[] { bgColor, bgColor2 },
+				new int[] { 100 }, true);
 
 		sectionComposite = new Composite(section, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).applyTo(sectionComposite);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(sectionComposite);
+		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false)
+				.applyTo(sectionComposite);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL)
+				.grab(true, true).applyTo(sectionComposite);
 
 		descComposite = new Composite(sectionComposite, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).applyTo(descComposite);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(descComposite);
+		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false)
+				.applyTo(descComposite);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING)
+				.grab(true, false).applyTo(descComposite);
 
 		// project model element belongs to
 		Label lblProject = new Label(descComposite, SWT.NONE);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(false, false).applyTo(lblProject);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING)
+				.grab(false, false).applyTo(lblProject);
 		lblProject.setText("Project:");
 		lblProjectName = new Label(descComposite, SWT.NONE);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(false, false).applyTo(lblProjectName);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING)
+				.grab(false, false).applyTo(lblProjectName);
 		lblProjectName.setText("");
 
 		// Last DueDate
 		Label lbllastDueDate = new Label(descComposite, SWT.NONE);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(false, false).applyTo(lbllastDueDate);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING)
+				.grab(false, false).applyTo(lbllastDueDate);
 		lbllastDueDate.setText("Latest Due Date:");
 		lblLatestDueDateValue = new Label(descComposite, SWT.NONE);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(lblLatestDueDateValue);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING)
+				.grab(true, false).applyTo(lblLatestDueDateValue);
 		lblLatestDueDateValue.setText("");
 
 		// Right Composite
 		progressComposite = new Composite(sectionComposite, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false).applyTo(progressComposite);
-		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).grab(false, false)
-			.applyTo(progressComposite);
+		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false)
+				.applyTo(progressComposite);
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING)
+				.grab(false, false).applyTo(progressComposite);
 
 		// progress bar for number
 		Label lblProgress = new Label(progressComposite, SWT.NONE);
-		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).grab(false, false).applyTo(lblProgress);
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING)
+				.grab(false, false).applyTo(lblProgress);
 		lblProgress.setText("Closed workitems:");
 
 		pbTasks = new ProgressBar(progressComposite, SWT.HORIZONTAL);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(pbTasks);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING)
+				.grab(true, false).applyTo(pbTasks);
 		pbTasks.setMinimum(0);
 		pbTasks.setMaximum(100);
 		pbTasks.setSelection(0);
 
 		lblProgressName = new Label(progressComposite, SWT.NONE);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(lblProgressName);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING)
+				.grab(true, false).applyTo(lblProgressName);
 		lblProgressName.setText(0 + "/" + 0);
 
 		// progress bar for estimate
 		Label lblEstimateProgress = new Label(progressComposite, SWT.NONE);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(lblEstimateProgress);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING)
+				.grab(true, false).applyTo(lblEstimateProgress);
 		lblEstimateProgress.setText("Closed estimate:");
 		pbEstimate = new ProgressBar(progressComposite, SWT.HORIZONTAL);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(pbEstimate);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING)
+				.grab(true, false).applyTo(pbEstimate);
 		pbEstimate.setMinimum(0);
 		pbEstimate.setMaximum(100);
 		pbEstimate.setSelection(0);
 
 		lblEstimateProgressName = new Label(progressComposite, SWT.None);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false)
-			.applyTo(lblEstimateProgressName);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING)
+				.grab(true, false).applyTo(lblEstimateProgressName);
 		lblEstimateProgressName.setText("0/0");
 
 		addDNDSupport(dropComposite);
@@ -336,7 +359,7 @@ public class StatusView extends ViewPart implements IdEObjectCollectionChangeObs
 		lblName.setImage(labelProvider.getImage(input));
 		lblName.setText(input.getName());
 
-		lblProjectName.setText(WorkspaceManager.getProjectSpace(input).getProjectName());
+		lblProjectName.setText(ecpProject.getName());
 		lblProjectName.pack(true);
 
 		int tasks;
@@ -362,8 +385,8 @@ public class StatusView extends ViewPart implements IdEObjectCollectionChangeObs
 		lblEstimateProgressName.pack(true);
 		sectionComposite.layout(true);
 
-		Set<UnicaseModelElement> leafOpeners = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
-			.getLeafOpeners(input);
+		Set<UnicaseModelElement> leafOpeners = TaxonomyAccess.getInstance()
+				.getOpeningLinkTaxonomy().getLeafOpeners(input);
 		if (input instanceof WorkPackage) {
 			removeNotContainedTasks(leafOpeners, (WorkPackage) input);
 		}
@@ -397,7 +420,8 @@ public class StatusView extends ViewPart implements IdEObjectCollectionChangeObs
 			int estimateprogress = (int) ((float) (closedEstimate) / estimate * 100);
 			int progress = (int) ((float) (closedTasks) / tasks * 100);
 			pbTasks.setToolTipText(Integer.toString(progress) + "% done");
-			pbEstimate.setToolTipText(Integer.toString(estimateprogress) + "% done");
+			pbEstimate.setToolTipText(Integer.toString(estimateprogress)
+					+ "% done");
 		}
 
 		// set input for tabs
@@ -436,8 +460,10 @@ public class StatusView extends ViewPart implements IdEObjectCollectionChangeObs
 
 	}
 
-	private void removeNotContainedTasks(Set<UnicaseModelElement> leafOpeners, WorkPackage input2) {
-		List<WorkItem> allContainedWorkItems = input2.getAllContainedWorkItems();
+	private void removeNotContainedTasks(Set<UnicaseModelElement> leafOpeners,
+			WorkPackage input2) {
+		List<WorkItem> allContainedWorkItems = input2
+				.getAllContainedWorkItems();
 		leafOpeners.retainAll(allContainedWorkItems);
 
 	}
@@ -463,10 +489,11 @@ public class StatusView extends ViewPart implements IdEObjectCollectionChangeObs
 	}
 
 	/**
-	 * Set input to the view. currently input is set using drag and drop on top composite. Later we implement a context
-	 * menu command for it too.
+	 * Set input to the view. currently input is set using drag and drop on top
+	 * composite. Later we implement a context menu command for it too.
 	 * 
-	 * @param newInput input model element
+	 * @param newInput
+	 *            input model element
 	 */
 	public void setInput(UnicaseModelElement newInput) {
 		input = newInput;
@@ -518,8 +545,12 @@ public class StatusView extends ViewPart implements IdEObjectCollectionChangeObs
 				Widget item = e.item;
 				TabItem tabItem = (TabItem) item;
 				String text = tabItem.getText();
-				ECPWorkspaceManager.getObserverBus().notify(PresentationSwitchObserver.class)
-					.onPresentationSwitchEvent("org.unicase.ui.treeview.views.StatusView", text);
+				ESWorkspaceProviderImpl
+						.getObserverBus()
+						.notify(PresentationSwitchObserver.class)
+						.onPresentationSwitchEvent(
+								"org.unicase.ui.treeview.views.StatusView",
+								text);
 				super.widgetSelected(e);
 			}
 
@@ -527,8 +558,9 @@ public class StatusView extends ViewPart implements IdEObjectCollectionChangeObs
 	}
 
 	/**
-	 * . Its not a real drag and drop operation. I use the drop event just to signal the end of a drag and drop
-	 * operation and extract the target model element myself in refresh view.
+	 * . Its not a real drag and drop operation. I use the drop event just to
+	 * signal the end of a drag and drop operation and extract the target model
+	 * element myself in refresh view.
 	 * 
 	 * @param composite
 	 */
@@ -543,7 +575,8 @@ public class StatusView extends ViewPart implements IdEObjectCollectionChangeObs
 			}
 
 			public void drop(DropTargetEvent event) {
-				UnicaseModelElement me = UnicaseActionHelper.getSelectedModelElement();
+				UnicaseModelElement me = UnicaseActionHelper
+						.getSelectedModelElement();
 				if (me != null) {
 					setInput(me);
 				}
@@ -599,10 +632,10 @@ public class StatusView extends ViewPart implements IdEObjectCollectionChangeObs
 		images.get(WP_TAB_IMAGE).dispose();
 
 		images.clear();
-
-		workspace.eAdapters().remove(adapterImpl);
-		if (workspace.getActiveProject() != null && workspace.getActiveProject().getRootContainer() != null) {
-			((Project) workspace.getActiveProject().getRootContainer()).removeIdEObjectCollectionChangeObserver(this);
+		if (workspace.getProjectSpaces() != null
+				&& !workspace.getProjectSpaces().isEmpty()) {
+			activeProject = workspace.getProjectSpaces().get(0).getProject();
+			activeProject.removeIdEObjectCollectionChangeObserver(this);
 		}
 
 		super.dispose();
@@ -614,7 +647,8 @@ public class StatusView extends ViewPart implements IdEObjectCollectionChangeObs
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementAdded(IdEObjectCollection project, EObject modelElement) {
+	public void modelElementAdded(IdEObjectCollection project,
+			EObject modelElement) {
 		if (input == null) {
 			return;
 		}
@@ -630,7 +664,8 @@ public class StatusView extends ViewPart implements IdEObjectCollectionChangeObs
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementRemoved(IdEObjectCollection project, EObject modelElement) {
+	public void modelElementRemoved(IdEObjectCollection project,
+			EObject modelElement) {
 		if (modelElement.equals(input)) {
 			setInput(null);
 			return;
@@ -648,9 +683,11 @@ public class StatusView extends ViewPart implements IdEObjectCollectionChangeObs
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
+	 *      org.unicase.metamodel.Project,
+	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
+	public void notify(Notification notification, IdEObjectCollection project,
+			EObject modelElement) {
 		if (input == null) {
 			return;
 		}

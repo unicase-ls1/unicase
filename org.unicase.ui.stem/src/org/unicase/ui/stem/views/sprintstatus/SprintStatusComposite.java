@@ -12,10 +12,14 @@ import java.util.Comparator;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.core.util.ECPUtil;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.emfstore.internal.client.model.ESWorkspaceProviderImpl;
+import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.internal.client.model.Workspace;
 import org.eclipse.emf.emfstore.internal.common.model.IdEObjectCollection;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
 import org.eclipse.emf.emfstore.internal.common.model.util.IdEObjectCollectionChangeObserver;
-import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -37,10 +41,10 @@ import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 /**
  * @author Shterev
  */
-public class SprintStatusComposite extends Composite implements IdEObjectCollectionChangeObserver {
+public class SprintStatusComposite extends Composite implements
+		IdEObjectCollectionChangeObserver {
 
-	private ECPWorkspace workspace;
-	private AdapterImpl adapterImpl;
+	private Workspace workspace;
 	private SprintStatusDropAdapter wpTabDropAdapter;
 	private ArrayList<TableViewer> tables = new ArrayList<TableViewer>();
 	private SashForm sash;
@@ -51,16 +55,22 @@ public class SprintStatusComposite extends Composite implements IdEObjectCollect
 	private SprintStatusCategory assigned;
 	private SprintStatusCategory unassigned;
 	private SprintStatusCategory done;
+	private Project activeProject;
+	private Object ecpProject;
 
 	/**
 	 * Constructor.
 	 * 
-	 * @param parent parent
-	 * @param style style
+	 * @param parent
+	 *            parent
+	 * @param style
+	 *            style
 	 */
+	@SuppressWarnings({ "cast", "restriction" })
 	public SprintStatusComposite(Composite parent, int style) {
 		super(parent, style);
-		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 0).applyTo(this);
+		GridLayoutFactory.fillDefaults().numColumns(1).spacing(0, 0)
+				.applyTo(this);
 		hiddenText = new Label(this, SWT.NONE);
 		GridDataFactory.fillDefaults().hint(0, 0).applyTo(hiddenText);
 		// hiddenText.
@@ -70,15 +80,15 @@ public class SprintStatusComposite extends Composite implements IdEObjectCollect
 		setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
 
 		SprintStatusContentProvider unassignedContentProvider = new SprintStatusContentProvider(
-			SprintStatusContentProvider.UNASSIGNED);
+				SprintStatusContentProvider.UNASSIGNED);
 		SprintStatusContentProvider assignedContentProvider = new SprintStatusContentProvider(
-			SprintStatusContentProvider.ASSIGNED);
+				SprintStatusContentProvider.ASSIGNED);
 		SprintStatusContentProvider blockedContentProvider = new SprintStatusContentProvider(
-			SprintStatusContentProvider.BLOCKED);
+				SprintStatusContentProvider.BLOCKED);
 		SprintStatusContentProvider doneContentProvider = new SprintStatusContentProvider(
-			SprintStatusContentProvider.DONE);
+				SprintStatusContentProvider.DONE);
 		SprintStatusContentProvider testingContentProvider = new SprintStatusContentProvider(
-			SprintStatusContentProvider.TESTING);
+				SprintStatusContentProvider.TESTING);
 
 		unassigned = new SprintStatusCategory(sash, SWT.NONE);
 		unassigned.setContentProvider(unassignedContentProvider);
@@ -102,37 +112,18 @@ public class SprintStatusComposite extends Composite implements IdEObjectCollect
 
 		addDnDSupport();
 		hookDoubleClick();
-
-		try {
-			workspace = ECPWorkspaceManager.getInstance().getWorkSpace();
-		} catch (NoWorkspaceException e) {
-			ModelUtil.logException("Failed to receive Project!", e);
-			return;
+		workspace = ESWorkspaceProviderImpl.getInstance()
+				.getInternalWorkspace();
+		if (workspace.getProjectSpaces() != null
+				&& !workspace.getProjectSpaces().isEmpty()) {
+			activeProject = workspace.getProjectSpaces().get(0).getProject();
+			activeProject.addIdEObjectCollectionChangeObserver(this);
 		}
-		if (workspace.getActiveProject() != null) {
-			((Project) workspace.getActiveProject().getRootContainer()).addIdEObjectCollectionChangeObserver(this);
+		if (activeProject != null && activeProject instanceof Project) {
+			ecpProject = ECPUtil.getECPProjectManager().getProject(
+					((ProjectSpace) activeProject.eContainer())
+							.getProjectName());
 		}
-		adapterImpl = new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(ECPWorkspace.class)) == org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT) {
-
-					// remove old listeners
-					Object oldValue = msg.getOldValue();
-					if (oldValue instanceof ECPProject) {
-						((Project) ((ECPProject) oldValue).getRootContainer())
-							.removeIdEObjectCollectionChangeObserver(SprintStatusComposite.this);
-					}
-					// add listener to get notified when work items get deleted/added/changed
-					if (workspace.getActiveProject() != null) {
-						((Project) workspace.getActiveProject().getRootContainer())
-							.addIdEObjectCollectionChangeObserver(SprintStatusComposite.this);
-					}
-				}
-			}
-		};
-		workspace.eAdapters().add(adapterImpl);
-
 	}
 
 	private void addDnDSupport() {
@@ -151,9 +142,11 @@ public class SprintStatusComposite extends Composite implements IdEObjectCollect
 		for (final TableViewer table : tables) {
 			table.addDoubleClickListener(new IDoubleClickListener() {
 				public void doubleClick(DoubleClickEvent event) {
-					IStructuredSelection sel = (IStructuredSelection) event.getSelection();
-					UnicaseActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), table.getClass()
-						.getName());
+					IStructuredSelection sel = (IStructuredSelection) event
+							.getSelection();
+					UnicaseActionHelper.openModelElement(
+							(UnicaseModelElement) sel.getFirstElement(), table
+									.getClass().getName());
 				}
 
 			});
@@ -163,7 +156,8 @@ public class SprintStatusComposite extends Composite implements IdEObjectCollect
 	/**
 	 * . set input to TreeViewer
 	 * 
-	 * @param me input model element
+	 * @param me
+	 *            input model element
 	 */
 	public void setInput(UnicaseModelElement me) {
 		// hierachieTabDropAdapter.setCurrentOpenME(me);
@@ -179,7 +173,8 @@ public class SprintStatusComposite extends Composite implements IdEObjectCollect
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementAdded(IdEObjectCollection project, EObject modelElement) {
+	public void modelElementAdded(IdEObjectCollection project,
+			EObject modelElement) {
 		for (SprintStatusCategory cat : categories) {
 			cat.refresh();
 		}
@@ -190,7 +185,8 @@ public class SprintStatusComposite extends Composite implements IdEObjectCollect
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementRemoved(IdEObjectCollection project, EObject modelElement) {
+	public void modelElementRemoved(IdEObjectCollection project,
+			EObject modelElement) {
 		// nothing to do;
 
 	}
@@ -199,9 +195,11 @@ public class SprintStatusComposite extends Composite implements IdEObjectCollect
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
+	 *      org.unicase.metamodel.Project,
+	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
+	public void notify(Notification notification, IdEObjectCollection project,
+			EObject modelElement) {
 		for (SprintStatusCategory cat : categories) {
 			cat.refresh();
 		}
@@ -212,10 +210,10 @@ public class SprintStatusComposite extends Composite implements IdEObjectCollect
 	 */
 	@Override
 	public void dispose() {
-
-		workspace.eAdapters().remove(adapterImpl);
-		if (workspace.getActiveProject() != null && workspace.getActiveProject().getRootContainer() != null) {
-			((Project) workspace.getActiveProject().getRootContainer()).removeIdEObjectCollectionChangeObserver(this);
+		if (workspace.getProjectSpaces() != null
+				&& !workspace.getProjectSpaces().isEmpty()) {
+			activeProject = workspace.getProjectSpaces().get(0).getProject();
+			activeProject.removeIdEObjectCollectionChangeObserver(this);
 		}
 		super.dispose();
 	}
@@ -233,7 +231,8 @@ public class SprintStatusComposite extends Composite implements IdEObjectCollect
 	/**
 	 * Adds a filter to each category.
 	 * 
-	 * @param filter the filter
+	 * @param filter
+	 *            the filter
 	 */
 	public void addFilter(SprintFilter filter) {
 		for (SprintStatusCategory cat : categories) {
@@ -244,15 +243,19 @@ public class SprintStatusComposite extends Composite implements IdEObjectCollect
 	/**
 	 * Adds a comparator to each category.
 	 * 
-	 * @param comparator the comparator
-	 * @param index the priority
+	 * @param comparator
+	 *            the comparator
+	 * @param index
+	 *            the priority
 	 */
 	public void addComparator(int index, Comparator<WorkItem> comparator) {
 		for (SprintStatusCategory cat : categories) {
 			if (comparator instanceof UserComparator) {
 				if (cat.equals(testing)) {
-					cat.getContentProvider().addComparator(index,
-						new UserComparator(TaskPackage.eINSTANCE.getWorkItem_Reviewer()));
+					cat.getContentProvider().addComparator(
+							index,
+							new UserComparator(TaskPackage.eINSTANCE
+									.getWorkItem_Reviewer()));
 				} else {
 					cat.getContentProvider().addComparator(index, comparator);
 				}
@@ -263,7 +266,8 @@ public class SprintStatusComposite extends Composite implements IdEObjectCollect
 	/**
 	 * Removes a filter from each category.
 	 * 
-	 * @param filter the filter
+	 * @param filter
+	 *            the filter
 	 */
 	public void removeFilter(SprintFilter filter) {
 		for (SprintStatusCategory cat : categories) {
@@ -274,7 +278,8 @@ public class SprintStatusComposite extends Composite implements IdEObjectCollect
 	/**
 	 * Adds a comparator to each category.
 	 * 
-	 * @param comparator the comparator
+	 * @param comparator
+	 *            the comparator
 	 */
 	public void removeComparator(Comparator<WorkItem> comparator) {
 		for (SprintStatusCategory cat : categories) {
@@ -285,7 +290,8 @@ public class SprintStatusComposite extends Composite implements IdEObjectCollect
 	/**
 	 * Turns the group captions on/off.
 	 * 
-	 * @param b the visibility
+	 * @param b
+	 *            the visibility
 	 */
 	public void setShowGroups(boolean b) {
 		for (SprintStatusCategory cat : categories) {

@@ -13,7 +13,6 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.dnd.DragSourceEvent;
-import org.unicase.ui.unicasecommon.dnd.dropadapters.DragSourcePlaceHolder;
 
 /**
  * This is the drag adapter for flat tab in status view.
@@ -48,7 +47,8 @@ public class StatusViewTabsDragAdapter extends ViewerDragAdapter {
 			dragSource = ssel.toList();
 		}
 
-		DragSourcePlaceHolder.setDragSource(dragSource);
+		org.unicase.ui.unicasecommon.common.DragSourcePlaceHolder
+				.setDragSource(dragSource);
 
 	}
 
