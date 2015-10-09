@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.activity.*;
 import org.unicase.model.activity.Activity;
 import org.unicase.model.activity.ActivityEnd;
 import org.unicase.model.activity.ActivityFactory;

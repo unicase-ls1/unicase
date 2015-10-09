@@ -15,7 +15,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.unicase.ui.unicasecommon.Activator;
+import org.eclipse.emf.emfstore.client.ESLocalProject;
+import org.eclipse.emf.emfstore.internal.client.model.ESWorkspaceProviderImpl;
+import org.eclipse.emf.emfstore.internal.common.model.ModelPackage;
 import org.unicase.ui.unicasecommon.common.util.UnicaseUiUtil;
 
 /**
@@ -27,7 +29,8 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 	 * Constructor.
 	 */
 	public ModelTreeContentProvider() {
-		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 	}
 
@@ -53,8 +56,8 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 	}
 
 	/**
-	 * {@inheritDoc} Shows the children only when argument is an EPackage. Also doesn't show the Children that are.
-	 * abstract or not ModelElement.
+	 * {@inheritDoc} Shows the children only when argument is an EPackage. Also
+	 * doesn't show the Children that are. abstract or not ModelElement.
 	 */
 	@Override
 	public Object[] getChildren(Object object) {
@@ -68,25 +71,18 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 
 			// remove classes that do not inherit ModelElement
 			// or are abstract.
-			Object[] children = removeNonModelElements(super.getChildren(object));
+			Object[] children = removeNonModelElements(super
+					.getChildren(object));
 
-			ECPModelelementContext context;
-			try {
-				context = ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject();
-				if (context == null) {
-					return children;
-				}
-			} catch (NoWorkspaceException e) {
-				Activator.getDefault().logException(e.getMessage(), e);
+			ESLocalProject context = ESWorkspaceProviderImpl.getInstance()
+					.getWorkspace().getLocalProject((EObject) object);
+			if (context == null) {
 				return children;
 			}
 			// removes all AssociationClassElements
 			LinkedList<Object> result = new LinkedList<Object>();
 			for (Object item : children) {
-				if (!(item instanceof EObject && context.getMetaModelElementContext().isAssociationClassElement(
-					(EClass) item))) {
-					result.add(item);
-				}
+				result.add(item);
 			}
 
 			return result.toArray();
@@ -114,9 +110,11 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 	// }
 
 	/**
-	 * Removes class that are abstract or do not inherit ModelElement form a list of EClass.
+	 * Removes class that are abstract or do not inherit ModelElement form a
+	 * list of EClass.
 	 * 
-	 * @param items list of EClass
+	 * @param items
+	 *            list of EClass
 	 * @return
 	 */
 	private Object[] removeNonModelElements(Object[] items) {
@@ -133,18 +131,22 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 	/**
 	 * Checks if the argument is a NonDomainElement.
 	 * 
-	 * @param object EClass to be checked.
+	 * @param object
+	 *            EClass to be checked.
 	 * @return
 	 */
 	private boolean isNonDomainElement(Object object) {
 
-		return object instanceof EClass && ModelPackage.eINSTANCE.getNonDomainElement().isSuperTypeOf((EClass) object);
+		return object instanceof EClass
+				&& ModelPackage.eINSTANCE.getNonDomainElement().isSuperTypeOf(
+						(EClass) object);
 	}
 
 	/**
 	 * Checks if the argument inherits ME and is not abstract.
 	 * 
-	 * @param object EClass to be checked.
+	 * @param object
+	 *            EClass to be checked.
 	 * @return
 	 */
 	private boolean isModelElement(Object object) {
@@ -153,13 +155,14 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 		// return true
 		// TODO: any additional criteria?
 		return object instanceof EClass
-		// && ((EClass) object).getEAllSuperTypes().contains(MetamodelPackage.eINSTANCE.getModelElement())
-			&& !((EClass) object).isAbstract();
+		// && ((EClass)
+		// object).getEAllSuperTypes().contains(MetamodelPackage.eINSTANCE.getModelElement())
+				&& !((EClass) object).isAbstract();
 	}
 
 	/**
-	 * {@inheritDoc} If argument is an EClass return false. This is to prevent showing of the plus sign beside an.
-	 * EClass in TreeViewer
+	 * {@inheritDoc} If argument is an EClass return false. This is to prevent
+	 * showing of the plus sign beside an. EClass in TreeViewer
 	 */
 	@Override
 	public boolean hasChildren(Object object) {

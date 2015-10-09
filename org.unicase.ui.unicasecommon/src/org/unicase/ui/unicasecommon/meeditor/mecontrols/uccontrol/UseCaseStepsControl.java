@@ -29,7 +29,6 @@ import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.impl.RequirementFactoryImpl;
-import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
 
 /**
@@ -44,7 +43,8 @@ public class UseCaseStepsControl extends AbstractUnicaseMEControl {
 	/**
 	 * HyperLink listener class for add step hyperlink.
 	 */
-	private final class IHyperlinkListenerImplementation implements IHyperlinkListener {
+	private final class IHyperlinkListenerImplementation implements
+			IHyperlinkListener {
 		private final int position;
 
 		private IHyperlinkListenerImplementation(int position) {
@@ -154,8 +154,10 @@ public class UseCaseStepsControl extends AbstractUnicaseMEControl {
 	/**
 	 * Method creates the specific widget and the containing display elements.
 	 * 
-	 * @param parent surrounding widget or container
-	 * @param style represents the style that should be used
+	 * @param parent
+	 *            surrounding widget or container
+	 * @param style
+	 *            represents the style that should be used
 	 * @return the control containing all use case steps
 	 */
 	@Override
@@ -166,9 +168,11 @@ public class UseCaseStepsControl extends AbstractUnicaseMEControl {
 		eAdapter = new AdapterImpl() {
 			@Override
 			public void notifyChanged(Notification msg) {
-				if (msg.getFeature() != null && msg.getFeature().equals(eReference)) {
+				if (msg.getFeature() != null
+						&& msg.getFeature().equals(eReference)) {
 					setFocusedStep(msg);
-					currentStepList = new ArrayList<Step>(((UseCase) msg.getNotifier()).getUseCaseSteps());
+					currentStepList = new ArrayList<Step>(
+							((UseCase) msg.getNotifier()).getUseCaseSteps());
 					rebuildStepList();
 				}
 				super.notifyChanged(msg);
@@ -176,7 +180,8 @@ public class UseCaseStepsControl extends AbstractUnicaseMEControl {
 		};
 		getModelElement().eAdapters().add(eAdapter);
 		this.parentStyle = style;
-		section = getToolkit().createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
+		section = getToolkit().createSection(parent,
+				Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED);
 		section.setText(descriptor.getDisplayName(getModelElement()));
 		mainComposite = getToolkit().createComposite(section);
 		mainComposite.setLayout(new GridLayout());
@@ -216,23 +221,30 @@ public class UseCaseStepsControl extends AbstractUnicaseMEControl {
 				if (object instanceof Step) {
 
 					Step me = (Step) object;
-					GridData gdEmpty = GridDataFactory.fillDefaults().grab(true, false).indent(0, 0).create();
-					GridData gdUserStep = GridDataFactory.fillDefaults().grab(true, false).indent(0, 0).create();
+					GridData gdEmpty = GridDataFactory.fillDefaults()
+							.grab(true, false).indent(0, 0).create();
+					GridData gdUserStep = GridDataFactory.fillDefaults()
+							.grab(true, false).indent(0, 0).create();
 
-					SingleUseCaseStepControl stepControl = new SingleUseCaseStepControl(getEditingDomain(), me,
-						getToolkit(), getModelElement(), eReference);
+					SingleUseCaseStepControl stepControl = new SingleUseCaseStepControl(
+							getEditingDomain(), me, getToolkit(),
+							getModelElement(), eReference);
 
 					if (me.isUserStep()) {
-						Control c = stepControl.createControl(stepArea, parentStyle, getItemPropertyDescriptor(), me,
-							UnicaseActionHelper.getContext(me), getToolkit());
+						Control c = stepControl.createControl(stepArea,
+								parentStyle, getItemPropertyDescriptor(), me,
+								getToolkit());
 						c.setLayoutData(gdUserStep);
-						Control empty2 = getToolkit().createComposite(stepArea, parentStyle);
+						Control empty2 = getToolkit().createComposite(stepArea,
+								parentStyle);
 						empty2.setLayoutData(gdEmpty);
 					} else {
-						Control empty2 = getToolkit().createComposite(stepArea, parentStyle);
+						Control empty2 = getToolkit().createComposite(stepArea,
+								parentStyle);
 						empty2.setLayoutData(gdEmpty);
-						Control c = stepControl.createControl(stepArea, parentStyle, getItemPropertyDescriptor(), me,
-							UnicaseActionHelper.getContext(me), getToolkit());
+						Control c = stepControl.createControl(stepArea,
+								parentStyle, getItemPropertyDescriptor(), me,
+								getToolkit());
 						c.setLayoutData(gdUserStep);
 					}
 
@@ -281,8 +293,9 @@ public class UseCaseStepsControl extends AbstractUnicaseMEControl {
 		gdActorLink.horizontalAlignment = GridData.HORIZONTAL_ALIGN_CENTER;
 		gdActorLink.horizontalSpan = 1;
 
-		Hyperlink addActorStepLink = getToolkit().createHyperlink(buttonControl, "Insert Actor Step",
-			GridData.HORIZONTAL_ALIGN_BEGINNING);
+		Hyperlink addActorStepLink = getToolkit().createHyperlink(
+				buttonControl, "Insert Actor Step",
+				GridData.HORIZONTAL_ALIGN_BEGINNING);
 		addActorStepLink.addHyperlinkListener(new NewStepListener(position));
 
 		addActorStepLink.setLayoutData(gdActorLink);
@@ -291,9 +304,12 @@ public class UseCaseStepsControl extends AbstractUnicaseMEControl {
 		gdSystemLink.horizontalAlignment = GridData.HORIZONTAL_ALIGN_CENTER;
 		gdSystemLink.horizontalSpan = 1;
 
-		Hyperlink addSystemStepLink = getToolkit().createHyperlink(buttonControl, "Insert System Step",
-			GridData.HORIZONTAL_ALIGN_END);
-		addSystemStepLink.addHyperlinkListener(new IHyperlinkListenerImplementation(position));
+		Hyperlink addSystemStepLink = getToolkit().createHyperlink(
+				buttonControl, "Insert System Step",
+				GridData.HORIZONTAL_ALIGN_END);
+		addSystemStepLink
+				.addHyperlinkListener(new IHyperlinkListenerImplementation(
+						position));
 		addSystemStepLink.setLayoutData(gdSystemLink);
 
 		return buttonControl;
@@ -303,9 +319,11 @@ public class UseCaseStepsControl extends AbstractUnicaseMEControl {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor,
+			EObject modelElement) {
 		Object feature = itemPropertyDescriptor.getFeature(modelElement);
-		if (feature instanceof EReference && !((EReference) feature).getName().equals("useCaseSteps")) {
+		if (feature instanceof EReference
+				&& !((EReference) feature).getName().equals("useCaseSteps")) {
 			return DO_NOT_RENDER;
 		}
 		return PRIORITY;

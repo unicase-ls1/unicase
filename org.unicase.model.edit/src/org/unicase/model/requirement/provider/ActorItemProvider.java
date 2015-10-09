@@ -16,6 +16,7 @@ import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.UnicaseModelElementItemProvider;
+import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementPackage;
 
 /**

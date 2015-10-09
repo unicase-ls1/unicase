@@ -15,6 +15,8 @@ import org.eclipse.emf.emfstore.internal.client.properties.PropertyManager;
 import org.eclipse.emf.emfstore.internal.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.internal.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.internal.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.internal.server.model.versioning.operations.ReferenceOperation;
 import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.DashboardNotification;
@@ -26,7 +28,8 @@ import org.unicase.dashboard.util.DashboardPropertyKeys;
  * 
  * @author shterev
  */
-public class SubscriptionNotificationProvider extends AbstractNotificationProvider {
+public class SubscriptionNotificationProvider extends
+		AbstractNotificationProvider {
 
 	private ArrayList<DashboardNotification> result;
 	private List<ModelElementId> subscriptionIds;
@@ -52,22 +55,27 @@ public class SubscriptionNotificationProvider extends AbstractNotificationProvid
 	 *      java.util.List, java.lang.String)
 	 */
 	@Override
-	public List<DashboardNotification> provideNotifications(ProjectSpace projectSpace,
-		List<ChangePackage> changePackages, String currentUsername) {
+	public List<DashboardNotification> provideNotifications(
+			ProjectSpace projectSpace, List<ChangePackage> changePackages,
+			String currentUsername) {
 		result = new ArrayList<DashboardNotification>();
 
 		PropertyManager propertyManager = projectSpace.getPropertyManager();
 
-		String subscriptionProvider = propertyManager.getLocalStringProperty(DashboardPropertyKeys.SUBSCRIPTION_PROVIDER);
-		if (subscriptionProvider == null || !Boolean.parseBoolean(subscriptionProvider)) {
+		String subscriptionProvider = propertyManager
+				.getLocalStringProperty(DashboardPropertyKeys.SUBSCRIPTION_PROVIDER);
+		if (subscriptionProvider == null
+				|| !Boolean.parseBoolean(subscriptionProvider)) {
 			return result;
 		}
 
-		EMFStoreProperty property = propertyManager.getLocalProperty(DashboardPropertyKeys.SUBSCRIPTIONS);
+		EMFStoreProperty property = propertyManager
+				.getLocalProperty(DashboardPropertyKeys.SUBSCRIPTIONS);
 		if (property != null) {
 			EObject value = property.getValue();
 			if (value instanceof SubscriptionComposite) {
-				subscriptionIds = ((SubscriptionComposite) value).getSubscriptions();
+				subscriptionIds = ((SubscriptionComposite) value)
+						.getSubscriptions();
 			} else {
 				return result;
 			}
@@ -79,7 +87,8 @@ public class SubscriptionNotificationProvider extends AbstractNotificationProvid
 			return result;
 		}
 
-		super.provideNotifications(projectSpace, changePackages, currentUsername);
+		super.provideNotifications(projectSpace, changePackages,
+				currentUsername);
 
 		return result;
 	}
@@ -105,20 +114,24 @@ public class SubscriptionNotificationProvider extends AbstractNotificationProvid
 	}
 
 	private void createOperation(ModelElementId mid, AbstractOperation op) {
-		EObject modelElement = getProjectSpace().getProject().getModelElement(mid);
+		EObject modelElement = getProjectSpace().getProject().getModelElement(
+				mid);
 		if (modelElement == null) {
 			return;
 		}
 		getExcludedOperations().add(op.getOperationId());
-		DashboardNotification notification = DashboardFactory.eINSTANCE.createDashboardNotification();
+		DashboardNotification notification = DashboardFactory.eINSTANCE
+				.createDashboardNotification();
 		notification.setName("Subscriptions");
-		notification.setProject(ModelUtil.clone(getProjectSpace().getProjectId()));
+		notification.setProject(ModelUtil.clone(getProjectSpace()
+				.getProjectId()));
 		notification.setRecipient(getUser().getName());
 		notification.setSeen(false);
 		notification.setProvider(getName());
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("An element on your watch list has changed: ");
-		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(mid, getProjectSpace()));
+		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(mid,
+				getProjectSpace()));
 		notification.setMessage(stringBuilder.toString());
 		notification.setCreationDate(op.getClientDate());
 		notification.getRelatedOperations().add(op.getOperationId());

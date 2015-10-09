@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.unicase.model.meeting.MeetingPackage;
+import org.unicase.model.meeting.WorkItemMeetingSection;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.meeting.WorkItemMeetingSection} object. <!--

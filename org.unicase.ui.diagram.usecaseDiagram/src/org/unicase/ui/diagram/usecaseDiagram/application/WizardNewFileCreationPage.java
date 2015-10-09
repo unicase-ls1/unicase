@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -8,6 +8,7 @@ package org.unicase.ui.diagram.usecaseDiagram.application;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.ecp.internal.ui.PreferenceHelper;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -53,7 +54,8 @@ public class WizardNewFileCreationPage extends WizardPage {
 	/**
 	 * @generated
 	 */
-	public WizardNewFileCreationPage(String name, IStructuredSelection currentSelection) {
+	public WizardNewFileCreationPage(String name,
+			IStructuredSelection currentSelection) {
 		super(name);
 		this.currentSelection = currentSelection;
 		String home = System.getProperty("user.home"); //$NON-NLS-1$
@@ -152,7 +154,8 @@ public class WizardNewFileCreationPage extends WizardPage {
 			if (!containerPath.hasTrailingSeparator()) {
 				containerPath = containerPath.addTrailingSeparator();
 			}
-			IPath path = fileName.length() == 0 ? containerPath : containerPath.append(fileName);
+			IPath path = fileName.length() == 0 ? containerPath : containerPath
+					.append(fileName);
 			fileNameEditor.setText(path.toOSString());
 		}
 		setPageComplete(validatePage());
@@ -166,12 +169,15 @@ public class WizardNewFileCreationPage extends WizardPage {
 		plate.setLayout(new GridLayout(2, false));
 		Label label = new Label(plate, SWT.NONE);
 		label.setText(org.unicase.ui.diagram.usecaseDiagram.part.Messages.WizardNewFileCreationPage_FileLabel);
-		label.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false, 2, 1));
+		label.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
+				false, 2, 1));
 		fileNameEditor = new Text(plate, SWT.SINGLE | SWT.BORDER);
-		fileNameEditor.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		fileNameEditor.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
+				false));
 		Button button = new Button(plate, SWT.PUSH);
 		button.setText(org.unicase.ui.diagram.usecaseDiagram.part.Messages.WizardNewFileCreationPage_BrowseButton);
-		button.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		button.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
+				false));
 
 		// logic
 		fileNameEditor.addModifyListener(new ModifyListener() {
@@ -184,16 +190,15 @@ public class WizardNewFileCreationPage extends WizardPage {
 
 			public void widgetSelected(SelectionEvent e) {
 				FileDialog dialog = new FileDialog(getShell(), SWT.SAVE);
-				dialog
-					.setText(org.unicase.ui.diagram.usecaseDiagram.part.Messages.WizardNewFileCreationPage_SelectNewFileDialog);
+				dialog.setText(org.unicase.ui.diagram.usecaseDiagram.part.Messages.WizardNewFileCreationPage_SelectNewFileDialog);
 				dialog.setFileName(getFileName());
-				String initialPath = org.eclipse.emf.ecp.common.util.PreferenceHelper.getPreference(NEW_FILE_PATH,
-					System.getProperty("user.home"));
+				String initialPath = PreferenceHelper.getPreference(
+						NEW_FILE_PATH, System.getProperty("user.home"));
 				dialog.setFilterPath(initialPath);
 				String fileName = dialog.open();
 				if (fileName != null) {
-					org.eclipse.emf.ecp.common.util.PreferenceHelper.setPreference(NEW_FILE_PATH,
-						dialog.getFilterPath());
+					PreferenceHelper.setPreference(NEW_FILE_PATH,
+							dialog.getFilterPath());
 					fileNameEditor.setText(fileName);
 					setPageComplete(validatePage());
 				}

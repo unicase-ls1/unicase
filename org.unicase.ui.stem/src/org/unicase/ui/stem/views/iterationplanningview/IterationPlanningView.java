@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universit�t M�nchen (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universit‰t M¸nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -12,12 +12,10 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.emf.emfstore.client.ESWorkspace;
 import org.eclipse.emf.emfstore.internal.client.model.ESWorkspaceProviderImpl;
-import org.eclipse.emf.emfstore.internal.client.model.ModelPackage;
-import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.internal.client.model.exceptions.WorkspaceException;
+import org.eclipse.emf.emfstore.internal.client.model.Workspace;
 import org.eclipse.emf.emfstore.internal.common.model.Project;
+import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.DialogSettings;
@@ -99,7 +97,7 @@ public class IterationPlanningView extends ViewPart {
 	/**
 	 * The constructor.
 	 */
-	public IterationPlanningView() throws WorkspaceException {
+	public IterationPlanningView() {
 		IPath path = Activator.getDefault().getStateLocation();
 		filename = path.append("settings.txt").toOSString();
 		settings = new DialogSettings("Top");
@@ -108,16 +106,21 @@ public class IterationPlanningView extends ViewPart {
 		} catch (IOException e) {
 			// Do nothing.
 		}
-		ProjectSpace projectSpace = ESWorkspaceProviderImpl.getInstance()
-				.getProjectSpace(null);
-		projectSpace.eAdapters().add(new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(ESWorkspace.class)) == ModelPackage.PROJECT_SPACE__PROJECT) {
-					initFilters();
+		try {
+			final Workspace workspace = ESWorkspaceProviderImpl.getInstance()
+					.getInternalWorkspace();
+			workspace.eAdapters().add(new AdapterImpl() {
+				@Override
+				public void notifyChanged(Notification msg) {
+					if ((msg.getFeatureID(ECPWorkspace.class)) == org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT) {
+						initFilters();
+					}
 				}
-			}
-		});
+			});
+		} catch (NoWorkspaceException e) {
+			ModelUtil.logException("Failed to receive Project!", e);
+			return;
+		}
 	}
 
 	/**
@@ -148,29 +151,35 @@ public class IterationPlanningView extends ViewPart {
 		hookDoubleClickAction();
 		addDNDSupport();
 
-		final ProjectSpace projectSpace = ESWorkspaceProviderImpl.getInstance()
-				.getProjectSpace(null);
-		projectSpace.eAdapters().add(new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(ESWorkspace.class)) == ModelPackage.PROJECT_SPACE__PROJECT) {
-					if (projectSpace != null) {
-						project = (Project) projectSpace.getProject()
-								.eContainer();
-					} else {
-						project = null;
+		// respond to change of active ProjectSpace
+		try {
+			final ECPWorkspace workspace = ECPWorkspaceManager.getInstance()
+					.getWorkSpace();
+			workspace.eAdapters().add(new AdapterImpl() {
+				@Override
+				public void notifyChanged(Notification msg) {
+					if ((msg.getFeatureID(ECPWorkspace.class)) == org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT) {
+						if (workspace.getActiveProject() != null) {
+							project = (Project) workspace.getActiveProject()
+									.getRootContainer();
+						} else {
+							project = null;
+						}
+						setInput();
 					}
-					setInput();
+					super.notifyChanged(msg);
 				}
-				super.notifyChanged(msg);
-			}
-		});
+			});
 
-		// set input when showing the view for the first time.
-		if (projectSpace.getProject() != null) {
-			project = (Project) projectSpace.getProject().eContainer();
-		} else {
-			project = null;
+			// set input when showing the view for the first time.
+			if (workspace.getActiveProject() != null) {
+				project = (Project) workspace.getActiveProject()
+						.getRootContainer();
+			} else {
+				project = null;
+			}
+		} catch (NoWorkspaceException e) {
+			ModelUtil.logException("Failed to receive Project!", e);
 		}
 
 		setInput();
@@ -180,8 +189,8 @@ public class IterationPlanningView extends ViewPart {
 	private void initFilters() {
 		User user;
 		try {
-			user = OrgUnitHelper.getCurrentUser(ESWorkspaceProviderImpl
-					.getInstance().getWorkspace());
+			user = OrgUnitHelper.getCurrentUser(WorkspaceManager.getInstance()
+					.getCurrentWorkspace());
 			createTeamFilter(user);
 			createUserFilter(user);
 		} catch (NoCurrentUserException e) {

@@ -25,11 +25,13 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
+import org.unicase.ui.unicasecommon.common.dialogs.MEClassLabelProvider;
 
 /**
- * @author Hodaie This is the first page of NewModelElementWizard. On this page the model packages and their class (only
- *         those who inherit ModelElement and are not abstract) are shown in a TreeViewer. If user selects a class in
- *         this tree, the wizard can finish.
+ * @author Hodaie This is the first page of NewModelElementWizard. On this page
+ *         the model packages and their class (only those who inherit
+ *         ModelElement and are not abstract) are shown in a TreeViewer. If user
+ *         selects a class in this tree, the wizard can finish.
  */
 public class ModelTreePage extends WizardPage implements Listener {
 
@@ -40,7 +42,8 @@ public class ModelTreePage extends WizardPage implements Listener {
 	/**
 	 * Constructor.
 	 * 
-	 * @param pageName page name
+	 * @param pageName
+	 *            page name
 	 */
 	protected ModelTreePage(String pageName) {
 		super(pageName);
@@ -56,13 +59,15 @@ public class ModelTreePage extends WizardPage implements Listener {
 
 		Composite composite = new Composite(parent, SWT.NULL);
 
-		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).applyTo(composite);
+		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false)
+				.applyTo(composite);
 
 		Label filterLabel = new Label(composite, SWT.LEFT);
 		filterLabel.setText("Search:");
 		final Text filterInput = new Text(composite, SWT.SEARCH);
 		filterInput.setMessage("Model Element class");
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(filterInput);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL)
+				.grab(true, true).applyTo(filterInput);
 		Tree tree = new Tree(composite, SWT.SINGLE);
 		final ModelClassFilter filter = new ModelClassFilter();
 		filterInput.addModifyListener(new ModifyListener() {
@@ -78,8 +83,8 @@ public class ModelTreePage extends WizardPage implements Listener {
 		});
 
 		treeViewer = new TreeViewer(tree);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).span(2, 1).applyTo(
-			treeViewer.getControl());
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL)
+				.grab(true, true).span(2, 1).applyTo(treeViewer.getControl());
 		treeViewer.setContentProvider(new ModelTreeContentProvider());
 		treeViewer.setLabelProvider(new MEClassLabelProvider());
 		treeViewer.setComparator(new ViewerComparator());
@@ -114,8 +119,8 @@ public class ModelTreePage extends WizardPage implements Listener {
 	}
 
 	/**
-	 * Check if tree selection is a ME and wizard can complete. This Method sets the newMEType and treeCompleted fields
-	 * in NewModelElementWizard
+	 * Check if tree selection is a ME and wizard can complete. This Method sets
+	 * the newMEType and treeCompleted fields in NewModelElementWizard
 	 * 
 	 * @return
 	 */
@@ -165,7 +170,8 @@ public class ModelTreePage extends WizardPage implements Listener {
 	}
 
 	/**
-	 * {@inheritDoc} On selection change in TreeViewer updates wizard buttons accordingly.
+	 * {@inheritDoc} On selection change in TreeViewer updates wizard buttons
+	 * accordingly.
 	 */
 	public void handleEvent(Event event) {
 

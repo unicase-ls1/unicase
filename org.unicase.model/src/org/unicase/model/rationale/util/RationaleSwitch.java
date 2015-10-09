@@ -9,8 +9,10 @@ package org.unicase.model.rationale.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.emf.emfstore.internal.common.model.NonDomainElement;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.rationale.*;
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.AudioComment;
 import org.unicase.model.rationale.Comment;
@@ -305,8 +307,7 @@ public class RationaleSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNonDomainElement(
-			org.eclipse.emf.emfstore.internal.common.model.NonDomainElement object) {
+	public T caseNonDomainElement(NonDomainElement object) {
 		return null;
 	}
 

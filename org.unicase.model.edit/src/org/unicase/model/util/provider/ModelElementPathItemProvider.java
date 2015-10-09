@@ -20,6 +20,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.emf.emfstore.internal.common.model.ModelFactory;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.RootElementItemProvider;
 import org.unicase.model.util.ModelElementPath;
@@ -145,23 +146,17 @@ public class ModelElementPathItemProvider extends RootElementItemProvider
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-				.add(createChildParameter(
-						UtilPackage.Literals.MODEL_ELEMENT_PATH__SOURCE,
-						org.eclipse.emf.emfstore.internal.common.model.ModelFactory.eINSTANCE
-								.createModelElementId()));
+		newChildDescriptors.add(createChildParameter(
+				UtilPackage.Literals.MODEL_ELEMENT_PATH__SOURCE,
+				ModelFactory.eINSTANCE.createModelElementId()));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						UtilPackage.Literals.MODEL_ELEMENT_PATH__TARGET,
-						org.eclipse.emf.emfstore.internal.common.model.ModelFactory.eINSTANCE
-								.createModelElementId()));
+		newChildDescriptors.add(createChildParameter(
+				UtilPackage.Literals.MODEL_ELEMENT_PATH__TARGET,
+				ModelFactory.eINSTANCE.createModelElementId()));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						UtilPackage.Literals.MODEL_ELEMENT_PATH__PATH,
-						org.eclipse.emf.emfstore.internal.common.model.ModelFactory.eINSTANCE
-								.createModelElementId()));
+		newChildDescriptors.add(createChildParameter(
+				UtilPackage.Literals.MODEL_ELEMENT_PATH__PATH,
+				ModelFactory.eINSTANCE.createModelElementId()));
 	}
 
 	/**

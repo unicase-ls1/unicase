@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.internal.server.model.versioning.ChangePackage;
 import org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationId;
 import org.unicase.dashboard.DashboardNotification;
 
@@ -30,17 +31,21 @@ public interface NotificationProvider {
 	/**
 	 * Provide notifications for a list of change packages.
 	 * 
-	 * @param projectSpace the project space.
-	 * @param changePackages a list of change packages
-	 * @param currentUsername the name of the current user
+	 * @param projectSpace
+	 *            the project space.
+	 * @param changePackages
+	 *            a list of change packages
+	 * @param currentUsername
+	 *            the name of the current user
 	 * @return a list of notifications
 	 */
-	List<DashboardNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
-		String currentUsername);
+	List<DashboardNotification> provideNotifications(ProjectSpace projectSpace,
+			List<ChangePackage> changePackages, String currentUsername);
 
 	/**
-	 * Provides a list of AbstractOperations to be excluded from providers pending in the generator queue. Every
-	 * Provider should offer such a list to its direct successor (see the <i>after</i> parameter for the extension
+	 * Provides a list of AbstractOperations to be excluded from providers
+	 * pending in the generator queue. Every Provider should offer such a list
+	 * to its direct successor (see the <i>after</i> parameter for the extension
 	 * point).
 	 * 
 	 * @return the set of operations

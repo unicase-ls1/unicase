@@ -9,8 +9,10 @@ package org.unicase.model.change.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.emf.emfstore.internal.common.model.NonDomainElement;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.change.*;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
 import org.unicase.model.change.MergingProposal;
@@ -235,8 +237,7 @@ public class ChangeSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNonDomainElement(
-			org.eclipse.emf.emfstore.internal.common.model.NonDomainElement object) {
+	public T caseNonDomainElement(NonDomainElement object) {
 		return null;
 	}
 

@@ -9,6 +9,7 @@ package org.unicase.model.rationale;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.emfstore.internal.common.model.NonDomainElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 
@@ -28,8 +29,7 @@ import org.unicase.model.organization.OrgUnit;
  * @model
  * @generated
  */
-public interface Comment extends UnicaseModelElement,
-		org.eclipse.emf.emfstore.internal.common.model.NonDomainElement {
+public interface Comment extends UnicaseModelElement, NonDomainElement {
 	/**
 	 * Returns the value of the '<em><b>Sender</b></em>' reference.
 	 * <!-- begin-user-doc -->

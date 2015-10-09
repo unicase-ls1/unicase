@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingProposal;
 import org.unicase.model.rationale.impl.ProposalImpl;
@@ -40,7 +41,7 @@ public class MergingProposalImpl extends ProposalImpl implements
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation> pendingOperations;
+	protected EList<AbstractOperation> pendingOperations;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -63,11 +64,11 @@ public class MergingProposalImpl extends ProposalImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation> getPendingOperations() {
+	public EList<AbstractOperation> getPendingOperations() {
 		if (pendingOperations == null) {
-			pendingOperations = new EObjectContainmentEList.Resolving<org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation>(
-					org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation.class,
-					this, ChangePackage.MERGING_PROPOSAL__PENDING_OPERATIONS);
+			pendingOperations = new EObjectContainmentEList.Resolving<AbstractOperation>(
+					AbstractOperation.class, this,
+					ChangePackage.MERGING_PROPOSAL__PENDING_OPERATIONS);
 		}
 		return pendingOperations;
 	}
@@ -110,8 +111,8 @@ public class MergingProposalImpl extends ProposalImpl implements
 		switch (featureID) {
 		case ChangePackage.MERGING_PROPOSAL__PENDING_OPERATIONS:
 			getPendingOperations().clear();
-			getPendingOperations()
-					.addAll((Collection<? extends org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation>) newValue);
+			getPendingOperations().addAll(
+					(Collection<? extends AbstractOperation>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

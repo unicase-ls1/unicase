@@ -6,7 +6,8 @@
  */
 package org.unicase.ui.dashboard;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.core.ECPProject;
+import org.eclipse.emf.ecp.ui.util.ECPModelElementOpener;
 import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
@@ -15,7 +16,7 @@ import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
  * 
  * @author helming
  */
-public class ModelElementOpener implements org.eclipse.emf.ecp.common.util.ModelElementOpener {
+public class ModelElementOpener implements ECPModelElementOpener {
 	/**
 	 * default constructor.
 	 */
@@ -23,30 +24,12 @@ public class ModelElementOpener implements org.eclipse.emf.ecp.common.util.Model
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.ui.util.ModelElementOpener#canOpen(org.eclipse.emf.ecore.EObject)
-	 */
-	public int canOpen(EObject modelElement) {
-		if (modelElement instanceof ProjectSpace) {
-			return 2;
-		}
-		return DONOTOPEN;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.ui.util.ModelElementOpener#openModelElement(org.eclipse.emf.ecore.EObject)
-	 */
-	public void openModelElement(EObject modelElement) {
-		if (modelElement instanceof ProjectSpace) {
-			ProjectSpace projectSpace = (ProjectSpace) modelElement;
+	public void openModelElement(Object element, ECPProject ecpProject) {
+		if (element instanceof ProjectSpace) {
+			ProjectSpace projectSpace = (ProjectSpace) element;
 			UnicaseActionHelper.openDashboard(projectSpace);
 			return;
 		}
-
 	}
 
 }

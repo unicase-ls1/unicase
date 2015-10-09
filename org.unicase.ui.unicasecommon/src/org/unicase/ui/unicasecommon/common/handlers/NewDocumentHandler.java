@@ -12,6 +12,9 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.internal.client.model.util.EMFStoreCommand;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 
@@ -26,8 +29,9 @@ public class NewDocumentHandler extends AbstractHandler {
 	 * . {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-
-		EObject eObject = UiUtil.getSelection(event);
+		final ISelection selection = HandlerUtil.getActiveMenuSelection(event);
+		final IStructuredSelection ssel = (IStructuredSelection) selection;
+		EObject eObject = (EObject) ssel.getFirstElement();
 		if (!(eObject instanceof ProjectSpace)) {
 			return null;
 		}
@@ -36,7 +40,8 @@ public class NewDocumentHandler extends AbstractHandler {
 		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
-				CompositeSection compositeSection = DocumentFactory.eINSTANCE.createCompositeSection();
+				CompositeSection compositeSection = DocumentFactory.eINSTANCE
+						.createCompositeSection();
 				compositeSection.setName("new Document");
 				projectSpace.getProject().addModelElement(compositeSection);
 			}
@@ -44,5 +49,4 @@ public class NewDocumentHandler extends AbstractHandler {
 
 		return null;
 	}
-
 }

@@ -21,7 +21,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.ecp.edit,
  org.eclipse.emf.ecp.ui,
  org.eclipse.emf.emfstore.server.model,
- org.unicase.model
+ org.unicase.model,
+ org.eclipse.emf.ecp.emfstore.core,
+ org.eclipse.emf.ecp.ui.e3,
+ org.eclipse.core.expressions,
+ org.eclipse.emf.ecp.editor.e3,
+ org.eclipse.emf.ecp.explorereditorbridge,
+ org.eclipse.emf.ecp.ide.editor.view,
+ org.eclipse.jface.databinding
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.unicase.ui.unicasecommon,
@@ -39,15 +46,15 @@ Export-Package: org.unicase.ui.unicasecommon,
  org.unicase.ui.unicasecommon.diagram.requests,
  org.unicase.ui.unicasecommon.diagram.shapes,
  org.unicase.ui.unicasecommon.diagram.util,
- org.unicase.ui.unicasecommon.dnd.dropadapters,
  org.unicase.ui.unicasecommon.file.util,
- org.unicase.ui.unicasecommon.meeditor,
  org.unicase.ui.unicasecommon.meeditor.mecontrols,
- org.unicase.ui.unicasecommon.navigator.wizards,
- org.unicase.ui.unicasecommon.observer
-Import-Package: org.eclipse.core.expressions,
- org.eclipse.emf.common.ui,
+ org.unicase.ui.unicasecommon.meeditor.mecontrols.issuecontrol,
+ org.unicase.ui.unicasecommon.navigator.commands,
+ org.unicase.ui.unicasecommon.navigator.wizards
+Import-Package: org.eclipse.emf.common.ui,
  org.eclipse.ui.part,
  org.unicase.model.diagram,
- org.unicase.model.diagram.impl
+ org.unicase.model.diagram.impl,
+ org.unicase.model.diagram.util,
+ org.unicase.ui.unicasecommon.meeditor.mecontrols
 Bundle-Vendor: unicase.org

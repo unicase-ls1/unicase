@@ -26,11 +26,13 @@ import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.ui.unicasecommon.common.dialogs.MEClassLabelProvider;
 
 /**
- * @author abdelhamidbarzali this class extends ViewPart. this view shows the main information about a modelelement e.g.
- *         description, name , creator etc. the meta information of a selected modelelement in a unicase views is
- *         displayed here.
+ * @author abdelhamidbarzali this class extends ViewPart. this view shows the
+ *         main information about a modelelement e.g. description, name ,
+ *         creator etc. the meta information of a selected modelelement in a
+ *         unicase views is displayed here.
  */
 
 public class Preview extends ViewPart implements ISelectionListener {
@@ -59,7 +61,8 @@ public class Preview extends ViewPart implements ISelectionListener {
 	}
 
 	/**
-	 * @param parent the composite for all Preview widgets.
+	 * @param parent
+	 *            the composite for all Preview widgets.
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
@@ -73,12 +76,16 @@ public class Preview extends ViewPart implements ISelectionListener {
 		composite.setLayout(layout);
 		Display display = getSite().getShell().getDisplay();
 		composite.setBackground(display.getSystemColor(SWT.COLOR_WHITE));
-		registry.put(namelabelfont, new FontData[] { new FontData("Bold", 12, SWT.BOLD) });
-		registry.put(creatorlabelfont, new FontData[] { new FontData("Courier New", 12, SWT.NORMAL) });
-		registry.put(descriptiontextfont, new FontData[] { new FontData("Arial", 13, SWT.NORMAL) });
+		registry.put(namelabelfont, new FontData[] { new FontData("Bold", 12,
+				SWT.BOLD) });
+		registry.put(creatorlabelfont, new FontData[] { new FontData(
+				"Courier New", 12, SWT.NORMAL) });
+		registry.put(descriptiontextfont, new FontData[] { new FontData(
+				"Arial", 13, SWT.NORMAL) });
 		iconlabel = new Label(composite, SWT.ICON);
 		iconlabel.setBackground(display.getSystemColor(SWT.COLOR_WHITE));
-		iconlabel.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
+		iconlabel
+				.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 		// Get standard image.
 		Image initicon = labelprovider.getImage(null);
 		iconlabel.setImage(initicon);
@@ -92,16 +99,19 @@ public class Preview extends ViewPart implements ISelectionListener {
 
 		// Creator + Date Lable .
 		creatorAndDatelabel = new Label(composite, SWT.BORDER);
-		creatorAndDatelabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+		creatorAndDatelabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER,
+				true, false, 2, 1));
 
 		creatorAndDatelabel.setFont(registry.get(creatorlabelfont));
 
 		creatorAndDatelabel.setText("Creator/Creationdate");
-		creatorAndDatelabel.setBackground(display.getSystemColor(SWT.COLOR_WHITE));
+		creatorAndDatelabel.setBackground(display
+				.getSystemColor(SWT.COLOR_WHITE));
 
 		// the Text widget for descriptions.
 		textwidget = new Text(composite, SWT.WRAP | SWT.MULTI | SWT.BORDER);
-		textwidget.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+		textwidget.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true,
+				2, 1));
 		textwidget.setFont(registry.get(descriptiontextfont));
 		textwidget.setText(nocomment);
 		textwidget.setEditable(false);
@@ -183,8 +193,10 @@ public class Preview extends ViewPart implements ISelectionListener {
 	}
 
 	/**
-	 * @param part is the part.
-	 * @param selection is the selection.
+	 * @param part
+	 *            is the part.
+	 * @param selection
+	 *            is the selection.
 	 */
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
 		if (selection.isEmpty()) {
@@ -214,7 +226,8 @@ public class Preview extends ViewPart implements ISelectionListener {
 	}
 
 	/**
-	 * @param object the selected StructuredSelection Object.
+	 * @param object
+	 *            the selected StructuredSelection Object.
 	 */
 	private void setselectedObject(Object object) {
 		if (iconlabel != null) {
@@ -238,7 +251,8 @@ public class Preview extends ViewPart implements ISelectionListener {
 	}
 
 	/**
-	 * @param me the selected UnicaseModelElement.
+	 * @param me
+	 *            the selected UnicaseModelElement.
 	 */
 	private void setUnicaseModelElement(UnicaseModelElement me) {
 		Image icon = labelprovider.getImage(me);

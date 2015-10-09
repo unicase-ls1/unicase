@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
 import org.unicase.model.rationale.impl.IssueImpl;
@@ -36,7 +37,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	 * @generated
 	 * @ordered
 	 */
-	protected org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec baseVersion;
+	protected PrimaryVersionSpec baseVersion;
 
 	/**
 	 * The cached value of the '{@link #getTargetVersion() <em>Target Version</em>}' containment reference. <!--
@@ -46,7 +47,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	 * @generated
 	 * @ordered
 	 */
-	protected org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec targetVersion;
+	protected PrimaryVersionSpec targetVersion;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -69,10 +70,10 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec getBaseVersion() {
+	public PrimaryVersionSpec getBaseVersion() {
 		if (baseVersion != null && baseVersion.eIsProxy()) {
 			InternalEObject oldBaseVersion = (InternalEObject) baseVersion;
-			baseVersion = (org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec) eResolveProxy(oldBaseVersion);
+			baseVersion = (PrimaryVersionSpec) eResolveProxy(oldBaseVersion);
 			if (baseVersion != oldBaseVersion) {
 				InternalEObject newBaseVersion = (InternalEObject) baseVersion;
 				NotificationChain msgs = oldBaseVersion.eInverseRemove(this,
@@ -102,7 +103,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec basicGetBaseVersion() {
+	public PrimaryVersionSpec basicGetBaseVersion() {
 		return baseVersion;
 	}
 
@@ -112,9 +113,8 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	 * @generated
 	 */
 	public NotificationChain basicSetBaseVersion(
-			org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec newBaseVersion,
-			NotificationChain msgs) {
-		org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec oldBaseVersion = baseVersion;
+			PrimaryVersionSpec newBaseVersion, NotificationChain msgs) {
+		PrimaryVersionSpec oldBaseVersion = baseVersion;
 		baseVersion = newBaseVersion;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this,
@@ -134,8 +134,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBaseVersion(
-			org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec newBaseVersion) {
+	public void setBaseVersion(PrimaryVersionSpec newBaseVersion) {
 		if (newBaseVersion != baseVersion) {
 			NotificationChain msgs = null;
 			if (baseVersion != null)
@@ -161,10 +160,10 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec getTargetVersion() {
+	public PrimaryVersionSpec getTargetVersion() {
 		if (targetVersion != null && targetVersion.eIsProxy()) {
 			InternalEObject oldTargetVersion = (InternalEObject) targetVersion;
-			targetVersion = (org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec) eResolveProxy(oldTargetVersion);
+			targetVersion = (PrimaryVersionSpec) eResolveProxy(oldTargetVersion);
 			if (targetVersion != oldTargetVersion) {
 				InternalEObject newTargetVersion = (InternalEObject) targetVersion;
 				NotificationChain msgs = oldTargetVersion.eInverseRemove(this,
@@ -194,7 +193,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec basicGetTargetVersion() {
+	public PrimaryVersionSpec basicGetTargetVersion() {
 		return targetVersion;
 	}
 
@@ -204,9 +203,8 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	 * @generated
 	 */
 	public NotificationChain basicSetTargetVersion(
-			org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec newTargetVersion,
-			NotificationChain msgs) {
-		org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec oldTargetVersion = targetVersion;
+			PrimaryVersionSpec newTargetVersion, NotificationChain msgs) {
+		PrimaryVersionSpec oldTargetVersion = targetVersion;
 		targetVersion = newTargetVersion;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this,
@@ -226,8 +224,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTargetVersion(
-			org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec newTargetVersion) {
+	public void setTargetVersion(PrimaryVersionSpec newTargetVersion) {
 		if (newTargetVersion != targetVersion) {
 			NotificationChain msgs = null;
 			if (targetVersion != null)
@@ -292,10 +289,10 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case ChangePackage.MERGING_ISSUE__BASE_VERSION:
-			setBaseVersion((org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec) newValue);
+			setBaseVersion((PrimaryVersionSpec) newValue);
 			return;
 		case ChangePackage.MERGING_ISSUE__TARGET_VERSION:
-			setTargetVersion((org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec) newValue);
+			setTargetVersion((PrimaryVersionSpec) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -309,10 +306,10 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 		case ChangePackage.MERGING_ISSUE__BASE_VERSION:
-			setBaseVersion((org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec) null);
+			setBaseVersion((PrimaryVersionSpec) null);
 			return;
 		case ChangePackage.MERGING_ISSUE__TARGET_VERSION:
-			setTargetVersion((org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec) null);
+			setTargetVersion((PrimaryVersionSpec) null);
 			return;
 		}
 		super.eUnset(featureID);

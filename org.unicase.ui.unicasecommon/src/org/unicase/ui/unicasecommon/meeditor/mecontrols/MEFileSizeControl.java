@@ -8,9 +8,15 @@ package org.unicase.ui.unicasecommon.meeditor.mecontrols;
 
 import java.text.DecimalFormat;
 
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.conversion.IConverter;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.emf.databinding.EMFDataBindingContext;
+import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
@@ -21,13 +27,15 @@ import org.eclipse.swt.widgets.Label;
 import org.unicase.model.attachment.FileAttachment;
 
 /**
- * This class is responsible for displaying the file size of the FileAttachment file size attribute value.
+ * This class is responsible for displaying the file size of the FileAttachment
+ * file size attribute value.
  * 
  * @author pfeifferc
  */
 public class MEFileSizeControl extends AbstractUnicaseMEControl {
 
-	private final String[] magnitude = { " byte", " Kilobyte", " Megabyte", " Gigabyte", " Terabyte", " petabyte" };
+	private final String[] magnitude = { " byte", " Kilobyte", " Megabyte",
+			" Gigabyte", " Terabyte", " petabyte" };
 
 	private static final int PRIORITY = 2;
 
@@ -38,25 +46,33 @@ public class MEFileSizeControl extends AbstractUnicaseMEControl {
 	 */
 	@Override
 	public Control createControl(Composite parent, int style) {
-		this.attribute = (EAttribute) getItemPropertyDescriptor().getFeature(getModelElement());
+		this.attribute = (EAttribute) getItemPropertyDescriptor().getFeature(
+				getModelElement());
 
 		Composite composite = getToolkit().createComposite(parent, style);
 		GridLayout gridLayout = new GridLayout(1, false);
 		composite.setLayout(gridLayout);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(composite);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER)
+				.grab(true, true).applyTo(composite);
 
 		final Label fileSize = new Label(composite, SWT.RIGHT);
 
-		// bind the fileName widget to the correspondent file attachment attribute value
-		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
+		// bind the fileName widget to the correspondent file attachment
+		// attribute value
+		IObservableValue model = EMFEditObservables.observeValue(
+				getEditingDomain(), getModelElement(), attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
 		UpdateValueStrategy strategy = new UpdateValueStrategy();
-		// the converter sees to that the file size is displayed according to its magnitude
+		// the converter sees to that the file size is displayed according to
+		// its magnitude
 		strategy.setConverter(new FileSizeConverter());
-		dbc.bindValue(SWTObservables.observeText(fileSize), model, null, strategy);
+		dbc.bindValue(SWTObservables.observeText(fileSize), model, null,
+				strategy);
 
-		fileSize.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(fileSize);
+		fileSize.setBackground(Display.getCurrent().getSystemColor(
+				SWT.COLOR_WHITE));
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER)
+				.grab(true, true).applyTo(fileSize);
 
 		return parent;
 	}
@@ -94,7 +110,8 @@ public class MEFileSizeControl extends AbstractUnicaseMEControl {
 			}
 			for (int i = 1; i < 6; i++) {
 				if (size < Math.pow(1024, i + 1)) {
-					return format.format(size / Math.pow(1024, i)) + magnitude[i];
+					return format.format(size / Math.pow(1024, i))
+							+ magnitude[i];
 				}
 			}
 			return "infinite";
@@ -108,7 +125,8 @@ public class MEFileSizeControl extends AbstractUnicaseMEControl {
 	 *      org.unicase.metamodel.ModelElement)
 	 */
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor,
+			EObject modelElement) {
 		if (!(modelElement instanceof FileAttachment)) {
 			return DO_NOT_RENDER;
 		}

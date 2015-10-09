@@ -9,15 +9,22 @@ package org.unicase.ui.unicasecommon.common.util;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.core.ECPProject;
+import org.eclipse.emf.ecp.core.util.ECPUtil;
+import org.eclipse.emf.ecp.emfstore.core.internal.EMFStoreProvider;
+import org.eclipse.emf.ecp.internal.core.ECPProjectImpl;
+import org.eclipse.emf.ecp.spi.core.InternalProject;
+import org.eclipse.emf.emfstore.client.ESLocalProject;
+import org.eclipse.emf.emfstore.client.ESUsersession;
 import org.eclipse.emf.emfstore.internal.client.accesscontrol.AccessControlHelper;
 import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
-import org.eclipse.emf.emfstore.internal.client.model.Usersession;
-import org.eclipse.emf.emfstore.internal.client.model.Workspace;
+import org.eclipse.emf.emfstore.internal.client.model.exceptions.UnkownProjectException;
+import org.eclipse.emf.emfstore.internal.client.model.impl.api.ESLocalProjectImpl;
 import org.eclipse.emf.emfstore.internal.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.internal.common.model.Project;
 import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
@@ -27,10 +34,10 @@ import org.eclipse.emf.emfstore.internal.server.model.accesscontrol.ACGroup;
 import org.eclipse.emf.emfstore.internal.server.model.accesscontrol.ACOrgUnit;
 import org.eclipse.emf.emfstore.internal.server.model.accesscontrol.ACOrgUnitId;
 import org.eclipse.emf.emfstore.internal.server.model.accesscontrol.ACUser;
+import org.eclipse.emf.emfstore.server.exceptions.ESException;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationFactory;
-import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 
 /**
@@ -47,7 +54,7 @@ public final class OrgUnitHelper {
 	/**
 	 * Returns the current User in the project, whos logged in.
 	 * 
-	 * @param currentWorkspace
+	 * @param ecpProject2
 	 *            the current workspace
 	 * @return The current user
 	 * @throws NoCurrentUserException
@@ -55,59 +62,25 @@ public final class OrgUnitHelper {
 	 * @throws CannotMatchUserInProjectException
 	 *             if the current user cannot be found in the current project
 	 */
-	public static User getCurrentUser(Workspace currentWorkspace)
-			throws AccessControlException {
-		try {
-			ProjectSpace activeProjectSpace = (ProjectSpace) ECPWorkspaceManager
-					.getInstance().getWorkSpace().getActiveProject()
-					.getRootObject();
-			if (activeProjectSpace == null) {
-				throw new NoCurrentUserException();
-			}
-			return getUser(activeProjectSpace);
-		} catch (NoWorkspaceException e) {
-			ModelUtil.logException("Retrieving current user failed!", e);
+	public static ESUsersession getUserSession(ECPProject ecpProject)
+			throws UnkownProjectException {
+		ESLocalProject projectSpace = null;
+		if (ecpProject != null
+				&& ecpProject.getRepository() != null
+				&& ecpProject.getRepository().getProvider() != null
+				&& ecpProject.getRepository().getProvider()
+						.hasCreateRepositorySupport()) {
+			projectSpace = EMFStoreProvider.INSTANCE
+					.getProjectSpace((InternalProject) ecpProject);
+		}
+		if (projectSpace == null) {
 			return null;
-		} catch (NullPointerException e) {
-			throw new NoCurrentUserException();
 		}
-
-	}
-
-	/**
-	 * Returns the User in the project of the given projectSpace.
-	 * 
-	 * @param projectSpace
-	 *            the project space
-	 * @return the user model element
-	 * @throws NoCurrentUserException
-	 *             if there is no user logged into the project space
-	 * @throws CannotMatchUserInProjectException
-	 *             if the user cannot be found in the project
-	 */
-	public static User getUser(ProjectSpace projectSpace)
-			throws NoCurrentUserException, CannotMatchUserInProjectException {
-		// JH: handle non-existing usersession
-		Usersession currentUserSession = projectSpace.getUsersession();
-		if (currentUserSession == null) {
-			throw new NoCurrentUserException();
+		ESUsersession session = projectSpace.getUsersession();
+		if (session != null) {
+			return session;
 		}
-		EList<User> projectUsers = projectSpace.getProject()
-				.getAllModelElementsbyClass(
-						OrganizationPackage.eINSTANCE.getUser(),
-						new BasicEList<User>());
-		String id = currentUserSession.getACUser().getId().getId();
-		for (User currentUser : projectUsers) {
-			// FS how can I get the appropriate user from the current user
-			// session?
-			String acOrgId = currentUser.getAcOrgId();
-			if (acOrgId != null) {
-				if (acOrgId.equals(id)) {
-					return currentUser;
-				}
-			}
-		}
-		throw new CannotMatchUserInProjectException();
+		return null;
 	}
 
 	/**
@@ -121,18 +94,27 @@ public final class OrgUnitHelper {
 	 * @throws CannotMatchUserInProjectException
 	 *             if the user cannot be found in the project
 	 */
-	public static User getUser(ProjectSpace projectSpace, String username)
-			throws CannotMatchUserInProjectException {
-		EList<User> projectUsers = projectSpace.getProject()
-				.getAllModelElementsbyClass(
-						OrganizationPackage.eINSTANCE.getUser(),
-						new BasicEList<User>());
+	public static User getUser(ECPProject project, String username) {
+		Set<User> projectUsers = getAllModelElementsByClass(project,
+				User.class, true);
 		for (User user : projectUsers) {
 			if (user.getName().equals(username)) {
 				return user;
 			}
 		}
-		throw new CannotMatchUserInProjectException();
+		return null;
+	}
+
+	public static <T extends EObject> Set<T> getAllModelElementsByClass(
+			ECPProject project, Class<T> instanceClass,
+			Boolean includeSubclasses) {
+		Object provider = ((ECPProjectImpl) project).getProviderSpecificData();
+		if (provider instanceof ESLocalProjectImpl) {
+			return ((ESLocalProjectImpl) provider).getAllModelElementsByClass(
+					instanceClass, true);
+		}
+		final LinkedHashSet<T> result = new LinkedHashSet<T>();
+		return result;
 	}
 
 	/**
@@ -205,8 +187,8 @@ public final class OrgUnitHelper {
 			}
 		} catch (ConnectionException e) {
 			WorkspaceUtil.logException("Importing users failed!", e);
-		} catch (EmfStoreException e) {
-			WorkspaceUtil.logException("Importing users failed!", e);
+		} catch (ESException e) {
+			ModelUtil.logWarning(e.getMessage(), e);
 		}
 	}
 
@@ -224,9 +206,8 @@ public final class OrgUnitHelper {
 		HashMap<String, User> userNameMap = new HashMap<String, User>();
 		List<ACUser> importUserList = new ArrayList<ACUser>();
 		Project project = projectSpace.getProject();
-		EList<User> existingUsers = new BasicEList<User>();
-		project.getAllModelElementsbyClass(
-				OrganizationPackage.eINSTANCE.getUser(), existingUsers);
+		Set<? extends User> existingUsers = project.getAllModelElementsByClass(
+				User.class, true);
 		// Put existing users in a map
 		for (User user : existingUsers) {
 			userIdMap.put(user.getAcOrgId(), user);
@@ -277,8 +258,10 @@ public final class OrgUnitHelper {
 							.getMembers(orgUnit.getId());
 				} catch (ConnectionException e) {
 					WorkspaceUtil.logException("Importing users failed!", e);
-				} catch (EmfStoreException e) {
-					WorkspaceUtil.logException("Importing users failed!", e);
+				} catch (AccessControlException e) {
+					ModelUtil.logWarning(e.getMessage(), e);
+				} catch (ESException e) {
+					ModelUtil.logWarning(e.getMessage(), e);
 				}
 				if (recursiveList != null) {
 					convertList(recursiveList, importUserList, projectSpace);
@@ -289,4 +272,17 @@ public final class OrgUnitHelper {
 
 	}
 
+	@SuppressWarnings("restriction")
+	public static ESUsersession getUserSession(Project project) {
+		ECPProject ecpProject = ECPUtil.getECPProjectManager().getProject(
+				((ProjectSpace) project.eContainer()).getProjectName());
+		if (ecpProject != null) {
+			try {
+				getUserSession(ecpProject);
+			} catch (UnkownProjectException e) {
+				ModelUtil.logException(e);
+			}
+		}
+		return null;
+	}
 }

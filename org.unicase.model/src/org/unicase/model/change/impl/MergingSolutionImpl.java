@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingSolution;
 import org.unicase.model.rationale.impl.SolutionImpl;
@@ -39,7 +40,7 @@ public class MergingSolutionImpl extends SolutionImpl implements
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation> appliedOperations;
+	protected EList<AbstractOperation> appliedOperations;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -62,11 +63,11 @@ public class MergingSolutionImpl extends SolutionImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation> getAppliedOperations() {
+	public EList<AbstractOperation> getAppliedOperations() {
 		if (appliedOperations == null) {
-			appliedOperations = new EObjectContainmentEList.Resolving<org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation>(
-					org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation.class,
-					this, ChangePackage.MERGING_SOLUTION__APPLIED_OPERATIONS);
+			appliedOperations = new EObjectContainmentEList.Resolving<AbstractOperation>(
+					AbstractOperation.class, this,
+					ChangePackage.MERGING_SOLUTION__APPLIED_OPERATIONS);
 		}
 		return appliedOperations;
 	}
@@ -109,8 +110,8 @@ public class MergingSolutionImpl extends SolutionImpl implements
 		switch (featureID) {
 		case ChangePackage.MERGING_SOLUTION__APPLIED_OPERATIONS:
 			getAppliedOperations().clear();
-			getAppliedOperations()
-					.addAll((Collection<? extends org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation>) newValue);
+			getAppliedOperations().addAll(
+					(Collection<? extends AbstractOperation>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

@@ -17,9 +17,9 @@ import org.eclipse.emf.emfstore.client.ESServer;
 import org.eclipse.emf.emfstore.client.exceptions.ESCertificateException;
 import org.eclipse.emf.emfstore.client.provider.ESClientConfigurationProvider;
 import org.eclipse.emf.emfstore.client.provider.ESKeyStoreManager;
-import org.eclipse.emf.emfstore.internal.client.model.ModelFactory;
 import org.eclipse.emf.emfstore.internal.client.model.ServerInfo;
 import org.eclipse.emf.emfstore.internal.client.model.connectionmanager.KeyStoreManager;
+import org.eclipse.emf.emfstore.internal.client.model.util.EMFStoreClientUtil;
 import org.eclipse.emf.emfstore.internal.common.model.util.FileUtil;
 import org.osgi.framework.Bundle;
 
@@ -39,7 +39,6 @@ public class UnicaseConfigurationProvider implements
 	 */
 	public List<ESServer> getDefaultServerInfos() {
 		List<ESServer> serverInfos = new ArrayList<ESServer>();
-
 		if (isUnicaseReleaseVersion()) {
 			serverInfos.add(getReleaseServerInfo());
 		}
@@ -47,14 +46,6 @@ public class UnicaseConfigurationProvider implements
 			serverInfos.add(getInternalServerInfo());
 		}
 		return (serverInfos.size() == 0) ? null : serverInfos;
-	}
-
-	private static ESServer getReleaseServerInfo() {
-		ServerInfo serverInfo = ModelFactory.eINSTANCE.createServerInfo();
-		serverInfo.setName("unicase Server");
-		serverInfo.setPort(443);
-		serverInfo.setUrl("unicase.in.tum.de");
-		return (ESServer) serverInfo;
 	}
 
 	private static boolean isUnicaseReleaseVersion() {
@@ -65,7 +56,7 @@ public class UnicaseConfigurationProvider implements
 				.getBundle("org.unicase.ui.unicasecommon");
 		String unicaseVersionString = unicaseBundle.getHeaders().get(
 				org.osgi.framework.Constants.BUNDLE_VERSION);
-		return !unicaseVersionString.endsWith("qualifier");
+		return unicaseVersionString.endsWith("qualifier");
 	}
 
 	private static boolean isInternalUnicaseReleaseVersion() {
@@ -76,12 +67,20 @@ public class UnicaseConfigurationProvider implements
 		return unicaseVersionString.endsWith("internal");
 	}
 
+	@SuppressWarnings("restriction")
 	private static ESServer getInternalServerInfo() {
-		ServerInfo serverInfo = ModelFactory.eINSTANCE.createServerInfo();
-		serverInfo.setName("unicase Developer Server");
-		serverInfo.setPort(8080);
-		serverInfo.setUrl("unicase-internal2.informatik.tu-muenchen.de");
-		return (ESServer) serverInfo;
+		ServerInfo serverInfo = EMFStoreClientUtil.createServerInfo(
+				"unicase-internal2.informatik.tu-muenchen.de", 8080,
+				KeyStoreManager.DEFAULT_CERTIFICATE);
+		serverInfo.setName("unicase developer server");
+		return serverInfo.toAPI();
+	}
+
+	private static ESServer getReleaseServerInfo() {
+		ServerInfo serverInfo = EMFStoreClientUtil.createServerInfo(
+				"unicase.in.tum.de", 443, KeyStoreManager.DEFAULT_CERTIFICATE);
+		serverInfo.setName("unicase server");
+		return serverInfo.toAPI();
 	}
 
 	public void initDefaultCertificates(ESKeyStoreManager keyStoreManager) {

@@ -10,6 +10,7 @@ import java.util.Date;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.view.spi.model.ModelChangeListener;
 import org.eclipse.emf.emfstore.internal.common.model.ModelElementId;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.profile.StereotypeInstance;
@@ -119,9 +120,10 @@ public interface UnicaseModelElement extends EObject {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Annotations</em>' reference list.
-	 * @see org.unicase.model.ModelPackage#getModelElement_Annotations()
+	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_Annotations()
 	 * @see org.unicase.model.Annotation#getAnnotatedModelElements
-	 * @model opposite="annotatedModelElements" keys="identifier"
+	 * @model opposite="annotatedModelElements" annotation=
+	 *        "org.eclipse.emf.ecp.editor priority='100.0' position='right'"
 	 * @generated
 	 */
 	EList<Annotation> getAnnotations();
@@ -139,9 +141,10 @@ public interface UnicaseModelElement extends EObject {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Attachments</em>' reference list.
-	 * @see org.unicase.model.ModelPackage#getModelElement_Attachments()
+	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_Attachments()
 	 * @see org.unicase.model.Attachment#getReferringModelElements
-	 * @model opposite="referringModelElements" keys="identifier"
+	 * @model opposite="referringModelElements" annotation=
+	 *        "org.eclipse.emf.ecp.editor priority='101.0' position='right'"
 	 * @generated
 	 */
 	EList<Attachment> getAttachments();
@@ -175,7 +178,7 @@ public interface UnicaseModelElement extends EObject {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>State</em>' attribute.
-	 * @see org.unicase.model.ModelPackage#getModelElement_State()
+	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_State()
 	 * @model default="" transient="true" changeable="false" volatile="true"
 	 *        derived="true"
 	 * @generated
@@ -198,10 +201,9 @@ public interface UnicaseModelElement extends EObject {
 	 * 
 	 * @return the value of the '<em>Applied Stereotype Instances</em>'
 	 *         containment reference list.
-	 * @see org.unicase.model.ModelPackage#getModelElement_AppliedStereotypeInstances()
+	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_AppliedStereotypeInstances()
 	 * @see org.unicase.model.profile.StereotypeInstance#getModelElement
 	 * @model opposite="modelElement" containment="true" resolveProxies="true"
-	 *        keys="identifier"
 	 * @generated
 	 */
 	EList<StereotypeInstance> getAppliedStereotypeInstances();
@@ -300,22 +302,21 @@ public interface UnicaseModelElement extends EObject {
 
 	// begin custom code
 
-	// /**
-	// * Add a model element change listener.
-	// *
-	// * @param listener
-	// * listener to add.
-	// */
-	// void addModelElementChangeListener(ModelElementChangeListener listener);
-	//
-	// /**
-	// * Remove a model element change listener.
-	// *
-	// * @param listener
-	// * the listener to remove
-	// */
-	// void removeModelElementChangeListener(ModelElementChangeListener
-	// listener);
+	/**
+	 * Add a model element change listener.
+	 *
+	 * @param listener
+	 *            listener to add.
+	 */
+	void addModelElementChangeListener(ModelChangeListener listener);
+
+	/**
+	 * Remove a model element change listener.
+	 *
+	 * @param listener
+	 *            the listener to remove
+	 */
+	void removeModelElementChangeListener(ModelChangeListener listener);
 
 	/**
 	 * Returns the ID of this model element.

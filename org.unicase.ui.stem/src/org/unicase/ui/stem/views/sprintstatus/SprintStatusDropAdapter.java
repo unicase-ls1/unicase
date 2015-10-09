@@ -15,6 +15,7 @@ import org.eclipse.swt.dnd.DropTargetEvent;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
+import org.unicase.ui.unicasecommon.dnd.dropadapters.DragSourcePlaceHolder;
 import org.unicase.ui.unicasecommon.observer.StatusViewDropEventObserver;
 
 /**

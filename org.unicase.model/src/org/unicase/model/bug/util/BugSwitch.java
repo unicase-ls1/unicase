@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.bug.*;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.task.Checkable;

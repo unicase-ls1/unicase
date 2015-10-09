@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.emfstore.internal.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
 import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
@@ -27,7 +28,8 @@ import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
 /**
- * . This is a generic handler to add different types of Annotations to a ModelElement
+ * . This is a generic handler to add different types of Annotations to a
+ * ModelElement
  * 
  * @author Hodaie
  */
@@ -56,7 +58,9 @@ public class AddAnnotationHandler extends AbstractHandler {
 			} else if (i == 2) {
 
 				EObject parent = ((EObject) object).eContainer();
-				while (!(parent instanceof Project) && result.eContainer() == null && !(object instanceof LeafSection)) {
+				while (!(parent instanceof Project)
+						&& result.eContainer() == null
+						&& !(object instanceof LeafSection)) {
 					EReference reference = getStructuralFeature(result, parent);
 					if (reference != null && reference.isMany()) {
 						Object object = parent.eGet(reference);
@@ -125,7 +129,8 @@ public class AddAnnotationHandler extends AbstractHandler {
 	}
 
 	/**
-	 * . This creates the appropriate Annotation based on selected menu command and adds it to Project
+	 * . This creates the appropriate Annotation based on selected menu command
+	 * and adds it to Project
 	 * 
 	 * @param leafSection
 	 * @return
@@ -156,7 +161,8 @@ public class AddAnnotationHandler extends AbstractHandler {
 	 * @param me
 	 * @param annotation
 	 */
-	private void attachAnnotation(final UnicaseModelElement me, final Annotation annotation) {
+	private void attachAnnotation(final UnicaseModelElement me,
+			final Annotation annotation) {
 		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
@@ -171,12 +177,15 @@ public class AddAnnotationHandler extends AbstractHandler {
 	 * @param annotation
 	 */
 	private void openAnnotation(Annotation annotation) {
-		UnicaseActionHelper.openModelElement(annotation, this.getClass().getName());
+		UnicaseActionHelper.openModelElement(annotation, this.getClass()
+				.getName());
 	}
 
-	private EReference getStructuralFeature(final EObject newMEInstance, EObject parent) {
+	private EReference getStructuralFeature(final EObject newMEInstance,
+			EObject parent) {
 		// the value of the 'EAll Containments' reference list.
-		List<EReference> eallcontainments = parent.eClass().getEAllContainments();
+		List<EReference> eallcontainments = parent.eClass()
+				.getEAllContainments();
 		EReference reference = null;
 		for (EReference containmentitem : eallcontainments) {
 
@@ -185,8 +194,9 @@ public class AddAnnotationHandler extends AbstractHandler {
 				reference = containmentitem;
 
 				break;
-			} else if (eReferenceType.equals(EcorePackage.eINSTANCE.getEObject())
-				|| (eReferenceType.isSuperTypeOf(newMEInstance.eClass()))) {
+			} else if (eReferenceType.equals(EcorePackage.eINSTANCE
+					.getEObject())
+					|| (eReferenceType.isSuperTypeOf(newMEInstance.eClass()))) {
 				reference = containmentitem;
 				break;
 			}

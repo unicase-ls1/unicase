@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.notation.View;
+import org.unicase.model.diagram.util.CollectionFilter;
 
 /**
  * Dynamic runtime adapter for {@link ViewDescriptor}s.
@@ -35,10 +36,14 @@ public class DynamicViewDescriptorAdapter implements IAdaptable {
 	/**
 	 * Constructor.
 	 * 
-	 * @param viewDescriptor The {@link ViewDescriptor} being adapted
-	 * @param host The {@link DiagramEditPart} which will be queried for the {@link ViewDescriptor}
+	 * @param viewDescriptor
+	 *            The {@link ViewDescriptor} being adapted
+	 * @param host
+	 *            The {@link DiagramEditPart} which will be queried for the
+	 *            {@link ViewDescriptor}
 	 */
-	public DynamicViewDescriptorAdapter(ViewDescriptor viewDescriptor, DiagramEditPart host) {
+	public DynamicViewDescriptorAdapter(ViewDescriptor viewDescriptor,
+			DiagramEditPart host) {
 		if (viewDescriptor == null) {
 			throw new IllegalArgumentException();
 		}
@@ -53,9 +58,11 @@ public class DynamicViewDescriptorAdapter implements IAdaptable {
 
 	/**
 	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
-	 * @param adapter the adapter class to look up
-	 * @return a object castable to the given class, or the view of the {@link EditPart} associated with the object in
-	 *         the context of the host
+	 * @param adapter
+	 *            the adapter class to look up
+	 * @return a object castable to the given class, or the view of the
+	 *         {@link EditPart} associated with the object in the context of the
+	 *         host
 	 */
 	@SuppressWarnings("unchecked")
 	public Object getAdapter(Class adapter) {
@@ -91,7 +98,8 @@ public class DynamicViewDescriptorAdapter implements IAdaptable {
 	public EObject getObject() {
 		if (object == null) {
 			if (getView() != null) {
-				object = (EObject) viewDescriptor.getElementAdapter().getAdapter(EObject.class);
+				object = (EObject) viewDescriptor.getElementAdapter()
+						.getAdapter(EObject.class);
 			}
 		}
 
@@ -114,12 +122,13 @@ public class DynamicViewDescriptorAdapter implements IAdaptable {
 	public EditPart getEditPart() {
 		if (editPart == null) {
 			if (getObject() != null) {
-				Set<EditPart> editParts = EditPartUtility.findEditParts(getHost(), Collections.singleton(getObject()));
+				Set<EditPart> editParts = EditPartUtility.findEditParts(
+						getHost(), Collections.singleton(getObject()));
 				List<ShapeNodeEditPart> shapeNodeEditParts = CollectionFilter
-					.filter(editParts, ShapeNodeEditPart.class);
+						.filter(editParts, ShapeNodeEditPart.class);
 
-				List<ConnectionEditPart> connectionEditParts = CollectionFilter.filter(editParts,
-					ConnectionEditPart.class);
+				List<ConnectionEditPart> connectionEditParts = CollectionFilter
+						.filter(editParts, ConnectionEditPart.class);
 
 				if (shapeNodeEditParts.size() > 0) {
 					editPart = shapeNodeEditParts.get(0);

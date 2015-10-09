@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -7,15 +7,14 @@
 package org.unicase.multiaction.navigator.wizards;
 
 import java.util.Comparator;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.emfstore.common.model.Project;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -23,7 +22,6 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
-import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.ui.multiaction.Activator;
 
 /**
@@ -31,21 +29,25 @@ import org.unicase.ui.multiaction.Activator;
  */
 public class AddUserDialog extends FilteredItemsSelectionDialog {
 	private static final String DIALOG_SETTINGS = "STANDARD_DIALOG_SETTING";
-	private EList<OrgUnit> elements;
+	private Set<OrgUnit> elements;
 	private AdapterFactoryLabelProvider labelProvider;
 
 	/**
 	 * The constructor. {@inheritDoc}
 	 * 
-	 * @param p the project from which the users / groups should be gathered
-	 * @param message the message shown in the dialog.
+	 * @param p
+	 *            the project from which the users / groups should be gathered
+	 * @param message
+	 *            the message shown in the dialog.
 	 */
 	public AddUserDialog(Project p, String message) {
-		super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), true);
-		elements = p.getAllModelElementsbyClass(OrganizationPackage.Literals.ORG_UNIT, new BasicEList<OrgUnit>());
+		super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+				true);
+		elements = p.getAllModelElementsByClass(OrgUnit.class, true);
 
-		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		labelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		setListLabelProvider(labelProvider);
 		setDetailsLabelProvider(labelProvider);
 
@@ -58,7 +60,8 @@ public class AddUserDialog extends FilteredItemsSelectionDialog {
 	/**
 	 * Does nothing.
 	 * 
-	 * @param parent the parent
+	 * @param parent
+	 *            the parent
 	 * @return null
 	 */
 	@Override
@@ -79,13 +82,16 @@ public class AddUserDialog extends FilteredItemsSelectionDialog {
 	/**
 	 * Fills the content provider with all elements matching the items filter.
 	 * 
-	 * @param contentProvider the content provider which gets added the items
-	 * @param itemsFilter the used items filter
-	 * @param progressMonitor a progress monitor stating the progress
+	 * @param contentProvider
+	 *            the content provider which gets added the items
+	 * @param itemsFilter
+	 *            the used items filter
+	 * @param progressMonitor
+	 *            a progress monitor stating the progress
 	 */
 	@Override
-	protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter,
-		IProgressMonitor progressMonitor) {
+	protected void fillContentProvider(AbstractContentProvider contentProvider,
+			ItemsFilter itemsFilter, IProgressMonitor progressMonitor) {
 
 		progressMonitor.beginTask("Searching", elements.size());
 		for (UnicaseModelElement me : elements) {
@@ -103,9 +109,11 @@ public class AddUserDialog extends FilteredItemsSelectionDialog {
 	 */
 	@Override
 	protected IDialogSettings getDialogSettings() {
-		IDialogSettings settings = Activator.getDefault().getDialogSettings().getSection(DIALOG_SETTINGS);
+		IDialogSettings settings = Activator.getDefault().getDialogSettings()
+				.getSection(DIALOG_SETTINGS);
 		if (settings == null) {
-			settings = Activator.getDefault().getDialogSettings().addNewSection(DIALOG_SETTINGS);
+			settings = Activator.getDefault().getDialogSettings()
+					.addNewSection(DIALOG_SETTINGS);
 		}
 		return settings;
 	}
@@ -114,7 +122,8 @@ public class AddUserDialog extends FilteredItemsSelectionDialog {
 	 * Gets the name of an element by asking the labelProvider.
 	 * 
 	 * @return the name as provided by the labelProvider
-	 * @param item the element to get the name from
+	 * @param item
+	 *            the element to get the name from
 	 */
 	@Override
 	public String getElementName(Object item) {
@@ -144,7 +153,8 @@ public class AddUserDialog extends FilteredItemsSelectionDialog {
 	 * Always returns Status.OK_STATUS.
 	 * 
 	 * @return Status.OK_STATUS
-	 * @param item an item
+	 * @param item
+	 *            an item
 	 */
 	@Override
 	protected IStatus validateItem(Object item) {
@@ -158,7 +168,8 @@ public class AddUserDialog extends FilteredItemsSelectionDialog {
 		/**
 		 * Matches ModelElement's toString Methods.
 		 * 
-		 * @param item an item
+		 * @param item
+		 *            an item
 		 * @return a bool
 		 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog.ItemsFilter#matchItem(java.lang.Object)
 		 */
@@ -174,7 +185,8 @@ public class AddUserDialog extends FilteredItemsSelectionDialog {
 		}
 
 		/**
-		 * @param item the item
+		 * @param item
+		 *            the item
 		 * @return true
 		 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog.ItemsFilter#isConsistentItem(java.lang.Object)
 		 */

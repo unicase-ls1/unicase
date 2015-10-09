@@ -17,6 +17,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.emfstore.internal.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.internal.common.model.IdEObjectCollection;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
 import org.eclipse.emf.emfstore.internal.common.model.util.IdEObjectCollectionChangeObserver;
 import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -34,6 +35,7 @@ import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
+import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
 
 /**
@@ -47,25 +49,30 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 	 * 
 	 * @author helming
 	 */
-	private final class ProjectChangeObserverImplementation implements IdEObjectCollectionChangeObserver {
+	private final class ProjectChangeObserverImplementation implements
+			IdEObjectCollectionChangeObserver {
 
-		public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
+		public void notify(Notification notification,
+				IdEObjectCollection project, EObject modelElement) {
 			// TODO Auto-generated method stub
 
 		}
 
-		public void modelElementAdded(IdEObjectCollection project, EObject modelElement) {
+		public void modelElementAdded(IdEObjectCollection project,
+				EObject modelElement) {
 			if (modelElement instanceof Comment) {
 				Comment newComment = (Comment) modelElement;
 				UnicaseModelElement currentModelElement = (UnicaseModelElement) getModelElement();
-				if (ModelUtil.getAllContainedModelElements(currentModelElement, false).contains(newComment)) {
+				if (ModelUtil.getAllContainedModelElements(currentModelElement,
+						false).contains(newComment)) {
 					update();
 				}
 			}
 
 		}
 
-		public void modelElementRemoved(IdEObjectCollection project, EObject modelElement) {
+		public void modelElementRemoved(IdEObjectCollection project,
+				EObject modelElement) {
 			// TODO Auto-generated method stub
 
 		}
@@ -90,21 +97,25 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 	 */
 	@Override
 	public Control createControl(Composite parent, int style) {
-		EStructuralFeature feature = (EStructuralFeature) getItemPropertyDescriptor().getFeature(getModelElement());
+		EStructuralFeature feature = (EStructuralFeature) getItemPropertyDescriptor()
+				.getFeature(getModelElement());
 		this.reference = (EReference) feature;
-		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		labelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 		observerImpl = new ProjectChangeObserverImplementation();
 
 		if (getModelElement() instanceof UnicaseModelElement) {
 			UnicaseModelElement me = (UnicaseModelElement) getModelElement();
-			project = WorkspaceManager.getProjectSpace(me).getProject();
+			project = ModelUtil.getProject(me);
 			project.addIdEObjectCollectionChangeObserver(observerImpl);
 		}
 		commentComposite = getToolkit().createComposite(parent);
-		GridLayoutFactory.fillDefaults().numColumns(2).spacing(2, 0).applyTo(commentComposite);
-		GridDataFactory.fillDefaults().grab(true, false).applyTo(commentComposite);
+		GridLayoutFactory.fillDefaults().numColumns(2).spacing(2, 0)
+				.applyTo(commentComposite);
+		GridDataFactory.fillDefaults().grab(true, false)
+				.applyTo(commentComposite);
 		commentComposite.setBackgroundMode(SWT.INHERIT_FORCE);
 		update();
 		return commentComposite;
@@ -112,11 +123,14 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 
 	private void createCommentWidget(int num) {
 		commentIcon = new ImageHyperlink(commentComposite, SWT.TOP);
-		commentIcon.setImage(labelProvider.getImage(RationaleFactory.eINSTANCE.createComment()));
-		commentIcon.setLayoutData(new GridData(SWT.BEGINNING, SWT.BEGINNING, false, false));
+		commentIcon.setImage(labelProvider.getImage(RationaleFactory.eINSTANCE
+				.createComment()));
+		commentIcon.setLayoutData(new GridData(SWT.BEGINNING, SWT.BEGINNING,
+				false, false));
 
 		commentsLink = new Link(commentComposite, SWT.NONE);
-		commentsLink.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
+		commentsLink.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true,
+				false));
 		String comments = "comments";
 		if (num == 1) {
 			comments = "comment";
@@ -145,7 +159,8 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 			@SuppressWarnings("unchecked")
 			@Override
 			protected void doRun() {
-				List<Comment> comments = (List<Comment>) getModelElement().eGet(reference);
+				List<Comment> comments = (List<Comment>) getModelElement()
+						.eGet(reference);
 				if (comments != null) {
 					if (commentIcon != null) {
 						commentIcon.dispose();
@@ -167,7 +182,8 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 	/**
 	 * The recursive size of the comment's children.
 	 * 
-	 * @param comment the comment
+	 * @param comment
+	 *            the comment
 	 * @return the size
 	 */
 	public static int sizeOf(Comment comment) {
@@ -182,13 +198,16 @@ public class MECommentsLinkControl extends AbstractUnicaseMEControl {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
-		EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement);
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor,
+			EObject modelElement) {
+		EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor
+				.getFeature(modelElement);
 		if (!(feature instanceof EReference)) {
 			return AbstractMEControl.DO_NOT_RENDER;
 		}
 		EReference reference = (EReference) feature;
-		if (!reference.getEReferenceType().equals(RationalePackage.eINSTANCE.getComment())) {
+		if (!reference.getEReferenceType().equals(
+				RationalePackage.eINSTANCE.getComment())) {
 			return AbstractMEControl.DO_NOT_RENDER;
 		}
 

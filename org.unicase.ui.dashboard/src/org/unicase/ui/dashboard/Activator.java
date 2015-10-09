@@ -34,23 +34,23 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public Activator() {
 		Bundle bundle = Platform.getBundle("org.eclipse.swt.cocoa.macosx");
-		if (bundle != null && bundle instanceof AbstractBundle) {
-			// casting necessary because the Version was not directly visible until Equinox/OSGi 3.5.
-			AbstractBundle abstractBundle = (AbstractBundle) bundle;
-			Version version = abstractBundle.getVersion();
-			if (version.getMajor() == 3 && version.getMinor() == 5) {
-				shouldFixHeightForCocoa = true;
-			}
+		Version version = bundle.getVersion();
+		if (version.getMajor() == 3 && version.getMinor() == 5) {
+			shouldFixHeightForCocoa = true;
 		}
+
 	}
 
 	/**
-	 * Fixes a bug in the Cocoa implementation of the SWT Link control (version 3.5). Note that this is a rather
-	 * <b>quick</b> workaround since this issue is supposed to be fixed in 3.6. It may not apply for all use cases of
-	 * the Link control!
+	 * Fixes a bug in the Cocoa implementation of the SWT Link control (version
+	 * 3.5). Note that this is a rather <b>quick</b> workaround since this issue
+	 * is supposed to be fixed in 3.6. It may not apply for all use cases of the
+	 * Link control!
 	 * 
-	 * @param height the original height.
-	 * @return the fixed height if the patch is applicable or otherwise - the original.
+	 * @param height
+	 *            the original height.
+	 * @return the fixed height if the patch is applicable or otherwise - the
+	 *         original.
 	 */
 	public int fixHeightForCocoa(int height) {
 		if (!shouldFixHeightForCocoa) {
@@ -70,7 +70,8 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @throws Exception if any error occurs
+	 * @throws Exception
+	 *             if any error occurs
 	 */
 	@Override
 	public void start(BundleContext context) throws Exception {
@@ -81,7 +82,8 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @throws Exception if any error occurs
+	 * @throws Exception
+	 *             if any error occurs
 	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
@@ -101,9 +103,11 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns an image descriptor for the image file at the given plug-in relative path.
+	 * Returns an image descriptor for the image file at the given plug-in
+	 * relative path.
 	 * 
-	 * @param path the path
+	 * @param path
+	 *            the path
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {

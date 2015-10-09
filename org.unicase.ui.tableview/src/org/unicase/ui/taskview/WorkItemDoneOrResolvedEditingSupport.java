@@ -1,25 +1,23 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.taskview;
 
-import java.util.List;
+import java.util.Set;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
-import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.internal.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
+import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CheckboxCellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TableViewer;
 import org.unicase.model.organization.OrgUnit;
-import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
@@ -37,10 +35,13 @@ public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 	/**
 	 * default constructor.
 	 * 
-	 * @param viewer The viewer
-	 * @param currentUser the current user of task view
+	 * @param viewer
+	 *            The viewer
+	 * @param currentUser
+	 *            the current user of task view
 	 */
-	public WorkItemDoneOrResolvedEditingSupport(TableViewer viewer, User currentUser) {
+	public WorkItemDoneOrResolvedEditingSupport(TableViewer viewer,
+			User currentUser) {
 		super(viewer);
 		this.setCurrentUser(currentUser);
 		cellEditor = new CheckboxCellEditor();
@@ -139,7 +140,8 @@ public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 				// not resolved regardless of who unchecks it.
 				if (isChecked) {
 					showReviewerSelectionDialog(workItem);
-				} else if (isCurrentUserReviewer(workItem) || isCurrentUserAssigneeOrCreator(workItem)) {
+				} else if (isCurrentUserReviewer(workItem)
+						|| isCurrentUserAssigneeOrCreator(workItem)) {
 					// set not checked (not done)
 					// set not resolved
 					((Checkable) workItem).setChecked(false);
@@ -165,7 +167,8 @@ public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 		}
 		OrgUnit assignee = workItem.getAssignee();
 		String creator = workItem.getCreator();
-		return currentUser.equals(assignee) || currentUser.getName().equals(creator);
+		return currentUser.equals(assignee)
+				|| currentUser.getName().equals(creator);
 	}
 
 	/**
@@ -185,23 +188,27 @@ public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 	/**
 	 * @param workItem
 	 */
+	@SuppressWarnings("restriction")
 	private void showReviewerSelectionDialog(WorkItem workItem) {
-		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
-		ReviewerSelectionDialog reviwerSelectionDialog = new ReviewerSelectionDialog(this.getViewer().getControl()
-			.getShell(), labelProvider, workItem);
-		reviwerSelectionDialog.setMessage(ReviewerSelectionDialog.REVIEWERSELECTIONDIALOG_MESSAGE);
+		ReviewerSelectionDialog reviwerSelectionDialog = new ReviewerSelectionDialog(
+				this.getViewer().getControl().getShell(), labelProvider,
+				workItem);
+		reviwerSelectionDialog
+				.setMessage(ReviewerSelectionDialog.REVIEWERSELECTIONDIALOG_MESSAGE);
 
 		Project project = ModelUtil.getProject(workItem);
-		List<User> users = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
-			new BasicEList<User>());
+		Set<User> users = project.getAllModelElementsByClass(User.class, true);
 		reviwerSelectionDialog.setElements(users.toArray());
 		reviwerSelectionDialog.open();
 	}
 
 	/**
-	 * @param currentUser the currentUser to set
+	 * @param currentUser
+	 *            the currentUser to set
 	 */
 	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;

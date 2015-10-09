@@ -39,6 +39,7 @@ import org.unicase.ui.stem.views.statusview.dnd.FlatTabDropAdapter;
 import org.unicase.ui.stem.views.statusview.dnd.StatusViewTabsDragAdapter;
 import org.unicase.ui.tableview.labelproviders.IntegerEditingSupport;
 import org.unicase.ui.tableview.labelproviders.StatusLabelProvider;
+import org.unicase.ui.unicasecommon.common.TableViewerColumnSorter;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
 /**

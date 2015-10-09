@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
 import org.unicase.model.provider.ModelEditPlugin;
@@ -138,17 +139,13 @@ public class MergingIssueItemProvider extends IssueItemProvider {
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-				.add(createChildParameter(
-						ChangePackage.Literals.MERGING_ISSUE__BASE_VERSION,
-						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
-								.createPrimaryVersionSpec()));
+		newChildDescriptors.add(createChildParameter(
+				ChangePackage.Literals.MERGING_ISSUE__BASE_VERSION,
+				VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						ChangePackage.Literals.MERGING_ISSUE__TARGET_VERSION,
-						org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningFactory.eINSTANCE
-								.createPrimaryVersionSpec()));
+		newChildDescriptors.add(createChildParameter(
+				ChangePackage.Literals.MERGING_ISSUE__TARGET_VERSION,
+				VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 	}
 
 	/**

@@ -7,6 +7,7 @@
 package org.unicase.model.change;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation;
 import org.unicase.model.rationale.Proposal;
 
 /**
@@ -40,6 +41,6 @@ public interface MergingProposal extends Proposal {
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	EList<org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation> getPendingOperations();
+	EList<AbstractOperation> getPendingOperations();
 
 } // MergingProposal

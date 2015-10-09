@@ -16,8 +16,8 @@ import org.unicase.implementation.operations.util.OperationHelper;
  * Handler for {@link ExtractClassOperation} when the context class is selected.
  * 
  * @author herrmama
- * @author $Author$
- * @version $Rev$
+ * @author $Author: connect2nitesh $
+ * @version $Rev: 13377 $
  * @levd.rating RED Rev:
  */
 public class ExtractClassClassHandler extends OperationHandlerBase {

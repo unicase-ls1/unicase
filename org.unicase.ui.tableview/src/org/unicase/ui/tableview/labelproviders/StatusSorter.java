@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -13,6 +13,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
+import org.unicase.ui.unicasecommon.common.TableViewerColumnSorter;
 
 /**
  * the Sorter to sort stats.
@@ -20,13 +21,17 @@ import org.unicase.model.task.util.MEState;
  * @author abdelhamidbarzali
  * @author hodai.
  */
-public class StatusSorter extends org.eclipse.emf.ecp.common.TableViewerColumnSorter {
+public class StatusSorter extends TableViewerColumnSorter {
 	/**
-	 * @param viewer the Viewer
-	 * @param column the TableViewerColumn
-	 * @param columnLabelProvider the ColumnLabelProvider
+	 * @param viewer
+	 *            the Viewer
+	 * @param column
+	 *            the TableViewerColumn
+	 * @param columnLabelProvider
+	 *            the ColumnLabelProvider
 	 */
-	public StatusSorter(TableViewer viewer, TableViewerColumn column, ColumnLabelProvider columnLabelProvider) {
+	public StatusSorter(TableViewer viewer, TableViewerColumn column,
+			ColumnLabelProvider columnLabelProvider) {
 		super(viewer, column, columnLabelProvider);
 	}
 

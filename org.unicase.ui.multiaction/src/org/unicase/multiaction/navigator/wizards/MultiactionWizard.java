@@ -1,12 +1,12 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.multiaction.navigator.wizards;
 
-import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.internal.client.model.util.EMFStoreCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
@@ -37,7 +37,8 @@ public class MultiactionWizard extends Wizard implements IWorkbenchWizard {
 	/**
 	 * Sets if the wizard can be finished.
 	 * 
-	 * @param canFinish Can the wizard finish?
+	 * @param canFinish
+	 *            Can the wizard finish?
 	 */
 	public void setCanFinish(boolean canFinish) {
 		this.canFinish = canFinish;
@@ -81,17 +82,19 @@ public class MultiactionWizard extends Wizard implements IWorkbenchWizard {
 	}
 
 	/**
-	 * Upon finishing, the old action item is split into many action items and a containing work package and the work
-	 * package is opened in the MEEditor. ({@inheritDoc})
+	 * Upon finishing, the old action item is split into many action items and a
+	 * containing work package and the work package is opened in the MEEditor. (
+	 * {@inheritDoc})
 	 */
 	@Override
 	public boolean performFinish() {
 		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
-				WorkPackage wp = MultiActionGenerator.generateMultiAction(selectedActionItem,
-					assigneePage.getSelected());
-				UnicaseActionHelper.openModelElement(wp, this.getClass().getName());
+				WorkPackage wp = MultiActionGenerator.generateMultiAction(
+						selectedActionItem, assigneePage.getSelected());
+				UnicaseActionHelper.openModelElement(wp, this.getClass()
+						.getName());
 
 			}
 		}.run();

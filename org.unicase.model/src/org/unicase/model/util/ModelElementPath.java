@@ -8,6 +8,7 @@ package org.unicase.model.util;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.internal.common.model.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Model Element Path</b></em>'. <!-- end-user-doc
@@ -35,12 +36,12 @@ public interface ModelElementPath extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Source</em>' containment reference.
-	 * @see #setSource(org.eclipse.emf.emfstore.internal.common.model.ModelElementId)
+	 * @see #setSource(ModelElementId)
 	 * @see org.unicase.model.util.UtilPackage#getModelElementPath_Source()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	org.eclipse.emf.emfstore.internal.common.model.ModelElementId getSource();
+	ModelElementId getSource();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.util.ModelElementPath#getSource <em>Source</em>}' containment reference.
@@ -50,8 +51,7 @@ public interface ModelElementPath extends EObject {
 	 * @see #getSource()
 	 * @generated
 	 */
-	void setSource(
-			org.eclipse.emf.emfstore.internal.common.model.ModelElementId value);
+	void setSource(ModelElementId value);
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' containment reference.
@@ -62,12 +62,12 @@ public interface ModelElementPath extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target</em>' containment reference.
-	 * @see #setTarget(org.eclipse.emf.emfstore.internal.common.model.ModelElementId)
+	 * @see #setTarget(ModelElementId)
 	 * @see org.unicase.model.util.UtilPackage#getModelElementPath_Target()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	org.eclipse.emf.emfstore.internal.common.model.ModelElementId getTarget();
+	ModelElementId getTarget();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.util.ModelElementPath#getTarget <em>Target</em>}' containment reference.
@@ -77,8 +77,7 @@ public interface ModelElementPath extends EObject {
 	 * @see #getTarget()
 	 * @generated
 	 */
-	void setTarget(
-			org.eclipse.emf.emfstore.internal.common.model.ModelElementId value);
+	void setTarget(ModelElementId value);
 
 	/**
 	 * Returns the value of the '<em><b>Path</b></em>' containment reference list.
@@ -94,6 +93,6 @@ public interface ModelElementPath extends EObject {
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	EList<org.eclipse.emf.emfstore.internal.common.model.ModelElementId> getPath();
+	EList<ModelElementId> getPath();
 
 } // ModelElementPath

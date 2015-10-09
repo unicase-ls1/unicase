@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -160,7 +160,9 @@ public class ModelDiagramEditorUtil {
 	}
 
 	/**
-	 * This method should be called within a workspace modify operation since it creates resources.
+	 * This method should be called within a workspace modify operation since it
+	 * creates resources.
+	 * 
 	 * @generated
 	 */
 	public static Resource createDiagram(URI diagramURI, URI modelURI,
@@ -180,6 +182,7 @@ public class ModelDiagramEditorUtil {
 				editingDomain,
 				org.unicase.ui.diagram.classDiagram.part.Messages.ModelDiagramEditorUtil_CreateDiagramCommandLabel,
 				Collections.EMPTY_LIST) {
+			@Override
 			protected CommandResult doExecuteWithResult(
 					IProgressMonitor monitor, IAdaptable info)
 					throws ExecutionException {
@@ -228,9 +231,9 @@ public class ModelDiagramEditorUtil {
 	}
 
 	/**
-	 * Create a new instance of domain element associated with canvas.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Create a new instance of domain element associated with canvas. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static ClassDiagram createInitialModel() {
@@ -238,9 +241,9 @@ public class ModelDiagramEditorUtil {
 	}
 
 	/**
-	 * Store model element in the resource.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Store model element in the resource. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static void attachModelToResource(ClassDiagram model,
@@ -252,7 +255,7 @@ public class ModelDiagramEditorUtil {
 	 * @generated
 	 */
 	public static void selectElementsInDiagram(
-			IDiagramWorkbenchPart diagramPart, List/*EditPart*/editParts) {
+			IDiagramWorkbenchPart diagramPart, List/* EditPart */editParts) {
 		diagramPart.getDiagramGraphicalViewer().deselectAll();
 
 		EditPart firstPrimary = null;
@@ -292,7 +295,8 @@ public class ModelDiagramEditorUtil {
 		String elementID = EMFCoreUtil.getProxyID(element);
 		List associatedParts = viewer.findEditPartsForElement(elementID,
 				IGraphicalEditPart.class);
-		// perform the possible hierarchy disjoint -> take the top-most parts only
+		// perform the possible hierarchy disjoint -> take the top-most parts
+		// only
 		for (Iterator editPartIt = associatedParts.iterator(); editPartIt
 				.hasNext();) {
 			EditPart nextPart = (EditPart) editPartIt.next();
@@ -310,8 +314,8 @@ public class ModelDiagramEditorUtil {
 				editPartCollector.add(associatedParts.iterator().next());
 			} else {
 				if (element.eContainer() != null) {
-					return findElementsInDiagramByID(diagramPart, element
-							.eContainer(), editPartCollector);
+					return findElementsInDiagramByID(diagramPart,
+							element.eContainer(), editPartCollector);
 				}
 			}
 		}
@@ -384,13 +388,18 @@ public class ModelDiagramEditorUtil {
 		public final Map getElement2ViewMap() {
 			if (element2ViewMap == null) {
 				element2ViewMap = new HashMap();
-				// map possible notation elements to itself as these can't be found by view.getElement()
+				// map possible notation elements to itself as these can't be
+				// found by view.getElement()
 				for (Iterator it = elementSet.iterator(); it.hasNext();) {
 					EObject element = (EObject) it.next();
 					if (element instanceof View) {
 						View view = (View) element;
 						if (view.getDiagram() == scope.getDiagram()) {
-							element2ViewMap.put(element, element); // take only those that part of our diagram
+							element2ViewMap.put(element, element); // take only
+																	// those
+																	// that part
+																	// of our
+																	// diagram
 						}
 					}
 				}
@@ -439,6 +448,6 @@ public class ModelDiagramEditorUtil {
 			}
 			return element2ViewMap;
 		}
-	} //LazyElement2ViewMap	
+	} // LazyElement2ViewMap
 
 }

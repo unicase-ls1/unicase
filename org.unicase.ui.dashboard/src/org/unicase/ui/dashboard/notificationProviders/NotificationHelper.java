@@ -23,6 +23,8 @@ import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.internal.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.internal.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.internal.server.model.versioning.ChangePackage;
+import org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation;
 import org.unicase.dashboard.DashboardNotification;
 import org.unicase.model.UnicaseModelElement;
 
@@ -38,19 +40,24 @@ public final class NotificationHelper {
 	}
 
 	/**
-	 * Generates notifications from a list of changes for a certain project space.
+	 * Generates notifications from a list of changes for a certain project
+	 * space.
 	 * 
-	 * @param projectSpace the project space to generate notifications for
-	 * @param changePackages the changes to generate notifications from
+	 * @param projectSpace
+	 *            the project space to generate notifications for
+	 * @param changePackages
+	 *            the changes to generate notifications from
 	 * @return all generated notifications as a list
 	 */
-	public static List<DashboardNotification> generateNotifications(ProjectSpace projectSpace,
-		List<ChangePackage> changePackages) {
+	public static List<DashboardNotification> generateNotifications(
+			ProjectSpace projectSpace, List<ChangePackage> changePackages) {
 
-		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
-			"org.unicase.ui.dashboard.notification.providers");
+		IConfigurationElement[] config = Platform.getExtensionRegistry()
+				.getConfigurationElementsFor(
+						"org.unicase.ui.dashboard.notification.providers");
 
-		final List<NotificationProvider> providers = new ArrayList<NotificationProvider>(config.length);
+		final List<NotificationProvider> providers = new ArrayList<NotificationProvider>(
+				config.length);
 		final Map<NotificationProvider, Integer> providersByPriority = new HashMap<NotificationProvider, Integer>();
 
 		for (IConfigurationElement e : config) {
@@ -61,10 +68,12 @@ public final class NotificationHelper {
 					NotificationProvider provider = (NotificationProvider) o;
 					String priority = e.getAttribute("priority");
 					try {
-						providersByPriority.put(provider, new Integer(priority));
+						providersByPriority
+								.put(provider, new Integer(priority));
 					} catch (NumberFormatException ex) {
 						WorkspaceUtil.logException(
-							"Wrong priority parameter for NotificationProvider: " + provider.getName(), ex);
+								"Wrong priority parameter for NotificationProvider: "
+										+ provider.getName(), ex);
 					}
 				}
 			} catch (CoreException e1) {
@@ -75,24 +84,32 @@ public final class NotificationHelper {
 		// sort the providers
 		providers.addAll(providersByPriority.keySet());
 		Collections.sort(providers, new Comparator<NotificationProvider>() {
-			public int compare(NotificationProvider arg0, NotificationProvider arg1) {
-				return providersByPriority.get(arg0).compareTo(providersByPriority.get(arg1));
+			public int compare(NotificationProvider arg0,
+					NotificationProvider arg1) {
+				return providersByPriority.get(arg0).compareTo(
+						providersByPriority.get(arg1));
 			}
 		});
 
-		return generateNotificationsByProvider(projectSpace, providers, changePackages);
+		return generateNotificationsByProvider(projectSpace, providers,
+				changePackages);
 	}
 
 	/**
-	 * Generates notifications from a list of changes using notifications providers for a certain project space.
+	 * Generates notifications from a list of changes using notifications
+	 * providers for a certain project space.
 	 * 
-	 * @param projectSpace the project space to generate notifications for
-	 * @param providers the providers to use to generate notifications
-	 * @param changePackages the changes to generate notifications from
+	 * @param projectSpace
+	 *            the project space to generate notifications for
+	 * @param providers
+	 *            the providers to use to generate notifications
+	 * @param changePackages
+	 *            the changes to generate notifications from
 	 * @return all generated notifications as a list
 	 */
-	public static List<DashboardNotification> generateNotificationsByProvider(ProjectSpace projectSpace,
-		List<NotificationProvider> providers, List<ChangePackage> changePackages) {
+	public static List<DashboardNotification> generateNotificationsByProvider(
+			ProjectSpace projectSpace, List<NotificationProvider> providers,
+			List<ChangePackage> changePackages) {
 
 		List<DashboardNotification> result = new ArrayList<DashboardNotification>();
 
@@ -106,7 +123,8 @@ public final class NotificationHelper {
 		for (ChangePackage changePackage : changePackages) {
 			for (AbstractOperation operation : changePackage.getOperations()) {
 				if (operation.getClientDate() == null) {
-					operation.setClientDate(changePackage.getLogMessage().getDate());
+					operation.setClientDate(changePackage.getLogMessage()
+							.getDate());
 				}
 			}
 		}
@@ -119,19 +137,25 @@ public final class NotificationHelper {
 
 			current.getExcludedOperations().clear();
 			if (prev != null) {
-				current.getExcludedOperations().addAll(prev.getExcludedOperations());
+				current.getExcludedOperations().addAll(
+						prev.getExcludedOperations());
 			}
 			try {
-				List<DashboardNotification> provideNotifications = current.provideNotifications(projectSpace,
-					changePackages, username);
+				List<DashboardNotification> provideNotifications = current
+						.provideNotifications(projectSpace, changePackages,
+								username);
 				result.addAll(provideNotifications);
 				prev = current;
 
 				// BEGIN SUPRESS CATCH EXCEPTION
 			} catch (RuntimeException e) {
 				// END SUPRESS CATCH EXCEPTION
-				WorkspaceUtil.logException("Notification Provider " + current.getName()
-					+ " threw an exception, its notifications where discarded", e);
+				WorkspaceUtil
+						.logException(
+								"Notification Provider "
+										+ current.getName()
+										+ " threw an exception, its notifications where discarded",
+								e);
 			}
 		}
 
@@ -142,7 +166,8 @@ public final class NotificationHelper {
 	/**
 	 * Returns the latest date of a list of operations.
 	 * 
-	 * @param list a list of AbstractOperations
+	 * @param list
+	 *            a list of AbstractOperations
 	 * @return the latest date.
 	 */
 	public static Date getLastDate(List<AbstractOperation> list) {
@@ -165,20 +190,26 @@ public final class NotificationHelper {
 	}
 
 	/**
-	 * This method create a HTML link pointing to a model element for the message of Notifications.
+	 * This method create a HTML link pointing to a model element for the
+	 * message of Notifications.
 	 * 
-	 * @param meId The id of the model element
-	 * @param projectSpace the project space
-	 * @param active if there should be an actual link, or just the name
+	 * @param meId
+	 *            The id of the model element
+	 * @param projectSpace
+	 *            the project space
+	 * @param active
+	 *            if there should be an actual link, or just the name
 	 * @return a HTML link as string
 	 */
-	public static String getHTMLLinkForModelElement(ModelElementId meId, ProjectSpace projectSpace, boolean active) {
+	public static String getHTMLLinkForModelElement(ModelElementId meId,
+			ProjectSpace projectSpace, boolean active) {
 
 		EObject modelElement = projectSpace.getProject().getModelElement(meId);
 		if (modelElement != null && modelElement instanceof UnicaseModelElement) {
 			UnicaseModelElement unicaseModelElement = (UnicaseModelElement) modelElement;
 			if (active) {
-				return getHTMLLinkForModelElement(unicaseModelElement, projectSpace);
+				return getHTMLLinkForModelElement(unicaseModelElement,
+						projectSpace);
 			}
 			return unicaseModelElement.getName();
 		}
@@ -186,24 +217,32 @@ public final class NotificationHelper {
 	}
 
 	/**
-	 * This method create a HTML link pointing to a model element for the message of Notifications.
+	 * This method create a HTML link pointing to a model element for the
+	 * message of Notifications.
 	 * 
-	 * @param meId The id of the model element
-	 * @param projectSpace the project space
+	 * @param meId
+	 *            The id of the model element
+	 * @param projectSpace
+	 *            the project space
 	 * @return a HTML link as string
 	 */
-	public static String getHTMLLinkForModelElement(ModelElementId meId, ProjectSpace projectSpace) {
+	public static String getHTMLLinkForModelElement(ModelElementId meId,
+			ProjectSpace projectSpace) {
 		return getHTMLLinkForModelElement(meId, projectSpace, true);
 	}
 
 	/**
-	 * This method create a HTML link pointing to a model element for the message of Notifications.
+	 * This method create a HTML link pointing to a model element for the
+	 * message of Notifications.
 	 * 
-	 * @param modelElement The model element
-	 * @param projectSpace the project space
+	 * @param modelElement
+	 *            The model element
+	 * @param projectSpace
+	 *            the project space
 	 * @return a HTML link as string
 	 */
-	public static String getHTMLLinkForModelElement(UnicaseModelElement modelElement, ProjectSpace projectSpace) {
+	public static String getHTMLLinkForModelElement(
+			UnicaseModelElement modelElement, ProjectSpace projectSpace) {
 		String label = "null";
 		if (modelElement != null && modelElement.getName() != null) {
 			label = modelElement.getName().replaceAll("\"", "\\'");
@@ -212,15 +251,20 @@ public final class NotificationHelper {
 	}
 
 	/**
-	 * This method create a HTML link pointing to a model element for the message of Notifications.
+	 * This method create a HTML link pointing to a model element for the
+	 * message of Notifications.
 	 * 
-	 * @param modelElement The model element
-	 * @param projectSpace the project space
-	 * @param label the link's label
+	 * @param modelElement
+	 *            The model element
+	 * @param projectSpace
+	 *            the project space
+	 * @param label
+	 *            the link's label
 	 * @return a HTML link as string
 	 */
-	public static String getHTMLLinkForModelElement(UnicaseModelElement modelElement, ProjectSpace projectSpace,
-		String label) {
+	public static String getHTMLLinkForModelElement(
+			UnicaseModelElement modelElement, ProjectSpace projectSpace,
+			String label) {
 		if (modelElement == null) {
 			return "";
 		}
@@ -238,7 +282,8 @@ public final class NotificationHelper {
 		}
 		ret.append(name);
 		ret.append("%");
-		ret.append(ModelUtil.getProject(modelElement).getModelElementId(modelElement).getId());
+		ret.append(ModelUtil.getProject(modelElement)
+				.getModelElementId(modelElement).getId());
 		ret.append("\">");
 		ret.append(label);
 		ret.append("</a>");

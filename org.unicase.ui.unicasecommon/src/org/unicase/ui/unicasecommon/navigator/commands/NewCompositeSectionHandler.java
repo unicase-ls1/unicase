@@ -38,7 +38,8 @@ public class NewCompositeSectionHandler extends AbstractHandler {
 		}
 		final CompositeSection compositeSection = (CompositeSection) me;
 
-		final CompositeSection createCompositeSection = DocumentFactory.eINSTANCE.createCompositeSection();
+		final CompositeSection createCompositeSection = DocumentFactory.eINSTANCE
+				.createCompositeSection();
 		createCompositeSection.setName(NEW_COMPOSITESECTION_NAME);
 
 		new EMFStoreCommand() {
@@ -48,7 +49,8 @@ public class NewCompositeSectionHandler extends AbstractHandler {
 			}
 		}.run(true);
 
-		UnicaseActionHelper.openModelElement(createCompositeSection, this.getClass().getName());
+		UnicaseActionHelper.openModelElement(createCompositeSection, this
+				.getClass().getName());
 
 		return null;
 	}

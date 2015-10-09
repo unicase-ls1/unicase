@@ -7,6 +7,7 @@
 package org.unicase.model.change;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation;
 import org.unicase.model.rationale.Solution;
 
 /**
@@ -39,6 +40,6 @@ public interface MergingSolution extends Solution {
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	EList<org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation> getAppliedOperations();
+	EList<AbstractOperation> getAppliedOperations();
 
 } // MergingSolution

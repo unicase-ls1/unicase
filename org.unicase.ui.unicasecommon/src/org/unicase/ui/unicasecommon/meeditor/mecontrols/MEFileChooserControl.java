@@ -11,19 +11,29 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecp.internal.ui.PreferenceHelper;
+import org.eclipse.emf.ecp.view.spi.model.ModelChangeListener;
+import org.eclipse.emf.ecp.view.spi.model.ModelChangeNotification;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.emfstore.client.ESLocalProject;
+import org.eclipse.emf.emfstore.client.observer.ESCommitObserver;
+import org.eclipse.emf.emfstore.internal.client.model.ESWorkspaceProviderImpl;
 import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.internal.client.model.Workspace;
+import org.eclipse.emf.emfstore.internal.client.model.exceptions.UnkownProjectException;
 import org.eclipse.emf.emfstore.internal.client.model.filetransfer.FileDownloadStatus;
 import org.eclipse.emf.emfstore.internal.client.model.filetransfer.FileInformation;
 import org.eclipse.emf.emfstore.internal.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.internal.client.model.util.WorkspaceUtil;
+import org.eclipse.emf.emfstore.internal.common.model.util.FileUtil;
 import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
 import org.eclipse.emf.emfstore.internal.server.exceptions.FileTransferException;
 import org.eclipse.emf.emfstore.internal.server.model.FileIdentifier;
-import org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec;
+import org.eclipse.emf.emfstore.server.model.ESChangePackage;
+import org.eclipse.emf.emfstore.server.model.versionspec.ESPrimaryVersionSpec;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -47,20 +57,23 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.ui.unicasecommon.Activator;
+import org.unicase.ui.unicasecommon.file.util.FileTransferUtil;
 
 /**
- * This class handles file attachments. If the file attachment has no file attached yet, this control allows to attach a
- * file. If a file is already attached, the control allows to save that file. The file can also be replaced. If the file
- * is not yet commited, it can be removed. This class is also an observer that listens for commits, so it can update the
- * button status. This is necessary because a formerly pending upload is no longer pending after a commit, because it
- * was submitted during the commit.
+ * This class handles file attachments. If the file attachment has no file
+ * attached yet, this control allows to attach a file. If a file is already
+ * attached, the control allows to save that file. The file can also be
+ * replaced. If the file is not yet commited, it can be removed. This class is
+ * also an observer that listens for commits, so it can update the button
+ * status. This is necessary because a formerly pending upload is no longer
+ * pending after a commit, because it was submitted during the commit.
  * 
  * @author pfeifferc, jfinis
  */
-public class MEFileChooserControl extends AbstractUnicaseMEControl implements CommitObserver {
+public class MEFileChooserControl extends AbstractUnicaseMEControl implements ESCommitObserver {
 
 	private static final String UPLOAD_NOTPENDING_TOOL_TIP = "Click to upload a new file attachment to the server. "
-		+ "\nThe file attachment will be transferred upon commiting.\n\nIf you have already a file attached, this file will be replaced.";
+			+ "\nThe file attachment will be transferred upon commiting.\n\nIf you have already a file attached, this file will be replaced.";
 
 	private static final String CANCEL_UPLOAD_TOOLTIP = "If you wish to cancel the pending upload and upload another file, \nplease click this button.";
 
@@ -75,8 +88,6 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl implements Co
 
 	private AddFileOrCancelListener uploadListener;
 
-	private EMFDataBindingContext dbc;
-
 	private Button upload;
 
 	private Link fileName;
@@ -85,45 +96,9 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl implements Co
 
 	private Button saveAs;
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.observers.CommitObserver#inspectChanges(org.eclipse.emf.emfstore.client.model.ProjectSpace,
-	 *      org.eclipse.emf.emfstore.server.model.versioning.ChangePackage)
-	 */
-	public boolean inspectChanges(ProjectSpace projectSpace, ChangePackage changePackage) {
-		return true;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.emfstore.client.model.observers.CommitObserver#commitCompleted(org.eclipse.emf.emfstore.client.model.ProjectSpace,
-	 *      org.eclipse.emf.emfstore.server.model.versioning.PrimaryVersionSpec)
-	 */
-	public void commitCompleted(ProjectSpace projectSpace, PrimaryVersionSpec newRevision) {
-		// Upon commit, update the status of the button, since the file
-		// upload
-		// may no longer be pending
-		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		for (IEditorReference reference : activePage.getEditorReferences()) {
-			try {
-				Object object = reference.getEditorInput().getAdapter(EObject.class);
-				if (object != null && object instanceof FileAttachment) {
-					IEditorPart fileAttachmentEditor = reference.getEditor(true);
-					IEditorInput fileAttachmentInput = fileAttachmentEditor.getEditorInput();
-					activePage.closeEditor(reference.getEditor(true), false);
-					activePage.openEditor(fileAttachmentInput, "org.eclipse.emf.ecp.editor");
-				}
-			} catch (PartInitException e) {
-				ModelUtil.logException("Updating file attachment failed!", e);
-			}
-		}
-	}
-
 	private Button open;
 
-	private ModelElementChangeListener modelElementChangeListener;
+	private ModelChangeListener modelElementChangeListener;
 
 	/**
 	 * {@inheritDoc}
@@ -202,15 +177,21 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl implements Co
 		// Set status of the upload button according to the file upload being
 		// pending
 		// (if the upload of the attachment is still pending, it can be removed)
-		updateStatus(getProjectSpace().getFileInfo(fileAttachment.getFileIdentifier()).isPendingUpload());
+		try {
+			updateStatus(getProjectSpace().getFileInfo(fileAttachment.getFileIdentifier()).isPendingUpload());
+		} catch (UnkownProjectException e) {
+			ModelUtil.logWarning(e.getMessage());
 
-		modelElementChangeListener = new ModelElementChangeListener() {
+		}
+
+		modelElementChangeListener = new ModelChangeListener() {
 
 			public void onRuntimeExceptionInListener(RuntimeException exception) {
 			}
 
-			public void onChange(Notification notification) {
+			public void notifyChange(ModelChangeNotification notification) {
 				updateStatusAsync();
+
 			}
 		};
 
@@ -221,9 +202,11 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl implements Co
 	/**
 	 * Updates the status of the upload button and the file name.
 	 * 
-	 * @param uploadPending if the upload of the file is pending and thus can be canceled
+	 * @param uploadPending
+	 *            if the upload of the file is pending and thus can be canceled
+	 * @throws UnkownProjectException
 	 */
-	private void updateStatus(boolean uploadPending) {
+	private void updateStatus(boolean uploadPending) throws UnkownProjectException {
 		if (fileAttachment.getFileName() == null) {
 			fileName.setText("No file attached.");
 			saveAs.setVisible(false);
@@ -232,8 +215,10 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl implements Co
 			String suffix = "";
 			if (uploadPending) {
 				suffix = " (not commited)";
-			} else if (WorkspaceManager.getProjectSpace(fileAttachment).getFileInfo(fileAttachment.getFileIdentifier())
-				.isCached()) {
+
+			} else if (ESWorkspaceProviderImpl.getInstance().getInternalWorkspace()
+					.getProjectSpace(ModelUtil.getProject(fileAttachment))
+					.getFileInfo(fileAttachment.getFileIdentifier()).isCached()) {
 				suffix = " (cached)";
 			}
 			fileName.setText(fileAttachment.getFileName() + suffix);
@@ -255,7 +240,12 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl implements Co
 	private void updateStatusAsync() {
 		open.getDisplay().asyncExec(new Runnable() {
 			public void run() {
-				updateStatus(getProjectSpace().getFileInfo(fileAttachment.getFileIdentifier()).isPendingUpload());
+				try {
+					updateStatus(getProjectSpace().getFileInfo(fileAttachment.getFileIdentifier()).isPendingUpload());
+				} catch (UnkownProjectException e) {
+					ModelUtil.logWarning(e.getMessage(), e);
+
+				}
 			}
 		});
 	}
@@ -266,14 +256,26 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl implements Co
 	 * @return
 	 */
 	private ProjectSpace getProjectSpace() {
-		return WorkspaceManager.getProjectSpace(fileAttachment);
+		Workspace currentWorkspace = ESWorkspaceProviderImpl.getInstance().getInternalWorkspace();
+		try {
+			ProjectSpace projectSpace = currentWorkspace.getProjectSpace(ModelUtil.getProject(fileAttachment));
+			if (projectSpace != null) {
+				return projectSpace;
+			}
+		} catch (UnkownProjectException e) {
+			ModelUtil.logWarning(e.getMessage(), e);
+
+		}
+		return null;
 	}
 
 	/**
 	 * Opens an information dialog.
 	 * 
-	 * @param title the title
-	 * @param message the message
+	 * @param title
+	 *            the title
+	 * @param message
+	 *            the message
 	 */
 	private void openInformation(final String title, final String message) {
 		upload.getDisplay().asyncExec(new Runnable() {
@@ -286,8 +288,10 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl implements Co
 	/**
 	 * Opens an error dialog.
 	 * 
-	 * @param title the title
-	 * @param message the message
+	 * @param title
+	 *            the title
+	 * @param message
+	 *            the message
 	 */
 	private void openError(final String title, final String message) {
 		upload.getDisplay().asyncExec(new Runnable() {
@@ -312,7 +316,8 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl implements Co
 		}
 
 		/**
-		 * This method is called when the user presses the "Save as..." text. {@inheritDoc}
+		 * This method is called when the user presses the "Save as..." text.
+		 * {@inheritDoc}
 		 * 
 		 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 		 */
@@ -362,7 +367,8 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl implements Co
 			try {
 				FileTransferUtil.openFile(file);
 			} catch (FileTransferException e) {
-				DialogHandler.showErrorDialog(e.getMessage());
+				ModelUtil.logWarning(e.getMessage(), e);
+
 			}
 		}
 
@@ -394,7 +400,8 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl implements Co
 		/**
 		 * Exception handling in the save as usecase.
 		 * 
-		 * @param e1 the exception to handle
+		 * @param e1
+		 *            the exception to handle
 		 */
 		private void registerSaveAsException(Exception e1) {
 			String fail = "Save as... failed!";
@@ -403,15 +410,16 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl implements Co
 	}
 
 	/**
-	 * This listener handles when the user presses the Add File/Cancel Upload button.
+	 * This listener handles when the user presses the Add File/Cancel Upload
+	 * button.
 	 * 
 	 * @author jfinis
 	 */
 	private final class AddFileOrCancelListener extends SelectionAdapter {
 
 		/**
-		 * This method is called when the "Add File" or "Cancel upload" button is pressed. (This is one button that
-		 * switches its icon and semantics)
+		 * This method is called when the "Add File" or "Cancel upload" button
+		 * is pressed. (This is one button that switches its icon and semantics)
 		 * 
 		 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 		 */
@@ -426,7 +434,8 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl implements Co
 		}
 
 		/**
-		 * Adds a file to upload by presenting a file chooser dialog and then adding the file to the upload queue.
+		 * Adds a file to upload by presenting a file chooser dialog and then
+		 * adding the file to the upload queue.
 		 */
 		private void doAddUpload() {
 			// open a file dialog
@@ -471,6 +480,8 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl implements Co
 					} catch (FileTransferException e) {
 						ModelUtil.logException("Couldn't upload file", e);
 						return;
+					} catch (UnkownProjectException e) {
+						ModelUtil.logWarning(e.getMessage(), e);
 					}
 				}
 			}.run(false);
@@ -505,7 +516,11 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl implements Co
 			}.run(false);
 
 			// Update button status (no more cancel allowed)
-			updateStatus(false);
+			try {
+				updateStatus(false);
+			} catch (UnkownProjectException e) {
+				ModelUtil.logWarning(e.getMessage(), e);
+			}
 		}
 	}
 
@@ -521,10 +536,28 @@ public class MEFileChooserControl extends AbstractUnicaseMEControl implements Co
 		if (modelElementChangeListener != null) {
 			fileAttachment.removeModelElementChangeListener(modelElementChangeListener);
 		}
-		if (dbc != null) {
-			dbc.dispose();
-		}
 		super.dispose();
+	}
+
+	public boolean inspectChanges(ESLocalProject project, ESChangePackage changePackage, IProgressMonitor monitor) {
+		return true;
+	}
+
+	public void commitCompleted(ESLocalProject project, ESPrimaryVersionSpec newRevision, IProgressMonitor monitor) {
+		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		for (IEditorReference reference : activePage.getEditorReferences()) {
+			try {
+				Object object = reference.getEditorInput().getAdapter(EObject.class);
+				if (object != null && object instanceof FileAttachment) {
+					IEditorPart fileAttachmentEditor = reference.getEditor(true);
+					IEditorInput fileAttachmentInput = fileAttachmentEditor.getEditorInput();
+					activePage.closeEditor(reference.getEditor(true), false);
+					activePage.openEditor(fileAttachmentInput, "org.eclipse.emf.ecp.editor");
+				}
+			} catch (PartInitException e) {
+				ModelUtil.logException("Updating file attachment failed!", e);
+			}
+		}
 	}
 
 }

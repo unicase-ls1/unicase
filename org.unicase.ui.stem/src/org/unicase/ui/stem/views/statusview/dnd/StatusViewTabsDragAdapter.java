@@ -13,6 +13,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.dnd.DragSourceEvent;
+import org.unicase.ui.unicasecommon.dnd.dropadapters.DragSourcePlaceHolder;
 
 /**
  * This is the drag adapter for flat tab in status view.
@@ -24,14 +25,16 @@ public class StatusViewTabsDragAdapter extends ViewerDragAdapter {
 	/**
 	 * Constructor.
 	 * 
-	 * @param viewer viewer
+	 * @param viewer
+	 *            viewer
 	 */
 	public StatusViewTabsDragAdapter(Viewer viewer) {
 		super(viewer);
 	}
 
 	/**
-	 * {@inheritDoc} This method extracts the viewer's selection and sets it as drag source in DragSourcePlaceHolder.
+	 * {@inheritDoc} This method extracts the viewer's selection and sets it as
+	 * drag source in DragSourcePlaceHolder.
 	 */
 	@SuppressWarnings("unchecked")
 	@Override

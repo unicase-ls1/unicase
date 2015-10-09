@@ -1,10 +1,11 @@
+package org.unicase.ui.diagram.usecaseDiagram.part;
+
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.diagram.usecaseDiagram.part;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
@@ -12,7 +13,6 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocument
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.unicasecommon.diagram.util.EditPartUtility;
 
@@ -33,7 +33,7 @@ public class DiagramTypeTester extends
 	 *            Additional arguments ignored by this tester
 	 * @param expectedValue
 	 *            the expected value of the property. Can be any literal value
-	 *            defined in {@link DiagramType}
+	 *            defined in DiagramType
 	 * @return Returns <code>true</code> if receiver can appear on a component
 	 *         diagram.
 	 */

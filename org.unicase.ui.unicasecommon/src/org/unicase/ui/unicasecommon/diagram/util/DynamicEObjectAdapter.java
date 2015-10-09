@@ -17,6 +17,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.unicase.model.diagram.util.CollectionFilter;
 
 /**
  * @author schroech
@@ -32,8 +33,11 @@ public class DynamicEObjectAdapter implements IAdaptable {
 	private final DiagramEditPart host;
 
 	/**
-	 * @param object The object which should be adapted
-	 * @param host The {@link DiagramEditPart} which will be asked for the {@link View} of the object
+	 * @param object
+	 *            The object which should be adapted
+	 * @param host
+	 *            The {@link DiagramEditPart} which will be asked for the
+	 *            {@link View} of the object
 	 */
 	public DynamicEObjectAdapter(EObject object, DiagramEditPart host) {
 		if (object == null) {
@@ -50,9 +54,11 @@ public class DynamicEObjectAdapter implements IAdaptable {
 
 	/**
 	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
-	 * @param adapter the adapter class to look up
-	 * @return a object castable to the given class, or the view of the {@link EditPart} associated with the object in
-	 *         the context of the host
+	 * @param adapter
+	 *            the adapter class to look up
+	 * @return a object castable to the given class, or the view of the
+	 *         {@link EditPart} associated with the object in the context of the
+	 *         host
 	 */
 	@SuppressWarnings("unchecked")
 	public Object getAdapter(Class adapter) {
@@ -108,12 +114,13 @@ public class DynamicEObjectAdapter implements IAdaptable {
 	public EditPart getEditPart() {
 		if (editPart == null) {
 			if (getObject() != null) {
-				Set<EditPart> editParts = EditPartUtility.findEditParts(getHost(), Collections.singleton(getObject()));
+				Set<EditPart> editParts = EditPartUtility.findEditParts(
+						getHost(), Collections.singleton(getObject()));
 				List<ShapeNodeEditPart> shapeNodeEditParts = CollectionFilter
-					.filter(editParts, ShapeNodeEditPart.class);
+						.filter(editParts, ShapeNodeEditPart.class);
 
-				List<ConnectionEditPart> connectionEditParts = CollectionFilter.filter(editParts,
-					ConnectionEditPart.class);
+				List<ConnectionEditPart> connectionEditParts = CollectionFilter
+						.filter(editParts, ConnectionEditPart.class);
 
 				if (shapeNodeEditParts.size() > 0) {
 					editPart = shapeNodeEditParts.get(0);

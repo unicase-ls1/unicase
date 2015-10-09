@@ -8,6 +8,8 @@ package org.unicase.model.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.emfstore.internal.common.model.provider.CommonEditPlugin;
+import org.eclipse.emf.emfstore.internal.server.model.provider.ServerEditPlugin;
 
 /**
  * This is the central singleton for the Model edit plugin.

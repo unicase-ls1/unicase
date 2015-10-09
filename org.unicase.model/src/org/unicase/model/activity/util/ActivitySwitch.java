@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.activity.*;
 import org.unicase.model.activity.Activity;
 import org.unicase.model.activity.ActivityEnd;
 import org.unicase.model.activity.ActivityInitial;

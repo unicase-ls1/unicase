@@ -7,12 +7,10 @@
 package org.unicase.ui.stem.views.statusview.dnd;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.emfstore.internal.client.model.util.EMFStoreCommand;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
-import org.unicase.ui.unicasecommon.observer.StatusViewDropEventObserver;
 
 /**
  * This is the drop adapter for User tab in Status view.
@@ -23,7 +21,8 @@ public class UserTabDropAdapter extends AbstractDropAdapter {
 
 	/**
 	 * @see org.unicase.ui.stem.views.statusview.dnd.AbstractDropAdapter#canDrop(org.eclipse.swt.dnd.DropTargetEvent)
-	 * @param event the event to be checked
+	 * @param event
+	 *            the event to be checked
 	 * @return if it can be dropped
 	 */
 	@Override
@@ -38,12 +37,14 @@ public class UserTabDropAdapter extends AbstractDropAdapter {
 			return false;
 		}
 
-		if (event.item != null && event.item.getData() != null && (event.item.getData() instanceof WorkItem)) {
+		if (event.item != null && event.item.getData() != null
+				&& (event.item.getData() instanceof WorkItem)) {
 			event.detail = DND.DROP_NONE;
 			return false;
 		}
 
-		if (getDragSource().equals(getCurrentOpenME()) || EcoreUtil.isAncestor(getDragSource(), getCurrentOpenME())) {
+		if (getDragSource().equals(getCurrentOpenME())
+				|| EcoreUtil.isAncestor(getDragSource(), getCurrentOpenME())) {
 			event.detail = DND.DROP_NONE;
 			return false;
 		}
@@ -58,24 +59,26 @@ public class UserTabDropAdapter extends AbstractDropAdapter {
 	 */
 	@Override
 	public void drop(DropTargetEvent event) {
-
-		new EMFStoreCommand() {
-			@Override
-			protected void doRun() {
-				ECPWorkspaceManager.getObserverBus().notify(StatusViewDropEventObserver.class)
-					.onStatusViewDropEvent(getCurrentOpenME(), getDragSource(), "Unknown", "UserTab");
-				if (!(getDropTarget() instanceof OrgUnit)) {
-					// target is NotAssigned
-					unassignWorkItem((WorkItem) getDragSource());
-				} else if (getDropTarget() instanceof OrgUnit) {
-					reassignWorkItem((WorkItem) getDragSource(), (OrgUnit) getDropTarget());
-				}
-
-				addWorkItemToCurrentOpenME((WorkItem) getDragSource());
-
-			}
-
-		}.run();
+		//
+		// new EMFStoreCommand() {
+		// @Override
+		// protected void doRun() {
+		// ECPWorkspaceManager.getObserverBus().notify(StatusViewDropEventObserver.class)
+		// .onStatusViewDropEvent(getCurrentOpenME(), getDragSource(),
+		// "Unknown", "UserTab");
+		// if (!(getDropTarget() instanceof OrgUnit)) {
+		// // target is NotAssigned
+		// unassignWorkItem((WorkItem) getDragSource());
+		// } else if (getDropTarget() instanceof OrgUnit) {
+		// reassignWorkItem((WorkItem) getDragSource(), (OrgUnit)
+		// getDropTarget());
+		// }
+		//
+		// addWorkItemToCurrentOpenME((WorkItem) getDragSource());
+		//
+		// }
+		//
+		// }.run();
 
 	}
 

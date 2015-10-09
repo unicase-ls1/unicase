@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.state.*;
 import org.unicase.model.state.State;
 import org.unicase.model.state.StateEnd;
 import org.unicase.model.state.StateInitial;

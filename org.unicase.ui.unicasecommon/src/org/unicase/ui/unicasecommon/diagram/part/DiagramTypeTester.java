@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -24,16 +24,22 @@ public class DiagramTypeTester extends PropertyTester {
 	}
 
 	/**
-	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object, java.lang.String, java.lang.Object[],
-	 *      java.lang.Object)
-	 * @param receiver The MEDiagram to test
-	 * @param property The "type" property
-	 * @param args Additional arguments ignored by this tester
-	 * @param expectedValue the expected value of the property. Can be any literal value defined in {@link DiagramType}
-	 * @return Returns <code>true</code> if the type of the diagram type matches the expected value; otherwise
-	 *         <code>false</code> is returned
+	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object,
+	 *      java.lang.String, java.lang.Object[], java.lang.Object)
+	 * @param receiver
+	 *            The MEDiagram to test
+	 * @param property
+	 *            The "type" property
+	 * @param args
+	 *            Additional arguments ignored by this tester
+	 * @param expectedValue
+	 *            the expected value of the property. Can be any literal value
+	 *            defined in {@link DiagramType}
+	 * @return Returns <code>true</code> if the type of the diagram type matches
+	 *         the expected value; otherwise <code>false</code> is returned
 	 */
-	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
+	public boolean test(Object receiver, String property, Object[] args,
+			Object expectedValue) {
 		// START Sanity checks
 		if (!(receiver instanceof MEDiagram)) {
 			throw new IllegalArgumentException();
@@ -65,9 +71,11 @@ public class DiagramTypeTester extends PropertyTester {
 	}
 
 	/**
-	 * Gets the expected {@link DiagramType} identified by the expectedValue string.
+	 * Gets the expected {@link DiagramType} identified by the expectedValue
+	 * string.
 	 * 
-	 * @param expectedValue The literal or name of the expected {@link DiagramType}
+	 * @param expectedValue
+	 *            The literal or name of the expected {@link DiagramType}
 	 * @return The {@link DiagramType} or null
 	 */
 	protected DiagramType getExpectedType(String expectedValue) {

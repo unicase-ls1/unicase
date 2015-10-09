@@ -1,12 +1,12 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.workpackagetransfer.navigator.wizards;
 
-import org.eclipse.emf.emfstore.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.internal.client.model.util.EMFStoreCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
@@ -15,9 +15,11 @@ import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.workpackagetransfer.WorkItemTransferOperator;
 
 /**
- * @author mkagel Wizard for moving model elements from the selected WorkPackage to a other.
+ * @author mkagel Wizard for moving model elements from the selected WorkPackage
+ *         to a other.
  */
-public class WorkpackageTransferWizard extends Wizard implements IWorkbenchWizard {
+public class WorkpackageTransferWizard extends Wizard implements
+		IWorkbenchWizard {
 
 	private WorkPackage selectedWorkpackage;
 	private ChooseWorkItemPage chooseWorkItemPage;
@@ -33,8 +35,10 @@ public class WorkpackageTransferWizard extends Wizard implements IWorkbenchWizar
 		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
-				WorkItemTransferOperator.moveWorkItems(chooseWorkItemPage.getSelectedWorkItems(),
-					chooseWorkItemPage.getTargetWorkPackage(), selectedWorkpackage);
+				WorkItemTransferOperator.moveWorkItems(
+						chooseWorkItemPage.getSelectedWorkItems(),
+						chooseWorkItemPage.getTargetWorkPackage(),
+						selectedWorkpackage);
 			}
 		}.run();
 

@@ -21,6 +21,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.model.ModelPackage;
+import org.unicase.ui.unicasecommon.common.dialogs.MEClassLabelProvider;
 
 /**
  * Utility class for the unicase project.
@@ -38,13 +39,18 @@ public final class UnicaseUiUtil {
 	/**
 	 * Shows a list of model element types.
 	 * 
-	 * @param shell shell
-	 * @param showAbstractTypes if also abstract types are shown
-	 * @param showNonDomain If non domain elements are shown
+	 * @param shell
+	 *            shell
+	 * @param showAbstractTypes
+	 *            if also abstract types are shown
+	 * @param showNonDomain
+	 *            If non domain elements are shown
 	 * @return selected model element type
 	 */
-	public static EClass showMETypeSelectionDialog(Shell shell, boolean showAbstractTypes, boolean showNonDomain) {
-		ElementListSelectionDialog dlg = new ElementListSelectionDialog(shell.getShell(), new MEClassLabelProvider());
+	public static EClass showMETypeSelectionDialog(Shell shell,
+			boolean showAbstractTypes, boolean showNonDomain) {
+		ElementListSelectionDialog dlg = new ElementListSelectionDialog(
+				shell.getShell(), new MEClassLabelProvider());
 		Set<EClass> eClazz;
 		if (showAbstractTypes) {
 			eClazz = ModelUtil.getAllMETypes(ModelPackage.eINSTANCE);
@@ -55,7 +61,8 @@ public final class UnicaseUiUtil {
 			Set<EClass> filteredEClass = new HashSet<EClass>();
 			// Filter out non domain
 			for (EClass eClass : eClazz) {
-				if (!(NonDomainElement.class.isAssignableFrom(eClass.getInstanceClass()))) {
+				if (!(NonDomainElement.class.isAssignableFrom(eClass
+						.getInstanceClass()))) {
 					filteredEClass.add(eClass);
 				}
 			}
@@ -74,8 +81,8 @@ public final class UnicaseUiUtil {
 	}
 
 	/**
-	 * Retrieve all EPackages that are model packages for unicase starting with the unicase model prefix as defined in
-	 * {@link MetamodelPackage}.
+	 * Retrieve all EPackages that are model packages for unicase starting with
+	 * the unicase model prefix as defined in {@link MetamodelPackage}.
 	 * 
 	 * @return a set of EPackages
 	 */
@@ -86,13 +93,15 @@ public final class UnicaseUiUtil {
 		for (Entry<String, Object> entry : registry.entrySet()) {
 			if (entry.getKey().startsWith(ModelPackage.eNS_URI)) {
 				try {
-					EPackage model = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
+					EPackage model = EPackage.Registry.INSTANCE
+							.getEPackage(entry.getKey());
 					result.add(model);
 				}
 				// BEGIN SUPRESS CATCH EXCEPTION
 				catch (RuntimeException exception) {
 					// END SUPRESS CATCH EXCEPTION
-					// logException("Failed to load model package " + entry.getKey(), exception);
+					// logException("Failed to load model package " +
+					// entry.getKey(), exception);
 				}
 			}
 		}
@@ -100,11 +109,14 @@ public final class UnicaseUiUtil {
 	}
 
 	/**
-	 * Returns all non-abstract, non-interface subclasses of the given input class in the given package. In other words
-	 * returns all classes that have direct instances.
+	 * Returns all non-abstract, non-interface subclasses of the given input
+	 * class in the given package. In other words returns all classes that have
+	 * direct instances.
 	 * 
-	 * @param clazz the eClass, must be a subtype of ModelElement
-	 * @return a set of EClasses IMPORTANT: Will throw an IllegalArgumentException if given EClass is not a subtype of
+	 * @param clazz
+	 *            the eClass, must be a subtype of ModelElement
+	 * @return a set of EClasses IMPORTANT: Will throw an
+	 *         IllegalArgumentException if given EClass is not a subtype of
 	 *         ModelElement
 	 */
 	public static Set<EClass> getSubclasses(EClass clazz) {
@@ -114,34 +126,41 @@ public final class UnicaseUiUtil {
 	/**
 	 * Returns all subclasses of the given input class in the given package.
 	 * 
-	 * @param clazz the eClass, must be a subtype of ModelElement
-	 * @param includeAbstractClassesAndInterfaces true if interfaces and abstract classes should be included in the
-	 *            result
-	 * @return a set of EClasses IMPORTANT: Will throw an IllegalArgumentException if given EClass is not a subtype of
+	 * @param clazz
+	 *            the eClass, must be a subtype of ModelElement
+	 * @param includeAbstractClassesAndInterfaces
+	 *            true if interfaces and abstract classes should be included in
+	 *            the result
+	 * @return a set of EClasses IMPORTANT: Will throw an
+	 *         IllegalArgumentException if given EClass is not a subtype of
 	 *         ModelElement
 	 */
-	public static Set<EClass> getSubclasses(EClass clazz, boolean includeAbstractClassesAndInterfaces) {
+	public static Set<EClass> getSubclasses(EClass clazz,
+			boolean includeAbstractClassesAndInterfaces) {
 		Set<EClass> ret = new HashSet<EClass>();
 		for (EPackage ePackage : getAllModelPackages()) {
-			getSubclasses(clazz, ret, ePackage, includeAbstractClassesAndInterfaces);
+			getSubclasses(clazz, ret, ePackage,
+					includeAbstractClassesAndInterfaces);
 		}
 		return ret;
 	}
 
-	private static void getSubclasses(EClass clazz, Set<EClass> ret, EPackage ePackage,
-		boolean includeAbstractClassesAndInterfaces) {
+	private static void getSubclasses(EClass clazz, Set<EClass> ret,
+			EPackage ePackage, boolean includeAbstractClassesAndInterfaces) {
 
 		for (EClassifier classifier : ePackage.getEClassifiers()) {
 			if (EcorePackage.eINSTANCE.getEClass().isInstance(classifier)) {
 				EClass subClass = (EClass) classifier;
-				if ((clazz.isSuperTypeOf(subClass) || clazz.equals(EcorePackage.eINSTANCE.getEObject()))
-					&& (includeAbstractClassesAndInterfaces || canHaveInstances(subClass))) {
+				if ((clazz.isSuperTypeOf(subClass) || clazz
+						.equals(EcorePackage.eINSTANCE.getEObject()))
+						&& (includeAbstractClassesAndInterfaces || canHaveInstances(subClass))) {
 					ret.add(subClass);
 				}
 			}
 		}
 		for (EPackage subPackage : ePackage.getESubpackages()) {
-			getSubclasses(clazz, ret, subPackage, includeAbstractClassesAndInterfaces);
+			getSubclasses(clazz, ret, subPackage,
+					includeAbstractClassesAndInterfaces);
 		}
 	}
 

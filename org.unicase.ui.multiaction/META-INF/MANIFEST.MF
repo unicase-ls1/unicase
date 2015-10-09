@@ -11,7 +11,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.edit.ui,
  org.eclipse.emf.emfstore.common.model,
  org.eclipse.emf.ecp.common,
- org.eclipse.emf.emfstore.client
+ org.eclipse.emf.emfstore.client,
+ org.eclipse.emf.ecp.editor.e3,
+ org.eclipse.emf.ecp.emfstore.core,
+ org.eclipse.emf.ecp.core
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: unicase.org

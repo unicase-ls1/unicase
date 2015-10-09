@@ -12,7 +12,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
 /**
  * Command to remove a diagram element from the project's model.
@@ -24,7 +23,8 @@ public class DeleteFromModelCommand extends DestroyElementCommand {
 	/**
 	 * Constructs a new command to delete the model behind a diagram element.
 	 * 
-	 * @param request the destroy element request
+	 * @param request
+	 *            the destroy element request
 	 */
 	public DeleteFromModelCommand(DestroyElementRequest request) {
 		super(request);
@@ -34,9 +34,8 @@ public class DeleteFromModelCommand extends DestroyElementCommand {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		new DeleteModelElementCommand(getElementToDestroy(), UnicaseActionHelper.getContext(getElementToDestroy()))
-			.run();
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		return CommandResult.newOKCommandResult();
 	}
 

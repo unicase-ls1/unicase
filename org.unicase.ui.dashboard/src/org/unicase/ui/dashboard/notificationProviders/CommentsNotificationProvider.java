@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.emfstore.internal.client.properties.PropertyManager;
 import org.eclipse.emf.emfstore.internal.common.model.ModelElementId;
 import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.internal.server.model.versioning.operations.AbstractOperation;
 import org.eclipse.emf.emfstore.internal.server.model.versioning.operations.CreateDeleteOperation;
 import org.unicase.dashboard.DashboardFactory;
 import org.unicase.dashboard.DashboardNotification;
@@ -60,8 +61,9 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 		me2taskCommentMap = new HashMap<UnicaseModelElement, ArrayList<Comment>>();
 	}
 
-	private void aggregateComments(HashMap<UnicaseModelElement, ArrayList<Comment>> map,
-		UnicaseModelElement modelElement, Comment comment) {
+	private void aggregateComments(
+			HashMap<UnicaseModelElement, ArrayList<Comment>> map,
+			UnicaseModelElement modelElement, Comment comment) {
 		if (map.get(modelElement) == null) {
 			ArrayList<Comment> comments = new ArrayList<Comment>();
 			map.put(modelElement, comments);
@@ -85,22 +87,30 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 	protected List<DashboardNotification> createNotifications() {
 		List<DashboardNotification> result = new ArrayList<DashboardNotification>();
 		PropertyManager manager = getProjectSpace().getPropertyManager();
-		String commentsProviderProperty = manager.getLocalStringProperty(DashboardPropertyKeys.COMMENTS_PROVIDER);
-		if (commentsProviderProperty != null && Boolean.parseBoolean(commentsProviderProperty)) {
-			String threadRepliesProperty = manager.getLocalStringProperty(DashboardPropertyKeys.SHOW_CONTAINMENT_REPLIES);
-			if (threadRepliesProperty != null && Boolean.parseBoolean(threadRepliesProperty)) {
+		String commentsProviderProperty = manager
+				.getLocalStringProperty(DashboardPropertyKeys.COMMENTS_PROVIDER);
+		if (commentsProviderProperty != null
+				&& Boolean.parseBoolean(commentsProviderProperty)) {
+			String threadRepliesProperty = manager
+					.getLocalStringProperty(DashboardPropertyKeys.SHOW_CONTAINMENT_REPLIES);
+			if (threadRepliesProperty != null
+					&& Boolean.parseBoolean(threadRepliesProperty)) {
 				for (UnicaseModelElement modelElement : me2replyMap.keySet()) {
-					result.add(createCommentNotification(me2replyMap, reply2OperationMap, modelElement,
-						" also commented in the thread for "));
+					result.add(createCommentNotification(me2replyMap,
+							reply2OperationMap, modelElement,
+							" also commented in the thread for "));
 				}
 			}
-			for (UnicaseModelElement modelElement : me2personalCommentMap.keySet()) {
-				result.add(createCommentNotification(me2personalCommentMap, personalComment2OperationMap, modelElement,
-					" commented on "));
+			for (UnicaseModelElement modelElement : me2personalCommentMap
+					.keySet()) {
+				result.add(createCommentNotification(me2personalCommentMap,
+						personalComment2OperationMap, modelElement,
+						" commented on "));
 			}
 			for (UnicaseModelElement modelElement : me2taskCommentMap.keySet()) {
-				result.add(createCommentNotification(me2taskCommentMap, taskComment2OperationMap, modelElement,
-					" commented on your task "));
+				result.add(createCommentNotification(me2taskCommentMap,
+						taskComment2OperationMap, modelElement,
+						" commented on your task "));
 			}
 		}
 		return result;
@@ -111,27 +121,33 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 	 */
 	@Override
 	protected void handleOperation(AbstractOperation operation) {
-		EObject modelElement = getProjectSpace().getProject().getModelElement(operation.getModelElementId());
+		EObject modelElement = getProjectSpace().getProject().getModelElement(
+				operation.getModelElementId());
 		if (modelElement == null) {
 			// the ME was deleted from the project.
 			return;
 		}
 
-		if (operation instanceof CreateDeleteOperation && modelElement instanceof Comment) {
-			handleCreateDeleteOperation(operation, getUser(), (Comment) modelElement);
+		if (operation instanceof CreateDeleteOperation
+				&& modelElement instanceof Comment) {
+			handleCreateDeleteOperation(operation, getUser(),
+					(Comment) modelElement);
 		}
 	}
 
-	private void handleCreateDeleteOperation(AbstractOperation operation, User user, Comment comment) {
+	private void handleCreateDeleteOperation(AbstractOperation operation,
+			User user, Comment comment) {
 		CreateDeleteOperation cdo = (CreateDeleteOperation) operation;
 		if (cdo.isDelete()) {
 			return;
 		}
-		ModelElementId commentId = ModelUtil.getProject(comment).getModelElementId(comment);
+		ModelElementId commentId = ModelUtil.getProject(comment)
+				.getModelElementId(comment);
 		if (commentId == null) {
 			return;
 		}
-		Comment localComment = (Comment) getProjectSpace().getProject().getModelElement(commentId);
+		Comment localComment = (Comment) getProjectSpace().getProject()
+				.getModelElement(commentId);
 		UnicaseModelElement firstParent = localComment.getFirstParent();
 		if (firstParent == null) {
 			return;
@@ -149,8 +165,10 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 		Set<Group> groups = OrgUnitHelper.getAllGroupsOfOrgUnit(user);
 		if (firstParent instanceof WorkItem) {
 			WorkItem workItem = (WorkItem) firstParent;
-			if ((workItem.getAssignee() != null && (workItem.getAssignee().equals(user) || groups.contains(workItem
-				.getAssignee()))) || (workItem.getReviewer() != null && workItem.getReviewer().equals(user))) {
+			if ((workItem.getAssignee() != null && (workItem.getAssignee()
+					.equals(user) || groups.contains(workItem.getAssignee())))
+					|| (workItem.getReviewer() != null && workItem
+							.getReviewer().equals(user))) {
 				taskComment2OperationMap.put(comment, operation);
 				aggregateComments(me2taskCommentMap, firstParent, comment);
 				getExcludedOperations().add(operation.getOperationId());
@@ -165,38 +183,50 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 		}
 	}
 
-	private DashboardNotification createNotification(List<Comment> comments, List<AbstractOperation> abstractOperations) {
-		DashboardNotification notification = DashboardFactory.eINSTANCE.createDashboardNotification();
+	private DashboardNotification createNotification(List<Comment> comments,
+			List<AbstractOperation> abstractOperations) {
+		DashboardNotification notification = DashboardFactory.eINSTANCE
+				.createDashboardNotification();
 		notification.setName("New comment notification");
-		notification.setProject(ModelUtil.clone(getProjectSpace().getProjectId()));
+		notification.setProject(ModelUtil.clone(getProjectSpace()
+				.getProjectId()));
 		notification.setRecipient(getUser().getName());
 		notification.setSeen(false);
 		notification.setProvider(getName());
 		for (Comment comment : comments) {
-			ModelElementId commentId = ModelUtil.getProject(comment).getModelElementId(comment);
+			ModelElementId commentId = ModelUtil.getProject(comment)
+					.getModelElementId(comment);
 			notification.getRelatedModelElements().add(commentId);
 		}
-		Collections.sort(abstractOperations, new Comparator<AbstractOperation>() {
-			/**
-			 * {@inheritDoc}
-			 */
-			public int compare(AbstractOperation arg0, AbstractOperation arg1) {
-				if (arg0.getClientDate() == null && arg1.getClientDate() == null) {
-					return 0;
-				} else if (arg0.getClientDate() == null && arg1.getClientDate() != null) {
-					return 1;
-				} else if (arg0.getClientDate() != null && arg1.getClientDate() == null) {
-					return -1;
-				} else {
-					arg0.getClientDate().compareTo(arg1.getClientDate());
-				}
-				return 0;
-			}
-		});
+		Collections.sort(abstractOperations,
+				new Comparator<AbstractOperation>() {
+					/**
+					 * {@inheritDoc}
+					 */
+					public int compare(AbstractOperation arg0,
+							AbstractOperation arg1) {
+						if (arg0.getClientDate() == null
+								&& arg1.getClientDate() == null) {
+							return 0;
+						} else if (arg0.getClientDate() == null
+								&& arg1.getClientDate() != null) {
+							return 1;
+						} else if (arg0.getClientDate() != null
+								&& arg1.getClientDate() == null) {
+							return -1;
+						} else {
+							arg0.getClientDate()
+									.compareTo(arg1.getClientDate());
+						}
+						return 0;
+					}
+				});
 		for (AbstractOperation abstractOperation : abstractOperations) {
-			notification.getRelatedOperations().add(abstractOperation.getOperationId());
+			notification.getRelatedOperations().add(
+					abstractOperation.getOperationId());
 		}
-		Date date = abstractOperations.get(abstractOperations.size() - 1).getClientDate();
+		Date date = abstractOperations.get(abstractOperations.size() - 1)
+				.getClientDate();
 		if (date == null) {
 			date = new Date();
 		}
@@ -205,8 +235,9 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 	}
 
 	private DashboardNotification createCommentNotification(
-		HashMap<UnicaseModelElement, ArrayList<Comment>> me2commentMap,
-		HashMap<Comment, AbstractOperation> comment2opMap, UnicaseModelElement modelElement, String message) {
+			HashMap<UnicaseModelElement, ArrayList<Comment>> me2commentMap,
+			HashMap<Comment, AbstractOperation> comment2opMap,
+			UnicaseModelElement modelElement, String message) {
 		List<Comment> comments = me2commentMap.get(modelElement);
 		ArrayList<AbstractOperation> ops = new ArrayList<AbstractOperation>();
 		StringBuilder stringBuilder = new StringBuilder();
@@ -214,7 +245,9 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 		for (Comment c : comments) {
 			ops.add(comment2opMap.get(c));
 			if (c.getSender() != null && !c.getSender().equals(getUser())) {
-				stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(c.getSender(), getProjectSpace()));
+				stringBuilder.append(NotificationHelper
+						.getHTMLLinkForModelElement(c.getSender(),
+								getProjectSpace()));
 				stringBuilder.append(", ");
 			}
 		}
@@ -224,7 +257,8 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 			stringBuilder.delete(length - 2, length - 1);
 		}
 		stringBuilder.append(message);
-		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(modelElement, getProjectSpace()));
+		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(
+				modelElement, getProjectSpace()));
 		String text = stringBuilder.toString();
 		notification.setMessage(text);
 		return notification;

@@ -6,6 +6,7 @@
  */
 package org.unicase.model.change;
 
+import org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec;
 import org.unicase.model.rationale.Issue;
 
 /**
@@ -33,12 +34,12 @@ public interface MergingIssue extends Issue {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Base Version</em>' containment reference.
-	 * @see #setBaseVersion(org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec)
+	 * @see #setBaseVersion(PrimaryVersionSpec)
 	 * @see org.unicase.model.change.ChangePackage#getMergingIssue_BaseVersion()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec getBaseVersion();
+	PrimaryVersionSpec getBaseVersion();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.change.MergingIssue#getBaseVersion <em>Base Version</em>}' containment reference.
@@ -48,8 +49,7 @@ public interface MergingIssue extends Issue {
 	 * @see #getBaseVersion()
 	 * @generated
 	 */
-	void setBaseVersion(
-			org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec value);
+	void setBaseVersion(PrimaryVersionSpec value);
 
 	/**
 	 * Returns the value of the '<em><b>Target Version</b></em>' containment reference.
@@ -60,12 +60,12 @@ public interface MergingIssue extends Issue {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Target Version</em>' containment reference.
-	 * @see #setTargetVersion(org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec)
+	 * @see #setTargetVersion(PrimaryVersionSpec)
 	 * @see org.unicase.model.change.ChangePackage#getMergingIssue_TargetVersion()
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec getTargetVersion();
+	PrimaryVersionSpec getTargetVersion();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.change.MergingIssue#getTargetVersion <em>Target Version</em>}' containment reference.
@@ -75,7 +75,6 @@ public interface MergingIssue extends Issue {
 	 * @see #getTargetVersion()
 	 * @generated
 	 */
-	void setTargetVersion(
-			org.eclipse.emf.emfstore.internal.server.model.versioning.PrimaryVersionSpec value);
+	void setTargetVersion(PrimaryVersionSpec value);
 
 } // MergingIssue

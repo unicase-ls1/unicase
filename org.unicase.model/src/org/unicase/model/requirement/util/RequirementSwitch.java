@@ -9,8 +9,10 @@ package org.unicase.model.requirement.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.emf.emfstore.internal.common.model.NonDomainElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Criterion;
+import org.unicase.model.requirement.*;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.ActorInstance;
 import org.unicase.model.requirement.FunctionalRequirement;
@@ -342,8 +344,7 @@ public class RequirementSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseNonDomainElement(
-			org.eclipse.emf.emfstore.internal.common.model.NonDomainElement object) {
+	public T caseNonDomainElement(NonDomainElement object) {
 		return null;
 	}
 

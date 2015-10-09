@@ -9,6 +9,7 @@ package org.unicase.ui.unicasecommon.navigator.wizards;
 import java.util.List;
 
 import org.eclipse.emf.emfstore.internal.client.model.CompositeOperationHandle;
+import org.eclipse.emf.emfstore.internal.client.model.ESWorkspaceProviderImpl;
 import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.internal.client.model.exceptions.InvalidHandleException;
 import org.eclipse.emf.emfstore.internal.client.model.util.EMFStoreCommand;
@@ -41,7 +42,8 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 	/**
 	 * Sets if the wizard can be finished.
 	 * 
-	 * @param canFinish Can the wizard finish?
+	 * @param canFinish
+	 *            Can the wizard finish?
 	 */
 	public void setCanFinish(boolean canFinish) {
 		this.canFinish = canFinish;
@@ -118,52 +120,71 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 		}
 	}
 
+	@SuppressWarnings("restriction")
 	private void createFollowupMeeting() {
-		final LeafSection leafSection = (LeafSection) selectedMeeting.eContainer();
-		final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(ModelUtil.getProject(leafSection));
-
+		final LeafSection leafSection = (LeafSection) selectedMeeting
+				.eContainer();
+		final ProjectSpace projectSpace = ESWorkspaceProviderImpl.getInstance()
+				.getProjectSpace(leafSection);
 		new EMFStoreCommand() {
 			@Override
 			protected void doRun() {
-				CompositeOperationHandle operationHandle = projectSpace.beginCompositeOperation();
+				CompositeOperationHandle operationHandle = projectSpace
+						.beginCompositeOperation();
 				followupMeeting.setName(namePage.getMeetingName());
-				followupMeeting.setDescription(namePage.getMeetingDescription());
+				followupMeeting
+						.setDescription(namePage.getMeetingDescription());
 				leafSection.getModelElements().add(followupMeeting);
-				followupMeeting.setFacilitator(getSelectedMeeting().getFacilitator());
+				followupMeeting.setFacilitator(getSelectedMeeting()
+						.getFacilitator());
 				followupMeeting.setLocation(getSelectedMeeting().getLocation());
-				followupMeeting.getParticipants().addAll(getSelectedMeeting().getParticipants());
+				followupMeeting.getParticipants().addAll(
+						getSelectedMeeting().getParticipants());
 				addMeetingSections(followupMeeting);
 				addMeetingSubSections(followupMeeting);
 
-				final List<WorkItem> statusItems = itemCarryPage.getStatusWorkItems();
+				final List<WorkItem> statusItems = itemCarryPage
+						.getStatusWorkItems();
 				addMeetingStatusItems(followupMeeting, statusItems);
 				try {
-					operationHandle.end("Create follow-up meeting",
-						"Created follow-up meeting " + followupMeeting.getName() + " from " + selectedMeeting.getName()
-							+ ".", ModelUtil.getProject(followupMeeting).getModelElementId(followupMeeting));
+					operationHandle.end(
+							"Create follow-up meeting",
+							"Created follow-up meeting "
+									+ followupMeeting.getName() + " from "
+									+ selectedMeeting.getName() + ".",
+							ModelUtil.getProject(followupMeeting)
+									.getModelElementId(followupMeeting));
 				} catch (InvalidHandleException e) {
-					WorkspaceUtil.logException("Composite Operation failed!", e);
+					WorkspaceUtil
+							.logException("Composite Operation failed!", e);
 				}
 			}
 		}.run();
 
-		UnicaseActionHelper.openModelElement(followupMeeting, this.getClass().getName());
+		UnicaseActionHelper.openModelElement(followupMeeting, this.getClass()
+				.getName());
 	}
 
-	private void addMeetingStatusItems(Meeting meeting, List<WorkItem> statusItems) {
-		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection) meeting.getSections().get(1);
+	private void addMeetingStatusItems(Meeting meeting,
+			List<WorkItem> statusItems) {
+		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection) meeting
+				.getSections().get(1);
 		WorkItemMeetingSection workItemMeetingSection = (WorkItemMeetingSection) informationExchangeSection
-			.getSubsections().get(0);
+				.getSubsections().get(0);
 		for (WorkItem workItem : statusItems) {
 			workItemMeetingSection.getIncludedWorkItems().add(workItem);
 		}
 	}
 
 	private void addMeetingSections(Meeting meeting) {
-		CompositeMeetingSection objectiveSection = MeetingFactory.eINSTANCE.createCompositeMeetingSection();
-		CompositeMeetingSection informationExchangeSection = MeetingFactory.eINSTANCE.createCompositeMeetingSection();
-		CompositeMeetingSection wrapUpSection = MeetingFactory.eINSTANCE.createCompositeMeetingSection();
-		IssueMeetingSection discussionSection = MeetingFactory.eINSTANCE.createIssueMeetingSection();
+		CompositeMeetingSection objectiveSection = MeetingFactory.eINSTANCE
+				.createCompositeMeetingSection();
+		CompositeMeetingSection informationExchangeSection = MeetingFactory.eINSTANCE
+				.createCompositeMeetingSection();
+		CompositeMeetingSection wrapUpSection = MeetingFactory.eINSTANCE
+				.createCompositeMeetingSection();
+		IssueMeetingSection discussionSection = MeetingFactory.eINSTANCE
+				.createIssueMeetingSection();
 
 		// set attributes
 		objectiveSection.setName("Objective");
@@ -185,18 +206,24 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 	}
 
 	private void addMeetingSubSections(Meeting meeting) {
-		CompositeMeetingSection miscSection = MeetingFactory.eINSTANCE.createCompositeMeetingSection();
-		CompositeMeetingSection meetingCritiqueSection = MeetingFactory.eINSTANCE.createCompositeMeetingSection();
-		WorkItemMeetingSection workItemsSection = MeetingFactory.eINSTANCE.createWorkItemMeetingSection();
-		WorkItemMeetingSection newWorkItemsSection = MeetingFactory.eINSTANCE.createWorkItemMeetingSection();
+		CompositeMeetingSection miscSection = MeetingFactory.eINSTANCE
+				.createCompositeMeetingSection();
+		CompositeMeetingSection meetingCritiqueSection = MeetingFactory.eINSTANCE
+				.createCompositeMeetingSection();
+		WorkItemMeetingSection workItemsSection = MeetingFactory.eINSTANCE
+				.createWorkItemMeetingSection();
+		WorkItemMeetingSection newWorkItemsSection = MeetingFactory.eINSTANCE
+				.createWorkItemMeetingSection();
 
 		workItemsSection.setName("Action items");
 		newWorkItemsSection.setName("New action items");
 		miscSection.setName("Misc");
 		meetingCritiqueSection.setName("Meeting critique");
 
-		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection) meeting.getSections().get(1);
-		CompositeMeetingSection wrapUpSection = (CompositeMeetingSection) meeting.getSections().get(3);
+		CompositeMeetingSection informationExchangeSection = (CompositeMeetingSection) meeting
+				.getSections().get(1);
+		CompositeMeetingSection wrapUpSection = (CompositeMeetingSection) meeting
+				.getSections().get(3);
 
 		// set links
 		informationExchangeSection.getSubsections().add(workItemsSection);

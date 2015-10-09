@@ -10,6 +10,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.emf.emfstore.internal.server.model.ModelPackage;
+import org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningPackage;
+import org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
 import org.unicase.model.attachment.AttachmentPackage;
@@ -117,8 +120,7 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		org.eclipse.emf.emfstore.internal.server.model.ModelPackage.eINSTANCE
-				.eClass();
+		ModelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		ModelPackageImpl theModelPackage_1 = (ModelPackageImpl) (EPackage.Registry.INSTANCE
@@ -346,10 +348,10 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 		// Obtain other dependent packages
 		RationalePackage theRationalePackage = (RationalePackage) EPackage.Registry.INSTANCE
 				.getEPackage(RationalePackage.eNS_URI);
-		org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningPackage theVersioningPackage = (org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningPackage) EPackage.Registry.INSTANCE
-				.getEPackage(org.eclipse.emf.emfstore.internal.server.model.versioning.VersioningPackage.eNS_URI);
-		org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsPackage theOperationsPackage = (org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsPackage) EPackage.Registry.INSTANCE
-				.getEPackage(org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsPackage.eNS_URI);
+		VersioningPackage theVersioningPackage = (VersioningPackage) EPackage.Registry.INSTANCE
+				.getEPackage(VersioningPackage.eNS_URI);
+		OperationsPackage theOperationsPackage = (OperationsPackage) EPackage.Registry.INSTANCE
+				.getEPackage(OperationsPackage.eNS_URI);
 
 		// Create type parameters
 

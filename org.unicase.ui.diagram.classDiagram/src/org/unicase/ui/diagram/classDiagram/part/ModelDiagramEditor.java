@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -45,13 +45,13 @@ import org.eclipse.ui.navigator.resources.ProjectExplorer;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
+import org.unicase.ui.unicasecommon.diagram.part.UnicaseModelDiagramEditor;
 
 /**
  * @generated
  */
 
-public class ModelDiagramEditor extends
-		org.unicase.ui.unicasecommon.diagram.part.ModelDiagramEditor implements
+public class ModelDiagramEditor extends UnicaseModelDiagramEditor implements
 		IGotoMarker {
 
 	/**

@@ -57,6 +57,7 @@ import org.unicase.model.task.util.EstimateHelper;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.stem.Activator;
+import org.unicase.ui.unicasecommon.common.dialogs.MEClassLabelProvider;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 
 /**

@@ -9,18 +9,22 @@ package org.unicase.ui.dashboard;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.client.ESUsersession;
 import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.internal.client.model.exceptions.UnkownProjectException;
 import org.eclipse.emf.emfstore.internal.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.emfstore.internal.client.model.util.WorkspaceUtil;
 import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.ui.dashboard.view.DashboardEditor;
 import org.unicase.ui.dashboard.view.DashboardEditorInput;
+import org.unicase.ui.unicasecommon.common.util.OrgUnitHelper;
 
 /**
  * Handler for viewing the dashboard.
@@ -38,30 +42,18 @@ public class ShowDashboardHandler extends AbstractHandler {
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 
 		ProjectSpace projectSpace = null;
+		final ISelection selection = HandlerUtil.getActiveMenuSelection(event);
+		final IStructuredSelection ssel = (IStructuredSelection) selection;
+		ESUsersession userSession = null;
 		try {
-			Object o = HandlerUtil.getVariableChecked(event, DASHBOARD_CONTEXT_VARIABLE);
-			projectSpace = (ProjectSpace) o;
-		} catch (ExecutionException e) {
-			try {
-				projectSpace = (ProjectSpace) ECPWorkspaceManager.getInstance().getWorkSpace().getActiveProject()
-					.getRootObject();
-			} catch (NoWorkspaceException e1) {
-				ModelUtil.logException("Failed to show dashboard: No workspace!", e1);
-			}
+			userSession = OrgUnitHelper.getUserSession((EObject) ssel
+					.getFirstElement());
+		} catch (UnkownProjectException e) {
+			ModelUtil.logWarning(e.getMessage());
 		}
-
-		if (projectSpace == null) {
-			// forbid null inputs
+		if (userSession == null) {
 			return null;
 		}
-
-		if (projectSpace.getUsersession() == null) {
-			// do not open when the project is not shared yet
-			MessageDialog.openWarning(Display.getCurrent().getActiveShell(), "No dashboard available",
-				"You can't open the dashboard because your project is not shared yet");
-			return null;
-		}
-
 		final ProjectSpace ps = projectSpace;
 		new EMFStoreCommand() {
 
@@ -69,8 +61,9 @@ public class ShowDashboardHandler extends AbstractHandler {
 			protected void doRun() {
 				DashboardEditorInput input = new DashboardEditorInput(ps);
 				try {
-					IEditorPart openEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-						.openEditor(input, DASHBOARD_ID, true);
+					IEditorPart openEditor = PlatformUI.getWorkbench()
+							.getActiveWorkbenchWindow().getActivePage()
+							.openEditor(input, DASHBOARD_ID, true);
 					if (openEditor instanceof DashboardEditor) {
 						((DashboardEditor) openEditor).refresh();
 					}

@@ -12,7 +12,6 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
@@ -33,7 +32,6 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
@@ -62,7 +60,8 @@ public class CommandFactory {
 		/**
 		 * Default constructor.
 		 * 
-		 * @param element The adaptable element
+		 * @param element
+		 *            The adaptable element
 		 */
 		public ElementTypeAdapter(EObject element) {
 			super(element);
@@ -70,7 +69,8 @@ public class CommandFactory {
 
 		/**
 		 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
-		 * @param adapter The class that should be adapted
+		 * @param adapter
+		 *            The class that should be adapted
 		 * @return The {@link Object} adapting to class adapter
 		 */
 		@SuppressWarnings("unchecked")
@@ -79,7 +79,8 @@ public class CommandFactory {
 			Object object = super.getAdapter(adapter);
 			if (object == null) {
 				if (adapter == IElementType.class) {
-					object = ElementTypeRegistry.getInstance().getElementType(getRealObject());
+					object = ElementTypeRegistry.getInstance().getElementType(
+							getRealObject());
 				}
 			}
 			return object;
@@ -88,13 +89,19 @@ public class CommandFactory {
 	}
 
 	/**
-	 * @param viewDescriptors The {@link ViewDescriptor}s which should be arranged
-	 * @param editPart The {@link EditPart} which will be asked for the command
-	 * @return A layout command, depending on the EditPolicies of the {@link EditPart}
+	 * @param viewDescriptors
+	 *            The {@link ViewDescriptor}s which should be arranged
+	 * @param editPart
+	 *            The {@link EditPart} which will be asked for the command
+	 * @return A layout command, depending on the EditPolicies of the
+	 *         {@link EditPart}
 	 */
-	public static Command createArrangeCommand(Collection<ViewDescriptor> viewDescriptors, EditPart editPart) {
-		ArrangeRequest arrangeRequest = new ArrangeRequest(RequestConstants.REQ_ARRANGE_DEFERRED, LayoutType.RADIAL);
-		ArrayList<ViewDescriptor> viewAdapters = new ArrayList<ViewDescriptor>(viewDescriptors);
+	public static Command createArrangeCommand(
+			Collection<ViewDescriptor> viewDescriptors, EditPart editPart) {
+		ArrangeRequest arrangeRequest = new ArrangeRequest(
+				RequestConstants.REQ_ARRANGE_DEFERRED, LayoutType.RADIAL);
+		ArrayList<ViewDescriptor> viewAdapters = new ArrayList<ViewDescriptor>(
+				viewDescriptors);
 
 		arrangeRequest.setViewAdaptersToArrange(viewAdapters);
 		Command command = editPart.getCommand(arrangeRequest);
@@ -103,52 +110,71 @@ public class CommandFactory {
 	}
 
 	/**
-	 * @param object The object to be colorized
-	 * @param host The {@link DiagramEditPart} containing the object's {@link EditPart}
+	 * @param object
+	 *            The object to be colorized
+	 * @param host
+	 *            The {@link DiagramEditPart} containing the object's
+	 *            {@link EditPart}
 	 * @return A {@link CompoundCommand} containing {@link SetPropertyCommand}s
 	 */
-	public static Command createColorizeCommand(EObject object, DiagramEditPart host) {
+	public static Command createColorizeCommand(EObject object,
+			DiagramEditPart host) {
 
 		CompoundCommand cc = new CompoundCommand("Colorize");
 
-		SetPropertyCommand setLineColorCommand = new SetPropertyCommand(host.getEditingDomain(), "Set line color",
-			new DynamicEObjectAdapter(object, host), Properties.ID_LINECOLOR,
-			FigureUtilities.colorToInteger(DiagramColorConstants.blue));
+		SetPropertyCommand setLineColorCommand = new SetPropertyCommand(
+				host.getEditingDomain(), "Set line color",
+				new DynamicEObjectAdapter(object, host),
+				Properties.ID_LINECOLOR,
+				FigureUtilities.colorToInteger(DiagramColorConstants.blue));
 
-		Command setLineColorCommandProxy = new ICommandProxy(setLineColorCommand);
+		Command setLineColorCommandProxy = new ICommandProxy(
+				setLineColorCommand);
 		cc.add(setLineColorCommandProxy);
 
 		Color veryLightBlue = new Color(null, 240, 240, 255);
-		SetPropertyCommand setFillColorCommand = new SetPropertyCommand(host.getEditingDomain(), "Set fill color",
-			new DynamicEObjectAdapter(object, host), Properties.ID_FILLCOLOR,
-			FigureUtilities.colorToInteger(veryLightBlue));
+		SetPropertyCommand setFillColorCommand = new SetPropertyCommand(
+				host.getEditingDomain(), "Set fill color",
+				new DynamicEObjectAdapter(object, host),
+				Properties.ID_FILLCOLOR,
+				FigureUtilities.colorToInteger(veryLightBlue));
 
-		Command setFillColorCommandProxy = new ICommandProxy(setFillColorCommand);
+		Command setFillColorCommandProxy = new ICommandProxy(
+				setFillColorCommand);
 		cc.add(setFillColorCommandProxy);
 
-		SetPropertyCommand setFontColorCommand = new SetPropertyCommand(host.getEditingDomain(), "Set font color",
-			new DynamicEObjectAdapter(object, host), Properties.ID_FONTCOLOR,
-			FigureUtilities.colorToInteger(DiagramColorConstants.blue));
+		SetPropertyCommand setFontColorCommand = new SetPropertyCommand(
+				host.getEditingDomain(), "Set font color",
+				new DynamicEObjectAdapter(object, host),
+				Properties.ID_FONTCOLOR,
+				FigureUtilities.colorToInteger(DiagramColorConstants.blue));
 
-		Command setFontColorCommandProxy = new ICommandProxy(setFontColorCommand);
+		Command setFontColorCommandProxy = new ICommandProxy(
+				setFontColorCommand);
 		cc.add(setFontColorCommandProxy);
 
 		return cc;
 	}
 
 	/**
-	 * @param cc The {@link CompoundCommand} to which commands should be added
-	 * @param viewDescriptors The {@link ViewDescriptor}s for the creation of the arrange commands
-	 * @param editPart The {@link EditPart} which will be asked for the commands
+	 * @param cc
+	 *            The {@link CompoundCommand} to which commands should be added
+	 * @param viewDescriptors
+	 *            The {@link ViewDescriptor}s for the creation of the arrange
+	 *            commands
+	 * @param editPart
+	 *            The {@link EditPart} which will be asked for the commands
 	 */
-	public static void addArrangeCommand(CompoundCommand cc, Collection<ViewDescriptor> viewDescriptors,
-		EditPart editPart) {
-		Command createArrangeCommand = createArrangeCommand(viewDescriptors, editPart);
+	public static void addArrangeCommand(CompoundCommand cc,
+			Collection<ViewDescriptor> viewDescriptors, EditPart editPart) {
+		Command createArrangeCommand = createArrangeCommand(viewDescriptors,
+				editPart);
 		cc.add(createArrangeCommand);
 	}
 
 	/**
-	 * @param editPart The {@link EditPart} whose {@link View} should be deleted
+	 * @param editPart
+	 *            The {@link EditPart} whose {@link View} should be deleted
 	 * @return A {@link DeleteCommand} wrapped in an {@link ICommandProxy}
 	 */
 	public static Command createDeleteFromViewCommand(EditPart editPart) {
@@ -158,40 +184,14 @@ public class CommandFactory {
 	}
 
 	/**
-	 * @param editPart The {@link EditPart} whose {@link View} should be deleted
-	 * @return A {@link DeleteCommand} wrapped in an {@link ICommandProxy}
+	 * @param cc
+	 *            The {@link CompoundCommand} that should contain the
+	 *            {@link DeleteCommand}s
+	 * @param editParts
+	 *            The {@link EditPart}s whose {@link View}s should be deleted
 	 */
-	public static Command createDeleteFromDiagramCommand(EditPart editPart) {
-		DestroyElementRequest request = new DestroyElementRequest((TransactionalEditingDomain) WorkspaceManager
-			.getInstance().getCurrentWorkspace().getEditingDomain(), EditPartUtility.getElement(editPart), false);
-		IElementType type = ElementTypeRegistry.getInstance().getElementType(request.getEditHelperContext());
-		if (type != null) {
-			return new ICommandProxy(new DeleteFromDiagramCommand(request, editPart));
-		}
-		// return null: a null command within a CompoundCommand is not executed.
-		return null;
-	}
-
-	/**
-	 * @param editPart The {@link EditPart} of the model element which should be deleted
-	 * @return A {@link DeleteCommand} wrapped in an {@link ICommandProxy}
-	 */
-	public static Command createDeleteFromModelCommand(EditPart editPart) {
-		DestroyElementRequest request = new DestroyElementRequest((TransactionalEditingDomain) WorkspaceManager
-			.getInstance().getCurrentWorkspace().getEditingDomain(), EditPartUtility.getElement(editPart), false);
-		IElementType type = ElementTypeRegistry.getInstance().getElementType(request.getEditHelperContext());
-		if (type != null) {
-			return new ICommandProxy(new DeleteFromModelCommand(request));
-		}
-		// return null: a null command within a CompoundCommand is not executed.
-		return null;
-	}
-
-	/**
-	 * @param cc The {@link CompoundCommand} that should contain the {@link DeleteCommand}s
-	 * @param editParts The {@link EditPart}s whose {@link View}s should be deleted
-	 */
-	public static void addDeleteFromViewCommands(CompoundCommand cc, Collection<? extends EditPart> editParts) {
+	public static void addDeleteFromViewCommands(CompoundCommand cc,
+			Collection<? extends EditPart> editParts) {
 		for (EditPart editPart : editParts) {
 			Command deleteFromViewCommand = createDeleteFromViewCommand(editPart);
 			cc.add(deleteFromViewCommand);
@@ -199,13 +199,19 @@ public class CommandFactory {
 	}
 
 	/**
-	 * @param cc The {@link CompoundCommand} that should contain the {@link DeleteCommand}s
-	 * @param objects The {@link EObject}s for which commands should be created
-	 * @param editPart The {@link EditPart}
+	 * @param cc
+	 *            The {@link CompoundCommand} that should contain the
+	 *            {@link DeleteCommand}s
+	 * @param objects
+	 *            The {@link EObject}s for which commands should be created
+	 * @param editPart
+	 *            The {@link EditPart}
 	 */
-	public static void addCreateViewCommands(CompoundCommand cc, Collection<EObject> objects, EditPart editPart) {
+	public static void addCreateViewCommands(CompoundCommand cc,
+			Collection<EObject> objects, EditPart editPart) {
 		for (EObject object : objects) {
-			Command createViewCommand = createCreateNodeViewCommand(object, editPart);
+			Command createViewCommand = createCreateNodeViewCommand(object,
+					editPart);
 			if (createViewCommand == null) {
 				continue;
 			}
@@ -214,26 +220,37 @@ public class CommandFactory {
 	}
 
 	/**
-	 * @param object The {@link EObject} for which the command should be created
-	 * @param editPart The {@link EditPart} which will be asked for the command
+	 * @param object
+	 *            The {@link EObject} for which the command should be created
+	 * @param editPart
+	 *            The {@link EditPart} which will be asked for the command
 	 * @return The command
 	 */
-	public static Command createCreateNodeViewCommand(EObject object, EditPart editPart) {
-		CreateNodeViewCommandProvider provider = new CreateNodeViewCommandProvider(editPart, object);
+	public static Command createCreateNodeViewCommand(EObject object,
+			EditPart editPart) {
+		CreateNodeViewCommandProvider provider = new CreateNodeViewCommandProvider(
+				editPart, object);
 		Command command = provider.getCommand();
 		return command;
 	}
 
 	/**
-	 * @param cc The {@link CompoundCommand} that should contain the {@link DeleteCommand}s
-	 * @param objects The {@link EObject}s for which commands should be created
-	 * @param editPart The {@link EditPart} which will be asked for the command
-	 * @param addReferences true if references to other diagram elemenets should be added
+	 * @param cc
+	 *            The {@link CompoundCommand} that should contain the
+	 *            {@link DeleteCommand}s
+	 * @param objects
+	 *            The {@link EObject}s for which commands should be created
+	 * @param editPart
+	 *            The {@link EditPart} which will be asked for the command
+	 * @param addReferences
+	 *            true if references to other diagram elemenets should be added
 	 */
-	public static void addDiagramElementAddCommands(CompoundCommand cc, List<EObject> objects,
-		DiagramEditPart editPart, boolean addReferences) {
+	public static void addDiagramElementAddCommands(CompoundCommand cc,
+			List<EObject> objects, DiagramEditPart editPart,
+			boolean addReferences) {
 		for (EObject object : objects) {
-			Command createDiagramElementAddCommand = createDiagramElementAddCommand(object, editPart, addReferences);
+			Command createDiagramElementAddCommand = createDiagramElementAddCommand(
+					object, editPart, addReferences);
 			if (createDiagramElementAddCommand == null) {
 				continue;
 			}
@@ -242,80 +259,105 @@ public class CommandFactory {
 	}
 
 	/**
-	 * @param object The object
-	 * @param editPart The {@link EditPart}
-	 * @param addReferences true if connecting references between nodes should also be added
+	 * @param object
+	 *            The object
+	 * @param editPart
+	 *            The {@link EditPart}
+	 * @param addReferences
+	 *            true if connecting references between nodes should also be
+	 *            added
 	 * @return The {@link Command}
 	 */
-	public static Command createDiagramElementAddCommand(EObject object, EditPart editPart, boolean addReferences) {
+	public static Command createDiagramElementAddCommand(EObject object,
+			EditPart editPart, boolean addReferences) {
 
 		EObject model = EditPartUtility.getElement(editPart);
 		if (model instanceof MEDiagram) {
-			return createDiagramElementAddCommand(object, (MEDiagram) model, addReferences);
+			return createDiagramElementAddCommand(object, (MEDiagram) model,
+					addReferences);
 		}
 		return null;
 	}
 
 	/**
-	 * @param object The object
-	 * @param meDiagram The {@link MEDiagram}
-	 * @param addReferences true if connecting references between nodes should also be added
+	 * @param object
+	 *            The object
+	 * @param meDiagram
+	 *            The {@link MEDiagram}
+	 * @param addReferences
+	 *            true if connecting references between nodes should also be
+	 *            added
 	 * @return The {@link Command}
 	 */
-	public static Command createDiagramElementAddCommand(EObject object, MEDiagram meDiagram, boolean addReferences) {
+	public static Command createDiagramElementAddCommand(EObject object,
+			MEDiagram meDiagram, boolean addReferences) {
 
-		DiagramElementAddRequest request = new DiagramElementAddRequest(meDiagram, ElementTypeRegistry.getInstance()
-			.getElementType(object));
+		DiagramElementAddRequest request = new DiagramElementAddRequest(
+				meDiagram, ElementTypeRegistry.getInstance().getElementType(
+						object));
 
 		request.setNewElement(object);
 		request.setAddReferences(addReferences);
 
-		DiagramElementAddCommand addCommand = new DiagramElementAddCommand(request);
+		DiagramElementAddCommand addCommand = new DiagramElementAddCommand(
+				request);
 
 		return new ICommandProxy(addCommand);
 	}
 
 	/**
-	 * @param object The object for which a {@link ViewDescriptor} should be created
+	 * @param object
+	 *            The object for which a {@link ViewDescriptor} should be
+	 *            created
 	 * @return A {@link ViewDescriptor} for the object
 	 */
 	public static ViewDescriptor createViewDescriptorForEdge(EObject object) {
-		return CommandFactory.getInstance().createViewDescriptorForObject(object, Edge.class);
+		return CommandFactory.getInstance().createViewDescriptorForObject(
+				object, Edge.class);
 	}
 
 	/**
-	 * @param object The object for which a {@link ViewDescriptor} should be created
+	 * @param object
+	 *            The object for which a {@link ViewDescriptor} should be
+	 *            created
 	 * @return A {@link ViewDescriptor} for the object
 	 */
 	public static ViewDescriptor createViewDescriptorForNode(EObject object) {
-		return CommandFactory.getInstance().createViewDescriptorForObject(object, Node.class);
+		return CommandFactory.getInstance().createViewDescriptorForObject(
+				object, Node.class);
 	}
 
 	/**
-	 * @param object The object for which a {@link ViewDescriptor} should be created
-	 * @param viewKind The viewKind of the object
+	 * @param object
+	 *            The object for which a {@link ViewDescriptor} should be
+	 *            created
+	 * @param viewKind
+	 *            The viewKind of the object
 	 * @return A {@link ViewDescriptor} for the object
 	 */
 	@SuppressWarnings("unchecked")
-	public ViewDescriptor createViewDescriptorForObject(EObject object, java.lang.Class viewKind) {
+	public ViewDescriptor createViewDescriptorForObject(EObject object,
+			java.lang.Class viewKind) {
 		IAdaptable objectAdapter = new ElementTypeAdapter(object);
 
-		IElementType elementType = ElementTypeRegistry.getInstance().getElementType(object);
+		IElementType elementType = ElementTypeRegistry.getInstance()
+				.getElementType(object);
 		if (!(elementType instanceof IHintedType)) {
 			return null;
 		}
-		String hintedElementType = ((IHintedType) elementType).getSemanticHint();
+		String hintedElementType = ((IHintedType) elementType)
+				.getSemanticHint();
 		if (hintedElementType == null) {
 			return null;
 		}
 
 		ViewDescriptor viewDescriptor;
 		if (viewKind == Edge.class) {
-			viewDescriptor = new ConnectionViewDescriptor(objectAdapter, hintedElementType, false,
-				PreferencesHint.USE_DEFAULTS);
+			viewDescriptor = new ConnectionViewDescriptor(objectAdapter,
+					hintedElementType, false, PreferencesHint.USE_DEFAULTS);
 		} else {
-			viewDescriptor = new ViewDescriptor(objectAdapter, viewKind, hintedElementType, false,
-				PreferencesHint.USE_DEFAULTS);
+			viewDescriptor = new ViewDescriptor(objectAdapter, viewKind,
+					hintedElementType, false, PreferencesHint.USE_DEFAULTS);
 		}
 
 		return viewDescriptor;

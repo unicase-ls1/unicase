@@ -8,6 +8,7 @@ package org.unicase.ui.unicasecommon.common.commands;
 
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.internal.client.model.ESWorkspaceProviderImpl;
 import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
 import org.eclipse.emf.emfstore.internal.common.model.EMFStoreProperty;
 import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
@@ -27,23 +28,28 @@ public class SubscriptionTester extends PropertyTester {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object, java.lang.String, java.lang.Object[],
-	 *      java.lang.Object)
+	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object,
+	 *      java.lang.String, java.lang.Object[], java.lang.Object)
 	 */
-	public boolean test(Object receiver, String property, Object[] args, final Object expectedValue) {
+	public boolean test(Object receiver, String property, Object[] args,
+			final Object expectedValue) {
 		if (receiver instanceof EObject) {
 			EObject modelElement = (EObject) receiver;
 			if (ModelUtil.getProject(modelElement) == null) {
 				return false;
 			}
-			ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(modelElement);
-			EMFStoreProperty emfStoreProperty = projectSpace.getPropertyManager().getLocalProperty(
-				DashboardPropertyKeys.SUBSCRIPTIONS);
+			ProjectSpace projectSpace = ESWorkspaceProviderImpl.getInstance()
+					.getProjectSpace(modelElement);
+			EMFStoreProperty emfStoreProperty = projectSpace
+					.getPropertyManager().getLocalProperty(
+							DashboardPropertyKeys.SUBSCRIPTIONS);
 			boolean contains = false;
 			if (emfStoreProperty != null) {
-				SubscriptionComposite subscriptionComposite = (SubscriptionComposite) emfStoreProperty.getValue();
+				SubscriptionComposite subscriptionComposite = (SubscriptionComposite) emfStoreProperty
+						.getValue();
 				contains = subscriptionComposite.getSubscriptions().contains(
-					projectSpace.getProject().getModelElementId(modelElement));
+						projectSpace.getProject().getModelElementId(
+								modelElement));
 			}
 			if (property.equals(DOES_CONTAIN)) {
 				return contains;

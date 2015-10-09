@@ -27,18 +27,22 @@ import org.eclipse.ui.menus.CommandContributionItemParameter;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.LeafSection;
+import org.unicase.model.document.Section;
 
 /**
- * @author Hodaie This class creates a group of commands to create different model element types, which are shown in the
- *         context menu of a leaf section. The commands appear in the order of how frequent are the model element types
- *         in a leaf section. For example, if a leaf section contains 3 FRs and 2 AIs the command to create a FR appears
- *         before command to create an AI. The created commands have all the same ID and are handled with the same
- *         handler class {@link CreateMEHandler}.
+ * @author Hodaie This class creates a group of commands to create different
+ *         model element types, which are shown in the context menu of a leaf
+ *         section. The commands appear in the order of how frequent are the
+ *         model element types in a leaf section. For example, if a leaf section
+ *         contains 3 FRs and 2 AIs the command to create a FR appears before
+ *         command to create an AI. The created commands have all the same ID
+ *         and are handled with the same handler class {@link CreateMEHandler}.
  */
 public class DynamicMECreationCommands extends CompoundContributionItem {
 
 	private static AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
-		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+			new ComposedAdapterFactory(
+					ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 	private static final String COMMAND_ID = "org.unicase.ui.unicasecommon.navigator.createME";
 
@@ -50,7 +54,17 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 		// get the leaf section right clicked on in navigator.
 		// For each ME type contained in this leaf section is a
 		// creation command added to context menu.
-		LeafSection leafSection = (LeafSection) UiUtil.getSelectedModelelement();
+		LeafSection leafSection = null;
+		EObject selectedModelelement = UiUtil.getSelectedModelelement();
+		if (selectedModelelement != null
+				&& !(selectedModelelement instanceof LeafSection)) {
+			EObject eContainer = selectedModelelement.eContainer();
+			if (eContainer instanceof LeafSection) {
+				leafSection = (LeafSection) eContainer;
+			}
+		} else if (selectedModelelement instanceof LeafSection) {
+			leafSection = (LeafSection) selectedModelelement;
+		}
 		if (leafSection == null) {
 			return new IContributionItem[0];
 		}
@@ -72,27 +86,31 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 		// create command for contents of this leaf section
 		for (int i = 0; i < contentTypes.length; i++) {
 			CommandContributionItemParameter commandParam = new CommandContributionItemParameter(
-				PlatformUI.getWorkbench(), null, COMMAND_ID, CommandContributionItem.STYLE_PUSH);
+					PlatformUI.getWorkbench(), null, COMMAND_ID,
+					CommandContributionItem.STYLE_PUSH);
 
 			Map<Object, Object> map = new HashMap<Object, Object>();
 
 			// set the EClass parameter
 			if (contentTypes[i] instanceof EClass) {
 				map.put(CreateMEHandler.COMMAND_ECLASS_PARAM, contentTypes[i]);
-				commandParam.label = "New " + ((EClass) contentTypes[i]).getName();
+				commandParam.label = "New "
+						+ ((EClass) contentTypes[i]).getName();
 				commandParam.icon = getImage((EClass) contentTypes[i]);
 			}
 			// set the DiagramType Parameter if the object is a MEiagram
 
 			if (contentTypes[i] instanceof MEDiagram) {
 				DiagramType type = (DiagramType) contentTypes[i];
-				// map.put(CreateMEHandler.COMMAND_ECLASS_PARAM, createMEDiagram.eClass());
+				// map.put(CreateMEHandler.COMMAND_ECLASS_PARAM,
+				// createMEDiagram.eClass());
 				map.put(CreateMEHandler.COMMAND_DIAGRAMTYPE_PARAM, type);
 				commandParam.label = "New " + type.getLiteral();
 			}
 			// create command
 			commandParam.parameters = map;
-			CommandContributionItem command = new CommandContributionItem(commandParam);
+			CommandContributionItem command = new CommandContributionItem(
+					commandParam);
 			commands[i] = command;
 		}
 
@@ -100,23 +118,29 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 	}
 
 	private ImageDescriptor getImage(EClass eClass) {
-		EObject instance = eClass.getEPackage().getEFactoryInstance().create(eClass);
+		EObject instance = eClass.getEPackage().getEFactoryInstance()
+				.create(eClass);
 		Image image = labelProvider.getImage(instance);
-		ImageDescriptor imageDescriptor = ImageDescriptor.createFromImage(image);
+		ImageDescriptor imageDescriptor = ImageDescriptor
+				.createFromImage(image);
 		return imageDescriptor;
 	}
 
 	/**
-	 * This method return a list of ModelElement types (EClasses) contained in a LeafSection.
+	 * This method return a list of ModelElement types (EClasses) contained in a
+	 * LeafSection.
 	 * 
 	 * @param leafSection
 	 * @return
 	 */
-	private Object[] getContentTypes(LeafSection leafSection) {
+	private Object[] getContentTypes(Section section) {
 		// create a map of (EClass, EClassCount)
 		Map<Object, Countable> meCounts = new HashMap<Object, Countable>();
+		if (!(section instanceof LeafSection)) {
+			return new Object[0];
+		}
 
-		for (EObject me : leafSection.getModelElements()) {
+		for (EObject me : ((LeafSection) section).getModelElements()) {
 			Object key = null;
 
 			// Same for diagrams and other model elements.
@@ -131,8 +155,10 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 			}
 		}
 
-		// get list of modelelement keys from map and sort it based on count field.
-		List<Countable> meSortedByCount = new ArrayList<Countable>(meCounts.values());
+		// get list of modelelement keys from map and sort it based on count
+		// field.
+		List<Countable> meSortedByCount = new ArrayList<Countable>(
+				meCounts.values());
 		Collections.sort(meSortedByCount, new MeFrequencyComparator());
 
 		// create an array of EClass by extracting the eClass field
@@ -147,14 +173,16 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 	}
 
 	/**
-	 * This Interface is used to count the occurrence of model elements in the navigator.
+	 * This Interface is used to count the occurrence of model elements in the
+	 * navigator.
 	 */
 	public interface ICountable {
 
 		/**
 		 * This method should set the occurrence count.
 		 * 
-		 * @param count the new occurrence count value
+		 * @param count
+		 *            the new occurrence count value
 		 */
 		void setCount(int count);
 
@@ -166,7 +194,8 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 		int getCount();
 
 		/**
-		 * This method should return the object, for which the occurrence is counted.
+		 * This method should return the object, for which the occurrence is
+		 * counted.
 		 * 
 		 * @return Object the object, which is counted
 		 */
@@ -175,7 +204,8 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 	}
 
 	/**
-	 * @author denglerm This class is used to count ModelElements in the LeafSection.
+	 * @author denglerm This class is used to count ModelElements in the
+	 *         LeafSection.
 	 */
 
 	public class Countable implements ICountable {
@@ -186,7 +216,8 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 		/**
 		 * The constructor.
 		 * 
-		 * @param object the object, for which the occurrence is counted
+		 * @param object
+		 *            the object, for which the occurrence is counted
 		 */
 		public Countable(Object object) {
 			this.setCount(1);
@@ -195,7 +226,8 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 
 		/**
 		 * @see ICountable.
-		 * @param newCount the new occurrence count value
+		 * @param newCount
+		 *            the new occurrence count value
 		 */
 		public void setCount(int newCount) {
 			this.count = newCount;

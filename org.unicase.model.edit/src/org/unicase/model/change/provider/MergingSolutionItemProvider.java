@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingSolution;
 import org.unicase.model.provider.ModelEditPlugin;
@@ -135,64 +136,52 @@ public class MergingSolutionItemProvider extends SolutionItemProvider {
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors
-				.add(createChildParameter(
-						ChangePackage.Literals.MERGING_SOLUTION__APPLIED_OPERATIONS,
-						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
-								.createCompositeOperation()));
+		newChildDescriptors.add(createChildParameter(
+				ChangePackage.Literals.MERGING_SOLUTION__APPLIED_OPERATIONS,
+				OperationsFactory.eINSTANCE.createCompositeOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				ChangePackage.Literals.MERGING_SOLUTION__APPLIED_OPERATIONS,
+				OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				ChangePackage.Literals.MERGING_SOLUTION__APPLIED_OPERATIONS,
+				OperationsFactory.eINSTANCE.createAttributeOperation()));
+
+		newChildDescriptors.add(createChildParameter(
+				ChangePackage.Literals.MERGING_SOLUTION__APPLIED_OPERATIONS,
+				OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
 
 		newChildDescriptors
 				.add(createChildParameter(
 						ChangePackage.Literals.MERGING_SOLUTION__APPLIED_OPERATIONS,
-						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
-								.createCreateDeleteOperation()));
-
-		newChildDescriptors
-				.add(createChildParameter(
-						ChangePackage.Literals.MERGING_SOLUTION__APPLIED_OPERATIONS,
-						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
-								.createAttributeOperation()));
-
-		newChildDescriptors
-				.add(createChildParameter(
-						ChangePackage.Literals.MERGING_SOLUTION__APPLIED_OPERATIONS,
-						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
-								.createMultiAttributeOperation()));
-
-		newChildDescriptors
-				.add(createChildParameter(
-						ChangePackage.Literals.MERGING_SOLUTION__APPLIED_OPERATIONS,
-						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+						OperationsFactory.eINSTANCE
 								.createMultiAttributeSetOperation()));
 
 		newChildDescriptors
 				.add(createChildParameter(
 						ChangePackage.Literals.MERGING_SOLUTION__APPLIED_OPERATIONS,
-						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+						OperationsFactory.eINSTANCE
 								.createMultiAttributeMoveOperation()));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						ChangePackage.Literals.MERGING_SOLUTION__APPLIED_OPERATIONS,
-						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
-								.createSingleReferenceOperation()));
+		newChildDescriptors.add(createChildParameter(
+				ChangePackage.Literals.MERGING_SOLUTION__APPLIED_OPERATIONS,
+				OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
 
 		newChildDescriptors
 				.add(createChildParameter(
 						ChangePackage.Literals.MERGING_SOLUTION__APPLIED_OPERATIONS,
-						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+						OperationsFactory.eINSTANCE
 								.createMultiReferenceSetOperation()));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						ChangePackage.Literals.MERGING_SOLUTION__APPLIED_OPERATIONS,
-						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
-								.createMultiReferenceOperation()));
+		newChildDescriptors.add(createChildParameter(
+				ChangePackage.Literals.MERGING_SOLUTION__APPLIED_OPERATIONS,
+				OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
 
 		newChildDescriptors
 				.add(createChildParameter(
 						ChangePackage.Literals.MERGING_SOLUTION__APPLIED_OPERATIONS,
-						org.eclipse.emf.emfstore.internal.server.model.versioning.operations.OperationsFactory.eINSTANCE
+						OperationsFactory.eINSTANCE
 								.createMultiReferenceMoveOperation()));
 	}
 

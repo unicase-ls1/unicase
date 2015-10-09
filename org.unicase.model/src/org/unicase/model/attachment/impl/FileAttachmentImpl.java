@@ -22,25 +22,21 @@ import org.unicase.model.impl.AttachmentImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.attachment.impl.FileAttachmentImpl#getFileName
- * <em>File Name</em>}</li>
- * <li>{@link org.unicase.model.attachment.impl.FileAttachmentImpl#getFileHash
- * <em>File Hash</em>}</li>
- * <li>{@link org.unicase.model.attachment.impl.FileAttachmentImpl#getFileID
- * <em>File ID</em>}</li>
- * <li>{@link org.unicase.model.attachment.impl.FileAttachmentImpl#getFileSize
- * <em>File Size</em>}</li>
+ *   <li>{@link org.unicase.model.attachment.impl.FileAttachmentImpl#getFileName <em>File Name</em>}</li>
+ *   <li>{@link org.unicase.model.attachment.impl.FileAttachmentImpl#getFileHash <em>File Hash</em>}</li>
+ *   <li>{@link org.unicase.model.attachment.impl.FileAttachmentImpl#getFileID <em>File ID</em>}</li>
+ *   <li>{@link org.unicase.model.attachment.impl.FileAttachmentImpl#getFileSize <em>File Size</em>}</li>
+ *   <li>{@link org.unicase.model.attachment.impl.FileAttachmentImpl#getFileType <em>File Type</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class FileAttachmentImpl extends AttachmentImpl implements
 		FileAttachment {
 	/**
-	 * The default value of the '{@link #getFileName() <em>File Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getFileName() <em>File Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getFileName()
 	 * @generated
 	 * @ordered
@@ -48,9 +44,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 	protected static final String FILE_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFileName() <em>File Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getFileName() <em>File Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getFileName()
 	 * @generated
 	 * @ordered
@@ -58,9 +53,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 	protected String fileName = FILE_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getFileHash() <em>File Hash</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getFileHash() <em>File Hash</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getFileHash()
 	 * @generated
 	 * @ordered
@@ -68,9 +62,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 	protected static final String FILE_HASH_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFileHash() <em>File Hash</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getFileHash() <em>File Hash</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getFileHash()
 	 * @generated
 	 * @ordered
@@ -78,9 +71,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 	protected String fileHash = FILE_HASH_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getFileID() <em>File ID</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getFileID() <em>File ID</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getFileID()
 	 * @generated
 	 * @ordered
@@ -88,9 +80,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 	protected static final String FILE_ID_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFileID() <em>File ID</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getFileID() <em>File ID</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getFileID()
 	 * @generated
 	 * @ordered
@@ -98,9 +89,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 	protected String fileID = FILE_ID_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getFileSize() <em>File Size</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getFileSize() <em>File Size</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getFileSize()
 	 * @generated
 	 * @ordered
@@ -108,9 +98,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 	protected static final long FILE_SIZE_EDEFAULT = 0L;
 
 	/**
-	 * The cached value of the '{@link #getFileSize() <em>File Size</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getFileSize() <em>File Size</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getFileSize()
 	 * @generated
 	 * @ordered
@@ -118,9 +107,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 	protected long fileSize = FILE_SIZE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getFileType() <em>File Type</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getFileType() <em>File Type</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getFileType()
 	 * @generated
 	 * @ordered
@@ -128,9 +116,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 	protected static final FileAttachmentType FILE_TYPE_EDEFAULT = FileAttachmentType.BINARY;
 
 	/**
-	 * The cached value of the '{@link #getFileType() <em>File Type</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getFileType() <em>File Type</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getFileType()
 	 * @generated
 	 * @ordered
@@ -139,7 +126,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected FileAttachmentImpl() {
@@ -148,7 +134,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -158,7 +143,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -168,7 +152,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -183,7 +166,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -193,7 +175,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -208,7 +189,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -218,7 +198,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -233,7 +212,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -243,7 +221,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -258,7 +235,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -268,7 +244,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -283,7 +258,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -305,7 +279,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -332,7 +305,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -359,7 +331,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -384,7 +355,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

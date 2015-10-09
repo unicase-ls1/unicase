@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -9,9 +9,10 @@ package org.unicase.multiaction.navigator.wizards;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecp.editor.internal.e3.ShortLabelProvider;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -31,7 +32,8 @@ import org.unicase.model.organization.User;
 import org.unicase.ui.multiaction.MultiActionGenerator;
 
 /**
- * @author jfinis Main wizard page of the MultiactionWizard. Contains a list of future assignees.
+ * @author jfinis Main wizard page of the MultiactionWizard. Contains a list of
+ *         future assignees.
  */
 public class ChooseAssigneePage extends WizardPage {
 
@@ -57,8 +59,8 @@ public class ChooseAssigneePage extends WizardPage {
 	private AssigneePageListener listener;
 
 	/**
-	 * Returns the current list of assignees selected for the ActionItem. This list exactly reflects the users visible
-	 * in the dialog's table.
+	 * Returns the current list of assignees selected for the ActionItem. This
+	 * list exactly reflects the users visible in the dialog's table.
 	 * 
 	 * @return Current list of assignees.
 	 */
@@ -69,24 +71,29 @@ public class ChooseAssigneePage extends WizardPage {
 	/**
 	 * Default Constructor.
 	 * 
-	 * @param pageName page name, to be handed to the super constructor
-	 * @param multiactionWizard the wizard containing this page
+	 * @param pageName
+	 *            page name, to be handed to the super constructor
+	 * @param multiactionWizard
+	 *            the wizard containing this page
 	 */
-	protected ChooseAssigneePage(String pageName, MultiactionWizard multiactionWizard) {
+	protected ChooseAssigneePage(String pageName,
+			MultiactionWizard multiactionWizard) {
 		super(pageName);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
 		selected = new ArrayList<User>();
 		parentWizard = multiactionWizard;
-		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		labelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		listener = new AssigneePageListener();
 	}
 
 	/**
-	 * . ({@inheritDoc}) Note that after the control creation, the add-user-dialog is immediately shown. This is done
-	 * because everybody using this dialog wants to add users and thus wants to open the add user dialog, so it is done
-	 * automatically at the beginning.
+	 * . ({@inheritDoc}) Note that after the control creation, the
+	 * add-user-dialog is immediately shown. This is done because everybody
+	 * using this dialog wants to add users and thus wants to open the add user
+	 * dialog, so it is done automatically at the beginning.
 	 */
 	public void createControl(Composite parent) {
 		// Create composite
@@ -104,20 +111,25 @@ public class ChooseAssigneePage extends WizardPage {
 		// Buttons
 		addButton = new Button(composite, SWT.PUSH);
 		addButton.setText("Add..");
-		addButton.setLayoutData(new GridData(SWT.RIGHT, SWT.BOTTOM, false, false, 1, 1));
-		addButton.setToolTipText("Add additional assignees or groups of assignees to the list");
+		addButton.setLayoutData(new GridData(SWT.RIGHT, SWT.BOTTOM, false,
+				false, 1, 1));
+		addButton
+				.setToolTipText("Add additional assignees or groups of assignees to the list");
 		addButton.addListener(SWT.Selection, listener);
 
 		removeSelectedButton = new Button(composite, SWT.PUSH);
 		removeSelectedButton.setText("Remove Selected");
-		removeSelectedButton.setLayoutData(new GridData(SWT.RIGHT, SWT.BOTTOM, false, false, 1, 1));
+		removeSelectedButton.setLayoutData(new GridData(SWT.RIGHT, SWT.BOTTOM,
+				false, false, 1, 1));
 		removeSelectedButton.setEnabled(false);
-		removeSelectedButton.setToolTipText("Remove the selected assignees from the list");
+		removeSelectedButton
+				.setToolTipText("Remove the selected assignees from the list");
 		removeSelectedButton.addListener(SWT.Selection, listener);
 
 		removeAllButton = new Button(composite, SWT.PUSH);
 		removeAllButton.setText("Remove All");
-		removeAllButton.setLayoutData(new GridData(SWT.LEFT, SWT.BOTTOM, false, false, 1, 1));
+		removeAllButton.setLayoutData(new GridData(SWT.LEFT, SWT.BOTTOM, false,
+				false, 1, 1));
 		removeAllButton.setEnabled(false);
 		removeAllButton.setToolTipText("Remove all assignees from the list");
 		removeAllButton.addListener(SWT.Selection, listener);
@@ -132,15 +144,21 @@ public class ChooseAssigneePage extends WizardPage {
 	 * Shows the user-add-dialog.
 	 */
 	private void showUserDialog() {
-		org.eclipse.emf.ecp.common.utilities.ShortLabelProvider shortLabelProvider = new org.eclipse.emf.ecp.common.utilities.ShortLabelProvider();
-		String name = shortLabelProvider.getText(parentWizard.getSelectedActionItem());
-		AddUserDialog au = new AddUserDialog(ModelUtil.getProject(parentWizard.getSelectedActionItem()),
-			"Choose users and/or groups as assignees for action item \"" + name + "\"");
+		ShortLabelProvider shortLabelProvider = new ShortLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		String name = shortLabelProvider.getText(parentWizard
+				.getSelectedActionItem());
+		AddUserDialog au = new AddUserDialog(ModelUtil.getProject(parentWizard
+				.getSelectedActionItem()),
+				"Choose users and/or groups as assignees for action item \""
+						+ name + "\"");
 		if (au.open() == Window.OK) {
 			Object[] result = au.getResult();
 
 			if (result.length > 0) {
-				// If users/groups were selected, flatten them and add them to the selected users.
+				// If users/groups were selected, flatten them and add them to
+				// the selected users.
 				// Afterwards update the user interface
 				List<OrgUnit> list = new ArrayList<OrgUnit>(result.length);
 				for (Object o : result) {
@@ -157,8 +175,8 @@ public class ChooseAssigneePage extends WizardPage {
 	}
 
 	/**
-	 * Updates the user table and all buttons (enabling or disabling them) and sets an error message if only one user is
-	 * currently selected.
+	 * Updates the user table and all buttons (enabling or disabling them) and
+	 * sets an error message if only one user is currently selected.
 	 */
 	private void updateUI() {
 		// Turn off drawing to avoid flicker
@@ -178,7 +196,8 @@ public class ChooseAssigneePage extends WizardPage {
 		// Turn drawing back on!
 		table.setRedraw(true);
 
-		// If the table is not empty, the wizard may finish and the remove all button may be used
+		// If the table is not empty, the wizard may finish and the remove all
+		// button may be used
 		if (!selected.isEmpty()) {
 			removeAllButton.setEnabled(true);
 			if (selected.size() == 1) {
@@ -198,12 +217,14 @@ public class ChooseAssigneePage extends WizardPage {
 			setPageComplete(false);
 		}
 
-		// Since we just rebuilt the table, there cannot be any selected items, so disable the remove selected button
+		// Since we just rebuilt the table, there cannot be any selected items,
+		// so disable the remove selected button
 		removeSelectedButton.setEnabled(false);
 	}
 
 	/**
-	 * Listener handling button pressed events and selection events in the table.
+	 * Listener handling button pressed events and selection events in the
+	 * table.
 	 * 
 	 * @author jfinis
 	 */
@@ -218,8 +239,10 @@ public class ChooseAssigneePage extends WizardPage {
 				updateUI();
 			} else if (w == removeSelectedButton) {
 
-				// O(n²) complexity, but we won't have more than a dozen users in the table, so it's okay I guess
-				// Otherwise, we could refactor it to a linked hashmap or something similar
+				// O(nï¿½) complexity, but we won't have more than a dozen users
+				// in the table, so it's okay I guess
+				// Otherwise, we could refactor it to a linked hashmap or
+				// something similar
 				TableItem[] selects = table.getSelection();
 				for (TableItem t : selects) {
 					if (t.getData() instanceof User) {

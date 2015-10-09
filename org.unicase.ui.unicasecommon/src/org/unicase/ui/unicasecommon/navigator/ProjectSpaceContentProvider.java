@@ -14,14 +14,19 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecp.core.ECPProvider;
+import org.eclipse.emf.ecp.core.util.ECPUtil;
+import org.eclipse.emf.ecp.internal.ui.model.TreeContentProvider;
+import org.eclipse.emf.ecp.spi.core.util.InternalChildrenList;
 import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
 
 /**
  * Shows the project as orphans folder.
  * 
  * @author helming
  */
-public class ProjectSpaceContentProvider implements ContentProvider {
+public class ProjectSpaceContentProvider extends TreeContentProvider {
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -41,12 +46,15 @@ public class ProjectSpaceContentProvider implements ContentProvider {
 		}
 
 		Collection<EObject> ret = new ArrayList<EObject>();
-		EList<EObject> modelElements = project.getModelElementsByClass(EcoreFactory.eINSTANCE.createEObject().eClass(),
-			new BasicEList<EObject>());
+		EList<EObject> modelElements = project.getModelElementsByClass(
+				EcoreFactory.eINSTANCE.createEObject().eClass(),
+				new BasicEList<EObject>());
 		// FIXME: ugly hack to avoid dependency to model
 		for (EObject modelElement : modelElements) {
 			EObject econtainer = modelElement.eContainer();
-			if ((econtainer instanceof Project) && modelElement.eClass().getName().equals("CompositeSection")) {
+			if ((econtainer instanceof Project)
+					&& modelElement.eClass().getName()
+							.equals("CompositeSection")) {
 				ret.add(modelElement);
 			}
 		}
@@ -62,6 +70,19 @@ public class ProjectSpaceContentProvider implements ContentProvider {
 	 */
 	public boolean hasChildren(EObject rootObject) {
 		return true;
+	}
+
+	@Override
+	protected void fillChildren(Object parent, InternalChildrenList childrenList) {
+		if (parent == ECPUtil.getECPProviderRegistry()) {
+			final Collection<ECPProvider> providers = ECPUtil
+					.getECPProviderRegistry().getProviders();
+			for (final ECPProvider provider : providers) {
+				if (provider.hasCreateRepositorySupport()) {
+					childrenList.addChild(provider);
+				}
+			}
+		}
 	}
 
 }

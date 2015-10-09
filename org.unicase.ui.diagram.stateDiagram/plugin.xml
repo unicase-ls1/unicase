@@ -476,13 +476,15 @@
    <extension point="org.eclipse.ui.handlers" id="menu-handlers">
       <?gmfgen generated="true"?>
    </extension>
-    <extension
-         point="org.eclipse.emf.ecp.common.modelelementopener">
-      <ModelElementOpener
-            class="org.unicase.ui.stateDiagram.StateDiagramOpener"
-            name="org.unicase.ui.MEDiagramEditor">
-      </ModelElementOpener>
+      <extension
+         point="org.eclipse.emf.ecp.ui.modelElementOpener">
+            <modelElementOpener
+               class="org.unicase.ui.stateDiagram.StateDiagramOpener">
+                 <staticTester
+               modelElement="org.unicase.model.diagram.StateDiagram"
+               priority="1">
+         </staticTester>
+      </modelElementOpener>
    </extension>
-
    <!-- optionally, specify keybindings -->
 </plugin>

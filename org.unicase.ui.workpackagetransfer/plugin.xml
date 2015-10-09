@@ -18,7 +18,7 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="popup:org.eclipse.emf.ecp.navigator.viewer">
+            locationURI="popup:org.eclipse.emf.ecp.ui.ModelExplorerView">
          <separator
                name="org.unicase.ui.workpackagetransfer"
                visible="true">

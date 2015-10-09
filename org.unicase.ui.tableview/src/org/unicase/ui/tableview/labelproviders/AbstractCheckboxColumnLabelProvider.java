@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -21,13 +21,16 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 /**
- * This is a label provider for ColumnViewer columns which show a checkbox. The label providers makes an on-the-fly
- * snap-shot of a checkbox and returns this image to show a correct checkbox image on every platform. See also:
- * {@link http://tom-eclipse-dev.blogspot.com/2007/01/tableviewers-and-nativelooking.html}
+ * This is a label provider for ColumnViewer columns which show a checkbox. The
+ * label providers makes an on-the-fly snap-shot of a checkbox and returns this
+ * image to show a correct checkbox image on every platform. See also:
+ * {@link http
+ * ://tom-eclipse-dev.blogspot.com/2007/01/tableviewers-and-nativelooking.html}
  * 
  * @author Zardosht Hodaie
  */
-public abstract class AbstractCheckboxColumnLabelProvider extends ColumnLabelProvider {
+public abstract class AbstractCheckboxColumnLabelProvider extends
+		ColumnLabelProvider {
 	/**
 	 * Key to retrieve a checked checkbox image.
 	 */
@@ -90,13 +93,14 @@ public abstract class AbstractCheckboxColumnLabelProvider extends ColumnLabelPro
 		tmpShell.open();
 		GC gc = new GC(tmpShell);
 		Image image = new Image(display, 16, 16);
-		gc.copyArea(image, 1, 1);
+		// gc.copyArea(image, 1, 1);
 		gc.dispose();
 		tmpShell.close();
 		tmpShell.dispose();
 
 		ImageData imageData = image.getImageData();
-		imageData.transparentPixel = imageData.palette.getPixel(greenScreen.getRGB());
+		imageData.transparentPixel = imageData.palette.getPixel(greenScreen
+				.getRGB());
 		image.dispose();
 
 		Image ret = new Image(display, imageData);
@@ -114,8 +118,8 @@ public abstract class AbstractCheckboxColumnLabelProvider extends ColumnLabelPro
 	}
 
 	/**
-	 * {@inheritDoc} Sub-classes must override this method, and return a checked or an unchecked checkbox image using
-	 * JFaceResources.getImage(IMAGE_KEY);.
+	 * {@inheritDoc} Sub-classes must override this method, and return a checked
+	 * or an unchecked checkbox image using JFaceResources.getImage(IMAGE_KEY);.
 	 * 
 	 * @see org.eclipse.jface.viewers.ColumnLabelProvider#getImage(java.lang.Object)
 	 */

@@ -496,14 +496,17 @@
          categoryId="org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorID"
          defaultHandler="org.unicase.ui.diagram.activityDiagram.part.LoadResourceAction"/>
    </extension>
-
-   <extension
-         point="org.eclipse.emf.ecp.common.modelelementopener">
-      <ModelElementOpener
-            class="org.unicase.ui.activityDiagram.ActivityDiagramOpener"
-            name="org.unicase.ui.MEDiagramEditor">
-      </ModelElementOpener>
+      <extension
+         point="org.eclipse.emf.ecp.ui.modelElementOpener">
+      <modelElementOpener
+               class="org.unicase.ui.activityDiagram.ActivityDiagramOpener">
+                 <staticTester
+               modelElement="org.unicase.model.diagram.ActivityDiagram"
+               priority="5">
+         </staticTester>
+      </modelElementOpener>
    </extension>
+   
 
    <!-- optionally, specify keybindings -->
 </plugin>

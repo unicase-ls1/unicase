@@ -6,6 +6,7 @@
  */
 package org.unicase.ui.unicasecommon;
 
+import org.eclipse.emf.emfstore.internal.common.LogAdapter;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -14,6 +15,7 @@ import org.osgi.framework.BundleContext;
  * The activator class controls the plug-in life cycle.
  */
 public class Activator extends AbstractUIPlugin {
+	private LogAdapter logAdapter;
 
 	/**
 	 * The plug-in ID.
@@ -27,6 +29,7 @@ public class Activator extends AbstractUIPlugin {
 	 * The constructor.
 	 */
 	public Activator() {
+		logAdapter = new LogAdapter();
 	}
 
 	// BEGIN SUPRESS CATCH EXCEPTION
@@ -72,4 +75,42 @@ public class Activator extends AbstractUIPlugin {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
 
+	/**
+	 * Logs the given exception with the given message and an additional status
+	 * code to the error log.
+	 * 
+	 * @param message
+	 *            the message to log
+	 * @param exception
+	 *            the exception to log
+	 * @param statusInt
+	 *            a status code
+	 */
+	public void log(String message, Exception exception, int statusInt) {
+		logAdapter.log(message, exception, statusInt);
+	}
+
+	/**
+	 * Logs an exception to the error log.
+	 * 
+	 * @param message
+	 *            the message
+	 * @param e
+	 *            the exception
+	 */
+	public void logException(String message, Exception e) {
+		logAdapter.logException(message, e);
+	}
+
+	/**
+	 * Logs a warning to the error log.
+	 * 
+	 * @param message
+	 *            the message
+	 * @param e
+	 *            the exception
+	 */
+	public void logWarning(String message, Exception e) {
+		logAdapter.logWarning(message, e);
+	}
 }

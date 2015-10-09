@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universität München (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universitï¿½t Mï¿½nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -14,15 +14,13 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecp.common.model.ECPWorkspaceManager;
-import org.eclipse.emf.ecp.common.model.NoWorkspaceException;
-import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPProject;
-import org.eclipse.emf.ecp.common.model.workSpaceModel.ECPWorkspace;
-import org.eclipse.emf.ecp.common.util.UiUtil;
-import org.eclipse.emf.emfstore.common.model.IdEObjectCollection;
-import org.eclipse.emf.emfstore.common.model.Project;
-import org.eclipse.emf.emfstore.common.model.util.IdEObjectCollectionChangeObserver;
-import org.eclipse.emf.emfstore.common.model.util.ModelUtil;
+import org.eclipse.emf.ecp.core.ECPProject;
+import org.eclipse.emf.ecp.core.util.ECPUtil;
+import org.eclipse.emf.emfstore.internal.client.model.ESWorkspaceProviderImpl;
+import org.eclipse.emf.emfstore.internal.client.model.ProjectSpace;
+import org.eclipse.emf.emfstore.internal.client.model.Workspace;
+import org.eclipse.emf.emfstore.internal.common.model.IdEObjectCollection;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IToolBarManager;
@@ -45,13 +43,16 @@ import org.unicase.ui.tableview.viewer.METableViewer;
 import org.unicase.ui.taskview.TaskView;
 import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
 import org.unicase.ui.unicasecommon.common.util.UnicaseUiUtil;
+import org.unicase.ui.unicasecommon.navigator.commands.UiUtil;
 
 /**
  * A specialized UnicaseTableView to display all Attributes of model element.
  * 
  * @author Abdelhamid Barzali, Hodaie
  */
-public class UnicaseTableView extends ViewPart implements IdEObjectCollectionChangeObserver {
+public class UnicaseTableView extends ViewPart
+		implements
+		org.eclipse.emf.emfstore.internal.common.model.util.IdEObjectCollectionChangeObserver {
 
 	/**
 	 * Filter model elements by name in table viewer.
@@ -63,25 +64,28 @@ public class UnicaseTableView extends ViewPart implements IdEObjectCollectionCha
 		/**
 		 * {@inheritDoc}
 		 * 
-		 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object,
-		 *      java.lang.Object)
+		 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer,
+		 *      java.lang.Object, java.lang.Object)
 		 */
 		@Override
-		public boolean select(Viewer viewer, Object parentElement, Object element) {
+		public boolean select(Viewer viewer, Object parentElement,
+				Object element) {
 			// true = show; false = do not show
 			if (!(element instanceof UnicaseModelElement)) {
 				return false;
 			}
 			UnicaseModelElement me = (UnicaseModelElement) element;
 
-			if (me.getName() != null && match(me.getName(), txtFilter.getText())) {
+			if (me.getName() != null
+					&& match(me.getName(), txtFilter.getText())) {
 				return true;
 			}
 			return false;
 		}
 
 		private boolean match(String name, String filter) {
-			filter = filter.replace("*", ".*").toLowerCase().trim().concat(".*");
+			filter = filter.replace("*", ".*").toLowerCase().trim()
+					.concat(".*");
 			boolean result = false;
 			try {
 				result = name.toLowerCase().matches(filter);
@@ -96,10 +100,12 @@ public class UnicaseTableView extends ViewPart implements IdEObjectCollectionCha
 	private METableViewer viewer;
 
 	private Project activeProject;
-	private ECPWorkspace workspace;
+	private Workspace workspace;
 	private AdapterImpl workspaceListenerAdapter;
 
 	private Text txtFilter;
+
+	private ECPProject ecpProject;
 
 	/**
 	 * {@inheritDoc}
@@ -111,55 +117,38 @@ public class UnicaseTableView extends ViewPart implements IdEObjectCollectionCha
 		parent.setLayout(new GridLayout());
 		createFilterText(parent);
 
-		viewer = new METableViewer(parent, EcoreFactory.eINSTANCE.getEcorePackage().getEObject());
-		viewer.getTableViewer().getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		viewer.createColumns(EcoreFactory.eINSTANCE.getEcorePackage().getEObject(), null, false);
+		viewer = new METableViewer(parent, EcoreFactory.eINSTANCE
+				.getEcorePackage().getEObject());
+		viewer.getTableViewer().getTable()
+				.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		viewer.createColumns(EcoreFactory.eINSTANCE.getEcorePackage()
+				.getEObject(), null, false);
 
-		try {
-			workspace = ECPWorkspaceManager.getInstance().getWorkSpace();
-		} catch (NoWorkspaceException e) {
-			ModelUtil.logException("Failed to receive Project!", e);
-			return;
+		workspace = ESWorkspaceProviderImpl.getInstance()
+				.getInternalWorkspace();
+		if (workspace.getProjectSpaces() != null
+				&& !workspace.getProjectSpaces().isEmpty()) {
+			activeProject = workspace.getProjectSpaces().get(0).getProject();
+			activeProject.addIdEObjectCollectionChangeObserver(this);
 		}
-		workspaceListenerAdapter = new AdapterImpl() {
-
-			@Override
-			public void notifyChanged(Notification msg) {
-				if ((msg.getFeatureID(ECPWorkspace.class)) == org.eclipse.emf.ecp.common.model.workSpaceModel.WorkSpaceModelPackage.ECP_WORKSPACE__ACTIVE_PROJECT) {
-					ECPProject activeECPProject = workspace.getActiveProject();
-					if (activeECPProject != null) {
-						activeProject = (Project) activeECPProject.getRootContainer();
-						activeProject.addIdEObjectCollectionChangeObserver(UnicaseTableView.this);
-
-						viewer.setInput(activeProject);
-					} else {
-						activeProject = null;
-						viewer.setInput(activeProject);
-					}
-
-				}
-				super.notifyChanged(msg);
-			}
-		};
-		workspace.eAdapters().add(workspaceListenerAdapter);
+		if (activeProject != null && activeProject instanceof Project) {
+			ecpProject = ECPUtil.getECPProjectManager().getProject(
+					((ProjectSpace) activeProject.eContainer())
+							.getProjectName());
+		}
 
 		createActions();
 
 		getSite().setSelectionProvider(viewer.getTableViewer());
-
 		hookDoubleClickAction();
-
-		if (workspace.getActiveProject() != null) {
-			activeProject = (Project) workspace.getActiveProject().getRootContainer();
-			activeProject.addIdEObjectCollectionChangeObserver(this);
-		}
-		viewer.setInput(activeProject);
+		viewer.setInput(ecpProject);
 		viewer.addFilter(new ModelElementNameFilter());
 	}
 
 	private void createFilterText(Composite parent) {
 		txtFilter = new Text(parent, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
-		txtFilter.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		txtFilter
+				.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		txtFilter.setText("");
 
 		Listener listener = new Listener() {
@@ -190,46 +179,56 @@ public class UnicaseTableView extends ViewPart implements IdEObjectCollectionCha
 		final Action doubleClickAction = new Action() {
 			@Override
 			public void run() {
-				UnicaseActionHelper.openModelElement(UiUtil.getSelectedModelelement(), TaskView.class.getName());
+				UnicaseActionHelper.openModelElement(
+						UiUtil.getSelectedModelelement(),
+						TaskView.class.getName());
 			}
 		};
 		viewer.setDoubleClickAction(doubleClickAction);
 	}
 
 	private void createActions() {
-		IToolBarManager toolbarManager = getViewSite().getActionBars().getToolBarManager();
+		IToolBarManager toolbarManager = getViewSite().getActionBars()
+				.getToolBarManager();
 
 		// filter to model element type action
 		Action filterToMETypeAction = new Action() {
 			@Override
 			public void run() {
-				EClass meType = UnicaseUiUtil.showMETypeSelectionDialog(getSite().getShell(), true, false);
+				EClass meType = UnicaseUiUtil.showMETypeSelectionDialog(
+						getSite().getShell(), true, false);
 				if (meType != null) {
-					viewer.setInput(activeProject, meType);
+					viewer.setInput(ecpProject, meType);
 				}
 			}
 
 		};
-		filterToMETypeAction.setToolTipText("Filter to a specific model element type");
-		filterToMETypeAction.setImageDescriptor(Activator.getImageDescriptor("/icons/filter.png"));
+		filterToMETypeAction
+				.setToolTipText("Filter to a specific model element type");
+		filterToMETypeAction.setImageDescriptor(Activator
+				.getImageDescriptor("/icons/filter.png"));
 		toolbarManager.add(filterToMETypeAction);
 
 		// addition separator
-		toolbarManager.add(new GroupMarker(IWorkbenchActionConstants.MB_ADDITIONS));
+		toolbarManager.add(new GroupMarker(
+				IWorkbenchActionConstants.MB_ADDITIONS));
 		Separator separator2 = new Separator("separator2");
-		toolbarManager.insertAfter(IWorkbenchActionConstants.MB_ADDITIONS, separator2);
+		toolbarManager.insertAfter(IWorkbenchActionConstants.MB_ADDITIONS,
+				separator2);
 
 		// show/hide columns action
 		Action showHideColumnsAction = new Action() {
 			@Override
 			public void run() {
-				List<String> columnsToShow = viewer.displayShowHideColumnsDialog();
+				List<String> columnsToShow = viewer
+						.displayShowHideColumnsDialog();
 				viewer.showColumns(columnsToShow);
 			}
 
 		};
 		showHideColumnsAction.setToolTipText("Show/Hide columns");
-		showHideColumnsAction.setImageDescriptor(Activator.getImageDescriptor("/icons/table.png"));
+		showHideColumnsAction.setImageDescriptor(Activator
+				.getImageDescriptor("/icons/table.png"));
 		toolbarManager.add(showHideColumnsAction);
 
 	}
@@ -249,10 +248,12 @@ public class UnicaseTableView extends ViewPart implements IdEObjectCollectionCha
 	 */
 	@Override
 	public void dispose() {
-		workspace.eAdapters().remove(workspaceListenerAdapter);
-		if (workspace.getActiveProject() != null && workspace.getActiveProject().getRootContainer() != null) {
-			((Project) workspace.getActiveProject().getRootContainer()).removeIdEObjectCollectionChangeObserver(this);
-		}
+		// workspace.eAdapters().remove(workspaceListenerAdapter);
+		// if (workspace.getActiveProject() != null
+		// && workspace.getActiveProject().getRootContainer() != null) {
+		// ((Project) workspace.getActiveProject().getRootContainer())
+		// .removeIdEObjectCollectionChangeObserver(this);
+		// }
 
 		super.dispose();
 	}
@@ -260,10 +261,12 @@ public class UnicaseTableView extends ViewPart implements IdEObjectCollectionCha
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
-	 *      org.eclipse.emf.
+	 * @see 
+	 *      org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org
+	 *      .unicase.metamodel.Project, org.eclipse.emf.
 	 */
-	public void modelElementAdded(IdEObjectCollection project, EObject modelElement) {
+	public void modelElementAdded(IdEObjectCollection project,
+			EObject modelElement) {
 		viewer.refresh();
 	}
 
@@ -272,7 +275,8 @@ public class UnicaseTableView extends ViewPart implements IdEObjectCollectionCha
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
-	public void modelElementRemoved(IdEObjectCollection project, EObject modelElement) {
+	public void modelElementRemoved(IdEObjectCollection project,
+			EObject modelElement) {
 		viewer.refresh();
 	}
 
@@ -280,9 +284,11 @@ public class UnicaseTableView extends ViewPart implements IdEObjectCollectionCha
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
+	 *      org.unicase.metamodel.Project,
+	 *      org.unicase.model.UnicaseModelElement)
 	 */
-	public void notify(Notification notification, IdEObjectCollection project, EObject modelElement) {
+	public void notify(Notification notification, IdEObjectCollection project,
+			EObject modelElement) {
 		viewer.getTableViewer().update(modelElement, null);
 	}
 

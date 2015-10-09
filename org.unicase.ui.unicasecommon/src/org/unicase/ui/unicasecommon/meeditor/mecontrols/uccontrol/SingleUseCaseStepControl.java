@@ -1,12 +1,10 @@
 /**
- * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universit�t M�nchen (TUM).
+ * <copyright> Copyright (c) 2009-2012 Chair of Applied Software Engineering, Technische Universit‰t M¸nchen (TUM).
  * All rights reserved. This program and the accompanying materials are made available under the terms of
  * the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.unicasecommon.meeditor.mecontrols.uccontrol;
-
-import javax.naming.ldap.ControlFactory;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -18,6 +16,7 @@ import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.emfstore.internal.client.model.util.EMFStoreCommand;
+import org.eclipse.emf.emfstore.internal.common.model.Project;
 import org.eclipse.emf.emfstore.internal.common.model.util.ModelUtil;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
@@ -39,7 +38,7 @@ import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.impl.RequirementFactoryImpl;
-import org.unicase.ui.unicasecommon.common.util.UnicaseActionHelper;
+import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.unicasecommon.meeditor.mecontrols.AbstractUnicaseMEControl;
 
 /**
@@ -78,14 +77,20 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 	/**
 	 * Public constructor.
 	 * 
-	 * @param editingDomain the current editing Domain
-	 * @param modelElement current ModelElement that is displayed
-	 * @param toolkit used toolkit
-	 * @param contextModelElement the
-	 * @param reference a specific reference
+	 * @param editingDomain
+	 *            the current editing Domain
+	 * @param modelElement
+	 *            current ModelElement that is displayed
+	 * @param toolkit
+	 *            used toolkit
+	 * @param contextModelElement
+	 *            the
+	 * @param reference
+	 *            a specific reference
 	 */
-	public SingleUseCaseStepControl(EditingDomain editingDomain, EObject modelElement, FormToolkit toolkit,
-		EObject contextModelElement, final EReference reference) {
+	public SingleUseCaseStepControl(EditingDomain editingDomain,
+			EObject modelElement, FormToolkit toolkit,
+			EObject contextModelElement, final EReference reference) {
 
 		this.reference = reference;
 		this.contextModelElement = contextModelElement;
@@ -93,8 +98,8 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 			@Override
 			public void notifyChanged(Notification msg) {
 				if (msg.getFeature() != null
-					&& (msg.getFeatureID(Step.class) == RequirementPackage.STEP__INCLUDED_USE_CASE || msg
-						.getFeatureID(Step.class) == RequirementPackage.STEP__INCLUDED_SYSTEM_FUNCTION)) {
+						&& (msg.getFeatureID(Step.class) == RequirementPackage.STEP__INCLUDED_USE_CASE || msg
+								.getFeatureID(Step.class) == RequirementPackage.STEP__INCLUDED_SYSTEM_FUNCTION)) {
 					// buildStep();
 					reLayout();
 				}
@@ -102,8 +107,9 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 			}
 		};
 
-		adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 		modelElement.eAdapters().add(eAdapter);
 
@@ -112,8 +118,10 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 	/**
 	 * Method creates the specific widget and the containing elements.
 	 * 
-	 * @param parent surrounding widget or container
-	 * @param style represents the style that should be used
+	 * @param parent
+	 *            surrounding widget or container
+	 * @param style
+	 *            represents the style that should be used
 	 * @return the control representing an single use case step
 	 */
 	@Override
@@ -122,26 +130,31 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 		parentComposite = parent;
 
 		if (((Step) getModelElement()).isUserStep()) {
-			backGroundColor = parent.getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND);
+			backGroundColor = parent.getDisplay().getSystemColor(
+					SWT.COLOR_INFO_BACKGROUND);
 		} else {
-			backGroundColor = parent.getDisplay().getSystemColor(SWT.COLOR_GRAY);
+			backGroundColor = parent.getDisplay()
+					.getSystemColor(SWT.COLOR_GRAY);
 		}
 
 		mainComposite = getToolkit().createComposite(parent);
 		mainComposite.setLayout(new GridLayout(1, true));
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(mainComposite);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING)
+				.grab(true, false).applyTo(mainComposite);
 		mainComposite.setBackground(backGroundColor);
 
 		buttonComposite = getToolkit().createComposite(mainComposite);
 		buttonComposite.setLayout(new GridLayout(3, true));
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(buttonComposite);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING)
+				.grab(true, false).applyTo(buttonComposite);
 		buttonComposite.setBackground(backGroundColor);
 
 		buildButtons();
 
 		textComposite = getToolkit().createComposite(mainComposite);
 		textComposite.setLayout(new GridLayout(1, true));
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(textComposite);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING)
+				.grab(true, false).applyTo(textComposite);
 		textComposite.setBackground(backGroundColor);
 
 		includeComposite = getToolkit().createComposite(mainComposite);
@@ -168,7 +181,8 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 	}
 
 	/**
-	 * creates the 'insert system step', 'insert actor step' and 'delete' button on the top of every step.
+	 * creates the 'insert system step', 'insert actor step' and 'delete' button
+	 * on the top of every step.
 	 * 
 	 * @param position
 	 * @param parent
@@ -184,7 +198,8 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 		gdActorLink.horizontalAlignment = GridData.HORIZONTAL_ALIGN_BEGINNING;
 		gdActorLink.horizontalSpan = 1;
 
-		Hyperlink addActorStepLink = getToolkit().createHyperlink(buttonComposite, "Insert Actor Step", parentStyle);
+		Hyperlink addActorStepLink = getToolkit().createHyperlink(
+				buttonComposite, "Insert Actor Step", parentStyle);
 		addActorStepLink.setBackground(backGroundColor);
 		addActorStepLink.addHyperlinkListener(new IHyperlinkListener() {
 			public void linkActivated(HyperlinkEvent e) {
@@ -206,7 +221,8 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 		gdSystemLink.grabExcessHorizontalSpace = true;
 		gdSystemLink.horizontalSpan = 1;
 
-		Hyperlink addSystemStepLink = getToolkit().createHyperlink(buttonComposite, "Insert System Step", parentStyle);
+		Hyperlink addSystemStepLink = getToolkit().createHyperlink(
+				buttonComposite, "Insert System Step", parentStyle);
 		addSystemStepLink.setBackground(backGroundColor);
 		addSystemStepLink.addHyperlinkListener(new IHyperlinkListener() {
 
@@ -228,11 +244,11 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 		gdDeleteLink.grabExcessHorizontalSpace = true;
 		gdDeleteLink.horizontalSpan = 1;
 
-		ImageHyperlink deleteLink = getToolkit().createImageHyperlink(buttonComposite, parentStyle);
+		ImageHyperlink deleteLink = getToolkit().createImageHyperlink(
+				buttonComposite, parentStyle);
 		deleteLink.setBackground(backGroundColor);
-		deleteLink.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_TOOL_DELETE));
-		deleteLink.addMouseListener(new MEHyperLinkDeleteAdapter(contextModelElement, reference, getModelElement(),
-			UnicaseActionHelper.getContext(getModelElement())));
+		deleteLink.setImage(PlatformUI.getWorkbench().getSharedImages()
+				.getImage(ISharedImages.IMG_TOOL_DELETE));
 		deleteLink.setLayoutData(gdDeleteLink);
 	}
 
@@ -254,20 +270,25 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 		}
 
 		ControlFactory cFactory = new ControlFactory();
-		IItemPropertyDescriptor pDescriptorName = adapterFactoryItemDelegator.getPropertyDescriptor(getModelElement(),
-			"name");
-		textControlName = cFactory.createControl(pDescriptorName, getModelElement());
-		cName = textControlName.createControl(textComposite, parentStyle, pDescriptorName, getModelElement(),
-			UnicaseActionHelper.getContext(getModelElement()), getToolkit());
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).hint(250, 16).grab(true, false).applyTo(cName);
+		IItemPropertyDescriptor pDescriptorName = adapterFactoryItemDelegator
+				.getPropertyDescriptor(getModelElement(), "name");
+		textControlName = cFactory.createControl(pDescriptorName,
+				getModelElement());
+		cName = textControlName.createControl(textComposite, parentStyle,
+				pDescriptorName, getModelElement(), getToolkit());
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).hint(250, 16)
+				.grab(true, false).applyTo(cName);
 
-		IItemPropertyDescriptor pDescriptorDescription = adapterFactoryItemDelegator.getPropertyDescriptor(
-			getModelElement(), "description");
-		textControlDescription = cFactory.createControl(pDescriptorDescription, getModelElement());
+		IItemPropertyDescriptor pDescriptorDescription = adapterFactoryItemDelegator
+				.getPropertyDescriptor(getModelElement(), "description");
+		textControlDescription = cFactory.createControl(pDescriptorDescription,
+				getModelElement());
 
-		cDescription = textControlDescription.createControl(textComposite, parentStyle, pDescriptorDescription,
-			getModelElement(), UnicaseActionHelper.getContext(getModelElement()), getToolkit());
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).hint(250, 150).grab(true, false).applyTo(cDescription);
+		cDescription = textControlDescription.createControl(textComposite,
+				parentStyle, pDescriptorDescription, getModelElement(),
+				getToolkit());
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).hint(250, 150)
+				.grab(true, false).applyTo(cDescription);
 
 		cDescription.setBackground(mainComposite.getBackground());
 		textComposite.layout();
@@ -275,7 +296,8 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 	}
 
 	/**
-	 * creates the panel for including the system function or use case in a step.
+	 * creates the panel for including the system function or use case in a
+	 * step.
 	 * 
 	 * @param parent
 	 * @return
@@ -297,23 +319,30 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 		ControlFactory cFactory = new ControlFactory();
 
 		if (((Step) getModelElement()).isUserStep()) {
-			// TODO getting the right descriptor is currently hard coded. Maybe should be changed.
-			pDescriptorIncluded = adapterFactoryItemDelegator.getPropertyDescriptor(getModelElement(),
-				"includedUseCase");
-			includeTextLabel = getToolkit().createLabel(includeComposite, "Include Use Case: ");
+			// TODO getting the right descriptor is currently hard coded. Maybe
+			// should be changed.
+			pDescriptorIncluded = adapterFactoryItemDelegator
+					.getPropertyDescriptor(getModelElement(), "includedUseCase");
+			includeTextLabel = getToolkit().createLabel(includeComposite,
+					"Include Use Case: ");
 			includeTextLabel.setBackground(backGroundColor);
 
 		} else {
-			// TODO getting the right descriptor is currently hard coded. Maybe should be changed.
-			pDescriptorIncluded = adapterFactoryItemDelegator.getPropertyDescriptor(getModelElement(),
-				"includedSystemFunction");
-			includeTextLabel = getToolkit().createLabel(includeComposite, "Include System Function: ");
+			// TODO getting the right descriptor is currently hard coded. Maybe
+			// should be changed.
+			pDescriptorIncluded = adapterFactoryItemDelegator
+					.getPropertyDescriptor(getModelElement(),
+							"includedSystemFunction");
+			includeTextLabel = getToolkit().createLabel(includeComposite,
+					"Include System Function: ");
 			includeTextLabel.setBackground(backGroundColor);
 		}
 
-		includeLinkControl = cFactory.createControl(pDescriptorIncluded, getModelElement());
-		cIncludeLink = includeLinkControl.createControl(includeComposite, parentStyle, pDescriptorIncluded,
-			getModelElement(), UnicaseActionHelper.getContext(getModelElement()), getToolkit());
+		includeLinkControl = cFactory.createControl(pDescriptorIncluded,
+				getModelElement());
+		cIncludeLink = includeLinkControl.createControl(includeComposite,
+				parentStyle, pDescriptorIncluded, getModelElement(),
+				getToolkit());
 		cIncludeLink.setBackground(mainComposite.getBackground());
 
 		includeComposite.layout();
@@ -399,7 +428,8 @@ public class SingleUseCaseStepControl extends AbstractUnicaseMEControl {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor, EObject modelElement) {
+	public int canRender(IItemPropertyDescriptor itemPropertyDescriptor,
+			EObject modelElement) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

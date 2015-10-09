@@ -10,8 +10,10 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.internal.common.model.NonDomainElement;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.rationale.*;
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.AudioComment;
 import org.unicase.model.rationale.Comment;
@@ -129,8 +131,7 @@ public class RationaleAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseNonDomainElement(
-				org.eclipse.emf.emfstore.internal.common.model.NonDomainElement object) {
+		public Adapter caseNonDomainElement(NonDomainElement object) {
 			return createNonDomainElementAdapter();
 		}
 

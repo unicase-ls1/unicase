@@ -9,6 +9,7 @@ package org.unicase.model.util.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.unicase.model.util.*;
 import org.unicase.model.util.ModelElementPath;
 import org.unicase.model.util.UtilPackage;
 

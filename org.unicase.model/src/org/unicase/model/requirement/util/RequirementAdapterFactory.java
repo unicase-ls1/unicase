@@ -10,8 +10,10 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.emfstore.internal.common.model.NonDomainElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Criterion;
+import org.unicase.model.requirement.*;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.ActorInstance;
 import org.unicase.model.requirement.FunctionalRequirement;
@@ -136,8 +138,7 @@ public class RequirementAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseNonDomainElement(
-				org.eclipse.emf.emfstore.internal.common.model.NonDomainElement object) {
+		public Adapter caseNonDomainElement(NonDomainElement object) {
 			return createNonDomainElementAdapter();
 		}
 
