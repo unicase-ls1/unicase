@@ -836,5 +836,28 @@
            versionIdentifier="8">
      </ModelVersion>
   </extension>
-
+  <extension
+        id="org_unicase_application"
+        point="org.eclipse.core.runtime.products">
+     <product
+           application="org.eclipse.ui.ide.workbench"
+           name="UNICASE Application">
+        <property
+              name="windowImages"
+              value="/org.eclipse.emf.ecp.ui.e3/icons/bricks.png">
+        </property>
+        <property
+              name="aboutText"
+              value="%productBlurb">
+        </property>
+        <property
+              name="aboutImage"
+              value="/org.eclipse.emf.ecp.application.e3/icons/eclipse_lg.gif">
+        </property>
+        <property
+              name="appName"
+              value="UNICASE Application">
+        </property>
+     </product>
+  </extension>
 </plugin>

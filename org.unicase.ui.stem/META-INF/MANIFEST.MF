@@ -17,8 +17,7 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  lib/org.eclipse.nebula.widgets.ganttchart-2.0-NIGHTLY.jar
-Import-Package: org.eclipse.emf.ecp.core.util;version="1.5.1",
- org.eclipse.emf.ecp.ui.common.dnd;version="1.5.1",
+Import-Package: org.eclipse.emf.ecp.ui.common.dnd,
  org.eclipse.emf.edit.ui.dnd,
  org.eclipse.emf.edit.ui.provider,
  org.eclipse.ui.forms.widgets

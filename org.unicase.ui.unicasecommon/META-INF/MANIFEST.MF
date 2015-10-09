@@ -28,7 +28,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.ecp.editor.e3,
  org.eclipse.emf.ecp.explorereditorbridge,
  org.eclipse.emf.ecp.ide.editor.view,
- org.eclipse.jface.databinding
+ org.eclipse.jface.databinding,
+ org.eclipse.emf.databinding,
+ org.eclipse.emf.databinding.edit
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.unicase.ui.unicasecommon,
