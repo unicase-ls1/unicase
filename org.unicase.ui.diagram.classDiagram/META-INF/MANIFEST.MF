@@ -47,6 +47,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecp.common,
  org.eclipse.emf.ecp.ui
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Eclipse-LazyStart: true
 Import-Package: org.unicase.ui.unicasecommon.diagram.figures

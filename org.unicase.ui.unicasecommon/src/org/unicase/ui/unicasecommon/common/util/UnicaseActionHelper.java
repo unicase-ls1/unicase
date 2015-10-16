@@ -65,8 +65,7 @@ public final class UnicaseActionHelper {
 			return (UnicaseModelElement) obj;
 		} else if (obj instanceof DelegatingWrapperItemProvider) {
 			if (((DelegatingWrapperItemProvider) obj).getValue() instanceof UnicaseModelElement) {
-				return (UnicaseModelElement) ((DelegatingWrapperItemProvider) obj)
-						.getValue();
+				return (UnicaseModelElement) ((DelegatingWrapperItemProvider) obj).getValue();
 			} else {
 				return null;
 			}
@@ -80,8 +79,7 @@ public final class UnicaseActionHelper {
 	 * @return the selected object
 	 */
 	public static Object getSelection() {
-		ISelectionService selectionService = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getSelectionService();
+		ISelectionService selectionService = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 
 		ISelection sel = selectionService.getSelection();
 		if (!(sel instanceof IStructuredSelection)) {
@@ -118,8 +116,7 @@ public final class UnicaseActionHelper {
 		String partId = HandlerUtil.getActivePartId(event);
 		if (partId != null && partId.equals(meeditorId)) {
 			// extract model element from editor input
-			IEditorInput editorInput = PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getActivePage()
+			IEditorInput editorInput = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 					.getActiveEditor().getEditorInput();
 			Object obj = editorInput.getAdapter(EObject.class);
 
@@ -129,8 +126,7 @@ public final class UnicaseActionHelper {
 
 		} else {
 			// extract model element from current selection in navigator
-			final ISelection selection = HandlerUtil
-					.getActiveMenuSelection(event);
+			final ISelection selection = HandlerUtil.getActiveMenuSelection(event);
 			final IStructuredSelection ssel = (IStructuredSelection) selection;
 			EObject eObject = (EObject) ssel.getFirstElement();
 			if (!(eObject instanceof UnicaseModelElement)) {
@@ -149,8 +145,7 @@ public final class UnicaseActionHelper {
 		String partId = HandlerUtil.getActivePartId(event);
 		if (partId != null && partId.equals(meeditorId)) {
 			// extract model element from editor input
-			IEditorInput editorInput = PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getActivePage()
+			IEditorInput editorInput = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 					.getActiveEditor().getEditorInput();
 			Object obj = editorInput.getAdapter(EObject.class);
 
@@ -197,14 +192,11 @@ public final class UnicaseActionHelper {
 		URIEditorInput input = new URIEditorInput(uri, diagram.getName());
 
 		try {
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-					.getActivePage().openEditor(input, id, true);
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-					.getActivePage()
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input, id, true);
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 					.showView("org.eclipse.ui.views.PropertySheet");
 		} catch (PartInitException e) {
-			ErrorDialog.openError(PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getShell(), "Error",
+			ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error",
 					e.getMessage(), e.getStatus());
 		}
 	}
@@ -226,8 +218,7 @@ public final class UnicaseActionHelper {
 	 *            (see description above)
 	 */
 	public static void openModelElement(EObject me, String identifier) {
-		final InternalProject project = (InternalProject) ECPUtil
-				.getECPProjectManager().getProject(me);
+		final InternalProject project = (InternalProject) ECPUtil.getECPProjectManager().getProject(me);
 		ECPHandlerHelper.openModelElement(me, project);
 	}
 
@@ -239,8 +230,7 @@ public final class UnicaseActionHelper {
 	 * @return the context
 	 */
 	public static ESLocalProject getContext(EObject modelElement) {
-		return (ESLocalProject) ECPUtil.getECPProjectManager().getProject(
-				modelElement);
+		return (ESLocalProject) ECPUtil.getECPProjectManager().getProject(modelElement);
 	}
 
 	/**
@@ -259,8 +249,7 @@ public final class UnicaseActionHelper {
 	 *            if a reply widget should be automatically shown.
 	 */
 	public static void openDiscussion(EObject me, boolean toggleReply) {
-		IHandlerService handlerService = (IHandlerService) PlatformUI
-				.getWorkbench().getService(IHandlerService.class);
+		IHandlerService handlerService = PlatformUI.getWorkbench().getService(IHandlerService.class);
 
 		IEvaluationContext context = handlerService.getCurrentState();
 		context.addVariable(ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE, me);
@@ -269,8 +258,7 @@ public final class UnicaseActionHelper {
 		}
 
 		try {
-			handlerService.executeCommand(MEEDITOR_OPENDISCUSSION_COMMAND_ID,
-					null);
+			handlerService.executeCommand(MEEDITOR_OPENDISCUSSION_COMMAND_ID, null);
 		} catch (ExecutionException e) {
 			ModelUtil.logWarning(e.getMessage(), e);
 
@@ -297,8 +285,7 @@ public final class UnicaseActionHelper {
 	 *            the project space.
 	 */
 	public static void openDashboard(ProjectSpace projectSpace) {
-		IHandlerService handlerService = (IHandlerService) PlatformUI
-				.getWorkbench().getService(IHandlerService.class);
+		IHandlerService handlerService = PlatformUI.getWorkbench().getService(IHandlerService.class);
 
 		IEvaluationContext context = handlerService.getCurrentState();
 		context.addVariable(DASHBOARD_CONTEXT_VARIABLE, projectSpace);

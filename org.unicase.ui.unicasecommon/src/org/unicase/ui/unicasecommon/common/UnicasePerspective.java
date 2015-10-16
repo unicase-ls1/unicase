@@ -18,7 +18,7 @@ import org.eclipse.ui.console.IConsoleConstants;
  */
 public class UnicasePerspective implements IPerspectiveFactory {
 
-	private IPageLayout factory;
+	public static final String UNICASE_PERSPECTIVE_ID = "org.unicase.ui.unicasecommon.common.UnicasePerspective";
 
 	/**
 	 * . Constructor
@@ -30,28 +30,17 @@ public class UnicasePerspective implements IPerspectiveFactory {
 	/**
 	 * . {@inheritDoc}
 	 */
-	public void createInitialLayout(IPageLayout factory) {
-		this.factory = factory;
-		addViews();
-	}
+	public void createInitialLayout(IPageLayout layout) {
 
-	private void addViews() {
-		// Creates the overall folder layout.
-		// Note that each new Folder uses a percentage of the remaining
-		// EditorArea.
-		IFolderLayout topLeft = factory.createFolder("topLeft", // NON-NLS-1
-				IPageLayout.LEFT, 0.25f, factory.getEditorArea());
-
+		IFolderLayout topLeft = layout.createFolder("topLeft", // NON-NLS-1
+				IPageLayout.LEFT, 0.25f, layout.getEditorArea());
 		topLeft.addView("org.eclipse.emf.ecp.ui.ModelExplorerView"); // NON-NLS-1
-
-		IFolderLayout bottom = factory.createFolder("bottomRight", // NON-NLS-1
-				IPageLayout.BOTTOM, 0.7f, factory.getEditorArea());
-
+		IFolderLayout bottom = layout.createFolder("bottomRight", // NON-NLS-1
+				IPageLayout.BOTTOM, 0.7f, layout.getEditorArea());
 		bottom.addView("org.eclipse.emf.ecp.ui.ModelRepositoriesView");
 		bottom.addView("org.unicase.ui.taskview");
-
+		bottom.addView("org.unicase.ui.treeview.views.StatusView");
 		bottom.addPlaceholder(IConsoleConstants.ID_CONSOLE_VIEW);
-
 	}
 
 }

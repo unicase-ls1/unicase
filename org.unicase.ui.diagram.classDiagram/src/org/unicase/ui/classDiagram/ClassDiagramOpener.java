@@ -8,7 +8,6 @@ package org.unicase.ui.classDiagram;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecp.core.ECPProject;
-import org.eclipse.emf.ecp.ui.util.ECPModelElementOpener;
 import org.unicase.model.diagram.ClassDiagram;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.unicasecommon.common.diagram.DiagramOpener;
@@ -18,8 +17,7 @@ import org.unicase.ui.unicasecommon.common.diagram.DiagramOpener;
  * 
  * @author koegel
  */
-public class ClassDiagramOpener extends DiagramOpener implements
-		ECPModelElementOpener {
+public class ClassDiagramOpener extends DiagramOpener implements org.eclipse.emf.ecp.ui.util.ECPModelElementOpener {
 
 	/**
 	 * Convenient constructor.
@@ -46,12 +44,11 @@ public class ClassDiagramOpener extends DiagramOpener implements
 	public void openModelElement(Object element, ECPProject ecpProject) {
 		if (element instanceof ClassDiagram) {
 			MEDiagram diagram = (MEDiagram) element;
-			super.openDiagram(diagram,
-					"org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorID");
+			super.openDiagram(diagram, "org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorID");
 		} else {
-			throw new IllegalArgumentException(
-					"Opener only applicable for MEDiagrams");
+			throw new IllegalArgumentException("Opener only applicable for MEDiagrams");
 		}
+
 	}
 
 }

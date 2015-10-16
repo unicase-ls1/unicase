@@ -6,7 +6,7 @@ Bundle-Version: 0.5.2.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: unicase.org
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.unicase.model,
  org.unicase.model.activity,
  org.unicase.model.activity.impl,

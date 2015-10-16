@@ -23,15 +23,13 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.emfstore.server.model,
  org.unicase.model,
  org.eclipse.emf.ecp.emfstore.core,
- org.eclipse.emf.ecp.ui.e3,
  org.eclipse.core.expressions,
- org.eclipse.emf.ecp.editor.e3,
  org.eclipse.emf.ecp.explorereditorbridge,
  org.eclipse.emf.ecp.ide.editor.view,
  org.eclipse.jface.databinding,
  org.eclipse.emf.databinding,
  org.eclipse.emf.databinding.edit
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: org.unicase.ui.unicasecommon,
  org.unicase.ui.unicasecommon.common,
@@ -55,6 +53,8 @@ Export-Package: org.unicase.ui.unicasecommon,
  org.unicase.ui.unicasecommon.navigator.wizards,
  org.unicase.ui.unicasecommon.observer
 Import-Package: org.eclipse.emf.common.ui,
+ org.eclipse.emf.ecp.editor.e3;version="1.6.0",
+ org.eclipse.ui.internal.ide.model,
  org.eclipse.ui.part,
  org.unicase.model.diagram,
  org.unicase.model.diagram.impl,

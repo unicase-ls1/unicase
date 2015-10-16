@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.horizontal.model="http://org/eclipse/emf/ecp/view/horizontal/model" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/170" xmlns:org.eclipse.emf.ecp.view.vertical.model="http://org/eclipse/emf/ecp/view/vertical/model" xmi:id="_4nQnQHPrEeWDOMQZ7VnKWg" name="CompositeSection" ecorePath="/org.unicase.model/model/model.ecore">
+  <rootEClass href="http://unicase.org/model#//document/CompositeSection"/>
+  <children xsi:type="org.eclipse.emf.ecp.view.horizontal.model:HorizontalLayout" xmi:id="_C-x0sHPsEeWDOMQZ7VnKWg">
+    <children xsi:type="org.eclipse.emf.ecp.view.vertical.model:VerticalLayout" xmi:id="_DXblQHPsEeWDOMQZ7VnKWg">
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_A5IW0HPsEeWDOMQZ7VnKWg" name="Control name">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_A5IW0XPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://unicase.org/model#//UnicaseModelElement/name"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_A5LaIHPsEeWDOMQZ7VnKWg" name="Control description">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_A5LaIXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://unicase.org/model#//UnicaseModelElement/description"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_A5N2YHPsEeWDOMQZ7VnKWg" name="Control state">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_A5N2YXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://unicase.org/model#//UnicaseModelElement/state"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_A5PEgHPsEeWDOMQZ7VnKWg" name="Control creationDate">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_A5PEgXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://unicase.org/model#//UnicaseModelElement/creationDate"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_A5PrkHPsEeWDOMQZ7VnKWg" name="Control creator">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_A5PrkXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://unicase.org/model#//UnicaseModelElement/creator"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_A5MoQHPsEeWDOMQZ7VnKWg" name="Control attachments">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_A5MoQXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EReference" href="http://unicase.org/model#//UnicaseModelElement/attachments"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_A5NPUHPsEeWDOMQZ7VnKWg" name="Control incomingDocumentReferences">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_A5NPUXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EReference" href="http://unicase.org/model#//UnicaseModelElement/incomingDocumentReferences"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_A5OdcHPsEeWDOMQZ7VnKWg" name="Control comments">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_A5OdcXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EReference" href="http://unicase.org/model#//UnicaseModelElement/comments"/>
+        </domainModelReference>
+      </children>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.vertical.model:VerticalLayout" xmi:id="_DvOaMHPsEeWDOMQZ7VnKWg">
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_A5N2YnPsEeWDOMQZ7VnKWg" name="Control appliedStereotypeInstances">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_A5N2Y3PsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EReference" href="http://unicase.org/model#//UnicaseModelElement/appliedStereotypeInstances"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_A5QSoHPsEeWDOMQZ7VnKWg" name="Control subsections">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_A5QSoXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EReference" href="http://unicase.org/model#//document/CompositeSection/subsections"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_A5MBMHPsEeWDOMQZ7VnKWg" name="Control annotations">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_A5MBMXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EReference" href="http://unicase.org/model#//UnicaseModelElement/annotations"/>
+        </domainModelReference>
+      </children>
+    </children>
+  </children>
+</org.eclipse.emf.ecp.view.model:View>

@@ -13,7 +13,7 @@ Require-Bundle: org.unicase.ui.tableview,
  org.eclipse.emf.emfstore.client.ui,
  org.unicase.model,
  org.eclipse.emf.ecp.core
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  lib/org.eclipse.nebula.widgets.ganttchart-2.0-NIGHTLY.jar

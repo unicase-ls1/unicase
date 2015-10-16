@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.eclipse.emf.ecp.view.model:View xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.ecp.view.horizontal.model="http://org/eclipse/emf/ecp/view/horizontal/model" xmlns:org.eclipse.emf.ecp.view.model="http://org/eclipse/emf/ecp/view/model/170" xmlns:org.eclipse.emf.ecp.view.vertical.model="http://org/eclipse/emf/ecp/view/vertical/model" xmi:id="_tXSSYHPsEeWDOMQZ7VnKWg" name="BugReport" ecorePath="/org.unicase.model/model/model.ecore">
+  <rootEClass href="http://unicase.org/model#//bug/BugReport"/>
+  <children xsi:type="org.eclipse.emf.ecp.view.horizontal.model:HorizontalLayout" xmi:id="_uJP60HPsEeWDOMQZ7VnKWg">
+    <children xsi:type="org.eclipse.emf.ecp.view.vertical.model:VerticalLayout" xmi:id="_uelRoHPsEeWDOMQZ7VnKWg">
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXUuoHPsEeWDOMQZ7VnKWg" name="Control name">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXUuoXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://unicase.org/model#//UnicaseModelElement/name"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXUuonPsEeWDOMQZ7VnKWg" name="Control description">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXUuo3PsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://unicase.org/model#//UnicaseModelElement/description"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXUuqnPsEeWDOMQZ7VnKWg" name="Control state">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXUuq3PsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://unicase.org/model#//UnicaseModelElement/state"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXUusHPsEeWDOMQZ7VnKWg" name="Control creationDate">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXUusXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://unicase.org/model#//UnicaseModelElement/creationDate"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXUusnPsEeWDOMQZ7VnKWg" name="Control creator">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXUus3PsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://unicase.org/model#//UnicaseModelElement/creator"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXUutnPsEeWDOMQZ7VnKWg" name="Control containingWorkpackage">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXUut3PsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EReference" href="http://unicase.org/model#//task/WorkItem/containingWorkpackage"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXUuvHPsEeWDOMQZ7VnKWg" name="Control assignee">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXUuvXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EReference" href="http://unicase.org/model#//task/WorkItem/assignee"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXUuvnPsEeWDOMQZ7VnKWg" name="Control reviewer">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXUuv3PsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EReference" href="http://unicase.org/model#//task/WorkItem/reviewer"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXUuwnPsEeWDOMQZ7VnKWg" name="Control dueDate">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXUuw3PsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://unicase.org/model#//task/WorkItem/dueDate"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXUuxHPsEeWDOMQZ7VnKWg" name="Control estimate">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXUuxXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://unicase.org/model#//task/WorkItem/estimate"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXVVsHPsEeWDOMQZ7VnKWg" name="Control effort">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXVVsXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://unicase.org/model#//task/WorkItem/effort"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXVVsnPsEeWDOMQZ7VnKWg" name="Control priority">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXVVs3PsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://unicase.org/model#//task/WorkItem/priority"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXVVtHPsEeWDOMQZ7VnKWg" name="Control resolved">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXVVtXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://unicase.org/model#//task/WorkItem/resolved"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXVVuHPsEeWDOMQZ7VnKWg" name="Control checked">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXVVuXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://unicase.org/model#//task/Checkable/checked"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXVVunPsEeWDOMQZ7VnKWg" name="Control severity">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXVVu3PsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://unicase.org/model#//bug/BugReport/severity"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXVVvHPsEeWDOMQZ7VnKWg" name="Control resolution">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXVVvXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://unicase.org/model#//bug/BugReport/resolution"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXVVvnPsEeWDOMQZ7VnKWg" name="Control resolutionType">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXVVv3PsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://unicase.org/model#//bug/BugReport/resolutionType"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXVVwHPsEeWDOMQZ7VnKWg" name="Control done">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXVVwXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EAttribute" href="http://unicase.org/model#//bug/BugReport/done"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXUupHPsEeWDOMQZ7VnKWg" name="Control annotations">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXUupXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EReference" href="http://unicase.org/model#//UnicaseModelElement/annotations"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXUupnPsEeWDOMQZ7VnKWg" name="Control attachments">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXUup3PsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EReference" href="http://unicase.org/model#//UnicaseModelElement/attachments"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXVVtnPsEeWDOMQZ7VnKWg" name="Control includingReleases">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXVVt3PsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EReference" href="http://unicase.org/model#//task/WorkItem/includingReleases"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXUurnPsEeWDOMQZ7VnKWg" name="Control comments">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXUur3PsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EReference" href="http://unicase.org/model#//UnicaseModelElement/comments"/>
+        </domainModelReference>
+      </children>
+    </children>
+    <children xsi:type="org.eclipse.emf.ecp.view.vertical.model:VerticalLayout" xmi:id="_u3oDwHPsEeWDOMQZ7VnKWg">
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXUuqHPsEeWDOMQZ7VnKWg" name="Control incomingDocumentReferences">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXUuqXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EReference" href="http://unicase.org/model#//UnicaseModelElement/incomingDocumentReferences"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXUurHPsEeWDOMQZ7VnKWg" name="Control appliedStereotypeInstances">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXUurXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EReference" href="http://unicase.org/model#//UnicaseModelElement/appliedStereotypeInstances"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXUutHPsEeWDOMQZ7VnKWg" name="Control annotatedModelElements">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXUutXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EReference" href="http://unicase.org/model#//Annotation/annotatedModelElements"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXUuuHPsEeWDOMQZ7VnKWg" name="Control predecessors">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXUuuXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EReference" href="http://unicase.org/model#//task/WorkItem/predecessors"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXUuunPsEeWDOMQZ7VnKWg" name="Control successors">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXUuu3PsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EReference" href="http://unicase.org/model#//task/WorkItem/successors"/>
+        </domainModelReference>
+      </children>
+      <children xsi:type="org.eclipse.emf.ecp.view.model:Control" xmi:id="_tXUuwHPsEeWDOMQZ7VnKWg" name="Control participants">
+        <domainModelReference xsi:type="org.eclipse.emf.ecp.view.model:FeaturePathDomainModelReference" xmi:id="_tXUuwXPsEeWDOMQZ7VnKWg">
+          <domainModelEFeature xsi:type="ecore:EReference" href="http://unicase.org/model#//task/WorkItem/participants"/>
+        </domainModelReference>
+      </children>
+    </children>
+  </children>
+</org.eclipse.emf.ecp.view.model:View>

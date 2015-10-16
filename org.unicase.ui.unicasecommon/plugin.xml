@@ -154,25 +154,6 @@
            </visibleWhen>
         </command>
         <dynamic
-              class="org.unicase.ui.unicasecommon.navigator.commands.DynamicMECreationCommands"
-              id="org.unicase.ui.navigator.dynamicMECreationCommands">
-           <visibleWhen
-                 checkEnabled="false">
-              <and>
-                 <iterate
-                       ifEmpty="false"
-                       operator="and">
-                    <instanceof
-                          value="org.unicase.model.document.LeafSection">
-                    </instanceof>
-                 </iterate>
-                 <count
-                       value="1">
-                 </count>
-              </and>
-           </visibleWhen>
-        </dynamic>
-        <dynamic
               class="org.unicase.ui.unicasecommon.navigator.commands.DynamicContainmentCommands"
               id="org.unicase.ui.navigator.dynamicContainmentCommands">
            <visibleWhen
@@ -503,10 +484,9 @@
           point="org.eclipse.ui.perspectives">
        <perspective
              class="org.unicase.ui.unicasecommon.common.UnicasePerspective"
-             fixed="false"
              icon="icons/unicase.png"
              id="org.unicase.ui.unicasecommon.common.UnicasePerspective"
-             name="Unicase">
+             name="UNICASE">
        </perspective>
     </extension>
     <extension
@@ -582,12 +562,6 @@
      </observer>
   </extension>
   <extension
-        point="org.eclipse.emf.emfstore.client.defaultConfigurationProvider">
-     <configurationProvider
-           providerClass="org.unicase.ui.unicasecommon.UnicaseConfigurationProvider">
-     </configurationProvider>
-  </extension>
-  <extension
         point="org.eclipse.emf.emfstore.client.editingDomainProvider">
      <provider
            class="org.unicase.ui.unicasecommon.changetracking.TransactionalEditingDomainProvider">
@@ -614,4 +588,53 @@
            class="org.unicase.ui.unicasecommon.UnicaseClientVersionProvider">
      </version>
   </extension>
+    <extension
+          id="unicase_application"
+          point="org.eclipse.core.runtime.applications">
+       <application
+             icon="icons/unicase_big.png">
+          <run
+                class="org.unicase.ui.unicasecommon.application.UNICASEApplication">
+          </run>
+       </application>
+    </extension>
+       <extension
+         point="org.eclipse.ui.activities">
+      <activity
+            id="org.eclipse.emf.ecp.application.e3.enablement"
+            name="3x Application UI Enablement">
+      </activity>
+      <activityPatternBinding
+            activityId="org.eclipse.emf.ecp.application.e3.enablement"
+            pattern=".*/org\.eclipse\.emf\.ecp\.application3x\.perspective">
+      </activityPatternBinding>
+   </extension>
+          <extension
+         point="org.eclipse.ui.elementFactories">
+      <factory
+            class="org.unicase.ui.unicasecommon.application.NavigatorRoot"
+            id="org.eclipse.emf.ecp.NavigatorRoot">
+      </factory>
+   </extension>
+          <extension
+                point="org.eclipse.emf.ecp.ui.modelElementOpener">
+             <modelElementOpener
+                   class="org.unicase.ui.unicasecommon.ECPModelElementOpener">
+                <staticTester
+                      modelElement="org.unicase.model.UnicaseModelElement"
+                      priority="5">
+                </staticTester>
+             </modelElementOpener>
+          </extension>
+          <extension
+                point="org.eclipse.ui.activities">
+             <activity
+                   id="org.unicase.ui.activity.suppress"
+                   name="org.unicase.ui.activity.suppress">
+             </activity>
+             <activityPatternBinding
+                   activityId="org.unicase.ui.activity.suppress"
+                   pattern="org.eclipse.emf.ecp.ui.wizards.newModelElementWizard">
+             </activityPatternBinding>
+          </extension>
 </plugin>

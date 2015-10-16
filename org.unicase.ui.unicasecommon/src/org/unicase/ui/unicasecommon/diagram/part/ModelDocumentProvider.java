@@ -15,8 +15,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecp.editor.internal.e3.ECPCommand;
 import org.eclipse.emf.emfstore.internal.client.model.ESWorkspaceProviderImpl;
+import org.eclipse.emf.emfstore.internal.client.model.util.EMFStoreCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
@@ -38,8 +38,7 @@ import org.unicase.model.diagram.impl.DiagramLoadException;
  *         ModelDocumentProvider in each diagram plugin.
  */
 @SuppressWarnings("restriction")
-public abstract class ModelDocumentProvider extends AbstractDocumentProvider
-		implements IDiagramDocumentProvider {
+public abstract class ModelDocumentProvider extends AbstractDocumentProvider implements IDiagramDocumentProvider {
 
 	/**
 	 * {@inheritDoc}
@@ -49,8 +48,8 @@ public abstract class ModelDocumentProvider extends AbstractDocumentProvider
 	@Override
 	final protected IDocument createEmptyDocument() {
 		DiagramDocument document = new DiagramDocument();
-		document.setEditingDomain((TransactionalEditingDomain) ESWorkspaceProviderImpl
-				.getInstance().getInternalWorkspace().getEditingDomain());
+		document.setEditingDomain((TransactionalEditingDomain) ESWorkspaceProviderImpl.getInstance()
+				.getInternalWorkspace().getEditingDomain());
 		return document;
 	}
 
@@ -64,20 +63,17 @@ public abstract class ModelDocumentProvider extends AbstractDocumentProvider
 	 * @throws CoreException
 	 *             if an exceptional error occurs
 	 */
-	final protected void setDocumentContent(IDocument document,
-			IEditorInput element) throws CoreException {
+	final protected void setDocumentContent(IDocument document, IEditorInput element) throws CoreException {
 		IDiagramDocument diagramDocument = (IDiagramDocument) document;
 		TransactionalEditingDomain domain = diagramDocument.getEditingDomain();
 		if (element instanceof FileEditorInput) {
 			IStorage storage = ((FileEditorInput) element).getStorage();
-			Diagram diagram = DiagramIOUtil.load(domain, storage, true,
-					getProgressMonitor());
+			Diagram diagram = DiagramIOUtil.load(domain, storage, true, getProgressMonitor());
 			document.setContent(diagram);
 		} else if (element instanceof URIEditorInput) {
 			URI uri = ((URIEditorInput) element).getURI();
 			Diagram diagram = null;
-			Resource resource = ESWorkspaceProviderImpl.getInstance()
-					.getInternalWorkspace().eResource();
+			Resource resource = ESWorkspaceProviderImpl.getInstance().getInternalWorkspace().eResource();
 			ResourceSet rs = resource.getResourceSet();
 			EObject object = rs.getEObject(uri, false);
 			if (object != null) {
@@ -89,17 +85,11 @@ public abstract class ModelDocumentProvider extends AbstractDocumentProvider
 			}
 			throw new RuntimeException("Diagram is not present in resource");
 		} else {
-			throw new CoreException(
-					new Status(
-							IStatus.ERROR,
-							"org.unicase.ui.common",
-							0,
-							NLS.bind(
-									"Incorrect editor input",
-									new Object[] {
-											element,
-											"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-							null));
+			throw new CoreException(new Status(IStatus.ERROR, "org.unicase.ui.common", 0,
+					NLS.bind("Incorrect editor input",
+							new Object[] { element, "org.eclipse.ui.part.FileEditorInput", //$NON-NLS-1$
+									"org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$
+					null));
 		}
 	}
 
@@ -107,7 +97,7 @@ public abstract class ModelDocumentProvider extends AbstractDocumentProvider
 		if (object instanceof MEDiagram) {
 			final MEDiagram diagram = (MEDiagram) object;
 			// legacy support
-			new ECPCommand(diagram, null) {
+			new EMFStoreCommand() {
 
 				@Override
 				protected void doRun() {
@@ -126,14 +116,12 @@ public abstract class ModelDocumentProvider extends AbstractDocumentProvider
 					throw new RuntimeException("Unsupported diagram type");
 				}
 				// JH: Build switch for different diagram types
-				final Diagram result = ViewService.createDiagram(diagram, id,
-						getPreferencesHint());
+				final Diagram result = ViewService.createDiagram(diagram, id, getPreferencesHint());
 				if (result == null) {
 					return null;
 				}
 				result.setElement(diagram);
-				new ECPCommand(diagram, ESWorkspaceProviderImpl.getInstance()
-						.getInternalWorkspace().getEditingDomain()) {
+				new EMFStoreCommand() {
 					@Override
 					protected void doRun() {
 						diagram.setGmfdiagram(result);

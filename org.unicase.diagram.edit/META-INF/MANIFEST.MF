@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: org.unicase.model.diagram.provider.DiagramEditPlugin$Implementation
 Bundle-Vendor: unicase.org
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.unicase.model.diagram.provider
 Require-Bundle: org.eclipse.core.runtime,
  org.unicase.diagram;visibility:=reexport,
