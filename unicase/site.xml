@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.unicase.feature_0.5.3.qualifier.jar" id="org.unicase.feature" version="0.5.3.qualifier">
+   <feature url="features/org.unicase.feature_0.5.3.201510161235.jar" id="org.unicase.feature" version="0.5.3.201510161235">
       <category name="UNICASE"/>
    </feature>
    <category-def name="UNICASE" label="UNICASE Client">
